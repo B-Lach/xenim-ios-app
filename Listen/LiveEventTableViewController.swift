@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
-import Alamofire
 
 class LiveEventTableViewController: UITableViewController {
     
@@ -16,39 +14,12 @@ class LiveEventTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let parameters = [
-            "action": "getLive",
-            "count": 50
-        ]
-        let url = "http://hoersuppe.de/api/"
-        Alamofire.request(.GET, url, parameters: parameters)
-            .responseJSON { response in
-                if let responseData = response.data {
-                    let json = JSON(data: responseData)
-                    let data = json["data"]
-                    if data != nil {
-                        for i in 0 ..< data.count {
-                            
-                            let event = json["data"][i]
-                            
-                            let duration = event["duration"].string!
-                            let id = event["id"].string!
-                            let livedate = event["livedate"].string!
-                            let podcast = event["podcast"].string!
-                            let streamurl = event["streamurl"].string!
-                            let title = event["title"].string!
-                            let url = event["url"].string!
-
-                            self.liveEvents.append(LiveEvent(duration: duration, id: id, livedate: livedate, podcast: podcast, streamurl: streamurl, title: title, url: url))
-                        }
-                        
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.tableView.reloadData()
-                        })
-
-                    }
-                }
-
+        
+        HoersuppeAPI.fetchEvents(count: 50) { (liveEvents) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.liveEvents = liveEvents
+                self.tableView.reloadData()
+            })
         }
 
         // Uncomment the following line to preserve selection between presentations
