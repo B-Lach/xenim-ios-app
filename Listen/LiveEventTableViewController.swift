@@ -11,19 +11,44 @@ import SwiftyJSON
 import Alamofire
 
 class LiveEventTableViewController: UITableViewController {
+    
+    var liveEvents = [LiveEvent]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Alamofire.request(.GET, "http://httpbin.org/get", parameters: ["foo": "bar"])
+        let parameters = [
+            "action": "getLive",
+            "count": 50
+        ]
+        let url = "http://hoersuppe.de/api/"
+        Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
+                if let responseData = response.data {
+                    let json = JSON(data: responseData)
+                    let data = json["data"]
+                    if data != nil {
+                        for i in 0 ..< data.count {
+                            
+                            let event = json["data"][i]
+                            
+                            let duration = event["duration"].string!
+                            let id = event["id"].string!
+                            let livedate = event["livedate"].string!
+                            let podcast = event["podcast"].string!
+                            let streamurl = event["streamurl"].string!
+                            let title = event["title"].string!
+                            let url = event["url"].string!
+
+                            self.liveEvents.append(LiveEvent(duration: duration, id: id, livedate: livedate, podcast: podcast, streamurl: streamurl, title: title, url: url))
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.tableView.reloadData()
+                        })
+
+                    }
                 }
+
         }
 
         // Uncomment the following line to preserve selection between presentations
@@ -42,23 +67,24 @@ class LiveEventTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return liveEvents.count
     }
-
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("LiveEvent", forIndexPath: indexPath)
 
-        // Configure the cell...
+        let event = liveEvents[indexPath.row]
+        cell.textLabel?.text = event.title
+        cell.detailTextLabel?.text = event.streamurl
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

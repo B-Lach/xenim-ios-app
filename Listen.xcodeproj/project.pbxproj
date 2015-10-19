@@ -12,6 +12,7 @@
 		2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBC1BD52E480040100F /* Assets.xcassets */; };
 		2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */; };
 		2222ECC81BD52EEA0040100F /* LiveEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECC71BD52EEA0040100F /* LiveEventTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		229B7D4C1BD53DBD00F1CF6B /* LiveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4B1BD53DBD00F1CF6B /* LiveEvent.swift */; settings = {ASSET_TAGS = (); }; };
 		C4AC31ED7325A1EE139B07AE /* Pods_Listen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E80086D0684F4EB070BDA60 /* Pods_Listen.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		2222ECBF1BD52E480040100F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2222ECC11BD52E480040100F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2222ECC71BD52EEA0040100F /* LiveEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveEventTableViewController.swift; sourceTree = "<group>"; };
+		229B7D4B1BD53DBD00F1CF6B /* LiveEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveEvent.swift; sourceTree = "<group>"; };
 		2E80086D0684F4EB070BDA60 /* Pods_Listen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Listen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4F24029920A3FD527B19F4 /* Pods-Listen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Listen.release.xcconfig"; path = "Pods/Target Support Files/Pods-Listen/Pods-Listen.release.xcconfig"; sourceTree = "<group>"; };
 		EEB7C55264BBFDE1CC5C8294 /* Pods-Listen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Listen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Listen/Pods-Listen.debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				2222ECB51BD52E470040100F /* AppDelegate.swift */,
 				2222ECB91BD52E480040100F /* Main.storyboard */,
 				2222ECC71BD52EEA0040100F /* LiveEventTableViewController.swift */,
+				229B7D4B1BD53DBD00F1CF6B /* LiveEvent.swift */,
 				2222ECBC1BD52E480040100F /* Assets.xcassets */,
 				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
 				2222ECC11BD52E480040100F /* Info.plist */,
@@ -214,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2222ECC81BD52EEA0040100F /* LiveEventTableViewController.swift in Sources */,
+				229B7D4C1BD53DBD00F1CF6B /* LiveEvent.swift in Sources */,
 				2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
