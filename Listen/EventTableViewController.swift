@@ -8,16 +8,16 @@
 
 import UIKit
 
-class LiveEventTableViewController: UITableViewController {
+class EventTableViewController: UITableViewController {
     
-    var liveEvents = [LiveEvent]()
+    var events = [Event]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        HoersuppeAPI.fetchEvents(count: 50) { (liveEvents) -> Void in
+        HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.liveEvents = liveEvents
+                self.events = events
                 self.tableView.reloadData()
             })
         }
@@ -43,13 +43,13 @@ class LiveEventTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return liveEvents.count
+        return events.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LiveEvent", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath)
 
-        let event = liveEvents[indexPath.row]
+        let event = events[indexPath.row]
         cell.textLabel?.text = event.title
         cell.detailTextLabel?.text = event.streamurl
 

@@ -12,13 +12,14 @@ import Alamofire
 
 class HoersuppeAPI {
     
-    static func fetchEvents(count count: Int, onComplete: (liveEvents: [LiveEvent]) -> Void) {
-        var liveEvents = [LiveEvent]()
+    static let url = "http://hoersuppe.de/api/"
+    
+    static func fetchEvents(count count: Int, onComplete: (events: [Event]) -> Void) {
+        var events = [Event]()
         let parameters = [
             "action": "getLive",
             "count": "\(count)"
         ]
-        let url = "http://hoersuppe.de/api/"
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
                 if let responseData = response.data {
@@ -37,15 +38,32 @@ class HoersuppeAPI {
                             let title = event["title"].string!
                             let url = event["url"].string!
                             
-                            liveEvents.append(LiveEvent(duration: duration, id: id, livedate: livedate, podcast: podcast, streamurl: streamurl, title: title, url: url))
+                            events.append(Event(duration: duration, id: id, livedate: livedate, podcast: podcast, streamurl: streamurl, title: title, url: url))
                         }
                     }
-                    onComplete(liveEvents: liveEvents)
+                    onComplete(events: events)
                 }
         }
     }
     
-    static func fetchPodcastDetail(podcastName: String) -> Podcast? {
-        return nil
+    static func fetchPodcastDetail(podcastName: String, onComplete: (podcast: Podcast?) -> Void) {
+        let parameters = [
+            "action": "getPodcastData",
+            "podcast": podcastName
+        ]
+        Alamofire.request(.GET, url, parameters: parameters)
+            .responseJSON { response in
+                if let responseData = response.data {
+                    let json = JSON(data: responseData)
+                    let data = json["data"]
+                    if data != nil {
+                        let podcast = json["data"][0]
+                        
+                        onComplete(podcast: Podcast(name: podcast["title"].string!, subtitle: podcast["subtitle"].string!, url: podcast["url"].string!, feedurl: podcast["feedurl"].string!, imageurl: podcast["imageurl"].string!, slug: podcast["slug"].string!, description: podcast["description"].string!))
+                    } else {
+                        onComplete(podcast: nil)
+                    }
+                }
+        }
     }
 }

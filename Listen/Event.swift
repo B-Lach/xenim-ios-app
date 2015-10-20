@@ -7,16 +7,19 @@
 //
 
 import Foundation
+import UIKit
 
-class LiveEvent {
+class Event {
 
     var duration: Int
     var id: String
     var livedate: NSDate
-    var podcast: String
+    var podcast: Podcast?
+    var podcastName: String
     var streamurl: String
     var title: String
     var url: String
+    var image: UIImage?
     
     init(duration: String, id: String, livedate: String, podcast: String, streamurl: String, title: String, url: String) {
         if let durationNumber = Int(duration) {
@@ -35,7 +38,10 @@ class LiveEvent {
             self.livedate = NSDate()
         }
         
-        self.podcast = podcast
+        self.podcastName = podcast
+        self.podcast = HoersuppeAPI.fetchPodcastDetail(podcastName, onComplete: { (podcast) -> Void in
+            self.podcast = podcast
+        })
         self.streamurl = streamurl
         self.title = title
         self.url = url

@@ -4,36 +4,27 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--Live Event Table View Controller-->
+        <!--Event Table View Controller-->
         <scene sceneID="UEB-V1-gUW">
             <objects>
-                <tableViewController id="Vdh-qv-U2O" customClass="LiveEventTableViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QC1-tk-ej9">
+                <tableViewController id="Vdh-qv-U2O" customClass="EventTableViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="QC1-tk-ej9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LiveEvent" textLabel="ggL-4Z-cOe" detailTextLabel="9Ly-qS-agA" style="IBUITableViewCellStyleSubtitle" id="hiw-wf-THJ">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event" rowHeight="75" id="hiw-wf-THJ" customClass="EventTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="600" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hiw-wf-THJ" id="jQY-dg-Cex">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ggL-4Z-cOe">
-                                            <rect key="frame" x="15" y="5" width="32" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ts-Fh-Fdg">
+                                            <rect key="frame" x="8" y="26" width="42" height="21"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Ly-qS-agA">
-                                            <rect key="frame" x="15" y="25" width="41" height="14"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -41,6 +32,9 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="podcastNameLabel" destination="1ts-Fh-Fdg" id="fR7-vw-kdw"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
