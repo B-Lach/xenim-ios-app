@@ -47,11 +47,9 @@ class EventTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventTableViewCell
 
-        let event = events[indexPath.row]
-        cell.textLabel?.text = event.title
-        cell.detailTextLabel?.text = event.streamurl
+        cell.event = events[indexPath.row]
 
         return cell
     }

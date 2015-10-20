@@ -7,22 +7,23 @@
 //
 
 import Foundation
+import UIKit
 
 class Podcast {
     
     var alternates = [String]()
     var feedurl: String
-    var chat_channel: String? = nil
-    var chat_server: String? = nil
-    var chat_url: String? = nil
+    var chat_channel: String?
+    var chat_server: String?
+    var chat_url: String?
 //    var contact
 //        var email
 //        var twitter
     var description: String
-    var flattrid: String? = nil
+    var flattrid: String?
     var imageurl: String
-    var payment: String? = nil
-    var recension: String? = nil
+    var payment: String?
+    var recension: String?
     var slug: String
     var subtitle: String
     var name: String // title

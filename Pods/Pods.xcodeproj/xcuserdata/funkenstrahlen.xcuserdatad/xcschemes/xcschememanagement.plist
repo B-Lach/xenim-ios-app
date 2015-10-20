@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Listen.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,12 +32,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>879A76DC052F9CED3C8337961883DDF4</key>
+		<key>86C0931E85C18D28ED6B95B72416CBFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E82BC07C52C957A810DFE06CF3A68ECF</key>
+		<key>A1BF58736B6CCECB5DB30E2108366143</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF088737BCAF280E6D9944FEA3FC50A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

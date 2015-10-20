@@ -19,7 +19,6 @@ class Event {
     var streamurl: String
     var title: String
     var url: String
-    var image: UIImage?
     
     init(duration: String, id: String, livedate: String, podcast: String, streamurl: String, title: String, url: String) {
         if let durationNumber = Int(duration) {
@@ -39,9 +38,6 @@ class Event {
         }
         
         self.podcastName = podcast
-        self.podcast = HoersuppeAPI.fetchPodcastDetail(podcastName, onComplete: { (podcast) -> Void in
-            self.podcast = podcast
-        })
         self.streamurl = streamurl
         self.title = title
         self.url = url

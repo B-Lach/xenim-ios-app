@@ -53,12 +53,10 @@ class HoersuppeAPI {
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
-                if let responseData = response.data {
+                if let responseData = response.data {                    
                     let json = JSON(data: responseData)
-                    let data = json["data"]
-                    if data != nil {
-                        let podcast = json["data"][0]
-                        
+                    let podcast = json["data"]
+                    if podcast != nil {                        
                         onComplete(podcast: Podcast(name: podcast["title"].string!, subtitle: podcast["subtitle"].string!, url: podcast["url"].string!, feedurl: podcast["feedurl"].string!, imageurl: podcast["imageurl"].string!, slug: podcast["slug"].string!, description: podcast["description"].string!))
                     } else {
                         onComplete(podcast: nil)
