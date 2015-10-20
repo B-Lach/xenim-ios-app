@@ -13,11 +13,21 @@ class EventTableViewCell: UITableViewCell {
     
     @IBOutlet weak var eventCoverartImage: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
+    @IBOutlet weak var liveDateLabel: UILabel!
     
     var event: Event? {
         didSet {
             if event != nil {
                 podcastNameLabel.text = event?.title
+                
+                var formatter = NSDateFormatter();
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ";
+                let defaultTimeZoneStr = formatter.stringFromDate((event?.livedate)!);
+                // "2014-07-23 11:01:35 -0700" <-- same date, local, but with seconds
+                formatter.timeZone = NSTimeZone(abbreviation: "UTC");
+                let utcTimeZoneStr = formatter.stringFromDate((event?.livedate)!);
+                
+                liveDateLabel.text = defaultTimeZoneStr
                 let placeholderImage = UIImage(named: "event_placeholder")!
                 eventCoverartImage.image = placeholderImage
                 

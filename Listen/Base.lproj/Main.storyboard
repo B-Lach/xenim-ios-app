@@ -32,7 +32,17 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5d-ya-iW5">
                                             <rect key="frame" x="78" y="8" width="42" height="21"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRm-H4-jze">
+                                            <rect key="frame" x="78" y="37" width="42" height="21"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="gJw-Bq-6bk"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -40,15 +50,20 @@
                                     <animations/>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="IhM-9d-ONQ" secondAttribute="bottom" constant="-4" id="2h2-Oh-5HW"/>
+                                        <constraint firstItem="sRm-H4-jze" firstAttribute="top" secondItem="l5d-ya-iW5" secondAttribute="bottom" constant="8" symbolic="YES" id="6Iv-SH-d72"/>
                                         <constraint firstItem="l5d-ya-iW5" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="top" id="BUb-li-GpN"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="sRm-H4-jze" secondAttribute="bottom" constant="8" id="OFi-30-SL7"/>
                                         <constraint firstItem="IhM-9d-ONQ" firstAttribute="leading" secondItem="jQY-dg-Cex" secondAttribute="leadingMargin" id="SCs-ml-hCP"/>
+                                        <constraint firstItem="sRm-H4-jze" firstAttribute="leading" secondItem="l5d-ya-iW5" secondAttribute="leading" id="d8R-9C-msz"/>
                                         <constraint firstItem="l5d-ya-iW5" firstAttribute="leading" secondItem="IhM-9d-ONQ" secondAttribute="trailing" constant="8" symbolic="YES" id="gG2-kA-6YK"/>
+                                        <constraint firstItem="sRm-H4-jze" firstAttribute="trailing" secondItem="l5d-ya-iW5" secondAttribute="trailing" id="sJM-Wf-orL"/>
                                         <constraint firstItem="IhM-9d-ONQ" firstAttribute="top" secondItem="jQY-dg-Cex" secondAttribute="topMargin" id="uzA-Cf-9uS"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
                                     <outlet property="eventCoverartImage" destination="IhM-9d-ONQ" id="jPM-8x-6rV"/>
+                                    <outlet property="liveDateLabel" destination="sRm-H4-jze" id="wv2-wQ-3zP"/>
                                     <outlet property="podcastNameLabel" destination="l5d-ya-iW5" id="Kvp-1b-1yu"/>
                                 </connections>
                             </tableViewCell>
