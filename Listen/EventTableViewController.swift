@@ -11,14 +11,14 @@ import AlamofireImage
 
 class EventTableViewController: UITableViewController {
     
-    var events = [Event]()
+    var events = [String:[Event]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
+            self.events["Live"] = events
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.events = events
                 self.tableView.reloadData()
             })
         }
@@ -39,18 +39,30 @@ class EventTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return events.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return events.count
+        let key = Array(events.keys)[section]
+        if let count = events[key]?.count {
+            return count
+        } else {
+            return Int(0)
+        }
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return Array(events.keys)[section]
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventTableViewCell
-
-        cell.event = events[indexPath.row]
+        
+        let key = Array(events.keys)[indexPath.section]
+        if let events = events[key] {
+            cell.event = events[indexPath.row]
+        }
 
         return cell
     }
