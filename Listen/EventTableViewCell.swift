@@ -11,9 +11,18 @@ import AlamofireImage
 
 class EventTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var eventCoverartImage: UIImageView!
+    @IBOutlet weak var eventCoverartImage: UIImageView! {
+        didSet {
+            if let podcast = event?.podcast {
+                // put it in the cache
+                self.imageCache.addImage(self.eventCoverartImage.image!, withIdentifier: podcast.slug)
+            }
+        }
+    }
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var liveDateLabel: UILabel!
+    
+    let imageCache = ImageCache.sharedImageCache
     
     var event: Event? {
         didSet {
@@ -28,6 +37,7 @@ class EventTableViewCell: UITableViewCell {
                 let utcTimeZoneStr = formatter.stringFromDate((event?.livedate)!);
                 
                 liveDateLabel.text = defaultTimeZoneStr
+                
                 let placeholderImage = UIImage(named: "event_placeholder")!
                 eventCoverartImage.image = placeholderImage
                 
@@ -35,8 +45,15 @@ class EventTableViewCell: UITableViewCell {
                 HoersuppeAPI.fetchPodcastDetail(event!.podcastName, onComplete: { (podcast) -> Void in
                     if podcast != nil && self.event!.podcastName == podcast!.slug {
                         self.event!.podcast = podcast
-                        if let URL = NSURL(string: (podcast?.imageurl)!) {
-                            self.eventCoverartImage.af_setImageWithURL(URL, placeholderImage: placeholderImage)
+                        
+                        // check if image is in cache
+                        if let cachedImage = self.imageCache.imageWithIdentifier(podcast!.slug) {
+                            self.eventCoverartImage.image = cachedImage
+                        } else {
+                            if let URL = NSURL(string: (podcast?.imageurl)!) {
+                                // download image
+                                self.eventCoverartImage.af_setImageWithURL(URL, placeholderImage: placeholderImage)
+                            }
                         }
                     }
                 })
