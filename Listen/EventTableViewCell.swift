@@ -14,6 +14,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var eventCoverartImage: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var liveDateLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
     
     var event: Event? {
         didSet {
@@ -39,6 +40,7 @@ class EventTableViewCell: UITableViewCell {
                     let duration: NSTimeInterval = (Double)(event!.duration * 60)
                     let eventEndDate = event!.livedate!.dateByAddingTimeInterval(duration) // event.duration is minutes
                     if eventStartDate.earlierDate(now) == eventStartDate && eventEndDate.laterDate(now) == eventEndDate {
+                        playButton.hidden = false
                         liveDateLabel.text = "since \(formatter.stringFromDate(date))"
                     } else {
                         liveDateLabel.text = formatter.stringFromDate(date)
