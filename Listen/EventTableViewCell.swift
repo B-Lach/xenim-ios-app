@@ -20,12 +20,30 @@ class EventTableViewCell: UITableViewCell {
             if event != nil {
                 podcastNameLabel.text = event?.title
                 
-                let formatter = NSDateFormatter();
-                formatter.locale = NSLocale.currentLocale()
-                formatter.dateStyle = .ShortStyle
-                formatter.timeStyle = .ShortStyle
-
-                liveDateLabel.text = formatter.stringFromDate((self.event!.livedate!)) // todo
+                if let date = event!.livedate {
+                    let calendar = NSCalendar.currentCalendar()
+                    let formatter = NSDateFormatter();
+                    formatter.locale = NSLocale.currentLocale()
+                    
+                    if calendar.isDateInToday(date) || calendar.isDateInTomorrow(date) {
+                        formatter.dateStyle = .NoStyle
+                        formatter.timeStyle = .ShortStyle
+                    } else {
+                        formatter.dateStyle = .MediumStyle
+                        formatter.timeStyle = .ShortStyle
+                    }
+                    
+                    // check if live
+                    let now = NSDate()
+                    let eventStartDate = event!.livedate!
+                    let duration: NSTimeInterval = (Double)(event!.duration * 60)
+                    let eventEndDate = event!.livedate!.dateByAddingTimeInterval(duration) // event.duration is minutes
+                    if eventStartDate.earlierDate(now) == eventStartDate && eventEndDate.laterDate(now) == eventEndDate {
+                        liveDateLabel.text = "since \(formatter.stringFromDate(date))"
+                    } else {
+                        liveDateLabel.text = formatter.stringFromDate(date)
+                    }
+                }
                 
                 let placeholderImage = UIImage(named: "event_placeholder")!
                 eventCoverartImage.image = placeholderImage
