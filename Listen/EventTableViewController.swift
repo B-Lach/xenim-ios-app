@@ -11,18 +11,13 @@ import AlamofireImage
 
 class EventTableViewController: UITableViewController {
     
+    @IBOutlet weak var spinner: UIRefreshControl!
     var events = [String:[Event]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
-            self.events.removeAll()
-            self.sortEventsInSections(events)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.tableView.reloadData()
-            })
-        }
+        refresh(spinner)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -62,6 +57,18 @@ class EventTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func refresh(spinner: UIRefreshControl) {
+        spinner.beginRefreshing()
+        HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
+            self.events.removeAll()
+            self.sortEventsInSections(events)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+                spinner.endRefreshing()
+            })
+        }
     }
 
     // MARK: - Table view data source

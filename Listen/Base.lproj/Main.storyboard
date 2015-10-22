@@ -93,6 +93,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="Z1Y-08-P79"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="5or-JL-Ff6">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <connections>
+                            <action selector="refresh:" destination="Vdh-qv-U2O" eventType="valueChanged" id="xCX-pf-uJ4"/>
+                        </connections>
+                    </refreshControl>
+                    <connections>
+                        <outlet property="spinner" destination="5or-JL-Ff6" id="G89-Oz-e2n"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAH-X7-5jG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
