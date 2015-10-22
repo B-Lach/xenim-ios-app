@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eoS-iW-zKK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eoS-iW-zKK">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -219,10 +219,10 @@
             </objects>
             <point key="canvasLocation" x="2018" y="1086"/>
         </scene>
-        <!--View Controller-->
+        <!--Podcast Detail View Controller-->
         <scene sceneID="yvO-a8-2Tm">
             <objects>
-                <viewController id="CbF-yf-C8m" sceneMemberID="viewController">
+                <viewController id="CbF-yf-C8m" customClass="PodcastDetailViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cHd-Vs-Y82"/>
                         <viewControllerLayoutGuide type="bottom" id="CBM-X5-eFn"/>
@@ -238,13 +238,6 @@
                                     <constraint firstAttribute="height" constant="209" id="25g-lK-fqH"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUP-89-zdf">
-                                <rect key="frame" x="283" y="292" width="34" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hq4-Wv-0mr">
                                 <rect key="frame" x="0.0" y="64" width="600" height="145"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ndo-cI-0JQ">
@@ -255,15 +248,21 @@
                                 <animations/>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pQ3-Yr-08S">
-                                <rect key="frame" x="20" y="321" width="560" height="230"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUP-89-zdf">
+                                <rect key="frame" x="275" y="292" width="50" height="33"/>
                                 <animations/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="pQ3-Yr-08S">
+                                <rect key="frame" x="20" y="333" width="560" height="218"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEY-Pn-sf4">
-                                <rect key="frame" x="162" y="264" width="55" height="30"/>
+                                <rect key="frame" x="162" y="217" width="55" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Favorite"/>
                             </button>
@@ -276,7 +275,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRz-HY-wfi">
-                                <rect key="frame" x="383" y="264" width="62" height="30"/>
+                                <rect key="frame" x="383" y="217" width="62" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Subcribe"/>
                             </button>
@@ -287,24 +286,30 @@
                             <constraint firstAttribute="trailingMargin" secondItem="pQ3-Yr-08S" secondAttribute="trailing" id="29D-2l-z9k"/>
                             <constraint firstItem="Hq4-Wv-0mr" firstAttribute="width" secondItem="LAT-c4-TI7" secondAttribute="width" id="64v-qc-Rhw"/>
                             <constraint firstItem="ZUP-89-zdf" firstAttribute="top" secondItem="DhU-tu-cW7" secondAttribute="bottom" constant="8" id="8UK-SH-gYW"/>
+                            <constraint firstItem="xRz-HY-wfi" firstAttribute="leading" secondItem="DhU-tu-cW7" secondAttribute="trailing" constant="8" id="B0w-yq-Fpw"/>
                             <constraint firstItem="LAT-c4-TI7" firstAttribute="leading" secondItem="D8C-le-2Cj" secondAttribute="leading" id="EOX-9a-Sy0"/>
                             <constraint firstItem="Hq4-Wv-0mr" firstAttribute="baseline" secondItem="LAT-c4-TI7" secondAttribute="baseline" id="FfI-Bh-g6o"/>
                             <constraint firstItem="Hq4-Wv-0mr" firstAttribute="top" secondItem="LAT-c4-TI7" secondAttribute="bottom" constant="-145" id="FgG-nM-RYp"/>
                             <constraint firstItem="pQ3-Yr-08S" firstAttribute="top" secondItem="ZUP-89-zdf" secondAttribute="bottom" constant="8" id="H2U-hZ-8fZ"/>
                             <constraint firstItem="DhU-tu-cW7" firstAttribute="top" secondItem="LAT-c4-TI7" secondAttribute="bottom" constant="-75" id="O7x-hf-EXl"/>
-                            <constraint firstItem="DhU-tu-cW7" firstAttribute="leading" secondItem="hEY-Pn-sf4" secondAttribute="trailing" constant="8" id="UTx-aK-2tc"/>
-                            <constraint firstItem="hEY-Pn-sf4" firstAttribute="baseline" secondItem="DhU-tu-cW7" secondAttribute="baseline" id="bfv-aL-ple"/>
-                            <constraint firstItem="hEY-Pn-sf4" firstAttribute="baseline" secondItem="xRz-HY-wfi" secondAttribute="baseline" id="ebs-VI-vWw"/>
                             <constraint firstItem="DhU-tu-cW7" firstAttribute="centerX" secondItem="D8C-le-2Cj" secondAttribute="centerX" id="fz9-XT-chT"/>
+                            <constraint firstItem="hEY-Pn-sf4" firstAttribute="top" secondItem="LAT-c4-TI7" secondAttribute="bottom" constant="8" id="he9-RX-ZNL"/>
                             <constraint firstItem="ZUP-89-zdf" firstAttribute="centerX" secondItem="D8C-le-2Cj" secondAttribute="centerX" id="i0M-iF-R1r"/>
                             <constraint firstItem="CBM-X5-eFn" firstAttribute="top" secondItem="pQ3-Yr-08S" secondAttribute="bottom" id="kEc-0x-QpU"/>
                             <constraint firstItem="LAT-c4-TI7" firstAttribute="top" secondItem="D8C-le-2Cj" secondAttribute="top" id="pCe-H1-VyB"/>
                             <constraint firstAttribute="trailing" secondItem="LAT-c4-TI7" secondAttribute="trailing" id="pfX-GL-PDM"/>
-                            <constraint firstItem="xRz-HY-wfi" firstAttribute="leading" secondItem="DhU-tu-cW7" secondAttribute="trailing" constant="8" id="qH1-QO-m44"/>
+                            <constraint firstItem="DhU-tu-cW7" firstAttribute="leading" secondItem="hEY-Pn-sf4" secondAttribute="trailing" constant="8" id="qcp-DS-HSi"/>
                             <constraint firstAttribute="leadingMargin" secondItem="pQ3-Yr-08S" secondAttribute="leading" id="sx3-9j-IAd"/>
+                            <constraint firstItem="xRz-HY-wfi" firstAttribute="top" secondItem="LAT-c4-TI7" secondAttribute="bottom" constant="8" id="we5-02-TfT"/>
                             <constraint firstItem="Hq4-Wv-0mr" firstAttribute="centerX" secondItem="LAT-c4-TI7" secondAttribute="centerX" id="zOh-Vp-28S"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="blurredCoverartImageView" destination="LAT-c4-TI7" id="mff-sj-cE0"/>
+                        <outlet property="coverartImageView" destination="DhU-tu-cW7" id="Yn8-X6-yf7"/>
+                        <outlet property="podcastDescriptionTextView" destination="pQ3-Yr-08S" id="5fs-QA-nKl"/>
+                        <outlet property="podcastNameLabel" destination="ZUP-89-zdf" id="IZs-P7-jUF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jUq-F6-Cru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

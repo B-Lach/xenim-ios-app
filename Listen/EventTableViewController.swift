@@ -17,7 +17,8 @@ class EventTableViewController: UITableViewController {
         super.viewDidLoad()
         
         HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
-            self.events["Live"] = events
+            self.events.removeAll()
+            self.sortEventsInSections(events)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
             })
@@ -28,6 +29,34 @@ class EventTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    private func sortEventsInSections(events: [Event]) {
+        for event in events {
+            
+            if event.livedate != nil {
+                let currentDate = NSDate()
+                let eventStartDate = event.livedate!
+                let duration: NSTimeInterval = (Double)(event.duration * 60)
+                let eventEndDate = event.livedate!.dateByAddingTimeInterval(duration) // event.duration is minutes
+            
+                if eventStartDate.earlierDate(currentDate) == eventStartDate && eventEndDate.laterDate(currentDate) == eventEndDate {
+                    // live now
+                    addEvent(event, section: "Live")
+                } else {
+                    // upcoming
+                    addEvent(event, section: "Upcoming")
+                }
+            }
+        }
+    }
+    
+    private func addEvent(event: Event, section: String) {
+        if events.keys.contains(section) {
+            events[section]?.append(event)
+        } else {
+            events[section] = [event]
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,14 +132,28 @@ class EventTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let cell = sender as? EventTableViewCell {
+            if let destinationVC = segue.destinationViewController as? PodcastDetailViewController {
+                if let identifier = segue.identifier {
+                    switch identifier {
+                    case "PodcastDetail":
+                        //destinationVC.podcast = cell.event?.podcast
+                        destinationVC.podcastName = cell.event?.podcastName
+                    default: break
+                    }
+                }
+
+            }
+        }
+        
     }
-    */
+    
 
 }

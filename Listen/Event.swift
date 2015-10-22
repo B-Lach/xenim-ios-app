@@ -13,7 +13,7 @@ class Event {
 
     var duration: Int
     var id: String
-    var livedate: NSDate
+    var livedate: NSDate?
     var podcast: Podcast?
     var podcastName: String
     var streamurl: String
@@ -28,13 +28,12 @@ class Event {
         }
         self.id = id
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "YYYY-MM-DD HH:mm:ss"
-        if let date = dateFormatter.dateFromString(livedate) {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        //formatter.timeZone = NSTimeZone(name: "America/New_York")
+        formatter.timeZone = NSTimeZone(name: "Europe/Berlin")
+        if let date = formatter.dateFromString(livedate) {
             self.livedate = date
-        } else {
-            self.livedate = NSDate()
         }
         
         self.podcastName = podcast
