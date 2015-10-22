@@ -12,11 +12,11 @@ import AlamofireImage
 class EventTableViewController: UITableViewController {
     
     @IBOutlet weak var spinner: UIRefreshControl!
-    var events = [String:[Event]]()
+    let sections = ["Live Now", "Today", "Tomorrow", "Later"]
+    var events = [[Event](),[Event](),[Event](),[Event]()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         refresh(spinner)
 
         // Uncomment the following line to preserve selection between presentations
@@ -30,27 +30,35 @@ class EventTableViewController: UITableViewController {
         for event in events {
             
             if event.livedate != nil {
-                let currentDate = NSDate()
+                let now = NSDate()
                 let eventStartDate = event.livedate!
                 let duration: NSTimeInterval = (Double)(event.duration * 60)
                 let eventEndDate = event.livedate!.dateByAddingTimeInterval(duration) // event.duration is minutes
             
-                if eventStartDate.earlierDate(currentDate) == eventStartDate && eventEndDate.laterDate(currentDate) == eventEndDate {
+                let calendar = NSCalendar.currentCalendar()
+                
+                if eventEndDate.earlierDate(now) == eventEndDate {
+                    // event already finished, do not add to the list
+                } else if eventStartDate.earlierDate(now) == eventStartDate && eventEndDate.laterDate(now) == eventEndDate {
                     // live now
-                    addEvent(event, section: "Live")
+                    addEvent(event, section: "Live Now")
+                } else if calendar.isDateInToday(eventStartDate) {
+                    // today
+                    addEvent(event, section: "Today")
+                } else if calendar.isDateInTomorrow(eventStartDate) {
+                    // tomorrow
+                    addEvent(event, section: "Tomorrow")
                 } else {
                     // upcoming
-                    addEvent(event, section: "Upcoming")
+                    addEvent(event, section: "Later")
                 }
             }
         }
     }
     
     private func addEvent(event: Event, section: String) {
-        if events.keys.contains(section) {
-            events[section]?.append(event)
-        } else {
-            events[section] = [event]
+        if let position = sections.indexOf(section) {
+            events[position].append(event)
         }
     }
 
@@ -62,7 +70,7 @@ class EventTableViewController: UITableViewController {
     @IBAction func refresh(spinner: UIRefreshControl) {
         spinner.beginRefreshing()
         HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
-            self.events.removeAll()
+            self.events = [[Event](),[Event](),[Event](),[Event]()]
             self.sortEventsInSections(events)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
@@ -80,26 +88,16 @@ class EventTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        let key = Array(events.keys)[section]
-        if let count = events[key]?.count {
-            return count
-        } else {
-            return Int(0)
-        }
+        return events[section].count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Array(events.keys)[section]
+        return sections[section]
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventTableViewCell
-        
-        let key = Array(events.keys)[indexPath.section]
-        if let events = events[key] {
-            cell.event = events[indexPath.row]
-        }
-
+        cell.event = events[indexPath.section][indexPath.row]
         return cell
     }
     
