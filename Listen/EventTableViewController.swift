@@ -12,11 +12,19 @@ import AlamofireImage
 class EventTableViewController: UITableViewController {
     
     @IBOutlet weak var spinner: UIRefreshControl!
-    let sections = ["Live Now", "Today", "Tomorrow", "Later"]
-    var events = [[Event](),[Event](),[Event](),[Event]()]
+    enum Section {
+        case Live
+        case Today
+        case Tomorrow
+        case ThisWeek
+        case Later
+    }
+    var events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
         refresh(spinner)
 
         // Uncomment the following line to preserve selection between presentations
@@ -41,24 +49,31 @@ class EventTableViewController: UITableViewController {
                     // event already finished, do not add to the list
                 } else if eventStartDate.earlierDate(now) == eventStartDate && eventEndDate.laterDate(now) == eventEndDate {
                     // live now
-                    addEvent(event, section: "Live Now")
+                    addEvent(event, section: Section.Live)
                 } else if calendar.isDateInToday(eventStartDate) {
                     // today
-                    addEvent(event, section: "Today")
+                    addEvent(event, section: Section.Today)
                 } else if calendar.isDateInTomorrow(eventStartDate) {
                     // tomorrow
-                    addEvent(event, section: "Tomorrow")
+                    addEvent(event, section: Section.Tomorrow)
+                } else if calendar.isDateInWeekend(eventStartDate) {
+                    // this week
+                    addEvent(event, section: Section.ThisWeek)
                 } else {
                     // upcoming
-                    addEvent(event, section: "Later")
+                    addEvent(event, section: Section.Later)
                 }
             }
         }
     }
     
-    private func addEvent(event: Event, section: String) {
-        if let position = sections.indexOf(section) {
-            events[position].append(event)
+    private func addEvent(event: Event, section: Section) {
+        switch section {
+            case .Live: events[0].append(event)
+            case .Today: events[1].append(event)
+            case .Tomorrow: events[2].append(event)
+            case .ThisWeek: events[3].append(event)
+            case .Later: events[4].append(event)
         }
     }
 
@@ -70,7 +85,7 @@ class EventTableViewController: UITableViewController {
     @IBAction func refresh(spinner: UIRefreshControl) {
         spinner.beginRefreshing()
         HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
-            self.events = [[Event](),[Event](),[Event](),[Event]()]
+            self.events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
             self.sortEventsInSections(events)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
@@ -92,7 +107,14 @@ class EventTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
+        switch section {
+            case 0: return "Live now"
+            case 1: return "Today"
+            case 2: return "Tomorrow"
+            case 3: return "This Week"
+            case 4: return "Later"
+            default: return "Unknown"
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
