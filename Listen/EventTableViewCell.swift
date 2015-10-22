@@ -22,7 +22,9 @@ class EventTableViewCell: UITableViewCell {
                 
                 let formatter = NSDateFormatter();
                 formatter.locale = NSLocale.currentLocale()
-                formatter.timeStyle = .FullStyle
+                formatter.dateStyle = .ShortStyle
+                formatter.timeStyle = .ShortStyle
+
                 liveDateLabel.text = formatter.stringFromDate((self.event!.livedate!)) // todo
                 
                 let placeholderImage = UIImage(named: "event_placeholder")!
