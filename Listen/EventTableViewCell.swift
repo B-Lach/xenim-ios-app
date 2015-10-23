@@ -21,34 +21,27 @@ class EventTableViewCell: UITableViewCell {
             if event != nil {
                 podcastNameLabel?.text = event?.title
                 
-                if let date = event!.livedate {
-                    let calendar = NSCalendar.currentCalendar()
-                    let formatter = NSDateFormatter();
-                    formatter.locale = NSLocale.currentLocale()
-                    
-                    if calendar.isDateInToday(date) || calendar.isDateInTomorrow(date) {
-                        formatter.dateStyle = .NoStyle
-                        formatter.timeStyle = .ShortStyle
-                    } else {
-                        formatter.dateStyle = .MediumStyle
-                        formatter.timeStyle = .ShortStyle
-                    }
-                    
-                    // check if live
-                    let now = NSDate()
-                    let eventStartDate = event!.livedate!
-                    let duration: NSTimeInterval = (Double)(event!.duration * 60)
-                    let eventEndDate = event!.livedate!.dateByAddingTimeInterval(duration) // event.duration is minutes
-                    if eventStartDate.earlierDate(now) == eventStartDate && eventEndDate.laterDate(now) == eventEndDate {
-                        playButton?.hidden = false
-                        liveDateLabel?.text = "since \(formatter.stringFromDate(date))"
-                    } else {
-                        liveDateLabel?.text = formatter.stringFromDate(date)
-                    }
+                let formatter = NSDateFormatter();
+                formatter.locale = NSLocale.currentLocale()
+                
+                if event!.isToday() || event!.isTomorrow() {
+                    formatter.dateStyle = .NoStyle
+                    formatter.timeStyle = .ShortStyle
+                } else {
+                    formatter.dateStyle = .MediumStyle
+                    formatter.timeStyle = .ShortStyle
+                }
+                
+                if event!.isLive() {
+                    playButton?.hidden = false
+                    liveDateLabel?.text = "since \(formatter.stringFromDate((event!.livedate)!))"
+                } else {
+                    liveDateLabel?.text = formatter.stringFromDate((event!.livedate)!)
                 }
                 
                 let placeholderImage = UIImage(named: "event_placeholder")!
-                eventCoverartImage.af_setImageWithURL(NSURL(string: (event?.imageurl)!)!, placeholderImage: placeholderImage)            }
+                eventCoverartImage.af_setImageWithURL(NSURL(string: (event?.imageurl)!)!, placeholderImage: placeholderImage)
+            }
         }
     }
     
