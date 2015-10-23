@@ -96,7 +96,7 @@ class EventTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
             case 0: return "Live now"
-            case 1: return "Today"
+            case 1: return "Upcoming Today"
             case 2: return "Tomorrow"
             case 3: return "This Week"
             case 4: return "Later"
