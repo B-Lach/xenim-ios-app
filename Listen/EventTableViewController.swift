@@ -172,8 +172,7 @@ class EventTableViewController: UITableViewController, CellDelegator {
     
     func callSegueFromCell(cell cell: EventTableViewCell) {
         let popupContentController = storyboard?.instantiateViewControllerWithIdentifier("DemoMusicPlayerController") as! PlayerViewController
-        popupContentController.songTitle = "Title"
-        popupContentController.albumTitle = "Album"
+        popupContentController.event = cell.event
         
         tabBarController?.presentPopupBarWithContentViewController(popupContentController, animated: true, completion: nil)
     }

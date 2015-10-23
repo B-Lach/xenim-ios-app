@@ -349,7 +349,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demoAlbum" translatesAutoresizingMaskIntoConstraints="NO" id="VIx-dU-kjb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="VIx-dU-kjb">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
@@ -359,7 +359,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demoAlbum" translatesAutoresizingMaskIntoConstraints="NO" id="y2g-4n-94G">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="y2g-4n-94G">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="398"/>
                                             <animations/>
                                             <constraints>
@@ -484,9 +484,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="albumNameLabel" destination="WkI-6i-Qxv" id="ho8-2o-LWy"/>
+                        <outlet property="backgroundImageView" destination="VIx-dU-kjb" id="ZUJ-7n-d2M"/>
+                        <outlet property="coverartView" destination="y2g-4n-94G" id="2dp-1I-NMR"/>
+                        <outlet property="podcastNameLabel" destination="pv3-L5-9Jg" id="1LK-22-pzq"/>
                         <outlet property="progressView" destination="yMl-Lc-pw7" id="Che-9V-mQm"/>
-                        <outlet property="songNameLabel" destination="pv3-L5-9Jg" id="D00-up-zmB"/>
+                        <outlet property="subtitleLabel" destination="WkI-6i-Qxv" id="kfh-Ou-Emp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYo-m6-Ihn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -496,7 +498,6 @@
     </scenes>
     <resources>
         <image name="Play Filled-50" width="50" height="50"/>
-        <image name="demoAlbum" width="2048" height="2048"/>
         <image name="event_placeholder" width="420" height="420"/>
         <image name="lovec" width="20" height="18"/>
         <image name="next" width="16" height="10"/>

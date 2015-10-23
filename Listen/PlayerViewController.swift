@@ -7,14 +7,20 @@
 //
 
 import UIKit
+//import AlamofireImage
+import AVFoundation
 
 class PlayerViewController: UIViewController {
 
-	@IBOutlet weak var songNameLabel: UILabel!
-	@IBOutlet weak var albumNameLabel: UILabel!
+	@IBOutlet weak var podcastNameLabel: UILabel!
+	@IBOutlet weak var subtitleLabel: UILabel!
 	@IBOutlet weak var progressView: UIProgressView!
-	
-	var timer : NSTimer?
+    @IBOutlet weak var coverartView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    
+//    let imageCache = AutoPurgingImageCache()
+    
+    var player: AVPlayer?
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -30,41 +36,50 @@ class PlayerViewController: UIViewController {
 			self.popupItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil)]
 			self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "action"), style: .Plain, target: nil, action: nil)]
 		}
-		
-		
-		timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "_timerTicked:", userInfo: nil, repeats: true)
+
 	}
-	
-	var songTitle: String = "" {
-		didSet {
-			if isViewLoaded() {
-				songNameLabel.text = songTitle
-			}
-			
-			popupItem.title = songTitle
-		}
-	}
-	var albumTitle: String = "" {
-		didSet {
-			if isViewLoaded() {
-				albumNameLabel.text = albumTitle
-			}
-			popupItem.subtitle = albumTitle
-		}
-	}
+    
+    var event: Event! {
+        didSet {
+            updateUI()
+        }
+    }
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
-		songNameLabel.text = songTitle
-		albumNameLabel.text = albumTitle
+        updateUI()
+        play()
 	}
+    
+    func play(){
+        if player == nil {
+            self.player = AVPlayer(URL: event.streamurl)
+            //self.player = AVPlayer(URL: NSURL(string: "http://detektor.fm/stream/mp3/musik/")!)
+        }
+        
+        if let player = player {
+            player.play()
+            //playButton.setTitle("Pause", forState: UIControlState.Normal)
+        }
+
+    }
+    
+    func updateUI() {
+        if let event = event {
+            podcastNameLabel?.text = event.title
+            popupItem.title = event.title
+            subtitleLabel?.text = event.url
+            popupItem.subtitle = event.url
+            coverartView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
+            backgroundImageView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
+        }
+    }
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
 	}
 	
-	func _timerTicked(timer: NSTimer) {
+//	func _timerTicked(timer: NSTimer) {
 //		popupItem.progress += 0.007;
 //		progressView.progress = popupItem.progress
 //		
@@ -72,5 +87,5 @@ class PlayerViewController: UIViewController {
 //			timer.invalidate()
 //			popupPresentationContainerViewController?.dismissPopupBarAnimated(true, completion: nil)
 //		}
-	}
+//	}
 }
