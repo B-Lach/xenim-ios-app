@@ -17,7 +17,7 @@ class HoersuppeAPI {
     static func fetchEvents(count count: Int, onComplete: (events: [Event]) -> Void) {
         var events = [Event]()
         let parameters = [
-            "action": "getLive",
+            "action": "getUpcomingPodlive",
             "count": "\(count)"
         ]
         Alamofire.request(.GET, url, parameters: parameters)
@@ -31,14 +31,15 @@ class HoersuppeAPI {
                             let event = json["data"][i]
                             
                             let duration = event["duration"].string!
-                            let id = event["id"].string!
-                            let livedate = event["livedate"].string!
-                            let podcast = event["podcast"].string!
-                            let streamurl = event["streamurl"].string!
-                            let title = event["title"].string!
+                            let livedate = event["liveDate"].string!
+                            let imageurl = event["imageUrl"].string!
+                            let slug = event["podcast"].string!
+                            let description = event["description"].string!
+                            let streamurl = event["streamUrl"].string!
+                            let title = event["eventTitle"].string!
                             let url = event["url"].string!
                             
-                            events.append(Event(duration: duration, id: id, livedate: livedate, podcast: podcast, streamurl: streamurl, title: title, url: url))
+                            events.append(Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: imageurl, description: description, title: title, url: url))
                         }
                     }
                     onComplete(events: events)

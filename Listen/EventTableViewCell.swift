@@ -48,17 +48,7 @@ class EventTableViewCell: UITableViewCell {
                 }
                 
                 let placeholderImage = UIImage(named: "event_placeholder")!
-                eventCoverartImage.image = placeholderImage
-                
-                // fetch info about the podcast itself
-                HoersuppeAPI.fetchPodcastDetail(event!.podcastName, onComplete: { (podcast) -> Void in
-                    if podcast != nil && self.event!.podcastName == podcast!.slug {
-                        self.event!.podcast = podcast
-                        
-                        self.eventCoverartImage.af_setImageWithURL(NSURL(string: (podcast?.imageurl)!)!, placeholderImage: placeholderImage)
-                    }
-                })
-            }
+                eventCoverartImage.af_setImageWithURL(NSURL(string: (event?.imageurl)!)!, placeholderImage: placeholderImage)            }
         }
     }
     
