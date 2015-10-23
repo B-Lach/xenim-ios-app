@@ -159,7 +159,7 @@ class EventTableViewController: UITableViewController {
                     switch identifier {
                     case "PodcastDetail":
                         //destinationVC.podcast = cell.event?.podcast
-                        destinationVC.podcastName = cell.event?.podcastSlug
+                        destinationVC.podcastSlug = cell.event?.podcastSlug
                     default: break
                     }
                 }
