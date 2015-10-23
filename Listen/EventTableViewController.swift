@@ -36,31 +36,18 @@ class EventTableViewController: UITableViewController {
     
     private func sortEventsInSections(events: [Event]) {
         for event in events {
-            
             if event.livedate != nil {
-                let now = NSDate()
-                let eventStartDate = event.livedate!
-                let duration: NSTimeInterval = (Double)(event.duration * 60)
-                let eventEndDate = event.livedate!.dateByAddingTimeInterval(duration) // event.duration is minutes
-            
-                let calendar = NSCalendar.currentCalendar()
-                
-                if eventEndDate.earlierDate(now) == eventEndDate {
+                if event.isFinished() {
                     // event already finished, do not add to the list
-                } else if eventStartDate.earlierDate(now) == eventStartDate && eventEndDate.laterDate(now) == eventEndDate {
-                    // live now
+                } else if event.isLive() {
                     addEvent(event, section: Section.Live)
-                } else if calendar.isDateInToday(eventStartDate) {
-                    // today
+                } else if event.isToday() {
                     addEvent(event, section: Section.Today)
-                } else if calendar.isDateInTomorrow(eventStartDate) {
-                    // tomorrow
+                } else if event.isTomorrow() {
                     addEvent(event, section: Section.Tomorrow)
-                } else if calendar.isDateInWeekend(eventStartDate) {
-                    // this week
+                } else if event.isThisWeek() {
                     addEvent(event, section: Section.ThisWeek)
                 } else {
-                    // upcoming
                     addEvent(event, section: Section.Later)
                 }
             }

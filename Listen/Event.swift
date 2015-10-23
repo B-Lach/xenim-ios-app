@@ -13,6 +13,12 @@ class Event {
 
     var duration: Int
     var livedate: NSDate?
+    var endDate: NSDate? {
+        get {
+            let duration: NSTimeInterval = (Double)(self.duration * 60)
+            return livedate?.dateByAddingTimeInterval(duration) // event.duration is minutes
+        }
+    }
     var podcastSlug: String
     var streamurl: String
     var imageurl: String
@@ -39,6 +45,31 @@ class Event {
         self.description = description
         self.title = title
         self.url = url
+    }
+
+    func isLive() -> Bool {
+        let now = NSDate()
+        return livedate!.earlierDate(now) == livedate! && endDate!.laterDate(now) == endDate!
+    }
+    
+    func isFinished() -> Bool {
+        let now = NSDate()
+        return endDate!.earlierDate(now) == endDate
+    }
+    
+    func isToday() -> Bool {
+        let calendar = NSCalendar.currentCalendar()
+        return calendar.isDateInToday(livedate!)
+    }
+    
+    func isTomorrow() -> Bool {
+        let calendar = NSCalendar.currentCalendar()
+        return calendar.isDateInTomorrow(livedate!)
+    }
+    
+    func isThisWeek() -> Bool {
+        let calendar = NSCalendar.currentCalendar()
+        return calendar.isDateInWeekend(livedate!)
     }
     
 }

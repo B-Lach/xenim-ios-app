@@ -19,7 +19,7 @@ class EventTableViewCell: UITableViewCell {
     var event: Event? {
         didSet {
             if event != nil {
-                podcastNameLabel.text = event?.title
+                podcastNameLabel?.text = event?.title
                 
                 if let date = event!.livedate {
                     let calendar = NSCalendar.currentCalendar()
@@ -40,10 +40,10 @@ class EventTableViewCell: UITableViewCell {
                     let duration: NSTimeInterval = (Double)(event!.duration * 60)
                     let eventEndDate = event!.livedate!.dateByAddingTimeInterval(duration) // event.duration is minutes
                     if eventStartDate.earlierDate(now) == eventStartDate && eventEndDate.laterDate(now) == eventEndDate {
-                        playButton.hidden = false
-                        liveDateLabel.text = "since \(formatter.stringFromDate(date))"
+                        playButton?.hidden = false
+                        liveDateLabel?.text = "since \(formatter.stringFromDate(date))"
                     } else {
-                        liveDateLabel.text = formatter.stringFromDate(date)
+                        liveDateLabel?.text = formatter.stringFromDate(date)
                     }
                 }
                 
