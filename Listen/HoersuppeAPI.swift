@@ -39,7 +39,10 @@ class HoersuppeAPI {
                             let title = event["eventTitle"].string!
                             let url = event["url"].string!
                             
-                            events.append(Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: imageurl, description: description, title: title, url: url))
+                            if let newEvent = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: imageurl, description: description, title: title, url: url) {
+                                events.append(newEvent)
+                            }
+                            
                         }
                     }
                     onComplete(events: events)

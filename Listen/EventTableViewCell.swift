@@ -34,10 +34,10 @@ class EventTableViewCell: UITableViewCell {
                 
                 if event!.isLive() {
                     playButton?.hidden = false
-                    liveDateLabel?.text = "since \(formatter.stringFromDate((event!.livedate)!))"
+                    liveDateLabel?.text = "since \(formatter.stringFromDate(event!.livedate))"
                 } else {
                     playButton?.hidden = true
-                    liveDateLabel?.text = formatter.stringFromDate((event!.livedate)!)
+                    liveDateLabel?.text = formatter.stringFromDate(event!.livedate)
                 }
                 
                 let placeholderImage = UIImage(named: "event_placeholder")!

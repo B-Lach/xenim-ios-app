@@ -12,11 +12,11 @@ import UIKit
 class Event {
 
     var duration: Int
-    var livedate: NSDate?
-    var endDate: NSDate? {
+    var livedate: NSDate
+    var endDate: NSDate {
         get {
             let duration: NSTimeInterval = (Double)(self.duration * 60)
-            return livedate?.dateByAddingTimeInterval(duration) // event.duration is minutes
+            return livedate.dateByAddingTimeInterval(duration) // event.duration is minutes
         }
     }
     var podcastSlug: String
@@ -26,7 +26,7 @@ class Event {
     var title: String
     var url: String
     
-    init(duration: String, livedate: String, podcastSlug: String, streamurl: String, imageurl: String, description: String, title: String, url: String) {
+    init?(duration: String, livedate: String, podcastSlug: String, streamurl: String, imageurl: String, description: String, title: String, url: String) {
         
         if let durationNumber = Int(duration) {
             self.duration = durationNumber
@@ -34,42 +34,51 @@ class Event {
             self.duration = 0
         }
         
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        formatter.timeZone = NSTimeZone(name: "Europe/Berlin")
-        self.livedate = formatter.dateFromString(livedate)
-        
         self.podcastSlug = podcastSlug
         self.streamurl = streamurl
         self.imageurl = imageurl
         self.description = description
         self.title = title
         self.url = url
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.timeZone = NSTimeZone(name: "Europe/Berlin")
+        if let date = formatter.dateFromString(livedate) {
+            self.livedate = date
+        } else {
+            self.livedate = NSDate()
+            return nil // fail initialization
+        }
+        
+        if self.duration == 0 {
+            return nil
+        }
     }
 
     func isLive() -> Bool {
         let now = NSDate()
-        return livedate!.earlierDate(now) == livedate! && endDate!.laterDate(now) == endDate!
+        return livedate.earlierDate(now) == livedate && endDate.laterDate(now) == endDate
     }
     
     func isFinished() -> Bool {
         let now = NSDate()
-        return endDate!.earlierDate(now) == endDate
+        return endDate.earlierDate(now) == endDate
     }
     
     func isToday() -> Bool {
         let calendar = NSCalendar.currentCalendar()
-        return calendar.isDateInToday(livedate!)
+        return calendar.isDateInToday(livedate)
     }
     
     func isTomorrow() -> Bool {
         let calendar = NSCalendar.currentCalendar()
-        return calendar.isDateInTomorrow(livedate!)
+        return calendar.isDateInTomorrow(livedate)
     }
     
     func isThisWeek() -> Bool {
         let calendar = NSCalendar.currentCalendar()
-        return calendar.isDateInWeekend(livedate!)
+        return calendar.isDateInWeekend(livedate)
     }
     
 }
