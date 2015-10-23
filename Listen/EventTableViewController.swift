@@ -179,7 +179,12 @@ class EventTableViewController: UITableViewController, CellDelegator {
     }
     
     func callSegueFromCell(cell cell: EventTableViewCell) {
-        self.performSegueWithIdentifier("Play", sender:cell)
+        //self.performSegueWithIdentifier("Play", sender:cell)
+        let popupContentController = storyboard?.instantiateViewControllerWithIdentifier("DemoMusicPlayerController") as! DemoMusicPlayerController
+        popupContentController.songTitle = "Title"
+        popupContentController.albumTitle = "Album"
+        
+        tabBarController?.presentPopupBarWithContentViewController(popupContentController, animated: true, completion: nil)
     }
     
 

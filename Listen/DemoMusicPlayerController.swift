@@ -65,12 +65,12 @@ class DemoMusicPlayerController: UIViewController {
 	}
 	
 	func _timerTicked(timer: NSTimer) {
-		popupItem.progress += 0.007;
-		progressView.progress = popupItem.progress
-		
-		if popupItem.progress == 1.0 {
-			timer.invalidate()
-			popupPresentationContainerViewController?.dismissPopupBarAnimated(true, completion: nil)
-		}
+//		popupItem.progress += 0.007;
+//		progressView.progress = popupItem.progress
+//		
+//		if popupItem.progress == 1.0 {
+//			timer.invalidate()
+//			popupPresentationContainerViewController?.dismissPopupBarAnimated(true, completion: nil)
+//		}
 	}
 }
