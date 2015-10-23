@@ -36,6 +36,7 @@ class EventTableViewCell: UITableViewCell {
                     playButton?.hidden = false
                     liveDateLabel?.text = "since \(formatter.stringFromDate((event!.livedate)!))"
                 } else {
+                    playButton?.hidden = true
                     liveDateLabel?.text = formatter.stringFromDate((event!.livedate)!)
                 }
                 
