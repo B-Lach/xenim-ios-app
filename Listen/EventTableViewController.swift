@@ -9,7 +9,11 @@
 import UIKit
 import AlamofireImage
 
-class EventTableViewController: UITableViewController {
+protocol CellDelegator {
+    func callSegueFromCell(cell cell: EventTableViewCell)
+}
+
+class EventTableViewController: UITableViewController, CellDelegator {
     
     @IBOutlet weak var spinner: UIRefreshControl!
     enum Section {
@@ -105,6 +109,7 @@ class EventTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventTableViewCell
         cell.event = events[indexPath.section][indexPath.row]
+        cell.delegate = self
         return cell
     }
     
@@ -156,15 +161,25 @@ class EventTableViewController: UITableViewController {
                 if let identifier = segue.identifier {
                     switch identifier {
                     case "PodcastDetail":
-                        //destinationVC.podcast = cell.event?.podcast
                         destinationVC.podcastSlug = cell.event?.podcastSlug
                     default: break
                     }
                 }
-
+            }
+            if let destinationVC = segue.destinationViewController as? PlayerViewController {
+                if let identifier = segue.identifier {
+                    switch identifier {
+                    case "Play": destinationVC.event = cell.event
+                    default: break
+                    }
+                }
             }
         }
-        
+
+    }
+    
+    func callSegueFromCell(cell cell: EventTableViewCell) {
+        self.performSegueWithIdentifier("Play", sender:cell)
     }
     
 

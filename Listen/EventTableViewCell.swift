@@ -16,9 +16,19 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var liveDateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     
+    var delegate: CellDelegator?
+    
     var event: Event? {
         didSet {
             if event != nil {
+                
+                playButton?.hidden = false
+                
+                
+                
+                
+                
+                
                 podcastNameLabel?.text = event?.title
                 
                 let formatter = NSDateFormatter();
@@ -33,16 +43,22 @@ class EventTableViewCell: UITableViewCell {
                 }
                 
                 if event!.isLive() {
-                    playButton?.hidden = false
+                    //playButton?.hidden = false
                     liveDateLabel?.text = "since \(formatter.stringFromDate(event!.livedate))"
                 } else {
-                    playButton?.hidden = true
+                    //playButton?.hidden = true
                     liveDateLabel?.text = formatter.stringFromDate(event!.livedate)
                 }
                 
                 let placeholderImage = UIImage(named: "event_placeholder")!
                 eventCoverartImage.af_setImageWithURL(NSURL(string: (event?.imageurl)!)!, placeholderImage: placeholderImage)
             }
+        }
+    }
+    
+    @IBAction func play(sender: AnyObject) {
+        if let delegate = self.delegate {
+            delegate.callSegueFromCell(cell: self)
         }
     }
     
