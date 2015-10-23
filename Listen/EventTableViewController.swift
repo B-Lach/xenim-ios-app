@@ -166,21 +166,12 @@ class EventTableViewController: UITableViewController, CellDelegator {
                     }
                 }
             }
-            if let destinationVC = segue.destinationViewController as? PlayerViewController {
-                if let identifier = segue.identifier {
-                    switch identifier {
-                    case "Play": destinationVC.event = cell.event
-                    default: break
-                    }
-                }
-            }
         }
 
     }
     
     func callSegueFromCell(cell cell: EventTableViewCell) {
-        //self.performSegueWithIdentifier("Play", sender:cell)
-        let popupContentController = storyboard?.instantiateViewControllerWithIdentifier("DemoMusicPlayerController") as! DemoMusicPlayerController
+        let popupContentController = storyboard?.instantiateViewControllerWithIdentifier("DemoMusicPlayerController") as! PlayerViewController
         popupContentController.songTitle = "Title"
         popupContentController.albumTitle = "Album"
         

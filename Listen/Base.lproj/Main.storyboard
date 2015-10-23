@@ -108,108 +108,11 @@
                     </refreshControl>
                     <connections>
                         <outlet property="spinner" destination="5or-JL-Ff6" id="G89-Oz-e2n"/>
-                        <segue destination="spZ-AV-Tqq" kind="presentation" identifier="Play" id="nFB-85-Xsp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAH-X7-5jG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2024" y="364"/>
-        </scene>
-        <!--Player View Controller-->
-        <scene sceneID="Ttr-Vd-SNJ">
-            <objects>
-                <viewController id="spZ-AV-Tqq" customClass="PlayerViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fUn-h9-7AM"/>
-                        <viewControllerLayoutGuide type="bottom" id="zWN-vi-l0t"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ww8-gq-kvN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kl0-cX-z9p">
-                                <rect key="frame" x="150" y="58" width="300" height="300"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="7Tg-7Q-mwJ"/>
-                                    <constraint firstAttribute="width" secondItem="Kl0-cX-z9p" secondAttribute="height" multiplier="1:1" id="Yqj-GO-bI5"/>
-                                    <constraint firstAttribute="width" priority="750" constant="300" id="eAM-CU-b9g"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="7Tg-7Q-mwJ"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wi3-fE-OLM">
-                                <rect key="frame" x="285" y="366" width="30" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="play:" destination="spZ-AV-Tqq" eventType="touchUpInside" id="ipG-0r-I0A"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKg-ef-3pP">
-                                <rect key="frame" x="285" y="550" width="30" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Info"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7e3-6C-kdz">
-                                <rect key="frame" x="20" y="550" width="40" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Share"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzt-EX-MLG">
-                                <rect key="frame" x="20" y="20" width="54" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Dismiss"/>
-                                <connections>
-                                    <action selector="dismiss:" destination="spZ-AV-Tqq" eventType="touchUpInside" id="hIE-Um-3Mp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leF-49-JJ7">
-                                <rect key="frame" x="498" y="550" width="82" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Sleep Timer"/>
-                            </button>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Kl0-cX-z9p" firstAttribute="centerY" secondItem="Ww8-gq-kvN" secondAttribute="centerY" id="3nr-7D-5Hn"/>
-                            <constraint firstItem="QKg-ef-3pP" firstAttribute="centerX" secondItem="Ww8-gq-kvN" secondAttribute="centerX" id="DJz-Sz-UIs"/>
-                            <constraint firstItem="zWN-vi-l0t" firstAttribute="top" secondItem="7e3-6C-kdz" secondAttribute="bottom" constant="20" id="Efa-Xa-2y8"/>
-                            <constraint firstItem="Fzt-EX-MLG" firstAttribute="top" secondItem="fUn-h9-7AM" secondAttribute="bottom" id="HNq-qr-gqh"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Kl0-cX-z9p" secondAttribute="trailing" constant="8" id="OEw-oc-CbJ"/>
-                            <constraint firstItem="Kl0-cX-z9p" firstAttribute="top" secondItem="fUn-h9-7AM" secondAttribute="bottom" constant="8" id="PAf-RA-usC"/>
-                            <constraint firstItem="Kl0-cX-z9p" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ww8-gq-kvN" secondAttribute="leadingMargin" constant="8" id="RCe-Vu-AJU"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="7e3-6C-kdz" secondAttribute="leading" id="S4b-Qk-PJj"/>
-                            <constraint firstItem="Kl0-cX-z9p" firstAttribute="centerX" secondItem="Ww8-gq-kvN" secondAttribute="centerX" id="XfF-v0-1Ru"/>
-                            <constraint firstItem="Wi3-fE-OLM" firstAttribute="centerX" secondItem="Ww8-gq-kvN" secondAttribute="centerX" id="diy-sp-WNK"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Fzt-EX-MLG" secondAttribute="leading" id="eYq-xK-c50"/>
-                            <constraint firstItem="zWN-vi-l0t" firstAttribute="top" secondItem="leF-49-JJ7" secondAttribute="bottom" constant="20" id="fpt-Vo-lqD"/>
-                            <constraint firstItem="Kl0-cX-z9p" firstAttribute="top" secondItem="Fzt-EX-MLG" secondAttribute="bottom" constant="8" id="gav-X1-UUS"/>
-                            <constraint firstItem="QKg-ef-3pP" firstAttribute="baseline" secondItem="7e3-6C-kdz" secondAttribute="baseline" id="kKG-Ha-2DE"/>
-                            <constraint firstItem="Wi3-fE-OLM" firstAttribute="top" secondItem="Kl0-cX-z9p" secondAttribute="bottom" constant="8" id="lOw-pw-juK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="leF-49-JJ7" secondAttribute="trailing" id="mVH-RI-rxP"/>
-                            <constraint firstItem="leF-49-JJ7" firstAttribute="baseline" secondItem="QKg-ef-3pP" secondAttribute="baseline" id="xvg-Ni-r9z"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="3nr-7D-5Hn"/>
-                                <exclude reference="PAf-RA-usC"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="coverartImageView" destination="Kl0-cX-z9p" id="QG2-JG-b87"/>
-                        <outlet property="playButton" destination="Wi3-fE-OLM" id="j2n-Gl-j9n"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xs1-ts-4e0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2802" y="-42"/>
         </scene>
         <!--Events-->
         <scene sceneID="uLN-cE-2UG">
@@ -434,10 +337,10 @@
             </objects>
             <point key="canvasLocation" x="1212" y="1086"/>
         </scene>
-        <!--Demo Music Player Controller-->
+        <!--Player View Controller-->
         <scene sceneID="xK3-Vi-0hh">
             <objects>
-                <viewController storyboardIdentifier="DemoMusicPlayerController" id="Pke-AM-PdW" customClass="DemoMusicPlayerController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DemoMusicPlayerController" id="Pke-AM-PdW" customClass="PlayerViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qaw-y2-UuQ"/>
                         <viewControllerLayoutGuide type="bottom" id="2Ls-uh-f3q"/>

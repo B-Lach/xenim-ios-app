@@ -13,8 +13,7 @@
 		2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */; };
 		2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECC71BD52EEA0040100F /* EventTableViewController.swift */; };
 		22799D431BD8E13500A7E9E1 /* PodcastDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */; };
-		228052A11BDA2295007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A01BDA2295007512A2 /* PlayerViewController.swift */; };
-		228052A41BDA53A2007512A2 /* DemoMusicPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* DemoMusicPlayerController.swift */; };
+		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
 		228052C11BDA6326007512A2 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 228052C01BDA6326007512A2 /* LNPopupController.framework */; };
 		228052C21BDA6326007512A2 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 228052C01BDA6326007512A2 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4B1BD53DBD00F1CF6B /* Event.swift */; };
@@ -48,8 +47,7 @@
 		2222ECC11BD52E480040100F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2222ECC71BD52EEA0040100F /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastDetailViewController.swift; sourceTree = "<group>"; };
-		228052A01BDA2295007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		228052A31BDA53A2007512A2 /* DemoMusicPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMusicPlayerController.swift; sourceTree = "<group>"; };
+		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		228052BC1BDA5ECE007512A2 /* LNPopupController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LNPopupController.framework; path = "LNPopupController/build/Debug-iphoneos/LNPopupController.framework"; sourceTree = "<group>"; };
 		228052C01BDA6326007512A2 /* LNPopupController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = LNPopupController.framework; path = "/Users/funkenstrahlen/Library/Developer/Xcode/DerivedData/Listen-bmpndaonrsjeiagfmjvsjotyyqng/Build/Products/Debug-iphoneos/LNPopupController.framework"; sourceTree = "<absolute>"; };
 		229B7D4B1BD53DBD00F1CF6B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -110,10 +108,9 @@
 				229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */,
 				2222ECC71BD52EEA0040100F /* EventTableViewController.swift */,
 				22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */,
-				228052A01BDA2295007512A2 /* PlayerViewController.swift */,
 				229B7D4B1BD53DBD00F1CF6B /* Event.swift */,
 				229B7D4D1BD5623500F1CF6B /* Podcast.swift */,
-				228052A31BDA53A2007512A2 /* DemoMusicPlayerController.swift */,
+				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
 				229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */,
 				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
 				2222ECC11BD52E480040100F /* Info.plist */,
@@ -257,8 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */,
-				228052A11BDA2295007512A2 /* PlayerViewController.swift in Sources */,
-				228052A41BDA53A2007512A2 /* DemoMusicPlayerController.swift in Sources */,
+				228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */,
 				229B7D501BD564DC00F1CF6B /* HoersuppeAPI.swift in Sources */,
 				2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */,
 				229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */,

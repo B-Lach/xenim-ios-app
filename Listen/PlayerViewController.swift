@@ -1,53 +1,76 @@
 //
-//  PlayerViewController.swift
-//  Listen
+//  DemoMusicPlayerController.swift
+//  LNPopupControllerExample
 //
-//  Created by Stefan Trauth on 23/10/15.
-//  Copyright © 2015 Stefan Trauth. All rights reserved.
+//  Created by Leo Natan on 8/8/15.
+//  Copyright © 2015 Leo Natan. All rights reserved.
 //
 
 import UIKit
-import AVFoundation
 
 class PlayerViewController: UIViewController {
-    
-    var event: Event? {
-        didSet {
-            updateUI()
-        }
-    }
-    
-    override func viewDidLoad() {
-        updateUI()
-        play(self)
-    }
-    
-    func updateUI() {
-        if let event = event {
-            coverartImageView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
-        }
-    }
-    
-    var player: AVPlayer?
-    
-    @IBOutlet weak var playButton: UIButton!
-    @IBAction func dismiss(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    @IBOutlet weak var coverartImageView: UIImageView!
-    @IBAction func play(sender: AnyObject) {
-        if let event = event {
-            
-            if player == nil {
-                self.player = AVPlayer(URL: event.streamurl)
-                //self.player = AVPlayer(URL: NSURL(string: "http://detektor.fm/stream/mp3/musik/")!)
-            }
-            
-            if let player = player {
-                player.play()
-                //playButton.setTitle("Pause", forState: UIControlState.Normal)
-            }
 
-        }
-    }
+	@IBOutlet weak var songNameLabel: UILabel!
+	@IBOutlet weak var albumNameLabel: UILabel!
+	@IBOutlet weak var progressView: UIProgressView!
+	
+	var timer : NSTimer?
+	
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		
+		if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
+			self.popupItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: nil, action: nil),
+												UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil),
+												UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .Plain, target: nil, action: nil)]
+			self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "next"), style: .Plain, target: nil, action: nil),
+												UIBarButtonItem(image: UIImage(named: "action"), style: .Plain, target: nil, action: nil)]
+		}
+		else {
+			self.popupItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil)]
+			self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "action"), style: .Plain, target: nil, action: nil)]
+		}
+		
+		
+		timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "_timerTicked:", userInfo: nil, repeats: true)
+	}
+	
+	var songTitle: String = "" {
+		didSet {
+			if isViewLoaded() {
+				songNameLabel.text = songTitle
+			}
+			
+			popupItem.title = songTitle
+		}
+	}
+	var albumTitle: String = "" {
+		didSet {
+			if isViewLoaded() {
+				albumNameLabel.text = albumTitle
+			}
+			popupItem.subtitle = albumTitle
+		}
+	}
+	
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+		songNameLabel.text = songTitle
+		albumNameLabel.text = albumTitle
+	}
+
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
+	
+	func _timerTicked(timer: NSTimer) {
+//		popupItem.progress += 0.007;
+//		progressView.progress = popupItem.progress
+//		
+//		if popupItem.progress == 1.0 {
+//			timer.invalidate()
+//			popupPresentationContainerViewController?.dismissPopupBarAnimated(true, completion: nil)
+//		}
+	}
 }
