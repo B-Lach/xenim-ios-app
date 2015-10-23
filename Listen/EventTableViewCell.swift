@@ -44,15 +44,15 @@ class EventTableViewCell: UITableViewCell {
                 
                 let placeholderImage = UIImage(named: "event_placeholder")!
                 eventCoverartImage.af_setImageWithURL(event.imageurl, placeholderImage: placeholderImage)
+                
+                playButton.hidden = false // DEBUG
             }
         }
     }
     
     @IBAction func play(sender: AnyObject) {
         if let delegate = self.delegate {
-            if event!.isLive() {
-                delegate.callSegueFromCell(cell: self)
-            }
+            delegate.callSegueFromCell(cell: self)
         }
     }
     

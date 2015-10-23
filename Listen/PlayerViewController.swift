@@ -19,6 +19,7 @@ class PlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         updateUI()
+        play(self)
     }
     
     func updateUI() {
@@ -27,7 +28,7 @@ class PlayerViewController: UIViewController {
         }
     }
     
-    var player: AVAudioPlayer?
+    var player: AVPlayer?
     
     @IBOutlet weak var playButton: UIButton!
     @IBAction func dismiss(sender: AnyObject) {
@@ -38,26 +39,13 @@ class PlayerViewController: UIViewController {
         if let event = event {
             
             if player == nil {
-                do {
-                    try self.player = AVAudioPlayer(contentsOfURL: event.streamurl)
-                    
-                } catch {
-                    // can't initialize player
-                }
+                self.player = AVPlayer(URL: event.streamurl)
+                //self.player = AVPlayer(URL: NSURL(string: "http://detektor.fm/stream/mp3/musik/")!)
             }
             
             if let player = player {
-                if player.playing {
-                    player.pause()
-                    if !player.playing {
-                        playButton.setTitle("Play", forState: UIControlState.Normal)
-                    }
-                } else {
-                    player.play()
-                    if player.playing {
-                        playButton.setTitle("Pause", forState: UIControlState.Normal)
-                    }
-                }
+                player.play()
+                //playButton.setTitle("Pause", forState: UIControlState.Normal)
             }
 
         }
