@@ -173,7 +173,6 @@
                             </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Kl0-cX-z9p" firstAttribute="centerY" secondItem="Ww8-gq-kvN" secondAttribute="centerY" id="3nr-7D-5Hn"/>
                             <constraint firstItem="QKg-ef-3pP" firstAttribute="centerX" secondItem="Ww8-gq-kvN" secondAttribute="centerX" id="DJz-Sz-UIs"/>
@@ -202,6 +201,7 @@
                     </view>
                     <connections>
                         <outlet property="coverartImageView" destination="Kl0-cX-z9p" id="QG2-JG-b87"/>
+                        <outlet property="playButton" destination="Wi3-fE-OLM" id="j2n-Gl-j9n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xs1-ts-4e0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -307,14 +307,15 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4g-bn-yLL">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4g-bn-yLL">
                                         <rect key="frame" x="20" y="274" width="560" height="218"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="218" id="y0d-du-kJT"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDp-P4-gfO">
                                         <rect key="frame" x="162" y="158" width="55" height="30"/>

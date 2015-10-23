@@ -20,8 +20,8 @@ class Event {
         }
     }
     var podcastSlug: String
-    var streamurl: String
-    var imageurl: String
+    var streamurl: NSURL
+    var imageurl: NSURL
     var description: String
     var title: String
     var url: String
@@ -35,8 +35,8 @@ class Event {
         }
         
         self.podcastSlug = podcastSlug
-        self.streamurl = streamurl
-        self.imageurl = imageurl
+        self.streamurl = NSURL(string: streamurl)!
+        self.imageurl = NSURL(string: imageurl)!
         self.description = description
         self.title = title
         self.url = url
