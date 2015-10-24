@@ -17,8 +17,7 @@ class PlayerViewController: UIViewController {
 	@IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var coverartView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
-    
-//    let imageCache = AutoPurgingImageCache()
+    let miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
     
     var player: AVPlayer?
 	
@@ -26,16 +25,17 @@ class PlayerViewController: UIViewController {
 		super.init(coder: aDecoder)
 		
 		if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
-			self.popupItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: nil, action: nil),
+			self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: nil, action: nil),
 												UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil),
 												UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .Plain, target: nil, action: nil)]
-			self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "next"), style: .Plain, target: nil, action: nil),
-												UIBarButtonItem(image: UIImage(named: "action"), style: .Plain, target: nil, action: nil)]
 		}
 		else {
-			self.popupItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil)]
-			self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "action"), style: .Plain, target: nil, action: nil)]
+			self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil)]
 		}
+        
+        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
+        let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
+        self.popupItem.leftBarButtonItems = [popupItem]
 
 	}
     
@@ -47,6 +47,11 @@ class PlayerViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        } catch {
+            
+        }
         updateUI()
         play()
 	}
@@ -61,17 +66,17 @@ class PlayerViewController: UIViewController {
             player.play()
             //playButton.setTitle("Pause", forState: UIControlState.Normal)
         }
-
     }
     
     func updateUI() {
         if let event = event {
             podcastNameLabel?.text = event.title
             popupItem.title = event.title
-            subtitleLabel?.text = event.url
-            popupItem.subtitle = event.url
+            subtitleLabel?.text = event.description
+            popupItem.subtitle = event.description
             coverartView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
             backgroundImageView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
+            miniCoverartImageView.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
         }
     }
 
