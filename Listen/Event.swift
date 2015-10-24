@@ -11,7 +11,7 @@ import UIKit
 
 class Event {
 
-    var duration: Int
+    var duration: NSTimeInterval // in seconds
     var livedate: NSDate
     var endDate: NSDate {
         get {
@@ -29,7 +29,7 @@ class Event {
     init?(duration: String, livedate: String, podcastSlug: String, streamurl: String, imageurl: String, description: String, title: String, url: String) {
         
         if let durationNumber = Int(duration) {
-            self.duration = durationNumber
+            self.duration = (Double)(durationNumber * 60)
         } else {
             self.duration = 0
         }
@@ -79,6 +79,13 @@ class Event {
     func isThisWeek() -> Bool {
         let calendar = NSCalendar.currentCalendar()
         return calendar.isDateInWeekend(livedate)
+    }
+    
+    // return progress as a value between 0 and 1
+    func progress() -> Double {
+        let timePassed = NSDate().timeIntervalSinceDate(livedate)
+        let factor = (Double)(timePassed/duration)
+        return min(max(factor, 0.0), 1.0)
     }
     
 }

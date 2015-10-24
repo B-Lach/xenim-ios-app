@@ -20,6 +20,7 @@ class PlayerViewController: UIViewController {
     let miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
     
     var player: AVPlayer?
+    var timer : NSTimer?
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -36,6 +37,8 @@ class PlayerViewController: UIViewController {
         miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
         let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
         self.popupItem.leftBarButtonItems = [popupItem]
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: "_timerTicked:", userInfo: nil, repeats: true)
 
 	}
     
@@ -77,6 +80,7 @@ class PlayerViewController: UIViewController {
             coverartView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
             backgroundImageView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
             miniCoverartImageView.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
+            _timerTicked(timer!)
         }
     }
 
@@ -84,13 +88,17 @@ class PlayerViewController: UIViewController {
 		return .LightContent
 	}
 	
-//	func _timerTicked(timer: NSTimer) {
-//		popupItem.progress += 0.007;
-//		progressView.progress = popupItem.progress
-//		
+    // update progress every minute
+	func _timerTicked(timer: NSTimer) {
+        print("tick")
+        // progress is a value between 0 and 1
+        let progress = (Float)(event.progress())
+		popupItem.progress = progress
+		progressView?.progress = progress
+		
 //		if popupItem.progress == 1.0 {
 //			timer.invalidate()
 //			popupPresentationContainerViewController?.dismissPopupBarAnimated(true, completion: nil)
 //		}
-//	}
+	}
 }
