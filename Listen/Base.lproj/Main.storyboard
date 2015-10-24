@@ -53,7 +53,7 @@
                                                 <constraint firstAttribute="width" constant="70" id="2qV-a2-Zb9"/>
                                                 <constraint firstAttribute="width" secondItem="idX-LT-SMd" secondAttribute="height" multiplier="1:1" id="j1W-m0-zwG"/>
                                             </constraints>
-                                            <state key="normal" image="Play Filled-50"/>
+                                            <state key="normal" image="play"/>
                                             <connections>
                                                 <action selector="play:" destination="hiw-wf-THJ" eventType="touchUpInside" id="gCV-4r-wOy"/>
                                             </connections>
@@ -497,13 +497,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Play Filled-50" width="50" height="50"/>
         <image name="event_placeholder" width="420" height="420"/>
         <image name="lovec" width="20" height="18"/>
         <image name="next" width="16" height="10"/>
         <image name="nowPlaying_next" width="28" height="17"/>
         <image name="nowPlaying_pause" width="19" height="25"/>
         <image name="nowPlaying_prev" width="29" height="17"/>
+        <image name="play" width="12" height="14"/>
         <image name="volDown" width="7" height="9"/>
         <image name="volUp" width="17" height="14"/>
     </resources>
