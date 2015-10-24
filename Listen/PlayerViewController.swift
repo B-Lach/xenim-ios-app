@@ -45,6 +45,7 @@ class PlayerViewController: UIViewController {
     var event: Event! {
         didSet {
             updateUI()
+            play()
         }
     }
 	
