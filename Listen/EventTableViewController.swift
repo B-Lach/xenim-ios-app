@@ -170,11 +170,18 @@ class EventTableViewController: UITableViewController, CellDelegator {
 
     }
     
+    var popupContentController: PlayerViewController?
+    
     func callSegueFromCell(cell cell: EventTableViewCell) {
-        let popupContentController = storyboard?.instantiateViewControllerWithIdentifier("DemoMusicPlayerController") as! PlayerViewController
-        popupContentController.event = cell.event
+        // invalidate the timer of the old controller, because this keeps the old controller in the memory
+        if let oldController = popupContentController {
+            oldController.timer?.invalidate()
+            oldController.player?.pause()
+        }
+        popupContentController = storyboard?.instantiateViewControllerWithIdentifier("DemoMusicPlayerController") as? PlayerViewController
+        popupContentController!.event = cell.event
         
-        tabBarController?.presentPopupBarWithContentViewController(popupContentController, animated: true, completion: nil)
+        tabBarController?.presentPopupBarWithContentViewController(popupContentController!, animated: true, completion: nil)
     }
     
 

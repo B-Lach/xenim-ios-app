@@ -60,10 +60,8 @@ class PlayerViewController: UIViewController {
 	}
     
     func play(){
-        if player == nil {
-            self.player = AVPlayer(URL: event.streamurl)
-            //self.player = AVPlayer(URL: NSURL(string: "http://detektor.fm/stream/mp3/musik/")!)
-        }
+        player = AVPlayer(URL: event.streamurl)
+        //self.player = AVPlayer(URL: NSURL(string: "http://detektor.fm/stream/mp3/musik/")!)
         
         if let player = player {
             player.play()
@@ -90,7 +88,7 @@ class PlayerViewController: UIViewController {
 	
     // update progress every minute
 	func _timerTicked(timer: NSTimer) {
-        print("tick")
+        //print("tick \(event.title)")
         // progress is a value between 0 and 1
         let progress = (Float)(event.progress())
 		popupItem.progress = progress
