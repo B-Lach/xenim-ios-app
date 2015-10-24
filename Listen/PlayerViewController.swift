@@ -25,14 +25,9 @@ class PlayerViewController: UIViewController {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
-			self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: nil, action: nil),
-												UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil),
-												UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .Plain, target: nil, action: nil)]
-		}
-		else {
-			self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil)]
-		}
+//		if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
+
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil)]
         
         miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
         let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
