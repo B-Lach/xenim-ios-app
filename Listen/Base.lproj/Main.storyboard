@@ -53,7 +53,7 @@
                                                 <constraint firstAttribute="width" constant="70" id="2qV-a2-Zb9"/>
                                                 <constraint firstAttribute="width" secondItem="idX-LT-SMd" secondAttribute="height" multiplier="1:1" id="j1W-m0-zwG"/>
                                             </constraints>
-                                            <state key="normal" image="play"/>
+                                            <state key="normal" image="nowPlaying_play"/>
                                             <connections>
                                                 <action selector="play:" destination="hiw-wf-THJ" eventType="touchUpInside" id="gCV-4r-wOy"/>
                                             </connections>
@@ -382,6 +382,9 @@
                                                     <animations/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="nowPlaying_pause"/>
+                                                    <connections>
+                                                        <action selector="togglePlayPause:" destination="Pke-AM-PdW" eventType="touchUpInside" id="xhf-HR-CA0"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBI-aN-NtU" userLabel="Love">
                                                     <rect key="frame" x="17" y="91" width="20" height="18"/>
@@ -486,6 +489,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="VIx-dU-kjb" id="ZUJ-7n-d2M"/>
                         <outlet property="coverartView" destination="y2g-4n-94G" id="2dp-1I-NMR"/>
+                        <outlet property="playPauseButton" destination="hEP-S7-LTS" id="7Gw-CL-83K"/>
                         <outlet property="podcastNameLabel" destination="pv3-L5-9Jg" id="1LK-22-pzq"/>
                         <outlet property="progressView" destination="yMl-Lc-pw7" id="Che-9V-mQm"/>
                         <outlet property="subtitleLabel" destination="WkI-6i-Qxv" id="kfh-Ou-Emp"/>
@@ -502,8 +506,8 @@
         <image name="next" width="16" height="10"/>
         <image name="nowPlaying_next" width="28" height="17"/>
         <image name="nowPlaying_pause" width="19" height="25"/>
+        <image name="nowPlaying_play" width="24" height="28"/>
         <image name="nowPlaying_prev" width="29" height="17"/>
-        <image name="play" width="12" height="14"/>
         <image name="volDown" width="7" height="9"/>
         <image name="volUp" width="17" height="14"/>
     </resources>
