@@ -15,7 +15,6 @@ class Event {
     var livedate: NSDate
     var endDate: NSDate {
         get {
-            let duration: NSTimeInterval = (Double)(self.duration * 60)
             return livedate.dateByAddingTimeInterval(duration) // event.duration is minutes
         }
     }
