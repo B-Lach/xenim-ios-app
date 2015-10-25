@@ -28,14 +28,18 @@ class PodcastDetailViewController: UIViewController {
         blurredCoverartImageView?.image = placeholderImage
         
         if let podcast = podcast {
+            // if we already have all podcast data, show it
+            
             podcastNameLabel?.text = podcast.name
             podcastDescriptionTextView?.text = podcast.description
             self.title = podcast.name
             
-            self.coverartImageView?.af_setImageWithURL(podcast.imageurl, placeholderImage: placeholderImage)
-            self.blurredCoverartImageView?.af_setImageWithURL(podcast.imageurl, placeholderImage: placeholderImage)
-        } else if podcastSlug != nil {
-            HoersuppeAPI.fetchPodcastDetail(podcastSlug!, onComplete: { (podcast) -> Void in
+            self.coverartImageView?.hnk_setImageFromURL(podcast.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
+            self.blurredCoverartImageView?.hnk_setImageFromURL(podcast.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
+            
+        } else {
+            // if we only have the podcast slug, request all other data from the API
+            HoersuppeAPI.fetchPodcastDetail(podcastSlug, onComplete: { (podcast) -> Void in
                 if podcast != nil {
                     self.podcast = podcast
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in

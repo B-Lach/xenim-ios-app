@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AlamofireImage
+import Haneke
 
 class EventTableViewCell: UITableViewCell {
     
@@ -43,7 +43,7 @@ class EventTableViewCell: UITableViewCell {
                 }
                 
                 let placeholderImage = UIImage(named: "event_placeholder")!
-                eventCoverartImage.af_setImageWithURL(event.imageurl, placeholderImage: placeholderImage)
+                eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
                 
                 playButton.hidden = false // DEBUG
             }

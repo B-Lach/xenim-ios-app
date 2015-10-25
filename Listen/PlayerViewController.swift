@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import AlamofireImage
 import AVFoundation
 import MediaPlayer
+import Haneke
 
 class PlayerViewController: UIViewController {
 
@@ -31,7 +31,6 @@ class PlayerViewController: UIViewController {
     }
     var player = AVPlayer()
     var timer : NSTimer?
-    let imageCache = AutoPurgingImageCache()
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -106,17 +105,22 @@ class PlayerViewController: UIViewController {
         popupItem.title = event.title
         subtitleLabel?.text = event.description
         popupItem.subtitle = event.description
-        coverartView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
-        backgroundImageView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
-        miniCoverartImageView.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
+        coverartView.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
+        backgroundImageView.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
+        miniCoverartImageView.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         _timerTicked(timer!)
         
-        let songInfo: Dictionary = [
-            MPMediaItemPropertyTitle: event.title,
-            MPMediaItemPropertyArtist: event.description,
-            MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: UIImage(named: "event_placeholder")!)
-        ]
-        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+        
+        let imageCache = Shared.imageCache
+        imageCache.fetch(URL: event.imageurl).onSuccess { (image) -> () in
+            let songInfo: Dictionary = [
+                MPMediaItemPropertyTitle: self.event.title,
+                MPMediaItemPropertyArtist: self.event.description,
+                MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
+            ]
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+        }
+
     }
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {

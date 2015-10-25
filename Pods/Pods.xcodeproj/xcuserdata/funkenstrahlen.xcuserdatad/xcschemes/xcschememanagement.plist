@@ -8,49 +8,41 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
-		<key>AlamofireImage.xcscheme</key>
+		<key>HanekeSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-Listen.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2584DAFBD22EF9B6D822B4D77811CC40</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86C0931E85C18D28ED6B95B72416CBFC</key>
+		<key>8C34FDD17BB6C9E3F9ECA3D9B11492E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A1BF58736B6CCECB5DB30E2108366143</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FF088737BCAF280E6D9944FEA3FC50A7</key>
+		<key>90D416F68D243204DF83A662F1B7C971</key>
 		<dict>
 			<key>primary</key>
 			<true/>

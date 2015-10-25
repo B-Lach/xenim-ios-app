@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AlamofireImage
 
 protocol CellDelegator {
     func callSegueFromCell(cell cell: EventTableViewCell)
