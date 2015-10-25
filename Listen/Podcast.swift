@@ -11,13 +11,13 @@ import UIKit
 
 class Podcast {
     
-    var feedurl = NSURL()
-    var imageurl = NSURL()
+    var feedurl = NSURL(string: "")!
+    var imageurl = NSURL(string: "")!
     var slug: String
     var subtitle: String
     var name: String // title
     var description: String
-    var url = NSURL()
+    var url = NSURL(string: "")!
 //    var chat_channel: String?
 //    var chat_server: String?
 //    var chat_url: String?

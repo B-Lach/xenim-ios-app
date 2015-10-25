@@ -19,8 +19,8 @@ class Event {
         }
     }
     var podcastSlug: String
-    var streamurl: NSURL
-    var imageurl: NSURL
+    var streamurl = NSURL(string: "")!
+    var imageurl = NSURL(string: "")!
     var description: String
     var title: String
     var url: String
@@ -28,11 +28,20 @@ class Event {
     init?(duration: String, livedate: String, podcastSlug: String, streamurl: String, imageurl: String, description: String, title: String, url: String) {
         
         self.podcastSlug = podcastSlug
-        self.streamurl = NSURL(string: streamurl)!
-        self.imageurl = NSURL(string: imageurl)!
         self.description = description
         self.title = title
         self.url = url
+        
+        if let streamurl = NSURL(string: streamurl) {
+            self.streamurl = streamurl
+        } else {
+            return nil
+        }
+        if let imageurl = NSURL(string: imageurl) {
+            self.imageurl = imageurl
+        } else {
+            return nil
+        }
         
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

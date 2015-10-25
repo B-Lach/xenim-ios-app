@@ -11,7 +11,7 @@ import UIKit
 class PodcastDetailViewController: UIViewController {
     
     var podcast: Podcast?
-    var podcastSlug: String?
+    var podcastSlug: String!
     
     @IBOutlet weak var blurredCoverartImageView: UIImageView!
     @IBOutlet weak var coverartImageView: UIImageView!
@@ -27,13 +27,13 @@ class PodcastDetailViewController: UIViewController {
         coverartImageView?.image = placeholderImage
         blurredCoverartImageView?.image = placeholderImage
         
-        if podcast != nil {
-            podcastNameLabel?.text = podcast?.name
-            podcastDescriptionTextView?.text = podcast?.description
-            self.title = podcast?.name
+        if let podcast = podcast {
+            podcastNameLabel?.text = podcast.name
+            podcastDescriptionTextView?.text = podcast.description
+            self.title = podcast.name
             
-            self.coverartImageView?.af_setImageWithURL(NSURL(string: (podcast?.imageurl)!)!, placeholderImage: placeholderImage)
-            self.blurredCoverartImageView?.af_setImageWithURL(NSURL(string: (podcast?.imageurl)!)!, placeholderImage: placeholderImage)
+            self.coverartImageView?.af_setImageWithURL(podcast.imageurl, placeholderImage: placeholderImage)
+            self.blurredCoverartImageView?.af_setImageWithURL(podcast.imageurl, placeholderImage: placeholderImage)
         } else if podcastSlug != nil {
             HoersuppeAPI.fetchPodcastDetail(podcastSlug!, onComplete: { (podcast) -> Void in
                 if podcast != nil {
