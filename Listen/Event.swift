@@ -11,8 +11,8 @@ import UIKit
 
 class Event {
 
-    var duration: NSTimeInterval // in seconds
-    var livedate: NSDate
+    var duration: NSTimeInterval = 0 // in seconds
+    var livedate = NSDate()
     var endDate: NSDate {
         get {
             return livedate.dateByAddingTimeInterval(duration) // event.duration is minutes
@@ -27,12 +27,6 @@ class Event {
     
     init?(duration: String, livedate: String, podcastSlug: String, streamurl: String, imageurl: String, description: String, title: String, url: String) {
         
-        if let durationNumber = Int(duration) {
-            self.duration = (Double)(durationNumber * 60)
-        } else {
-            self.duration = 0
-        }
-        
         self.podcastSlug = podcastSlug
         self.streamurl = NSURL(string: streamurl)!
         self.imageurl = NSURL(string: imageurl)!
@@ -46,11 +40,12 @@ class Event {
         if let date = formatter.dateFromString(livedate) {
             self.livedate = date
         } else {
-            self.livedate = NSDate()
             return nil // fail initialization
         }
         
-        if self.duration == 0 {
+        if let durationNumber = Int(duration) {
+            self.duration = (Double)(durationNumber * 60)
+        } else {
             return nil
         }
     }
