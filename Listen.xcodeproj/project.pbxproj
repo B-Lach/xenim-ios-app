@@ -166,6 +166,11 @@
 					2222ECB11BD52E470040100F = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = NGS4T5MUTG;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
