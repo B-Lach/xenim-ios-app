@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Listen.xcodeproj">
+      location = "group:LNPopupController/LNPopupController.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:LNPopupController/LNPopupController.xcodeproj">
+      location = "group:Listen.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
