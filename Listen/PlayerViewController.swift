@@ -20,7 +20,10 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     let miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
     
+    @IBOutlet weak var airplayView: MPVolumeView!
+    @IBOutlet weak var volumeView: MPVolumeView!
     @IBOutlet weak var playPauseButton: UIButton!
+    //@IBOutlet weak var mpVolumeViewParentView: UIView!
     
     var isPlaying:Bool {
         get {
@@ -68,6 +71,13 @@ class PlayerViewController: UIViewController {
             
         }
         player = AVPlayer(URL: event.streamurl)
+        //player.addObserver(self, forKeyPath: "volume", options: NSKeyValueObservingOptions.New, context: nil)
+        
+        volumeView.showsRouteButton = false
+        airplayView.showsVolumeSlider = false
+        //volumeView.setMinimumVolumeSliderImage(UIImage(named: "volDown"), forState: UIControlState.Normal)
+        //volumeView.setMaximumVolumeSliderImage(UIImage(named: "volUp"), forState: UIControlState.Normal)
+        
         updateUI()
         play()
 	}
@@ -81,6 +91,16 @@ class PlayerViewController: UIViewController {
         self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "play")]
         playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
     }
+    
+//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+//        if let keyPath = keyPath {
+//            switch keyPath {
+//                case "volume":
+//                    volumeSlider.value = player.volume
+//                default: break
+//            }
+//        }
+//    }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
         if isPlaying {
