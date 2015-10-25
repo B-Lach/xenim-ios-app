@@ -20,10 +20,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     let miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
     
-    @IBOutlet weak var airplayView: MPVolumeView!
     @IBOutlet weak var volumeView: MPVolumeView!
     @IBOutlet weak var playPauseButton: UIButton!
-    //@IBOutlet weak var mpVolumeViewParentView: UIView!
     
     var isPlaying:Bool {
         get {
@@ -74,9 +72,6 @@ class PlayerViewController: UIViewController {
         //player.addObserver(self, forKeyPath: "volume", options: NSKeyValueObservingOptions.New, context: nil)
         
         volumeView.showsRouteButton = false
-        airplayView.showsVolumeSlider = false
-        //volumeView.setMinimumVolumeSliderImage(UIImage(named: "volDown"), forState: UIControlState.Normal)
-        //volumeView.setMaximumVolumeSliderImage(UIImage(named: "volUp"), forState: UIControlState.Normal)
         
         updateUI()
         play()
@@ -149,15 +144,9 @@ class PlayerViewController: UIViewController {
 	
     // update progress every minute
 	func _timerTicked(timer: NSTimer) {
-        //print("tick \(event.title)")
         // progress is a value between 0 and 1
         let progress = (Float)(event.progress())
 		popupItem.progress = progress
 		progressView?.progress = progress
-		
-//		if popupItem.progress == 1.0 {
-//			timer.invalidate()
-//			popupPresentationContainerViewController?.dismissPopupBarAnimated(true, completion: nil)
-//		}
 	}
 }
