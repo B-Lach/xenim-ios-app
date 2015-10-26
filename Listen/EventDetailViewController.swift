@@ -28,6 +28,13 @@ class EventDetailViewController: UIViewController {
         podcastDescriptionTextView.sizeToFit()
         self.title = event.title
         
+        // make scrollview size fit all the content
+        //        var contentRect = CGRectZero
+        //        for view in contentView.subviews {
+        //            contentRect = CGRectUnion(contentRect, view.frame)
+        //        }
+        //        scrollView.contentSize = contentRect.size
+
 
         HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
             if podcast != nil {
