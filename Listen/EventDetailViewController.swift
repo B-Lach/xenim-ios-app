@@ -8,12 +8,12 @@
 
 import UIKit
 
-class PodcastDetailViewController: UIViewController {
+class EventDetailViewController: UIViewController {
     
     var podcast: Podcast?
+    var event: Event!
     var podcastSlug: String!
     
-    @IBOutlet weak var blurredCoverartImageView: UIImageView!
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var podcastDescriptionTextView: UITextView!
@@ -25,7 +25,6 @@ class PodcastDetailViewController: UIViewController {
     func updateUI() {
         let placeholderImage = UIImage(named: "event_placeholder")!
         coverartImageView?.image = placeholderImage
-        blurredCoverartImageView?.image = placeholderImage
         
         if let podcast = podcast {
             // if we already have all podcast data, show it
@@ -35,7 +34,6 @@ class PodcastDetailViewController: UIViewController {
             self.title = podcast.name
             
             self.coverartImageView?.hnk_setImageFromURL(podcast.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
-            self.blurredCoverartImageView?.hnk_setImageFromURL(podcast.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
             
         } else {
             // if we only have the podcast slug, request all other data from the API

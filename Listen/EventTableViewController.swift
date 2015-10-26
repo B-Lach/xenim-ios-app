@@ -156,11 +156,11 @@ class EventTableViewController: UITableViewController, CellDelegator {
         // Pass the selected object to the new view controller.
         
         if let cell = sender as? EventTableViewCell {
-            if let destinationVC = segue.destinationViewController as? PodcastDetailViewController {
+            if let destinationVC = segue.destinationViewController as? EventDetailViewController {
                 if let identifier = segue.identifier {
                     switch identifier {
                     case "PodcastDetail":
-                        destinationVC.podcastSlug = cell.event?.podcastSlug
+                        destinationVC.event = cell.event
                     default: break
                     }
                 }
