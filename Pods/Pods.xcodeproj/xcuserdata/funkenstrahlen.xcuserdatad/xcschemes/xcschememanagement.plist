@@ -9,7 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>AlamofireImage.xcscheme</key>
+		<key>HanekeSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MarqueeLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2584DAFBD22EF9B6D822B4D77811CC40</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86C0931E85C18D28ED6B95B72416CBFC</key>
+		<key>4CE353ED79BC2B79C80AE768B3895B75</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A1BF58736B6CCECB5DB30E2108366143</key>
+		<key>E69F279965DFC841CA876D05358A5B32</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FF088737BCAF280E6D9944FEA3FC50A7</key>
+		<key>F0EA0DBE4CC14BB311124892C749C9B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

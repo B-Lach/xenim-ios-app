@@ -28,19 +28,21 @@ class HoersuppeAPI {
                     if data != nil {
                         for i in 0 ..< data.count {
                             
-                            let event = json["data"][i]
+                            let eventJSON = json["data"][i]
                             
-                            let duration = event["duration"].string!
-                            let livedate = event["liveDate"].string!
-                            let imageurl = event["imageUrl"].string!
-                            let slug = event["podcast"].string!
-                            let description = event["description"].string!
-                            let streamurl = event["streamUrl"].string!
-                            let title = event["eventTitle"].string!
-                            let url = event["url"].string!
+                            let duration = eventJSON["duration"].string!
+                            let livedate = eventJSON["liveDate"].string!
+                            let imageurl = eventJSON["imageUrl"].string!
+                            let slug = eventJSON["podcast"].string!
+                            let description = eventJSON["description"].string!
+                            let streamurl = eventJSON["streamUrl"].string!
+                            let title = eventJSON["eventTitle"].string!
+                            let url = eventJSON["url"].string!
                             
-                            if let newEvent = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: imageurl, description: description, title: title, url: url) {
-                                events.append(newEvent)
+                            if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: imageurl, description: description, title: title, url: url) {
+                                events.append(event)
+                            } else {
+                                print("dropping event.")
                             }
                             
                         }
@@ -59,9 +61,18 @@ class HoersuppeAPI {
             .responseJSON { response in
                 if let responseData = response.data {                    
                     let json = JSON(data: responseData)
-                    let podcast = json["data"]
-                    if podcast != nil {                        
-                        onComplete(podcast: Podcast(name: podcast["title"].string!, subtitle: podcast["subtitle"].string!, url: podcast["url"].string!, feedurl: podcast["feedurl"].string!, imageurl: podcast["imageurl"].string!, slug: podcast["slug"].string!, description: podcast["description"].string!))
+                    let podcastJSON = json["data"]
+                    
+                    let name = podcastJSON["title"].string!
+                    let subtitle = podcastJSON["subtitle"].string!
+                    let url = podcastJSON["url"].string!
+                    let feedurl = podcastJSON["feedurl"].string!
+                    let imageurl = podcastJSON["imageurl"].string!
+                    let slug = podcastJSON["slug"].string!
+                    let description = podcastJSON["description"].string!
+                    
+                    if let podcast = Podcast(name: name, subtitle: subtitle, url: url, feedurl: feedurl, imageurl: imageurl, slug: slug, description: description) {
+                        onComplete(podcast: podcast)
                     } else {
                         onComplete(podcast: nil)
                     }

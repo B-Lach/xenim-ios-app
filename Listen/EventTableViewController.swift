@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AlamofireImage
 
 protocol CellDelegator {
     func callSegueFromCell(cell cell: EventTableViewCell)
@@ -157,19 +156,11 @@ class EventTableViewController: UITableViewController, CellDelegator {
         // Pass the selected object to the new view controller.
         
         if let cell = sender as? EventTableViewCell {
-            if let destinationVC = segue.destinationViewController as? PodcastDetailViewController {
+            if let destinationVC = segue.destinationViewController as? EventDetailViewController {
                 if let identifier = segue.identifier {
                     switch identifier {
                     case "PodcastDetail":
-                        destinationVC.podcastSlug = cell.event?.podcastSlug
-                    default: break
-                    }
-                }
-            }
-            if let destinationVC = segue.destinationViewController as? PlayerViewController {
-                if let identifier = segue.identifier {
-                    switch identifier {
-                    case "Play": destinationVC.event = cell.event
+                        destinationVC.event = cell.event
                     default: break
                     }
                 }
@@ -178,8 +169,17 @@ class EventTableViewController: UITableViewController, CellDelegator {
 
     }
     
+    var playerViewController: PlayerViewController?
+    
     func callSegueFromCell(cell cell: EventTableViewCell) {
-        self.performSegueWithIdentifier("Play", sender:cell)
+        
+        if playerViewController == nil {
+            playerViewController = storyboard?.instantiateViewControllerWithIdentifier("DemoMusicPlayerController") as? PlayerViewController
+        }
+
+        playerViewController!.event = cell.event
+        
+        tabBarController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
     }
     
 

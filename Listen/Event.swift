@@ -11,35 +11,37 @@ import UIKit
 
 class Event {
 
-    var duration: Int
-    var livedate: NSDate
+    var duration: NSTimeInterval = 0 // in seconds
+    var livedate = NSDate()
     var endDate: NSDate {
         get {
-            let duration: NSTimeInterval = (Double)(self.duration * 60)
             return livedate.dateByAddingTimeInterval(duration) // event.duration is minutes
         }
     }
     var podcastSlug: String
-    var streamurl: NSURL
-    var imageurl: NSURL
+    var streamurl = NSURL(string: "")!
+    var imageurl = NSURL(string: "")!
     var description: String
     var title: String
     var url: String
     
     init?(duration: String, livedate: String, podcastSlug: String, streamurl: String, imageurl: String, description: String, title: String, url: String) {
         
-        if let durationNumber = Int(duration) {
-            self.duration = durationNumber
-        } else {
-            self.duration = 0
-        }
-        
         self.podcastSlug = podcastSlug
-        self.streamurl = NSURL(string: streamurl)!
-        self.imageurl = NSURL(string: imageurl)!
         self.description = description
         self.title = title
         self.url = url
+        
+        if let streamurl = NSURL(string: streamurl) {
+            self.streamurl = streamurl
+        } else {
+            return nil
+        }
+        if let imageurl = NSURL(string: imageurl) {
+            self.imageurl = imageurl
+        } else {
+            return nil
+        }
         
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -47,11 +49,12 @@ class Event {
         if let date = formatter.dateFromString(livedate) {
             self.livedate = date
         } else {
-            self.livedate = NSDate()
             return nil // fail initialization
         }
         
-        if self.duration == 0 {
+        if let durationNumber = Int(duration) {
+            self.duration = (Double)(durationNumber * 60)
+        } else {
             return nil
         }
     }
@@ -79,6 +82,13 @@ class Event {
     func isThisWeek() -> Bool {
         let calendar = NSCalendar.currentCalendar()
         return calendar.isDateInWeekend(livedate)
+    }
+    
+    // return progress as a value between 0 and 1
+    func progress() -> Double {
+        let timePassed = NSDate().timeIntervalSinceDate(livedate)
+        let factor = (Double)(timePassed/duration)
+        return min(max(factor, 0.0), 1.0)
     }
     
 }

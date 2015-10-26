@@ -11,31 +11,44 @@ import UIKit
 
 class Podcast {
     
-    var alternates = [String]()
-    var feedurl: String
-    var chat_channel: String?
-    var chat_server: String?
-    var chat_url: String?
-//    var contact
-//        var email
-//        var twitter
-    var description: String
-    var flattrid: String?
-    var imageurl: String
-    var payment: String?
-    var recension: String?
+    var feedurl = NSURL(string: "")!
+    var imageurl = NSURL(string: "")!
     var slug: String
     var subtitle: String
     var name: String // title
-    var url: String
+    var description: String
+    var url = NSURL(string: "")!
+//    var chat_channel: String?
+//    var chat_server: String?
+//    var chat_url: String?
+//    var contact
+//        var email
+//        var twitter
+//    var alternates = [NSURL]()
+//    var flattrid: String?
+//    var payment: String?
+//    var recension: String?
+
     
-    init(name: String, subtitle: String, url: String, feedurl: String, imageurl: String, slug: String, description: String) {
+    init?(name: String, subtitle: String, url: String, feedurl: String, imageurl: String, slug: String, description: String) {
         self.name = name
         self.subtitle = subtitle
-        self.url = url
-        self.feedurl = feedurl
-        self.imageurl = imageurl
         self.slug = slug
         self.description = description
+        if let url = NSURL(string: url) {
+            self.url = url
+        } else {
+            return nil
+        }
+        if let imageurl = NSURL(string: imageurl) {
+            self.imageurl = imageurl
+        } else {
+            return nil
+        }
+        if let feedurl = NSURL(string: feedurl) {
+            self.feedurl = feedurl
+        } else {
+            return nil
+        }
     }
 }
