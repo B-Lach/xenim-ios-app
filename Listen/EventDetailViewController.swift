@@ -25,7 +25,9 @@ class EventDetailViewController: UIViewController {
         self.coverartImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         podcastNameLabel?.text = event.title
         podcastDescriptionTextView?.text = event.description
+        podcastDescriptionTextView.sizeToFit()
         self.title = event.title
+        
 
         HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
             if podcast != nil {
