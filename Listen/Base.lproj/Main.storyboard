@@ -118,7 +118,7 @@
         <scene sceneID="uLN-cE-2UG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EEx-ap-ZIj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Events" id="KKU-KO-aCN"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="next" selectedImage="next" id="KKU-KO-aCN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vs3-Mg-kYO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -195,13 +195,15 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDp-P4-gfO">
-                                        <rect key="frame" x="467" y="626" width="55" height="30"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4g-bn-yLL">
+                                        <rect key="frame" x="8" y="661" width="584" height="331"/>
                                         <animations/>
-                                        <state key="normal" title="Favorite"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpQ-qv-yVf">
-                                        <rect key="frame" x="530" y="626" width="62" height="30"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpQ-qv-yVf">
+                                        <rect key="frame" x="194" y="905" width="62" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Subcribe"/>
                                     </button>
@@ -212,13 +214,11 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4g-bn-yLL">
-                                        <rect key="frame" x="8" y="661" width="584" height="331"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDp-P4-gfO">
+                                        <rect key="frame" x="537" y="626" width="55" height="30"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                    </textView>
+                                        <state key="normal" title="Favorite"/>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -227,16 +227,14 @@
                                     <constraint firstAttribute="bottom" secondItem="O4g-bn-yLL" secondAttribute="bottom" constant="8" id="4fy-mv-fWd"/>
                                     <constraint firstItem="PJe-sa-bNV" firstAttribute="leading" secondItem="hgM-TT-s0d" secondAttribute="leading" id="Ebh-Sc-AGb"/>
                                     <constraint firstItem="O4g-bn-yLL" firstAttribute="leading" secondItem="hgM-TT-s0d" secondAttribute="leading" constant="8" id="GXJ-vt-LyN"/>
+                                    <constraint firstItem="tDp-P4-gfO" firstAttribute="baseline" secondItem="Rrv-oa-7sJ" secondAttribute="baseline" id="HeY-ds-KBo"/>
                                     <constraint firstItem="O4g-bn-yLL" firstAttribute="top" secondItem="Rrv-oa-7sJ" secondAttribute="bottom" constant="8" id="OUB-3F-etf"/>
                                     <constraint firstItem="Rrv-oa-7sJ" firstAttribute="leading" secondItem="hgM-TT-s0d" secondAttribute="leading" constant="8" id="PML-VD-G4Q"/>
-                                    <constraint firstItem="YpQ-qv-yVf" firstAttribute="leading" secondItem="tDp-P4-gfO" secondAttribute="trailing" constant="8" id="UHW-l2-c4q"/>
                                     <constraint firstAttribute="height" constant="1000" id="VNW-0g-v8c"/>
                                     <constraint firstItem="Rrv-oa-7sJ" firstAttribute="top" secondItem="PJe-sa-bNV" secondAttribute="bottom" constant="20" id="YGM-Yq-EJQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="YpQ-qv-yVf" secondAttribute="trailing" constant="8" id="Z4z-dT-cgB"/>
-                                    <constraint firstItem="tDp-P4-gfO" firstAttribute="baseline" secondItem="Rrv-oa-7sJ" secondAttribute="baseline" id="ceM-Q1-exc"/>
-                                    <constraint firstItem="YpQ-qv-yVf" firstAttribute="baseline" secondItem="tDp-P4-gfO" secondAttribute="baseline" id="eih-cn-V1H"/>
                                     <constraint firstItem="O4g-bn-yLL" firstAttribute="leading" secondItem="Rrv-oa-7sJ" secondAttribute="leading" id="g7S-BE-6c2"/>
                                     <constraint firstAttribute="trailing" secondItem="O4g-bn-yLL" secondAttribute="trailing" constant="8" id="gkT-88-0WU"/>
+                                    <constraint firstAttribute="trailing" secondItem="tDp-P4-gfO" secondAttribute="trailing" constant="8" id="lgg-fa-XoX"/>
                                     <constraint firstAttribute="trailing" secondItem="PJe-sa-bNV" secondAttribute="trailing" id="qHw-C1-ZJD"/>
                                 </constraints>
                                 <variation key="default">
@@ -523,6 +521,7 @@
     <resources>
         <image name="clock" width="25" height="25"/>
         <image name="event_placeholder" width="420" height="420"/>
+        <image name="next" width="16" height="10"/>
         <image name="nowPlaying_next" width="28" height="17"/>
         <image name="nowPlaying_pause" width="19" height="25"/>
         <image name="nowPlaying_play" width="24" height="28"/>
