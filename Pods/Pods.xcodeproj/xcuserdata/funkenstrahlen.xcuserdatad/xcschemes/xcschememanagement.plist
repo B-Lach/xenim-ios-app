@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MarqueeLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Listen.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,12 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8C34FDD17BB6C9E3F9ECA3D9B11492E2</key>
+		<key>4CE353ED79BC2B79C80AE768B3895B75</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>90D416F68D243204DF83A662F1B7C971</key>
+		<key>E69F279965DFC841CA876D05358A5B32</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0EA0DBE4CC14BB311124892C749C9B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

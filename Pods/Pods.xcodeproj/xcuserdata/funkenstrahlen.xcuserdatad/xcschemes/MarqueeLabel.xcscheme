@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B4A234AFE0376665223B1B93'
-               BlueprintName = 'HanekeSwift'
+               BlueprintIdentifier = 'BDF7740ED06DDD8C60D85C67'
+               BlueprintName = 'MarqueeLabel'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Haneke.framework'>
+               BuildableName = 'MarqueeLabel.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
