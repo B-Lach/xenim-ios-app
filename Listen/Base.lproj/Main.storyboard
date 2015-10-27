@@ -137,7 +137,7 @@
         <!--Favorites-->
         <scene sceneID="Zp6-hy-aYb">
             <objects>
-                <tableViewController id="7oV-A3-8mm" sceneMemberID="viewController">
+                <tableViewController id="7oV-A3-8mm" customClass="FavoritesTableViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="o0g-Zj-xau">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
