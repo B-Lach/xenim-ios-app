@@ -9,5 +9,12 @@
 import UIKit
 
 class FavoriteTableViewCell: UITableViewCell {
+    
+    var podcastSlug: String! {
+        didSet {
+            podcastNameLabel?.text = podcastSlug
+        }
+    }
 
+    @IBOutlet weak var podcastNameLabel: UILabel!
 }

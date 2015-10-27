@@ -14,9 +14,16 @@ class FavoritesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        favorites = Favorites.fetch()
+        tableView.reloadData()
+        
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        favorites = Favorites.fetch()
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,6 +48,7 @@ class FavoritesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCell", forIndexPath: indexPath) as! FavoriteTableViewCell
         // configure cell
+        cell.podcastSlug = favorites[indexPath.row]
         return cell
     }
     
@@ -53,17 +61,17 @@ class FavoritesTableViewController: UITableViewController {
     }
     */
     
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-    // Delete the row from the data source
-    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-    } else if editingStyle == .Insert {
-    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            Favorites.remove(slug: favorites[indexPath.row])
+            favorites.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
     }
-    }
-    */
+    
     
     /*
     // Override to support rearranging the table view.

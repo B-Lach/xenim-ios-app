@@ -45,4 +45,8 @@ class EventDetailViewController: UIViewController {
             }
         })
     }
+    
+    @IBAction func favorite(sender: UIButton) {
+        Favorites.add(slug: event.podcastSlug)
+    }
 }

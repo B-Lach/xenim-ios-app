@@ -150,9 +150,25 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y8u-P8-4h2" id="MXw-yy-vDL">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmH-Yd-Nmt">
+                                            <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstItem="jmH-Yd-Nmt" firstAttribute="top" secondItem="MXw-yy-vDL" secondAttribute="topMargin" id="L8w-VJ-c82"/>
+                                        <constraint firstItem="jmH-Yd-Nmt" firstAttribute="leading" secondItem="MXw-yy-vDL" secondAttribute="leadingMargin" id="z0Z-Ra-LE3"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="podcastNameLabel" destination="jmH-Yd-Nmt" id="iWq-tP-ACr"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -214,6 +230,9 @@
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                         <state key="normal" title="★"/>
+                                        <connections>
+                                            <action selector="favorite:" destination="CbF-yf-C8m" eventType="touchUpInside" id="cDa-sO-xyp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpQ-qv-yVf">
                                         <rect key="frame" x="8" y="734" width="62" height="30"/>
