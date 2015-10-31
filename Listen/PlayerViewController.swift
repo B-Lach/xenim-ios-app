@@ -22,6 +22,8 @@ class PlayerViewController: UIViewController {
     
     @IBOutlet weak var volumeView: MPVolumeView!
     @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var starButtonView: UIButton!
     
     var isPlaying:Bool {
         get {
@@ -72,6 +74,9 @@ class PlayerViewController: UIViewController {
         //player.addObserver(self, forKeyPath: "volume", options: NSKeyValueObservingOptions.New, context: nil)
         
         volumeView.showsRouteButton = false
+        
+        visualEffectView.layer.cornerRadius = visualEffectView.frame.size.width/2
+        visualEffectView.layer.masksToBounds = true
         
         updateUI()
         play()

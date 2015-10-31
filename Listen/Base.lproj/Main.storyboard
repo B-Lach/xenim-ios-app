@@ -155,7 +155,7 @@
                                             <rect key="frame" x="8" y="8" width="42" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -374,7 +374,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="y2g-4n-94G">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="y2g-4n-94G">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="398"/>
                                             <animations/>
                                             <constraints>
@@ -511,11 +511,40 @@
                                                 </mask>
                                             </variation>
                                         </view>
+                                        <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdE-g3-THt">
+                                            <rect key="frame" x="552" y="350" width="30" height="30"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cON-zE-cgI">
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkG-r2-6yf">
+                                                        <rect key="frame" x="0.0" y="-4" width="30" height="39"/>
+                                                        <animations/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <state key="normal" title="★">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstItem="zkG-r2-6yf" firstAttribute="centerY" secondItem="cON-zE-cgI" secondAttribute="centerY" id="Ag8-Sf-yOa"/>
+                                                    <constraint firstItem="zkG-r2-6yf" firstAttribute="centerX" secondItem="cON-zE-cgI" secondAttribute="centerX" id="KF5-sV-y6B"/>
+                                                </constraints>
+                                            </view>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="Eha-fQ-DxE"/>
+                                                <constraint firstAttribute="width" secondItem="QdE-g3-THt" secondAttribute="height" multiplier="1:1" id="Gyy-J1-1YB"/>
+                                            </constraints>
+                                            <blurEffect style="extraLight"/>
+                                        </visualEffectView>
                                     </subviews>
                                     <animations/>
                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="yMl-Lc-pw7" firstAttribute="leading" secondItem="ArG-F3-HNc" secondAttribute="leading" id="2bl-8c-1Uc"/>
+                                        <constraint firstItem="QdE-g3-THt" firstAttribute="top" secondItem="y2g-4n-94G" secondAttribute="bottom" constant="-48" id="4D4-5J-wSS"/>
                                         <constraint firstItem="Ioc-ne-Ddp" firstAttribute="leading" secondItem="ArG-F3-HNc" secondAttribute="leading" id="6F7-6e-9lm"/>
                                         <constraint firstAttribute="trailing" secondItem="Ioc-ne-Ddp" secondAttribute="trailing" id="Bdf-4Q-BfB"/>
                                         <constraint firstItem="Ioc-ne-Ddp" firstAttribute="top" secondItem="yMl-Lc-pw7" secondAttribute="bottom" id="GZc-Yj-CjF"/>
@@ -524,6 +553,7 @@
                                         <constraint firstItem="y2g-4n-94G" firstAttribute="top" secondItem="ArG-F3-HNc" secondAttribute="top" id="Pp7-Hj-hFs"/>
                                         <constraint firstAttribute="trailing" secondItem="y2g-4n-94G" secondAttribute="trailing" id="cvi-Xz-yQf"/>
                                         <constraint firstItem="y2g-4n-94G" firstAttribute="leading" secondItem="ArG-F3-HNc" secondAttribute="leading" id="ebb-Q2-wYP"/>
+                                        <constraint firstItem="QdE-g3-THt" firstAttribute="leading" secondItem="y2g-4n-94G" secondAttribute="trailing" constant="-48" id="itD-UK-NpC"/>
                                         <constraint firstItem="yMl-Lc-pw7" firstAttribute="top" secondItem="y2g-4n-94G" secondAttribute="bottom" id="qyU-Rb-Bs4"/>
                                     </constraints>
                                 </view>
@@ -550,7 +580,9 @@
                         <outlet property="playPauseButton" destination="hEP-S7-LTS" id="7Gw-CL-83K"/>
                         <outlet property="podcastNameLabel" destination="pv3-L5-9Jg" id="1LK-22-pzq"/>
                         <outlet property="progressView" destination="yMl-Lc-pw7" id="Che-9V-mQm"/>
+                        <outlet property="starButtonView" destination="zkG-r2-6yf" id="7z0-0F-AJH"/>
                         <outlet property="subtitleLabel" destination="WkI-6i-Qxv" id="kfh-Ou-Emp"/>
+                        <outlet property="visualEffectView" destination="QdE-g3-THt" id="5qE-li-hgw"/>
                         <outlet property="volumeView" destination="iLb-Jc-27D" id="1dR-WA-xN4"/>
                     </connections>
                 </viewController>
