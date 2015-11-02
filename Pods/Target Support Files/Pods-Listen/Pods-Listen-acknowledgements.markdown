@@ -228,9 +228,9 @@ Apache License
    See the License for the specific language governing permissions and
    limitations under the License.
 
-## MarqueeLabel
+## MarqueeLabel-Swift
 
-Copyright (c) 2011-2015 Charles Powell
+Copyright (c) 2015 Charles Powell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 documentation files (the "Software"), to deal in the Software without restriction, including without limitation 
