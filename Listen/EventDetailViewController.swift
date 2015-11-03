@@ -16,6 +16,7 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var podcastDescriptionLabel: UILabel!
+    @IBOutlet weak var playButtonEffectView: UIVisualEffectView!
     
     override func viewDidLoad() {
         updateUI()
@@ -28,7 +29,13 @@ class EventDetailViewController: UIViewController {
         podcastDescriptionLabel.sizeToFit()
         self.title = event.title
         
+        playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
+        playButtonEffectView.layer.masksToBounds = true
 
+        if !event.isLive() {
+            playButtonEffectView.hidden = true
+        }
+        
         HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
             if podcast != nil {
                 self.podcast = podcast
