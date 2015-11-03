@@ -19,6 +19,9 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var podcastDescriptionLabel: UILabel!
     @IBOutlet weak var playButtonEffectView: UIVisualEffectView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var upcomingEventsHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var upcomingEventsTableView: UITableView! {
         didSet {
             upcomingEventsTableView.delegate = self
@@ -50,7 +53,10 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.upcomingEvents = events
                 self.upcomingEventsTableView.reloadData()
-                self.upcomingEventsTableView.sizeToFit()
+    
+                self.upcomingEventsHeightConstraint.constant = self.upcomingEventsTableView.contentSize.height
+
+                self.contentView.setNeedsLayout()
             })
         }
         

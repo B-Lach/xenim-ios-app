@@ -427,7 +427,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99D-Ge-NfZ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="909"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="872"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MYR-Bd-I21">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -493,11 +493,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="asS-WH-Vzg">
-                                                <rect key="frame" x="8" y="761" width="584" height="140"/>
+                                                <rect key="frame" x="8" y="761" width="584" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="140" id="KnY-GS-wgP"/>
+                                                    <constraint firstAttribute="height" constant="80" id="KnY-GS-wgP"/>
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpcomingEvent" textLabel="hVb-5H-N0P" imageView="qiz-Fg-8kM" style="IBUITableViewCellStyleDefault" id="qYU-SS-vTy">
@@ -528,6 +528,13 @@
                                                 </prototypes>
                                                 <sections/>
                                             </tableView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set this podcast as one of your favourites to receive notifications." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N84-jM-ivq">
+                                                <rect key="frame" x="8" y="849" width="584" height="15"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -543,20 +550,24 @@
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="JW7-4D-Llf"/>
                                             <constraint firstAttribute="trailing" secondItem="asS-WH-Vzg" secondAttribute="trailing" constant="8" id="Jix-1Q-ceV"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="leading" secondItem="PLU-zi-7Az" secondAttribute="trailing" constant="8" id="KFe-RF-KgA"/>
+                                            <constraint firstAttribute="bottom" secondItem="N84-jM-ivq" secondAttribute="bottom" constant="8" id="KZg-Gh-PSo"/>
                                             <constraint firstItem="L5f-t2-KEW" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="LsP-i6-06q"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="PWw-km-8hN"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="TFL-VM-4l6"/>
+                                            <constraint firstAttribute="trailing" secondItem="N84-jM-ivq" secondAttribute="trailing" constant="8" id="VNr-p8-1Fh"/>
                                             <constraint firstItem="W6b-nc-qxN" firstAttribute="centerX" secondItem="MYR-Bd-I21" secondAttribute="centerX" id="Xhe-Aq-hLm"/>
                                             <constraint firstAttribute="trailing" secondItem="L5f-t2-KEW" secondAttribute="trailing" constant="8" id="Zc8-bh-gAU"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="centerY" secondItem="PLU-zi-7Az" secondAttribute="centerY" id="aX1-KJ-OSP"/>
                                             <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="bsy-1z-s21"/>
                                             <constraint firstAttribute="trailing" secondItem="fTO-Hw-zIA" secondAttribute="trailing" constant="8" id="eWy-3c-uJw"/>
                                             <constraint firstItem="ETv-v4-8gG" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="gXC-pe-gEC"/>
+                                            <constraint firstItem="N84-jM-ivq" firstAttribute="top" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="hXz-ln-R2l"/>
                                             <constraint firstItem="L5f-t2-KEW" firstAttribute="top" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="mCs-40-k64"/>
                                             <constraint firstAttribute="bottom" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="oQs-6Y-ZhP"/>
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="top" secondItem="99D-Ge-NfZ" secondAttribute="top" id="pBf-aN-B6H"/>
                                             <constraint firstAttribute="trailing" secondItem="MYR-Bd-I21" secondAttribute="trailing" id="rAF-s5-cem"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="636" id="sAJ-jx-eg2"/>
+                                            <constraint firstItem="N84-jM-ivq" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="tji-TN-kh9"/>
                                             <constraint firstAttribute="trailing" secondItem="sqw-7J-EQl" secondAttribute="trailing" constant="8" id="ytB-UT-P8F"/>
                                         </constraints>
                                         <variation key="default">
@@ -565,6 +576,7 @@
                                                 <exclude reference="sAJ-jx-eg2"/>
                                                 <exclude reference="FbG-Yn-N5c"/>
                                                 <exclude reference="oQs-6Y-ZhP"/>
+                                                <exclude reference="bsy-1z-s21"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -631,11 +643,13 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1200"/>
                     <connections>
+                        <outlet property="contentView" destination="99D-Ge-NfZ" id="YXq-h1-8dq"/>
                         <outlet property="coverartImageView" destination="MYR-Bd-I21" id="5Ij-Pl-eMW"/>
                         <outlet property="playButtonEffectView" destination="W6b-nc-qxN" id="iBJ-J6-RBU"/>
                         <outlet property="podcastDescriptionLabel" destination="sqw-7J-EQl" id="hDz-RZ-G8V"/>
                         <outlet property="podcastNameLabel" destination="PLU-zi-7Az" id="F6U-UL-ITu"/>
                         <outlet property="scrollView" destination="CtL-UK-Ihq" id="BnV-7c-zaw"/>
+                        <outlet property="upcomingEventsHeightConstraint" destination="KnY-GS-wgP" id="UvR-Mh-Q6u"/>
                         <outlet property="upcomingEventsTableView" destination="asS-WH-Vzg" id="CFm-5N-gic"/>
                     </connections>
                 </viewController>
