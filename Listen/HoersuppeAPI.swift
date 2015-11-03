@@ -100,6 +100,7 @@ class HoersuppeAPI {
                             let duration = eventJSON["duration"].string!
                             let livedate = eventJSON["liveDate"].string!
                             let imageurl = eventJSON["imageUrl"].string!
+                            // can not get description as this API endpoint does not offer a description
                             let slug = eventJSON["podcast"].string!
                             let streamurl = eventJSON["streamUrl"].string!
                             let title = eventJSON["eventTitle"].string!
