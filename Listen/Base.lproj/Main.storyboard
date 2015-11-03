@@ -414,7 +414,7 @@
         <!--Event Detail View Controller-->
         <scene sceneID="cCQ-y3-ON7">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="jLW-Aw-Blu" customClass="EventDetailViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jLW-Aw-Blu" customClass="EventDetailViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="W9Z-Tz-6yb"/>
                         <viewControllerLayoutGuide type="bottom" id="h4t-sm-7zW"/>
@@ -424,7 +424,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-UK-Ihq">
-                                <rect key="frame" x="0.0" y="64" width="600" height="1087"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99D-Ge-NfZ" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="727"/>
@@ -539,8 +539,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="CtL-UK-Ihq" secondAttribute="trailing" id="L8s-WS-KSN"/>
                             <constraint firstItem="CtL-UK-Ihq" firstAttribute="top" secondItem="W9Z-Tz-6yb" secondAttribute="bottom" id="P4V-QE-u4N"/>
                             <constraint firstItem="CtL-UK-Ihq" firstAttribute="centerX" secondItem="nTf-ky-9KH" secondAttribute="centerX" id="WnS-M9-AFY"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="CtL-UK-Ihq" secondAttribute="bottom" id="XZD-V0-TpY"/>
                             <constraint firstItem="CtL-UK-Ihq" firstAttribute="centerY" secondItem="nTf-ky-9KH" secondAttribute="centerY" id="Xcm-Ol-SLz"/>
                             <constraint firstItem="CtL-UK-Ihq" firstAttribute="top" secondItem="W9Z-Tz-6yb" secondAttribute="bottom" id="ZFg-ba-SSa"/>
+                            <constraint firstItem="CtL-UK-Ihq" firstAttribute="top" secondItem="nTf-ky-9KH" secondAttribute="topMargin" id="Zbb-GU-vxW"/>
                             <constraint firstItem="h4t-sm-7zW" firstAttribute="top" secondItem="CtL-UK-Ihq" secondAttribute="bottom" id="een-xd-Cp6"/>
                             <constraint firstItem="CtL-UK-Ihq" firstAttribute="height" secondItem="nTf-ky-9KH" secondAttribute="height" id="ksO-G5-TKE"/>
                             <constraint firstItem="CtL-UK-Ihq" firstAttribute="width" secondItem="nTf-ky-9KH" secondAttribute="width" id="l1Q-rQ-T89"/>
@@ -560,6 +562,7 @@
                                 <exclude reference="L8s-WS-KSN"/>
                                 <exclude reference="P4V-QE-u4N"/>
                                 <exclude reference="Xcm-Ol-SLz"/>
+                                <exclude reference="ZFg-ba-SSa"/>
                                 <exclude reference="ksO-G5-TKE"/>
                                 <exclude reference="lTc-Lr-MU4"/>
                                 <exclude reference="nPi-Nt-j9h"/>
@@ -569,6 +572,7 @@
                                 <exclude reference="r2K-6C-DVD"/>
                                 <exclude reference="se8-PK-Ffp"/>
                                 <exclude reference="39Z-et-JXF"/>
+                                <exclude reference="CjF-cR-fpd"/>
                                 <exclude reference="een-xd-Cp6"/>
                             </mask>
                         </variation>
@@ -580,6 +584,7 @@
                         <outlet property="playButtonEffectView" destination="W6b-nc-qxN" id="iBJ-J6-RBU"/>
                         <outlet property="podcastDescriptionLabel" destination="sqw-7J-EQl" id="hDz-RZ-G8V"/>
                         <outlet property="podcastNameLabel" destination="PLU-zi-7Az" id="F6U-UL-ITu"/>
+                        <outlet property="scrollView" destination="CtL-UK-Ihq" id="BnV-7c-zaw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5S3-Lj-YdD" userLabel="First Responder" sceneMemberID="firstResponder"/>

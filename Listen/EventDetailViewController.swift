@@ -17,8 +17,12 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var podcastDescriptionLabel: UILabel!
     @IBOutlet weak var playButtonEffectView: UIVisualEffectView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
+        // LNPopupBarHeight is currently 40
+        // increase bottom inset to show all content if player is visible
+        scrollView.contentInset.bottom = scrollView.contentInset.bottom + 40
         updateUI()
     }
     
