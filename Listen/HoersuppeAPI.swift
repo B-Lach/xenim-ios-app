@@ -98,15 +98,17 @@ class HoersuppeAPI {
                             let eventJSON = json["data"][i]
                             
                             let duration = eventJSON["duration"].string!
-                            let livedate = eventJSON["liveDate"].string!
-                            let imageurl = eventJSON["imageUrl"].string!
+                            let livedate = eventJSON["livedate"].string!
+//                            let imageurl = eventJSON["imageUrl"].string!
                             // can not get description as this API endpoint does not offer a description
                             let slug = eventJSON["podcast"].string!
-                            let streamurl = eventJSON["streamUrl"].string!
-                            let title = eventJSON["eventTitle"].string!
+                            let streamurl = eventJSON["streamurl"].string!
+                            let title = eventJSON["title"].string!
                             let url = eventJSON["url"].string!
                             
-                            if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: imageurl, description: "", title: title, url: url) {
+                            // TODO imageurl fix
+                            
+                            if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: "", description: "", title: title, url: url) {
                                 events.append(event)
                             } else {
                                 print("dropping event.")
