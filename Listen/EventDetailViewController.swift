@@ -15,7 +15,7 @@ class EventDetailViewController: UIViewController {
     
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var podcastDescriptionTextView: UITextView!
+    @IBOutlet weak var podcastDescriptionLabel: UILabel!
     
     override func viewDidLoad() {
         updateUI()
@@ -24,8 +24,8 @@ class EventDetailViewController: UIViewController {
     func updateUI() {
         self.coverartImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         podcastNameLabel?.text = event.title
-        podcastDescriptionTextView?.text = event.description
-        podcastDescriptionTextView.sizeToFit()
+        podcastDescriptionLabel?.text = event.description
+        podcastDescriptionLabel.sizeToFit()
         self.title = event.title
         
         // make scrollview size fit all the content
