@@ -26,7 +26,6 @@ class EventDetailViewController: UIViewController {
         self.coverartImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         podcastNameLabel?.text = event.title
         podcastDescriptionLabel?.text = event.description
-        podcastDescriptionLabel.sizeToFit()
         self.title = event.title
         
         playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
