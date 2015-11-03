@@ -427,7 +427,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="1087"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99D-Ge-NfZ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="715"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="727"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MYR-Bd-I21">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -437,26 +437,26 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PLU-zi-7Az">
-                                                <rect key="frame" x="8" y="608" width="521" height="33"/>
+                                                <rect key="frame" x="8" y="620" width="521" height="33"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqw-7J-EQl">
-                                                <rect key="frame" x="8" y="649" width="584" height="20"/>
+                                                <rect key="frame" x="8" y="661" width="584" height="20"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTO-Hw-zIA">
-                                                <rect key="frame" x="537" y="610" width="55" height="30"/>
+                                                <rect key="frame" x="537" y="622" width="55" height="30"/>
                                                 <animations/>
                                                 <state key="normal" title="Favorite"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETv-v4-8gG">
-                                                <rect key="frame" x="8" y="677" width="70" height="30"/>
+                                                <rect key="frame" x="8" y="689" width="70" height="30"/>
                                                 <animations/>
                                                 <state key="normal" title="Subscribe"/>
                                             </button>
@@ -491,7 +491,7 @@
                                         <constraints>
                                             <constraint firstItem="W6b-nc-qxN" firstAttribute="centerY" secondItem="MYR-Bd-I21" secondAttribute="centerY" id="0OI-fW-6z9"/>
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" id="0Te-7E-UDQ"/>
-                                            <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="6bg-J4-CTb"/>
+                                            <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="20" id="6bg-J4-CTb"/>
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="top" secondItem="PLU-zi-7Az" secondAttribute="bottom" constant="8" id="DKv-On-Zxq"/>
                                             <constraint firstAttribute="bottom" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="FbG-Yn-N5c"/>
                                             <constraint firstItem="ETv-v4-8gG" firstAttribute="top" secondItem="sqw-7J-EQl" secondAttribute="bottom" constant="8" id="Gok-pR-w6Z"/>
