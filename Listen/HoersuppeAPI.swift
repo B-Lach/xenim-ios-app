@@ -52,10 +52,10 @@ class HoersuppeAPI {
         }
     }
     
-    static func fetchPodcastDetail(podcastName: String, onComplete: (podcast: Podcast?) -> Void) {
+    static func fetchPodcastDetail(podcastSlug: String, onComplete: (podcast: Podcast?) -> Void) {
         let parameters = [
             "action": "getPodcastData",
-            "podcast": podcastName
+            "podcast": podcastSlug
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
