@@ -15,7 +15,8 @@ class EventDetailViewController: UIViewController {
     
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var podcastDescriptionTextView: UITextView!
+    @IBOutlet weak var podcastDescriptionLabel: UILabel!
+    @IBOutlet weak var playButtonEffectView: UIVisualEffectView!
     
     override func viewDidLoad() {
         updateUI()
@@ -24,18 +25,17 @@ class EventDetailViewController: UIViewController {
     func updateUI() {
         self.coverartImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         podcastNameLabel?.text = event.title
-        podcastDescriptionTextView?.text = event.description
-        podcastDescriptionTextView.sizeToFit()
+        podcastDescriptionLabel?.text = event.description
+        podcastDescriptionLabel.sizeToFit()
         self.title = event.title
         
-        // make scrollview size fit all the content
-        //        var contentRect = CGRectZero
-        //        for view in contentView.subviews {
-        //            contentRect = CGRectUnion(contentRect, view.frame)
-        //        }
-        //        scrollView.contentSize = contentRect.size
+        playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
+        playButtonEffectView.layer.masksToBounds = true
 
-
+        if !event.isLive() {
+            playButtonEffectView.hidden = true
+        }
+        
         HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
             if podcast != nil {
                 self.podcast = podcast

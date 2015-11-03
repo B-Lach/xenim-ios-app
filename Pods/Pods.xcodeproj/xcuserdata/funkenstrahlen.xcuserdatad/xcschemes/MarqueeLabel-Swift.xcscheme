@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BDF7740ED06DDD8C60D85C67'
-               BlueprintName = 'MarqueeLabel'
+               BlueprintIdentifier = '4298CC0A9C4A01F86B02D1BD'
+               BlueprintName = 'MarqueeLabel-Swift'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'MarqueeLabel.framework'>
+               BuildableName = 'MarqueeLabel_Swift.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
