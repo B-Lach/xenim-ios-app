@@ -66,7 +66,7 @@ class PlayerViewController: UIViewController {
         // setup timer to update progressbar every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
-        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: "_timerTicked:", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: "timerTicked", userInfo: nil, repeats: true)
         player = AVPlayer(URL: event.streamurl)
         volumeView.showsRouteButton = false // disable airplay icon next to volume slider
         
@@ -82,7 +82,7 @@ class PlayerViewController: UIViewController {
         coverartView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         backgroundImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         miniCoverartImageView.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
-        _timerTicked(timer!)
+        timerTicked()
         
         // fetch coverart from image cache and set it as lockscreen artwork
         let imageCache = Shared.imageCache
@@ -135,7 +135,7 @@ class PlayerViewController: UIViewController {
 	}
 	
     // update progress every minute
-	func _timerTicked(timer: NSTimer) {
+	func timerTicked() {
         // progress is a value between 0 and 1
         let progress = (Float)(event.progress())
 		popupItem.progress = progress
