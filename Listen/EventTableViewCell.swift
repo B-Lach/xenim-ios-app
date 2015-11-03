@@ -23,6 +23,8 @@ class EventTableViewCell: UITableViewCell {
             if let event = event {
                 podcastNameLabel?.text = event.title
                 
+                // display livedate differently according to how far in the future
+                // the event is taking place
                 let formatter = NSDateFormatter();
                 formatter.locale = NSLocale.currentLocale()
                 
