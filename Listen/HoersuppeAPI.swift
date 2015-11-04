@@ -79,4 +79,45 @@ class HoersuppeAPI {
                 }
         }
     }
+    
+    static func fetchPodcastNextLiveEvents(podcastSlug: String, count: Int, onComplete: (events: [Event]) -> Void) {
+        var events = [Event]()
+        let parameters = [
+            "action": "getPodcastLive",
+            "podcast": podcastSlug,
+            "count": "\(count)"
+        ]
+        Alamofire.request(.GET, url, parameters: parameters)
+            .responseJSON { response in
+                if let responseData = response.data {
+                    let json = JSON(data: responseData)
+                    let data = json["data"]
+                    if data != nil {
+                        for i in 0 ..< data.count {
+                            
+                            let eventJSON = json["data"][i]
+                            
+                            // important: there is no description or imageurl in this API call response!
+                            
+                            let duration = eventJSON["duration"].string!
+                            let livedate = eventJSON["livedate"].string!
+                            let slug = eventJSON["podcast"].string!
+                            let streamurl = eventJSON["streamurl"].string!
+                            let title = eventJSON["title"].string!
+                            let url = eventJSON["url"].string!
+                            
+                            // TODO imageurl fix, as this is not how this initializer should be used
+                            
+                            if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: "", description: "", title: title, url: url) {
+                                events.append(event)
+                            } else {
+                                print("dropping event.")
+                            }
+                            
+                        }
+                    }
+                    onComplete(events: events)
+                }
+        }
+    }
 }

@@ -166,7 +166,6 @@ class EventTableViewController: UITableViewController, CellDelegator {
                 }
             }
         }
-
     }
     
     var playerViewController: PlayerViewController?
