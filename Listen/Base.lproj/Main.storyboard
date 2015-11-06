@@ -459,6 +459,9 @@
                                                 <rect key="frame" x="8" y="689" width="70" height="30"/>
                                                 <animations/>
                                                 <state key="normal" title="Subscribe"/>
+                                                <connections>
+                                                    <action selector="subscribePodcast" destination="jLW-Aw-Blu" eventType="touchUpInside" id="L5Q-yc-mcy"/>
+                                                </connections>
                                             </button>
                                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-nc-qxN">
                                                 <rect key="frame" x="260" y="260" width="80" height="80"/>

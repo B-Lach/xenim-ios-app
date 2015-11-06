@@ -60,14 +60,47 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             })
         }
         
-//        HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
-//            if podcast != nil {
-//                self.podcast = podcast
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    //self.updateUI()
-//                })
-//            }
-//        })
+        HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
+            if podcast != nil {
+                self.podcast = podcast
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    //self.updateUI()
+                })
+            }
+        })
+    }
+    
+    @IBAction func subscribePodcast() {
+        if let podcast = self.podcast {
+            let optionMenu = UIAlertController(title: nil, message: "Choose Podcast Client", preferredStyle: .ActionSheet)
+            
+            for client in Podcast.subscribeURLSchemes {
+                let clientName = client.0
+                let urlScheme = client.1
+                
+                if let subscribeURL = NSURL(string: urlScheme + podcast.feedurl.description) {
+                    if UIApplication.sharedApplication().canOpenURL(subscribeURL) {
+                        let action = UIAlertAction(title: clientName, style: .Default, handler: { (alert: UIAlertAction!) -> Void in
+                            
+                            UIApplication.sharedApplication().openURL(subscribeURL)
+                            
+                        })
+                        optionMenu.addAction(action)
+                    }
+                }
+                
+                
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+                (alert: UIAlertAction!) -> Void in
+                print("Cancelled")
+            })
+            
+            optionMenu.addAction(cancelAction)
+            
+            self.presentViewController(optionMenu, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Table view data source
