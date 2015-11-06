@@ -44,12 +44,14 @@ class EventTableViewCell: UITableViewCell {
                     playButton?.hidden = true
                     liveDateLabel?.text = formatter.stringFromDate(event.livedate)
                 }
-                
+                                
                 let placeholderImage = UIImage(named: "event_placeholder")!
                 eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
                 
                 if !Favorites.fetch().contains(event.podcastSlug) {
                     favStar.hidden = true
+                } else {
+                    favStar.hidden = false
                 }
                 
                 playButton.hidden = false // DEBUG
