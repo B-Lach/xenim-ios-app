@@ -25,14 +25,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="100" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5d-ya-iW5">
-                                            <rect key="frame" x="78" y="10" width="456" height="20"/>
+                                            <rect key="frame" x="92" y="10" width="442" height="20"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="100" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRm-H4-jze">
-                                            <rect key="frame" x="78" y="38" width="456" height="20"/>
+                                            <rect key="frame" x="92" y="38" width="442" height="20"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,12 +58,21 @@
                                                 <action selector="play:" destination="hiw-wf-THJ" eventType="touchUpInside" id="gCV-4r-wOy"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6j-so-r8A">
+                                            <rect key="frame" x="54" y="52" width="30" height="36"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                            <color key="textColor" red="0.93902243589743595" green="0.7540679220943648" blue="0.00018052916362094524" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <animations/>
                                     <constraints>
+                                        <constraint firstItem="f6j-so-r8A" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="bottom" constant="-20" id="0ST-mr-pLQ"/>
                                         <constraint firstItem="l5d-ya-iW5" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="top" id="DQV-2Y-lJc"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="leading" secondItem="IhM-9d-ONQ" secondAttribute="trailing" constant="8" id="GPB-0b-btu"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="IhM-9d-ONQ" secondAttribute="bottom" constant="8" id="Pd9-fh-s4j"/>
+                                        <constraint firstItem="sRm-H4-jze" firstAttribute="leading" secondItem="l5d-ya-iW5" secondAttribute="leading" id="QYX-bx-GzW"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="l5d-ya-iW5" secondAttribute="trailing" constant="472" id="RMR-2q-895"/>
                                         <constraint firstItem="idX-LT-SMd" firstAttribute="leading" secondItem="sRm-H4-jze" secondAttribute="trailing" constant="-12" id="SKC-Qc-4wH"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="IhM-9d-ONQ" secondAttribute="leading" id="UyH-nT-VLc"/>
@@ -72,13 +81,19 @@
                                         <constraint firstItem="idX-LT-SMd" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="top" id="daL-pv-JJc"/>
                                         <constraint firstItem="IhM-9d-ONQ" firstAttribute="top" secondItem="jQY-dg-Cex" secondAttribute="topMargin" constant="2" id="ehT-Mv-GpI"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="idX-LT-SMd" secondAttribute="trailing" id="f3f-sJ-P5k"/>
+                                        <constraint firstItem="f6j-so-r8A" firstAttribute="leading" secondItem="IhM-9d-ONQ" secondAttribute="trailing" constant="-16" id="kDa-jz-hZe"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="top" secondItem="l5d-ya-iW5" secondAttribute="bottom" constant="8" id="lZv-Lj-grk"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="width" secondItem="l5d-ya-iW5" secondAttribute="width" id="tz4-sI-fDo"/>
                                         <constraint firstItem="idX-LT-SMd" firstAttribute="leading" secondItem="l5d-ya-iW5" secondAttribute="trailing" constant="-12" id="u6Z-xc-izg"/>
+                                        <constraint firstItem="l5d-ya-iW5" firstAttribute="leading" secondItem="f6j-so-r8A" secondAttribute="trailing" constant="8" symbolic="YES" id="xvq-vB-TW0"/>
+                                        <constraint firstItem="l5d-ya-iW5" firstAttribute="leading" secondItem="f6j-so-r8A" secondAttribute="trailing" constant="-6" id="zil-L7-5dO"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="RMR-2q-895"/>
+                                            <exclude reference="d8B-Gq-Fmy"/>
+                                            <exclude reference="zil-L7-5dO"/>
+                                            <exclude reference="GPB-0b-btu"/>
                                             <exclude reference="XWg-Ll-11N"/>
                                         </mask>
                                     </variation>
@@ -86,6 +101,7 @@
                                 <animations/>
                                 <connections>
                                     <outlet property="eventCoverartImage" destination="IhM-9d-ONQ" id="jPM-8x-6rV"/>
+                                    <outlet property="favStar" destination="f6j-so-r8A" id="fQO-EH-MtL"/>
                                     <outlet property="liveDateLabel" destination="sRm-H4-jze" id="wv2-wQ-3zP"/>
                                     <outlet property="playButton" destination="idX-LT-SMd" id="yh3-dp-Urk"/>
                                     <outlet property="podcastNameLabel" destination="l5d-ya-iW5" id="Kvp-1b-1yu"/>

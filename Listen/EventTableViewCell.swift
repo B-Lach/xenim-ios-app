@@ -15,6 +15,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var liveDateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var favStar: UILabel!
     
     var delegate: CellDelegator?
     
@@ -46,6 +47,10 @@ class EventTableViewCell: UITableViewCell {
                 
                 let placeholderImage = UIImage(named: "event_placeholder")!
                 eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
+                
+                if !Favorites.fetch().contains(event.podcastSlug) {
+                    favStar.hidden = true
+                }
                 
                 playButton.hidden = false // DEBUG
             }
