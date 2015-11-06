@@ -100,9 +100,7 @@ class PlayerViewController: UIViewController {
                 MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
             ]
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.updateStatusBarStyle(image)
-            })
+            self.updateStatusBarStyle(image)
         }
     }
     
