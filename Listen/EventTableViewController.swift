@@ -81,6 +81,24 @@ class EventTableViewController: UITableViewController, CellDelegator {
             })
         }
     }
+    
+    @IBAction func toggleFilter(sender: UIBarButtonItem) {
+        filterFavorites()
+    }
+    
+    func filterFavorites() {
+        var filteredEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+        let favorites = Favorites.fetch()
+        for i in 0 ..< events.count {
+            let section = events[i]
+            let filteredSection = section.filter({ (event) -> Bool in
+                return favorites.contains(event.podcastSlug)
+            })
+            filteredEvents[i] = filteredSection
+        }
+        events = filteredEvents
+        tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 
