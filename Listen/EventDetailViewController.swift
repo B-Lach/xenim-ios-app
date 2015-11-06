@@ -85,6 +85,11 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
                             UIApplication.sharedApplication().openURL(subscribeURL)
                             
                         })
+                        // this is not officially supported code and does not work very well
+                        // I just leave it here, because maybe we find a better solution
+//                        if let image = UIImage(named: clientName) {
+//                            action.setValue(image, forKey: "image")
+//                        }
                         optionMenu.addAction(action)
                     }
                 }
