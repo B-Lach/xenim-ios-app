@@ -74,34 +74,24 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         if let podcast = self.podcast {
             let optionMenu = UIAlertController(title: nil, message: "Choose Podcast Client", preferredStyle: .ActionSheet)
             
-            for client in Podcast.subscribeURLSchemes {
+            // create one option for each podcast client
+            for client in podcast.subscribeClients {
                 let clientName = client.0
-                let urlScheme = client.1
+                let subscribeURL = client.1
                 
-                if let subscribeURL = NSURL(string: urlScheme + podcast.feedurl.description) {
-                    if UIApplication.sharedApplication().canOpenURL(subscribeURL) {
-                        let action = UIAlertAction(title: clientName, style: .Default, handler: { (alert: UIAlertAction!) -> Void in
-                            
-                            UIApplication.sharedApplication().openURL(subscribeURL)
-                            
-                        })
-                        // this is not officially supported code and does not work very well
-                        // I just leave it here, because maybe we find a better solution
-//                        if let image = UIImage(named: clientName) {
-//                            action.setValue(image, forKey: "image")
-//                        }
-                        optionMenu.addAction(action)
-                    }
+                // only show the option if the podcast client is installed which reacts to this URL
+                if UIApplication.sharedApplication().canOpenURL(subscribeURL) {
+                    let action = UIAlertAction(title: clientName, style: .Default, handler: { (alert: UIAlertAction!) -> Void in
+                        UIApplication.sharedApplication().openURL(subscribeURL)
+                    })
+                    optionMenu.addAction(action)
                 }
-                
-                
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
                 (alert: UIAlertAction!) -> Void in
                 print("Cancelled")
             })
-            
             optionMenu.addAction(cancelAction)
             
             self.presentViewController(optionMenu, animated: true, completion: nil)

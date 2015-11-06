@@ -13,6 +13,19 @@ class Podcast {
     
     var feedurl = NSURL(string: "")!
     var imageurl = NSURL(string: "")!
+    var subscribeClients: [String:NSURL] {
+        get {
+            var subscribeClients = [String:NSURL]()
+            for client in Podcast.subscribeURLSchemes {
+                let urlScheme = client.1
+                let clientName = client.0
+                if let subscribeURL = NSURL(string: urlScheme + feedurl.description) {
+                    subscribeClients[clientName] = subscribeURL
+                }
+            }
+            return subscribeClients
+        }
+    }
     var slug: String
     var subtitle: String
     var name: String // title
@@ -53,6 +66,6 @@ class Podcast {
     }
     
     // do not forget to enable them in Info.plist
-    static let subscribeURLSchemes = ["Castro" : "castro://subscribe/", "Downcast" : "downcast://", "Instacast" : "instacast://", "Overcast" : "overcast://x-callback-url/add?url=", "PocketCasts" : "pktc://subscribe/", "Podcasts" : "pcast://", "Podcat" : "podcat://"]
+    static private let subscribeURLSchemes = ["Castro" : "castro://subscribe/", "Downcast" : "downcast://", "Instacast" : "instacast://", "Overcast" : "overcast://x-callback-url/add?url=", "PocketCasts" : "pktc://subscribe/", "Podcasts" : "pcast://", "Podcat" : "podcat://"]
     
 }
