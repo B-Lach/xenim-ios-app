@@ -25,6 +25,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var starButtonView: UIButton!
     
+    var statusBarStyle = UIStatusBarStyle.Default
+    
     var isPlaying:Bool {
         get {
                 // rate is always between 0 and 1
@@ -98,7 +100,19 @@ class PlayerViewController: UIViewController {
                 MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
             ]
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.updateStatusBarStyle(image)
+            })
         }
+    }
+    
+    func updateStatusBarStyle(image: UIImage) {
+        if image.averageColor().isDarkColor() {
+            statusBarStyle = UIStatusBarStyle.LightContent
+        } else {
+            statusBarStyle = UIStatusBarStyle.Default
+        }
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     func setupRemoteCommands() {
@@ -136,7 +150,7 @@ class PlayerViewController: UIViewController {
     }
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return .LightContent
+        return statusBarStyle
 	}
 	
     // update progress every minute
