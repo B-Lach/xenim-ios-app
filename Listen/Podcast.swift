@@ -51,4 +51,8 @@ class Podcast {
             return nil
         }
     }
+    
+    // do not forget to enable them in Info.plist
+    static let subscribeURLSchemes = ["Castro" : "castro://subscribe/", "Downcast" : "downcast://", "Instacast" : "instacast://", "Overcast" : "overcast://x-callback-url/add?url=", "PocketCasts" : "pktc://subscribe/", "Podcasts" : "pcast://", "Podcat" : "podcat://"]
+    
 }
