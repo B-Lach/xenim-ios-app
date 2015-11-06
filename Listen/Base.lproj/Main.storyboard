@@ -115,7 +115,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="Z1Y-08-P79">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="IT3-va-4jo">
+                        <barButtonItem key="rightBarButtonItem" title="★" id="IT3-va-4jo">
                             <connections>
                                 <action selector="toggleFilter:" destination="Vdh-qv-U2O" id="nOS-Ib-CBa"/>
                             </connections>
