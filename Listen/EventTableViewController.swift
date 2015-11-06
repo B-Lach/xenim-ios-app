@@ -28,6 +28,8 @@ class EventTableViewController: UITableViewController, CellDelegator {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        // increase content inset for audio player
+        tableView.contentInset.bottom = tableView.contentInset.bottom + 40
         refresh(spinner)
 
         // Uncomment the following line to preserve selection between presentations
