@@ -86,6 +86,7 @@ class EventTableViewController: UITableViewController, CellDelegator {
         filterFavorites()
     }
     
+    // this should be a model thing!
     func filterFavorites() {
         var filteredEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
         let favorites = Favorites.fetch()
