@@ -481,6 +481,9 @@
                                                             <rect key="frame" x="34" y="29" width="12" height="22"/>
                                                             <animations/>
                                                             <state key="normal" image="play"/>
+                                                            <connections>
+                                                                <action selector="playEvent:" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Urn-RU-hSf"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <animations/>

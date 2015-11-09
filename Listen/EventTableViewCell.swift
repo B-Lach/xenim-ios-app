@@ -17,7 +17,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
     
-    var delegate: CellDelegator?
+    var delegate: PlayerDelegator?
     
     var event: Event? {
         didSet {
@@ -98,7 +98,7 @@ class EventTableViewCell: UITableViewCell {
     
     @IBAction func play(sender: AnyObject) {
         if let delegate = self.delegate {
-            delegate.callSegueFromCell(cell: self)
+            delegate.togglePlayPause(event: event!)
         }
     }
     

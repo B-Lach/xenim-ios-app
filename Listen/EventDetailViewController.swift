@@ -15,6 +15,8 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     var event: Event!
     var upcomingEvents = [Event]()
     
+    var delegate: PlayerDelegator?
+    
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
@@ -128,6 +130,12 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             optionMenu.addAction(cancelAction)
             
             self.presentViewController(optionMenu, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func playEvent(sender: AnyObject) {
+        if let delegate = self.delegate {
+            delegate.togglePlayPause(event: event)
         }
     }
     
