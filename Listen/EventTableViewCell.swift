@@ -38,11 +38,10 @@ class EventTableViewCell: UITableViewCell {
     
     func playerRateChanged(notification: NSNotification) {
         let userInfo = notification.userInfo as! [String: AnyObject]
-        let event = userInfo["event"] as! Event
-        let isPlaying = userInfo["isPlaying"] as! Bool
+        let player = userInfo["player"] as! Player
         if let myevent = self.event {
-            if myevent == event {
-                if isPlaying {
+            if myevent == player.event {
+                if player.isPlaying {
                     playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
                 } else {
                     playButton?.setImage(UIImage(named: "play"), forState: .Normal)

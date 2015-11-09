@@ -183,5 +183,4 @@ class EventTableViewController: UITableViewController, CellDelegator {
         tabBarController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
     }
     
-
 }

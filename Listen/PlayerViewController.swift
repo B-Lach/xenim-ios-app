@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import AVFoundation
-import MediaPlayer
 import Haneke
+import MediaPlayer
 
 class PlayerViewController: UIViewController {
 
@@ -24,15 +23,7 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var playPauseButton: UIButton!
     
     var statusBarStyle = UIStatusBarStyle.Default
-    
-    var isPlaying:Bool {
-        get {
-                // rate is always between 0 and 1
-                // a rate greater than 0 means its playing
-                return player.rate > 0
-        }
-    }
-    var player = AVPlayer()
+    let player = Player()
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -40,7 +31,7 @@ class PlayerViewController: UIViewController {
         // use this to add more controls on ipad interface
 		//if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
 
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "pause")]
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause")]
         
         miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
         let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
@@ -50,34 +41,25 @@ class PlayerViewController: UIViewController {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        player.removeObserver(self, forKeyPath: "rate")
     }
     
     var event: Event! {
         didSet {
             updateUI()
-            player.replaceCurrentItemWithPlayerItem(AVPlayerItem(URL: event.streamurl))
-            play()
+            togglePlayPause()
         }
     }
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        // required to play audio in background
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        } catch {}
         setupRemoteCommands()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
         
-        player = AVPlayer(URL: event.streamurl)
         volumeView.showsRouteButton = false // disable airplay icon next to volume slider
         
-        player.addObserver(self, forKeyPath: "rate", options: .New, context: nil)
-        
         updateUI()
-        play()
 	}
     
     func updateUI() {
@@ -93,12 +75,6 @@ class PlayerViewController: UIViewController {
         // fetch coverart from image cache and set it as lockscreen artwork
         let imageCache = Shared.imageCache
         imageCache.fetch(URL: event.imageurl).onSuccess { (image) -> () in
-            let songInfo: Dictionary = [
-                MPMediaItemPropertyTitle: self.event.title,
-                MPMediaItemPropertyArtist: self.event.podcastDescription,
-                MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
-            ]
-            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.updateStatusBarStyle(image)
             })
@@ -121,39 +97,24 @@ class PlayerViewController: UIViewController {
         commandCenter.togglePlayPauseCommand.enabled = true
     }
     
-    @objc func togglePlayPause() {
-        print("Toggled")
+    func playerRateChanged(notification: NSNotification) {
+        let userInfo = notification.userInfo as! [String: AnyObject]
+        let player = userInfo["player"] as! Player
+        if player.isPlaying {
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause")]
+            playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
+        } else {
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "togglePlayPause")]
+            playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
+        }
     }
     
-    func pause() {
-        player.pause()
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "play")]
-        playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
+    @objc func togglePlayPause() {
+        togglePlayPause(self)
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
-        if isPlaying {
-            pause()
-        } else {
-            play()
-        }
-    }
-    
-    func play(){
-        do {
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {}
-        player.play()
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "pause")]
-        playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "rate" {
-            if let newValue = change?[NSKeyValueChangeNewKey] {
-                NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["event": event, "isPlaying" : isPlaying])
-            }
-        }
+        player.togglePlayPause(event)
     }
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
