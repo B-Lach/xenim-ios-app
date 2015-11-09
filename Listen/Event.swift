@@ -85,9 +85,9 @@ class Event {
     }
     
     // return progress as a value between 0 and 1
-    func progress() -> Double {
+    func progress() -> Float {
         let timePassed = NSDate().timeIntervalSinceDate(livedate)
-        let factor = (Double)(timePassed/duration)
+        let factor = (Float)(timePassed/duration)
         return min(max(factor, 0.0), 1.0)
     }
     

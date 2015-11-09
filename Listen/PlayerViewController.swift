@@ -151,7 +151,7 @@ class PlayerViewController: UIViewController {
     // update progress every minute
 	func timerTicked() {
         // progress is a value between 0 and 1
-        let progress = (Float)(event.progress())
+        let progress = event.progress()
 		popupItem.progress = progress
 		progressView?.progress = progress
 	}
