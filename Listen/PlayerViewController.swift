@@ -150,7 +150,6 @@ class PlayerViewController: UIViewController {
 	}
 	
     func updateProgressBar() {
-        print("update progress for player")
         let progress = event.progress
         popupItem.progress = progress
         progressView?.progress = progress

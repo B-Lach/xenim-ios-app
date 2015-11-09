@@ -75,7 +75,6 @@ class EventTableViewCell: UITableViewCell {
     
     func updateProgressBar() {
         if let event = event {
-            print("update progress of \(event.podcastSlug)")
             progressView?.setProgress(event.progress, animated: true)
         }
     }
