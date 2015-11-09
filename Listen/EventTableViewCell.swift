@@ -23,6 +23,7 @@ class EventTableViewCell: UITableViewCell {
         didSet {
             NSNotificationCenter.defaultCenter().removeObserver(self)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
             updateUI()
         }
     }
@@ -33,6 +34,21 @@ class EventTableViewCell: UITableViewCell {
     
     func progressUpdate(notification: NSNotification) {
         updateProgressBar()
+    }
+    
+    func playerRateChanged(notification: NSNotification) {
+        let userInfo = notification.userInfo as! [String: AnyObject]
+        let event = userInfo["event"] as! Event
+        let isPlaying = userInfo["isPlaying"] as! Bool
+        if let myevent = self.event {
+            if myevent == event {
+                if isPlaying {
+                    playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+                } else {
+                    playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+                }
+            }
+        }
     }
     
     func updateUI() {
