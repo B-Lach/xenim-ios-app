@@ -32,6 +32,7 @@ class Player : NSObject {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {}
+        setupRemoteCommands()
     }
     
     deinit {
@@ -65,7 +66,17 @@ class Player : NSObject {
                 player.play()
             }
         }
-
+    }
+    
+    @objc func togglePlayPause() {
+        togglePlayPause(event!)
+    }
+    
+    func setupRemoteCommands() {
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
+        commandCenter.togglePlayPauseCommand.addTarget(self, action: Selector("togglePlayPause"))
+        commandCenter.togglePlayPauseCommand.enabled = true
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {

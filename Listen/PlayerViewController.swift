@@ -45,13 +45,12 @@ class PlayerViewController: UIViewController {
     var event: Event! {
         didSet {
             updateUI()
-            togglePlayPause()
+            togglePlayPause(self)
         }
     }
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRemoteCommands()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
@@ -89,13 +88,6 @@ class PlayerViewController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    func setupRemoteCommands() {
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-        let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
-        commandCenter.togglePlayPauseCommand.addTarget(self, action: Selector("togglePlayPause"))
-        commandCenter.togglePlayPauseCommand.enabled = true
-    }
-    
     func playerRateChanged(notification: NSNotification) {
         let userInfo = notification.userInfo as! [String: AnyObject]
         let player = userInfo["player"] as! Player
@@ -106,10 +98,6 @@ class PlayerViewController: UIViewController {
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "togglePlayPause")]
             playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
         }
-    }
-    
-    @objc func togglePlayPause() {
-        togglePlayPause(self)
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
