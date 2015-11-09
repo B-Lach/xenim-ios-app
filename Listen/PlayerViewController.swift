@@ -83,8 +83,8 @@ class PlayerViewController: UIViewController {
     func updateUI() {
         podcastNameLabel?.text = event.title
         popupItem.title = event.title
-        subtitleLabel?.text = event.description
-        popupItem.subtitle = event.description
+        subtitleLabel?.text = event.podcastDescription
+        popupItem.subtitle = event.podcastDescription
         coverartView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         backgroundImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         miniCoverartImageView.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
@@ -95,7 +95,7 @@ class PlayerViewController: UIViewController {
         imageCache.fetch(URL: event.imageurl).onSuccess { (image) -> () in
             let songInfo: Dictionary = [
                 MPMediaItemPropertyTitle: self.event.title,
-                MPMediaItemPropertyArtist: self.event.description,
+                MPMediaItemPropertyArtist: self.event.podcastDescription,
                 MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
             ]
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
@@ -151,7 +151,7 @@ class PlayerViewController: UIViewController {
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "rate" {
             if let newValue = change?[NSKeyValueChangeNewKey] {
-                NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["player":player, "event": event, "status" : isPlaying])
+                NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["event": event, "isPlaying" : isPlaying])
             }
         }
     }
