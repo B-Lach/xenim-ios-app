@@ -21,8 +21,18 @@ class EventTableViewCell: UITableViewCell {
     
     var event: Event? {
         didSet {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
             updateUI()
         }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func progressUpdate(notification: NSNotification) {
+        updateProgressBar()
     }
     
     func updateUI() {
@@ -55,12 +65,18 @@ class EventTableViewCell: UITableViewCell {
             let placeholderImage = UIImage(named: "event_placeholder")!
             eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
             
-            progressView.setProgress(event.progress(), animated: true)
-            
+            updateProgressBar()
             
             // show elements for DEBUGGIN
             playButton.hidden = false
             progressView.hidden = false
+        }
+    }
+    
+    func updateProgressBar() {
+        if let event = event {
+            print("update progress of \(event.podcastSlug)")
+            progressView?.setProgress(event.progress, animated: true)
         }
     }
     
