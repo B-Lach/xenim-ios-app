@@ -25,6 +25,15 @@ class Event {
     var title: String
     var url: String
     
+    //value between 0 and 1
+    var progress: Float = 0 {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName("progressUpdate", object: self, userInfo: nil)
+        }
+    }
+    var timer : NSTimer? // timer to update the progress periodically
+    let updateInterval: NSTimeInterval = 60
+    
     init?(duration: String, livedate: String, podcastSlug: String, streamurl: String, imageurl: String, description: String, title: String, url: String) {
         
         self.podcastSlug = podcastSlug
@@ -57,6 +66,16 @@ class Event {
         } else {
             return nil
         }
+        
+        // setup timer to update progressbar every minute
+        // remember to invalidate timer as soon this view gets cleared otherwise
+        // this will cause a memory cycle
+        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
+        timerTicked()
+    }
+    
+    deinit {
+        timer?.invalidate()
     }
 
     func isLive() -> Bool {
@@ -84,11 +103,11 @@ class Event {
         return calendar.isDateInWeekend(livedate)
     }
     
-    // return progress as a value between 0 and 1
-    func progress() -> Double {
+    @objc func timerTicked() {
+        // update progress value
         let timePassed = NSDate().timeIntervalSinceDate(livedate)
-        let factor = (Double)(timePassed/duration)
-        return min(max(factor, 0.0), 1.0)
+        let factor = (Float)(timePassed/duration)
+        progress = min(max(factor, 0.0), 1.0)
     }
     
 }

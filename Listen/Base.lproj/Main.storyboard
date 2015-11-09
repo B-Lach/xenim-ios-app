@@ -58,9 +58,14 @@
                                                 <action selector="play:" destination="hiw-wf-THJ" eventType="touchUpInside" id="gCV-4r-wOy"/>
                                             </connections>
                                         </button>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XgJ-FZ-h6y">
+                                            <rect key="frame" x="8" y="72" width="62" height="2"/>
+                                            <animations/>
+                                        </progressView>
                                     </subviews>
                                     <animations/>
                                     <constraints>
+                                        <constraint firstItem="XgJ-FZ-h6y" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="bottom" id="4jc-zE-aTP"/>
                                         <constraint firstItem="l5d-ya-iW5" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="top" id="DQV-2Y-lJc"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="leading" secondItem="IhM-9d-ONQ" secondAttribute="trailing" constant="8" id="GPB-0b-btu"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="IhM-9d-ONQ" secondAttribute="bottom" constant="8" id="Pd9-fh-s4j"/>
@@ -73,6 +78,8 @@
                                         <constraint firstItem="IhM-9d-ONQ" firstAttribute="top" secondItem="jQY-dg-Cex" secondAttribute="topMargin" constant="2" id="ehT-Mv-GpI"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="idX-LT-SMd" secondAttribute="trailing" id="f3f-sJ-P5k"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="top" secondItem="l5d-ya-iW5" secondAttribute="bottom" constant="8" id="lZv-Lj-grk"/>
+                                        <constraint firstItem="XgJ-FZ-h6y" firstAttribute="width" secondItem="IhM-9d-ONQ" secondAttribute="width" id="p9O-6b-XTR"/>
+                                        <constraint firstItem="XgJ-FZ-h6y" firstAttribute="leading" secondItem="IhM-9d-ONQ" secondAttribute="leading" id="qHf-jf-wkD"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="width" secondItem="l5d-ya-iW5" secondAttribute="width" id="tz4-sI-fDo"/>
                                         <constraint firstItem="idX-LT-SMd" firstAttribute="leading" secondItem="l5d-ya-iW5" secondAttribute="trailing" constant="-12" id="u6Z-xc-izg"/>
                                     </constraints>
@@ -89,6 +96,7 @@
                                     <outlet property="liveDateLabel" destination="sRm-H4-jze" id="wv2-wQ-3zP"/>
                                     <outlet property="playButton" destination="idX-LT-SMd" id="yh3-dp-Urk"/>
                                     <outlet property="podcastNameLabel" destination="l5d-ya-iW5" id="Kvp-1b-1yu"/>
+                                    <outlet property="progressView" destination="XgJ-FZ-h6y" id="rpl-17-SyZ"/>
                                     <segue destination="jLW-Aw-Blu" kind="show" identifier="PodcastDetail" id="5u9-ce-4fW"/>
                                 </connections>
                             </tableViewCell>
