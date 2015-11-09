@@ -15,6 +15,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var liveDateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var progressView: UIProgressView!
     
     var delegate: CellDelegator?
     
