@@ -114,11 +114,11 @@ class PlayerViewController: UIViewController {
     func setupRemoteCommands() {
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
-        commandCenter.togglePlayPauseCommand.addTarget(self, action: "togglePlayPause")
+        commandCenter.togglePlayPauseCommand.addTarget(self, action: Selector("togglePlayPause"))
         commandCenter.togglePlayPauseCommand.enabled = true
     }
     
-    func togglePlayPause() {
+    @objc func togglePlayPause() {
         print("Toggled")
     }
     
