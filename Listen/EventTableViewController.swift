@@ -174,7 +174,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     
     func togglePlayPause(event event: Event) {
         if playerViewController == nil {
-            playerViewController = storyboard?.instantiateViewControllerWithIdentifier("DemoMusicPlayerController") as? PlayerViewController
+            playerViewController = storyboard?.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
         }
 
         playerViewController!.event = event

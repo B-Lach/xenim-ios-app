@@ -216,7 +216,7 @@
         <!--Player View Controller-->
         <scene sceneID="xK3-Vi-0hh">
             <objects>
-                <viewController storyboardIdentifier="DemoMusicPlayerController" id="Pke-AM-PdW" customClass="PlayerViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AudioPlayerController" id="Pke-AM-PdW" customClass="PlayerViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qaw-y2-UuQ"/>
                         <viewControllerLayoutGuide type="bottom" id="2Ls-uh-f3q"/>
