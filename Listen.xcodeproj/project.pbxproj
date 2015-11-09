@@ -12,6 +12,7 @@
 		2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBC1BD52E480040100F /* Assets.xcassets */; };
 		2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */; };
 		2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECC71BD52EEA0040100F /* EventTableViewController.swift */; };
+		222FB9FD1BF0E90A0007257A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222FB9FC1BF0E90A0007257A /* Player.swift */; };
 		2232FE541BDE20DA00BE368E /* __MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE401BDE20DA00BE368E /* __MarqueeLabel.m */; };
 		2232FE551BDE20DA00BE368E /* _LNWeakRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE421BDE20DA00BE368E /* _LNWeakRef.m */; };
 		2232FE561BDE20DA00BE368E /* LNPopupBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE441BDE20DA00BE368E /* LNPopupBar.m */; };
@@ -40,6 +41,7 @@
 		2222ECBF1BD52E480040100F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2222ECC11BD52E480040100F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2222ECC71BD52EEA0040100F /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
+		222FB9FC1BF0E90A0007257A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2232FE3F1BDE20DA00BE368E /* __MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __MarqueeLabel.h; sourceTree = "<group>"; };
 		2232FE401BDE20DA00BE368E /* __MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __MarqueeLabel.m; sourceTree = "<group>"; };
 		2232FE411BDE20DA00BE368E /* _LNWeakRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _LNWeakRef.h; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				229B7D4B1BD53DBD00F1CF6B /* Event.swift */,
+				222FB9FC1BF0E90A0007257A /* Player.swift */,
 				229B7D4D1BD5623500F1CF6B /* Podcast.swift */,
 				229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */,
 			);
@@ -332,6 +335,7 @@
 				229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */,
 				2232FE5C1BDE20DA00BE368E /* UIViewController+LNPopupSupportPrivate.m in Sources */,
 				2232FE5B1BDE20DA00BE368E /* UIViewController+LNPopupSupport.m in Sources */,
+				222FB9FD1BF0E90A0007257A /* Player.swift in Sources */,
 				2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */,
 				2232FE551BDE20DA00BE368E /* _LNWeakRef.m in Sources */,
 			);

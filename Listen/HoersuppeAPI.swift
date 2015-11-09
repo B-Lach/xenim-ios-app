@@ -39,7 +39,7 @@ class HoersuppeAPI {
                             let title = eventJSON["eventTitle"].string!
                             let url = eventJSON["url"].string!
                             
-                            if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: imageurl, description: description, title: title, url: url) {
+                            if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: imageurl, podcastDescription: description, title: title, url: url) {
                                 events.append(event)
                             } else {
                                 print("dropping event.")
@@ -71,7 +71,7 @@ class HoersuppeAPI {
                     let slug = podcastJSON["slug"].string!
                     let description = podcastJSON["description"].string!
                     
-                    if let podcast = Podcast(name: name, subtitle: subtitle, url: url, feedurl: feedurl, imageurl: imageurl, slug: slug, description: description) {
+                    if let podcast = Podcast(name: name, subtitle: subtitle, url: url, feedurl: feedurl, imageurl: imageurl, slug: slug, podcastDescription: description) {
                         onComplete(podcast: podcast)
                     } else {
                         onComplete(podcast: nil)
@@ -108,7 +108,7 @@ class HoersuppeAPI {
                             
                             // TODO imageurl fix, as this is not how this initializer should be used
                             
-                            if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: "", description: "", title: title, url: url) {
+                            if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: "", podcastDescription: "", title: title, url: url) {
                                 events.append(event)
                             } else {
                                 print("dropping event.")

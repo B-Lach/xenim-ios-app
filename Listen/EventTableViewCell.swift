@@ -17,12 +17,13 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
     
-    var delegate: CellDelegator?
+    var delegate: PlayerDelegator?
     
     var event: Event? {
         didSet {
             NSNotificationCenter.defaultCenter().removeObserver(self)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
             updateUI()
         }
     }
@@ -33,6 +34,19 @@ class EventTableViewCell: UITableViewCell {
     
     func progressUpdate(notification: NSNotification) {
         updateProgressBar()
+    }
+    
+    func playerRateChanged(notification: NSNotification) {
+        updatePlayButton()
+    }
+    
+    func updatePlayButton() {
+        let player = Player.sharedInstance
+        if player.event == self.event && player.isPlaying {
+            playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+        } else {
+            playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+        }
     }
     
     func updateUI() {
@@ -66,6 +80,9 @@ class EventTableViewCell: UITableViewCell {
             eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
             
             updateProgressBar()
+            updatePlayButton()
+            // player appended to event
+            // or player as global singleton
             
             // show elements for DEBUGGIN
             playButton.hidden = false
@@ -81,7 +98,7 @@ class EventTableViewCell: UITableViewCell {
     
     @IBAction func play(sender: AnyObject) {
         if let delegate = self.delegate {
-            delegate.callSegueFromCell(cell: self)
+            delegate.togglePlayPause(event: event!)
         }
     }
     

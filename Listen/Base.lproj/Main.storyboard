@@ -53,7 +53,7 @@
                                                 <constraint firstAttribute="width" constant="70" id="2qV-a2-Zb9"/>
                                                 <constraint firstAttribute="width" secondItem="idX-LT-SMd" secondAttribute="height" multiplier="1:1" id="j1W-m0-zwG"/>
                                             </constraints>
-                                            <state key="normal" image="nowPlaying_play"/>
+                                            <state key="normal" image="play"/>
                                             <connections>
                                                 <action selector="play:" destination="hiw-wf-THJ" eventType="touchUpInside" id="gCV-4r-wOy"/>
                                             </connections>
@@ -216,7 +216,7 @@
         <!--Player View Controller-->
         <scene sceneID="xK3-Vi-0hh">
             <objects>
-                <viewController storyboardIdentifier="DemoMusicPlayerController" id="Pke-AM-PdW" customClass="PlayerViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AudioPlayerController" id="Pke-AM-PdW" customClass="PlayerViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qaw-y2-UuQ"/>
                         <viewControllerLayoutGuide type="bottom" id="2Ls-uh-f3q"/>
@@ -478,9 +478,12 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aao-SN-YGR">
-                                                            <rect key="frame" x="28" y="26" width="24" height="28"/>
+                                                            <rect key="frame" x="34" y="29" width="12" height="22"/>
                                                             <animations/>
-                                                            <state key="normal" image="nowPlaying_play"/>
+                                                            <state key="normal" image="play"/>
+                                                            <connections>
+                                                                <action selector="playEvent:" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Urn-RU-hSf"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <animations/>
@@ -666,6 +669,7 @@
                     <connections>
                         <outlet property="contentView" destination="99D-Ge-NfZ" id="YXq-h1-8dq"/>
                         <outlet property="coverartImageView" destination="MYR-Bd-I21" id="5Ij-Pl-eMW"/>
+                        <outlet property="playButton" destination="Aao-SN-YGR" id="Bpv-yR-KU5"/>
                         <outlet property="playButtonEffectView" destination="W6b-nc-qxN" id="iBJ-J6-RBU"/>
                         <outlet property="podcastDescriptionLabel" destination="sqw-7J-EQl" id="hDz-RZ-G8V"/>
                         <outlet property="podcastNameLabel" destination="PLU-zi-7Az" id="F6U-UL-ITu"/>
@@ -685,8 +689,8 @@
         <image name="next" width="16" height="10"/>
         <image name="nowPlaying_next" width="28" height="17"/>
         <image name="nowPlaying_pause" width="19" height="25"/>
-        <image name="nowPlaying_play" width="24" height="28"/>
         <image name="nowPlaying_prev" width="29" height="17"/>
+        <image name="play" width="12" height="14"/>
         <image name="share" width="13" height="19"/>
     </resources>
 </document>

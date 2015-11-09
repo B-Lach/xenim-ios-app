@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Event {
+class Event : NSObject {
 
     var duration: NSTimeInterval = 0 // in seconds
     var livedate = NSDate()
@@ -21,7 +21,7 @@ class Event {
     var podcastSlug: String
     var streamurl = NSURL(string: "")!
     var imageurl = NSURL(string: "")!
-    var description: String
+    var podcastDescription: String
     var title: String
     var url: String
     
@@ -34,12 +34,14 @@ class Event {
     var timer : NSTimer? // timer to update the progress periodically
     let updateInterval: NSTimeInterval = 60
     
-    init?(duration: String, livedate: String, podcastSlug: String, streamurl: String, imageurl: String, description: String, title: String, url: String) {
+    init?(duration: String, livedate: String, podcastSlug: String, streamurl: String, imageurl: String, podcastDescription: String, title: String, url: String) {
         
         self.podcastSlug = podcastSlug
-        self.description = description
+        self.podcastDescription = podcastDescription
         self.title = title
         self.url = url
+        
+        super.init()
         
         if let streamurl = NSURL(string: streamurl) {
             self.streamurl = streamurl
@@ -109,5 +111,6 @@ class Event {
         let factor = (Float)(timePassed/duration)
         progress = min(max(factor, 0.0), 1.0)
     }
+
     
 }
