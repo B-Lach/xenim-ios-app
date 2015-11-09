@@ -32,7 +32,7 @@ class Event {
         }
     }
     var timer : NSTimer? // timer to update the progress periodically
-    let updateInterval: NSTimeInterval = 5
+    let updateInterval: NSTimeInterval = 60
     
     init?(duration: String, livedate: String, podcastSlug: String, streamurl: String, imageurl: String, description: String, title: String, url: String) {
         
