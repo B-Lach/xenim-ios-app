@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SafariServices
 
-class EventDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EventDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SFSafariViewControllerDelegate {
     
     var podcast: Podcast?
     var event: Event!
@@ -68,6 +69,18 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
                 })
             }
         })
+    }
+    
+    @IBAction func openPodcastWebsite() {
+        if let podcast = podcast {
+            let svc = SFSafariViewController(URL: podcast.url)
+            svc.delegate = self
+            self.presentViewController(svc, animated: true, completion: nil)
+        }
+    }
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func subscribePodcast() {

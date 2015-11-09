@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Listen/EventDetailViewController.swift"
-            timestampString = "468510005.455676"
+            timestampString = "468753419.697096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "updateUI()"
             landmarkType = "5">
          </BreakpointContent>
