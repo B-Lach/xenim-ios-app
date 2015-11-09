@@ -103,7 +103,7 @@ class Event {
         return calendar.isDateInWeekend(livedate)
     }
     
-    func timerTicked() {
+    @objc func timerTicked() {
         // update progress value
         let timePassed = NSDate().timeIntervalSinceDate(livedate)
         let factor = (Float)(timePassed/duration)
