@@ -50,6 +50,7 @@ class PlayerViewController: UIViewController {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        player.removeObserver(self, forKeyPath: "rate")
     }
     
     var event: Event! {
@@ -72,6 +73,8 @@ class PlayerViewController: UIViewController {
         
         player = AVPlayer(URL: event.streamurl)
         volumeView.showsRouteButton = false // disable airplay icon next to volume slider
+        
+        player.addObserver(self, forKeyPath: "rate", options: .New, context: nil)
         
         updateUI()
         play()
@@ -143,6 +146,14 @@ class PlayerViewController: UIViewController {
         player.play()
         self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "pause")]
         playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "rate" {
+            if let newValue = change?[NSKeyValueChangeNewKey] {
+                NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["player":player, "event": event, "status" : isPlaying])
+            }
+        }
     }
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
