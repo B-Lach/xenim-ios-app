@@ -54,6 +54,7 @@ class EventTableViewCell: UITableViewCell {
             eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
             
             playButton.hidden = false // DEBUG
+            progressView.setProgress(event.progress(), animated: true)
         }
     }
     
