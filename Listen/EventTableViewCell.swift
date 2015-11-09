@@ -21,35 +21,39 @@ class EventTableViewCell: UITableViewCell {
     
     var event: Event? {
         didSet {
-            if let event = event {
-                podcastNameLabel?.text = event.title
-                
-                // display livedate differently according to how far in the future
-                // the event is taking place
-                let formatter = NSDateFormatter();
-                formatter.locale = NSLocale.currentLocale()
-                
-                if event.isToday() || event.isTomorrow() {
-                    formatter.dateStyle = .NoStyle
-                    formatter.timeStyle = .ShortStyle
-                } else {
-                    formatter.dateStyle = .MediumStyle
-                    formatter.timeStyle = .ShortStyle
-                }
-                
-                if event.isLive() {
-                    playButton?.hidden = false
-                    liveDateLabel?.text = "since \(formatter.stringFromDate(event.livedate))"
-                } else {
-                    playButton?.hidden = true
-                    liveDateLabel?.text = formatter.stringFromDate(event.livedate)
-                }
-                
-                let placeholderImage = UIImage(named: "event_placeholder")!
-                eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
-                
-                playButton.hidden = false // DEBUG
+            updateUI()
+        }
+    }
+    
+    func updateUI() {
+        if let event = event {
+            podcastNameLabel?.text = event.title
+            
+            // display livedate differently according to how far in the future
+            // the event is taking place
+            let formatter = NSDateFormatter();
+            formatter.locale = NSLocale.currentLocale()
+            
+            if event.isToday() || event.isTomorrow() {
+                formatter.dateStyle = .NoStyle
+                formatter.timeStyle = .ShortStyle
+            } else {
+                formatter.dateStyle = .MediumStyle
+                formatter.timeStyle = .ShortStyle
             }
+            
+            if event.isLive() {
+                playButton?.hidden = false
+                liveDateLabel?.text = "since \(formatter.stringFromDate(event.livedate))"
+            } else {
+                playButton?.hidden = true
+                liveDateLabel?.text = formatter.stringFromDate(event.livedate)
+            }
+            
+            let placeholderImage = UIImage(named: "event_placeholder")!
+            eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
+            
+            playButton.hidden = false // DEBUG
         }
     }
     
