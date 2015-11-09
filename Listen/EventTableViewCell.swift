@@ -44,17 +44,23 @@ class EventTableViewCell: UITableViewCell {
             
             if event.isLive() {
                 playButton?.hidden = false
+                progressView.hidden = false
                 liveDateLabel?.text = "since \(formatter.stringFromDate(event.livedate))"
             } else {
                 playButton?.hidden = true
+                progressView.hidden = true
                 liveDateLabel?.text = formatter.stringFromDate(event.livedate)
             }
             
             let placeholderImage = UIImage(named: "event_placeholder")!
             eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
             
-            playButton.hidden = false // DEBUG
             progressView.setProgress(event.progress(), animated: true)
+            
+            
+            // show elements for DEBUGGIN
+            playButton.hidden = false
+            progressView.hidden = false
         }
     }
     
