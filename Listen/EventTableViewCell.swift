@@ -37,16 +37,15 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func playerRateChanged(notification: NSNotification) {
-        let userInfo = notification.userInfo as! [String: AnyObject]
-        let player = userInfo["player"] as! Player
-        if let myevent = self.event {
-            if myevent == player.event {
-                if player.isPlaying {
-                    playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
-                } else {
-                    playButton?.setImage(UIImage(named: "play"), forState: .Normal)
-                }
-            }
+        updatePlayButton()
+    }
+    
+    func updatePlayButton() {
+        let player = Player.sharedInstance
+        if player.event == self.event && player.isPlaying {
+            playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+        } else {
+            playButton?.setImage(UIImage(named: "play"), forState: .Normal)
         }
     }
     
@@ -81,6 +80,9 @@ class EventTableViewCell: UITableViewCell {
             eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
             
             updateProgressBar()
+            updatePlayButton()
+            // player appended to event
+            // or player as global singleton
             
             // show elements for DEBUGGIN
             playButton.hidden = false

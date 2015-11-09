@@ -11,7 +11,9 @@ import Haneke
 
 class Player : NSObject {
     
-    var event: Event!
+    static let sharedInstance = Player()
+    
+    var event: Event?
     var isPlaying:Bool {
         get {
             // rate is always between 0 and 1
@@ -44,8 +46,8 @@ class Player : NSObject {
         let imageCache = Shared.imageCache
         imageCache.fetch(URL: event.imageurl).onSuccess { (image) -> () in
             let songInfo: Dictionary = [
-                MPMediaItemPropertyTitle: self.event.title,
-                MPMediaItemPropertyArtist: self.event.podcastDescription,
+                MPMediaItemPropertyTitle: self.event!.title,
+                MPMediaItemPropertyArtist: self.event!.podcastDescription,
                 MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
             ]
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo

@@ -23,8 +23,7 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var playPauseButton: UIButton!
     
     var statusBarStyle = UIStatusBarStyle.Default
-    let player = Player()
-	
+    
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
@@ -114,7 +113,7 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
-        player.togglePlayPause(event)
+        Player.sharedInstance.togglePlayPause(event)
     }
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {

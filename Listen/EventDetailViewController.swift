@@ -15,6 +15,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     var event: Event!
     var upcomingEvents = [Event]()
     
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var podcastDescriptionLabel: UILabel!
@@ -34,7 +35,30 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // LNPopupBarHeight is currently 40
         // increase bottom inset to show all content if player is visible
         scrollView.contentInset.bottom = scrollView.contentInset.bottom + 40
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
+        playButtonEffectView.layer.masksToBounds = true
         updateUI()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func playerRateChanged(notification: NSNotification) {
+        updatePlayButton()
+    }
+    
+    func updatePlayButton() {
+        if !event.isLive() {
+            playButtonEffectView.hidden = true
+        }
+        let player = Player.sharedInstance
+        if player.event == self.event && player.isPlaying {
+            playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+        } else {
+            playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+        }
     }
     
     func updateUI() {
@@ -42,13 +66,8 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         podcastNameLabel?.text = event.title
         podcastDescriptionLabel?.text = event.podcastDescription
         self.title = event.title
-        
-        playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
-        playButtonEffectView.layer.masksToBounds = true
 
-        if !event.isLive() {
-            playButtonEffectView.hidden = true
-        }
+        updatePlayButton()
         
         HoersuppeAPI.fetchPodcastNextLiveEvents(event.podcastSlug, count: 3) { (events) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
