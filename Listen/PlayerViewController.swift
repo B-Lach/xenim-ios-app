@@ -11,6 +11,13 @@ import Haneke
 import MediaPlayer
 
 class PlayerViewController: UIViewController {
+    
+    var event: Event! {
+        didSet {
+            updateUI()
+            togglePlayPause(self)
+        }
+    }
 
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
@@ -39,13 +46,6 @@ class PlayerViewController: UIViewController {
         self.popupItem.leftBarButtonItems = [popupItem]
 
 	}
-    
-    var event: Event! {
-        didSet {
-            updateUI()
-            togglePlayPause(self)
-        }
-    }
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +69,7 @@ class PlayerViewController: UIViewController {
         backgroundImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         miniCoverartImageView.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         updateProgressBar()
+        updateFavoritesButton()
         
         // fetch coverart from image cache and set it as lockscreen artwork
         let imageCache = Shared.imageCache
@@ -88,6 +89,12 @@ class PlayerViewController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()
     }
     
+    @IBAction func favorite(sender: AnyObject) {
+        if let event = event {
+            Favorites.toggle(slug: event.podcastSlug)
+        }
+    }
+    
     @IBAction func togglePlayPause(sender: AnyObject) {
         Player.sharedInstance.togglePlayPause(event)
     }
@@ -102,11 +109,22 @@ class PlayerViewController: UIViewController {
         progressView?.progress = progress
     }
     
+    func updateFavoritesButton() {
+        if let event = event {
+            if !Favorites.fetch().contains(event.podcastSlug) {
+                starButtonView?.setTitle("☆", forState: .Normal)
+            } else {
+                starButtonView?.setTitle("★", forState: .Normal)
+            }
+        }
+    }
+    
     // MARK: notifications
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
     }
     
     deinit {
@@ -116,6 +134,10 @@ class PlayerViewController: UIViewController {
     func progressUpdate(notification: NSNotification) {
         updateProgressBar()
 	}
+
+    func favoritesChanged(notification: NSNotification) {
+        updateFavoritesButton()
+    }
     
     func playerRateChanged(notification: NSNotification) {
         let userInfo = notification.userInfo as! [String: AnyObject]
