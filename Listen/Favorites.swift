@@ -17,6 +17,7 @@ class Favorites {
         if let storedFavorites = userDefaults.objectForKey(key) as? [String] {
             return storedFavorites
         } else {
+            // if there is nothing stored yet, create a new empty Array
             return [String]()
         }
     }
