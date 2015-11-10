@@ -111,6 +111,9 @@ class Event : NSObject {
         let factor = (Float)(timePassed/duration)
         progress = min(max(factor, 0.0), 1.0)
     }
-
+    
+    func equals(otherEvent: Event) -> Bool {
+        return podcastSlug == otherEvent.podcastSlug && livedate.timeIntervalSinceDate(otherEvent.livedate) == 0
+    }
     
 }

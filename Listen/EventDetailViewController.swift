@@ -82,7 +82,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             //playButtonEffectView.hidden = true
         }
         let player = Player.sharedInstance
-        if player.event == self.event && player.isPlaying {
+        if player.event!.equals(self.event) && player.isPlaying {
             playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
         } else {
             playButton?.setImage(UIImage(named: "play"), forState: .Normal)
