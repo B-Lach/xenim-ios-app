@@ -17,7 +17,6 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var coverartFavoriteStar: UILabel!
-    @IBOutlet weak var favoriteButton: UIButton!
     
     var delegate: PlayerDelegator?
     
@@ -76,26 +75,12 @@ class EventTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func favorite(sender: AnyObject) {
-        if let event = event {
-            Favorites.toggle(slug: event.podcastSlug)
-        }
-    }
-    
     func updateFavstar() {
         if let event = event {
             if !Favorites.fetch().contains(event.podcastSlug) {
                 coverartFavoriteStar.hidden = true
-                if event.isLive() {
-                    favoriteButton.hidden = true
-                } else {
-                    favoriteButton.hidden = false
-                }
-                favoriteButton.setTitle("☆", forState: .Normal)
             } else {
                 coverartFavoriteStar.hidden = false
-                favoriteButton.setTitle("★", forState: .Normal)
-                favoriteButton.hidden = true
             }
         }
     }
