@@ -26,6 +26,7 @@ class Favorites {
         if !favorites.contains(slug) {
             favorites.append(slug)
             userDefaults.setObject(favorites, forKey: key)
+            notifyChange()
         }
     }
     
@@ -34,7 +35,12 @@ class Favorites {
         if let index = favorites.indexOf(slug) {
             favorites.removeAtIndex(index)
             userDefaults.setObject(favorites, forKey: key)
+            notifyChange()
         }
+    }
+    
+    private static func notifyChange() {
+        NSNotificationCenter.defaultCenter().postNotificationName("favoritesChanged", object: nil, userInfo: nil)
     }
     
 }
