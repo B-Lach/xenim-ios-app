@@ -75,8 +75,6 @@ class FavoritesTableViewController: UITableViewController {
         if editingStyle == .Delete {
             // Delete the row from the data source
             Favorites.remove(slug: favorites[indexPath.row])
-            favorites.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
     
