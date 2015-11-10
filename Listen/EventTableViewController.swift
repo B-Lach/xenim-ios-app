@@ -142,6 +142,16 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     }
     */
 
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "★") { (action, indexPath) -> Void in
+            let event = self.events[indexPath.section][indexPath.row]
+            Favorites.toggle(slug: event.podcastSlug)
+            tableView.setEditing(false, animated: true)
+        }
+        shareAction.backgroundColor = UIColor(red:0.93, green:0.76, blue:0, alpha:1)
+        return [shareAction]
+    }
+    
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
