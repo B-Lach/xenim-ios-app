@@ -124,6 +124,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="Z1Y-08-P79">
                         <barButtonItem key="rightBarButtonItem" title="★" id="IT3-va-4jo">
+                            <color key="tintColor" red="0.93902243590000001" green="0.75406792209999995" blue="0.00018052916359999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="toggleFilter:" destination="Vdh-qv-U2O" id="nOS-Ib-CBa"/>
                             </connections>
@@ -283,7 +284,7 @@
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yMl-Lc-pw7">
                                             <rect key="frame" x="0.0" y="398" width="600" height="2"/>
                                             <animations/>
-                                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="2" id="EDJ-R9-cst"/>
                                             </constraints>
@@ -518,7 +519,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PLU-zi-7Az">
-                                                <rect key="frame" x="8" y="620" width="541" height="33"/>
+                                                <rect key="frame" x="8" y="620" width="546" height="33"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -532,10 +533,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTO-Hw-zIA">
-                                                <rect key="frame" x="557" y="610" width="35" height="54"/>
+                                                <rect key="frame" x="562" y="613" width="30" height="48"/>
                                                 <animations/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                                <state key="normal" title="☆"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="☆">
+                                                    <color key="titleColor" red="0.93902243590000001" green="0.75406792209999995" blue="0.00018052916359999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="favorite:" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Fa0-Ej-sTb"/>
                                                 </connections>
