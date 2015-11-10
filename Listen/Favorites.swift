@@ -39,6 +39,21 @@ class Favorites {
         }
     }
     
+    static func toggle(slug slug: String) {
+        var favorites = fetch()
+        if !favorites.contains(slug) {
+            favorites.append(slug)
+            userDefaults.setObject(favorites, forKey: key)
+            notifyChange()
+        } else {
+            if let index = favorites.indexOf(slug) {
+                favorites.removeAtIndex(index)
+                userDefaults.setObject(favorites, forKey: key)
+                notifyChange()
+            }
+        }
+    }
+    
     private static func notifyChange() {
         NSNotificationCenter.defaultCenter().postNotificationName("favoritesChanged", object: nil, userInfo: nil)
     }
