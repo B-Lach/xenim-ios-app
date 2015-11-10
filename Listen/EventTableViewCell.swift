@@ -72,12 +72,6 @@ class EventTableViewCell: UITableViewCell {
             
             updateProgressBar()
             updatePlayButton()
-            // player appended to event
-            // or player as global singleton
-            
-            // show elements for DEBUGGIN
-            playButton.hidden = false
-            progressView.hidden = false
         }
     }
     
