@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import SafariServices
 
-class EventDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EventDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SFSafariViewControllerDelegate {
     
     var podcast: Podcast?
     var event: Event!
     var upcomingEvents = [Event]()
     
+    var delegate: PlayerDelegator?
+    
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var podcastDescriptionLabel: UILabel!
@@ -33,21 +37,40 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // LNPopupBarHeight is currently 40
         // increase bottom inset to show all content if player is visible
         scrollView.contentInset.bottom = scrollView.contentInset.bottom + 40
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
+        playButtonEffectView.layer.masksToBounds = true
         updateUI()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func playerRateChanged(notification: NSNotification) {
+        updatePlayButton()
+    }
+    
+    func updatePlayButton() {
+        if !event.isLive() {
+            // DEBUG
+            //playButtonEffectView.hidden = true
+        }
+        let player = Player.sharedInstance
+        if player.event == self.event && player.isPlaying {
+            playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+        } else {
+            playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+        }
     }
     
     func updateUI() {
         self.coverartImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         podcastNameLabel?.text = event.title
-        podcastDescriptionLabel?.text = event.description
+        podcastDescriptionLabel?.text = event.podcastDescription
         self.title = event.title
-        
-        playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
-        playButtonEffectView.layer.masksToBounds = true
 
-        if !event.isLive() {
-            playButtonEffectView.hidden = true
-        }
+        updatePlayButton()
         
         HoersuppeAPI.fetchPodcastNextLiveEvents(event.podcastSlug, count: 3) { (events) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -68,6 +91,18 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
                 })
             }
         })
+    }
+    
+    @IBAction func openPodcastWebsite() {
+        if let podcast = podcast {
+            let svc = SFSafariViewController(URL: podcast.url)
+            svc.delegate = self
+            self.presentViewController(svc, animated: true, completion: nil)
+        }
+    }
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func subscribePodcast() {
@@ -95,6 +130,12 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             optionMenu.addAction(cancelAction)
             
             self.presentViewController(optionMenu, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func playEvent(sender: AnyObject) {
+        if let delegate = self.delegate {
+            delegate.togglePlayPause(event: event)
         }
     }
     

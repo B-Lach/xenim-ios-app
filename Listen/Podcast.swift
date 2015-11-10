@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Podcast {
+class Podcast : NSObject {
     
     var feedurl = NSURL(string: "")!
     var imageurl = NSURL(string: "")!
@@ -29,7 +29,7 @@ class Podcast {
     var slug: String
     var subtitle: String
     var name: String // title
-    var description: String
+    var podcastDescription: String
     var url = NSURL(string: "")!
 //    var chat_channel: String?
 //    var chat_server: String?
@@ -43,11 +43,12 @@ class Podcast {
 //    var recension: String?
 
     
-    init?(name: String, subtitle: String, url: String, feedurl: String, imageurl: String, slug: String, description: String) {
+    init?(name: String, subtitle: String, url: String, feedurl: String, imageurl: String, slug: String, podcastDescription: String) {
         self.name = name
         self.subtitle = subtitle
         self.slug = slug
-        self.description = description
+        self.podcastDescription = podcastDescription
+        super.init()
         if let url = NSURL(string: url) {
             self.url = url
         } else {

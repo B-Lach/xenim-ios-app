@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import AVFoundation
-import MediaPlayer
 import Haneke
+import MediaPlayer
 
 class PlayerViewController: UIViewController {
 
@@ -27,23 +26,13 @@ class PlayerViewController: UIViewController {
     
     var statusBarStyle = UIStatusBarStyle.Default
     
-    var isPlaying:Bool {
-        get {
-                // rate is always between 0 and 1
-                // a rate greater than 0 means its playing
-                return player.rate > 0
-        }
-    }
-    var player = AVPlayer()
-    var timer : NSTimer?
-	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
         // use this to add more controls on ipad interface
 		//if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
 
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "pause")]
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause")]
         
         miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
         let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
@@ -51,56 +40,47 @@ class PlayerViewController: UIViewController {
 
 	}
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     var event: Event! {
         didSet {
             updateUI()
-            player.replaceCurrentItemWithPlayerItem(AVPlayerItem(URL: event.streamurl))
-            play()
+            togglePlayPause(self)
         }
     }
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        // required to play audio in background
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        } catch {}
-        setupRemoteCommands()
         
-        // setup timer to update progressbar every minute
-        // remember to invalidate timer as soon this view gets cleared otherwise
-        // this will cause a memory cycle
-        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: "timerTicked", userInfo: nil, repeats: true)
-        player = AVPlayer(URL: event.streamurl)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        
         volumeView.showsRouteButton = false // disable airplay icon next to volume slider
         
         visualEffectView.layer.cornerRadius = visualEffectView.frame.size.width/2
         visualEffectView.layer.masksToBounds = true
         
         updateUI()
-        play()
 	}
     
     func updateUI() {
         podcastNameLabel?.text = event.title
         popupItem.title = event.title
-        subtitleLabel?.text = event.description
-        popupItem.subtitle = event.description
+        subtitleLabel?.text = event.podcastDescription
+        popupItem.subtitle = event.podcastDescription
         coverartView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         backgroundImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         miniCoverartImageView.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
-        timerTicked()
+        updateProgressBar()
         
         // fetch coverart from image cache and set it as lockscreen artwork
         let imageCache = Shared.imageCache
         imageCache.fetch(URL: event.imageurl).onSuccess { (image) -> () in
-            let songInfo: Dictionary = [
-                MPMediaItemPropertyTitle: self.event.title,
-                MPMediaItemPropertyArtist: self.event.description,
-                MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
-            ]
-            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
-            self.updateStatusBarStyle(image)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.updateStatusBarStyle(image)
+            })
         }
     }
     
@@ -113,49 +93,33 @@ class PlayerViewController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    func setupRemoteCommands() {
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-        let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
-        commandCenter.togglePlayPauseCommand.addTarget(self, action: "togglePlayPause")
-        commandCenter.togglePlayPauseCommand.enabled = true
-    }
-    
-    func togglePlayPause() {
-        print("Toggled")
-    }
-    
-    func pause() {
-        player.pause()
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "play")]
-        playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
-    }
-    
-    @IBAction func togglePlayPause(sender: AnyObject) {
-        if isPlaying {
-            pause()
+    func playerRateChanged(notification: NSNotification) {
+        let userInfo = notification.userInfo as! [String: AnyObject]
+        let player = userInfo["player"] as! Player
+        if player.isPlaying {
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause")]
+            playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
         } else {
-            play()
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "togglePlayPause")]
+            playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
         }
     }
     
-    func play(){
-        do {
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {}
-        player.play()
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "pause")]
-        playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
+    @IBAction func togglePlayPause(sender: AnyObject) {
+        Player.sharedInstance.togglePlayPause(event)
     }
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return statusBarStyle
 	}
 	
-    // update progress every minute
-	func timerTicked() {
-        // progress is a value between 0 and 1
-        let progress = (Float)(event.progress())
-		popupItem.progress = progress
-		progressView?.progress = progress
+    func updateProgressBar() {
+        let progress = event.progress
+        popupItem.progress = progress
+        progressView?.progress = progress
+    }
+    
+    func progressUpdate(notification: NSNotification) {
+        updateProgressBar()
 	}
 }

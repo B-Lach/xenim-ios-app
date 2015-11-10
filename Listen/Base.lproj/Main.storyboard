@@ -53,7 +53,7 @@
                                                 <constraint firstAttribute="width" constant="70" id="2qV-a2-Zb9"/>
                                                 <constraint firstAttribute="width" secondItem="idX-LT-SMd" secondAttribute="height" multiplier="1:1" id="j1W-m0-zwG"/>
                                             </constraints>
-                                            <state key="normal" image="nowPlaying_play"/>
+                                            <state key="normal" image="play"/>
                                             <connections>
                                                 <action selector="play:" destination="hiw-wf-THJ" eventType="touchUpInside" id="gCV-4r-wOy"/>
                                             </connections>
@@ -65,10 +65,15 @@
                                             <color key="textColor" red="0.93902243589743595" green="0.7540679220943648" blue="0.00018052916362094524" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XgJ-FZ-h6y">
+                                            <rect key="frame" x="8" y="72" width="62" height="2"/>
+                                            <animations/>
+                                        </progressView>
                                     </subviews>
                                     <animations/>
                                     <constraints>
                                         <constraint firstItem="f6j-so-r8A" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="bottom" constant="-20" id="0ST-mr-pLQ"/>
+                                        <constraint firstItem="XgJ-FZ-h6y" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="bottom" id="4jc-zE-aTP"/>
                                         <constraint firstItem="l5d-ya-iW5" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="top" id="DQV-2Y-lJc"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="leading" secondItem="IhM-9d-ONQ" secondAttribute="trailing" constant="8" id="GPB-0b-btu"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="IhM-9d-ONQ" secondAttribute="bottom" constant="8" id="Pd9-fh-s4j"/>
@@ -83,6 +88,8 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="idX-LT-SMd" secondAttribute="trailing" id="f3f-sJ-P5k"/>
                                         <constraint firstItem="f6j-so-r8A" firstAttribute="leading" secondItem="IhM-9d-ONQ" secondAttribute="trailing" constant="-16" id="kDa-jz-hZe"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="top" secondItem="l5d-ya-iW5" secondAttribute="bottom" constant="8" id="lZv-Lj-grk"/>
+                                        <constraint firstItem="XgJ-FZ-h6y" firstAttribute="width" secondItem="IhM-9d-ONQ" secondAttribute="width" id="p9O-6b-XTR"/>
+                                        <constraint firstItem="XgJ-FZ-h6y" firstAttribute="leading" secondItem="IhM-9d-ONQ" secondAttribute="leading" id="qHf-jf-wkD"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="width" secondItem="l5d-ya-iW5" secondAttribute="width" id="tz4-sI-fDo"/>
                                         <constraint firstItem="idX-LT-SMd" firstAttribute="leading" secondItem="l5d-ya-iW5" secondAttribute="trailing" constant="-12" id="u6Z-xc-izg"/>
                                         <constraint firstItem="l5d-ya-iW5" firstAttribute="leading" secondItem="f6j-so-r8A" secondAttribute="trailing" constant="8" symbolic="YES" id="xvq-vB-TW0"/>
@@ -105,6 +112,7 @@
                                     <outlet property="liveDateLabel" destination="sRm-H4-jze" id="wv2-wQ-3zP"/>
                                     <outlet property="playButton" destination="idX-LT-SMd" id="yh3-dp-Urk"/>
                                     <outlet property="podcastNameLabel" destination="l5d-ya-iW5" id="Kvp-1b-1yu"/>
+                                    <outlet property="progressView" destination="XgJ-FZ-h6y" id="rpl-17-SyZ"/>
                                     <segue destination="jLW-Aw-Blu" kind="show" identifier="PodcastDetail" id="5u9-ce-4fW"/>
                                 </connections>
                             </tableViewCell>
@@ -246,7 +254,7 @@
         <!--Player View Controller-->
         <scene sceneID="xK3-Vi-0hh">
             <objects>
-                <viewController storyboardIdentifier="DemoMusicPlayerController" id="Pke-AM-PdW" customClass="PlayerViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AudioPlayerController" id="Pke-AM-PdW" customClass="PlayerViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qaw-y2-UuQ"/>
                         <viewControllerLayoutGuide type="bottom" id="2Ls-uh-f3q"/>
@@ -542,10 +550,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aao-SN-YGR">
-                                                            <rect key="frame" x="28" y="26" width="24" height="28"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aao-SN-YGR">
+                                                            <rect key="frame" x="34" y="29" width="12" height="22"/>
                                                             <animations/>
-                                                            <state key="normal" image="nowPlaying_play"/>
+                                                            <state key="normal" image="play"/>
+                                                            <connections>
+                                                                <action selector="playEvent:" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Urn-RU-hSf"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <animations/>
@@ -611,6 +622,14 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdW-z8-0dX">
+                                                <rect key="frame" x="86" y="689" width="56" height="30"/>
+                                                <animations/>
+                                                <state key="normal" title="Website"/>
+                                                <connections>
+                                                    <action selector="openPodcastWebsite" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Xo4-ov-woF"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -638,12 +657,14 @@
                                             <constraint firstAttribute="trailing" secondItem="fTO-Hw-zIA" secondAttribute="trailing" constant="8" id="eWy-3c-uJw"/>
                                             <constraint firstItem="ETv-v4-8gG" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="gXC-pe-gEC"/>
                                             <constraint firstItem="N84-jM-ivq" firstAttribute="top" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="hXz-ln-R2l"/>
+                                            <constraint firstItem="GdW-z8-0dX" firstAttribute="leading" secondItem="ETv-v4-8gG" secondAttribute="trailing" constant="8" id="lE4-rk-ieP"/>
                                             <constraint firstItem="L5f-t2-KEW" firstAttribute="top" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="mCs-40-k64"/>
                                             <constraint firstAttribute="bottom" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="oQs-6Y-ZhP"/>
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="top" secondItem="99D-Ge-NfZ" secondAttribute="top" id="pBf-aN-B6H"/>
                                             <constraint firstAttribute="trailing" secondItem="MYR-Bd-I21" secondAttribute="trailing" id="rAF-s5-cem"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="636" id="sAJ-jx-eg2"/>
                                             <constraint firstItem="N84-jM-ivq" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="tji-TN-kh9"/>
+                                            <constraint firstItem="GdW-z8-0dX" firstAttribute="baseline" secondItem="ETv-v4-8gG" secondAttribute="baseline" id="u6a-6A-bKv"/>
                                             <constraint firstAttribute="trailing" secondItem="sqw-7J-EQl" secondAttribute="trailing" constant="8" id="ytB-UT-P8F"/>
                                         </constraints>
                                         <variation key="default">
@@ -721,6 +742,7 @@
                     <connections>
                         <outlet property="contentView" destination="99D-Ge-NfZ" id="YXq-h1-8dq"/>
                         <outlet property="coverartImageView" destination="MYR-Bd-I21" id="5Ij-Pl-eMW"/>
+                        <outlet property="playButton" destination="Aao-SN-YGR" id="Bpv-yR-KU5"/>
                         <outlet property="playButtonEffectView" destination="W6b-nc-qxN" id="iBJ-J6-RBU"/>
                         <outlet property="podcastDescriptionLabel" destination="sqw-7J-EQl" id="hDz-RZ-G8V"/>
                         <outlet property="podcastNameLabel" destination="PLU-zi-7Az" id="F6U-UL-ITu"/>
@@ -740,8 +762,8 @@
         <image name="next" width="16" height="10"/>
         <image name="nowPlaying_next" width="28" height="17"/>
         <image name="nowPlaying_pause" width="19" height="25"/>
-        <image name="nowPlaying_play" width="24" height="28"/>
         <image name="nowPlaying_prev" width="29" height="17"/>
+        <image name="play" width="12" height="14"/>
         <image name="share" width="13" height="19"/>
     </resources>
 </document>

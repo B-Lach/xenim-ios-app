@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol CellDelegator {
-    func callSegueFromCell(cell cell: EventTableViewCell)
+protocol PlayerDelegator {
+    func togglePlayPause(event event: Event)
 }
 
-class EventTableViewController: UITableViewController, CellDelegator {
+class EventTableViewController: UITableViewController, PlayerDelegator {
     
     @IBOutlet weak var spinner: UIRefreshControl!
     enum Section {
@@ -175,13 +175,13 @@ class EventTableViewController: UITableViewController, CellDelegator {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
         if let cell = sender as? EventTableViewCell {
             if let destinationVC = segue.destinationViewController as? EventDetailViewController {
                 if let identifier = segue.identifier {
                     switch identifier {
                     case "PodcastDetail":
                         destinationVC.event = cell.event
+                        destinationVC.delegate = self
                     default: break
                     }
                 }
@@ -191,16 +191,14 @@ class EventTableViewController: UITableViewController, CellDelegator {
     
     var playerViewController: PlayerViewController?
     
-    func callSegueFromCell(cell cell: EventTableViewCell) {
-        
+    func togglePlayPause(event event: Event) {
         if playerViewController == nil {
-            playerViewController = storyboard?.instantiateViewControllerWithIdentifier("DemoMusicPlayerController") as? PlayerViewController
+            playerViewController = storyboard?.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
         }
 
-        playerViewController!.event = cell.event
+        playerViewController!.event = event
         
         tabBarController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
     }
     
-
 }
