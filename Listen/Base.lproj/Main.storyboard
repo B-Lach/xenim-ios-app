@@ -58,6 +58,10 @@
                                                 <action selector="play:" destination="hiw-wf-THJ" eventType="touchUpInside" id="gCV-4r-wOy"/>
                                             </connections>
                                         </button>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XgJ-FZ-h6y">
+                                            <rect key="frame" x="8" y="72" width="62" height="2"/>
+                                            <animations/>
+                                        </progressView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6j-so-r8A">
                                             <rect key="frame" x="54" y="52" width="30" height="36"/>
                                             <animations/>
@@ -65,10 +69,6 @@
                                             <color key="textColor" red="0.93902243589743595" green="0.7540679220943648" blue="0.00018052916362094524" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XgJ-FZ-h6y">
-                                            <rect key="frame" x="8" y="72" width="62" height="2"/>
-                                            <animations/>
-                                        </progressView>
                                     </subviews>
                                     <animations/>
                                     <constraints>
