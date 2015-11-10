@@ -14,16 +14,15 @@ class FavoritesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        favorites = Favorites.fetch()
-        tableView.reloadData()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged"), name: "favoritesChanged", object: nil)
+        refresh()
         
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    override func viewDidAppear(animated: Bool) {
-        favorites = Favorites.fetch()
-        tableView.reloadData()
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,6 +31,15 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
+    
+    func favoritesChanged() {
+        refresh()
+    }
+    
+    func refresh() {
+        favorites = Favorites.fetch()
+        tableView.reloadData()
+    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
