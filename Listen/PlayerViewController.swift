@@ -40,10 +40,6 @@ class PlayerViewController: UIViewController {
 
 	}
     
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
     var event: Event! {
         didSet {
             updateUI()
@@ -54,8 +50,7 @@ class PlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        setupNotifications()
         
         volumeView.showsRouteButton = false // disable airplay icon next to volume slider
         
@@ -93,18 +88,6 @@ class PlayerViewController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    func playerRateChanged(notification: NSNotification) {
-        let userInfo = notification.userInfo as! [String: AnyObject]
-        let player = userInfo["player"] as! Player
-        if player.isPlaying {
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause")]
-            playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
-        } else {
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "togglePlayPause")]
-            playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
-        }
-    }
-    
     @IBAction func togglePlayPause(sender: AnyObject) {
         Player.sharedInstance.togglePlayPause(event)
     }
@@ -119,7 +102,31 @@ class PlayerViewController: UIViewController {
         progressView?.progress = progress
     }
     
+    // MARK: notifications
+    
+    func setupNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     func progressUpdate(notification: NSNotification) {
         updateProgressBar()
 	}
+    
+    func playerRateChanged(notification: NSNotification) {
+        let userInfo = notification.userInfo as! [String: AnyObject]
+        let player = userInfo["player"] as! Player
+        if player.isPlaying {
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause")]
+            playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
+        } else {
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "togglePlayPause")]
+            playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
+        }
+    }
+    
 }
