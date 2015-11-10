@@ -22,23 +22,11 @@ class EventTableViewCell: UITableViewCell {
     
     var event: Event? {
         didSet {
-            NSNotificationCenter.defaultCenter().removeObserver(self)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+            // notifications have to be updated every time a new event is set to this cell
+            // as one notifications is based on the event this cell represents
+            setupNotifications()
             updateUI()
         }
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    func progressUpdate(notification: NSNotification) {
-        updateProgressBar()
-    }
-    
-    func playerRateChanged(notification: NSNotification) {
-        updatePlayButton()
     }
     
     func updatePlayButton() {
@@ -77,11 +65,7 @@ class EventTableViewCell: UITableViewCell {
                 liveDateLabel?.text = formatter.stringFromDate(event.livedate)
             }
 
-            if !Favorites.fetch().contains(event.podcastSlug) {
-                favStar.hidden = true
-            } else {
-                favStar.hidden = false
-            }
+            updateFavstar()
             
             let placeholderImage = UIImage(named: "event_placeholder")!
             eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
@@ -97,6 +81,16 @@ class EventTableViewCell: UITableViewCell {
         }
     }
     
+    func updateFavstar() {
+        if let event = event {
+            if !Favorites.fetch().contains(event.podcastSlug) {
+                favStar.hidden = true
+            } else {
+                favStar.hidden = false
+            }
+        }
+    }
+    
     func updateProgressBar() {
         if let event = event {
             progressView?.setProgress(event.progress, animated: true)
@@ -107,6 +101,31 @@ class EventTableViewCell: UITableViewCell {
         if let delegate = self.delegate {
             delegate.togglePlayPause(event: event!)
         }
+    }
+    
+    // MARK: notifications
+    
+    func setupNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func progressUpdate(notification: NSNotification) {
+        updateProgressBar()
+    }
+    
+    func playerRateChanged(notification: NSNotification) {
+        updatePlayButton()
+    }
+    
+    func favoritesChanged(notification: NSNotification) {
+        updateFavstar()
     }
     
 }
