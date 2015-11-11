@@ -27,8 +27,17 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     var showFavoritesOnly = false
     @IBOutlet weak var filterFavoritesBarButtonItem: UIBarButtonItem!
     
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let userDefaultsFavoritesSettingKey = "showFavoritesOnly"
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let favoritesFilterSetting = userDefaults.objectForKey(userDefaultsFavoritesSettingKey) as? Bool {
+            showFavoritesOnly = favoritesFilterSetting
+        }
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -100,6 +109,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     
     @IBAction func toggleFilter(sender: UIBarButtonItem) {
         showFavoritesOnly = !showFavoritesOnly
+        userDefaults.setObject(showFavoritesOnly, forKey: userDefaultsFavoritesSettingKey)
         updateFilterFavoritesButton()
         if showFavoritesOnly {
             filterFavorites()
