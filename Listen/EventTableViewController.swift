@@ -246,6 +246,10 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         }
     }
     
+    @IBAction func dismissSettings(segue:UIStoryboardSegue) {
+        
+    }
+    
     var playerViewController: PlayerViewController?
     
     func togglePlayPause(event event: Event) {
