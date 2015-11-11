@@ -179,8 +179,6 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             if self.showFavoritesOnly {
                 let event = self.filteredEvents[indexPath.section][indexPath.row]
                 Favorites.toggle(slug: event.podcastSlug)
-                self.filteredEvents[indexPath.section].removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             } else {
                 let event = self.events[indexPath.section][indexPath.row]
                 Favorites.toggle(slug: event.podcastSlug)
