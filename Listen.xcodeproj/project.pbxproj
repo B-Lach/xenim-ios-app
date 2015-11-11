@@ -13,15 +13,6 @@
 		2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */; };
 		2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECC71BD52EEA0040100F /* EventTableViewController.swift */; };
 		222FB9FD1BF0E90A0007257A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222FB9FC1BF0E90A0007257A /* Player.swift */; };
-		2232FE541BDE20DA00BE368E /* __MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE401BDE20DA00BE368E /* __MarqueeLabel.m */; };
-		2232FE551BDE20DA00BE368E /* _LNWeakRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE421BDE20DA00BE368E /* _LNWeakRef.m */; };
-		2232FE561BDE20DA00BE368E /* LNPopupBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE441BDE20DA00BE368E /* LNPopupBar.m */; };
-		2232FE571BDE20DA00BE368E /* LNPopupCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE471BDE20DA00BE368E /* LNPopupCloseButton.m */; };
-		2232FE581BDE20DA00BE368E /* LNPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE4A1BDE20DA00BE368E /* LNPopupController.m */; };
-		2232FE591BDE20DA00BE368E /* LNPopupControllerLongPressGestureDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE4C1BDE20DA00BE368E /* LNPopupControllerLongPressGestureDelegate.m */; };
-		2232FE5A1BDE20DA00BE368E /* LNPopupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE4E1BDE20DA00BE368E /* LNPopupItem.m */; };
-		2232FE5B1BDE20DA00BE368E /* UIViewController+LNPopupSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE511BDE20DA00BE368E /* UIViewController+LNPopupSupport.m */; };
-		2232FE5C1BDE20DA00BE368E /* UIViewController+LNPopupSupportPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE531BDE20DA00BE368E /* UIViewController+LNPopupSupportPrivate.m */; };
 		22799D431BD8E13500A7E9E1 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22799D421BD8E13500A7E9E1 /* EventDetailViewController.swift */; };
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
 		2291D89D1BDF956B00CB6536 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291D89C1BDF956B00CB6536 /* FavoritesTableViewController.swift */; };
@@ -45,28 +36,6 @@
 		2222ECC11BD52E480040100F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2222ECC71BD52EEA0040100F /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		222FB9FC1BF0E90A0007257A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		2232FE3F1BDE20DA00BE368E /* __MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __MarqueeLabel.h; sourceTree = "<group>"; };
-		2232FE401BDE20DA00BE368E /* __MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __MarqueeLabel.m; sourceTree = "<group>"; };
-		2232FE411BDE20DA00BE368E /* _LNWeakRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _LNWeakRef.h; sourceTree = "<group>"; };
-		2232FE421BDE20DA00BE368E /* _LNWeakRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _LNWeakRef.m; sourceTree = "<group>"; };
-		2232FE431BDE20DA00BE368E /* LNPopupBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupBar.h; sourceTree = "<group>"; };
-		2232FE441BDE20DA00BE368E /* LNPopupBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNPopupBar.m; sourceTree = "<group>"; };
-		2232FE451BDE20DA00BE368E /* LNPopupBar+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LNPopupBar+Private.h"; sourceTree = "<group>"; };
-		2232FE461BDE20DA00BE368E /* LNPopupCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupCloseButton.h; sourceTree = "<group>"; };
-		2232FE471BDE20DA00BE368E /* LNPopupCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNPopupCloseButton.m; sourceTree = "<group>"; };
-		2232FE481BDE20DA00BE368E /* LNPopupContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupContentView.h; sourceTree = "<group>"; };
-		2232FE491BDE20DA00BE368E /* LNPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupController.h; sourceTree = "<group>"; };
-		2232FE4A1BDE20DA00BE368E /* LNPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNPopupController.m; sourceTree = "<group>"; };
-		2232FE4B1BDE20DA00BE368E /* LNPopupControllerLongPressGestureDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupControllerLongPressGestureDelegate.h; sourceTree = "<group>"; };
-		2232FE4C1BDE20DA00BE368E /* LNPopupControllerLongPressGestureDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNPopupControllerLongPressGestureDelegate.m; sourceTree = "<group>"; };
-		2232FE4D1BDE20DA00BE368E /* LNPopupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupItem.h; sourceTree = "<group>"; };
-		2232FE4E1BDE20DA00BE368E /* LNPopupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNPopupItem.m; sourceTree = "<group>"; };
-		2232FE4F1BDE20DA00BE368E /* LNPopupItem+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LNPopupItem+Private.h"; sourceTree = "<group>"; };
-		2232FE501BDE20DA00BE368E /* UIViewController+LNPopupSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LNPopupSupport.h"; sourceTree = "<group>"; };
-		2232FE511BDE20DA00BE368E /* UIViewController+LNPopupSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LNPopupSupport.m"; sourceTree = "<group>"; };
-		2232FE521BDE20DA00BE368E /* UIViewController+LNPopupSupportPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LNPopupSupportPrivate.h"; sourceTree = "<group>"; };
-		2232FE531BDE20DA00BE368E /* UIViewController+LNPopupSupportPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LNPopupSupportPrivate.m"; sourceTree = "<group>"; };
-		2232FE5D1BDE21E000BE368E /* LNPopupControllerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupControllerHeader.h; sourceTree = "<group>"; };
 		22799D421BD8E13500A7E9E1 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2291D89C1BDF956B00CB6536 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
@@ -136,39 +105,9 @@
 				22C31DF61BECB64E006F2999 /* HelperExtensions.swift */,
 				2222ECB51BD52E470040100F /* AppDelegate.swift */,
 				221109551BD5336F0095F25D /* Listen-Bridging-Header.h */,
-				2232FE3E1BDE209200BE368E /* LNPopupViewController */,
 				2232FE5E1BDE234D00BE368E /* Assets */,
 			);
 			path = Listen;
-			sourceTree = "<group>";
-		};
-		2232FE3E1BDE209200BE368E /* LNPopupViewController */ = {
-			isa = PBXGroup;
-			children = (
-				2232FE5D1BDE21E000BE368E /* LNPopupControllerHeader.h */,
-				2232FE3F1BDE20DA00BE368E /* __MarqueeLabel.h */,
-				2232FE401BDE20DA00BE368E /* __MarqueeLabel.m */,
-				2232FE411BDE20DA00BE368E /* _LNWeakRef.h */,
-				2232FE421BDE20DA00BE368E /* _LNWeakRef.m */,
-				2232FE431BDE20DA00BE368E /* LNPopupBar.h */,
-				2232FE441BDE20DA00BE368E /* LNPopupBar.m */,
-				2232FE451BDE20DA00BE368E /* LNPopupBar+Private.h */,
-				2232FE461BDE20DA00BE368E /* LNPopupCloseButton.h */,
-				2232FE471BDE20DA00BE368E /* LNPopupCloseButton.m */,
-				2232FE481BDE20DA00BE368E /* LNPopupContentView.h */,
-				2232FE491BDE20DA00BE368E /* LNPopupController.h */,
-				2232FE4A1BDE20DA00BE368E /* LNPopupController.m */,
-				2232FE4B1BDE20DA00BE368E /* LNPopupControllerLongPressGestureDelegate.h */,
-				2232FE4C1BDE20DA00BE368E /* LNPopupControllerLongPressGestureDelegate.m */,
-				2232FE4D1BDE20DA00BE368E /* LNPopupItem.h */,
-				2232FE4E1BDE20DA00BE368E /* LNPopupItem.m */,
-				2232FE4F1BDE20DA00BE368E /* LNPopupItem+Private.h */,
-				2232FE501BDE20DA00BE368E /* UIViewController+LNPopupSupport.h */,
-				2232FE511BDE20DA00BE368E /* UIViewController+LNPopupSupport.m */,
-				2232FE521BDE20DA00BE368E /* UIViewController+LNPopupSupportPrivate.h */,
-				2232FE531BDE20DA00BE368E /* UIViewController+LNPopupSupportPrivate.m */,
-			);
-			name = LNPopupViewController;
 			sourceTree = "<group>";
 		};
 		2232FE5E1BDE234D00BE368E /* Assets */ = {
@@ -328,28 +267,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2232FE581BDE20DA00BE368E /* LNPopupController.m in Sources */,
 				229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */,
 				228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */,
 				2291D89F1BDF966900CB6536 /* FavoriteTableViewCell.swift in Sources */,
 				2291D89D1BDF956B00CB6536 /* FavoritesTableViewController.swift in Sources */,
 				229B7D501BD564DC00F1CF6B /* HoersuppeAPI.swift in Sources */,
-				2232FE571BDE20DA00BE368E /* LNPopupCloseButton.m in Sources */,
 				22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */,
-				2232FE541BDE20DA00BE368E /* __MarqueeLabel.m in Sources */,
 				2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */,
-				2232FE561BDE20DA00BE368E /* LNPopupBar.m in Sources */,
 				229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */,
-				2232FE591BDE20DA00BE368E /* LNPopupControllerLongPressGestureDelegate.m in Sources */,
 				22799D431BD8E13500A7E9E1 /* EventDetailViewController.swift in Sources */,
 				2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */,
-				2232FE5A1BDE20DA00BE368E /* LNPopupItem.m in Sources */,
 				229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */,
-				2232FE5C1BDE20DA00BE368E /* UIViewController+LNPopupSupportPrivate.m in Sources */,
-				2232FE5B1BDE20DA00BE368E /* UIViewController+LNPopupSupport.m in Sources */,
 				222FB9FD1BF0E90A0007257A /* Player.swift in Sources */,
 				2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */,
-				2232FE551BDE20DA00BE368E /* _LNWeakRef.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
