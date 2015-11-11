@@ -23,7 +23,10 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         case Later
     }
     var events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
-
+    var filteredEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+    var showFavoritesOnly = false
+    @IBOutlet weak var filterFavoritesBarButtonItem: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
@@ -31,6 +34,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         // increase content inset for audio player
         tableView.contentInset.bottom = tableView.contentInset.bottom + 40
         refresh(spinner)
+        updateFilterFavoritesButton()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -66,17 +70,15 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             case .Later: events[4].append(event)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func refresh(spinner: UIRefreshControl) {
         spinner.beginRefreshing()
         HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
             self.events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
             self.sortEventsInSections(events)
+            if self.showFavoritesOnly {
+                self.filterFavorites()
+            }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
                 spinner.endRefreshing()
@@ -85,33 +87,47 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     }
     
     @IBAction func toggleFilter(sender: UIBarButtonItem) {
-        filterFavorites()
+        showFavoritesOnly = !showFavoritesOnly
+        updateFilterFavoritesButton()
+        if showFavoritesOnly {
+            filterFavorites()
+        }
+        tableView.reloadData()
     }
     
-    // this should be a model thing!
     func filterFavorites() {
-        var filteredEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+        filteredEvents = events
         let favorites = Favorites.fetch()
-        for i in 0 ..< events.count {
-            let section = events[i]
-            let filteredSection = section.filter({ (event) -> Bool in
+        
+        for i in 0 ..< filteredEvents.count {
+            let section = filteredEvents[i]
+            filteredEvents[i] = section.filter({ (event) -> Bool in
                 return favorites.contains(event.podcastSlug)
             })
-            filteredEvents[i] = filteredSection
         }
-        events = filteredEvents
-        tableView.reloadData()
+    }
+    
+    func updateFilterFavoritesButton() {
+        if showFavoritesOnly {
+            filterFavoritesBarButtonItem.title = "★"
+        } else {
+            filterFavoritesBarButtonItem.title = "☆"            
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        if showFavoritesOnly {
+            return filteredEvents.count
+        }
         return events.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if showFavoritesOnly {
+            return filteredEvents[section].count
+        }
         return events[section].count
     }
     
@@ -128,7 +144,11 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventTableViewCell
-        cell.event = events[indexPath.section][indexPath.row]
+        if showFavoritesOnly {
+            cell.event = filteredEvents[indexPath.section][indexPath.row]
+        } else {
+            cell.event = events[indexPath.section][indexPath.row]
+        }
         cell.delegate = self
         return cell
     }
@@ -144,8 +164,15 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
 
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "★") { (action, indexPath) -> Void in
-            let event = self.events[indexPath.section][indexPath.row]
-            Favorites.toggle(slug: event.podcastSlug)
+            if self.showFavoritesOnly {
+                let event = self.filteredEvents[indexPath.section][indexPath.row]
+                Favorites.toggle(slug: event.podcastSlug)
+                self.filteredEvents[indexPath.section].removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            } else {
+                let event = self.events[indexPath.section][indexPath.row]
+                Favorites.toggle(slug: event.podcastSlug)
+            }
             tableView.setEditing(false, animated: true)
         }
         shareAction.backgroundColor = UIColor(red:0.93, green:0.76, blue:0, alpha:1)

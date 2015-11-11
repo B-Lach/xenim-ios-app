@@ -138,6 +138,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="filterFavoritesBarButtonItem" destination="IT3-va-4jo" id="2bO-Uy-6B3"/>
                         <outlet property="spinner" destination="5or-JL-Ff6" id="G89-Oz-e2n"/>
                     </connections>
                 </tableViewController>
