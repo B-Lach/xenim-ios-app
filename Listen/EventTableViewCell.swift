@@ -52,7 +52,11 @@ class EventTableViewCell: UITableViewCell {
             if event.isToday() || event.isTomorrow() {
                 formatter.dateStyle = .NoStyle
                 formatter.timeStyle = .ShortStyle
-            } else {
+            } else if event.isThisWeek() {
+                // TODO: customize this style
+                formatter.dateStyle = .MediumStyle
+                formatter.timeStyle = .ShortStyle
+            }else {
                 formatter.dateStyle = .MediumStyle
                 formatter.timeStyle = .ShortStyle
             }
