@@ -29,6 +29,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         // increase content inset for audio player
@@ -41,6 +42,17 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func favoritesChanged(notification: NSNotification) {
+        if showFavoritesOnly {
+            filterFavorites()
+            tableView.reloadData()
+        }
     }
     
     private func sortEventsInSections(events: [Event]) {
