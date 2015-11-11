@@ -92,7 +92,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="YFG-BN-gTI">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="COk-km-c90">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="COk-km-c90">
                             <connections>
                                 <segue destination="ceS-sI-dl5" kind="unwind" unwindAction="dismissSettings:" id="adA-jy-vs3"/>
                             </connections>
