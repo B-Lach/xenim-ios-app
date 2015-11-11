@@ -78,8 +78,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     func updatePlayButton() {
         if !event.isLive() {
-            // DEBUG
-            //playButtonEffectView.hidden = true
+            playButtonEffectView.hidden = true
         }
         let player = Player.sharedInstance
         if let playerEvent = player.event {
