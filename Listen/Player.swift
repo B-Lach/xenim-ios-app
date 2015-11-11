@@ -30,7 +30,6 @@ class Player : NSObject {
         // required to play audio in background
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
         } catch {}
         setupRemoteCommands()
     }
@@ -42,6 +41,9 @@ class Player : NSObject {
     private func playEvent(event: Event) {
         self.event = event
         player.replaceCurrentItemWithPlayerItem(AVPlayerItem(URL: event.streamurl))
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {}
         player.play()
         // fetch coverart from image cache and set it as lockscreen artwork
         let imageCache = Shared.imageCache

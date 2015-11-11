@@ -102,7 +102,10 @@ class Event : NSObject {
     
     func isThisWeek() -> Bool {
         let calendar = NSCalendar.currentCalendar()
-        return calendar.isDateInWeekend(livedate)
+        let now = NSDate()
+        let nowWeek = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: now).weekOfYear
+        let eventWeek = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: livedate).weekOfYear
+        return nowWeek == eventWeek
     }
     
     @objc func timerTicked() {
@@ -111,6 +114,9 @@ class Event : NSObject {
         let factor = (Float)(timePassed/duration)
         progress = min(max(factor, 0.0), 1.0)
     }
-
+    
+    func equals(otherEvent: Event) -> Bool {
+        return podcastSlug == otherEvent.podcastSlug && livedate.timeIntervalSinceDate(otherEvent.livedate) == 0
+    }
     
 }

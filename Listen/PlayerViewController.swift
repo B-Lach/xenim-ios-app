@@ -11,6 +11,13 @@ import Haneke
 import MediaPlayer
 
 class PlayerViewController: UIViewController {
+    
+    var event: Event! {
+        didSet {
+            updateUI()
+            togglePlayPause(self)
+        }
+    }
 
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
@@ -21,6 +28,8 @@ class PlayerViewController: UIViewController {
     
     @IBOutlet weak var volumeView: MPVolumeView!
     @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var starButtonView: UIButton!
     
     var statusBarStyle = UIStatusBarStyle.Default
     
@@ -30,32 +39,23 @@ class PlayerViewController: UIViewController {
         // use this to add more controls on ipad interface
 		//if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
 
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause")]
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause:")]
         
         miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
         let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
         self.popupItem.leftBarButtonItems = [popupItem]
 
 	}
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    var event: Event! {
-        didSet {
-            updateUI()
-            togglePlayPause(self)
-        }
-    }
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        setupNotifications()
         
         volumeView.showsRouteButton = false // disable airplay icon next to volume slider
+        
+        visualEffectView.layer.cornerRadius = visualEffectView.frame.size.width/2
+        visualEffectView.layer.masksToBounds = true
         
         updateUI()
 	}
@@ -69,6 +69,7 @@ class PlayerViewController: UIViewController {
         backgroundImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         miniCoverartImageView.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
         updateProgressBar()
+        updateFavoritesButton()
         
         // fetch coverart from image cache and set it as lockscreen artwork
         let imageCache = Shared.imageCache
@@ -88,15 +89,9 @@ class PlayerViewController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    func playerRateChanged(notification: NSNotification) {
-        let userInfo = notification.userInfo as! [String: AnyObject]
-        let player = userInfo["player"] as! Player
-        if player.isPlaying {
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause")]
-            playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
-        } else {
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "togglePlayPause")]
-            playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
+    @IBAction func favorite(sender: AnyObject) {
+        if let event = event {
+            Favorites.toggle(slug: event.podcastSlug)
         }
     }
     
@@ -114,7 +109,46 @@ class PlayerViewController: UIViewController {
         progressView?.progress = progress
     }
     
+    func updateFavoritesButton() {
+        if let event = event {
+            if !Favorites.fetch().contains(event.podcastSlug) {
+                starButtonView?.setTitle("☆", forState: .Normal)
+            } else {
+                starButtonView?.setTitle("★", forState: .Normal)
+            }
+        }
+    }
+    
+    // MARK: notifications
+    
+    func setupNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     func progressUpdate(notification: NSNotification) {
         updateProgressBar()
 	}
+
+    func favoritesChanged(notification: NSNotification) {
+        updateFavoritesButton()
+    }
+    
+    func playerRateChanged(notification: NSNotification) {
+        let userInfo = notification.userInfo as! [String: AnyObject]
+        let player = userInfo["player"] as! Player
+        if player.isPlaying {
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
+        } else {
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
+        }
+    }
+    
 }

@@ -23,20 +23,45 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         case Later
     }
     var events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+    var filteredEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+    var showFavoritesOnly = false
+    @IBOutlet weak var filterFavoritesBarButtonItem: UIBarButtonItem!
+    
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let userDefaultsFavoritesSettingKey = "showFavoritesOnly"
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let favoritesFilterSetting = userDefaults.objectForKey(userDefaultsFavoritesSettingKey) as? Bool {
+            showFavoritesOnly = favoritesFilterSetting
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         // increase content inset for audio player
         tableView.contentInset.bottom = tableView.contentInset.bottom + 40
         refresh(spinner)
+        updateFilterFavoritesButton()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func favoritesChanged(notification: NSNotification) {
+        if showFavoritesOnly {
+            filterFavorites()
+            tableView.reloadData()
+        }
     }
     
     private func sortEventsInSections(events: [Event]) {
@@ -66,33 +91,65 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             case .Later: events[4].append(event)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func refresh(spinner: UIRefreshControl) {
         spinner.beginRefreshing()
         HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
             self.events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
             self.sortEventsInSections(events)
+            if self.showFavoritesOnly {
+                self.filterFavorites()
+            }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
                 spinner.endRefreshing()
             })
         }
     }
+    
+    @IBAction func toggleFilter(sender: UIBarButtonItem) {
+        showFavoritesOnly = !showFavoritesOnly
+        userDefaults.setObject(showFavoritesOnly, forKey: userDefaultsFavoritesSettingKey)
+        updateFilterFavoritesButton()
+        if showFavoritesOnly {
+            filterFavorites()
+        }
+        tableView.reloadData()
+    }
+    
+    func filterFavorites() {
+        filteredEvents = events
+        let favorites = Favorites.fetch()
+        
+        for i in 0 ..< filteredEvents.count {
+            let section = filteredEvents[i]
+            filteredEvents[i] = section.filter({ (event) -> Bool in
+                return favorites.contains(event.podcastSlug)
+            })
+        }
+    }
+    
+    func updateFilterFavoritesButton() {
+        if showFavoritesOnly {
+            filterFavoritesBarButtonItem.title = "★"
+        } else {
+            filterFavoritesBarButtonItem.title = "☆"            
+        }
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        if showFavoritesOnly {
+            return filteredEvents.count
+        }
         return events.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if showFavoritesOnly {
+            return filteredEvents[section].count
+        }
         return events[section].count
     }
     
@@ -109,7 +166,11 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventTableViewCell
-        cell.event = events[indexPath.section][indexPath.row]
+        if showFavoritesOnly {
+            cell.event = filteredEvents[indexPath.section][indexPath.row]
+        } else {
+            cell.event = events[indexPath.section][indexPath.row]
+        }
         cell.delegate = self
         return cell
     }
@@ -123,6 +184,21 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     }
     */
 
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "★") { (action, indexPath) -> Void in
+            if self.showFavoritesOnly {
+                let event = self.filteredEvents[indexPath.section][indexPath.row]
+                Favorites.toggle(slug: event.podcastSlug)
+            } else {
+                let event = self.events[indexPath.section][indexPath.row]
+                Favorites.toggle(slug: event.podcastSlug)
+            }
+            tableView.setEditing(false, animated: true)
+        }
+        shareAction.backgroundColor = UIColor(red:0.93, green:0.76, blue:0, alpha:1)
+        return [shareAction]
+    }
+    
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

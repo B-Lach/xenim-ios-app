@@ -25,6 +25,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var upcomingEventsHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     @IBOutlet weak var upcomingEventsTableView: UITableView! {
         didSet {
@@ -37,31 +38,12 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // LNPopupBarHeight is currently 40
         // increase bottom inset to show all content if player is visible
         scrollView.contentInset.bottom = scrollView.contentInset.bottom + 40
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        
+        setupNotifications()
+        
         playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
         playButtonEffectView.layer.masksToBounds = true
         updateUI()
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    func playerRateChanged(notification: NSNotification) {
-        updatePlayButton()
-    }
-    
-    func updatePlayButton() {
-        if !event.isLive() {
-            // DEBUG
-            //playButtonEffectView.hidden = true
-        }
-        let player = Player.sharedInstance
-        if player.event == self.event && player.isPlaying {
-            playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
-        } else {
-            playButton?.setImage(UIImage(named: "play"), forState: .Normal)
-        }
     }
     
     func updateUI() {
@@ -71,6 +53,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         self.title = event.title
 
         updatePlayButton()
+        updateFavoritesButton()
         
         HoersuppeAPI.fetchPodcastNextLiveEvents(event.podcastSlug, count: 3) { (events) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -91,6 +74,30 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
                 })
             }
         })
+    }
+    
+    func updatePlayButton() {
+        if !event.isLive() {
+            playButtonEffectView.hidden = true
+        }
+        let player = Player.sharedInstance
+        if let playerEvent = player.event {
+            if playerEvent.equals(self.event) && player.isPlaying {
+                playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+            }
+        } else {
+            playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+        }
+    }
+    
+    func updateFavoritesButton() {
+        if let event = event {
+            if !Favorites.fetch().contains(event.podcastSlug) {
+                favoriteButton.setTitle("☆", forState: .Normal)
+            } else {
+                favoriteButton.setTitle("★", forState: .Normal)
+            }
+        }
     }
     
     @IBAction func openPodcastWebsite() {
@@ -161,5 +168,28 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
 
         cell.textLabel?.text = formatter.stringFromDate(upcomingEvents[indexPath.row].livedate)
         return cell
+    }
+    
+    @IBAction func favorite(sender: UIButton) {
+        Favorites.toggle(slug: event.podcastSlug)
+    }
+    
+    // MARK: notifications
+    
+    func setupNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func playerRateChanged(notification: NSNotification) {
+        updatePlayButton()
+    }
+    
+    func favoritesChanged(notification: NSNotification) {
+        updateFavoritesButton()
     }
 }
