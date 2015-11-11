@@ -102,7 +102,10 @@ class Event : NSObject {
     
     func isThisWeek() -> Bool {
         let calendar = NSCalendar.currentCalendar()
-        return calendar.isDateInWeekend(livedate)
+        let now = NSDate()
+        let nowWeek = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: now).weekOfYear
+        let eventWeek = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: livedate).weekOfYear
+        return nowWeek == eventWeek
     }
     
     @objc func timerTicked() {
