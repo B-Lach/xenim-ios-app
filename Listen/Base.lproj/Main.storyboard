@@ -184,17 +184,17 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="WYb-RI-yKQ">
-                                            <rect key="frame" x="8" y="8" width="70" height="70"/>
+                                            <rect key="frame" x="8" y="8" width="60" height="60"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="WYb-RI-yKQ" secondAttribute="height" multiplier="1:1" id="XgY-Q4-gYk"/>
-                                                <constraint firstAttribute="width" constant="70" id="lQb-Mj-HhE"/>
+                                                <constraint firstAttribute="width" constant="60" id="lQb-Mj-HhE"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmH-Yd-Nmt">
-                                            <rect key="frame" x="86" y="30" width="52" height="26"/>
+                                            <rect key="frame" x="76" y="27" width="47" height="23"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
