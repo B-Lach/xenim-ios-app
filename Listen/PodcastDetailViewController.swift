@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class EventDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SFSafariViewControllerDelegate {
+class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SFSafariViewControllerDelegate {
     
     var podcast: Podcast?
     var event: Event?

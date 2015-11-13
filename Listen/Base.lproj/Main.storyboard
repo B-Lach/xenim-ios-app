@@ -507,10 +507,10 @@
             </objects>
             <point key="canvasLocation" x="277" y="1263"/>
         </scene>
-        <!--Event Detail View Controller-->
+        <!--Podcast Detail View Controller-->
         <scene sceneID="cCQ-y3-ON7">
             <objects>
-                <viewController id="jLW-Aw-Blu" customClass="EventDetailViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jLW-Aw-Blu" customClass="PodcastDetailViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="W9Z-Tz-6yb"/>
                         <viewControllerLayoutGuide type="bottom" id="h4t-sm-7zW"/>

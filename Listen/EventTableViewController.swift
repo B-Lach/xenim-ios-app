@@ -233,7 +233,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let cell = sender as? EventTableViewCell {
-            if let destinationVC = segue.destinationViewController as? EventDetailViewController {
+            if let destinationVC = segue.destinationViewController as? PodcastDetailViewController {
                 if let identifier = segue.identifier {
                     switch identifier {
                     case "PodcastDetail":
