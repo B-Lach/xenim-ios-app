@@ -19,6 +19,8 @@ class FavoritesTableViewController: UITableViewController {
         
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        // increase content inset for audio player
+        tableView.contentInset.bottom = tableView.contentInset.bottom + 40
     }
     
     deinit {
