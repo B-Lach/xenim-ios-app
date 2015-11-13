@@ -9,10 +9,10 @@
 import UIKit
 import SafariServices
 
-class EventDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SFSafariViewControllerDelegate {
+class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SFSafariViewControllerDelegate {
     
     var podcast: Podcast?
-    var event: Event!
+    var event: Event?
     var upcomingEvents = [Event]()
     
     var delegate: PlayerDelegator?
@@ -47,15 +47,33 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func updateUI() {
-        self.coverartImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
-        podcastNameLabel?.text = event.title
-        podcastDescriptionLabel?.text = event.podcastDescription
-        self.title = event.title
+        
+        var title = ""
+        var description = ""
+        var imageurl = NSURL()
+        var podcastSlug = ""
+        
+        if let event = event {
+            title = event.title
+            description = event.podcastDescription
+            imageurl = event.imageurl
+            podcastSlug = event.podcastSlug
+        } else if let podcast = podcast {
+            title = podcast.name
+            description = podcast.podcastDescription
+            imageurl = podcast.imageurl
+            podcastSlug = podcast.slug
+        }
+        
+        self.coverartImageView?.hnk_setImageFromURL(imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
+        podcastNameLabel?.text = title
+        self.title = title
+        podcastDescriptionLabel?.text = description
 
         updatePlayButton()
         updateFavoritesButton()
         
-        HoersuppeAPI.fetchPodcastNextLiveEvents(event.podcastSlug, count: 3) { (events) -> Void in
+        HoersuppeAPI.fetchPodcastNextLiveEvents(podcastSlug, count: 3) { (events) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.upcomingEvents = events
                 self.upcomingEventsTableView.reloadData()
@@ -66,37 +84,47 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             })
         }
         
-        HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
-            if podcast != nil {
-                self.podcast = podcast
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    //self.updateUI()
-                })
-            }
-        })
+        if podcast == nil {
+            HoersuppeAPI.fetchPodcastDetail(podcastSlug, onComplete: { (podcast) -> Void in
+                if podcast != nil {
+                    self.podcast = podcast
+//                  dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                      self.updateUI()
+//                  })
+                }
+            })
+        }
     }
     
     func updatePlayButton() {
-        if !event.isLive() {
-            playButtonEffectView.hidden = true
-        }
-        let player = Player.sharedInstance
-        if let playerEvent = player.event {
-            if playerEvent.equals(self.event) && player.isPlaying {
-                playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+        if let event = event {
+            if event.isLive() {
+                playButtonEffectView.hidden = false
             }
-        } else {
-            playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+            let player = Player.sharedInstance
+            if let playerEvent = player.event {
+                if playerEvent.equals(event) && player.isPlaying {
+                    playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+                }
+            } else {
+                playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+            }
         }
+
     }
     
     func updateFavoritesButton() {
-        if let event = event {
-            if !Favorites.fetch().contains(event.podcastSlug) {
-                favoriteButton.setTitle("☆", forState: .Normal)
-            } else {
-                favoriteButton.setTitle("★", forState: .Normal)
-            }
+        var podcastSlug = ""
+        if let podcast = podcast {
+            podcastSlug = podcast.slug
+        } else if let event = event {
+            podcastSlug = event.podcastSlug
+        }
+        
+        if !Favorites.fetch().contains(podcastSlug) {
+            favoriteButton.setTitle("☆", forState: .Normal)
+        } else {
+            favoriteButton.setTitle("★", forState: .Normal)
         }
     }
     
@@ -141,8 +169,10 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func playEvent(sender: AnyObject) {
-        if let delegate = self.delegate {
-            delegate.togglePlayPause(event: event)
+        if let event = event {
+            if let delegate = self.delegate {
+                delegate.togglePlayPause(event: event)
+            }
         }
     }
     
@@ -171,13 +201,21 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func favorite(sender: UIButton) {
-        Favorites.toggle(slug: event.podcastSlug)
+        var podcastSlug = ""
+        if let podcast = podcast {
+            podcastSlug = podcast.slug
+        } else if let event = event {
+            podcastSlug = event.podcastSlug
+        }
+        Favorites.toggle(slug: podcastSlug)
     }
     
     // MARK: notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        if event != nil {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
     }
     
