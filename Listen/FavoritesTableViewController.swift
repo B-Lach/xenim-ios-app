@@ -64,9 +64,17 @@ class FavoritesTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let dvc = segue.destinationViewController as? EventDetailViewController {
+            if segue.identifier == "PodcastDetail" {
+                if let cell = sender as? FavoriteTableViewCell {
+                    if let podcast = cell.podcast {
+                        dvc.podcast = podcast
+                    }
+                }
+            }
+        }
+    }
     
     
 }

@@ -212,6 +212,7 @@
                                 <connections>
                                     <outlet property="coverartImageView" destination="WYb-RI-yKQ" id="SMs-dw-Gu6"/>
                                     <outlet property="podcastNameLabel" destination="jmH-Yd-Nmt" id="iWq-tP-ACr"/>
+                                    <segue destination="jLW-Aw-Blu" kind="show" identifier="PodcastDetail" id="KGY-cJ-UNU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -564,7 +565,7 @@
                                                     <action selector="subscribePodcast" destination="jLW-Aw-Blu" eventType="touchUpInside" id="L5Q-yc-mcy"/>
                                                 </connections>
                                             </button>
-                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-nc-qxN">
+                                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-nc-qxN">
                                                 <rect key="frame" x="260" y="260" width="80" height="80"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DA6-02-k1q">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -590,7 +591,9 @@
                                                     <constraint firstAttribute="width" constant="80" id="7aA-FF-EZe"/>
                                                     <constraint firstAttribute="width" secondItem="W6b-nc-qxN" secondAttribute="height" multiplier="1:1" id="wge-ya-F7c"/>
                                                 </constraints>
-                                                <blurEffect style="light"/>
+                                                <vibrancyEffect>
+                                                    <blurEffect style="light"/>
+                                                </vibrancyEffect>
                                             </visualEffectView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Livedates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5f-t2-KEW">
                                                 <rect key="frame" x="8" y="727" width="584" height="26"/>
@@ -787,4 +790,7 @@
         <image name="play" width="12" height="14"/>
         <image name="share" width="13" height="19"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="KGY-cJ-UNU"/>
+    </inferredMetricsTieBreakers>
 </document>
