@@ -591,9 +591,7 @@
                                                     <constraint firstAttribute="width" constant="80" id="7aA-FF-EZe"/>
                                                     <constraint firstAttribute="width" secondItem="W6b-nc-qxN" secondAttribute="height" multiplier="1:1" id="wge-ya-F7c"/>
                                                 </constraints>
-                                                <vibrancyEffect>
-                                                    <blurEffect style="light"/>
-                                                </vibrancyEffect>
+                                                <blurEffect style="light"/>
                                             </visualEffectView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Livedates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5f-t2-KEW">
                                                 <rect key="frame" x="8" y="727" width="584" height="26"/>
