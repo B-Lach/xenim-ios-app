@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eoS-iW-zKK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eoS-iW-zKK">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -170,36 +170,49 @@
         <scene sceneID="Zp6-hy-aYb">
             <objects>
                 <tableViewController id="7oV-A3-8mm" customClass="FavoritesTableViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="o0g-Zj-xau">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" id="o0g-Zj-xau">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" id="Y8u-P8-4h2" customClass="FavoriteTableViewCell" customModule="Listen" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="97" id="Y8u-P8-4h2" customClass="FavoriteTableViewCell" customModule="Listen" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="97"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y8u-P8-4h2" id="MXw-yy-vDL">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="96"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmH-Yd-Nmt">
-                                            <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="WYb-RI-yKQ">
+                                            <rect key="frame" x="8" y="8" width="60" height="60"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="WYb-RI-yKQ" secondAttribute="height" multiplier="1:1" id="XgY-Q4-gYk"/>
+                                                <constraint firstAttribute="width" constant="60" id="lQb-Mj-HhE"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmH-Yd-Nmt">
+                                            <rect key="frame" x="76" y="27" width="47" height="23"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <animations/>
                                     <constraints>
-                                        <constraint firstItem="jmH-Yd-Nmt" firstAttribute="top" secondItem="MXw-yy-vDL" secondAttribute="topMargin" id="L8w-VJ-c82"/>
-                                        <constraint firstItem="jmH-Yd-Nmt" firstAttribute="leading" secondItem="MXw-yy-vDL" secondAttribute="leadingMargin" id="z0Z-Ra-LE3"/>
+                                        <constraint firstItem="jmH-Yd-Nmt" firstAttribute="leading" secondItem="WYb-RI-yKQ" secondAttribute="trailing" constant="8" id="05T-nn-Dmk"/>
+                                        <constraint firstAttribute="topMargin" secondItem="WYb-RI-yKQ" secondAttribute="top" id="6ep-ap-Lc3"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="WYb-RI-yKQ" secondAttribute="bottom" constant="8" id="JOY-jp-QUc"/>
+                                        <constraint firstItem="jmH-Yd-Nmt" firstAttribute="centerY" secondItem="WYb-RI-yKQ" secondAttribute="centerY" id="dhh-1Q-vlP"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="WYb-RI-yKQ" secondAttribute="leading" id="suO-SH-VSr"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
+                                    <outlet property="coverartImageView" destination="WYb-RI-yKQ" id="SMs-dw-Gu6"/>
                                     <outlet property="podcastNameLabel" destination="jmH-Yd-Nmt" id="iWq-tP-ACr"/>
+                                    <segue destination="jLW-Aw-Blu" kind="show" identifier="PodcastDetail" id="KGY-cJ-UNU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -494,10 +507,10 @@
             </objects>
             <point key="canvasLocation" x="277" y="1263"/>
         </scene>
-        <!--Event Detail View Controller-->
+        <!--Podcast Detail View Controller-->
         <scene sceneID="cCQ-y3-ON7">
             <objects>
-                <viewController id="jLW-Aw-Blu" customClass="EventDetailViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jLW-Aw-Blu" customClass="PodcastDetailViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="W9Z-Tz-6yb"/>
                         <viewControllerLayoutGuide type="bottom" id="h4t-sm-7zW"/>
@@ -552,7 +565,7 @@
                                                     <action selector="subscribePodcast" destination="jLW-Aw-Blu" eventType="touchUpInside" id="L5Q-yc-mcy"/>
                                                 </connections>
                                             </button>
-                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-nc-qxN">
+                                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-nc-qxN">
                                                 <rect key="frame" x="260" y="260" width="80" height="80"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DA6-02-k1q">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -775,4 +788,7 @@
         <image name="play" width="12" height="14"/>
         <image name="share" width="13" height="19"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="KGY-cJ-UNU"/>
+    </inferredMetricsTieBreakers>
 </document>
