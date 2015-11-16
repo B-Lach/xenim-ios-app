@@ -24,7 +24,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     }
     var unsortedEvents = [Event]()
     var events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
-    var filteredEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+    var favoriteEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
     var showFavoritesOnly = false
     @IBOutlet weak var filterFavoritesBarButtonItem: UIBarButtonItem!
     
@@ -136,12 +136,12 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     }
     
     func filterFavorites() {
-        filteredEvents = events
+        favoriteEvents = events
         let favorites = Favorites.fetch()
         
-        for i in 0 ..< filteredEvents.count {
-            let section = filteredEvents[i]
-            filteredEvents[i] = section.filter({ (event) -> Bool in
+        for i in 0 ..< favoriteEvents.count {
+            let section = favoriteEvents[i]
+            favoriteEvents[i] = section.filter({ (event) -> Bool in
                 return favorites.contains(event.podcastSlug)
             })
         }
@@ -160,7 +160,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         updateBackground()
         if showFavoritesOnly {
-            return filteredEvents.count
+            return favoriteEvents.count
         }
         return events.count
     }
@@ -187,7 +187,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     // helper method because calling tableView.numberOfRowsInSection(section) crashes the app
     func numberOfRowsInSection(section: Int) -> Int {
         if showFavoritesOnly {
-            return filteredEvents[section].count
+            return favoriteEvents[section].count
         }
         return events[section].count
     }
@@ -195,7 +195,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventTableViewCell
         if showFavoritesOnly {
-            cell.event = filteredEvents[indexPath.section][indexPath.row]
+            cell.event = favoriteEvents[indexPath.section][indexPath.row]
         } else {
             cell.event = events[indexPath.section][indexPath.row]
         }
@@ -222,7 +222,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     func numberOfRows() -> Int {
         if showFavoritesOnly {
             var count = 0
-            for section in filteredEvents {
+            for section in favoriteEvents {
                 count += section.count
             }
             return count
@@ -247,7 +247,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "★") { (action, indexPath) -> Void in
             if self.showFavoritesOnly {
-                let event = self.filteredEvents[indexPath.section][indexPath.row]
+                let event = self.favoriteEvents[indexPath.section][indexPath.row]
                 Favorites.toggle(slug: event.podcastSlug)
             } else {
                 let event = self.events[indexPath.section][indexPath.row]
