@@ -48,11 +48,18 @@ class Podcast : NSObject {
         self.slug = slug
         self.podcastDescription = podcastDescription
         
-        // TODO if let
-        self.chatUrl = NSURL(string: "irc://\(chatServer)/\(chatChannel)")!
-        self.webchatUrl = NSURL(string: webchatUrl)!
-        
         super.init()
+        
+        if let chatUrl = NSURL(string: "irc://\(chatServer)/\(chatChannel)") {
+            self.chatUrl = chatUrl
+        } else {
+            return nil
+        }
+        if let webchatUrl = NSURL(string: webchatUrl) {
+            self.webchatUrl = webchatUrl
+        } else {
+            return nil
+        }
         if let url = NSURL(string: url) {
             self.url = url
         } else {
