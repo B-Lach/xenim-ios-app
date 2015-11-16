@@ -105,6 +105,8 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
             if let playerEvent = player.event {
                 if playerEvent.equals(event) && player.isPlaying {
                     playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+                } else {
+                    playButton?.setImage(UIImage(named: "play"), forState: .Normal)
                 }
             } else {
                 playButton?.setImage(UIImage(named: "play"), forState: .Normal)

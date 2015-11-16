@@ -55,6 +55,8 @@ class Player : NSObject {
             ]
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
         }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["player": self])
     }
     
     func togglePlayPause(event: Event) {
