@@ -121,6 +121,18 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    @IBAction func openChat(sender: AnyObject) {
+        if let podcast = podcast {
+            if UIApplication.sharedApplication().canOpenURL(podcast.chatUrl) {
+                // open associated app
+                UIApplication.sharedApplication().openURL(podcast.chatUrl)
+            } else {
+                // open webchat in safari
+                UIApplication.sharedApplication().openURL(podcast.webchatUrl)
+            }
+        }
+    }
+    
     func fetchPodcastInfo() {
         if podcast == nil || podcast!.slug != event.podcastSlug {
             HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in

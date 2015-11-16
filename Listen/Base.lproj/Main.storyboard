@@ -428,6 +428,14 @@
                                                         </mask>
                                                     </variation>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v51-r4-3cg">
+                                                    <rect key="frame" x="15" y="55" width="33" height="30"/>
+                                                    <animations/>
+                                                    <state key="normal" title="Chat"/>
+                                                    <connections>
+                                                        <action selector="openChat:" destination="Pke-AM-PdW" eventType="touchUpInside" id="CSu-oh-cHO"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -436,6 +444,7 @@
                                                 <constraint firstItem="WkI-6i-Qxv" firstAttribute="top" secondItem="pv3-L5-9Jg" secondAttribute="bottom" constant="4" id="62X-RW-AKE"/>
                                                 <constraint firstItem="59q-HI-eHS" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leading" constant="16" id="9BK-qR-e1H"/>
                                                 <constraint firstItem="hEP-S7-LTS" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="A11-Iz-0Gq"/>
+                                                <constraint firstItem="59q-HI-eHS" firstAttribute="top" secondItem="v51-r4-3cg" secondAttribute="bottom" id="AaL-Nm-EIO"/>
                                                 <constraint firstItem="pv3-L5-9Jg" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="H8E-Z7-hnD"/>
                                                 <constraint firstItem="iLb-Jc-27D" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="IcL-GP-sGd"/>
                                                 <constraint firstItem="gfM-Ve-lgr" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="KgL-ji-g5w"/>
@@ -448,6 +457,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="iLb-Jc-27D" secondAttribute="bottom" constant="8" id="UC0-sf-Tmd"/>
                                                 <constraint firstItem="R8H-SE-59N" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" multiplier="3:6" id="Ud5-zk-a6k"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="VE3-st-oRg"/>
+                                                <constraint firstItem="v51-r4-3cg" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leading" constant="15" id="Vor-An-GQv"/>
                                                 <constraint firstItem="59q-HI-eHS" firstAttribute="centerY" secondItem="R8H-SE-59N" secondAttribute="centerY" id="aCk-qp-4pX"/>
                                                 <constraint firstItem="hEP-S7-LTS" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="auw-lc-27f"/>
                                                 <constraint firstItem="59q-HI-eHS" firstAttribute="centerY" secondItem="R8H-SE-59N" secondAttribute="centerY" id="d0K-40-OGC"/>

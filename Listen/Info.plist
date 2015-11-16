@@ -23,6 +23,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>castro</string>
+		<string>irc</string>
 		<string>downcast</string>
 		<string>instacast</string>
 		<string>overcast</string>
