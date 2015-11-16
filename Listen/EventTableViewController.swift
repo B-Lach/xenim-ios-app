@@ -147,21 +147,30 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if showFavoritesOnly {
-            return filteredEvents[section].count
-        }
-        return events[section].count
+        return numberOfRowsInSection(section)
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if numberOfRowsInSection(section) == 0 {
+            // hide the section header for sections with no content
+            return nil
+        }
         switch section {
             case 0: return "Live now"
             case 1: return "Upcoming Today"
             case 2: return "Tomorrow"
-            case 3: return "This Week"
-            case 4: return "Later"
+            case 3: return "Later this Week"
+            case 4: return "Next week and later"
             default: return "Unknown"
         }
+    }
+    
+    // helper method because calling tableView.numberOfRowsInSection(section) crashes the app
+    func numberOfRowsInSection(section: Int) -> Int {
+        if showFavoritesOnly {
+            return filteredEvents[section].count
+        }
+        return events[section].count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
