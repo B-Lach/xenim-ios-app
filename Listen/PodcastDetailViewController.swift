@@ -136,6 +136,10 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func openChat(sender: AnyObject) {
         if let podcast = podcast {
             if UIApplication.sharedApplication().canOpenURL(podcast.chatUrl) {
@@ -146,10 +150,6 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 UIApplication.sharedApplication().openURL(podcast.webchatUrl)
             }
         }
-    }
-    
-    func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func subscribePodcast() {
