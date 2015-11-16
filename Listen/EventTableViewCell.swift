@@ -33,6 +33,8 @@ class EventTableViewCell: UITableViewCell {
         if let playerEvent = player.event, let myEvent = self.event {
             if playerEvent.equals(myEvent) && player.isPlaying {
                 playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+            } else {
+                playButton?.setImage(UIImage(named: "play"), forState: .Normal)
             }
         } else {
             playButton?.setImage(UIImage(named: "play"), forState: .Normal)
