@@ -11,16 +11,24 @@ import UIKit
 class FavoritesTableViewController: UITableViewController {
     
     var favorites = [String]()
+    var messageVC: MessageViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged"), name: "favoritesChanged", object: nil)
-        refresh()
+        
+        // add background view to display error message if no data is available to display
+        if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
+            self.messageVC = messageVC
+            tableView.backgroundView = messageVC.view
+        }
         
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         // increase content inset for audio player
         tableView.contentInset.bottom = tableView.contentInset.bottom + 40
+        
+        refresh()
     }
     
     deinit {
@@ -39,6 +47,7 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        updateBackground()
         return 1
     }
     
@@ -59,6 +68,17 @@ class FavoritesTableViewController: UITableViewController {
         if editingStyle == .Delete {
             // Delete the row from the data source
             Favorites.remove(slug: favorites[indexPath.row])
+        }
+    }
+    
+    func updateBackground() {
+        if favorites.count == 0 {
+            messageVC?.messageLabel.text = "Add podcast shows as your favorite to see them here."
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            tableView.backgroundView?.hidden = false
+        } else {
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            tableView.backgroundView?.hidden = true
         }
     }
     
