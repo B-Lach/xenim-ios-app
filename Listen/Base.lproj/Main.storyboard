@@ -228,16 +228,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="96"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="WYb-RI-yKQ">
-                                            <rect key="frame" x="8" y="8" width="60" height="60"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WYb-RI-yKQ">
+                                            <rect key="frame" x="8" y="8" width="62" height="62"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="WYb-RI-yKQ" secondAttribute="height" multiplier="1:1" id="XgY-Q4-gYk"/>
-                                                <constraint firstAttribute="width" constant="60" id="lQb-Mj-HhE"/>
+                                                <constraint firstAttribute="width" constant="62" id="lQb-Mj-HhE"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmH-Yd-Nmt">
-                                            <rect key="frame" x="76" y="27" width="47" height="23"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jmH-Yd-Nmt">
+                                            <rect key="frame" x="78" y="28" width="481" height="23"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -249,6 +249,7 @@
                                         <constraint firstItem="jmH-Yd-Nmt" firstAttribute="leading" secondItem="WYb-RI-yKQ" secondAttribute="trailing" constant="8" id="05T-nn-Dmk"/>
                                         <constraint firstAttribute="topMargin" secondItem="WYb-RI-yKQ" secondAttribute="top" id="6ep-ap-Lc3"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="WYb-RI-yKQ" secondAttribute="bottom" constant="8" id="JOY-jp-QUc"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="jmH-Yd-Nmt" secondAttribute="trailing" id="U0K-7W-oah"/>
                                         <constraint firstItem="jmH-Yd-Nmt" firstAttribute="centerY" secondItem="WYb-RI-yKQ" secondAttribute="centerY" id="dhh-1Q-vlP"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="WYb-RI-yKQ" secondAttribute="leading" id="suO-SH-VSr"/>
                                     </constraints>
