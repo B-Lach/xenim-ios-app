@@ -70,8 +70,12 @@ class HoersuppeAPI {
                     let imageurl = podcastJSON["imageurl"].string!
                     let slug = podcastJSON["slug"].string!
                     let description = podcastJSON["description"].string!
+                    let chatServer = podcastJSON["chat_server"].string!
+                    let chatChannel = podcastJSON["chat_channel"].string!
+                    let webchatUrl = podcastJSON["chat_url"].string!
                     
-                    if let podcast = Podcast(name: name, subtitle: subtitle, url: url, feedurl: feedurl, imageurl: imageurl, slug: slug, podcastDescription: description) {
+                    
+                    if let podcast = Podcast(name: name, subtitle: subtitle, url: url, feedurl: feedurl, imageurl: imageurl, slug: slug, podcastDescription: description, chatServer: chatServer, chatChannel: chatChannel, webchatUrl: webchatUrl) {
                         onComplete(podcast: podcast)
                     } else {
                         onComplete(podcast: nil)
