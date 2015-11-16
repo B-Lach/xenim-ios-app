@@ -35,12 +35,14 @@ class Player : NSObject {
     }
     
     deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         player.removeObserver(self, forKeyPath: "rate")
     }
     
     private func playEvent(event: Event) {
         self.event = event
-        player.replaceCurrentItemWithPlayerItem(AVPlayerItem(URL: event.streamurl))
+        let playerItem = AVPlayerItem(URL: event.streamurl)
+        player.replaceCurrentItemWithPlayerItem(playerItem)
         do {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {}
@@ -56,7 +58,24 @@ class Player : NSObject {
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
         }
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notify:", name: "AVPlayerItemDidPlayToEndTimeNotification", object: player.currentItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notify:", name: "AVPlayerItemFailedToPlayToEndTimeNotification", object: player.currentItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notify:", name: "AVPlayerItemPlaybackStalledNotification", object: player.currentItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notify:", name: "AVPlayerItemNewErrorLogEntryNotification", object: player.currentItem)
+        
         NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["player": self])
+    }
+    
+    func notify(notification: NSNotification) {
+        print("notification")
+        if let playerItem = player.currentItem {
+            switch playerItem.status {
+            case AVPlayerItemStatus.Failed:
+                print("failed")
+            default:
+                print("default")
+            }
+        }
     }
     
     func togglePlayPause(event: Event) {
