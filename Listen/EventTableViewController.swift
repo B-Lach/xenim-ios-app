@@ -227,11 +227,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             }
             return count
         } else {
-            var count = 0
-            for section in events {
-                count += section.count
-            }
-            return count
+            return unsortedEvents.count
         }
     }
     
