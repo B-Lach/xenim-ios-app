@@ -152,7 +152,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        updateBackgroundMessage()
+        updateBackground()
         if showFavoritesOnly {
             return filteredEvents.count
         }
@@ -197,7 +197,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         return cell
     }
     
-    func updateBackgroundMessage() {
+    func updateBackground() {
         let messageLabel = messageVC?.messageLabel
         if numberOfRows() == 0 {
             if showFavoritesOnly {
