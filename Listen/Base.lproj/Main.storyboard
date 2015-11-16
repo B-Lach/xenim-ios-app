@@ -7,6 +7,43 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
+        <!--Message View Controller-->
+        <scene sceneID="Jcg-KW-DCX">
+            <objects>
+                <viewController storyboardIdentifier="MessageViewController" id="psJ-cQ-lsd" customClass="MessageViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zrm-7u-qH2"/>
+                        <viewControllerLayoutGuide type="bottom" id="saF-G3-SFJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jVZ-q4-52m">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBC-zr-6KO">
+                                <rect key="frame" x="280" y="290" width="40" height="20"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="rBC-zr-6KO" secondAttribute="trailing" constant="8" id="YR4-V2-YUK"/>
+                            <constraint firstItem="rBC-zr-6KO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jVZ-q4-52m" secondAttribute="leadingMargin" constant="8" id="fow-YB-ZIG"/>
+                            <constraint firstItem="rBC-zr-6KO" firstAttribute="centerX" secondItem="jVZ-q4-52m" secondAttribute="centerX" id="jDg-r2-AcN"/>
+                            <constraint firstItem="rBC-zr-6KO" firstAttribute="centerY" secondItem="jVZ-q4-52m" secondAttribute="centerY" id="pGp-Tl-wTc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="rBC-zr-6KO" id="HRi-uw-nIb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L3c-Cb-80N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1931" y="-377"/>
+        </scene>
         <!--Events-->
         <scene sceneID="UEB-V1-gUW">
             <objects>

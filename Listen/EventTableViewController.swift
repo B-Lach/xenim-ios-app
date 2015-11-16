@@ -33,18 +33,28 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     var timer : NSTimer? // timer to update view periodically
     let updateInterval: NSTimeInterval = 60 // seconds
     
+    var messageVC: MessageViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+        // increase content inset for audio player
+        tableView.contentInset.bottom = tableView.contentInset.bottom + 40
         
         if let favoritesFilterSetting = userDefaults.objectForKey(userDefaultsFavoritesSettingKey) as? Bool {
             showFavoritesOnly = favoritesFilterSetting
         }
         
+        // add background view to display error message if no data is available to display
+        if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
+            self.messageVC = messageVC
+            tableView.backgroundView = messageVC.view
+        }
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
-        // increase content inset for audio player
-        tableView.contentInset.bottom = tableView.contentInset.bottom + 40
+
         refresh(spinner)
         updateFilterFavoritesButton()
         
@@ -142,6 +152,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        updateBackgroundMessage()
         if showFavoritesOnly {
             return filteredEvents.count
         }
@@ -184,6 +195,38 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         }
         cell.delegate = self
         return cell
+    }
+    
+    func updateBackgroundMessage() {
+        let messageLabel = messageVC?.messageLabel
+        if numberOfRows() == 0 {
+            if showFavoritesOnly {
+                messageLabel?.text = "None of your favorite podcast shows will be live in the near future. Add more shows to your favorites to see something here."
+            } else {
+                messageLabel?.text = "Did no receive any upcoming events."
+            }
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            tableView.backgroundView?.hidden = false
+        } else {
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            tableView.backgroundView?.hidden = true
+        }
+    }
+    
+    func numberOfRows() -> Int {
+        if showFavoritesOnly {
+            var count = 0
+            for section in filteredEvents {
+                count += section.count
+            }
+            return count
+        } else {
+            var count = 0
+            for section in events {
+                count += section.count
+            }
+            return count
+        }
     }
     
 
