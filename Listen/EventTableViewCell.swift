@@ -80,6 +80,8 @@ class EventTableViewCell: UITableViewCell {
             
             updateProgressBar()
             updatePlayButton()
+            
+            playButton.hidden = false
         }
     }
     
