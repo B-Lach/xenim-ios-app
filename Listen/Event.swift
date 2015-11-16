@@ -15,7 +15,7 @@ class Event : NSObject {
     var livedate = NSDate()
     var endDate: NSDate {
         get {
-            return livedate.dateByAddingTimeInterval(duration) // event.duration is minutes
+            return livedate.dateByAddingTimeInterval(duration)
         }
     }
     var podcastSlug: String
