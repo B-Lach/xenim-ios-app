@@ -29,7 +29,9 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let userDefaultsFavoritesSettingKey = "showFavoritesOnly"
-
+    
+    var timer : NSTimer? // timer to update view periodically
+    let updateInterval: NSTimeInterval = 60 // seconds
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,16 +47,16 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         tableView.contentInset.bottom = tableView.contentInset.bottom + 40
         refresh(spinner)
         updateFilterFavoritesButton()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // setup timer to update every minute
+        // remember to invalidate timer as soon this view gets cleared otherwise
+        // this will cause a memory cycle
+        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        timer?.invalidate()
     }
     
     func favoritesChanged(notification: NSNotification) {
@@ -265,6 +267,11 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         playerViewController!.event = event
         
         tabBarController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
+    }
+    
+    // MARK: timer
+    @objc func timerTicked() {
+        refresh(spinner)
     }
     
 }
