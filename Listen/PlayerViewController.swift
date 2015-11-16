@@ -14,10 +14,12 @@ class PlayerViewController: UIViewController {
     
     var event: Event! {
         didSet {
+            fetchPodcastInfo()
             updateUI()
             togglePlayPause(self)
         }
     }
+    var podcast: Podcast?
 
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
@@ -116,6 +118,31 @@ class PlayerViewController: UIViewController {
             } else {
                 starButtonView?.setTitle("★", forState: .Normal)
             }
+        }
+    }
+    
+    @IBAction func openChat(sender: AnyObject) {
+        if let podcast = podcast {
+            if UIApplication.sharedApplication().canOpenURL(podcast.chatUrl) {
+                // open associated app
+                UIApplication.sharedApplication().openURL(podcast.chatUrl)
+            } else {
+                // open webchat in safari
+                UIApplication.sharedApplication().openURL(podcast.webchatUrl)
+            }
+        }
+    }
+    
+    func fetchPodcastInfo() {
+        if podcast == nil || podcast!.slug != event.podcastSlug {
+            HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
+                if let podcast = podcast {
+                    // check if the request that came back still matches the cell
+                    if podcast.slug == self.event.podcastSlug {
+                        self.podcast = podcast
+                    }
+                }
+            })
         }
     }
     

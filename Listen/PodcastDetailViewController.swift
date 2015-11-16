@@ -140,6 +140,18 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func openChat(sender: AnyObject) {
+        if let podcast = podcast {
+            if UIApplication.sharedApplication().canOpenURL(podcast.chatUrl) {
+                // open associated app
+                UIApplication.sharedApplication().openURL(podcast.chatUrl)
+            } else {
+                // open webchat in safari
+                UIApplication.sharedApplication().openURL(podcast.webchatUrl)
+            }
+        }
+    }
+    
     @IBAction func subscribePodcast() {
         if let podcast = self.podcast {
             let optionMenu = UIAlertController(title: nil, message: "Choose Podcast Client", preferredStyle: .ActionSheet)
