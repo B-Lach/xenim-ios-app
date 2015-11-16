@@ -22,6 +22,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         case ThisWeek
         case Later
     }
+    var unsortedEvents = [Event]()
     var events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
     var filteredEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
     var showFavoritesOnly = false
@@ -107,11 +108,8 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     @IBAction func refresh(spinner: UIRefreshControl) {
         spinner.beginRefreshing()
         HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
-            self.events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
-            self.sortEventsInSections(events)
-            if self.showFavoritesOnly {
-                self.filterFavorites()
-            }
+            self.unsortedEvents = events
+            self.resortEvents()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
                 spinner.endRefreshing()
@@ -127,6 +125,14 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             filterFavorites()
         }
         tableView.reloadData()
+    }
+    
+    func resortEvents() {
+        self.events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+        self.sortEventsInSections(unsortedEvents)
+        if self.showFavoritesOnly {
+            self.filterFavorites()
+        }
     }
     
     func filterFavorites() {
@@ -314,7 +320,8 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     
     // MARK: timer
     @objc func timerTicked() {
-        refresh(spinner)
+        resortEvents()
+        tableView.reloadData()
     }
     
 }
