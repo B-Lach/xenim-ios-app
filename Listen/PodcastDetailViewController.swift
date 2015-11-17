@@ -143,13 +143,13 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func openChat(sender: AnyObject) {
-        if let podcast = podcast {
-            if UIApplication.sharedApplication().canOpenURL(podcast.chatUrl) {
+        if let chatUrl = podcast?.chatUrl, let webchatUrl = podcast?.webchatUrl {
+            if UIApplication.sharedApplication().canOpenURL(chatUrl) {
                 // open associated app
-                UIApplication.sharedApplication().openURL(podcast.chatUrl)
+                UIApplication.sharedApplication().openURL(chatUrl)
             } else {
                 // open webchat in safari
-                UIApplication.sharedApplication().openURL(podcast.webchatUrl)
+                UIApplication.sharedApplication().openURL(webchatUrl)
             }
         }
     }
