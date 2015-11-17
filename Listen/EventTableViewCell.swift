@@ -16,6 +16,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var coverartFavoriteStar: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     var delegate: PlayerDelegator?
     
@@ -44,6 +45,7 @@ class EventTableViewCell: UITableViewCell {
     func updateUI() {
         if let event = event {
             podcastNameLabel?.text = event.title
+            descriptionLabel?.text = event.podcastDescription
             
             // display livedate differently according to how far in the future
             // the event is taking place
