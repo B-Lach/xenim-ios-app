@@ -579,7 +579,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99D-Ge-NfZ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="862"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="839"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MYR-Bd-I21">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -692,13 +692,6 @@
                                                 </prototypes>
                                                 <sections/>
                                             </tableView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set this podcast as one of your favourites to receive notifications." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N84-jM-ivq">
-                                                <rect key="frame" x="8" y="839" width="584" height="15"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdW-z8-0dX">
                                                 <rect key="frame" x="86" y="689" width="56" height="30"/>
                                                 <animations/>
@@ -723,6 +716,7 @@
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" id="0Te-7E-UDQ"/>
                                             <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="L5f-t2-KEW" secondAttribute="bottom" constant="8" id="5hN-Oq-2BF"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="20" id="6bg-J4-CTb"/>
+                                            <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="BNY-iS-bt7"/>
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="top" secondItem="PLU-zi-7Az" secondAttribute="bottom" constant="8" id="DKv-On-Zxq"/>
                                             <constraint firstAttribute="bottom" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="FbG-Yn-N5c"/>
                                             <constraint firstItem="asS-WH-Vzg" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="G44-zf-EeD"/>
@@ -731,25 +725,21 @@
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="JW7-4D-Llf"/>
                                             <constraint firstAttribute="trailing" secondItem="asS-WH-Vzg" secondAttribute="trailing" constant="8" id="Jix-1Q-ceV"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="leading" secondItem="PLU-zi-7Az" secondAttribute="trailing" constant="8" id="KFe-RF-KgA"/>
-                                            <constraint firstAttribute="bottom" secondItem="N84-jM-ivq" secondAttribute="bottom" constant="8" id="KZg-Gh-PSo"/>
                                             <constraint firstItem="L5f-t2-KEW" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="LsP-i6-06q"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="PWw-km-8hN"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="TFL-VM-4l6"/>
-                                            <constraint firstAttribute="trailing" secondItem="N84-jM-ivq" secondAttribute="trailing" constant="8" id="VNr-p8-1Fh"/>
                                             <constraint firstItem="W6b-nc-qxN" firstAttribute="centerX" secondItem="MYR-Bd-I21" secondAttribute="centerX" id="Xhe-Aq-hLm"/>
                                             <constraint firstAttribute="trailing" secondItem="L5f-t2-KEW" secondAttribute="trailing" constant="8" id="Zc8-bh-gAU"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="centerY" secondItem="PLU-zi-7Az" secondAttribute="centerY" id="aX1-KJ-OSP"/>
                                             <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="bsy-1z-s21"/>
                                             <constraint firstAttribute="trailing" secondItem="fTO-Hw-zIA" secondAttribute="trailing" constant="8" id="eWy-3c-uJw"/>
                                             <constraint firstItem="ETv-v4-8gG" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="gXC-pe-gEC"/>
-                                            <constraint firstItem="N84-jM-ivq" firstAttribute="top" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="hXz-ln-R2l"/>
                                             <constraint firstItem="GdW-z8-0dX" firstAttribute="leading" secondItem="ETv-v4-8gG" secondAttribute="trailing" constant="8" id="lE4-rk-ieP"/>
                                             <constraint firstItem="L5f-t2-KEW" firstAttribute="top" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="mCs-40-k64"/>
                                             <constraint firstAttribute="bottom" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="oQs-6Y-ZhP"/>
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="top" secondItem="99D-Ge-NfZ" secondAttribute="top" id="pBf-aN-B6H"/>
                                             <constraint firstAttribute="trailing" secondItem="MYR-Bd-I21" secondAttribute="trailing" id="rAF-s5-cem"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="636" id="sAJ-jx-eg2"/>
-                                            <constraint firstItem="N84-jM-ivq" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="tji-TN-kh9"/>
                                             <constraint firstItem="GdW-z8-0dX" firstAttribute="baseline" secondItem="ETv-v4-8gG" secondAttribute="baseline" id="u6a-6A-bKv"/>
                                             <constraint firstAttribute="trailing" secondItem="sqw-7J-EQl" secondAttribute="trailing" constant="8" id="ytB-UT-P8F"/>
                                             <constraint firstItem="xJh-eu-Wkm" firstAttribute="baseline" secondItem="GdW-z8-0dX" secondAttribute="baseline" id="zlZ-3w-oIY"/>
