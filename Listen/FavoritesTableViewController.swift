@@ -43,6 +43,7 @@ class FavoritesTableViewController: UITableViewController {
     
     func refresh() {
         favorites = Favorites.fetch()
+        favorites.sortInPlace()
         tableView.reloadData()
     }
     
