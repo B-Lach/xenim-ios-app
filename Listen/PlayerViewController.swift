@@ -68,7 +68,7 @@ class PlayerViewController: UIViewController {
         popupItem.title = event.title
         subtitleLabel?.text = event.podcastDescription
         popupItem.subtitle = event.podcastDescription
-        coverartView.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
+        coverartView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
         backgroundImageView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
         miniCoverartImageView.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
         updateProgressBar()
