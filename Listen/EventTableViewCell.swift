@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Haneke
 
 class EventTableViewCell: UITableViewCell {
     
@@ -74,7 +73,7 @@ class EventTableViewCell: UITableViewCell {
             updateFavstar()
             
             let placeholderImage = UIImage(named: "event_placeholder")!
-            eventCoverartImage.hnk_setImageFromURL(event.imageurl, placeholder: placeholderImage, format: nil, failure: nil, success: nil)
+            eventCoverartImage.af_setImageWithURL(event.imageurl, placeholderImage: placeholderImage)
             
             updateProgressBar()
             updatePlayButton()

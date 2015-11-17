@@ -65,7 +65,7 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
             podcastSlug = podcast.slug
         }
         
-        self.coverartImageView?.hnk_setImageFromURL(imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
+        self.coverartImageView?.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"))
         podcastNameLabel?.text = title
         self.title = title
         podcastDescriptionLabel?.text = description

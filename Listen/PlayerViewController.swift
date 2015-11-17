@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import Haneke
 import MediaPlayer
+import Alamofire
+import AlamofireImage
 
 class PlayerViewController: UIViewController {
     
@@ -67,18 +68,19 @@ class PlayerViewController: UIViewController {
         popupItem.title = event.title
         subtitleLabel?.text = event.podcastDescription
         popupItem.subtitle = event.podcastDescription
-        coverartView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
-        backgroundImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
-        miniCoverartImageView.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
+        coverartView.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
+        backgroundImageView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
+        miniCoverartImageView.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
         updateProgressBar()
         updateFavoritesButton()
         
-        // fetch coverart from image cache and set it as lockscreen artwork
-        let imageCache = Shared.imageCache
-        imageCache.fetch(URL: event.imageurl).onSuccess { (image) -> () in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.updateStatusBarStyle(image)
-            })
+        Alamofire.request(.GET, event.imageurl)
+            .responseImage { response in
+                if let image = response.result.value {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.updateStatusBarStyle(image)
+                    })
+                }
         }
     }
     
