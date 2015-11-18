@@ -441,6 +441,17 @@
                                                         <action selector="openChat:" destination="Pke-AM-PdW" eventType="touchUpInside" id="CSu-oh-cHO"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkG-r2-6yf">
+                                                    <rect key="frame" x="562" y="80" width="30" height="39"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <state key="normal" title="☆">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="favorite:" destination="Pke-AM-PdW" eventType="touchUpInside" id="vy3-To-2sb"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -449,6 +460,7 @@
                                                 <constraint firstItem="WkI-6i-Qxv" firstAttribute="top" secondItem="pv3-L5-9Jg" secondAttribute="bottom" constant="4" id="62X-RW-AKE"/>
                                                 <constraint firstItem="hEP-S7-LTS" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="A11-Iz-0Gq"/>
                                                 <constraint firstItem="pv3-L5-9Jg" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="H8E-Z7-hnD"/>
+                                                <constraint firstAttribute="trailing" secondItem="zkG-r2-6yf" secondAttribute="trailing" constant="8" id="HXX-aD-mqH"/>
                                                 <constraint firstItem="iLb-Jc-27D" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="IcL-GP-sGd"/>
                                                 <constraint firstItem="gfM-Ve-lgr" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="KgL-ji-g5w"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="WkI-6i-Qxv" secondAttribute="trailing" id="Kuo-Su-Hx1"/>
@@ -463,6 +475,7 @@
                                                 <constraint firstItem="hEP-S7-LTS" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="auw-lc-27f"/>
                                                 <constraint firstItem="pv3-L5-9Jg" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" multiplier="1:3" id="nw9-aE-Tr8"/>
                                                 <constraint firstItem="pv3-L5-9Jg" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leadingMargin" id="oe2-bZ-tfI"/>
+                                                <constraint firstItem="zkG-r2-6yf" firstAttribute="centerY" secondItem="gfM-Ve-lgr" secondAttribute="centerY" id="rA5-Bz-3Cp"/>
                                                 <constraint firstItem="v51-r4-3cg" firstAttribute="centerY" secondItem="R8H-SE-59N" secondAttribute="centerY" id="rdf-Qi-vIG"/>
                                                 <constraint firstItem="WkI-6i-Qxv" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leadingMargin" id="siY-Xa-Y7g"/>
                                                 <constraint firstItem="iLb-Jc-27D" firstAttribute="top" secondItem="R8H-SE-59N" secondAttribute="bottom" constant="40" id="vne-bh-Orf"/>
@@ -476,43 +489,11 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdE-g3-THt">
-                                            <rect key="frame" x="552" y="350" width="30" height="30"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cON-zE-cgI">
-                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkG-r2-6yf">
-                                                        <rect key="frame" x="0.0" y="-4" width="30" height="39"/>
-                                                        <animations/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                        <state key="normal" title="☆">
-                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="favorite:" destination="Pke-AM-PdW" eventType="touchUpInside" id="vy3-To-2sb"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <animations/>
-                                                <constraints>
-                                                    <constraint firstItem="zkG-r2-6yf" firstAttribute="centerY" secondItem="cON-zE-cgI" secondAttribute="centerY" id="Ag8-Sf-yOa"/>
-                                                    <constraint firstItem="zkG-r2-6yf" firstAttribute="centerX" secondItem="cON-zE-cgI" secondAttribute="centerX" id="KF5-sV-y6B"/>
-                                                </constraints>
-                                            </view>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="Eha-fQ-DxE"/>
-                                                <constraint firstAttribute="width" secondItem="QdE-g3-THt" secondAttribute="height" multiplier="1:1" id="Gyy-J1-1YB"/>
-                                            </constraints>
-                                            <blurEffect style="extraLight"/>
-                                        </visualEffectView>
                                     </subviews>
                                     <animations/>
                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="yMl-Lc-pw7" firstAttribute="leading" secondItem="ArG-F3-HNc" secondAttribute="leading" id="2bl-8c-1Uc"/>
-                                        <constraint firstItem="QdE-g3-THt" firstAttribute="top" secondItem="y2g-4n-94G" secondAttribute="bottom" constant="-48" id="4D4-5J-wSS"/>
                                         <constraint firstItem="Ioc-ne-Ddp" firstAttribute="leading" secondItem="ArG-F3-HNc" secondAttribute="leading" id="6F7-6e-9lm"/>
                                         <constraint firstAttribute="trailing" secondItem="Ioc-ne-Ddp" secondAttribute="trailing" id="Bdf-4Q-BfB"/>
                                         <constraint firstItem="Ioc-ne-Ddp" firstAttribute="top" secondItem="yMl-Lc-pw7" secondAttribute="bottom" id="GZc-Yj-CjF"/>
@@ -521,7 +502,6 @@
                                         <constraint firstItem="y2g-4n-94G" firstAttribute="top" secondItem="ArG-F3-HNc" secondAttribute="top" id="Pp7-Hj-hFs"/>
                                         <constraint firstAttribute="trailing" secondItem="y2g-4n-94G" secondAttribute="trailing" id="cvi-Xz-yQf"/>
                                         <constraint firstItem="y2g-4n-94G" firstAttribute="leading" secondItem="ArG-F3-HNc" secondAttribute="leading" id="ebb-Q2-wYP"/>
-                                        <constraint firstItem="QdE-g3-THt" firstAttribute="leading" secondItem="y2g-4n-94G" secondAttribute="trailing" constant="-48" id="itD-UK-NpC"/>
                                         <constraint firstItem="yMl-Lc-pw7" firstAttribute="top" secondItem="y2g-4n-94G" secondAttribute="bottom" id="qyU-Rb-Bs4"/>
                                     </constraints>
                                 </view>
@@ -550,7 +530,6 @@
                         <outlet property="progressView" destination="yMl-Lc-pw7" id="Che-9V-mQm"/>
                         <outlet property="starButtonView" destination="zkG-r2-6yf" id="7z0-0F-AJH"/>
                         <outlet property="subtitleLabel" destination="WkI-6i-Qxv" id="kfh-Ou-Emp"/>
-                        <outlet property="visualEffectView" destination="QdE-g3-THt" id="5qE-li-hgw"/>
                         <outlet property="volumeView" destination="iLb-Jc-27D" id="1dR-WA-xN4"/>
                     </connections>
                 </viewController>

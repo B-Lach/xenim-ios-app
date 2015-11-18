@@ -31,7 +31,6 @@ class PlayerViewController: UIViewController {
     
     @IBOutlet weak var volumeView: MPVolumeView!
     @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var starButtonView: UIButton!
     
     var statusBarStyle = UIStatusBarStyle.Default
@@ -52,14 +51,8 @@ class PlayerViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNotifications()
-        
         volumeView.showsRouteButton = false // disable airplay icon next to volume slider
-        
-        visualEffectView.layer.cornerRadius = visualEffectView.frame.size.width/2
-        visualEffectView.layer.masksToBounds = true
-        
         updateUI()
 	}
     
