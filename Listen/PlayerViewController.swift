@@ -32,6 +32,7 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var volumeView: MPVolumeView!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var starButtonView: UIButton!
+    @IBOutlet weak var chatButton: UIButton!
     
     var statusBarStyle = UIStatusBarStyle.Default
     
@@ -135,6 +136,11 @@ class PlayerViewController: UIViewController {
                     // check if the request that came back still matches the cell
                     if podcast.slug == self.event.podcastSlug {
                         self.podcast = podcast
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            if podcast.webchatUrl != nil {
+                                self.chatButton.hidden = false
+                            }
+                        })
                     }
                 }
             })

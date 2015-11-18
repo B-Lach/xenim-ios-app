@@ -26,6 +26,7 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var upcomingEventsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var chatButton: UIButton!
     
     @IBOutlet weak var upcomingEventsTableView: UITableView! {
         didSet {
@@ -88,9 +89,12 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
             HoersuppeAPI.fetchPodcastDetail(podcastSlug, onComplete: { (podcast) -> Void in
                 if podcast != nil {
                     self.podcast = podcast
-//                  dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                      self.updateUI()
-//                  })
+                  dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    // show chat button if chat information is available
+                    if podcast?.webchatUrl != nil {
+                        self.chatButton.hidden = false
+                    }
+                  })
                 }
             })
         }

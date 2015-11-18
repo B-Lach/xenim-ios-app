@@ -433,7 +433,7 @@
                                                         </mask>
                                                     </variation>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v51-r4-3cg">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v51-r4-3cg">
                                                     <rect key="frame" x="15" y="85" width="33" height="30"/>
                                                     <animations/>
                                                     <state key="normal" title="Chat"/>
@@ -524,6 +524,7 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="VIx-dU-kjb" id="ZUJ-7n-d2M"/>
+                        <outlet property="chatButton" destination="v51-r4-3cg" id="JLr-e9-hvZ"/>
                         <outlet property="coverartView" destination="y2g-4n-94G" id="2dp-1I-NMR"/>
                         <outlet property="playPauseButton" destination="hEP-S7-LTS" id="7Gw-CL-83K"/>
                         <outlet property="podcastNameLabel" destination="pv3-L5-9Jg" id="1LK-22-pzq"/>
@@ -674,7 +675,7 @@
                                                     <action selector="openPodcastWebsite" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Xo4-ov-woF"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJh-eu-Wkm">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJh-eu-Wkm">
                                                 <rect key="frame" x="150" y="689" width="33" height="30"/>
                                                 <animations/>
                                                 <state key="normal" title="Chat"/>
@@ -791,6 +792,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1200"/>
                     <connections>
+                        <outlet property="chatButton" destination="xJh-eu-Wkm" id="aSj-dn-rSS"/>
                         <outlet property="contentView" destination="99D-Ge-NfZ" id="YXq-h1-8dq"/>
                         <outlet property="coverartImageView" destination="MYR-Bd-I21" id="5Ij-Pl-eMW"/>
                         <outlet property="favoriteButton" destination="fTO-Hw-zIA" id="Cmw-uy-aQU"/>
@@ -818,6 +820,6 @@
         <image name="play" width="12" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5u9-ce-4fW"/>
+        <segue reference="KGY-cJ-UNU"/>
     </inferredMetricsTieBreakers>
 </document>
