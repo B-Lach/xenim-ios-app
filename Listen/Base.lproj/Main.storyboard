@@ -433,32 +433,8 @@
                                                         </mask>
                                                     </variation>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59q-HI-eHS" userLabel="Prev">
-                                                    <rect key="frame" x="16" y="85" width="30" height="30"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="59q-HI-eHS" secondAttribute="height" multiplier="1:1" id="P7S-5y-Uhw"/>
-                                                    </constraints>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" title="zzZ"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9i1-yY-BKG" userLabel="Prev">
-                                                    <rect key="frame" x="565" y="91" width="19" height="19"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="RTV-NC-qmn"/>
-                                                        <constraint firstAttribute="width" secondItem="9i1-yY-BKG" secondAttribute="height" multiplier="1:1" id="Vwk-HR-siN"/>
-                                                    </constraints>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" image="share"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="RTV-NC-qmn"/>
-                                                        </mask>
-                                                    </variation>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v51-r4-3cg">
-                                                    <rect key="frame" x="15" y="55" width="33" height="30"/>
+                                                    <rect key="frame" x="15" y="85" width="33" height="30"/>
                                                     <animations/>
                                                     <state key="normal" title="Chat"/>
                                                     <connections>
@@ -471,9 +447,7 @@
                                             <constraints>
                                                 <constraint firstItem="R8H-SE-59N" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="3ey-Mk-8NJ"/>
                                                 <constraint firstItem="WkI-6i-Qxv" firstAttribute="top" secondItem="pv3-L5-9Jg" secondAttribute="bottom" constant="4" id="62X-RW-AKE"/>
-                                                <constraint firstItem="59q-HI-eHS" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leading" constant="16" id="9BK-qR-e1H"/>
                                                 <constraint firstItem="hEP-S7-LTS" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="A11-Iz-0Gq"/>
-                                                <constraint firstItem="59q-HI-eHS" firstAttribute="top" secondItem="v51-r4-3cg" secondAttribute="bottom" id="AaL-Nm-EIO"/>
                                                 <constraint firstItem="pv3-L5-9Jg" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="H8E-Z7-hnD"/>
                                                 <constraint firstItem="iLb-Jc-27D" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="IcL-GP-sGd"/>
                                                 <constraint firstItem="gfM-Ve-lgr" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="KgL-ji-g5w"/>
@@ -482,19 +456,14 @@
                                                 <constraint firstItem="iLb-Jc-27D" firstAttribute="top" secondItem="Ioc-ne-Ddp" secondAttribute="top" constant="140" id="O2e-Zz-yUT"/>
                                                 <constraint firstAttribute="trailing" secondItem="iLb-Jc-27D" secondAttribute="trailing" constant="16" id="RCE-Ju-m1W"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="pv3-L5-9Jg" secondAttribute="trailing" id="SJK-0A-3LB"/>
-                                                <constraint firstAttribute="trailing" secondItem="9i1-yY-BKG" secondAttribute="trailing" constant="16" id="SRV-yl-iWV"/>
                                                 <constraint firstAttribute="bottom" secondItem="iLb-Jc-27D" secondAttribute="bottom" constant="8" id="UC0-sf-Tmd"/>
                                                 <constraint firstItem="R8H-SE-59N" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" multiplier="3:6" id="Ud5-zk-a6k"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="VE3-st-oRg"/>
                                                 <constraint firstItem="v51-r4-3cg" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leading" constant="15" id="Vor-An-GQv"/>
-                                                <constraint firstItem="59q-HI-eHS" firstAttribute="centerY" secondItem="R8H-SE-59N" secondAttribute="centerY" id="aCk-qp-4pX"/>
                                                 <constraint firstItem="hEP-S7-LTS" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="auw-lc-27f"/>
-                                                <constraint firstItem="59q-HI-eHS" firstAttribute="centerY" secondItem="R8H-SE-59N" secondAttribute="centerY" id="d0K-40-OGC"/>
-                                                <constraint firstItem="59q-HI-eHS" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" multiplier="5:6" id="fDg-5V-XBf"/>
-                                                <constraint firstItem="9i1-yY-BKG" firstAttribute="centerY" secondItem="gfM-Ve-lgr" secondAttribute="centerY" id="j03-if-Dtx"/>
-                                                <constraint firstItem="59q-HI-eHS" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" multiplier="1:6" id="kvo-VF-3xW"/>
                                                 <constraint firstItem="pv3-L5-9Jg" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" multiplier="1:3" id="nw9-aE-Tr8"/>
                                                 <constraint firstItem="pv3-L5-9Jg" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leadingMargin" id="oe2-bZ-tfI"/>
+                                                <constraint firstItem="v51-r4-3cg" firstAttribute="centerY" secondItem="R8H-SE-59N" secondAttribute="centerY" id="rdf-Qi-vIG"/>
                                                 <constraint firstItem="WkI-6i-Qxv" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leadingMargin" id="siY-Xa-Y7g"/>
                                                 <constraint firstItem="iLb-Jc-27D" firstAttribute="top" secondItem="R8H-SE-59N" secondAttribute="bottom" constant="40" id="vne-bh-Orf"/>
                                                 <constraint firstItem="iLb-Jc-27D" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leading" constant="16" id="wlZ-4t-p1S"/>
@@ -502,9 +471,6 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="aCk-qp-4pX"/>
-                                                    <exclude reference="fDg-5V-XBf"/>
-                                                    <exclude reference="kvo-VF-3xW"/>
                                                     <exclude reference="KxI-5A-MWN"/>
                                                     <exclude reference="O2e-Zz-yUT"/>
                                                 </mask>
@@ -871,7 +837,6 @@
         <image name="nowPlaying_pause" width="19" height="25"/>
         <image name="nowPlaying_prev" width="29" height="17"/>
         <image name="play" width="12" height="14"/>
-        <image name="share" width="13" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5u9-ce-4fW"/>
