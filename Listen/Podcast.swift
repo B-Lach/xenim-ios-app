@@ -47,8 +47,10 @@ class Podcast : NSObject {
         self.subtitle = subtitle
         self.slug = slug
         self.podcastDescription = podcastDescription
-        self.chatUrl = NSURL(string: "irc://\(chatServer)/\(chatChannel)")
-        self.webchatUrl = NSURL(string: webchatUrl)
+        if chatServer != "" && chatChannel != "" {
+            self.chatUrl = NSURL(string: "irc://\(chatServer)/\(chatChannel)")
+            self.webchatUrl = NSURL(string: webchatUrl)
+        }
         
         super.init()
         
