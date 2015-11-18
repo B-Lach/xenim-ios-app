@@ -33,6 +33,8 @@
 		229B7D501BD564DC00F1CF6B /* HoersuppeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */; };
 		229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
+		22DAD4911BFCC26500B3043E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22DAD4931BFCC26500B3043E /* InfoPlist.strings */; };
+		22DAD4961BFCC26600B3043E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22DAD4981BFCC26600B3043E /* Localizable.strings */; };
 		22FCCFC11BDCE68E00BC772A /* Pods_Listen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FCCFC01BDCE68E00BC772A /* Pods_Listen.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,10 @@
 		229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoersuppeAPI.swift; sourceTree = "<group>"; };
 		229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
+		22DAD48D1BFCB2A700B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		22DAD48E1BFCB2A700B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		22DAD4921BFCC26500B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		22DAD4971BFCC26600B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		22FCCFC01BDCE68E00BC772A /* Pods_Listen.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Listen.framework; path = "Pods/../build/Debug-iphoneos/Pods_Listen.framework"; sourceTree = "<group>"; };
 		9B4F24029920A3FD527B19F4 /* Pods-Listen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Listen.release.xcconfig"; path = "Pods/Target Support Files/Pods-Listen/Pods-Listen.release.xcconfig"; sourceTree = "<group>"; };
 		EEB7C55264BBFDE1CC5C8294 /* Pods-Listen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Listen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Listen/Pods-Listen.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +132,8 @@
 		2222ECB41BD52E470040100F /* Listen */ = {
 			isa = PBXGroup;
 			children = (
+				22DAD4981BFCC26600B3043E /* Localizable.strings */,
+				22DAD4931BFCC26500B3043E /* InfoPlist.strings */,
 				2222ECB91BD52E480040100F /* Main.storyboard */,
 				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
 				2291D89C1BDF956B00CB6536 /* FavoritesTableViewController.swift */,
@@ -270,7 +278,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22DAD4961BFCC26600B3043E /* Localizable.strings in Resources */,
 				2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */,
+				22DAD4911BFCC26500B3043E /* InfoPlist.strings in Resources */,
 				2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */,
 				2222ECBB1BD52E480040100F /* Main.storyboard in Resources */,
 			);
@@ -364,6 +374,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBA1BD52E480040100F /* Base */,
+				22DAD48D1BFCB2A700B3043E /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -372,8 +383,25 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBF1BD52E480040100F /* Base */,
+				22DAD48E1BFCB2A700B3043E /* de */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		22DAD4931BFCC26500B3043E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22DAD4921BFCC26500B3043E /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		22DAD4981BFCC26600B3043E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22DAD4971BFCC26600B3043E /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

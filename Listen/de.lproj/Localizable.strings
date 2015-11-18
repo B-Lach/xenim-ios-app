@@ -1,0 +1,30 @@
+/* cancel string */
+"cancel" = "Abbrechen";
+
+/* this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display. */
+"event_tableview_empty_favorites_only_message" = "Keiner deiner Favoriten hat in nächster Zeit eine Livesendung geplant. Füge mehr Podcasts zu deinen Favoriten hinzu, um hier etwas zu sehen.";
+
+/* this message gets displayed if no events could be displayed / fetched from the API */
+"event_tableview_empty_message" = "Es konnten keine Livetermine geladen werden.";
+
+/* section header in event table view for the later than next week section */
+"event_tableview_sectionheader_later" = "Später";
+
+/* section header in event table view for the live now section */
+"event_tableview_sectionheader_live" = "Jetzt live";
+
+/* section header in event table view for the later this week section */
+"event_tableview_sectionheader_thisweek" = "In dieser Woche";
+
+/* section header in event table view for the upcoming today section */
+"event_tableview_sectionheader_today" = "Heute";
+
+/* section header in event table view for the tomorrow section */
+"event_tableview_sectionheader_tomorrow" = "Morgen";
+
+/* this message is displayed if no podcast has been added as a favorite and the favorites table view is empty. */
+"favorites_tableview_empty_message" = "Markiere Podcasts als deine Favoriten, um sie hier zu sehen.";
+
+/* when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view. */
+"podcast_detailview_subscribe_alert_message" = "Wähle einen deiner Podcast Clients";
+
