@@ -156,7 +156,7 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func subscribePodcast() {
         if let podcast = self.podcast {
-            let optionMenu = UIAlertController(title: nil, message: "Choose Podcast Client", preferredStyle: .ActionSheet)
+            let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
             
             // create one option for each podcast client
             for client in podcast.subscribeClients {
@@ -172,9 +172,8 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
                 (alert: UIAlertAction!) -> Void in
-                print("Cancelled")
             })
             optionMenu.addAction(cancelAction)
             

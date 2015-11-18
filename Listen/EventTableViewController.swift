@@ -175,11 +175,11 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             return nil
         }
         switch section {
-            case 0: return "Live now"
-            case 1: return "Upcoming Today"
-            case 2: return "Tomorrow"
-            case 3: return "Later this Week"
-            case 4: return "Next week and later"
+        case 0: return NSLocalizedString("event_tableview_sectionheader_live", value: "Live now", comment: "section header in event table view for the live now section")
+            case 1: return NSLocalizedString("event_tableview_sectionheader_today", value: "Upcoming Today", comment: "section header in event table view for the upcoming today section")
+            case 2: return NSLocalizedString("event_tableview_sectionheader_tomorrow", value: "Tomorrow", comment: "section header in event table view for the tomorrow section")
+            case 3: return NSLocalizedString("event_tableview_sectionheader_thisweek", value: "Later this Week", comment: "section header in event table view for the later this week section")
+            case 4: return NSLocalizedString("event_tableview_sectionheader_later", value: "Next week and later", comment: "section header in event table view for the later than next week section")
             default: return "Unknown"
         }
     }
@@ -207,9 +207,9 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         let messageLabel = messageVC?.messageLabel
         if numberOfRows() == 0 {
             if showFavoritesOnly {
-                messageLabel?.text = "None of your favorite podcast shows will be live in the near future. Add more shows to your favorites to see something here."
+                messageLabel?.text = NSLocalizedString("event_tableview_empty_favorites_only_message", value: "None of your favorite podcast shows will be live in the near future. Add more shows to your favorites to see something here.", comment: "this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display.")
             } else {
-                messageLabel?.text = "Did no receive any upcoming events."
+                messageLabel?.text = NSLocalizedString("event_tableview_empty_message", value: "Did no receive any upcoming events.", comment: "this message gets displayed if no events could be displayed / fetched from the API")
             }
             tableView.separatorStyle = UITableViewCellSeparatorStyle.None
             tableView.backgroundView?.hidden = false
