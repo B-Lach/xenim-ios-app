@@ -1,24 +1,23 @@
-
 /* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "8uz-SL-DGJ"; */
-"8uz-SL-DGJ.title" = "Favorites";
+"8uz-SL-DGJ.title" = "Favoriten";
 
 /* Class = "UIButton"; normalTitle = "Subscribe"; ObjectID = "ETv-v4-8gG"; */
-"ETv-v4-8gG.normalTitle" = "Subscribe";
+"ETv-v4-8gG.normalTitle" = "Abonnieren";
 
 /* Class = "UIButton"; normalTitle = "Website"; ObjectID = "GdW-z8-0dX"; */
-"GdW-z8-0dX.normalTitle" = "Website";
+"GdW-z8-0dX.normalTitle" = "Webseite";
 
 /* Class = "UIBarButtonItem"; title = "★"; ObjectID = "IT3-va-4jo"; */
 "IT3-va-4jo.title" = "★";
 
 /* Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts goes live."; ObjectID = "Ib6-hb-yx1"; */
-"Ib6-hb-yx1.text" = "You will receive push notifications if any of your favorite podcasts goes live.";
+"Ib6-hb-yx1.text" = "Erhalte Push Nachrichten sobald einer deiner Lieblingspodcasts live sendet.";
 
 /* Class = "UITabBarItem"; title = "Events"; ObjectID = "KKU-KO-aCN"; */
 "KKU-KO-aCN.title" = "Events";
 
 /* Class = "UILabel"; text = "Next Livedates"; ObjectID = "L5f-t2-KEW"; */
-"L5f-t2-KEW.text" = "Next Livedates";
+"L5f-t2-KEW.text" = "Nächste Livetermine";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "PLU-zi-7Az"; */
 "PLU-zi-7Az.text" = "Label";
@@ -70,3 +69,4 @@
 
 /* Class = "UIButton"; normalTitle = "☆"; ObjectID = "zkG-r2-6yf"; */
 "zkG-r2-6yf.normalTitle" = "☆";
+
