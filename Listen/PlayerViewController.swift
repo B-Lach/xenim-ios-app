@@ -29,7 +29,6 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     let miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
     
-    @IBOutlet weak var volumeView: MPVolumeView!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var starButtonView: UIButton!
     @IBOutlet weak var chatButton: UIButton!
@@ -53,7 +52,6 @@ class PlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNotifications()
-        volumeView.showsRouteButton = false // disable airplay icon next to volume slider
         updateUI()
 	}
     
@@ -110,9 +108,9 @@ class PlayerViewController: UIViewController {
     func updateFavoritesButton() {
         if let event = event {
             if !Favorites.fetch().contains(event.podcastSlug) {
-                starButtonView?.setTitle("☆", forState: .Normal)
+                starButtonView?.setImage(UIImage(named: "black-44-star-o"), forState: .Normal)
             } else {
-                starButtonView?.setTitle("★", forState: .Normal)
+                starButtonView?.setImage(UIImage(named: "black-44-star"), forState: .Normal)
             }
         }
     }
@@ -172,10 +170,10 @@ class PlayerViewController: UIViewController {
         let player = userInfo["player"] as! Player
         if player.isPlaying {
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
         } else {
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
         }
     }
     

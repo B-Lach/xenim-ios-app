@@ -149,9 +149,9 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     
     func updateFilterFavoritesButton() {
         if showFavoritesOnly {
-            filterFavoritesBarButtonItem.title = "★"
+            filterFavoritesBarButtonItem?.image = UIImage(named: "corn-25-star")
         } else {
-            filterFavoritesBarButtonItem.title = "☆"            
+            filterFavoritesBarButtonItem?.image = UIImage(named: "corn-25-star-o")         
         }
     }
 
