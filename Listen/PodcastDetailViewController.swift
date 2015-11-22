@@ -65,7 +65,7 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
             podcastSlug = podcast.slug
         }
         
-        self.coverartImageView?.hnk_setImageFromURL(imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
+        self.coverartImageView?.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"))
         podcastNameLabel?.text = title
         self.title = title
         podcastDescriptionLabel?.text = description
@@ -88,9 +88,6 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
             HoersuppeAPI.fetchPodcastDetail(podcastSlug, onComplete: { (podcast) -> Void in
                 if podcast != nil {
                     self.podcast = podcast
-//                  dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                      self.updateUI()
-//                  })
                 }
             })
         }
@@ -105,6 +102,8 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
             if let playerEvent = player.event {
                 if playerEvent.equals(event) && player.isPlaying {
                     playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+                } else {
+                    playButton?.setImage(UIImage(named: "play"), forState: .Normal)
                 }
             } else {
                 playButton?.setImage(UIImage(named: "play"), forState: .Normal)
@@ -122,9 +121,9 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         if !Favorites.fetch().contains(podcastSlug) {
-            favoriteButton.setTitle("☆", forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "corn-44-star-o"), forState: .Normal)
         } else {
-            favoriteButton.setTitle("★", forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "corn-44-star"), forState: .Normal)
         }
     }
     
@@ -142,7 +141,7 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func subscribePodcast() {
         if let podcast = self.podcast {
-            let optionMenu = UIAlertController(title: nil, message: "Choose Podcast Client", preferredStyle: .ActionSheet)
+            let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
             
             // create one option for each podcast client
             for client in podcast.subscribeClients {
@@ -158,9 +157,8 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
                 (alert: UIAlertAction!) -> Void in
-                print("Cancelled")
             })
             optionMenu.addAction(cancelAction)
             
