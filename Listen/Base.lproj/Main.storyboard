@@ -284,12 +284,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="Z1Y-08-P79">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="nIR-VZ-m8O">
+                        <barButtonItem key="leftBarButtonItem" image="brandeis-blue-25-cog" id="nIR-VZ-m8O">
                             <connections>
                                 <segue destination="rFQ-ny-7OW" kind="presentation" id="ThT-rA-0Ul"/>
                             </connections>
                         </barButtonItem>
-
                         <barButtonItem key="rightBarButtonItem" image="corn-25-star-o" id="IT3-va-4jo">
                             <color key="tintColor" red="0.93902243590000001" green="0.75406792209999995" blue="0.00018052916359999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -405,7 +404,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorites" id="8uz-SL-DGJ">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="Pv3-47-fT5">
+                        <barButtonItem key="leftBarButtonItem" image="brandeis-blue-25-cog" id="Pv3-47-fT5">
                             <connections>
                                 <segue destination="rFQ-ny-7OW" kind="presentation" id="BbG-nn-Gt1"/>
                             </connections>
@@ -970,6 +969,7 @@
         <image name="black-44-pause" width="33" height="33"/>
         <image name="black-44-star-o" width="33" height="33"/>
         <image name="brandeis-blue-25-calendar" width="19" height="19"/>
+        <image name="brandeis-blue-25-cog" width="19" height="19"/>
         <image name="brandeis-blue-25-play" width="19" height="19"/>
         <image name="brandeis-blue-25-star" width="19" height="19"/>
         <image name="brandeis-blue-25-star-o" width="19" height="19"/>
@@ -981,8 +981,7 @@
         <image name="play" width="12" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ThT-rA-0Ul"/>
         <segue reference="KGY-cJ-UNU"/>
-        <segue reference="5u9-ce-4fW"/>
+        <segue reference="BbG-nn-Gt1"/>
     </inferredMetricsTieBreakers>
 </document>
