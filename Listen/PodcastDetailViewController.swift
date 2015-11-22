@@ -26,7 +26,6 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var upcomingEventsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var chatButton: UIButton!
     
     @IBOutlet weak var upcomingEventsTableView: UITableView! {
         didSet {
@@ -89,12 +88,6 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
             HoersuppeAPI.fetchPodcastDetail(podcastSlug, onComplete: { (podcast) -> Void in
                 if podcast != nil {
                     self.podcast = podcast
-                  dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    // show chat button if chat information is available
-                    if podcast?.webchatUrl != nil {
-                        self.chatButton.hidden = false
-                    }
-                  })
                 }
             })
         }
@@ -144,18 +137,6 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
     
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    @IBAction func openChat(sender: AnyObject) {
-        if let chatUrl = podcast?.chatUrl, let webchatUrl = podcast?.webchatUrl {
-            if UIApplication.sharedApplication().canOpenURL(chatUrl) {
-                // open associated app
-                UIApplication.sharedApplication().openURL(chatUrl)
-            } else {
-                // open webchat in safari
-                UIApplication.sharedApplication().openURL(webchatUrl)
-            }
-        }
     }
     
     @IBAction func subscribePodcast() {
