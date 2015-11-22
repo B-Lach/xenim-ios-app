@@ -128,9 +128,9 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         if !Favorites.fetch().contains(podcastSlug) {
-            favoriteButton.setTitle("☆", forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "corn-44-star-o"), forState: .Normal)
         } else {
-            favoriteButton.setTitle("★", forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "corn-44-star"), forState: .Normal)
         }
     }
     
