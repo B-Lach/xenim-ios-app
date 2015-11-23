@@ -60,7 +60,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-info-circle" id="neA-gH-fO4">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-question" id="neA-gH-fO4">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
@@ -109,7 +109,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Flattr us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pfs-v4-oHs">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Flattr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pfs-v4-oHs">
                                                     <rect key="frame" x="49" y="0.0" width="536" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
@@ -127,12 +127,37 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="XKP-uY-s9v" imageView="ZCT-qE-6ra" style="IBUITableViewCellStyleDefault" id="yOG-pQ-STP">
+                                        <rect key="frame" x="0.0" y="341" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yOG-pQ-STP" id="1Zx-uV-NRI">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Paypal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XKP-uY-s9v">
+                                                    <rect key="frame" x="49" y="0.0" width="536" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-paypal" id="ZCT-qE-6ra">
+                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="About" id="Nb1-Lj-6W7">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="z7V-Vc-Jj0" imageView="0IU-qS-FRE" style="IBUITableViewCellStyleDefault" id="JFa-4i-AEY">
-                                        <rect key="frame" x="0.0" y="392" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="436" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JFa-4i-AEY" id="L1A-so-Ou0">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -146,7 +171,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-info-circle" id="0IU-qS-FRE">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-info" id="0IU-qS-FRE">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
@@ -164,7 +189,7 @@
                             <tableViewSection headerTitle="legal" id="G28-IZ-CPe">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="uH6-Hz-Od1" imageView="gpi-p0-BA0" style="IBUITableViewCellStyleDefault" id="dqj-n3-hbQ">
-                                        <rect key="frame" x="0.0" y="487" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="531" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dqj-n3-hbQ" id="zU7-rx-41Y">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -211,6 +236,7 @@
                     <connections>
                         <outlet property="contactCell" destination="qLw-T5-iOl" id="UgN-A3-ogd"/>
                         <outlet property="flattrCell" destination="9o2-NO-VBI" id="vVk-M4-qpT"/>
+                        <outlet property="paypalCell" destination="yOG-pQ-STP" id="Vg1-1i-Iln"/>
                         <outlet property="reportBugCell" destination="eBi-9V-vnw" id="6e4-i5-Vla"/>
                     </connections>
                 </tableViewController>
@@ -594,7 +620,7 @@
                     <navigationItem key="navigationItem" title="Favorites" id="8uz-SL-DGJ">
                         <barButtonItem key="leftBarButtonItem" image="brandeis-blue-25-cog" id="Pv3-47-fT5">
                             <connections>
-                                <segue destination="rFQ-ny-7OW" kind="presentation" id="BbG-nn-Gt1"/>
+                                <segue destination="rFQ-ny-7OW" kind="presentation" id="G7c-7H-8al"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1370,8 +1396,10 @@
     <resources>
         <image name="black-25-envelope" width="19" height="19"/>
         <image name="black-25-github-square" width="19" height="19"/>
-        <image name="black-25-info-circle" width="19" height="19"/>
+        <image name="black-25-info" width="19" height="19"/>
         <image name="black-25-legal" width="19" height="19"/>
+        <image name="black-25-paypal" width="19" height="19"/>
+        <image name="black-25-question" width="19" height="19"/>
         <image name="black-44-backward" width="33" height="33"/>
         <image name="black-44-calendar" width="33" height="33"/>
         <image name="black-44-comments-o" width="33" height="33"/>
@@ -1393,7 +1421,7 @@
         <image name="tangelo-25-heart" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KGY-cJ-UNU"/>
-        <segue reference="BbG-nn-Gt1"/>
+        <segue reference="5u9-ce-4fW"/>
+        <segue reference="ThT-rA-0Ul"/>
     </inferredMetricsTieBreakers>
 </document>

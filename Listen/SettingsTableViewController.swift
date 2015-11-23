@@ -15,6 +15,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     @IBOutlet weak var contactCell: UITableViewCell!
     @IBOutlet weak var flattrCell: UITableViewCell!
     @IBOutlet weak var reportBugCell: UITableViewCell!
+    @IBOutlet weak var paypalCell: UITableViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,10 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             self.presentViewController(svc, animated: true, completion: nil)
         } else if selectedCell == reportBugCell {
             let svc = SFSafariViewController(URL: NSURL(string: "https://www.github.com")!)
+            svc.delegate = self
+            self.presentViewController(svc, animated: true, completion: nil)
+        } else if selectedCell == paypalCell {
+            let svc = SFSafariViewController(URL: NSURL(string: "https://www.paypal.com")!)
             svc.delegate = self
             self.presentViewController(svc, animated: true, completion: nil)
         }
