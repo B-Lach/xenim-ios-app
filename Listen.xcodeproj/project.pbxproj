@@ -12,6 +12,7 @@
 		2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBC1BD52E480040100F /* Assets.xcassets */; };
 		2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */; };
 		2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECC71BD52EEA0040100F /* EventTableViewController.swift */; };
+		222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222913CC1C032221005C74BB /* SettingsTableViewController.swift */; };
 		222FB9FD1BF0E90A0007257A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222FB9FC1BF0E90A0007257A /* Player.swift */; };
 		2232FE541BDE20DA00BE368E /* __MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE401BDE20DA00BE368E /* __MarqueeLabel.m */; };
 		2232FE551BDE20DA00BE368E /* _LNWeakRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 2232FE421BDE20DA00BE368E /* _LNWeakRef.m */; };
@@ -47,6 +48,7 @@
 		2222ECBF1BD52E480040100F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2222ECC11BD52E480040100F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2222ECC71BD52EEA0040100F /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
+		222913CC1C032221005C74BB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		222FB9FC1BF0E90A0007257A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2232FE3F1BDE20DA00BE368E /* __MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __MarqueeLabel.h; sourceTree = "<group>"; };
 		2232FE401BDE20DA00BE368E /* __MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __MarqueeLabel.m; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				22DAD4981BFCC26600B3043E /* Localizable.strings */,
 				22DAD4931BFCC26500B3043E /* InfoPlist.strings */,
 				2222ECB91BD52E480040100F /* Main.storyboard */,
+				222913CC1C032221005C74BB /* SettingsTableViewController.swift */,
 				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
 				2291D89C1BDF956B00CB6536 /* FavoritesTableViewController.swift */,
 				2291D89E1BDF966900CB6536 /* FavoriteTableViewCell.swift */,
@@ -361,6 +364,7 @@
 				229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */,
 				2232FE5C1BDE20DA00BE368E /* UIViewController+LNPopupSupportPrivate.m in Sources */,
 				2232FE5B1BDE20DA00BE368E /* UIViewController+LNPopupSupport.m in Sources */,
+				222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */,
 				222FB9FD1BF0E90A0007257A /* Player.swift in Sources */,
 				2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */,
 				2232FE551BDE20DA00BE368E /* _LNWeakRef.m in Sources */,
