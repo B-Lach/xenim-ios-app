@@ -306,6 +306,9 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     }
     
     func showEventInfo(event event: Event) {
+        // switch to event detail view
+        tabBarController?.selectedViewController = self.navigationController
+        
         // minify the player
         tabBarController?.closePopupAnimated(true, completion: nil)
         
