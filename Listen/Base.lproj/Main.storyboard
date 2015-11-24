@@ -617,13 +617,7 @@
                             <outlet property="delegate" destination="7oV-A3-8mm" id="FGK-6a-UXt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favorites" id="8uz-SL-DGJ">
-                        <barButtonItem key="leftBarButtonItem" image="brandeis-blue-25-cog" id="Pv3-47-fT5">
-                            <connections>
-                                <segue destination="rFQ-ny-7OW" kind="presentation" id="G7c-7H-8al"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Favorites" id="8uz-SL-DGJ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6zv-RS-JwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1510,7 +1504,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="tangelo-25-heart" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="G7c-7H-8al"/>
-        <segue reference="5u9-ce-4fW"/>
+        <segue reference="KGY-cJ-UNU"/>
     </inferredMetricsTieBreakers>
 </document>
