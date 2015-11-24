@@ -287,24 +287,27 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if let cell = sender as? EventTableViewCell {
-            if let destinationVC = segue.destinationViewController as? PodcastDetailViewController {
-                if let identifier = segue.identifier {
-                    switch identifier {
-                    case "PodcastDetail":
+        if let destinationVC = segue.destinationViewController as? PodcastDetailViewController {
+            if let identifier = segue.identifier {
+                switch identifier {
+                case "PodcastDetail":
+                    if let cell = sender as? EventTableViewCell {
                         destinationVC.event = cell.event
                         destinationVC.delegate = self
-                    default: break
+                    } else if let event = sender as? Event {
+                        destinationVC.event = event
+                        destinationVC.delegate = self
                     }
+                default: break
                 }
             }
         }
+        
     }
     
     func showEventInfo(event event: Event) {
-        //tabBarController?.dismissPopupBarAnimated(true, completion: nil)
+        // todo player should get minified here
+        performSegueWithIdentifier("PodcastDetail", sender: event)
     }
     
     @IBAction func dismissSettings(segue:UIStoryboardSegue) {
