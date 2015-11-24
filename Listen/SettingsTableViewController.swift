@@ -56,33 +56,42 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     }
     
     func sendMail() {
-        let emailTitle = "Test Email"
-        let messageBody = "This is a test email body"
-        let toRecipents = ["app@funkenstrahlen.de"]
-        
-        let mc: MFMailComposeViewController = MFMailComposeViewController()
-        mc.mailComposeDelegate = self
-        mc.setSubject(emailTitle)
-        mc.setMessageBody(messageBody, isHTML: false)
-        mc.setToRecipients(toRecipents)
-        
-        self.presentViewController(mc, animated: true, completion: nil)
+        if MFMailComposeViewController.canSendMail() {
+            let emailTitle = NSLocalizedString("settings_view_mail_title", value: "Listen Support", comment: "mail title for a new support mail message")
+            let messageBody = NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.", comment: "mail body for a new support mail message")
+            let toRecipents = ["app@funkenstrahlen.de"]
+            
+            let mc: MFMailComposeViewController = MFMailComposeViewController()
+            mc.mailComposeDelegate = self
+            mc.setSubject(emailTitle)
+            mc.setMessageBody(messageBody, isHTML: false)
+            mc.setToRecipients(toRecipents)
+            
+            self.presentViewController(mc, animated: true, completion: nil)
+        } else {
+            // show error message if device is not configured to send mail
+            let message = NSLocalizedString("settings_view_mail_not_supported_message", value: "Your device is not setup to send email.", comment: "the message shown to the user in an alert view if his device is not setup to send email")
+            showInfoMessage("Info", message: message)
+        }
     }
     
     func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError?) {
         switch result.rawValue {
-        case MFMailComposeResultCancelled.rawValue:
-            print("Mail cancelled")
-        case MFMailComposeResultSaved.rawValue:
-            print("Mail saved")
-        case MFMailComposeResultSent.rawValue:
-            print("Mail sent")
+        case MFMailComposeResultCancelled.rawValue: break
+        case MFMailComposeResultSaved.rawValue: break
+        case MFMailComposeResultSent.rawValue: break
         case MFMailComposeResultFailed.rawValue:
-            print("Mail sent failure: \(error?.localizedDescription)")
+            showInfoMessage("Mail sent failure", message: (error?.localizedDescription)!)
         default:
             break
         }
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func showInfoMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     /*

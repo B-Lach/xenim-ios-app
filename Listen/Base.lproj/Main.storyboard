@@ -1483,13 +1483,13 @@ In rare cases the audio format provided by the podcast show is not supported by 
         </scene>
     </scenes>
     <resources>
+        <image name="black-25-calendar" width="19" height="19"/>
         <image name="black-25-envelope" width="19" height="19"/>
         <image name="black-25-github-square" width="19" height="19"/>
         <image name="black-25-info" width="19" height="19"/>
         <image name="black-25-legal" width="19" height="19"/>
         <image name="black-25-paypal" width="19" height="19"/>
         <image name="black-25-question" width="19" height="19"/>
-        <image name="black-25-calendar" width="19" height="19"/>
         <image name="black-44-backward" width="33" height="33"/>
         <image name="black-44-comments-o" width="33" height="33"/>
         <image name="black-44-forward" width="33" height="33"/>
