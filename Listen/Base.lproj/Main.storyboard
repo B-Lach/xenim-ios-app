@@ -583,7 +583,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99D-Ge-NfZ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="832"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="871"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MYR-Bd-I21">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -627,6 +627,17 @@
                                                     <action selector="subscribePodcast" destination="jLW-Aw-Blu" eventType="touchUpInside" id="L5Q-yc-mcy"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdW-z8-0dX">
+                                                <rect key="frame" x="8" y="701" width="102" height="33"/>
+                                                <animations/>
+                                                <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Website" image="brandeis-blue-44-safari">
+                                                    <color key="titleColor" red="0.047058823530000002" green="0.37254901959999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="openPodcastWebsite" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Xo4-ov-woF"/>
+                                                </connections>
+                                            </button>
                                             <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-nc-qxN">
                                                 <rect key="frame" x="260" y="260" width="80" height="80"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DA6-02-k1q">
@@ -662,7 +673,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="KnY-GS-wgP"/>
                                                 </constraints>
-                                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next 3 scheduled events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G5Z-tP-zba">
+                                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next scheduled events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G5Z-tP-zba">
                                                     <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
@@ -671,7 +682,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpcomingEvent" textLabel="hVb-5H-N0P" imageView="qiz-Fg-8kM" style="IBUITableViewCellStyleDefault" id="qYU-SS-vTy">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpcomingEvent" textLabel="hVb-5H-N0P" detailTextLabel="Da8-yN-Q3y" imageView="qiz-Fg-8kM" style="IBUITableViewCellStyleSubtitle" id="qYU-SS-vTy">
                                                         <rect key="frame" x="0.0" y="72" width="584" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qYU-SS-vTy" id="aHU-w5-USV">
@@ -679,7 +690,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hVb-5H-N0P">
-                                                                    <rect key="frame" x="49" y="0.0" width="520" height="44"/>
+                                                                    <rect key="frame" x="49" y="5" width="35" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -691,6 +702,14 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <animations/>
                                                                 </imageView>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Da8-yN-Q3y">
+                                                                    <rect key="frame" x="49" y="25" width="41" height="14"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <animations/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <animations/>
                                                         </tableViewCellContentView>
@@ -699,17 +718,13 @@
                                                 </prototypes>
                                                 <sections/>
                                             </tableView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdW-z8-0dX">
-                                                <rect key="frame" x="8" y="701" width="102" height="33"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have this podcast marked as your favorite you will receive a push message each time the podcast show goes live." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdv-JE-bqu">
+                                                <rect key="frame" x="8" y="832" width="584" height="31"/>
                                                 <animations/>
-                                                <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Website" image="brandeis-blue-44-safari">
-                                                    <color key="titleColor" red="0.047058823530000002" green="0.37254901959999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="openPodcastWebsite" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Xo4-ov-woF"/>
-                                                </connections>
-                                            </button>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -728,6 +743,8 @@
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="leading" secondItem="PLU-zi-7Az" secondAttribute="trailing" constant="8" id="KFe-RF-KgA"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="PWw-km-8hN"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="TFL-VM-4l6"/>
+                                            <constraint firstAttribute="trailing" secondItem="pdv-JE-bqu" secondAttribute="trailing" constant="8" id="TIM-Ub-4IP"/>
+                                            <constraint firstItem="pdv-JE-bqu" firstAttribute="top" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="Tgz-1E-RVH"/>
                                             <constraint firstItem="W6b-nc-qxN" firstAttribute="centerX" secondItem="MYR-Bd-I21" secondAttribute="centerX" id="Xhe-Aq-hLm"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="centerY" secondItem="PLU-zi-7Az" secondAttribute="centerY" id="aX1-KJ-OSP"/>
                                             <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="bsy-1z-s21"/>
@@ -740,6 +757,8 @@
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="top" secondItem="99D-Ge-NfZ" secondAttribute="top" id="pBf-aN-B6H"/>
                                             <constraint firstAttribute="trailing" secondItem="MYR-Bd-I21" secondAttribute="trailing" id="rAF-s5-cem"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="636" id="sAJ-jx-eg2"/>
+                                            <constraint firstItem="pdv-JE-bqu" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="vWK-jy-Nsb"/>
+                                            <constraint firstAttribute="bottom" secondItem="pdv-JE-bqu" secondAttribute="bottom" constant="8" id="wPT-vA-v9F"/>
                                             <constraint firstAttribute="trailing" secondItem="sqw-7J-EQl" secondAttribute="trailing" constant="8" id="ytB-UT-P8F"/>
                                         </constraints>
                                         <variation key="default">
@@ -749,6 +768,7 @@
                                                 <exclude reference="FbG-Yn-N5c"/>
                                                 <exclude reference="oQs-6Y-ZhP"/>
                                                 <exclude reference="8hC-YQ-DjT"/>
+                                                <exclude reference="BNY-iS-bt7"/>
                                                 <exclude reference="bsy-1z-s21"/>
                                             </mask>
                                         </variation>
