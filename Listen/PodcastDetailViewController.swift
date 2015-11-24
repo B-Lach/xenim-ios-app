@@ -189,12 +189,30 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UpcomingEvent", forIndexPath: indexPath)
         
+        let event = upcomingEvents[indexPath.row]
+        let eventDate = event.livedate
+        
+        // format livedate
         let formatter = NSDateFormatter();
         formatter.locale = NSLocale.currentLocale()
-        formatter.dateStyle = .MediumStyle
-        formatter.timeStyle = .ShortStyle
+        formatter.setLocalizedDateFormatFromTemplate("EEEE dd.MM HH:mm")
+        
+        // calculate in how many days this event takes place
+        let cal = NSCalendar.currentCalendar()
+        let today = cal.startOfDayForDate(NSDate())
+        let diff = cal.components(NSCalendarUnit.Day,
+            fromDate: today,
+            toDate: eventDate,
+            options: NSCalendarOptions.WrapComponents )
 
-        cell.textLabel?.text = formatter.stringFromDate(upcomingEvents[indexPath.row].livedate)
+        // setup cell
+        cell.textLabel?.text = formatter.stringFromDate(eventDate)
+        if event.isToday() {
+            cell.detailTextLabel?.text = NSLocalizedString("Today", value: "Today", comment: "Today").lowercaseString
+        } else {
+            let diffDaysString = String(format: NSLocalizedString("podcast_detailview_diff_date_string", value: "in %d days", comment: "Tells the user in how many dates the event takes place. It is a formatted string like 'in %d days'."), diff.day)
+            cell.detailTextLabel?.text = diffDaysString
+        }
         return cell
     }
     

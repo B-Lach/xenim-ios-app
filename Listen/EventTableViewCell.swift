@@ -40,15 +40,12 @@ class EventTableViewCell: UITableViewCell {
             formatter.locale = NSLocale.currentLocale()
             
             if event.isToday() || event.isTomorrow() {
-                formatter.dateStyle = .NoStyle
-                formatter.timeStyle = .ShortStyle
+                formatter.setLocalizedDateFormatFromTemplate("HH:mm")
             } else if event.isThisWeek() {
                 // TODO: customize this style
-                formatter.dateStyle = .MediumStyle
-                formatter.timeStyle = .ShortStyle
-            }else {
-                formatter.dateStyle = .MediumStyle
-                formatter.timeStyle = .ShortStyle
+                formatter.setLocalizedDateFormatFromTemplate("EEEE HH:mm")
+            } else {
+                formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM HH:mm")
             }
             
             if event.isLive() {
@@ -68,8 +65,6 @@ class EventTableViewCell: UITableViewCell {
             
             updateProgressBar()
             updatePlayButton()
-            
-            playButton.hidden = false
         }
     }
     

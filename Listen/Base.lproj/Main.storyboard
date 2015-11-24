@@ -330,11 +330,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBC-zr-6KO">
-                                <rect key="frame" x="280" y="290" width="40" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBC-zr-6KO">
+                                <rect key="frame" x="281" y="290" width="39" height="20"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -777,16 +777,8 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v51-r4-3cg">
-                                                    <rect key="frame" x="20" y="147" width="33" height="33"/>
-                                                    <animations/>
-                                                    <state key="normal" image="black-44-comments-o"/>
-                                                    <connections>
-                                                        <action selector="openChat:" destination="Pke-AM-PdW" eventType="touchUpInside" id="CSu-oh-cHO"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HO4-M2-zcL">
-                                                    <rect key="frame" x="284" y="147" width="33" height="33"/>
+                                                    <rect key="frame" x="20" y="147" width="33" height="33"/>
                                                     <animations/>
                                                     <state key="normal" image="black-44-info-circle"/>
                                                 </button>
@@ -801,18 +793,28 @@
                                                         <action selector="favorite:" destination="Pke-AM-PdW" eventType="touchUpInside" id="vy3-To-2sb"/>
                                                     </connections>
                                                 </button>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v51-r4-3cg">
+                                                    <rect key="frame" x="284" y="147" width="33" height="33"/>
+                                                    <animations/>
+                                                    <state key="normal" image="black-44-comments-o"/>
+                                                    <connections>
+                                                        <action selector="openChat:" destination="Pke-AM-PdW" eventType="touchUpInside" id="CSu-oh-cHO"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="HO4-M2-zcL" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="0Qn-E6-E6z"/>
+                                                <constraint firstItem="HO4-M2-zcL" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leading" constant="20" id="15J-in-eBA"/>
                                                 <constraint firstItem="R8H-SE-59N" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="3ey-Mk-8NJ"/>
-                                                <constraint firstItem="v51-r4-3cg" firstAttribute="centerY" secondItem="HO4-M2-zcL" secondAttribute="centerY" id="4kA-Xw-imx"/>
                                                 <constraint firstItem="WkI-6i-Qxv" firstAttribute="top" secondItem="pv3-L5-9Jg" secondAttribute="bottom" constant="4" id="62X-RW-AKE"/>
+                                                <constraint firstItem="v51-r4-3cg" firstAttribute="centerY" secondItem="zkG-r2-6yf" secondAttribute="centerY" id="66Z-qh-0CV"/>
+                                                <constraint firstItem="v51-r4-3cg" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="8Hi-9i-zYV"/>
                                                 <constraint firstItem="hEP-S7-LTS" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="A11-Iz-0Gq"/>
+                                                <constraint firstItem="HO4-M2-zcL" firstAttribute="centerY" secondItem="zkG-r2-6yf" secondAttribute="centerY" id="C36-5I-8Fc"/>
                                                 <constraint firstItem="pv3-L5-9Jg" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="H8E-Z7-hnD"/>
                                                 <constraint firstItem="R8H-SE-59N" firstAttribute="height" secondItem="hEP-S7-LTS" secondAttribute="height" id="HFn-Ar-Ojj"/>
-                                                <constraint firstItem="v51-r4-3cg" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leading" constant="20" id="JpC-9Q-p87"/>
                                                 <constraint firstItem="gfM-Ve-lgr" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" id="KgL-ji-g5w"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="WkI-6i-Qxv" secondAttribute="trailing" id="Kuo-Su-Hx1"/>
                                                 <constraint firstItem="gfM-Ve-lgr" firstAttribute="height" secondItem="hEP-S7-LTS" secondAttribute="height" id="LUl-Ma-vaG"/>
@@ -820,11 +822,8 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="pv3-L5-9Jg" secondAttribute="trailing" id="SJK-0A-3LB"/>
                                                 <constraint firstItem="R8H-SE-59N" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" multiplier="3:6" id="Ud5-zk-a6k"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="VE3-st-oRg"/>
-                                                <constraint firstItem="zkG-r2-6yf" firstAttribute="centerY" secondItem="HO4-M2-zcL" secondAttribute="centerY" id="VOk-uw-xjK"/>
                                                 <constraint firstItem="hEP-S7-LTS" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="auw-lc-27f"/>
-                                                <constraint firstItem="HO4-M2-zcL" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" id="fwB-bf-dqe"/>
                                                 <constraint firstItem="R8H-SE-59N" firstAttribute="height" secondItem="hEP-S7-LTS" secondAttribute="height" id="kWT-X2-SNg"/>
-                                                <constraint firstAttribute="bottom" secondItem="HO4-M2-zcL" secondAttribute="bottom" constant="20" id="mtl-Bd-ntd"/>
                                                 <constraint firstItem="gfM-Ve-lgr" firstAttribute="width" secondItem="hEP-S7-LTS" secondAttribute="height" multiplier="33:25" id="njd-Nb-wDS"/>
                                                 <constraint firstItem="pv3-L5-9Jg" firstAttribute="centerY" secondItem="Ioc-ne-Ddp" secondAttribute="centerY" multiplier="1:3" id="nw9-aE-Tr8"/>
                                                 <constraint firstItem="pv3-L5-9Jg" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leadingMargin" id="oe2-bZ-tfI"/>
@@ -832,11 +831,12 @@
                                                 <constraint firstItem="WkI-6i-Qxv" firstAttribute="leading" secondItem="Ioc-ne-Ddp" secondAttribute="leadingMargin" id="siY-Xa-Y7g"/>
                                                 <constraint firstAttribute="trailing" secondItem="zkG-r2-6yf" secondAttribute="trailing" constant="20" id="sip-df-RVa"/>
                                                 <constraint firstItem="gfM-Ve-lgr" firstAttribute="centerX" secondItem="Ioc-ne-Ddp" secondAttribute="centerX" multiplier="1.5:1" id="xUT-G3-NfN"/>
+                                                <constraint firstAttribute="bottom" secondItem="HO4-M2-zcL" secondAttribute="bottom" constant="20" id="z6L-PL-7Ue"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="kWT-X2-SNg"/>
                                                     <exclude reference="0Qn-E6-E6z"/>
+                                                    <exclude reference="kWT-X2-SNg"/>
                                                     <exclude reference="RT1-bY-0gi"/>
                                                 </mask>
                                             </variation>
@@ -905,7 +905,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99D-Ge-NfZ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="808"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="871"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MYR-Bd-I21">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -939,7 +939,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETv-v4-8gG">
-                                                <rect key="frame" x="118" y="689" width="118" height="33"/>
+                                                <rect key="frame" x="118" y="701" width="118" height="33"/>
                                                 <animations/>
                                                 <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Subscribe" image="brandeis-blue-44-rss-square">
@@ -947,6 +947,17 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="subscribePodcast" destination="jLW-Aw-Blu" eventType="touchUpInside" id="L5Q-yc-mcy"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdW-z8-0dX">
+                                                <rect key="frame" x="8" y="701" width="102" height="33"/>
+                                                <animations/>
+                                                <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Website" image="brandeis-blue-44-safari">
+                                                    <color key="titleColor" red="0.047058823530000002" green="0.37254901959999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="openPodcastWebsite" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Xo4-ov-woF"/>
                                                 </connections>
                                             </button>
                                             <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-nc-qxN">
@@ -978,22 +989,22 @@
                                                 <blurEffect style="light"/>
                                             </visualEffectView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="asS-WH-Vzg">
-                                                <rect key="frame" x="8" y="730" width="584" height="70"/>
+                                                <rect key="frame" x="8" y="754" width="584" height="70"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="KnY-GS-wgP"/>
                                                 </constraints>
-                                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Livedates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G5Z-tP-zba">
+                                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next scheduled events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G5Z-tP-zba">
                                                     <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpcomingEvent" textLabel="hVb-5H-N0P" imageView="qiz-Fg-8kM" style="IBUITableViewCellStyleDefault" id="qYU-SS-vTy">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpcomingEvent" textLabel="hVb-5H-N0P" detailTextLabel="Da8-yN-Q3y" imageView="qiz-Fg-8kM" style="IBUITableViewCellStyleSubtitle" id="qYU-SS-vTy">
                                                         <rect key="frame" x="0.0" y="72" width="584" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qYU-SS-vTy" id="aHU-w5-USV">
@@ -1001,18 +1012,26 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hVb-5H-N0P">
-                                                                    <rect key="frame" x="63" y="0.0" width="506" height="44"/>
+                                                                    <rect key="frame" x="49" y="5" width="35" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-44-calendar" id="qiz-Fg-8kM">
-                                                                    <rect key="frame" x="15" y="5" width="33" height="33"/>
+                                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-calendar" id="qiz-Fg-8kM">
+                                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <animations/>
                                                                 </imageView>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Da8-yN-Q3y">
+                                                                    <rect key="frame" x="49" y="25" width="41" height="14"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <animations/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <animations/>
                                                         </tableViewCellContentView>
@@ -1021,17 +1040,13 @@
                                                 </prototypes>
                                                 <sections/>
                                             </tableView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdW-z8-0dX">
-                                                <rect key="frame" x="8" y="689" width="102" height="33"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have this podcast marked as your favorite you will receive a push message each time the podcast show goes live." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdv-JE-bqu">
+                                                <rect key="frame" x="8" y="832" width="584" height="31"/>
                                                 <animations/>
-                                                <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Website" image="brandeis-blue-44-safari">
-                                                    <color key="titleColor" red="0.047058823530000002" green="0.37254901959999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="openPodcastWebsite" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Xo4-ov-woF"/>
-                                                </connections>
-                                            </button>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1041,7 +1056,7 @@
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="20" id="6bg-J4-CTb"/>
                                             <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="8hC-YQ-DjT"/>
                                             <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="BNY-iS-bt7"/>
-                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="GdW-z8-0dX" secondAttribute="bottom" constant="8" id="Cxj-DN-mO5"/>
+                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="GdW-z8-0dX" secondAttribute="bottom" constant="20" id="Cxj-DN-mO5"/>
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="top" secondItem="PLU-zi-7Az" secondAttribute="bottom" constant="8" id="DKv-On-Zxq"/>
                                             <constraint firstAttribute="bottom" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="FbG-Yn-N5c"/>
                                             <constraint firstItem="asS-WH-Vzg" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="G44-zf-EeD"/>
@@ -1050,6 +1065,8 @@
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="leading" secondItem="PLU-zi-7Az" secondAttribute="trailing" constant="8" id="KFe-RF-KgA"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="PWw-km-8hN"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="TFL-VM-4l6"/>
+                                            <constraint firstAttribute="trailing" secondItem="pdv-JE-bqu" secondAttribute="trailing" constant="8" id="TIM-Ub-4IP"/>
+                                            <constraint firstItem="pdv-JE-bqu" firstAttribute="top" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="Tgz-1E-RVH"/>
                                             <constraint firstItem="W6b-nc-qxN" firstAttribute="centerX" secondItem="MYR-Bd-I21" secondAttribute="centerX" id="Xhe-Aq-hLm"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="centerY" secondItem="PLU-zi-7Az" secondAttribute="centerY" id="aX1-KJ-OSP"/>
                                             <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="bsy-1z-s21"/>
@@ -1058,10 +1075,12 @@
                                             <constraint firstItem="ETv-v4-8gG" firstAttribute="leading" secondItem="GdW-z8-0dX" secondAttribute="trailing" constant="8" id="kOy-5C-QTe"/>
                                             <constraint firstItem="GdW-z8-0dX" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="ngY-PR-UTT"/>
                                             <constraint firstAttribute="bottom" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="oQs-6Y-ZhP"/>
-                                            <constraint firstItem="GdW-z8-0dX" firstAttribute="top" secondItem="sqw-7J-EQl" secondAttribute="bottom" constant="8" id="p29-Lp-Iwq"/>
+                                            <constraint firstItem="GdW-z8-0dX" firstAttribute="top" secondItem="sqw-7J-EQl" secondAttribute="bottom" constant="20" id="p29-Lp-Iwq"/>
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="top" secondItem="99D-Ge-NfZ" secondAttribute="top" id="pBf-aN-B6H"/>
                                             <constraint firstAttribute="trailing" secondItem="MYR-Bd-I21" secondAttribute="trailing" id="rAF-s5-cem"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="636" id="sAJ-jx-eg2"/>
+                                            <constraint firstItem="pdv-JE-bqu" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="vWK-jy-Nsb"/>
+                                            <constraint firstAttribute="bottom" secondItem="pdv-JE-bqu" secondAttribute="bottom" constant="8" id="wPT-vA-v9F"/>
                                             <constraint firstAttribute="trailing" secondItem="sqw-7J-EQl" secondAttribute="trailing" constant="8" id="ytB-UT-P8F"/>
                                         </constraints>
                                         <variation key="default">
@@ -1071,6 +1090,7 @@
                                                 <exclude reference="FbG-Yn-N5c"/>
                                                 <exclude reference="oQs-6Y-ZhP"/>
                                                 <exclude reference="8hC-YQ-DjT"/>
+                                                <exclude reference="BNY-iS-bt7"/>
                                                 <exclude reference="bsy-1z-s21"/>
                                             </mask>
                                         </variation>
@@ -1469,8 +1489,8 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="black-25-legal" width="19" height="19"/>
         <image name="black-25-paypal" width="19" height="19"/>
         <image name="black-25-question" width="19" height="19"/>
+        <image name="black-25-calendar" width="19" height="19"/>
         <image name="black-44-backward" width="33" height="33"/>
-        <image name="black-44-calendar" width="33" height="33"/>
         <image name="black-44-comments-o" width="33" height="33"/>
         <image name="black-44-forward" width="33" height="33"/>
         <image name="black-44-info-circle" width="33" height="33"/>
