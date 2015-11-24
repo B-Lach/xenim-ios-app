@@ -306,11 +306,29 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     }
     
     func showEventInfo(event event: Event) {
-        // todo player should get minified here
-        performSegueWithIdentifier("PodcastDetail", sender: event)
+        // minify the player
+        tabBarController?.closePopupAnimated(true, completion: nil)
+        
+        if let podcastDetailVC = navigationController?.visibleViewController as? PodcastDetailViewController {
+            if podcastDetailVC.event != event {
+                // there is already a detail view open, but with the wrong event
+                // so we close it
+                performSegueWithIdentifier("UnwindDetail", sender: self)
+                // and open the correct one
+                performSegueWithIdentifier("PodcastDetail", sender: event)
+            }
+            // else the correct info is already present
+        } else {
+            // there is no detail view open yet, so just open it
+            performSegueWithIdentifier("PodcastDetail", sender: event)
+        }
     }
     
     @IBAction func dismissSettings(segue:UIStoryboardSegue) {
+        // do nothing
+    }
+    
+    @IBAction func unwindDetail(segue:UIStoryboardSegue) {
         // do nothing
     }
     

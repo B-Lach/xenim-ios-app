@@ -520,9 +520,11 @@
                     <connections>
                         <outlet property="filterFavoritesBarButtonItem" destination="IT3-va-4jo" id="2bO-Uy-6B3"/>
                         <outlet property="spinner" destination="5or-JL-Ff6" id="G89-Oz-e2n"/>
+                        <segue destination="nI6-Oz-9HW" kind="unwind" identifier="UnwindDetail" animates="NO" unwindAction="unwindDetail:" id="kHG-vL-ulh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAH-X7-5jG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="nI6-Oz-9HW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2024" y="364"/>
         </scene>
@@ -1507,6 +1509,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="tangelo-25-heart" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KGY-cJ-UNU"/>
+        <segue reference="5u9-ce-4fW"/>
     </inferredMetricsTieBreakers>
 </document>
