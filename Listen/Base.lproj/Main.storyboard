@@ -1165,11 +1165,9 @@
                         <outlet property="scrollView" destination="CtL-UK-Ihq" id="BnV-7c-zaw"/>
                         <outlet property="upcomingEventsHeightConstraint" destination="KnY-GS-wgP" id="UvR-Mh-Q6u"/>
                         <outlet property="upcomingEventsTableView" destination="asS-WH-Vzg" id="CFm-5N-gic"/>
-                        <segue destination="pOI-I3-cPz" kind="unwind" identifier="UnwindDetail" animates="NO" unwindAction="unwindDetail:" id="GbJ-8d-Ao4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5S3-Lj-YdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="pOI-I3-cPz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2811" y="705"/>
         </scene>

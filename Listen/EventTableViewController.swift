@@ -312,11 +312,11 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         // minify the player
         tabBarController?.closePopupAnimated(true, completion: nil)
         
-        if let podcastDetailVC = navigationController?.visibleViewController as? PodcastDetailViewController {
+        if let podcastDetailVC = self.navigationController?.visibleViewController as? PodcastDetailViewController {
             if podcastDetailVC.event != event {
                 // there is already a detail view open, but with the wrong event
                 // so we close it
-                podcastDetailVC.performSegueWithIdentifier("UnwindDetail", sender: self)
+                self.navigationController?.popViewControllerAnimated(false)
                 // and open the correct one
                 performSegueWithIdentifier("PodcastDetail", sender: event)
             }
@@ -328,10 +328,6 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     }
     
     @IBAction func dismissSettings(segue:UIStoryboardSegue) {
-        // do nothing
-    }
-    
-    @IBAction func unwindDetail(segue:UIStoryboardSegue) {
         // do nothing
     }
     
