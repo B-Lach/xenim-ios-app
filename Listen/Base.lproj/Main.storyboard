@@ -775,6 +775,9 @@
                                                     <rect key="frame" x="20" y="147" width="33" height="33"/>
                                                     <animations/>
                                                     <state key="normal" image="black-44-info-circle"/>
+                                                    <connections>
+                                                        <action selector="showEventInfo:" destination="Pke-AM-PdW" eventType="touchUpInside" id="unu-O4-G6f"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkG-r2-6yf">
                                                     <rect key="frame" x="547" y="147" width="33" height="33"/>

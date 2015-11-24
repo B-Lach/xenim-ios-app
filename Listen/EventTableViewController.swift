@@ -10,6 +10,7 @@ import UIKit
 
 protocol PlayerDelegator {
     func togglePlayPause(event event: Event)
+    func showEventInfo(event event: Event)
 }
 
 class EventTableViewController: UITableViewController, PlayerDelegator {
@@ -302,8 +303,12 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         }
     }
     
+    func showEventInfo(event event: Event) {
+        //tabBarController?.dismissPopupBarAnimated(true, completion: nil)
+    }
+    
     @IBAction func dismissSettings(segue:UIStoryboardSegue) {
-        
+        // do nothing
     }
     
     var playerViewController: PlayerViewController?
@@ -313,6 +318,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             playerViewController = storyboard?.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
         }
 
+        playerViewController!.delegate = self
         playerViewController!.event = event
         
         tabBarController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)

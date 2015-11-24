@@ -21,6 +21,7 @@ class PlayerViewController: UIViewController {
         }
     }
     var podcast: Podcast?
+    var delegate: PlayerDelegator?
 
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
@@ -89,6 +90,10 @@ class PlayerViewController: UIViewController {
         if let event = event {
             Favorites.toggle(slug: event.podcastSlug)
         }
+    }
+    
+    @IBAction func showEventInfo(sender: AnyObject) {
+        delegate?.showEventInfo(event: event)
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
