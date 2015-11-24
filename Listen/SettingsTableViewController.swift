@@ -37,15 +37,15 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         if selectedCell == contactCell {
             sendMail()
         } else if selectedCell == flattrCell {
-            let svc = SFSafariViewController(URL: NSURL(string: "https://www.flattr.com")!)
+            let svc = SFSafariViewController(URL: NSURL(string: "https://flattr.com/profile/i42n")!)
             svc.delegate = self
             self.presentViewController(svc, animated: true, completion: nil)
         } else if selectedCell == reportBugCell {
-            let svc = SFSafariViewController(URL: NSURL(string: "https://www.github.com")!)
+            let svc = SFSafariViewController(URL: NSURL(string: "https://github.com/funkenstrahlen/Listen/issues/new")!)
             svc.delegate = self
             self.presentViewController(svc, animated: true, completion: nil)
         } else if selectedCell == paypalCell {
-            let svc = SFSafariViewController(URL: NSURL(string: "https://www.paypal.com")!)
+            let svc = SFSafariViewController(URL: NSURL(string: "https://paypal.me/stefantrauth")!)
             svc.delegate = self
             self.presentViewController(svc, animated: true, completion: nil)
         }
