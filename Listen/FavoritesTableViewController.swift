@@ -84,6 +84,10 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     
+    @IBAction func dismissSettings(segue:UIStoryboardSegue) {
+        
+    }
+    
     
     // MARK: - Navigation
     
