@@ -1345,8 +1345,8 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-TQ-7Bs">
                                                 <rect key="frame" x="8" y="36" width="584" height="104"/>
                                                 <animations/>
-                                                <mutableString key="text">The list of events only shows the next 50 upcoming events. There is no live date available in the Hörsuppe calender for your favorite show in the near future. 
-It is therefore also possible that your favorite podcast show is not part of the Hörsuppe directory.</mutableString>
+                                                <string key="text">The list of events only shows the next 50 upcoming events. There is no live date available in the Hörsuppe calender for your favorite show in the near future. 
+It is therefore also possible that your favorite podcast show is not part of the Hörsuppe directory.</string>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
