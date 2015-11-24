@@ -313,7 +313,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             if podcastDetailVC.event != event {
                 // there is already a detail view open, but with the wrong event
                 // so we close it
-                performSegueWithIdentifier("UnwindDetail", sender: self)
+                podcastDetailVC.performSegueWithIdentifier("UnwindDetail", sender: self)
                 // and open the correct one
                 performSegueWithIdentifier("PodcastDetail", sender: event)
             }

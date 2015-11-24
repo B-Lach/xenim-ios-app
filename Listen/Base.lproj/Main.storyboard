@@ -520,11 +520,9 @@
                     <connections>
                         <outlet property="filterFavoritesBarButtonItem" destination="IT3-va-4jo" id="2bO-Uy-6B3"/>
                         <outlet property="spinner" destination="5or-JL-Ff6" id="G89-Oz-e2n"/>
-                        <segue destination="nI6-Oz-9HW" kind="unwind" identifier="UnwindDetail" animates="NO" unwindAction="unwindDetail:" id="kHG-vL-ulh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAH-X7-5jG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="nI6-Oz-9HW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2024" y="364"/>
         </scene>
@@ -1167,9 +1165,11 @@
                         <outlet property="scrollView" destination="CtL-UK-Ihq" id="BnV-7c-zaw"/>
                         <outlet property="upcomingEventsHeightConstraint" destination="KnY-GS-wgP" id="UvR-Mh-Q6u"/>
                         <outlet property="upcomingEventsTableView" destination="asS-WH-Vzg" id="CFm-5N-gic"/>
+                        <segue destination="pOI-I3-cPz" kind="unwind" identifier="UnwindDetail" animates="NO" unwindAction="unwindDetail:" id="GbJ-8d-Ao4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5S3-Lj-YdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="pOI-I3-cPz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2811" y="705"/>
         </scene>
