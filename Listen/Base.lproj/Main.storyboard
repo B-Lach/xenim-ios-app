@@ -583,7 +583,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99D-Ge-NfZ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="820"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="832"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MYR-Bd-I21">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -656,7 +656,7 @@
                                                 <blurEffect style="light"/>
                                             </visualEffectView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="asS-WH-Vzg">
-                                                <rect key="frame" x="8" y="742" width="584" height="70"/>
+                                                <rect key="frame" x="8" y="754" width="584" height="70"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -679,15 +679,15 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hVb-5H-N0P">
-                                                                    <rect key="frame" x="63" y="0.0" width="506" height="44"/>
+                                                                    <rect key="frame" x="49" y="0.0" width="520" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-44-calendar" id="qiz-Fg-8kM">
-                                                                    <rect key="frame" x="15" y="5" width="33" height="33"/>
+                                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-calendar" id="qiz-Fg-8kM">
+                                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <animations/>
                                                                 </imageView>
@@ -719,7 +719,7 @@
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="20" id="6bg-J4-CTb"/>
                                             <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="8hC-YQ-DjT"/>
                                             <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="BNY-iS-bt7"/>
-                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="GdW-z8-0dX" secondAttribute="bottom" constant="8" id="Cxj-DN-mO5"/>
+                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="GdW-z8-0dX" secondAttribute="bottom" constant="20" id="Cxj-DN-mO5"/>
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="top" secondItem="PLU-zi-7Az" secondAttribute="bottom" constant="8" id="DKv-On-Zxq"/>
                                             <constraint firstAttribute="bottom" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="FbG-Yn-N5c"/>
                                             <constraint firstItem="asS-WH-Vzg" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="G44-zf-EeD"/>
@@ -834,8 +834,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="black-25-calendar" width="19" height="19"/>
         <image name="black-44-backward" width="33" height="33"/>
-        <image name="black-44-calendar" width="33" height="33"/>
         <image name="black-44-comments-o" width="33" height="33"/>
         <image name="black-44-forward" width="33" height="33"/>
         <image name="black-44-info-circle" width="33" height="33"/>
