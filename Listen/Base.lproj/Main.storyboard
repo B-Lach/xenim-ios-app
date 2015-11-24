@@ -1510,7 +1510,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="tangelo-25-heart" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="G7c-7H-8al"/>
         <segue reference="5u9-ce-4fW"/>
-        <segue reference="ThT-rA-0Ul"/>
     </inferredMetricsTieBreakers>
 </document>
