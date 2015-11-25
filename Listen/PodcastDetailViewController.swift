@@ -7,11 +7,14 @@
 //
 
 import UIKit
-import SafariServices
 
-class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SFSafariViewControllerDelegate {
+class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var podcast: Podcast?
+    var podcast: Podcast? {
+        didSet {
+            interactionTableViewController?.podcast = podcast
+        }
+    }
     var event: Event?
     var upcomingEvents = [Event]()
     
@@ -24,7 +27,9 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var playButtonEffectView: UIVisualEffectView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    var interactionTableViewController: PodcastInteractTableViewController?
     @IBOutlet weak var upcomingEventsHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var favoriteButton: UIButton!
     
     @IBOutlet weak var upcomingEventsTableView: UITableView! {
@@ -43,6 +48,7 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
         playButtonEffectView.layer.masksToBounds = true
+        
         updateUI()
     }
     
@@ -127,45 +133,6 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    @IBAction func openPodcastWebsite() {
-        if let podcast = podcast {
-            let svc = SFSafariViewController(URL: podcast.url)
-            svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
-        }
-    }
-    
-    func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    @IBAction func subscribePodcast() {
-        if let podcast = self.podcast {
-            let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
-            
-            // create one option for each podcast client
-            for client in podcast.subscribeClients {
-                let clientName = client.0
-                let subscribeURL = client.1
-                
-                // only show the option if the podcast client is installed which reacts to this URL
-                if UIApplication.sharedApplication().canOpenURL(subscribeURL) {
-                    let action = UIAlertAction(title: clientName, style: .Default, handler: { (alert: UIAlertAction!) -> Void in
-                        UIApplication.sharedApplication().openURL(subscribeURL)
-                    })
-                    optionMenu.addAction(action)
-                }
-            }
-            
-            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
-                (alert: UIAlertAction!) -> Void in
-            })
-            optionMenu.addAction(cancelAction)
-            
-            self.presentViewController(optionMenu, animated: true, completion: nil)
-        }
-    }
-    
     @IBAction func playEvent(sender: AnyObject) {
         if let event = event {
             if let delegate = self.delegate {
@@ -224,6 +191,14 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
             podcastSlug = event.podcastSlug
         }
         Favorites.toggle(slug: podcastSlug)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "embed_tableview" {
+            if let tableViewController = segue.destinationViewController as? PodcastInteractTableViewController {
+                interactionTableViewController = tableViewController
+            }
+        }
     }
     
     // MARK: notifications
