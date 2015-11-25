@@ -16,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
+        setupPushNotifications(application, launchOptions: launchOptions)
+        return true
+    }
+    
+    func setupPushNotifications(application: UIApplication, launchOptions: [NSObject: AnyObject]?) {
         Parse.setApplicationId("8MWfUM4grO3NqKBxXqgxZ61JblY6PtbgrcM0d4f2",
             clientKey: "fymCS10s2tuBBS0GjBKxYoPXcH7pwUaW6BPlyo6I")
         // Register for Push Notitications
@@ -40,10 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
         } else {
+            // this is for devices without ios9
             application.registerForRemoteNotificationTypes([.Badge, .Alert, .Sound])
         }
-        
-        return true
     }
     
     
