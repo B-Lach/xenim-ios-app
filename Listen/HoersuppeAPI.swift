@@ -30,14 +30,14 @@ class HoersuppeAPI {
                             
                             let eventJSON = json["data"][i]
                             
-                            let duration = eventJSON["duration"].string!
-                            let livedate = eventJSON["liveDate"].string!
-                            let imageurl = eventJSON["imageUrl"].string!
-                            let slug = eventJSON["podcast"].string!
-                            let description = eventJSON["description"].string!.trim()
-                            let streamurl = eventJSON["streamUrl"].string!
-                            let title = eventJSON["eventTitle"].string!.trim()
-                            let url = eventJSON["url"].string!
+                            let duration = eventJSON["duration"].stringValue
+                            let livedate = eventJSON["liveDate"].stringValue
+                            let imageurl = eventJSON["imageUrl"].stringValue
+                            let slug = eventJSON["podcast"].stringValue
+                            let description = eventJSON["description"].stringValue.trim()
+                            let streamurl = eventJSON["streamUrl"].stringValue
+                            let title = eventJSON["eventTitle"].stringValue.trim()
+                            let url = eventJSON["url"].stringValue
                             
                             if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: imageurl, podcastDescription: description, title: title, url: url) {
                                 events.append(event)
@@ -63,19 +63,19 @@ class HoersuppeAPI {
                     let json = JSON(data: responseData)
                     let podcastJSON = json["data"]
                     
-                    let name = podcastJSON["title"].string!.trim()
-                    let subtitle = podcastJSON["subtitle"].string!.trim()
-                    let url = podcastJSON["url"].string!
-                    let feedurl = podcastJSON["feedurl"].string!
-                    let imageurl = podcastJSON["imageurl"].string!
-                    let slug = podcastJSON["slug"].string!
-                    let description = podcastJSON["description"].string!.trim()
-                    let chatServer = podcastJSON["chat_server"].string!
-                    let chatChannel = podcastJSON["chat_channel"].string!
-                    let webchatUrl = podcastJSON["chat_url"].string!
-                    let twitterUsername = podcastJSON["contact"]["twitter"].string!
-                    let email = podcastJSON["contact"]["email"].string!
-                    let flattrID = podcastJSON["flattrid"].string!
+                    let name = podcastJSON["title"].stringValue.trim()
+                    let subtitle = podcastJSON["subtitle"].stringValue.trim()
+                    let url = podcastJSON["url"].stringValue
+                    let feedurl = podcastJSON["feedurl"].stringValue
+                    let imageurl = podcastJSON["imageurl"].stringValue
+                    let slug = podcastJSON["slug"].stringValue
+                    let description = podcastJSON["description"].stringValue.trim()
+                    let chatServer = podcastJSON["chat_server"].stringValue
+                    let chatChannel = podcastJSON["chat_channel"].stringValue
+                    let webchatUrl = podcastJSON["chat_url"].stringValue
+                    let twitterUsername = podcastJSON["contact"]["twitter"].stringValue
+                    let email = podcastJSON["contact"]["email"].stringValue
+                    let flattrID = podcastJSON["flattrid"].stringValue
                     
                     if let podcast = Podcast(name: name, subtitle: subtitle, url: url, feedurl: feedurl, imageurl: imageurl, slug: slug, podcastDescription: description, chatServer: chatServer, chatChannel: chatChannel, webchatUrl: webchatUrl, twitterUsername: twitterUsername, email: email, flattrID: flattrID) {
                         onComplete(podcast: podcast)
@@ -105,12 +105,12 @@ class HoersuppeAPI {
                             
                             // important: there is no description or imageurl in this API call response!
                             
-                            let duration = eventJSON["duration"].string!
-                            let livedate = eventJSON["livedate"].string!
-                            let slug = eventJSON["podcast"].string!
-                            let streamurl = eventJSON["streamurl"].string!
-                            let title = eventJSON["title"].string!.trim()
-                            let url = eventJSON["url"].string!
+                            let duration = eventJSON["duration"].stringValue
+                            let livedate = eventJSON["livedate"].stringValue
+                            let slug = eventJSON["podcast"].stringValue
+                            let streamurl = eventJSON["streamurl"].stringValue
+                            let title = eventJSON["title"].stringValue.trim()
+                            let url = eventJSON["url"].stringValue
                             
                             // TODO imageurl fix, as this is not how this initializer should be used
                             
