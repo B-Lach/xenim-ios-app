@@ -902,7 +902,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99D-Ge-NfZ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="871"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1078"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MYR-Bd-I21">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -935,28 +935,6 @@
                                                     <action selector="favorite:" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Fa0-Ej-sTb"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETv-v4-8gG">
-                                                <rect key="frame" x="118" y="701" width="118" height="33"/>
-                                                <animations/>
-                                                <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Subscribe" image="brandeis-blue-44-rss-square">
-                                                    <color key="titleColor" red="0.047058823530000002" green="0.37254901959999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="subscribePodcast" destination="jLW-Aw-Blu" eventType="touchUpInside" id="L5Q-yc-mcy"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdW-z8-0dX">
-                                                <rect key="frame" x="8" y="701" width="102" height="33"/>
-                                                <animations/>
-                                                <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Website" image="brandeis-blue-44-safari">
-                                                    <color key="titleColor" red="0.047058823530000002" green="0.37254901959999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="openPodcastWebsite" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Xo4-ov-woF"/>
-                                                </connections>
-                                            </button>
                                             <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-nc-qxN">
                                                 <rect key="frame" x="260" y="260" width="80" height="80"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DA6-02-k1q">
@@ -986,11 +964,11 @@
                                                 <blurEffect style="light"/>
                                             </visualEffectView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="asS-WH-Vzg">
-                                                <rect key="frame" x="8" y="754" width="584" height="70"/>
+                                                <rect key="frame" x="8" y="689" width="584" height="70"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="70" id="KnY-GS-wgP"/>
+                                                    <constraint firstAttribute="height" constant="70" id="WuV-Ax-Ba0"/>
                                                 </constraints>
                                                 <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next scheduled events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G5Z-tP-zba">
                                                     <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
@@ -1037,13 +1015,23 @@
                                                 </prototypes>
                                                 <sections/>
                                             </tableView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have this podcast marked as your favorite you will receive a push message each time the podcast show goes live." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdv-JE-bqu">
-                                                <rect key="frame" x="8" y="832" width="584" height="31"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have this podcast marked as your favorite you will receive a push message each time the podcast show goes live." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdv-JE-bqu">
+                                                <rect key="frame" x="8" y="767" width="584" height="31"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zn3-Qw-pwZ">
+                                                <rect key="frame" x="8" y="806" width="584" height="264"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="264" id="EHu-TY-Czz"/>
+                                                </constraints>
+                                                <connections>
+                                                    <segue destination="2m6-V2-fvd" kind="embed" identifier="embed_tableview" id="xfp-J9-7ed"/>
+                                                </connections>
+                                            </containerView>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1051,42 +1039,35 @@
                                             <constraint firstItem="W6b-nc-qxN" firstAttribute="centerY" secondItem="MYR-Bd-I21" secondAttribute="centerY" id="0OI-fW-6z9"/>
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" id="0Te-7E-UDQ"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="20" id="6bg-J4-CTb"/>
-                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="8hC-YQ-DjT"/>
+                                            <constraint firstAttribute="bottom" secondItem="Zn3-Qw-pwZ" secondAttribute="bottom" constant="8" id="8X2-Kb-TFc"/>
+                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="9EU-d8-VfD"/>
                                             <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="BNY-iS-bt7"/>
-                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="GdW-z8-0dX" secondAttribute="bottom" constant="20" id="Cxj-DN-mO5"/>
+                                            <constraint firstAttribute="trailing" secondItem="Zn3-Qw-pwZ" secondAttribute="trailing" constant="8" id="Caw-Xz-qRI"/>
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="top" secondItem="PLU-zi-7Az" secondAttribute="bottom" constant="8" id="DKv-On-Zxq"/>
-                                            <constraint firstAttribute="bottom" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="FbG-Yn-N5c"/>
-                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="G44-zf-EeD"/>
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="JW7-4D-Llf"/>
-                                            <constraint firstAttribute="trailing" secondItem="asS-WH-Vzg" secondAttribute="trailing" constant="8" id="Jix-1Q-ceV"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="leading" secondItem="PLU-zi-7Az" secondAttribute="trailing" constant="8" id="KFe-RF-KgA"/>
+                                            <constraint firstItem="Zn3-Qw-pwZ" firstAttribute="top" secondItem="pdv-JE-bqu" secondAttribute="bottom" constant="8" id="OFp-Tu-QGN"/>
+                                            <constraint firstItem="pdv-JE-bqu" firstAttribute="top" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="Ohf-oI-udF"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="PWw-km-8hN"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="TFL-VM-4l6"/>
-                                            <constraint firstAttribute="trailing" secondItem="pdv-JE-bqu" secondAttribute="trailing" constant="8" id="TIM-Ub-4IP"/>
-                                            <constraint firstItem="pdv-JE-bqu" firstAttribute="top" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="Tgz-1E-RVH"/>
+                                            <constraint firstAttribute="trailing" secondItem="asS-WH-Vzg" secondAttribute="trailing" constant="8" id="Uwb-eN-HzL"/>
                                             <constraint firstItem="W6b-nc-qxN" firstAttribute="centerX" secondItem="MYR-Bd-I21" secondAttribute="centerX" id="Xhe-Aq-hLm"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="centerY" secondItem="PLU-zi-7Az" secondAttribute="centerY" id="aX1-KJ-OSP"/>
                                             <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="bsy-1z-s21"/>
+                                            <constraint firstAttribute="trailing" secondItem="pdv-JE-bqu" secondAttribute="trailing" constant="8" id="dT6-ED-C25"/>
+                                            <constraint firstItem="Zn3-Qw-pwZ" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="e9h-OX-XzW"/>
                                             <constraint firstAttribute="trailing" secondItem="fTO-Hw-zIA" secondAttribute="trailing" constant="8" id="eWy-3c-uJw"/>
-                                            <constraint firstItem="GdW-z8-0dX" firstAttribute="baseline" secondItem="ETv-v4-8gG" secondAttribute="baseline" id="iQZ-NR-dgG"/>
-                                            <constraint firstItem="ETv-v4-8gG" firstAttribute="leading" secondItem="GdW-z8-0dX" secondAttribute="trailing" constant="8" id="kOy-5C-QTe"/>
-                                            <constraint firstItem="GdW-z8-0dX" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="ngY-PR-UTT"/>
-                                            <constraint firstAttribute="bottom" secondItem="ETv-v4-8gG" secondAttribute="bottom" constant="8" id="oQs-6Y-ZhP"/>
-                                            <constraint firstItem="GdW-z8-0dX" firstAttribute="top" secondItem="sqw-7J-EQl" secondAttribute="bottom" constant="20" id="p29-Lp-Iwq"/>
+                                            <constraint firstItem="pdv-JE-bqu" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="jI4-DQ-2ZX"/>
+                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="sqw-7J-EQl" secondAttribute="bottom" constant="8" id="nXJ-Xm-R5A"/>
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="top" secondItem="99D-Ge-NfZ" secondAttribute="top" id="pBf-aN-B6H"/>
                                             <constraint firstAttribute="trailing" secondItem="MYR-Bd-I21" secondAttribute="trailing" id="rAF-s5-cem"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="636" id="sAJ-jx-eg2"/>
-                                            <constraint firstItem="pdv-JE-bqu" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="vWK-jy-Nsb"/>
-                                            <constraint firstAttribute="bottom" secondItem="pdv-JE-bqu" secondAttribute="bottom" constant="8" id="wPT-vA-v9F"/>
                                             <constraint firstAttribute="trailing" secondItem="sqw-7J-EQl" secondAttribute="trailing" constant="8" id="ytB-UT-P8F"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="TFL-VM-4l6"/>
                                                 <exclude reference="sAJ-jx-eg2"/>
-                                                <exclude reference="FbG-Yn-N5c"/>
-                                                <exclude reference="oQs-6Y-ZhP"/>
-                                                <exclude reference="8hC-YQ-DjT"/>
                                                 <exclude reference="BNY-iS-bt7"/>
                                                 <exclude reference="bsy-1z-s21"/>
                                             </mask>
@@ -1163,7 +1144,7 @@
                         <outlet property="podcastDescriptionLabel" destination="sqw-7J-EQl" id="hDz-RZ-G8V"/>
                         <outlet property="podcastNameLabel" destination="PLU-zi-7Az" id="F6U-UL-ITu"/>
                         <outlet property="scrollView" destination="CtL-UK-Ihq" id="BnV-7c-zaw"/>
-                        <outlet property="upcomingEventsHeightConstraint" destination="KnY-GS-wgP" id="UvR-Mh-Q6u"/>
+                        <outlet property="upcomingEventsHeightConstraint" destination="WuV-Ax-Ba0" id="oit-Jq-ORh"/>
                         <outlet property="upcomingEventsTableView" destination="asS-WH-Vzg" id="CFm-5N-gic"/>
                     </connections>
                 </viewController>
@@ -1478,6 +1459,221 @@ In rare cases the audio format provided by the podcast show is not supported by 
             </objects>
             <point key="canvasLocation" x="3611" y="-2547"/>
         </scene>
+        <!--Podcast Interact Table View Controller-->
+        <scene sceneID="uwA-eQ-R38">
+            <objects>
+                <tableViewController id="2m6-V2-fvd" customClass="PodcastInteractTableViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4bx-Lm-IPU">
+                        <rect key="frame" x="0.0" y="0.0" width="584" height="264"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="vBa-8R-1fx">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="f1E-9Z-jd4" imageView="l8D-JB-oOd" style="IBUITableViewCellStyleDefault" id="5ji-Ae-fy4">
+                                        <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5ji-Ae-fy4" id="JYT-Do-Ush">
+                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f1E-9Z-jd4">
+                                                    <rect key="frame" x="49" y="0.0" width="520" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="brandeis-blue-25-safari" id="l8D-JB-oOd">
+                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="suW-ga-gqb" detailTextLabel="BEa-ll-HDL" imageView="MeV-n2-dNJ" style="IBUITableViewCellStyleSubtitle" id="SWI-8a-ggH">
+                                        <rect key="frame" x="0.0" y="44" width="584" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SWI-8a-ggH" id="wcT-T1-OO9">
+                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="suW-ga-gqb">
+                                                    <rect key="frame" x="49" y="5" width="35" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="brandeis-blue-25-comments" id="MeV-n2-dNJ">
+                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Talk to creators and other listeners" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BEa-ll-HDL">
+                                                    <rect key="frame" x="49" y="25" width="183" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="VBj-wG-vw4" detailTextLabel="oqw-wL-ZKT" imageView="T9J-5s-NFP" style="IBUITableViewCellStyleSubtitle" id="9Rf-qz-dCB">
+                                        <rect key="frame" x="0.0" y="88" width="584" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Rf-qz-dCB" id="rDj-r5-kJz">
+                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Feedback" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VBj-wG-vw4">
+                                                    <rect key="frame" x="49" y="5" width="72" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="brandeis-blue-25-envelope" id="T9J-5s-NFP">
+                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send feedback to the podcast creators" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oqw-wL-ZKT">
+                                                    <rect key="frame" x="49" y="25" width="205" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="BKJ-xG-PoN" detailTextLabel="YPD-p1-6vI" imageView="s6e-Yn-Dte" style="IBUITableViewCellStyleSubtitle" id="hs4-JK-qc0">
+                                        <rect key="frame" x="0.0" y="132" width="584" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hs4-JK-qc0" id="JrC-A0-uhx">
+                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subscribe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BKJ-xG-PoN">
+                                                    <rect key="frame" x="49" y="5" width="74" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="brandeis-blue-25-rss-square" id="s6e-Yn-Dte">
+                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subscribe to this podcast in your favorite podcast client" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YPD-p1-6vI">
+                                                    <rect key="frame" x="49" y="25" width="294" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="FnL-SL-Hn8" imageView="1ic-JO-drz" style="IBUITableViewCellStyleDefault" id="hoF-Uq-awG">
+                                        <rect key="frame" x="0.0" y="176" width="584" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hoF-Uq-awG" id="cx6-E6-5jf">
+                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FnL-SL-Hn8">
+                                                    <rect key="frame" x="49" y="0.0" width="520" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="brandeis-blue-25-twitter-square" id="1ic-JO-drz">
+                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="teo-Vi-HMw" detailTextLabel="Lap-wb-Wec" imageView="IXF-KL-4yn" style="IBUITableViewCellStyleSubtitle" id="aCq-Md-iuE">
+                                        <rect key="frame" x="0.0" y="220" width="584" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aCq-Md-iuE" id="TaJ-QQ-5IM">
+                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Flattr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="teo-Vi-HMw">
+                                                    <rect key="frame" x="49" y="5" width="38" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="brandeis-blue-25-heart" id="IXF-KL-4yn">
+                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Support the content you love" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lap-wb-Wec">
+                                                    <rect key="frame" x="49" y="25" width="153" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="2m6-V2-fvd" id="c9P-1o-sPm"/>
+                            <outlet property="delegate" destination="2m6-V2-fvd" id="0EN-PO-COf"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="chatCell" destination="SWI-8a-ggH" id="osd-Ac-aqO"/>
+                        <outlet property="flattrCell" destination="aCq-Md-iuE" id="ugu-Nq-vmS"/>
+                        <outlet property="openWebsiteCell" destination="5ji-Ae-fy4" id="765-qf-5zf"/>
+                        <outlet property="sendMailCell" destination="9Rf-qz-dCB" id="SRs-D8-5cn"/>
+                        <outlet property="subscribeCell" destination="hs4-JK-qc0" id="DPh-A2-xNJ"/>
+                        <outlet property="twitterCell" destination="hoF-Uq-awG" id="krv-qq-V0s"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CrG-nH-tIL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3496" y="1023"/>
+        </scene>
     </scenes>
     <resources>
         <image name="black-25-calendar" width="19" height="19"/>
@@ -1495,11 +1691,15 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="black-44-star-o" width="33" height="33"/>
         <image name="brandeis-blue-25-calendar" width="19" height="19"/>
         <image name="brandeis-blue-25-cog" width="19" height="19"/>
+        <image name="brandeis-blue-25-comments" width="19" height="19"/>
+        <image name="brandeis-blue-25-envelope" width="19" height="19"/>
+        <image name="brandeis-blue-25-heart" width="19" height="19"/>
         <image name="brandeis-blue-25-play" width="19" height="19"/>
+        <image name="brandeis-blue-25-rss-square" width="19" height="19"/>
+        <image name="brandeis-blue-25-safari" width="19" height="19"/>
         <image name="brandeis-blue-25-star" width="19" height="19"/>
         <image name="brandeis-blue-25-star-o" width="19" height="19"/>
-        <image name="brandeis-blue-44-rss-square" width="33" height="33"/>
-        <image name="brandeis-blue-44-safari" width="33" height="33"/>
+        <image name="brandeis-blue-25-twitter-square" width="19" height="19"/>
         <image name="corn-25-star-o" width="19" height="19"/>
         <image name="corn-44-star" width="33" height="33"/>
         <image name="event_placeholder" width="420" height="420"/>
