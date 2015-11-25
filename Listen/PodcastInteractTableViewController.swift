@@ -19,6 +19,7 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     @IBOutlet weak var flattrCell: UITableViewCell!
     @IBOutlet weak var subscribeCell: UITableViewCell!
     @IBOutlet weak var twitterCell: UITableViewCell!
+    @IBOutlet weak var chatCell: UITableViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,18 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
             let svc = SFSafariViewController(URL: url)
             svc.delegate = self
             self.presentViewController(svc, animated: true, completion: nil)
+        }
+    }
+    
+    func openChat() {
+        if let podcast = podcast, let chatUrl = podcast.chatUrl, let webchatUrl = podcast.webchatUrl {
+            if UIApplication.sharedApplication().canOpenURL(chatUrl) {
+                // open associated app
+                UIApplication.sharedApplication().openURL(chatUrl)
+            } else {
+                // open webchat in safari
+                UIApplication.sharedApplication().openURL(webchatUrl)
+            }
         }
     }
     
@@ -132,6 +145,8 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
             sendMailToPodcast()
         } else if cell == flattrCell {
             openFlattr()
+        } else if cell == chatCell {
+            openChat()
         }
     }
 
