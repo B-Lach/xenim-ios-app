@@ -73,9 +73,11 @@ class HoersuppeAPI {
                     let chatServer = podcastJSON["chat_server"].string!
                     let chatChannel = podcastJSON["chat_channel"].string!
                     let webchatUrl = podcastJSON["chat_url"].string!
+                    let twitterUsername = podcastJSON["contact"]["twitter"].string!
+                    let email = podcastJSON["contact"]["email"].string!
+                    let flattrID = podcastJSON["flattrid"].string!
                     
-                    
-                    if let podcast = Podcast(name: name, subtitle: subtitle, url: url, feedurl: feedurl, imageurl: imageurl, slug: slug, podcastDescription: description, chatServer: chatServer, chatChannel: chatChannel, webchatUrl: webchatUrl) {
+                    if let podcast = Podcast(name: name, subtitle: subtitle, url: url, feedurl: feedurl, imageurl: imageurl, slug: slug, podcastDescription: description, chatServer: chatServer, chatChannel: chatChannel, webchatUrl: webchatUrl, twitterUsername: twitterUsername, email: email, flattrID: flattrID) {
                         onComplete(podcast: podcast)
                     } else {
                         onComplete(podcast: nil)
