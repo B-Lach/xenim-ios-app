@@ -13,6 +13,7 @@ class NextupEventsTableViewController: UITableViewController {
     var upcomingEvents = [Event]()
     var podcastSlug: String!
     let upcomingEventCount = 3
+    @IBOutlet weak var addToFavoritesInformationLabel: UILabel!
     
     override var preferredContentSize: CGSize {
         get {
@@ -26,6 +27,10 @@ class NextupEventsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Favorites.fetch().contains(podcastSlug) {
+            addToFavoritesInformationLabel.text = NSLocalizedString("nextup_events_popupview_information_label_if_favorite", value: "You will receive push notifications.", comment: "Message shown in nextup popup view controller as info message at the end of the table if the user has already added this podcast to his favorites. Text should be like 'You will receive push notifications'.")
+        }
         
         HoersuppeAPI.fetchPodcastNextLiveEvents(podcastSlug, count: upcomingEventCount) { (events) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in

@@ -1453,6 +1453,9 @@ In rare cases the audio format provided by the podcast show is not supported by 
                             <outlet property="delegate" destination="hij-9h-QtQ" id="sPD-Ru-QHr"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="addToFavoritesInformationLabel" destination="NLR-1P-bdQ" id="RIe-dC-lEp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="95r-Nc-iYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
