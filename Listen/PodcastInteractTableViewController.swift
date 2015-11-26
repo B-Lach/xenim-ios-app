@@ -150,15 +150,22 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
         }
     }
 
-
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        // do not allow segue to show nextup events popover if there is not podcast slug information available
+        if identifier == "ShowNextupEvents" && podcast == nil {
+            return false
+        }
+        return true
     }
-    */
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowNextupEvents" {
+            if let nextupEventsTableViewController = segue.destinationViewController as? NextupEventsTableViewController {
+                nextupEventsTableViewController.podcastSlug = podcast?.slug
+            }
+        }
+    }
 
 }

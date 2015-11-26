@@ -8,15 +8,15 @@
 
 import UIKit
 
-class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PodcastDetailViewController: UIViewController {
     
     var podcast: Podcast? {
         didSet {
+            // assign the podcast object to the tableview controller in the container view
             interactionTableViewController?.podcast = podcast
         }
     }
     var event: Event?
-    var upcomingEvents = [Event]()
     
     var delegate: PlayerDelegator?
     
@@ -28,16 +28,7 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     var interactionTableViewController: PodcastInteractTableViewController?
-    @IBOutlet weak var upcomingEventsHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var favoriteButton: UIButton!
-    
-    @IBOutlet weak var upcomingEventsTableView: UITableView! {
-        didSet {
-            upcomingEventsTableView.delegate = self
-            upcomingEventsTableView.dataSource = self
-        }
-    }
     
     override func viewDidLoad() {
         // LNPopupBarHeight is currently 40
@@ -78,17 +69,6 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
         updatePlayButton()
         updateFavoritesButton()
-        
-        HoersuppeAPI.fetchPodcastNextLiveEvents(podcastSlug, count: 3) { (events) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.upcomingEvents = events
-                self.upcomingEventsTableView.reloadData()
-    
-                self.upcomingEventsHeightConstraint.constant = self.upcomingEventsTableView.contentSize.height
-
-                self.contentView.setNeedsLayout()
-            })
-        }
         
         if podcast == nil {
             HoersuppeAPI.fetchPodcastDetail(podcastSlug, onComplete: { (podcast) -> Void in
@@ -139,48 +119,6 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 delegate.togglePlayPause(event: event)
             }
         }
-    }
-    
-    // MARK: - Table view data source
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return upcomingEvents.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("UpcomingEvent", forIndexPath: indexPath)
-        
-        let event = upcomingEvents[indexPath.row]
-        let eventDate = event.livedate
-        
-        // format livedate
-        let formatter = NSDateFormatter();
-        formatter.locale = NSLocale.currentLocale()
-        formatter.setLocalizedDateFormatFromTemplate("EEEE dd.MM HH:mm")
-        
-        // calculate in how many days this event takes place
-        let cal = NSCalendar.currentCalendar()
-        let today = cal.startOfDayForDate(NSDate())
-        let diff = cal.components(NSCalendarUnit.Day,
-            fromDate: today,
-            toDate: eventDate,
-            options: NSCalendarOptions.WrapComponents )
-
-        // setup cell
-        cell.textLabel?.text = formatter.stringFromDate(eventDate)
-        if event.isToday() {
-            cell.detailTextLabel?.text = NSLocalizedString("Today", value: "Today", comment: "Today").lowercaseString
-        } else {
-            let diffDaysString = String(format: NSLocalizedString("podcast_detailview_diff_date_string", value: "in %d days", comment: "Tells the user in how many dates the event takes place. It is a formatted string like 'in %d days'."), diff.day)
-            cell.detailTextLabel?.text = diffDaysString
-        }
-        return cell
     }
     
     @IBAction func favorite(sender: UIButton) {
