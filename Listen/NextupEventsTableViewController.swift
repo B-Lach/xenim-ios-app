@@ -16,7 +16,7 @@ class NextupEventsTableViewController: UITableViewController {
     
     override var preferredContentSize: CGSize {
         get {
-            return CGSizeMake(super.preferredContentSize.width, 3*44 + 50)
+            return CGSizeMake(super.preferredContentSize.width, 3*44 + 100)
             
 //            let height = CGFloat(upcomingEvents.count) * tableView.rowHeight
 //            return CGSize(width: super.preferredContentSize.width, height: height)
