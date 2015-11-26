@@ -13,6 +13,16 @@ class NextupEventsTableViewController: UITableViewController {
     var upcomingEvents = [Event]()
     var podcastSlug: String!
     let upcomingEventCount = 3
+    
+    override var preferredContentSize: CGSize {
+        get {
+            return CGSizeMake(super.preferredContentSize.width, 3*44 + 50)
+            
+//            let height = CGFloat(upcomingEvents.count) * tableView.rowHeight
+//            return CGSize(width: super.preferredContentSize.width, height: height)
+        }
+        set { super.preferredContentSize = newValue }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,7 +10,7 @@ import UIKit
 import SafariServices
 import MessageUI
 
-class PodcastInteractTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
+class PodcastInteractTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate, UIPopoverPresentationControllerDelegate {
     
     var podcast: Podcast?
 
@@ -149,6 +149,13 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
             openChat()
         }
     }
+    
+    // MARK: Popover
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        // prevent popover presentation style adaption on iphone, so it is not presented as a modal instead of a popover
+        return UIModalPresentationStyle.None
+    }
 
     // MARK: - Navigation
     
@@ -163,6 +170,9 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowNextupEvents" {
             if let nextupEventsTableViewController = segue.destinationViewController as? NextupEventsTableViewController {
+                if let popupController = nextupEventsTableViewController.popoverPresentationController {
+                    popupController.delegate = self
+                }
                 nextupEventsTableViewController.podcastSlug = podcast?.slug
             }
         }
