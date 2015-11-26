@@ -135,6 +135,9 @@ class PodcastDetailViewController: UIViewController {
         if segue.identifier == "embed_tableview" {
             if let tableViewController = segue.destinationViewController as? PodcastInteractTableViewController {
                 interactionTableViewController = tableViewController
+                if let podcast = podcast {
+                    interactionTableViewController!.podcast = podcast
+                }
             }
         }
     }
