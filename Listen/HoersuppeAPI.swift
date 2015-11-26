@@ -126,4 +126,27 @@ class HoersuppeAPI {
                 }
         }
     }
+    
+    static func fetchAllPodcasts(onComplete: (podcasts: [String:String]) -> Void) {
+        var podcasts = [String:String]()
+        let parameters = [
+            "action": "getPodcasts"
+        ]
+        Alamofire.request(.GET, url, parameters: parameters)
+            .responseJSON { response in
+                if let responseData = response.data {
+                    let json = JSON(data: responseData)
+                    let data = json["data"]
+                    if data != nil {
+                        for i in 0 ..< data.count {
+                            
+                            let podcast = json["data"][i]
+                            podcasts[podcast["slug"].stringValue] = podcast["title"].stringValue
+                        
+                        }
+                    }
+                    onComplete(podcasts: podcasts)
+                }
+        }
+    }
 }
