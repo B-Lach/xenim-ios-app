@@ -12,7 +12,11 @@ import MessageUI
 
 class PodcastInteractTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate, UIPopoverPresentationControllerDelegate {
     
-    var podcast: Podcast?
+    var podcast: Podcast? {
+        didSet {
+            hideUnavailableActions()
+        }
+    }
 
     @IBOutlet weak var openWebsiteCell: UITableViewCell!
     @IBOutlet weak var sendMailCell: UITableViewCell!
@@ -23,6 +27,33 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideUnavailableActions()
+    }
+    
+    func hideUnavailableActions() {
+        if let podcast = podcast {
+            if podcast.flattrURL == nil {
+                flattrCell?.textLabel?.textColor = UIColor.grayColor()
+                flattrCell?.detailTextLabel?.textColor = UIColor.grayColor()
+                flattrCell?.imageView?.image = UIImage(named: "steel-25-heart")
+            }
+            if podcast.chatUrl == nil {
+                chatCell?.textLabel?.textColor = UIColor.grayColor()
+                chatCell?.detailTextLabel?.textColor = UIColor.grayColor()
+                chatCell?.imageView?.image = UIImage(named: "steel-25-comments")
+            }
+            if podcast.twitterURL == nil {
+                twitterCell?.textLabel?.textColor = UIColor.grayColor()
+                twitterCell?.detailTextLabel?.textColor = UIColor.grayColor()
+                twitterCell?.imageView?.image = UIImage(named: "steel-25-twitter-square")
+            }
+            if podcast.email == nil {
+                sendMailCell?.textLabel?.textColor = UIColor.grayColor()
+                sendMailCell?.detailTextLabel?.textColor = UIColor.grayColor()
+                sendMailCell?.imageView?.image = UIImage(named: "steel-25-envelope")
+            }
+        }
+
     }
     
     func openPodcastWebsite() {
