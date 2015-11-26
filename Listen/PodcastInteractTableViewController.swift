@@ -168,12 +168,16 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowNextupEvents" {
-            if let nextupEventsTableViewController = segue.destinationViewController as? NextupEventsTableViewController {
-                if let popupController = nextupEventsTableViewController.popoverPresentationController {
-                    popupController.delegate = self
+        if let cell = sender as? UITableViewCell {
+            if segue.identifier == "ShowNextupEvents" {
+                if let nextupEventsTableViewController = segue.destinationViewController as? NextupEventsTableViewController {
+                    if let popupController = nextupEventsTableViewController.popoverPresentationController {
+                        popupController.delegate = self
+                        popupController.permittedArrowDirections = [.Down, .Up]
+                        popupController.sourceRect = cell.textLabel!.frame
+                    }
+                    nextupEventsTableViewController.podcastSlug = podcast?.slug
                 }
-                nextupEventsTableViewController.podcastSlug = podcast?.slug
             }
         }
     }
