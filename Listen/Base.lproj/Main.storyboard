@@ -1462,8 +1462,38 @@ In rare cases the audio format provided by the podcast show is not supported by 
                         <sections>
                             <tableViewSection id="vBa-8R-1fx">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="f1E-9Z-jd4" imageView="l8D-JB-oOd" style="IBUITableViewCellStyleDefault" id="5ji-Ae-fy4">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="rfj-cq-4If" imageView="W7M-WE-XeC" style="IBUITableViewCellStyleDefault" id="6w1-WT-Euz">
                                         <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6w1-WT-Euz" id="YQV-4l-wWs">
+                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Next scheduled shows" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rfj-cq-4If">
+                                                    <rect key="frame" x="49" y="0.0" width="520" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="brandeis-blue-25-calendar" id="W7M-WE-XeC">
+                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <segue destination="hij-9h-QtQ" kind="popoverPresentation" identifier="ShowNextupEvents" popoverAnchorView="6w1-WT-Euz" id="zp9-is-AfH">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="f1E-9Z-jd4" imageView="l8D-JB-oOd" style="IBUITableViewCellStyleDefault" id="5ji-Ae-fy4">
+                                        <rect key="frame" x="0.0" y="44" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5ji-Ae-fy4" id="JYT-Do-Ush">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1488,7 +1518,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="suW-ga-gqb" detailTextLabel="BEa-ll-HDL" imageView="MeV-n2-dNJ" style="IBUITableViewCellStyleSubtitle" id="SWI-8a-ggH">
-                                        <rect key="frame" x="0.0" y="44" width="584" height="44"/>
+                                        <rect key="frame" x="0.0" y="88" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SWI-8a-ggH" id="wcT-T1-OO9">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1521,7 +1551,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="VBj-wG-vw4" detailTextLabel="oqw-wL-ZKT" imageView="T9J-5s-NFP" style="IBUITableViewCellStyleSubtitle" id="9Rf-qz-dCB">
-                                        <rect key="frame" x="0.0" y="88" width="584" height="44"/>
+                                        <rect key="frame" x="0.0" y="132" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Rf-qz-dCB" id="rDj-r5-kJz">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1554,7 +1584,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="BKJ-xG-PoN" detailTextLabel="YPD-p1-6vI" imageView="s6e-Yn-Dte" style="IBUITableViewCellStyleSubtitle" id="hs4-JK-qc0">
-                                        <rect key="frame" x="0.0" y="132" width="584" height="44"/>
+                                        <rect key="frame" x="0.0" y="176" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hs4-JK-qc0" id="JrC-A0-uhx">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1587,7 +1617,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="FnL-SL-Hn8" imageView="1ic-JO-drz" style="IBUITableViewCellStyleDefault" id="hoF-Uq-awG">
-                                        <rect key="frame" x="0.0" y="176" width="584" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hoF-Uq-awG" id="cx6-E6-5jf">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1612,7 +1642,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="teo-Vi-HMw" detailTextLabel="Lap-wb-Wec" imageView="IXF-KL-4yn" style="IBUITableViewCellStyleSubtitle" id="aCq-Md-iuE">
-                                        <rect key="frame" x="0.0" y="220" width="584" height="44"/>
+                                        <rect key="frame" x="0.0" y="264" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aCq-Md-iuE" id="TaJ-QQ-5IM">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1643,36 +1673,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="rfj-cq-4If" imageView="W7M-WE-XeC" style="IBUITableViewCellStyleDefault" id="6w1-WT-Euz">
-                                        <rect key="frame" x="0.0" y="264" width="584" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6w1-WT-Euz" id="YQV-4l-wWs">
-                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Next scheduled shows" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rfj-cq-4If">
-                                                    <rect key="frame" x="49" y="0.0" width="520" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="brandeis-blue-25-calendar" id="W7M-WE-XeC">
-                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <animations/>
-                                                </imageView>
-                                            </subviews>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <connections>
-                                            <segue destination="hij-9h-QtQ" kind="popoverPresentation" identifier="ShowNextupEvents" popoverAnchorView="6w1-WT-Euz" id="zp9-is-AfH">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
