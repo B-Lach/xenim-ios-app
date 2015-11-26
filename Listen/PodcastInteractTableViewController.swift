@@ -96,7 +96,7 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
         if let podcast = podcast, let email = podcast.email {
             if MFMailComposeViewController.canSendMail() {
                 let emailTitle = NSLocalizedString("podcast_detailview_feedback_mail_title", value: "Feedback", comment: "the user can send a feedback mail to the podcast. this is the preset mail title.")
-                let messageBody = NSLocalizedString("podcast_detailview_feedback_mail_body", value: "", comment: "mail body for a new feedback mail message")
+                let messageBody = NSLocalizedString("podcast_detailview_feedback_mail_body", value: "Hello,\n", comment: "mail body for a new feedback mail message")
                 let toRecipents = [email]
                 
                 let mc: MFMailComposeViewController = MFMailComposeViewController()
