@@ -62,9 +62,10 @@ class Podcast : NSObject {
         self.subtitle = subtitle
         self.slug = slug
         self.podcastDescription = podcastDescription
-        self.email = email
-        self.twitterUsername = twitterUsername
-        self.flattrID = flattrID
+
+        self.email = email != "" ? email : nil
+        self.twitterUsername = twitterUsername != "" ? twitterUsername : nil
+        self.flattrID = flattrID != "" ? flattrID : nil
         
         if chatServer != "" && chatChannel != "" {
             self.chatUrl = NSURL(string: "irc://\(chatServer)/\(chatChannel)")
