@@ -632,7 +632,7 @@
         <!--Add Favorite-->
         <scene sceneID="mqd-3N-Q8V">
             <objects>
-                <tableViewController id="Tap-x2-5N3" sceneMemberID="viewController">
+                <tableViewController id="Tap-x2-5N3" customClass="AddFavoriteTableViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" id="UR8-eM-gfO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -645,7 +645,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PodcastCell" rowHeight="85" id="zUc-fG-eS6">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PodcastCell" rowHeight="85" id="zUc-fG-eS6" customClass="PodcastTableViewCell" customModule="Listen" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="136" width="600" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zUc-fG-eS6" id="BZb-It-dTh">
@@ -721,10 +721,13 @@
                     <navigationItem key="navigationItem" title="Add Favorite" id="1rl-9j-OAR">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EOm-I4-3aD">
                             <connections>
-                                <segue destination="1hn-L9-gaD" kind="unwind" unwindAction="cancelAddFavorite:" id="GVH-SQ-nta"/>
+                                <segue destination="1hn-L9-gaD" kind="unwind" identifier="CancelAddFavorite" unwindAction="cancelAddFavorite:" id="GVH-SQ-nta"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="1hn-L9-gaD" kind="unwind" identifier="DismissAddFavorite" unwindAction="dismissAddFavorite:" id="TzT-cv-EED"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I54-Ji-acM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1hn-L9-gaD" userLabel="Exit" sceneMemberID="exit"/>
