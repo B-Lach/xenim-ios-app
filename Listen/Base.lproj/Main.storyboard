@@ -638,15 +638,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="yZe-J3-8NF">
-                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <animations/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PodcastCell" rowHeight="85" id="zUc-fG-eS6" customClass="PodcastTableViewCell" customModule="Listen" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="136" width="600" height="85"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zUc-fG-eS6" id="BZb-It-dTh">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
@@ -671,6 +665,9 @@
                                             <rect key="frame" x="559" y="22" width="33" height="33"/>
                                             <animations/>
                                             <state key="normal" image="brandeis-blue-44-plus-circle"/>
+                                            <connections>
+                                                <action selector="addButtonPressed:" destination="zUc-fG-eS6" eventType="touchUpInside" id="2Lz-YZ-QQP"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <animations/>
@@ -686,9 +683,13 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="coverartImageView" destination="xVf-i5-faw" id="cAy-JD-6rC"/>
+                                    <outlet property="podcastNameLabel" destination="jXd-1h-OnC" id="LSY-MR-ley"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoResultsCell" textLabel="vnY-mw-wVw" imageView="XI5-bU-IdI" rowHeight="55" style="IBUITableViewCellStyleDefault" id="f0m-GL-Qw2">
-                                <rect key="frame" x="0.0" y="221" width="600" height="55"/>
+                                <rect key="frame" x="0.0" y="177" width="600" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f0m-GL-Qw2" id="Kyv-Hk-ObC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>

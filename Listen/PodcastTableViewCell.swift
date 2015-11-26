@@ -10,6 +10,21 @@ import UIKit
 
 class PodcastTableViewCell: UITableViewCell {
 
+    var podcast: Podcast?
+    var podcastName: String!
+    var podcastSlug: String! {
+        didSet {
+            podcastNameLabel?.text = podcastSlug
+        }
+    }
+    
+    @IBOutlet weak var podcastNameLabel: UILabel!
+    @IBOutlet weak var coverartImageView: UIImageView!
+    
+    
+    @IBAction func addButtonPressed(sender: AnyObject) {
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
