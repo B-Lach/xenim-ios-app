@@ -10,7 +10,7 @@ import UIKit
 import SafariServices
 import MessageUI
 
-class PodcastInteractTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
+class PodcastInteractTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate, UIPopoverPresentationControllerDelegate {
     
     var podcast: Podcast?
 
@@ -149,16 +149,37 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
             openChat()
         }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: Popover
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        // prevent popover presentation style adaption on iphone, so it is not presented as a modal instead of a popover
+        return UIModalPresentationStyle.None
     }
-    */
+
+    // MARK: - Navigation
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        // do not allow segue to show nextup events popover if there is not podcast slug information available
+        if identifier == "ShowNextupEvents" && podcast == nil {
+            return false
+        }
+        return true
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let cell = sender as? UITableViewCell {
+            if segue.identifier == "ShowNextupEvents" {
+                if let nextupEventsTableViewController = segue.destinationViewController as? NextupEventsTableViewController {
+                    if let popupController = nextupEventsTableViewController.popoverPresentationController {
+                        popupController.delegate = self
+                        popupController.permittedArrowDirections = [.Down, .Up]
+                        popupController.sourceRect = cell.textLabel!.frame
+                    }
+                    nextupEventsTableViewController.podcastSlug = podcast?.slug
+                }
+            }
+        }
+    }
 
 }

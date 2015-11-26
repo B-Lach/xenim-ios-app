@@ -902,7 +902,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99D-Ge-NfZ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1078"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1005"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MYR-Bd-I21">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -963,70 +963,11 @@
                                                 </constraints>
                                                 <blurEffect style="light"/>
                                             </visualEffectView>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="asS-WH-Vzg">
-                                                <rect key="frame" x="8" y="689" width="584" height="70"/>
-                                                <animations/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="70" id="WuV-Ax-Ba0"/>
-                                                </constraints>
-                                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next scheduled events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G5Z-tP-zba">
-                                                    <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpcomingEvent" textLabel="hVb-5H-N0P" detailTextLabel="Da8-yN-Q3y" imageView="qiz-Fg-8kM" style="IBUITableViewCellStyleSubtitle" id="qYU-SS-vTy">
-                                                        <rect key="frame" x="0.0" y="72" width="584" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qYU-SS-vTy" id="aHU-w5-USV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hVb-5H-N0P">
-                                                                    <rect key="frame" x="49" y="5" width="35" height="20"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <animations/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-calendar" id="qiz-Fg-8kM">
-                                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <animations/>
-                                                                </imageView>
-                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Da8-yN-Q3y">
-                                                                    <rect key="frame" x="49" y="25" width="41" height="14"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <animations/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <animations/>
-                                                        </tableViewCellContentView>
-                                                        <animations/>
-                                                    </tableViewCell>
-                                                </prototypes>
-                                                <sections/>
-                                            </tableView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have this podcast marked as your favorite you will receive a push message each time the podcast show goes live." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdv-JE-bqu">
-                                                <rect key="frame" x="8" y="767" width="584" height="31"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zn3-Qw-pwZ">
-                                                <rect key="frame" x="8" y="806" width="584" height="264"/>
+                                                <rect key="frame" x="8" y="689" width="584" height="308"/>
                                                 <animations/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="264" id="EHu-TY-Czz"/>
+                                                    <constraint firstAttribute="height" constant="308" id="EHu-TY-Czz"/>
                                                 </constraints>
                                                 <connections>
                                                     <segue destination="2m6-V2-fvd" kind="embed" identifier="embed_tableview" id="xfp-J9-7ed"/>
@@ -1040,25 +981,17 @@
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" id="0Te-7E-UDQ"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="20" id="6bg-J4-CTb"/>
                                             <constraint firstAttribute="bottom" secondItem="Zn3-Qw-pwZ" secondAttribute="bottom" constant="8" id="8X2-Kb-TFc"/>
-                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="9EU-d8-VfD"/>
-                                            <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="BNY-iS-bt7"/>
                                             <constraint firstAttribute="trailing" secondItem="Zn3-Qw-pwZ" secondAttribute="trailing" constant="8" id="Caw-Xz-qRI"/>
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="top" secondItem="PLU-zi-7Az" secondAttribute="bottom" constant="8" id="DKv-On-Zxq"/>
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="JW7-4D-Llf"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="leading" secondItem="PLU-zi-7Az" secondAttribute="trailing" constant="8" id="KFe-RF-KgA"/>
-                                            <constraint firstItem="Zn3-Qw-pwZ" firstAttribute="top" secondItem="pdv-JE-bqu" secondAttribute="bottom" constant="8" id="OFp-Tu-QGN"/>
-                                            <constraint firstItem="pdv-JE-bqu" firstAttribute="top" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="Ohf-oI-udF"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="PWw-km-8hN"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="TFL-VM-4l6"/>
-                                            <constraint firstAttribute="trailing" secondItem="asS-WH-Vzg" secondAttribute="trailing" constant="8" id="Uwb-eN-HzL"/>
                                             <constraint firstItem="W6b-nc-qxN" firstAttribute="centerX" secondItem="MYR-Bd-I21" secondAttribute="centerX" id="Xhe-Aq-hLm"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="centerY" secondItem="PLU-zi-7Az" secondAttribute="centerY" id="aX1-KJ-OSP"/>
-                                            <constraint firstAttribute="bottom" secondItem="asS-WH-Vzg" secondAttribute="bottom" constant="8" id="bsy-1z-s21"/>
-                                            <constraint firstAttribute="trailing" secondItem="pdv-JE-bqu" secondAttribute="trailing" constant="8" id="dT6-ED-C25"/>
+                                            <constraint firstItem="Zn3-Qw-pwZ" firstAttribute="top" secondItem="sqw-7J-EQl" secondAttribute="bottom" constant="8" id="c5l-vO-IUT"/>
                                             <constraint firstItem="Zn3-Qw-pwZ" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="e9h-OX-XzW"/>
                                             <constraint firstAttribute="trailing" secondItem="fTO-Hw-zIA" secondAttribute="trailing" constant="8" id="eWy-3c-uJw"/>
-                                            <constraint firstItem="pdv-JE-bqu" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="jI4-DQ-2ZX"/>
-                                            <constraint firstItem="asS-WH-Vzg" firstAttribute="top" secondItem="sqw-7J-EQl" secondAttribute="bottom" constant="8" id="nXJ-Xm-R5A"/>
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="top" secondItem="99D-Ge-NfZ" secondAttribute="top" id="pBf-aN-B6H"/>
                                             <constraint firstAttribute="trailing" secondItem="MYR-Bd-I21" secondAttribute="trailing" id="rAF-s5-cem"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="636" id="sAJ-jx-eg2"/>
@@ -1068,8 +1001,6 @@
                                             <mask key="constraints">
                                                 <exclude reference="TFL-VM-4l6"/>
                                                 <exclude reference="sAJ-jx-eg2"/>
-                                                <exclude reference="BNY-iS-bt7"/>
-                                                <exclude reference="bsy-1z-s21"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -1144,8 +1075,6 @@
                         <outlet property="podcastDescriptionLabel" destination="sqw-7J-EQl" id="hDz-RZ-G8V"/>
                         <outlet property="podcastNameLabel" destination="PLU-zi-7Az" id="F6U-UL-ITu"/>
                         <outlet property="scrollView" destination="CtL-UK-Ihq" id="BnV-7c-zaw"/>
-                        <outlet property="upcomingEventsHeightConstraint" destination="WuV-Ax-Ba0" id="oit-Jq-ORh"/>
-                        <outlet property="upcomingEventsTableView" destination="asS-WH-Vzg" id="CFm-5N-gic"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5S3-Lj-YdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1459,20 +1388,123 @@ In rare cases the audio format provided by the podcast show is not supported by 
             </objects>
             <point key="canvasLocation" x="3611" y="-2547"/>
         </scene>
+        <!--Nextup Events Table View Controller-->
+        <scene sceneID="Jkq-ci-pUO">
+            <objects>
+                <tableViewController id="hij-9h-QtQ" customClass="NextupEventsTableViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VzR-Ih-CvN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next scheduled shows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3ct-5M-rzx">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add this podcast to your favorites to receive push notifications" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NLR-1P-bdQ">
+                            <rect key="frame" x="0.0" y="116" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpcomingEvent" textLabel="AVA-VH-r5G" detailTextLabel="GN8-DU-uSD" imageView="YZl-QS-uCt" style="IBUITableViewCellStyleSubtitle" id="dcM-57-jIG">
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dcM-57-jIG" id="V3p-Cf-6NR">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AVA-VH-r5G">
+                                            <rect key="frame" x="49" y="5" width="35" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-calendar" id="YZl-QS-uCt">
+                                            <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                        </imageView>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GN8-DU-uSD">
+                                            <rect key="frame" x="49" y="25" width="41" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hij-9h-QtQ" id="pky-iD-Cli"/>
+                            <outlet property="delegate" destination="hij-9h-QtQ" id="sPD-Ru-QHr"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="addToFavoritesInformationLabel" destination="NLR-1P-bdQ" id="RIe-dC-lEp"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="95r-Nc-iYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3529" y="486"/>
+        </scene>
         <!--Podcast Interact Table View Controller-->
         <scene sceneID="uwA-eQ-R38">
             <objects>
                 <tableViewController id="2m6-V2-fvd" customClass="PodcastInteractTableViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4bx-Lm-IPU">
-                        <rect key="frame" x="0.0" y="0.0" width="584" height="264"/>
+                        <rect key="frame" x="0.0" y="0.0" width="584" height="308"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="vBa-8R-1fx">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="f1E-9Z-jd4" imageView="l8D-JB-oOd" style="IBUITableViewCellStyleDefault" id="5ji-Ae-fy4">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="rfj-cq-4If" imageView="W7M-WE-XeC" style="IBUITableViewCellStyleDefault" id="6w1-WT-Euz">
                                         <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6w1-WT-Euz" id="YQV-4l-wWs">
+                                            <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Next scheduled shows" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rfj-cq-4If">
+                                                    <rect key="frame" x="49" y="0.0" width="520" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="brandeis-blue-25-calendar" id="W7M-WE-XeC">
+                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <segue destination="hij-9h-QtQ" kind="popoverPresentation" identifier="ShowNextupEvents" popoverAnchorView="6w1-WT-Euz" id="zp9-is-AfH">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="f1E-9Z-jd4" imageView="l8D-JB-oOd" style="IBUITableViewCellStyleDefault" id="5ji-Ae-fy4">
+                                        <rect key="frame" x="0.0" y="44" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5ji-Ae-fy4" id="JYT-Do-Ush">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1496,8 +1528,8 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="suW-ga-gqb" detailTextLabel="BEa-ll-HDL" imageView="MeV-n2-dNJ" style="IBUITableViewCellStyleSubtitle" id="SWI-8a-ggH">
-                                        <rect key="frame" x="0.0" y="44" width="584" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="suW-ga-gqb" detailTextLabel="BEa-ll-HDL" imageView="MeV-n2-dNJ" style="IBUITableViewCellStyleSubtitle" id="SWI-8a-ggH">
+                                        <rect key="frame" x="0.0" y="88" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SWI-8a-ggH" id="wcT-T1-OO9">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1529,8 +1561,8 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="VBj-wG-vw4" detailTextLabel="oqw-wL-ZKT" imageView="T9J-5s-NFP" style="IBUITableViewCellStyleSubtitle" id="9Rf-qz-dCB">
-                                        <rect key="frame" x="0.0" y="88" width="584" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="VBj-wG-vw4" detailTextLabel="oqw-wL-ZKT" imageView="T9J-5s-NFP" style="IBUITableViewCellStyleSubtitle" id="9Rf-qz-dCB">
+                                        <rect key="frame" x="0.0" y="132" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Rf-qz-dCB" id="rDj-r5-kJz">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1562,8 +1594,8 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="BKJ-xG-PoN" detailTextLabel="YPD-p1-6vI" imageView="s6e-Yn-Dte" style="IBUITableViewCellStyleSubtitle" id="hs4-JK-qc0">
-                                        <rect key="frame" x="0.0" y="132" width="584" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="BKJ-xG-PoN" detailTextLabel="YPD-p1-6vI" imageView="s6e-Yn-Dte" style="IBUITableViewCellStyleSubtitle" id="hs4-JK-qc0">
+                                        <rect key="frame" x="0.0" y="176" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hs4-JK-qc0" id="JrC-A0-uhx">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1595,8 +1627,8 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="FnL-SL-Hn8" imageView="1ic-JO-drz" style="IBUITableViewCellStyleDefault" id="hoF-Uq-awG">
-                                        <rect key="frame" x="0.0" y="176" width="584" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="FnL-SL-Hn8" imageView="1ic-JO-drz" style="IBUITableViewCellStyleDefault" id="hoF-Uq-awG">
+                                        <rect key="frame" x="0.0" y="220" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hoF-Uq-awG" id="cx6-E6-5jf">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
@@ -1620,8 +1652,8 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="teo-Vi-HMw" detailTextLabel="Lap-wb-Wec" imageView="IXF-KL-4yn" style="IBUITableViewCellStyleSubtitle" id="aCq-Md-iuE">
-                                        <rect key="frame" x="0.0" y="220" width="584" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="teo-Vi-HMw" detailTextLabel="Lap-wb-Wec" imageView="IXF-KL-4yn" style="IBUITableViewCellStyleSubtitle" id="aCq-Md-iuE">
+                                        <rect key="frame" x="0.0" y="264" width="584" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aCq-Md-iuE" id="TaJ-QQ-5IM">
                                             <rect key="frame" x="0.0" y="0.0" width="584" height="43"/>
