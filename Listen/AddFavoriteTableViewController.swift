@@ -8,20 +8,29 @@
 
 import UIKit
 
-class AddFavoriteTableViewController: UITableViewController {
+class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpdating {
 
     var podcasts = [String:String]()
-    var orderedKeys = [String]()
+    var filteredPodcasts = [String]()
+    var orderedPodcasts = [String]()
+    var resultSearchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // add search bar
+        resultSearchController = UISearchController(searchResultsController: nil)
+        resultSearchController.searchResultsUpdater = self
+        resultSearchController.dimsBackgroundDuringPresentation = false
+        resultSearchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = resultSearchController.searchBar
         
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
 
         HoersuppeAPI.fetchAllPodcasts { (podcasts) -> Void in
             self.podcasts = podcasts
-            self.orderedKeys = Array(podcasts.keys).sort()
+            self.orderedPodcasts = Array(podcasts.keys).sort()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
             })
@@ -40,15 +49,26 @@ class AddFavoriteTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return max(1,podcasts.count)
+        if resultSearchController.active {
+            return max(1, filteredPodcasts.count)
+        }
+        return max(1, orderedPodcasts.count)
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if podcasts.count > 0 {
+        
+        let dataSource: [String]
+        if resultSearchController.active {
+            dataSource = filteredPodcasts
+        } else {
+            dataSource = orderedPodcasts
+        }
+        
+        if dataSource.count > 0 {
             if let cell = tableView.dequeueReusableCellWithIdentifier("PodcastCell", forIndexPath: indexPath) as? PodcastTableViewCell {
-                cell.podcastSlug = orderedKeys[indexPath.row]
-                cell.podcastName = podcasts[orderedKeys[indexPath.row]]
+                cell.podcastSlug = dataSource[indexPath.row]
+                cell.podcastName = podcasts[dataSource[indexPath.row]]
                 return cell
             }
         }
@@ -56,6 +76,24 @@ class AddFavoriteTableViewController: UITableViewController {
         return cell
     }
     
+    // MARK: search
+    
+    func filterContentForSearchText(searchText: String) {
+        // Filter the array using the filter method
+        self.filteredPodcasts = self.orderedPodcasts.filter({ (podcastSlug) -> Bool in
+            let podcastName = podcasts[podcastSlug]!.lowercaseString
+            let stringMatch = podcastName.rangeOfString(searchText.lowercaseString)
+            return stringMatch != nil
+        })
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContentForSearchText(searchText)
+            tableView.reloadData()
+        }
+
+    }
 
     /*
     // Override to support conditional editing of the table view.
