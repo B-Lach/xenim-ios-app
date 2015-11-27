@@ -150,6 +150,7 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
                 if let cell = sender as? PodcastTableViewCell {
                     if let podcast = cell.podcast {
                         dvc.podcast = podcast
+                        resultSearchController.active = false
                     }
                 }
             }
