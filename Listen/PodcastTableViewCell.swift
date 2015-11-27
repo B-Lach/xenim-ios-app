@@ -10,11 +10,28 @@ import UIKit
 
 class PodcastTableViewCell: UITableViewCell {
 
-    var podcast: Podcast?
-    var podcastName: String!
+    var podcast: Podcast? {
+        didSet {
+            if let url = podcast?.imageurl {
+                coverartImageView.af_setImageWithURL(url, placeholderImage: UIImage(named: "event_placeholder"))
+            }
+        }
+    }
+    var podcastName: String! {
+        didSet {
+            podcastNameLabel?.text = podcastName
+        }
+    }
     var podcastSlug: String! {
         didSet {
-            podcastNameLabel?.text = podcastSlug
+            coverartImageView.image = UIImage(named: "event_placeholder")
+            HoersuppeAPI.fetchPodcastDetail(podcastSlug) { (podcast) -> Void in
+                if let podcast = podcast {
+                    if podcast.slug == self.podcastSlug {
+                        self.podcast = podcast
+                    }
+                }
+            }
         }
     }
     

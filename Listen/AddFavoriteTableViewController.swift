@@ -44,7 +44,8 @@ class AddFavoriteTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if podcasts.count > 0 {
             if let cell = tableView.dequeueReusableCellWithIdentifier("PodcastCell", forIndexPath: indexPath) as? PodcastTableViewCell {
-                cell.podcastSlug = podcasts[orderedKeys[indexPath.row]]
+                cell.podcastSlug = orderedKeys[indexPath.row]
+                cell.podcastName = podcasts[orderedKeys[indexPath.row]]
                 return cell
             }
         }
