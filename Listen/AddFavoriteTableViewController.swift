@@ -15,6 +15,9 @@ class AddFavoriteTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
 
         HoersuppeAPI.fetchAllPodcasts { (podcasts) -> Void in
             self.podcasts = podcasts
@@ -89,14 +92,31 @@ class AddFavoriteTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "PodcastDetail2" {
+            if let cell = sender as? PodcastTableViewCell {
+                if cell.podcast == nil {
+                    return false
+                }
+            }
+        }
+        return true
     }
-    */
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let dvc = segue.destinationViewController as? PodcastDetailViewController {
+            if segue.identifier == "PodcastDetail2" {
+                if let cell = sender as? PodcastTableViewCell {
+                    if let podcast = cell.podcast {
+                        dvc.podcast = podcast
+                    }
+                }
+            }
+        }
+    }
+    
 
 }

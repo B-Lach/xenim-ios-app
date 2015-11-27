@@ -629,7 +629,7 @@
             </objects>
             <point key="canvasLocation" x="2018" y="1086"/>
         </scene>
-        <!--Add Favorite-->
+        <!--Add Favorites-->
         <scene sceneID="mqd-3N-Q8V">
             <objects>
                 <tableViewController id="Tap-x2-5N3" customClass="AddFavoriteTableViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
@@ -639,22 +639,22 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PodcastCell" rowHeight="85" id="zUc-fG-eS6" customClass="PodcastTableViewCell" customModule="Listen" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PodcastCell" rowHeight="85" id="zUc-fG-eS6" customClass="PodcastTableViewCell" customModule="Listen" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zUc-fG-eS6" id="BZb-It-dTh">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="jXd-1h-OnC">
-                                            <rect key="frame" x="76" y="25" width="475" height="26"/>
+                                            <rect key="frame" x="76" y="31" width="442" height="23"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="xVf-i5-faw">
-                                            <rect key="frame" x="8" y="8" width="60" height="60"/>
+                                            <rect key="frame" x="8" y="12" width="60" height="60"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="xVf-i5-faw" secondAttribute="height" multiplier="1:1" id="3tD-HM-ead"/>
@@ -662,7 +662,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tw8-jD-evh">
-                                            <rect key="frame" x="559" y="22" width="33" height="33"/>
+                                            <rect key="frame" x="526" y="25" width="33" height="33"/>
                                             <animations/>
                                             <state key="normal" image="brandeis-blue-44-plus"/>
                                             <connections>
@@ -672,20 +672,30 @@
                                     </subviews>
                                     <animations/>
                                     <constraints>
-                                        <constraint firstAttribute="topMargin" secondItem="xVf-i5-faw" secondAttribute="top" id="1ao-5W-6T1"/>
+                                        <constraint firstAttribute="topMargin" relation="greaterThanOrEqual" secondItem="xVf-i5-faw" secondAttribute="top" constant="8" id="1ao-5W-6T1"/>
                                         <constraint firstItem="xVf-i5-faw" firstAttribute="centerY" secondItem="jXd-1h-OnC" secondAttribute="centerY" id="47s-WZ-j5u"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="xVf-i5-faw" secondAttribute="bottom" constant="4" id="CUE-BQ-EPP"/>
+                                        <constraint firstItem="xVf-i5-faw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="BZb-It-dTh" secondAttribute="topMargin" constant="4" id="H0u-OI-cFY"/>
                                         <constraint firstItem="xVf-i5-faw" firstAttribute="centerY" secondItem="tw8-jD-evh" secondAttribute="centerY" id="Udj-xO-8QW"/>
+                                        <constraint firstItem="xVf-i5-faw" firstAttribute="centerY" secondItem="BZb-It-dTh" secondAttribute="centerY" id="bV1-81-ZSH"/>
                                         <constraint firstItem="tw8-jD-evh" firstAttribute="leading" secondItem="jXd-1h-OnC" secondAttribute="trailing" constant="8" id="cuI-pp-ZZV"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="xVf-i5-faw" secondAttribute="leading" id="hD5-b2-QwL"/>
                                         <constraint firstItem="jXd-1h-OnC" firstAttribute="leading" secondItem="xVf-i5-faw" secondAttribute="trailing" constant="8" id="k3K-dE-h78"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="xVf-i5-faw" secondAttribute="bottom" constant="8" id="y8n-8o-eEA"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="tw8-jD-evh" secondAttribute="trailing" id="zMx-i8-X0a"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="1ao-5W-6T1"/>
+                                            <exclude reference="y8n-8o-eEA"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
                                     <outlet property="coverartImageView" destination="xVf-i5-faw" id="cAy-JD-6rC"/>
                                     <outlet property="podcastNameLabel" destination="jXd-1h-OnC" id="LSY-MR-ley"/>
+                                    <segue destination="jLW-Aw-Blu" kind="push" identifier="PodcastDetail2" id="7bS-8m-yWi"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoResultsCell" textLabel="vnY-mw-wVw" imageView="XI5-bU-IdI" rowHeight="55" style="IBUITableViewCellStyleDefault" id="f0m-GL-Qw2">
@@ -719,16 +729,13 @@
                             <outlet property="delegate" destination="Tap-x2-5N3" id="T2p-I9-WmY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Favorite" id="1rl-9j-OAR">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EOm-I4-3aD">
+                    <navigationItem key="navigationItem" title="Add Favorites" id="1rl-9j-OAR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="EOm-I4-3aD">
                             <connections>
-                                <segue destination="1hn-L9-gaD" kind="unwind" identifier="CancelAddFavorite" unwindAction="cancelAddFavorite:" id="GVH-SQ-nta"/>
+                                <segue destination="1hn-L9-gaD" kind="unwind" unwindAction="dismissAddFavorite:" id="wDU-39-dGY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="1hn-L9-gaD" kind="unwind" identifier="DismissAddFavorite" unwindAction="dismissAddFavorite:" id="TzT-cv-EED"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I54-Ji-acM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1hn-L9-gaD" userLabel="Exit" sceneMemberID="exit"/>
@@ -1176,6 +1183,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="6W6-Xp-uVG"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1200"/>
                     <connections>
@@ -1897,6 +1905,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="tangelo-25-heart" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KGY-cJ-UNU"/>
+        <segue reference="7bS-8m-yWi"/>
     </inferredMetricsTieBreakers>
 </document>

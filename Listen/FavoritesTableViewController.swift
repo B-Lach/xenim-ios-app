@@ -88,10 +88,6 @@ class FavoritesTableViewController: UITableViewController {
         
     }
     
-    @IBAction func cancelAddFavorite(segue:UIStoryboardSegue) {
-        
-    }
-    
     @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {
         
     }
