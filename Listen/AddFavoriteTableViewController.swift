@@ -14,7 +14,6 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     var filteredPodcasts = [String]()
     var orderedPodcasts = [String]()
     var resultSearchController: UISearchController!
-    @IBOutlet weak var spinner: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,24 +28,23 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
 
-        spinner.beginRefreshing()
+        refreshControl?.beginRefreshing()
         HoersuppeAPI.fetchAllPodcasts { (podcasts) -> Void in
             self.podcasts = podcasts
             self.orderedPodcasts = Array(podcasts.keys).sort()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.spinner.endRefreshing()
+                self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
             })
         }
-    }
-
-    @IBAction func refresh(sender: AnyObject) {
-        spinner.endRefreshing()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func refresh(sender: AnyObject) {
+        refreshControl?.endRefreshing()
     }
 
     // MARK: - Table view data source

@@ -737,16 +737,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="31l-dl-V7h">
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="A3y-k7-Fbe">
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                         <connections>
-                            <action selector="refresh:" destination="Tap-x2-5N3" eventType="valueChanged" id="MpQ-4G-Xl7"/>
+                            <action selector="refresh:" destination="Tap-x2-5N3" eventType="valueChanged" id="eKO-sl-0V3"/>
                         </connections>
                     </refreshControl>
-                    <connections>
-                        <outlet property="spinner" destination="31l-dl-V7h" id="22P-Ab-tuT"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I54-Ji-acM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1hn-L9-gaD" userLabel="Exit" sceneMemberID="exit"/>
