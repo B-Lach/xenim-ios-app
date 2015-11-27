@@ -24,7 +24,9 @@ class PodcastTableViewCell: UITableViewCell {
     }
     var podcastSlug: String! {
         didSet {
+            setupNotifications()
             coverartImageView.image = UIImage(named: "event_placeholder")
+            updateFavoriteButton()
             HoersuppeAPI.fetchPodcastDetail(podcastSlug) { (podcast) -> Void in
                 if let podcast = podcast {
                     if podcast.slug == self.podcastSlug {
@@ -35,11 +37,20 @@ class PodcastTableViewCell: UITableViewCell {
         }
     }
     
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var coverartImageView: UIImageView!
     
+    func updateFavoriteButton() {
+        if Favorites.fetch().contains(podcastSlug) {
+            favoriteButton.setImage(UIImage(named: "corn-44-star"), forState: .Normal)
+        } else {
+            favoriteButton.setImage(UIImage(named: "corn-44-star-o"), forState: .Normal)
+        }
+    }
     
-    @IBAction func addButtonPressed(sender: AnyObject) {
+    @IBAction func toggleFavorite(sender: AnyObject) {
+        Favorites.toggle(slug: podcastSlug)
     }
     
     override func awakeFromNib() {
@@ -51,6 +62,21 @@ class PodcastTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    // MARK: notifications
+    
+    func setupNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func favoritesChanged(notification: NSNotification) {
+        updateFavoriteButton()
     }
 
 }

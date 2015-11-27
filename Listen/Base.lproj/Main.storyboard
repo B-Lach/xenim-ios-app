@@ -646,10 +646,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="jXd-1h-OnC">
-                                            <rect key="frame" x="76" y="31" width="442" height="23"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXd-1h-OnC">
+                                            <rect key="frame" x="76" y="32" width="442" height="20"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -661,12 +661,12 @@
                                                 <constraint firstAttribute="width" constant="60" id="jNd-Do-hAg"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tw8-jD-evh">
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tw8-jD-evh">
                                             <rect key="frame" x="526" y="25" width="33" height="33"/>
                                             <animations/>
-                                            <state key="normal" image="brandeis-blue-44-plus"/>
+                                            <state key="normal" image="corn-44-star-o"/>
                                             <connections>
-                                                <action selector="addButtonPressed:" destination="zUc-fG-eS6" eventType="touchUpInside" id="2Lz-YZ-QQP"/>
+                                                <action selector="toggleFavorite:" destination="zUc-fG-eS6" eventType="touchUpInside" id="na7-LF-n3A"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -694,6 +694,7 @@
                                 <animations/>
                                 <connections>
                                     <outlet property="coverartImageView" destination="xVf-i5-faw" id="cAy-JD-6rC"/>
+                                    <outlet property="favoriteButton" destination="tw8-jD-evh" id="i6t-Pk-s2A"/>
                                     <outlet property="podcastNameLabel" destination="jXd-1h-OnC" id="LSY-MR-ley"/>
                                     <segue destination="jLW-Aw-Blu" kind="push" identifier="PodcastDetail2" id="7bS-8m-yWi"/>
                                 </connections>
@@ -1897,9 +1898,9 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="brandeis-blue-25-star" width="19" height="19"/>
         <image name="brandeis-blue-25-star-o" width="19" height="19"/>
         <image name="brandeis-blue-25-twitter-square" width="19" height="19"/>
-        <image name="brandeis-blue-44-plus" width="33" height="33"/>
         <image name="corn-25-star-o" width="19" height="19"/>
         <image name="corn-44-star" width="33" height="33"/>
+        <image name="corn-44-star-o" width="33" height="33"/>
         <image name="event_placeholder" width="420" height="420"/>
         <image name="play" width="12" height="14"/>
         <image name="tangelo-25-heart" width="19" height="19"/>
