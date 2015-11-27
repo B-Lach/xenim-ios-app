@@ -10,14 +10,19 @@ import UIKit
 
 class AddFavoriteTableViewController: UITableViewController {
 
+    var podcasts = [String:String]()
+    var orderedKeys = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        HoersuppeAPI.fetchAllPodcasts { (podcasts) -> Void in
+            self.podcasts = podcasts
+            self.orderedKeys = Array(podcasts.keys).sort()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,24 +33,25 @@ class AddFavoriteTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return max(1,podcasts.count)
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        if podcasts.count > 0 {
+            if let cell = tableView.dequeueReusableCellWithIdentifier("PodcastCell", forIndexPath: indexPath) as? PodcastTableViewCell {
+                cell.podcastSlug = podcasts[orderedKeys[indexPath.row]]
+                return cell
+            }
+        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("NoResultsCell", forIndexPath: indexPath)
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
