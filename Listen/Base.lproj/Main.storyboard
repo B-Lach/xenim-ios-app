@@ -617,11 +617,138 @@
                             <outlet property="delegate" destination="7oV-A3-8mm" id="FGK-6a-UXt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favorites" id="8uz-SL-DGJ"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="8uz-SL-DGJ">
+                        <barButtonItem key="rightBarButtonItem" image="brandeis-blue-25-search-plus" id="4wx-fZ-sQv">
+                            <connections>
+                                <segue destination="esV-ik-5s6" kind="presentation" id="MBZ-7v-Ylr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6zv-RS-JwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2018" y="1086"/>
+        </scene>
+        <!--Add Favorites-->
+        <scene sceneID="mqd-3N-Q8V">
+            <objects>
+                <tableViewController id="Tap-x2-5N3" customClass="AddFavoriteTableViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" id="UR8-eM-gfO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PodcastCell" rowHeight="85" id="zUc-fG-eS6" customClass="PodcastTableViewCell" customModule="Listen" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="85"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zUc-fG-eS6" id="BZb-It-dTh">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="84"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXd-1h-OnC">
+                                            <rect key="frame" x="76" y="32" width="442" height="20"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="xVf-i5-faw">
+                                            <rect key="frame" x="8" y="12" width="60" height="60"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="xVf-i5-faw" secondAttribute="height" multiplier="1:1" id="3tD-HM-ead"/>
+                                                <constraint firstAttribute="width" constant="60" id="jNd-Do-hAg"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tw8-jD-evh">
+                                            <rect key="frame" x="526" y="25" width="33" height="33"/>
+                                            <animations/>
+                                            <state key="normal" image="corn-44-star-o"/>
+                                            <connections>
+                                                <action selector="toggleFavorite:" destination="zUc-fG-eS6" eventType="touchUpInside" id="na7-LF-n3A"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="topMargin" relation="greaterThanOrEqual" secondItem="xVf-i5-faw" secondAttribute="top" constant="8" id="1ao-5W-6T1"/>
+                                        <constraint firstItem="xVf-i5-faw" firstAttribute="centerY" secondItem="jXd-1h-OnC" secondAttribute="centerY" id="47s-WZ-j5u"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="xVf-i5-faw" secondAttribute="bottom" constant="4" id="CUE-BQ-EPP"/>
+                                        <constraint firstItem="xVf-i5-faw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="BZb-It-dTh" secondAttribute="topMargin" constant="4" id="H0u-OI-cFY"/>
+                                        <constraint firstItem="xVf-i5-faw" firstAttribute="centerY" secondItem="tw8-jD-evh" secondAttribute="centerY" id="Udj-xO-8QW"/>
+                                        <constraint firstItem="xVf-i5-faw" firstAttribute="centerY" secondItem="BZb-It-dTh" secondAttribute="centerY" id="bV1-81-ZSH"/>
+                                        <constraint firstItem="tw8-jD-evh" firstAttribute="leading" secondItem="jXd-1h-OnC" secondAttribute="trailing" constant="8" id="cuI-pp-ZZV"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="xVf-i5-faw" secondAttribute="leading" id="hD5-b2-QwL"/>
+                                        <constraint firstItem="jXd-1h-OnC" firstAttribute="leading" secondItem="xVf-i5-faw" secondAttribute="trailing" constant="8" id="k3K-dE-h78"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="xVf-i5-faw" secondAttribute="bottom" constant="8" id="y8n-8o-eEA"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="tw8-jD-evh" secondAttribute="trailing" id="zMx-i8-X0a"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="1ao-5W-6T1"/>
+                                            <exclude reference="y8n-8o-eEA"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="coverartImageView" destination="xVf-i5-faw" id="cAy-JD-6rC"/>
+                                    <outlet property="favoriteButton" destination="tw8-jD-evh" id="i6t-Pk-s2A"/>
+                                    <outlet property="podcastNameLabel" destination="jXd-1h-OnC" id="LSY-MR-ley"/>
+                                    <segue destination="jLW-Aw-Blu" kind="push" identifier="PodcastDetail2" id="7bS-8m-yWi"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoResultsCell" textLabel="vnY-mw-wVw" imageView="XI5-bU-IdI" rowHeight="55" style="IBUITableViewCellStyleDefault" id="f0m-GL-Qw2">
+                                <rect key="frame" x="0.0" y="177" width="600" height="55"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f0m-GL-Qw2" id="Kyv-Hk-ObC">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Nothing found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vnY-mw-wVw">
+                                            <rect key="frame" x="49" y="0.0" width="536" height="54"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-info" id="XI5-bU-IdI">
+                                            <rect key="frame" x="15" y="17" width="19" height="19"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                        </imageView>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Tap-x2-5N3" id="Cl9-kI-ddu"/>
+                            <outlet property="delegate" destination="Tap-x2-5N3" id="T2p-I9-WmY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Favorites" id="1rl-9j-OAR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="EOm-I4-3aD">
+                            <connections>
+                                <segue destination="1hn-L9-gaD" kind="unwind" unwindAction="dismissAddFavorite:" id="wDU-39-dGY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="A3y-k7-Fbe">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <connections>
+                            <action selector="refresh:" destination="Tap-x2-5N3" eventType="valueChanged" id="eKO-sl-0V3"/>
+                        </connections>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I54-Ji-acM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1hn-L9-gaD" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3423" y="1834"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="PpY-pf-FJO">
@@ -1064,6 +1191,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="6W6-Xp-uVG"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1200"/>
                     <connections>
@@ -1731,6 +1859,25 @@ In rare cases the audio format provided by the podcast show is not supported by 
             </objects>
             <point key="canvasLocation" x="3496" y="1023"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TFL-Lm-KTG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="esV-ik-5s6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AWV-0E-OmH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Tap-x2-5N3" kind="relationship" relationship="rootViewController" id="p4q-e6-yYT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xKV-Ai-25r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2611" y="1834"/>
+        </scene>
     </scenes>
     <resources>
         <image name="black-25-calendar" width="19" height="19"/>
@@ -1754,16 +1901,18 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="brandeis-blue-25-play" width="19" height="19"/>
         <image name="brandeis-blue-25-rss-square" width="19" height="19"/>
         <image name="brandeis-blue-25-safari" width="19" height="19"/>
+        <image name="brandeis-blue-25-search-plus" width="19" height="19"/>
         <image name="brandeis-blue-25-star" width="19" height="19"/>
         <image name="brandeis-blue-25-star-o" width="19" height="19"/>
         <image name="brandeis-blue-25-twitter-square" width="19" height="19"/>
         <image name="corn-25-star-o" width="19" height="19"/>
         <image name="corn-44-star" width="33" height="33"/>
+        <image name="corn-44-star-o" width="33" height="33"/>
         <image name="event_placeholder" width="420" height="420"/>
         <image name="play" width="12" height="14"/>
         <image name="tangelo-25-heart" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5u9-ce-4fW"/>
+        <segue reference="7bS-8m-yWi"/>
     </inferredMetricsTieBreakers>
 </document>
