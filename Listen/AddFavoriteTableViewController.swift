@@ -39,6 +39,11 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         }
     }
     
+    deinit {
+        // fixes https://github.com/funkenstrahlen/Listen/issues/36
+        resultSearchController.view.removeFromSuperview()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
