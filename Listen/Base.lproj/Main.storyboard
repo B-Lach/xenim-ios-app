@@ -629,7 +629,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorites" id="8uz-SL-DGJ">
-                        <barButtonItem key="rightBarButtonItem" image="brandeis-blue-25-search-plus" id="4wx-fZ-sQv">
+                        <barButtonItem key="rightBarButtonItem" image="brandeis-blue-25-plus" id="4wx-fZ-sQv">
                             <connections>
                                 <segue destination="esV-ik-5s6" kind="presentation" id="MBZ-7v-Ylr"/>
                             </connections>
@@ -1910,9 +1910,9 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="brandeis-blue-25-envelope" width="19" height="19"/>
         <image name="brandeis-blue-25-heart" width="19" height="19"/>
         <image name="brandeis-blue-25-play" width="19" height="19"/>
+        <image name="brandeis-blue-25-plus" width="19" height="19"/>
         <image name="brandeis-blue-25-rss-square" width="19" height="19"/>
         <image name="brandeis-blue-25-safari" width="19" height="19"/>
-        <image name="brandeis-blue-25-search-plus" width="19" height="19"/>
         <image name="brandeis-blue-25-star" width="19" height="19"/>
         <image name="brandeis-blue-25-star-o" width="19" height="19"/>
         <image name="brandeis-blue-25-twitter-square" width="19" height="19"/>
