@@ -13,6 +13,7 @@ class NextupEventsTableViewController: UITableViewController {
     var upcomingEvents = [Event]()
     var podcastSlug: String!
     let upcomingEventCount = 3
+    var isLoading = true
     @IBOutlet weak var addToFavoritesInformationLabel: UILabel!
     
     override var preferredContentSize: CGSize {
@@ -36,6 +37,7 @@ class NextupEventsTableViewController: UITableViewController {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.upcomingEvents = events
                 self.tableView.reloadData()
+                self.isLoading = false
             })
         }
     }
@@ -87,6 +89,12 @@ class NextupEventsTableViewController: UITableViewController {
             }
             return cell
         } else {
+            if isLoading {
+                // display loading message cell
+                let cell = tableView.dequeueReusableCellWithIdentifier("LoadingCell", forIndexPath: indexPath)
+                return cell
+            }
+            
             // display no shows scheduled info message cell
             let cell = tableView.dequeueReusableCellWithIdentifier("NoEvents", forIndexPath: indexPath)
             return cell

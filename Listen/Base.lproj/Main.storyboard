@@ -1545,7 +1545,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
                             <nil key="highlightedColor"/>
                         </label>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add this podcast to your favorites to receive push notifications" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NLR-1P-bdQ">
-                            <rect key="frame" x="0.0" y="160" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="204" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
@@ -1608,6 +1608,35 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                         </imageView>
                                     </subviews>
                                     <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingCell" id="aut-AE-9t9">
+                                <rect key="frame" x="0.0" y="160" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aut-AE-9t9" id="Uss-IR-mh7">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yFh-BI-LSx">
+                                            <rect key="frame" x="14" y="12" width="20" height="20"/>
+                                            <animations/>
+                                        </activityIndicatorView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1e-cz-HQe">
+                                            <rect key="frame" x="48" y="11" width="61" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="yFh-BI-LSx" firstAttribute="centerY" secondItem="U1e-cz-HQe" secondAttribute="centerY" id="0fe-bE-b7x"/>
+                                        <constraint firstItem="U1e-cz-HQe" firstAttribute="leading" secondItem="yFh-BI-LSx" secondAttribute="trailing" constant="14" id="3D3-rF-JG4"/>
+                                        <constraint firstItem="yFh-BI-LSx" firstAttribute="leading" secondItem="Uss-IR-mh7" secondAttribute="leadingMargin" constant="6" id="MuU-oC-ySn"/>
+                                        <constraint firstItem="yFh-BI-LSx" firstAttribute="centerY" secondItem="Uss-IR-mh7" secondAttribute="centerY" id="Noa-Is-fXs"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
                             </tableViewCell>
