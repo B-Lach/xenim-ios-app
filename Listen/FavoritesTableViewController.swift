@@ -84,18 +84,26 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     
+    @IBAction func dismissSettings(segue:UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {
+        
+    }
+    
     
     // MARK: - Navigation
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == "PodcastDetail" {
             if let cell = sender as? FavoriteTableViewCell {
-                if cell.podcast != nil {
-                    return true
+                if cell.podcast == nil {
+                    return false
                 }
             }
         }
-        return false
+        return true
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

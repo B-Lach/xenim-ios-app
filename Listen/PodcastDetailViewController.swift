@@ -7,13 +7,16 @@
 //
 
 import UIKit
-import SafariServices
 
-class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SFSafariViewControllerDelegate {
+class PodcastDetailViewController: UIViewController {
     
-    var podcast: Podcast?
+    var podcast: Podcast? {
+        didSet {
+            // assign the podcast object to the tableview controller in the container view
+            interactionTableViewController?.podcast = podcast
+        }
+    }
     var event: Event?
-    var upcomingEvents = [Event]()
     
     var delegate: PlayerDelegator?
     
@@ -24,16 +27,8 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var playButtonEffectView: UIVisualEffectView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var upcomingEventsHeightConstraint: NSLayoutConstraint!
+    var interactionTableViewController: PodcastInteractTableViewController?
     @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var chatButton: UIButton!
-    
-    @IBOutlet weak var upcomingEventsTableView: UITableView! {
-        didSet {
-            upcomingEventsTableView.delegate = self
-            upcomingEventsTableView.dataSource = self
-        }
-    }
     
     override func viewDidLoad() {
         // LNPopupBarHeight is currently 40
@@ -44,6 +39,7 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
         playButtonEffectView.layer.masksToBounds = true
+        
         updateUI()
     }
     
@@ -74,27 +70,10 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
         updatePlayButton()
         updateFavoritesButton()
         
-        HoersuppeAPI.fetchPodcastNextLiveEvents(podcastSlug, count: 3) { (events) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.upcomingEvents = events
-                self.upcomingEventsTableView.reloadData()
-    
-                self.upcomingEventsHeightConstraint.constant = self.upcomingEventsTableView.contentSize.height
-
-                self.contentView.setNeedsLayout()
-            })
-        }
-        
         if podcast == nil {
             HoersuppeAPI.fetchPodcastDetail(podcastSlug, onComplete: { (podcast) -> Void in
                 if podcast != nil {
                     self.podcast = podcast
-                  dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    // show chat button if chat information is available
-                    if podcast?.webchatUrl != nil {
-                        self.chatButton.hidden = false
-                    }
-                  })
                 }
             })
         }
@@ -128,60 +107,9 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         if !Favorites.fetch().contains(podcastSlug) {
-            favoriteButton.setTitle("☆", forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "corn-44-star-o"), forState: .Normal)
         } else {
-            favoriteButton.setTitle("★", forState: .Normal)
-        }
-    }
-    
-    @IBAction func openPodcastWebsite() {
-        if let podcast = podcast {
-            let svc = SFSafariViewController(URL: podcast.url)
-            svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
-        }
-    }
-    
-    func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    @IBAction func openChat(sender: AnyObject) {
-        if let chatUrl = podcast?.chatUrl, let webchatUrl = podcast?.webchatUrl {
-            if UIApplication.sharedApplication().canOpenURL(chatUrl) {
-                // open associated app
-                UIApplication.sharedApplication().openURL(chatUrl)
-            } else {
-                // open webchat in safari
-                UIApplication.sharedApplication().openURL(webchatUrl)
-            }
-        }
-    }
-    
-    @IBAction func subscribePodcast() {
-        if let podcast = self.podcast {
-            let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
-            
-            // create one option for each podcast client
-            for client in podcast.subscribeClients {
-                let clientName = client.0
-                let subscribeURL = client.1
-                
-                // only show the option if the podcast client is installed which reacts to this URL
-                if UIApplication.sharedApplication().canOpenURL(subscribeURL) {
-                    let action = UIAlertAction(title: clientName, style: .Default, handler: { (alert: UIAlertAction!) -> Void in
-                        UIApplication.sharedApplication().openURL(subscribeURL)
-                    })
-                    optionMenu.addAction(action)
-                }
-            }
-            
-            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
-                (alert: UIAlertAction!) -> Void in
-            })
-            optionMenu.addAction(cancelAction)
-            
-            self.presentViewController(optionMenu, animated: true, completion: nil)
+            favoriteButton?.setImage(UIImage(named: "corn-44-star"), forState: .Normal)
         }
     }
     
@@ -193,30 +121,6 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    // MARK: - Table view data source
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return upcomingEvents.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("UpcomingEvent", forIndexPath: indexPath)
-        
-        let formatter = NSDateFormatter();
-        formatter.locale = NSLocale.currentLocale()
-        formatter.dateStyle = .MediumStyle
-        formatter.timeStyle = .ShortStyle
-
-        cell.textLabel?.text = formatter.stringFromDate(upcomingEvents[indexPath.row].livedate)
-        return cell
-    }
-    
     @IBAction func favorite(sender: UIButton) {
         var podcastSlug = ""
         if let podcast = podcast {
@@ -225,6 +129,17 @@ class PodcastDetailViewController: UIViewController, UITableViewDelegate, UITabl
             podcastSlug = event.podcastSlug
         }
         Favorites.toggle(slug: podcastSlug)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "embed_tableview" {
+            if let tableViewController = segue.destinationViewController as? PodcastInteractTableViewController {
+                interactionTableViewController = tableViewController
+                if let podcast = podcast {
+                    interactionTableViewController!.podcast = podcast
+                }
+            }
+        }
     }
     
     // MARK: notifications

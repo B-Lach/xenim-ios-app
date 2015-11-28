@@ -33,20 +33,40 @@ class Podcast : NSObject {
     var url = NSURL(string: "")!
     var chatUrl: NSURL?
     var webchatUrl: NSURL?
-//    var contact
-//        var email
-//        var twitter
-//    var alternates = [NSURL]()
-//    var flattrid: String?
-//    var payment: String?
-//    var recension: String?
+    var email: String?
+    var twitterUsername: String?
+    var twitterURL: NSURL? {
+        get {
+            if let username = twitterUsername {
+                return NSURL(string: "https://twitter.com/\(username)")
+            } else {
+                return nil
+            }
 
+        }
+    }
+    var flattrID: String?
+    var flattrURL: NSURL? {
+        get {
+            if let flattrID = self.flattrID {
+                return NSURL(string: "https://flattr.com/profile/\(flattrID)")
+            } else {
+                return nil
+            }
+            
+        }
+    }
     
-    init?(name: String, subtitle: String, url: String, feedurl: String, imageurl: String, slug: String, podcastDescription: String, chatServer: String, chatChannel: String, webchatUrl: String) {
+    init?(name: String, subtitle: String, url: String, feedurl: String, imageurl: String, slug: String, podcastDescription: String, chatServer: String, chatChannel: String, webchatUrl: String, twitterUsername: String, email: String, flattrID: String) {
         self.name = name
         self.subtitle = subtitle
         self.slug = slug
         self.podcastDescription = podcastDescription
+
+        self.email = email != "" ? email : nil
+        self.twitterUsername = twitterUsername != "" ? twitterUsername : nil
+        self.flattrID = flattrID != "" ? flattrID : nil
+        
         if chatServer != "" && chatChannel != "" {
             self.chatUrl = NSURL(string: "irc://\(chatServer)/\(chatChannel)")
             self.webchatUrl = NSURL(string: webchatUrl)

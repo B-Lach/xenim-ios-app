@@ -15,7 +15,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var liveDateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var coverartFavoriteStar: UILabel!
+    @IBOutlet weak var favoriteStarImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     var delegate: PlayerDelegator?
@@ -26,19 +26,6 @@ class EventTableViewCell: UITableViewCell {
             // as one notifications is based on the event this cell represents
             setupNotifications()
             updateUI()
-        }
-    }
-    
-    func updatePlayButton() {
-        let player = Player.sharedInstance
-        if let playerEvent = player.event, let myEvent = self.event {
-            if playerEvent.equals(myEvent) && player.isPlaying {
-                playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
-            } else {
-                playButton?.setImage(UIImage(named: "play"), forState: .Normal)
-            }
-        } else {
-            playButton?.setImage(UIImage(named: "play"), forState: .Normal)
         }
     }
     
@@ -53,15 +40,12 @@ class EventTableViewCell: UITableViewCell {
             formatter.locale = NSLocale.currentLocale()
             
             if event.isToday() || event.isTomorrow() {
-                formatter.dateStyle = .NoStyle
-                formatter.timeStyle = .ShortStyle
+                formatter.setLocalizedDateFormatFromTemplate("HH:mm")
             } else if event.isThisWeek() {
                 // TODO: customize this style
-                formatter.dateStyle = .MediumStyle
-                formatter.timeStyle = .ShortStyle
-            }else {
-                formatter.dateStyle = .MediumStyle
-                formatter.timeStyle = .ShortStyle
+                formatter.setLocalizedDateFormatFromTemplate("EEEE HH:mm")
+            } else {
+                formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM HH:mm")
             }
             
             if event.isLive() {
@@ -84,12 +68,25 @@ class EventTableViewCell: UITableViewCell {
         }
     }
     
+    func updatePlayButton() {
+        let player = Player.sharedInstance
+        if let playerEvent = player.event, let myEvent = self.event {
+            if playerEvent.equals(myEvent) && player.isPlaying {
+                playButton?.setImage(UIImage(named: "brandeis-blue-25-pause"), forState: .Normal)
+            } else {
+                playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+            }
+        } else {
+            playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+        }
+    }
+    
     func updateFavstar() {
         if let event = event {
             if !Favorites.fetch().contains(event.podcastSlug) {
-                coverartFavoriteStar.hidden = true
+                favoriteStarImageView.hidden = true
             } else {
-                coverartFavoriteStar.hidden = false
+                favoriteStarImageView.hidden = false
             }
         }
     }
