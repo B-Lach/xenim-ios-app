@@ -27,6 +27,7 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.contentInset = UIEdgeInsetsMake(0, -6, 0, 0)
         hideUnavailableActions()
     }
     
