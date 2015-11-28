@@ -586,15 +586,26 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="corn-44-star" translatesAutoresizingMaskIntoConstraints="NO" id="I15-cS-fpQ">
+                                            <rect key="frame" x="57" y="65" width="25" height="25"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="61u-b8-N3C"/>
+                                                <constraint firstAttribute="width" secondItem="I15-cS-fpQ" secondAttribute="height" multiplier="1:1" id="W6p-5a-Icw"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <animations/>
                                     <constraints>
                                         <constraint firstItem="WYb-RI-yKQ" firstAttribute="centerX" secondItem="MXw-yy-vDL" secondAttribute="centerX" id="30M-m1-IZB"/>
+                                        <constraint firstItem="I15-cS-fpQ" firstAttribute="width" secondItem="I15-cS-fpQ" secondAttribute="height" multiplier="1:1" id="4Lg-4i-s71"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="WYb-RI-yKQ" secondAttribute="leading" id="5up-pv-lP3"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="jmH-Yd-Nmt" secondAttribute="trailing" id="EL5-o1-dKT"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="WYb-RI-yKQ" secondAttribute="bottom" constant="8" id="HaX-GS-gVS"/>
                                         <constraint firstItem="WYb-RI-yKQ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="MXw-yy-vDL" secondAttribute="topMargin" constant="8" id="Hcu-zH-yQe"/>
                                         <constraint firstItem="WYb-RI-yKQ" firstAttribute="centerY" secondItem="MXw-yy-vDL" secondAttribute="centerY" id="Qwp-fm-77a"/>
+                                        <constraint firstItem="I15-cS-fpQ" firstAttribute="top" secondItem="WYb-RI-yKQ" secondAttribute="bottom" constant="-14" id="ia9-hy-bq3"/>
+                                        <constraint firstItem="I15-cS-fpQ" firstAttribute="leading" secondItem="WYb-RI-yKQ" secondAttribute="trailing" constant="-13" id="m4o-qh-1mv"/>
                                         <constraint firstItem="jmH-Yd-Nmt" firstAttribute="centerY" secondItem="WYb-RI-yKQ" secondAttribute="centerY" id="tUX-bu-GTo"/>
                                         <constraint firstItem="jmH-Yd-Nmt" firstAttribute="leading" secondItem="WYb-RI-yKQ" secondAttribute="trailing" constant="8" id="wDr-dN-QA2"/>
                                     </constraints>
@@ -1913,6 +1924,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="tangelo-25-heart" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7bS-8m-yWi"/>
+        <segue reference="KGY-cJ-UNU"/>
     </inferredMetricsTieBreakers>
 </document>
