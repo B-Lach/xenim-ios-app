@@ -19,7 +19,12 @@ class FavoriteTableViewCell: UITableViewCell {
     var podcast: Podcast?
 
     @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var coverartImageView: UIImageView!
+    @IBOutlet weak var coverartImageView: UIImageView! {
+        didSet {
+            coverartImageView.layer.cornerRadius = 5.0
+            coverartImageView.layer.masksToBounds = true
+        }
+    }
     
     func updateUI() {
         if podcast != nil && podcast!.slug == podcastSlug {
