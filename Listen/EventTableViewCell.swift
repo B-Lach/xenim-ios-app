@@ -10,7 +10,12 @@ import UIKit
 
 class EventTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var eventCoverartImage: UIImageView!
+    @IBOutlet weak var eventCoverartImage: UIImageView! {
+        didSet {
+            eventCoverartImage.layer.cornerRadius = 5.0
+            eventCoverartImage.layer.masksToBounds = true
+        }
+    }
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var liveDateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
