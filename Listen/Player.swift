@@ -8,78 +8,62 @@
 
 import MediaPlayer
 import Alamofire
+import KDEAudioPlayer
 
-class Player : NSObject {
+class Player : NSObject, AudioPlayerDelegate {
     
     static let sharedInstance = Player()
     
     var event: Event?
-    var isPlaying:Bool {
+    var player = AudioPlayer()
+    var currentItem: AudioItem?
+    var isPlaying : Bool {
         get {
-            // rate is always between 0 and 1
-            // a rate greater than 0 means its playing
-            return player.rate > 0
+            return player.state == AudioPlayerState.Playing
         }
     }
-    var player = AVPlayer()
     
     override init() {
         super.init()
-        player = AVPlayer()
-        player.addObserver(self, forKeyPath: "rate", options: .New, context: nil)
-        // required to play audio in background
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        } catch {}
-        setupRemoteCommands()
+        player.delegate = self
     }
     
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        player.removeObserver(self, forKeyPath: "rate")
+    func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
+        
+        switch to {
+        case AudioPlayerState.Buffering:
+            print("buffering")
+        case AudioPlayerState.Paused:
+            print("paused")
+        case AudioPlayerState.Playing:
+            print("playing")
+        case AudioPlayerState.Stopped:
+            print("stopped")
+        case AudioPlayerState.WaitingForConnection:
+            print("waiting for connection")
+        }
+        //NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["player": self])
     }
+    
+    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {}
+    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {}
+    func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {}
     
     private func playEvent(event: Event) {
         self.event = event
-        let playerItem = AVPlayerItem(URL: event.streamurl)
-        player.replaceCurrentItemWithPlayerItem(playerItem)
-        do {
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {}
-        player.play()
+        
+        currentItem = AudioItem(mediumQualitySoundURL: event.streamurl)
+        currentItem?.artist = event.podcastSlug
+        currentItem?.title = event.title
+        player.playItem(currentItem!)
+
         // fetch coverart from image cache and set it as lockscreen artwork
         Alamofire.request(.GET, event.imageurl)
             .responseImage { response in
                 if let image = response.result.value {
-                    let songInfo: Dictionary = [
-                        MPMediaItemPropertyTitle: self.event!.title,
-                        MPMediaItemPropertyArtist: self.event!.podcastDescription,
-                        MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
-                    ]
-                    MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+                    self.currentItem?.artworkImage = image
                 }
         }
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notify:", name: "AVPlayerItemDidPlayToEndTimeNotification", object: player.currentItem)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notify:", name: "AVPlayerItemFailedToPlayToEndTimeNotification", object: player.currentItem)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notify:", name: "AVPlayerItemPlaybackStalledNotification", object: player.currentItem)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notify:", name: "AVPlayerItemNewErrorLogEntryNotification", object: player.currentItem)
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["player": self])
-    }
-    
-    func notify(notification: NSNotification) {
-        print("notification")
-        if let playerItem = player.currentItem {
-            switch playerItem.status {
-            case AVPlayerItemStatus.Failed:
-                print("failed")
-            default:
-                print("default")
-            }
-        }
-
-        NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["player": self])
     }
     
     func togglePlayPause(event: Event) {
@@ -90,25 +74,8 @@ class Player : NSObject {
             if isPlaying {
                 player.pause()
             } else {
-                player.play()
+                player.playItem(currentItem!)
             }
-        }
-    }
-    
-    @objc func togglePlayPause() {
-        togglePlayPause(event!)
-    }
-    
-    func setupRemoteCommands() {
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-        let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
-        commandCenter.togglePlayPauseCommand.addTarget(self, action: Selector("togglePlayPause"))
-        commandCenter.togglePlayPauseCommand.enabled = true
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "rate" {
-            NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["player": self])
         }
     }
 }
