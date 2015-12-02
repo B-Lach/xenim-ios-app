@@ -6,5 +6,6 @@ target 'Listen' do
   pod 'Alamofire', '~> 3.0'
   pod 'AlamofireImage'
   pod 'MarqueeLabel-Swift'
+  pod 'KDEAudioPlayer'
 end
 

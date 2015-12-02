@@ -2,18 +2,21 @@ PODS:
   - Alamofire (3.1.0)
   - AlamofireImage (2.1.0):
     - Alamofire (~> 3.1)
+  - KDEAudioPlayer (0.3.4)
   - MarqueeLabel-Swift (2.3.4)
   - SwiftyJSON (2.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - AlamofireImage
+  - KDEAudioPlayer
   - MarqueeLabel-Swift
   - SwiftyJSON (~> 2.3)
 
 SPEC CHECKSUMS:
   Alamofire: 415bd7f56197722978759078486689f7ef913dce
   AlamofireImage: 97e00995920d85b5cb23ee4c3b7f92605f5dc74b
+  KDEAudioPlayer: 8238a011987c675af6dfff96fe909578a05220ae
   MarqueeLabel-Swift: 9ac35d37bad2a2633c6245e605fbc6fd94d0b943
   SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
 

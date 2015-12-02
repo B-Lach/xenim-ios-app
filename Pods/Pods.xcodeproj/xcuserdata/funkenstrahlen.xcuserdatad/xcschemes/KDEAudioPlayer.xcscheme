@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '1AF5F945254EEE6062DA62D3'
-               BlueprintName = 'Alamofire'
+               BlueprintIdentifier = '907F7EDD09D3F24BF0173DF4'
+               BlueprintName = 'KDEAudioPlayer'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Alamofire.framework'>
+               BuildableName = 'KDEAudioPlayer.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
