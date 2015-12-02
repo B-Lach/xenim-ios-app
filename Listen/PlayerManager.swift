@@ -25,18 +25,8 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     
     func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         
-//        switch to {
-//        case AudioPlayerState.Buffering:
-//            print("buffering")
-//        case AudioPlayerState.Paused:
-//            print("paused")
-//        case AudioPlayerState.Playing:
-//            print("playing")
-//        case AudioPlayerState.Stopped:
-//            print("stopped")
-//        case AudioPlayerState.WaitingForConnection:
-//            print("waiting for connection")
-//        }
+        print("\(from) -> \(to)")
+        
         NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self])
     }
     
