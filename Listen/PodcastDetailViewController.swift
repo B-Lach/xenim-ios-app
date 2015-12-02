@@ -62,7 +62,7 @@ class PodcastDetailViewController: UIViewController {
             podcastSlug = podcast.slug
         }
         
-        self.coverartImageView?.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"))
+        self.coverartImageView?.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
         podcastNameLabel?.text = title
         self.title = title
         podcastDescriptionLabel?.text = description
