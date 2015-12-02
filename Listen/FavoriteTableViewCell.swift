@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class FavoriteTableViewCell: UITableViewCell {
     
@@ -18,12 +19,17 @@ class FavoriteTableViewCell: UITableViewCell {
     var podcast: Podcast?
 
     @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var coverartImageView: UIImageView!
+    @IBOutlet weak var coverartImageView: UIImageView! {
+        didSet {
+            coverartImageView.layer.cornerRadius = 5.0
+            coverartImageView.layer.masksToBounds = true
+        }
+    }
     
     func updateUI() {
         if podcast != nil && podcast!.slug == podcastSlug {
             podcastNameLabel.text = podcast!.name
-            coverartImageView.hnk_setImageFromURL(podcast!.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
+            coverartImageView.af_setImageWithURL(podcast!.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
         } else {
             // fetch from API
             podcastNameLabel?.text = podcastSlug

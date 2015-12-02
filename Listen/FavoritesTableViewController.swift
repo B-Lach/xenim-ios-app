@@ -43,6 +43,7 @@ class FavoritesTableViewController: UITableViewController {
     
     func refresh() {
         favorites = Favorites.fetch()
+        favorites.sortInPlace()
         tableView.reloadData()
     }
     
@@ -73,7 +74,7 @@ class FavoritesTableViewController: UITableViewController {
     
     func updateBackground() {
         if favorites.count == 0 {
-            messageVC?.messageLabel.text = "Add podcast shows as your favorite to see them here."
+            messageVC?.messageLabel.text = NSLocalizedString("favorites_tableview_empty_message", value: "Add podcast shows as your favorite to see them here.", comment: "this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.")
             tableView.separatorStyle = UITableViewCellSeparatorStyle.None
             tableView.backgroundView?.hidden = false
         } else {
@@ -83,8 +84,27 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     
+    @IBAction func dismissSettings(segue:UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {
+        
+    }
+    
     
     // MARK: - Navigation
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "PodcastDetail" {
+            if let cell = sender as? FavoriteTableViewCell {
+                if cell.podcast == nil {
+                    return false
+                }
+            }
+        }
+        return true
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let dvc = segue.destinationViewController as? PodcastDetailViewController {

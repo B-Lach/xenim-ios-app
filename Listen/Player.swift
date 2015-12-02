@@ -7,7 +7,7 @@
 //
 
 import MediaPlayer
-import Haneke
+import Alamofire
 
 class Player : NSObject {
     
@@ -48,14 +48,16 @@ class Player : NSObject {
         } catch {}
         player.play()
         // fetch coverart from image cache and set it as lockscreen artwork
-        let imageCache = Shared.imageCache
-        imageCache.fetch(URL: event.imageurl).onSuccess { (image) -> () in
-            let songInfo: Dictionary = [
-                MPMediaItemPropertyTitle: self.event!.title,
-                MPMediaItemPropertyArtist: self.event!.podcastDescription,
-                MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
-            ]
-            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+        Alamofire.request(.GET, event.imageurl)
+            .responseImage { response in
+                if let image = response.result.value {
+                    let songInfo: Dictionary = [
+                        MPMediaItemPropertyTitle: self.event!.title,
+                        MPMediaItemPropertyArtist: self.event!.podcastDescription,
+                        MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
+                    ]
+                    MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+                }
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "notify:", name: "AVPlayerItemDidPlayToEndTimeNotification", object: player.currentItem)
@@ -76,6 +78,8 @@ class Player : NSObject {
                 print("default")
             }
         }
+
+        NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["player": self])
     }
     
     func togglePlayPause(event: Event) {

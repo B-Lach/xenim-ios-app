@@ -10,6 +10,7 @@ import UIKit
 
 protocol PlayerDelegator {
     func togglePlayPause(event event: Event)
+    func showEventInfo(event event: Event)
 }
 
 class EventTableViewController: UITableViewController, PlayerDelegator {
@@ -149,9 +150,9 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     
     func updateFilterFavoritesButton() {
         if showFavoritesOnly {
-            filterFavoritesBarButtonItem.title = "★"
+            filterFavoritesBarButtonItem?.image = UIImage(named: "corn-25-star")
         } else {
-            filterFavoritesBarButtonItem.title = "☆"            
+            filterFavoritesBarButtonItem?.image = UIImage(named: "corn-25-star-o")         
         }
     }
 
@@ -175,11 +176,11 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             return nil
         }
         switch section {
-            case 0: return "Live now"
-            case 1: return "Upcoming Today"
-            case 2: return "Tomorrow"
-            case 3: return "Later this Week"
-            case 4: return "Next week and later"
+        case 0: return NSLocalizedString("event_tableview_sectionheader_live", value: "Live now", comment: "section header in event table view for the live now section")
+            case 1: return NSLocalizedString("event_tableview_sectionheader_today", value: "Upcoming Today", comment: "section header in event table view for the upcoming today section")
+            case 2: return NSLocalizedString("event_tableview_sectionheader_tomorrow", value: "Tomorrow", comment: "section header in event table view for the tomorrow section")
+            case 3: return NSLocalizedString("event_tableview_sectionheader_thisweek", value: "Later this Week", comment: "section header in event table view for the later this week section")
+            case 4: return NSLocalizedString("event_tableview_sectionheader_later", value: "Next week and later", comment: "section header in event table view for the later than next week section")
             default: return "Unknown"
         }
     }
@@ -207,9 +208,9 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         let messageLabel = messageVC?.messageLabel
         if numberOfRows() == 0 {
             if showFavoritesOnly {
-                messageLabel?.text = "None of your favorite podcast shows will be live in the near future. Add more shows to your favorites to see something here."
+                messageLabel?.text = NSLocalizedString("event_tableview_empty_favorites_only_message", value: "None of your favorite podcast shows will be live in the near future. Add more shows to your favorites to see something here.", comment: "this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display.")
             } else {
-                messageLabel?.text = "Did no receive any upcoming events."
+                messageLabel?.text = NSLocalizedString("event_tableview_empty_message", value: "Did no receive any upcoming events.", comment: "this message gets displayed if no events could be displayed / fetched from the API")
             }
             tableView.separatorStyle = UITableViewCellSeparatorStyle.None
             tableView.backgroundView?.hidden = false
@@ -286,20 +287,48 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if let cell = sender as? EventTableViewCell {
-            if let destinationVC = segue.destinationViewController as? PodcastDetailViewController {
-                if let identifier = segue.identifier {
-                    switch identifier {
-                    case "PodcastDetail":
+        if let destinationVC = segue.destinationViewController as? PodcastDetailViewController {
+            if let identifier = segue.identifier {
+                switch identifier {
+                case "PodcastDetail":
+                    if let cell = sender as? EventTableViewCell {
                         destinationVC.event = cell.event
                         destinationVC.delegate = self
-                    default: break
+                    } else if let event = sender as? Event {
+                        destinationVC.event = event
+                        destinationVC.delegate = self
                     }
+                default: break
                 }
             }
         }
+        
+    }
+    
+    func showEventInfo(event event: Event) {
+        // switch to event detail view
+        tabBarController?.selectedViewController = self.navigationController
+        
+        // minify the player
+        tabBarController?.closePopupAnimated(true, completion: nil)
+        
+        if let podcastDetailVC = self.navigationController?.visibleViewController as? PodcastDetailViewController {
+            if podcastDetailVC.event != event {
+                // there is already a detail view open, but with the wrong event
+                // so we close it
+                self.navigationController?.popViewControllerAnimated(false)
+                // and open the correct one
+                performSegueWithIdentifier("PodcastDetail", sender: event)
+            }
+            // else the correct info is already present
+        } else {
+            // there is no detail view open yet, so just open it
+            performSegueWithIdentifier("PodcastDetail", sender: event)
+        }
+    }
+    
+    @IBAction func dismissSettings(segue:UIStoryboardSegue) {
+        // do nothing
     }
     
     var playerViewController: PlayerViewController?
@@ -309,6 +338,7 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             playerViewController = storyboard?.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
         }
 
+        playerViewController!.delegate = self
         playerViewController!.event = event
         
         tabBarController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
