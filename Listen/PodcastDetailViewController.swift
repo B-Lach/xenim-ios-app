@@ -85,10 +85,10 @@ class PodcastDetailViewController: UIViewController {
             if event.isLive() {
                 playButtonEffectView.hidden = false
             }
-            let player = Player.sharedInstance
-            if let playerEvent = player.event {
+            let playerManager = PlayerManager.sharedInstance
+            if let playerEvent = playerManager.event {
                 if playerEvent.equals(event) {
-                    switch player.player.state {
+                    switch playerManager.player.state {
                     case AudioPlayerState.Buffering:
                         playButton?.setImage(UIImage(named: "black-25-hourglass"), forState: .Normal)
                     case AudioPlayerState.Paused:

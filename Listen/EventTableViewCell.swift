@@ -77,10 +77,10 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func updatePlayButton() {
-        let player = Player.sharedInstance
-        if let playerEvent = player.event, let myEvent = self.event {
+        let playerManager = PlayerManager.sharedInstance
+        if let playerEvent = playerManager.event, let myEvent = self.event {
             if playerEvent.equals(myEvent) {
-                switch player.player.state {
+                switch playerManager.player.state {
                 case AudioPlayerState.Buffering:
                     playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
                 case AudioPlayerState.Paused:

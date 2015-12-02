@@ -98,7 +98,7 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
-        Player.sharedInstance.togglePlayPause(event)
+        PlayerManager.sharedInstance.togglePlayPause(event)
     }
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -172,7 +172,7 @@ class PlayerViewController: UIViewController {
     }
     
     func playerStateChanged(notification: NSNotification) {
-        let player = Player.sharedInstance.player
+        let player = PlayerManager.sharedInstance.player
         
         switch player.state {
         case AudioPlayerState.Buffering:

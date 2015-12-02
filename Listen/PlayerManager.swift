@@ -10,9 +10,9 @@ import MediaPlayer
 import Alamofire
 import KDEAudioPlayer
 
-class Player : NSObject, AudioPlayerDelegate {
+class PlayerManager : NSObject, AudioPlayerDelegate {
     
-    static let sharedInstance = Player()
+    static let sharedInstance = PlayerManager()
     
     var event: Event?
     var player = AudioPlayer()
@@ -65,7 +65,7 @@ class Player : NSObject, AudioPlayerDelegate {
         // if it is a new event
         if event != self.event {
             playEvent(event)
-        } else {            
+        } else {
             switch player.state {
             case AudioPlayerState.Buffering: break
             case AudioPlayerState.Paused:
