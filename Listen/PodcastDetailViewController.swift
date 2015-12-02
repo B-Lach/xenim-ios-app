@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KDEAudioPlayer
 
 class PodcastDetailViewController: UIViewController {
     
@@ -86,13 +87,25 @@ class PodcastDetailViewController: UIViewController {
             }
             let player = Player.sharedInstance
             if let playerEvent = player.event {
-                if playerEvent.equals(event) && player.isPlaying {
-                    playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+                if playerEvent.equals(event) {
+                    switch player.player.state {
+                    case AudioPlayerState.Buffering:
+                        playButton?.setImage(UIImage(named: "black-25-hourglass"), forState: .Normal)
+                    case AudioPlayerState.Paused:
+                        playButton?.setImage(UIImage(named: "black-25-play"), forState: .Normal)
+                    case AudioPlayerState.Playing:
+                        playButton?.setImage(UIImage(named: "black-25-pause"), forState: .Normal)
+                    case AudioPlayerState.Stopped:
+                        // TODO
+                        playButton?.setImage(UIImage(named: "black-25-play"), forState: .Normal)
+                    case AudioPlayerState.WaitingForConnection:
+                        playButton?.setImage(UIImage(named: "black-25-hourglass"), forState: .Normal)
+                    }
                 } else {
-                    playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+                    playButton?.setImage(UIImage(named: "black-25-play"), forState: .Normal)
                 }
             } else {
-                playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+                playButton?.setImage(UIImage(named: "black-25-play"), forState: .Normal)
             }
         }
 
@@ -146,7 +159,7 @@ class PodcastDetailViewController: UIViewController {
     
     func setupNotifications() {
         if event != nil {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
         }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
     }
@@ -155,7 +168,7 @@ class PodcastDetailViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func playerRateChanged(notification: NSNotification) {
+    func playerStateChanged(notification: NSNotification) {
         updatePlayButton()
     }
     

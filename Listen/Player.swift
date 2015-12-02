@@ -17,11 +17,6 @@ class Player : NSObject, AudioPlayerDelegate {
     var event: Event?
     var player = AudioPlayer()
     var currentItem: AudioItem?
-    var isPlaying : Bool {
-        get {
-            return player.state == AudioPlayerState.Playing
-        }
-    }
     
     override init() {
         super.init()
@@ -30,19 +25,19 @@ class Player : NSObject, AudioPlayerDelegate {
     
     func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         
-        switch to {
-        case AudioPlayerState.Buffering:
-            print("buffering")
-        case AudioPlayerState.Paused:
-            print("paused")
-        case AudioPlayerState.Playing:
-            print("playing")
-        case AudioPlayerState.Stopped:
-            print("stopped")
-        case AudioPlayerState.WaitingForConnection:
-            print("waiting for connection")
-        }
-        //NSNotificationCenter.defaultCenter().postNotificationName("playerRateChanged", object: player, userInfo: ["player": self])
+//        switch to {
+//        case AudioPlayerState.Buffering:
+//            print("buffering")
+//        case AudioPlayerState.Paused:
+//            print("paused")
+//        case AudioPlayerState.Playing:
+//            print("playing")
+//        case AudioPlayerState.Stopped:
+//            print("stopped")
+//        case AudioPlayerState.WaitingForConnection:
+//            print("waiting for connection")
+//        }
+        NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self])
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {}
@@ -70,11 +65,17 @@ class Player : NSObject, AudioPlayerDelegate {
         // if it is a new event
         if event != self.event {
             playEvent(event)
-        } else {
-            if isPlaying {
-                player.pause()
-            } else {
+        } else {            
+            switch player.state {
+            case AudioPlayerState.Buffering: break
+            case AudioPlayerState.Paused:
                 player.playItem(currentItem!)
+            case AudioPlayerState.Playing:
+                player.pause()
+            case AudioPlayerState.Stopped:
+                // TODO
+                break
+            case AudioPlayerState.WaitingForConnection: break
             }
         }
     }

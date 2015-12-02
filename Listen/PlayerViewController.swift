@@ -10,6 +10,7 @@ import UIKit
 import MediaPlayer
 import Alamofire
 import AlamofireImage
+import KDEAudioPlayer
 
 class PlayerViewController: UIViewController {
     
@@ -154,7 +155,7 @@ class PlayerViewController: UIViewController {
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
     }
     
@@ -170,15 +171,26 @@ class PlayerViewController: UIViewController {
         updateFavoritesButton()
     }
     
-    func playerRateChanged(notification: NSNotification) {
-        let userInfo = notification.userInfo as! [String: AnyObject]
-        let player = userInfo["player"] as! Player
-        if player.isPlaying {
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
-        } else {
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "togglePlayPause:")]
+    func playerStateChanged(notification: NSNotification) {
+        let player = Player.sharedInstance.player
+        
+        switch player.state {
+        case AudioPlayerState.Buffering:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
+        case AudioPlayerState.Paused:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+        case AudioPlayerState.Playing:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
+        case AudioPlayerState.Stopped:
+            // hide the player
+            // TODO
+            self.presentingViewController?.dismissPopupBarAnimated(true, completion: nil)
+        case AudioPlayerState.WaitingForConnection:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
         }
     }
     
