@@ -57,6 +57,8 @@ class PlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNotifications()
+        let longpressRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+        self.popupContentView.addGestureRecognizer(longpressRecognizer)
         updateUI()
 	}
     
@@ -79,6 +81,10 @@ class PlayerViewController: UIViewController {
                     })
                 }
         }
+    }
+    
+    func handleLongPress(recognizer: UITapGestureRecognizer) {
+        print("long press")
     }
     
     func updateStatusBarStyle(image: UIImage) {
