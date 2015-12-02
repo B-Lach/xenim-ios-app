@@ -90,22 +90,22 @@ class PodcastDetailViewController: UIViewController {
                 if playerEvent.equals(event) {
                     switch playerManager.player.state {
                     case AudioPlayerState.Buffering:
-                        playButton?.setImage(UIImage(named: "black-25-hourglass"), forState: .Normal)
+                        playButton?.setImage(UIImage(named: "black-44-hourglass"), forState: .Normal)
                     case AudioPlayerState.Paused:
-                        playButton?.setImage(UIImage(named: "black-25-play"), forState: .Normal)
+                        playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
                     case AudioPlayerState.Playing:
-                        playButton?.setImage(UIImage(named: "black-25-pause"), forState: .Normal)
+                        playButton?.setImage(UIImage(named: "black-44-pause"), forState: .Normal)
                     case AudioPlayerState.Stopped:
                         // TODO
-                        playButton?.setImage(UIImage(named: "black-25-play"), forState: .Normal)
+                        playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
                     case AudioPlayerState.WaitingForConnection:
-                        playButton?.setImage(UIImage(named: "black-25-hourglass"), forState: .Normal)
+                        playButton?.setImage(UIImage(named: "black-44-hourglass"), forState: .Normal)
                     }
                 } else {
-                    playButton?.setImage(UIImage(named: "black-25-play"), forState: .Normal)
+                    playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
                 }
             } else {
-                playButton?.setImage(UIImage(named: "black-25-play"), forState: .Normal)
+                playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
             }
         }
 
