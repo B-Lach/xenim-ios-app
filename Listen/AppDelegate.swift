@@ -40,6 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        if let event = event {
+            PlayerManager.sharedInstance.player.remoteControlReceivedWithEvent(event)
+        }
+    }
 
 
 }
