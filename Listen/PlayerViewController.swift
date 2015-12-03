@@ -210,7 +210,7 @@ class PlayerViewController: UIViewController {
             playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
         case .Failed(_):
             let errorTitle = NSLocalizedString("player_failed_state_alertview_title", value: "Playback Error", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.")
-            let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
+            let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
             delegate?.showInfoMessage(errorTitle, message: errorMessage)
             // .Stopped will be the next state automatically
             // this will dismiss the player
