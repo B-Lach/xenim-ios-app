@@ -67,7 +67,7 @@ class EventTableViewCell: UITableViewCell {
             updateFavstar()
             
             let placeholderImage = UIImage(named: "event_placeholder")!
-            eventCoverartImage.af_setImageWithURL(event.imageurl, placeholderImage: placeholderImage)
+            eventCoverartImage.af_setImageWithURL(event.imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
             
             updateProgressBar()
             updatePlayButton()

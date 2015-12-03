@@ -29,7 +29,7 @@ class FavoriteTableViewCell: UITableViewCell {
     func updateUI() {
         if podcast != nil && podcast!.slug == podcastSlug {
             podcastNameLabel.text = podcast!.name
-            coverartImageView.af_setImageWithURL(podcast!.imageurl, placeholderImage: UIImage(named: "event_placeholder"))
+            coverartImageView.af_setImageWithURL(podcast!.imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
         } else {
             // fetch from API
             podcastNameLabel?.text = podcastSlug
