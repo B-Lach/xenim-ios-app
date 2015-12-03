@@ -20,6 +20,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     
     override init() {
         super.init()
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         player.delegate = self
     }
     
