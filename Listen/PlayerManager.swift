@@ -24,9 +24,6 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
-        
-        print("\(from) -> \(to)")
-        
         NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self])
     }
     
