@@ -9,18 +9,18 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - AlamofireImage
-  - KDEAudioPlayer (from `https://github.com/delannoyk/AudioPlayer.git`, branch `develop`)
+  - KDEAudioPlayer (from `https://github.com/delannoyk/AudioPlayer.git`, branch `master`)
   - MarqueeLabel-Swift
   - SwiftyJSON (~> 2.3)
 
 EXTERNAL SOURCES:
   KDEAudioPlayer:
-    :branch: develop
+    :branch: master
     :git: https://github.com/delannoyk/AudioPlayer.git
 
 CHECKOUT OPTIONS:
   KDEAudioPlayer:
-    :commit: 114d812f0e94c76eef320b7fc5aab2df61ca5612
+    :commit: d5cdb12b976e36b4eff3c9901d3d595ae78da349
     :git: https://github.com/delannoyk/AudioPlayer.git
 
 SPEC CHECKSUMS:

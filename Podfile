@@ -7,6 +7,6 @@ target 'Listen' do
   pod 'AlamofireImage'
   pod 'MarqueeLabel-Swift'
   #pod 'KDEAudioPlayer'
-  pod 'KDEAudioPlayer', :git => 'https://github.com/delannoyk/AudioPlayer.git', :branch => 'develop'
+  pod 'KDEAudioPlayer', :git => 'https://github.com/delannoyk/AudioPlayer.git', :branch => 'master'
 end
 
