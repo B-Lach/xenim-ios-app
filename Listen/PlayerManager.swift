@@ -36,7 +36,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         self.event = event
         
         currentItem = AudioItem(mediumQualitySoundURL: event.streamurl)
-        currentItem?.artist = event.podcastSlug
+        currentItem?.artist = event.podcastDescription
         currentItem?.title = event.title
         player.playItem(currentItem!)
 
