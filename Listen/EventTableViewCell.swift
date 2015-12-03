@@ -88,13 +88,11 @@ class EventTableViewCell: UITableViewCell {
                 case .Playing:
                     playButton?.setImage(UIImage(named: "brandeis-blue-25-pause"), forState: .Normal)
                 case .Stopped:
-                    // TODO
                     playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
                 case .WaitingForConnection:
                     playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
                 case .Failed(_):
-                    // TODO
-                    break
+                    playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
                 }
             } else {
                 playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)

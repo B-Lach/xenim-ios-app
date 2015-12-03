@@ -96,13 +96,11 @@ class PodcastDetailViewController: UIViewController {
                     case .Playing:
                         playButton?.setImage(UIImage(named: "black-44-pause"), forState: .Normal)
                     case .Stopped:
-                        // TODO
                         playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
                     case .WaitingForConnection:
                         playButton?.setImage(UIImage(named: "black-44-hourglass"), forState: .Normal)
                     case .Failed(_):
-                        // TODO
-                        break
+                        playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
                     }
                 } else {
                     playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
