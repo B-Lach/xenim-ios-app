@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   KDEAudioPlayer:
-    :commit: 13598b4ac0bd8a2ffb06f762f05a5de04a8028e5
+    :commit: bdd3dac25b6d5db7fd69d221c9f1819f08a2a271
     :git: https://github.com/funkenstrahlen/AudioPlayer.git
 
 SPEC CHECKSUMS:
