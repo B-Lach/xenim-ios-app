@@ -23,6 +23,7 @@ class PlayerViewController: UIViewController {
     }
     var podcast: Podcast?
     var delegate: PlayerDelegator?
+    var presenter: UITabBarController?
 
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
@@ -184,22 +185,25 @@ class PlayerViewController: UIViewController {
         let player = PlayerManager.sharedInstance.player
         
         switch player.state {
-        case AudioPlayerState.Buffering:
+        case .Buffering:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
-        case AudioPlayerState.Paused:
+        case .Paused:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
-        case AudioPlayerState.Playing:
+        case .Playing:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
-        case AudioPlayerState.Stopped:
-            // hide the player
-            // TODO
-            self.presentingViewController?.dismissPopupBarAnimated(true, completion: nil)
-        case AudioPlayerState.WaitingForConnection:
+        case .Stopped:
+            // dismiss the player
+            self.presenter?.dismissPopupBarAnimated(true, completion: nil)
+        case .WaitingForConnection:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
+        case .Failed(_):
+            delegate?.showInfoMessage("Error", message: "Could not play this stream")
+            // .Stopped will be the next state automatically
+            // this will dismiss the player
         }
     }
     

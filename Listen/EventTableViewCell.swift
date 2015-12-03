@@ -81,17 +81,20 @@ class EventTableViewCell: UITableViewCell {
         if let playerEvent = playerManager.event, let myEvent = self.event {
             if playerEvent.equals(myEvent) {
                 switch playerManager.player.state {
-                case AudioPlayerState.Buffering:
+                case .Buffering:
                     playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
-                case AudioPlayerState.Paused:
+                case .Paused:
                     playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
-                case AudioPlayerState.Playing:
+                case .Playing:
                     playButton?.setImage(UIImage(named: "brandeis-blue-25-pause"), forState: .Normal)
-                case AudioPlayerState.Stopped:
+                case .Stopped:
                     // TODO
                     playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
-                case AudioPlayerState.WaitingForConnection:
+                case .WaitingForConnection:
                     playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
+                case .Failed(_):
+                    // TODO
+                    break
                 }
             } else {
                 playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)

@@ -89,17 +89,20 @@ class PodcastDetailViewController: UIViewController {
             if let playerEvent = playerManager.event {
                 if playerEvent.equals(event) {
                     switch playerManager.player.state {
-                    case AudioPlayerState.Buffering:
+                    case .Buffering:
                         playButton?.setImage(UIImage(named: "black-44-hourglass"), forState: .Normal)
-                    case AudioPlayerState.Paused:
+                    case .Paused:
                         playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
-                    case AudioPlayerState.Playing:
+                    case .Playing:
                         playButton?.setImage(UIImage(named: "black-44-pause"), forState: .Normal)
-                    case AudioPlayerState.Stopped:
+                    case .Stopped:
                         // TODO
                         playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
-                    case AudioPlayerState.WaitingForConnection:
+                    case .WaitingForConnection:
                         playButton?.setImage(UIImage(named: "black-44-hourglass"), forState: .Normal)
+                    case .Failed(_):
+                        // TODO
+                        break
                     }
                 } else {
                     playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)

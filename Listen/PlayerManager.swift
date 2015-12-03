@@ -41,8 +41,6 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         currentItem?.artist = event.podcastSlug
         currentItem?.title = event.title
         player.playItem(currentItem!)
-        // workaround https://github.com/delannoyk/AudioPlayer/issues/16
-        NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self])
 
         // fetch coverart from image cache and set it as lockscreen artwork
         Alamofire.request(.GET, event.imageurl)
@@ -65,15 +63,16 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             playEvent(event)
         } else {
             switch player.state {
-            case AudioPlayerState.Buffering: break
-            case AudioPlayerState.Paused:
+            case .Buffering: break
+            case .Paused:
                 player.playItem(currentItem!)
-            case AudioPlayerState.Playing:
+            case .Playing:
                 player.pause()
-            case AudioPlayerState.Stopped:
-                // TODO
-                break
-            case AudioPlayerState.WaitingForConnection: break
+            case .Stopped:
+                player.playItem(currentItem!)
+            case .WaitingForConnection: break
+            case .Failed(_):
+                player.playItem(currentItem!)
             }
         }
     }
