@@ -80,12 +80,18 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         let currentTime = player.currentItemProgression
         let newTime = currentTime?.advancedBy(30)
         player.seekToTime(newTime!)
+        print("----")
+        print(currentTime)
+        print(player.currentItemProgression)
     }
     
     private func minus30seconds() {
         let currentTime = player.currentItemProgression
         let newTime = currentTime?.advancedBy(-30)
         player.seekToTime(newTime!)
+        print("----")
+        print(currentTime)
+        print(player.currentItemProgression)
     }
     
     func forwardPressed() {
