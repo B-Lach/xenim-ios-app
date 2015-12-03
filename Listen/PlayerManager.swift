@@ -76,16 +76,24 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         }
     }
     
-    func plus30seconds() {
+    private func plus30seconds() {
         let currentTime = player.currentItemProgression
         let newTime = currentTime?.advancedBy(30)
         player.seekToTime(newTime!)
     }
     
-    func minus30seconds() {
+    private func minus30seconds() {
         let currentTime = player.currentItemProgression
         let newTime = currentTime?.advancedBy(-30)
         player.seekToTime(newTime!)
+    }
+    
+    func forwardPressed() {
+        plus30seconds()
+    }
+    
+    func backwardPressed() {
+        minus30seconds()
     }
     
     func remoteControlReceivedWithEvent(event: UIEvent) {
@@ -101,13 +109,13 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             case .RemoteControlEndSeekingForward:
                 break
             case .RemoteControlNextTrack:
-                plus30seconds()
+                forwardPressed()
             case .RemoteControlPause:
                 player.pause()
             case .RemoteControlPlay:
                 player.resume()
             case .RemoteControlPreviousTrack:
-                minus30seconds()
+                backwardPressed()
             case .RemoteControlStop:
                 stop()
             case .RemoteControlTogglePlayPause:
