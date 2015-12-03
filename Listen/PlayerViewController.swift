@@ -161,6 +161,14 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    @IBAction func backwardPressed(sender: AnyObject) {
+        PlayerManager.sharedInstance.minus30seconds()
+    }
+    
+    @IBAction func forwardPressed(sender: AnyObject) {
+        PlayerManager.sharedInstance.plus30seconds()
+    }
+    
     // MARK: notifications
     
     func setupNotifications() {

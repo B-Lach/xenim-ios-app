@@ -64,7 +64,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             switch player.state {
             case .Buffering: break
             case .Paused:
-                player.playItem(currentItem!)
+                player.resume()
             case .Playing:
                 player.pause()
             case .Stopped:
@@ -72,6 +72,46 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             case .WaitingForConnection: break
             case .Failed(_):
                 player.playItem(currentItem!)
+            }
+        }
+    }
+    
+    func plus30seconds() {
+        print("+30s")
+    }
+    
+    func minus30seconds() {
+        print("-30s")
+    }
+    
+    func remoteControlReceivedWithEvent(event: UIEvent) {
+        if event.type == .RemoteControl {
+            //ControlCenter Or Lock screen
+            switch event.subtype {
+            case .RemoteControlBeginSeekingBackward:
+                break
+            case .RemoteControlBeginSeekingForward:
+                break
+            case .RemoteControlEndSeekingBackward:
+                break
+            case .RemoteControlEndSeekingForward:
+                break
+            case .RemoteControlNextTrack:
+                plus30seconds()
+            case .RemoteControlPause:
+                player.pause()
+            case .RemoteControlPlay:
+                player.resume()
+            case .RemoteControlPreviousTrack:
+                minus30seconds()
+            case .RemoteControlStop:
+                stop()
+            case .RemoteControlTogglePlayPause:
+                if let event = self.event {
+                    togglePlayPause(event)
+                }
+            default:
+                break
             }
         }
     }
