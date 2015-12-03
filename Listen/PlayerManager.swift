@@ -77,11 +77,15 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     }
     
     func plus30seconds() {
-        print("+30s")
+        let currentTime = player.currentItemProgression
+        let newTime = currentTime?.advancedBy(30)
+        player.seekToTime(newTime!)
     }
     
     func minus30seconds() {
-        print("-30s")
+        let currentTime = player.currentItemProgression
+        let newTime = currentTime?.advancedBy(-30)
+        player.seekToTime(newTime!)
     }
     
     func remoteControlReceivedWithEvent(event: UIEvent) {
