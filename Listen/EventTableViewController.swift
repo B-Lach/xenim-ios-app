@@ -344,12 +344,16 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         if playerViewController == nil {
             playerViewController = storyboard?.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
         }
+        
+        let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: "handleLongPress:")
+        longpressRecognizer.delegate = playerViewController
 
         playerViewController!.delegate = self
         playerViewController!.presenter = tabBarController
         playerViewController!.event = event
         
         tabBarController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
+        tabBarController?.popupBar.addGestureRecognizer(longpressRecognizer)
     }
     
     
