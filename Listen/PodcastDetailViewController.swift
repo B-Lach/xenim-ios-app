@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KDEAudioPlayer
 
 class PodcastDetailViewController: UIViewController {
     
@@ -84,15 +85,28 @@ class PodcastDetailViewController: UIViewController {
             if event.isLive() {
                 playButtonEffectView.hidden = false
             }
-            let player = Player.sharedInstance
-            if let playerEvent = player.event {
-                if playerEvent.equals(event) && player.isPlaying {
-                    playButton?.setImage(UIImage(named: "pause"), forState: .Normal)
+            let playerManager = PlayerManager.sharedInstance
+            if let playerEvent = playerManager.event {
+                if playerEvent.equals(event) {
+                    switch playerManager.player.state {
+                    case .Buffering:
+                        playButton?.setImage(UIImage(named: "black-44-hourglass"), forState: .Normal)
+                    case .Paused:
+                        playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
+                    case .Playing:
+                        playButton?.setImage(UIImage(named: "black-44-pause"), forState: .Normal)
+                    case .Stopped:
+                        playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
+                    case .WaitingForConnection:
+                        playButton?.setImage(UIImage(named: "black-44-hourglass"), forState: .Normal)
+                    case .Failed(_):
+                        playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
+                    }
                 } else {
-                    playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+                    playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
                 }
             } else {
-                playButton?.setImage(UIImage(named: "play"), forState: .Normal)
+                playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
             }
         }
 
@@ -146,7 +160,7 @@ class PodcastDetailViewController: UIViewController {
     
     func setupNotifications() {
         if event != nil {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
         }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
     }
@@ -155,7 +169,7 @@ class PodcastDetailViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func playerRateChanged(notification: NSNotification) {
+    func playerStateChanged(notification: NSNotification) {
         updatePlayButton()
     }
     

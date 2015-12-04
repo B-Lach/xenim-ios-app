@@ -870,6 +870,9 @@
                                                             <exclude reference="bcp-tN-d85"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="forwardPressed:" destination="Pke-AM-PdW" eventType="touchUpInside" id="gb7-Dq-Rg4"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8H-SE-59N" userLabel="Prev">
                                                     <rect key="frame" x="134" y="88" width="33" height="25"/>
@@ -890,6 +893,9 @@
                                                             <exclude reference="Slv-ea-lfu"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="backwardPressed:" destination="Pke-AM-PdW" eventType="touchUpInside" id="So1-b1-17a"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pv3-L5-9Jg">
                                                     <rect key="frame" x="8" y="18" width="584" height="29"/>
@@ -1080,9 +1086,9 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aao-SN-YGR">
-                                                            <rect key="frame" x="34" y="29" width="12" height="22"/>
+                                                            <rect key="frame" x="24" y="24" width="33" height="33"/>
                                                             <animations/>
-                                                            <state key="normal" image="play"/>
+                                                            <state key="normal" image="black-44-play"/>
                                                             <connections>
                                                                 <action selector="playEvent:" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Urn-RU-hSf"/>
                                                             </connections>
@@ -1932,6 +1938,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="black-44-forward" width="33" height="33"/>
         <image name="black-44-info-circle" width="33" height="33"/>
         <image name="black-44-pause" width="33" height="33"/>
+        <image name="black-44-play" width="33" height="33"/>
         <image name="black-44-star-o" width="33" height="33"/>
         <image name="brandeis-blue-25-calendar" width="19" height="19"/>
         <image name="brandeis-blue-25-cog" width="19" height="19"/>
@@ -1949,7 +1956,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="corn-44-star" width="33" height="33"/>
         <image name="corn-44-star-o" width="33" height="33"/>
         <image name="event_placeholder" width="420" height="420"/>
-        <image name="play" width="12" height="14"/>
         <image name="tangelo-25-heart" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>

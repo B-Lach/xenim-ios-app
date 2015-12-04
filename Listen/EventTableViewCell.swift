@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KDEAudioPlayer
 
 class EventTableViewCell: UITableViewCell {
     
@@ -70,14 +71,29 @@ class EventTableViewCell: UITableViewCell {
             
             updateProgressBar()
             updatePlayButton()
+            
+            playButton.hidden = false
         }
     }
     
     func updatePlayButton() {
-        let player = Player.sharedInstance
-        if let playerEvent = player.event, let myEvent = self.event {
-            if playerEvent.equals(myEvent) && player.isPlaying {
-                playButton?.setImage(UIImage(named: "brandeis-blue-25-pause"), forState: .Normal)
+        let playerManager = PlayerManager.sharedInstance
+        if let playerEvent = playerManager.event, let myEvent = self.event {
+            if playerEvent.equals(myEvent) {
+                switch playerManager.player.state {
+                case .Buffering:
+                    playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
+                case .Paused:
+                    playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                case .Playing:
+                    playButton?.setImage(UIImage(named: "brandeis-blue-25-pause"), forState: .Normal)
+                case .Stopped:
+                    playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                case .WaitingForConnection:
+                    playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
+                case .Failed(_):
+                    playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                }
             } else {
                 playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
             }
@@ -113,7 +129,7 @@ class EventTableViewCell: UITableViewCell {
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
     }
     
@@ -125,7 +141,7 @@ class EventTableViewCell: UITableViewCell {
         updateProgressBar()
     }
     
-    func playerRateChanged(notification: NSNotification) {
+    func playerStateChanged(notification: NSNotification) {
         updatePlayButton()
     }
     
