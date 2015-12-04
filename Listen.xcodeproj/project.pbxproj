@@ -26,6 +26,8 @@
 		229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4D1BD5623500F1CF6B /* Podcast.swift */; };
 		229B7D501BD564DC00F1CF6B /* HoersuppeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */; };
 		229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */; };
+		22BEF0FB1C1192F000496C2F /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22BEF0FA1C1192F000496C2F /* LNPopupController.framework */; };
+		22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
 		22DAD4911BFCC26500B3043E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22DAD4931BFCC26500B3043E /* InfoPlist.strings */; };
 		22DAD4961BFCC26600B3043E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22DAD4981BFCC26600B3043E /* Localizable.strings */; };
@@ -33,6 +35,19 @@
 		22EB45BE1C07614F00C765BA /* PodcastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* PodcastTableViewCell.swift */; };
 		22FCCFC11BDCE68E00BC772A /* Pods_Listen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FCCFC01BDCE68E00BC772A /* Pods_Listen.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		22BEF0FD1C1193B400496C2F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		221109551BD5336F0095F25D /* Listen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Listen-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -57,6 +72,8 @@
 		229B7D4D1BD5623500F1CF6B /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoersuppeAPI.swift; sourceTree = "<group>"; };
 		229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		22BEF0FA1C1192F000496C2F /* LNPopupController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LNPopupController.framework; path = Carthage/Build/iOS/LNPopupController.framework; sourceTree = "<group>"; };
+		22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = LNPopupController.framework.dSYM; path = Carthage/Build/iOS/LNPopupController.framework.dSYM; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
 		22DAD48D1BFCB2A700B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		22DAD48E1BFCB2A700B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -74,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22BEF0FB1C1192F000496C2F /* LNPopupController.framework in Frameworks */,
 				22FCCFC11BDCE68E00BC772A /* Pods_Listen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +111,7 @@
 		2222ECA91BD52E470040100F = {
 			isa = PBXGroup;
 			children = (
+				22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */,
 				2222ECB41BD52E470040100F /* Listen */,
 				2222ECB31BD52E470040100F /* Products */,
 				1AF3F55A1686DEC774FED923 /* Pods */,
@@ -160,6 +179,7 @@
 		4CD0EF0E6BE3DB36059D8E8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22BEF0FA1C1192F000496C2F /* LNPopupController.framework */,
 				22FCCFC01BDCE68E00BC772A /* Pods_Listen.framework */,
 			);
 			name = Frameworks;
@@ -178,6 +198,8 @@
 				2222ECB01BD52E470040100F /* Resources */,
 				4FB7EEFDA1EBD3A39EF241F5 /* Embed Pods Frameworks */,
 				9EAB20B2B2D9173776E6C451 /* Copy Pods Resources */,
+				22BEF0FC1C11933B00496C2F /* ShellScript */,
+				22BEF0FD1C1193B400496C2F /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -243,6 +265,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		22BEF0FC1C11933B00496C2F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/LNPopupController.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		4FB7EEFDA1EBD3A39EF241F5 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -450,6 +486,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/LNPopupController/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Listen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -471,6 +508,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/LNPopupController/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Listen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
