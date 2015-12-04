@@ -221,10 +221,16 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         case .Failed(_):
             let errorTitle = NSLocalizedString("player_failed_state_alertview_title", value: "Playback Error", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.")
             let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
-            delegate?.showInfoMessage(errorTitle, message: errorMessage)
+            showInfoMessage(errorTitle, message: errorMessage)
             // .Stopped will be the next state automatically
             // this will dismiss the player
         }
+    }
+    
+    func showInfoMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presenter?.presentViewController(alert, animated: true, completion: nil)
     }
     
 }

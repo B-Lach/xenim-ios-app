@@ -11,7 +11,6 @@ import UIKit
 protocol PlayerDelegator {
     func togglePlayPause(event event: Event)
     func showEventInfo(event event: Event)
-    func showInfoMessage(title: String, message: String)
 }
 
 class EventTableViewController: UITableViewController, PlayerDelegator {
@@ -326,12 +325,6 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
             // there is no detail view open yet, so just open it
             performSegueWithIdentifier("PodcastDetail", sender: event)
         }
-    }
-    
-    func showInfoMessage(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     @IBAction func dismissSettings(segue:UIStoryboardSegue) {
