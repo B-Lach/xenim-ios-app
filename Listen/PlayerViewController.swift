@@ -7,17 +7,23 @@
 //
 
 import UIKit
-import Haneke
 import MediaPlayer
+import Alamofire
+import AlamofireImage
+import KDEAudioPlayer
 
 class PlayerViewController: UIViewController {
     
     var event: Event! {
         didSet {
+            fetchPodcastInfo()
             updateUI()
             togglePlayPause(self)
         }
     }
+    var podcast: Podcast?
+    var delegate: PlayerDelegator?
+    var presenter: UITabBarController?
 
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
@@ -26,10 +32,9 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     let miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
     
-    @IBOutlet weak var volumeView: MPVolumeView!
     @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var starButtonView: UIButton!
+    @IBOutlet weak var chatButton: UIButton!
     
     var statusBarStyle = UIStatusBarStyle.Default
     
@@ -39,9 +44,12 @@ class PlayerViewController: UIViewController {
         // use this to add more controls on ipad interface
 		//if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
 
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause:")]
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
         
         miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
+        miniCoverartImageView.layer.cornerRadius = 5.0
+        miniCoverartImageView.layer.masksToBounds = true
+        
         let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
         self.popupItem.leftBarButtonItems = [popupItem]
 
@@ -49,14 +57,9 @@ class PlayerViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNotifications()
-        
-        volumeView.showsRouteButton = false // disable airplay icon next to volume slider
-        
-        visualEffectView.layer.cornerRadius = visualEffectView.frame.size.width/2
-        visualEffectView.layer.masksToBounds = true
-        
+        let longpressRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+        self.popupContentView.addGestureRecognizer(longpressRecognizer)
         updateUI()
 	}
     
@@ -65,19 +68,24 @@ class PlayerViewController: UIViewController {
         popupItem.title = event.title
         subtitleLabel?.text = event.podcastDescription
         popupItem.subtitle = event.podcastDescription
-        coverartView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
-        backgroundImageView?.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
-        miniCoverartImageView.hnk_setImageFromURL(event.imageurl, placeholder: UIImage(named: "event_placeholder"), format: nil, failure: nil, success: nil)
+        coverartView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+        backgroundImageView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+        miniCoverartImageView.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
         updateProgressBar()
         updateFavoritesButton()
         
-        // fetch coverart from image cache and set it as lockscreen artwork
-        let imageCache = Shared.imageCache
-        imageCache.fetch(URL: event.imageurl).onSuccess { (image) -> () in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.updateStatusBarStyle(image)
-            })
+        Alamofire.request(.GET, event.imageurl)
+            .responseImage { response in
+                if let image = response.result.value {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.updateStatusBarStyle(image)
+                    })
+                }
         }
+    }
+    
+    func handleLongPress(recognizer: UITapGestureRecognizer) {
+        print("long press")
     }
     
     func updateStatusBarStyle(image: UIImage) {
@@ -95,8 +103,12 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    @IBAction func showEventInfo(sender: AnyObject) {
+        delegate?.showEventInfo(event: event)
+    }
+    
     @IBAction func togglePlayPause(sender: AnyObject) {
-        Player.sharedInstance.togglePlayPause(event)
+        PlayerManager.sharedInstance.togglePlayPause(event)
     }
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -112,18 +124,56 @@ class PlayerViewController: UIViewController {
     func updateFavoritesButton() {
         if let event = event {
             if !Favorites.fetch().contains(event.podcastSlug) {
-                starButtonView?.setTitle("☆", forState: .Normal)
+                starButtonView?.setImage(UIImage(named: "black-44-star-o"), forState: .Normal)
             } else {
-                starButtonView?.setTitle("★", forState: .Normal)
+                starButtonView?.setImage(UIImage(named: "black-44-star"), forState: .Normal)
             }
         }
+    }
+    
+    @IBAction func openChat(sender: AnyObject) {
+        if let chatUrl = podcast?.chatUrl, let webchatUrl = podcast?.webchatUrl {
+            if UIApplication.sharedApplication().canOpenURL(chatUrl) {
+                // open associated app
+                UIApplication.sharedApplication().openURL(chatUrl)
+            } else {
+                // open webchat in safari
+                UIApplication.sharedApplication().openURL(webchatUrl)
+            }
+        }
+    }
+    
+    func fetchPodcastInfo() {
+        if podcast == nil || podcast!.slug != event.podcastSlug {
+            HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
+                if let podcast = podcast {
+                    // check if the request that came back still matches the cell
+                    if podcast.slug == self.event.podcastSlug {
+                        self.podcast = podcast
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            if podcast.webchatUrl != nil {
+                                self.chatButton.hidden = false
+                            }
+                        })
+                    }
+                }
+            })
+        }
+    }
+    
+    @IBAction func backwardPressed(sender: AnyObject) {
+        PlayerManager.sharedInstance.backwardPressed()
+    }
+    
+    @IBAction func forwardPressed(sender: AnyObject) {
+        PlayerManager.sharedInstance.forwardPressed()
     }
     
     // MARK: notifications
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerRateChanged:"), name: "playerRateChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
     }
     
@@ -139,15 +189,31 @@ class PlayerViewController: UIViewController {
         updateFavoritesButton()
     }
     
-    func playerRateChanged(notification: NSNotification) {
-        let userInfo = notification.userInfo as! [String: AnyObject]
-        let player = userInfo["player"] as! Player
-        if player.isPlaying {
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "nowPlaying_pause"), forState: UIControlState.Normal)
-        } else {
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "nowPlaying_play"), forState: UIControlState.Normal)
+    func playerStateChanged(notification: NSNotification) {
+        let player = PlayerManager.sharedInstance.player
+        
+        switch player.state {
+        case .Buffering:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
+        case .Paused:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+        case .Playing:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
+        case .Stopped:
+            // dismiss the player
+            self.presenter?.dismissPopupBarAnimated(true, completion: nil)
+        case .WaitingForConnection:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
+        case .Failed(_):
+            let errorTitle = NSLocalizedString("player_failed_state_alertview_title", value: "Playback Error", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.")
+            let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
+            delegate?.showInfoMessage(errorTitle, message: errorMessage)
+            // .Stopped will be the next state automatically
+            // this will dismiss the player
         }
     }
     

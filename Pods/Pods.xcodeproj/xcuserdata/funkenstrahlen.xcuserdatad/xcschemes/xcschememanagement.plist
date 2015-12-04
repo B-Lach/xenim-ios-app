@@ -9,7 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>HanekeSwift.xcscheme</key>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>KDEAudioPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,42 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2584DAFBD22EF9B6D822B4D77811CC40</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>39BDED1E1386373A14312850F0D39A8C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4CE353ED79BC2B79C80AE768B3895B75</key>
+		<key>541E9AD8F0209976F59A780F49A3F069</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C5C2279A7814CF12DE8067D19E5DC286</key>
+		<key>80ACF827C5B56CA70BDA38E1EBD74BB8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A1BF58736B6CCECB5DB30E2108366143</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BFB85A50D8BA60C1F8CF1CE6D75793FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>CFF858055EBBB40A023415F0A0168820</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E69F279965DFC841CA876D05358A5B32</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F0EA0DBE4CC14BB311124892C749C9B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

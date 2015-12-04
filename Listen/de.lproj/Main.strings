@@ -1,0 +1,72 @@
+/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "8uz-SL-DGJ"; */
+"8uz-SL-DGJ.title" = "Favoriten";
+
+/* Class = "UIButton"; normalTitle = "Subscribe"; ObjectID = "ETv-v4-8gG"; */
+"ETv-v4-8gG.normalTitle" = "Abonnieren";
+
+/* Class = "UIButton"; normalTitle = "Website"; ObjectID = "GdW-z8-0dX"; */
+"GdW-z8-0dX.normalTitle" = "Webseite";
+
+/* Class = "UIBarButtonItem"; title = "★"; ObjectID = "IT3-va-4jo"; */
+"IT3-va-4jo.title" = "★";
+
+/* Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts goes live."; ObjectID = "Ib6-hb-yx1"; */
+"Ib6-hb-yx1.text" = "Erhalte Push Nachrichten sobald einer deiner Lieblingspodcasts live sendet.";
+
+/* Class = "UITabBarItem"; title = "Events"; ObjectID = "KKU-KO-aCN"; */
+"KKU-KO-aCN.title" = "Events";
+
+/* Class = "UILabel"; text = "Next Livedates"; ObjectID = "L5f-t2-KEW"; */
+"L5f-t2-KEW.text" = "Nächste Livetermine";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "PLU-zi-7Az"; */
+"PLU-zi-7Az.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SHY-V1-cI6"; */
+"SHY-V1-cI6.text" = "Label";
+
+/* Class = "UILabel"; text = "Demo Album"; ObjectID = "WkI-6i-Qxv"; */
+"WkI-6i-Qxv.text" = "Demo Album";
+
+/* Class = "UINavigationItem"; title = "Events"; ObjectID = "Z1Y-08-P79"; */
+"Z1Y-08-P79.title" = "Events";
+
+/* Class = "UILabel"; text = "★"; ObjectID = "f6j-so-r8A"; */
+"f6j-so-r8A.text" = "★";
+
+/* Class = "UIButton"; normalTitle = "☆"; ObjectID = "fTO-Hw-zIA"; */
+"fTO-Hw-zIA.normalTitle" = "☆";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "hVb-5H-N0P"; */
+"hVb-5H-N0P.text" = "Date";
+
+/* Class = "UIButton"; normalTitle = " "; ObjectID = "idX-LT-SMd"; */
+"idX-LT-SMd.normalTitle" = " ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "jmH-Yd-Nmt"; */
+"jmH-Yd-Nmt.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "l5d-ya-iW5"; */
+"l5d-ya-iW5.text" = "Label";
+
+/* Class = "UILabel"; text = "Demo Song"; ObjectID = "pv3-L5-9Jg"; */
+"pv3-L5-9Jg.text" = "Demo Song";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "rBC-zr-6KO"; */
+"rBC-zr-6KO.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sRm-H4-jze"; */
+"sRm-H4-jze.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sqw-7J-EQl"; */
+"sqw-7J-EQl.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Chat"; ObjectID = "v51-r4-3cg"; */
+"v51-r4-3cg.normalTitle" = "Chat";
+
+/* Class = "UIButton"; normalTitle = "Chat"; ObjectID = "xJh-eu-Wkm"; */
+"xJh-eu-Wkm.normalTitle" = "Chat";
+
+/* Class = "UIButton"; normalTitle = "☆"; ObjectID = "zkG-r2-6yf"; */
+"zkG-r2-6yf.normalTitle" = "☆";
+

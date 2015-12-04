@@ -22,16 +22,30 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Listen/PlayerManager.swift"
+            timestampString = "470867588.998922"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Listen/EventDetailViewController.swift"
-            timestampString = "468836972.048167"
+            filePath = "Pods/KDEAudioPlayer/AudioPlayer/AudioPlayer/AudioPlayer.swift"
+            timestampString = "470864145.142157"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "updateUI()"
+            startingLineNumber = "609"
+            endingLineNumber = "609"
+            landmarkName = "seekToTime(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
