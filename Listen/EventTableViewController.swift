@@ -11,7 +11,6 @@ import UIKit
 protocol PlayerDelegator {
     func togglePlayPause(event event: Event)
     func showEventInfo(event event: Event)
-    func showInfoMessage(title: String, message: String)
 }
 
 class EventTableViewController: UITableViewController, PlayerDelegator {
@@ -328,12 +327,6 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         }
     }
     
-    func showInfoMessage(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
     @IBAction func dismissSettings(segue:UIStoryboardSegue) {
         // do nothing
     }
@@ -344,12 +337,16 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         if playerViewController == nil {
             playerViewController = storyboard?.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
         }
+        
+        let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: "handleLongPress:")
+        longpressRecognizer.delegate = playerViewController
 
         playerViewController!.delegate = self
         playerViewController!.presenter = tabBarController
         playerViewController!.event = event
         
         tabBarController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
+        tabBarController?.popupBar.addGestureRecognizer(longpressRecognizer)
     }
     
     
