@@ -62,7 +62,15 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	}
     
     func handleLongPress(recognizer: UILongPressGestureRecognizer) {
-        PlayerManager.sharedInstance.stop()
+        if !(self.presenter?.presentedViewController is UIAlertController) {
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            alert.addAction(UIAlertAction(title: "End Playback", style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
+                self.presenter?.dismissViewControllerAnimated(true, completion: nil)
+                PlayerManager.sharedInstance.stop()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presenter?.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
