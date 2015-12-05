@@ -12,14 +12,18 @@ class NextupEventsTableViewController: UITableViewController {
     
     var upcomingEvents = [Event]()
     var podcastSlug: String!
-    let upcomingEventCount = 3
     var isLoading = true
     @IBOutlet weak var addToFavoritesInformationLabel: UILabel!
     
+    // static configs for this view
+    let upcomingEventCount = 3
+    let viewHeight : CGFloat = 3*44 + 100
+    
     override var preferredContentSize: CGSize {
         get {
-            return CGSizeMake(super.preferredContentSize.width, 3*44 + 100)
+            return CGSizeMake(super.preferredContentSize.width, viewHeight)
             
+//            // tried to set the height dynamically based on content height, but did not work out
 //            let height = CGFloat(upcomingEvents.count) * tableView.rowHeight
 //            return CGSize(width: super.preferredContentSize.width, height: height)
         }
@@ -33,6 +37,7 @@ class NextupEventsTableViewController: UITableViewController {
             addToFavoritesInformationLabel.text = NSLocalizedString("nextup_events_popupview_information_label_if_favorite", value: "You will receive push notifications.", comment: "Message shown in nextup popup view controller as info message at the end of the table if the user has already added this podcast to his favorites. Text should be like 'You will receive push notifications'.")
         }
         
+        // fetch upcoming events
         HoersuppeAPI.fetchPodcastNextLiveEvents(podcastSlug, count: upcomingEventCount) { (events) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.upcomingEvents = events

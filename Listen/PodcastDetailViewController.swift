@@ -11,6 +11,13 @@ import KDEAudioPlayer
 
 class PodcastDetailViewController: UIViewController {
     
+    /**
+        This view can either be initialized via segue by setting the podcast
+        or by setting the event.
+        If only event is set, the podcast data will be fetched async.
+        If only podcast is set, there will not be any event based display (like play button).
+    */
+    
     var podcast: Podcast? {
         didSet {
             // assign the podcast object to the tableview controller in the container view
@@ -31,6 +38,8 @@ class PodcastDetailViewController: UIViewController {
     var interactionTableViewController: PodcastInteractTableViewController?
     @IBOutlet weak var favoriteButton: UIButton!
     
+    // MARK: - init
+    
     override func viewDidLoad() {
         // LNPopupBarHeight is currently 40
         // increase bottom inset to show all content if player is visible
@@ -38,11 +47,14 @@ class PodcastDetailViewController: UIViewController {
         
         setupNotifications()
         
+        // make the effect view a circle
         playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
         playButtonEffectView.layer.masksToBounds = true
         
         updateUI()
     }
+    
+    // MARK: - Update UI
     
     func updateUI() {
         
@@ -127,6 +139,8 @@ class PodcastDetailViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
+    
     @IBAction func playEvent(sender: AnyObject) {
         if let event = event {
             if let delegate = self.delegate {
@@ -145,6 +159,8 @@ class PodcastDetailViewController: UIViewController {
         Favorites.toggle(slug: podcastSlug)
     }
     
+    // MARK: - Navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "embed_tableview" {
             if let tableViewController = segue.destinationViewController as? PodcastInteractTableViewController {
@@ -156,7 +172,7 @@ class PodcastDetailViewController: UIViewController {
         }
     }
     
-    // MARK: notifications
+    // MARK: - Notifications
     
     func setupNotifications() {
         if event != nil {

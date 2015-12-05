@@ -31,12 +31,13 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var coverartView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     let miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
-    
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var starButtonView: UIButton!
     @IBOutlet weak var chatButton: UIButton!
     
     var statusBarStyle = UIStatusBarStyle.Default
+    
+    // MARK: - init
     
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -61,21 +62,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         updateUI()
 	}
     
-    func handleLongPress(recognizer: UILongPressGestureRecognizer) {
-        if !(self.presenter?.presentedViewController is UIAlertController) {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            alert.addAction(UIAlertAction(title: "End Playback", style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
-                self.presenter?.dismissViewControllerAnimated(true, completion: nil)
-                PlayerManager.sharedInstance.stop()
-            }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presenter?.presentViewController(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
+    // MARK: - Update UI
     
     func updateUI() {
         podcastNameLabel?.text = event.title
@@ -107,24 +94,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    @IBAction func favorite(sender: AnyObject) {
-        if let event = event {
-            Favorites.toggle(slug: event.podcastSlug)
-        }
-    }
-    
-    @IBAction func showEventInfo(sender: AnyObject) {
-        delegate?.showEventInfo(event: event)
-    }
-    
-    @IBAction func togglePlayPause(sender: AnyObject) {
-        PlayerManager.sharedInstance.togglePlayPause(event)
-    }
-
-	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return statusBarStyle
-	}
-	
+    }
+    
     func updateProgressBar() {
         let progress = event.progress
         popupItem.progress = progress
@@ -141,6 +114,40 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    // MARK: - delegate
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    // MARK: - Actions
+    
+    func handleLongPress(recognizer: UILongPressGestureRecognizer) {
+        if !(self.presenter?.presentedViewController is UIAlertController) {
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            alert.addAction(UIAlertAction(title: "End Playback", style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
+                self.presenter?.dismissViewControllerAnimated(true, completion: nil)
+                PlayerManager.sharedInstance.stop()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presenter?.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func favorite(sender: AnyObject) {
+        if let event = event {
+            Favorites.toggle(slug: event.podcastSlug)
+        }
+    }
+    
+    @IBAction func showEventInfo(sender: AnyObject) {
+        delegate?.showEventInfo(event: event)
+    }
+    
+    @IBAction func togglePlayPause(sender: AnyObject) {
+        PlayerManager.sharedInstance.togglePlayPause(event)
+    }
+    
     @IBAction func openChat(sender: AnyObject) {
         if let chatUrl = podcast?.chatUrl, let webchatUrl = podcast?.webchatUrl {
             if UIApplication.sharedApplication().canOpenURL(chatUrl) {
@@ -153,30 +160,18 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func fetchPodcastInfo() {
-        if podcast == nil || podcast!.slug != event.podcastSlug {
-            HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
-                if let podcast = podcast {
-                    // check if the request that came back still matches the cell
-                    if podcast.slug == self.event.podcastSlug {
-                        self.podcast = podcast
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            if podcast.webchatUrl != nil {
-                                self.chatButton.hidden = false
-                            }
-                        })
-                    }
-                }
-            })
-        }
-    }
-    
     @IBAction func backwardPressed(sender: AnyObject) {
         PlayerManager.sharedInstance.backwardPressed()
     }
     
     @IBAction func forwardPressed(sender: AnyObject) {
         PlayerManager.sharedInstance.forwardPressed()
+    }
+    
+    func showInfoMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presenter?.presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK: notifications
@@ -227,10 +222,24 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func showInfoMessage(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presenter?.presentViewController(alert, animated: true, completion: nil)
+    // MARK: - Data source
+    
+    func fetchPodcastInfo() {
+        if podcast == nil || podcast!.slug != event.podcastSlug {
+            HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
+                if let podcast = podcast {
+                    // check if the request that came back still matches the cell
+                    if podcast.slug == self.event.podcastSlug {
+                        self.podcast = podcast
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            if podcast.webchatUrl != nil {
+                                self.chatButton.hidden = false
+                            }
+                        })
+                    }
+                }
+            })
+        }
     }
     
 }

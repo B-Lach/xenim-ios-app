@@ -10,6 +10,11 @@ import UIKit
 import SafariServices
 import MessageUI
 
+
+/**
+    This is a table view which provides a number of actions for a podcast in detail view.
+    For example subscribe to the podcast, open its website, send feedback, ...
+*/
 class PodcastInteractTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate, UIPopoverPresentationControllerDelegate {
     
     var podcast: Podcast? {
@@ -25,11 +30,15 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     @IBOutlet weak var twitterCell: UITableViewCell!
     @IBOutlet weak var chatCell: UITableViewCell!
     
+    // MARK: - init
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsetsMake(0, -6, 0, 0)
         hideUnavailableActions()
     }
+    
+    // MARK: - Update UI
     
     func hideUnavailableActions() {
         if let podcast = podcast {
@@ -54,8 +63,9 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
                 sendMailCell?.imageView?.image = UIImage(named: "steel-25-envelope")
             }
         }
-
     }
+    
+    // MARK: - Actions
     
     func openPodcastWebsite() {
         if let podcast = podcast {
@@ -91,10 +101,6 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
                 UIApplication.sharedApplication().openURL(webchatUrl)
             }
         }
-    }
-    
-    func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func subscribePodcast() {
@@ -146,6 +152,18 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
         }
     }
     
+    func showInfoMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - delegate
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError?) {
         switch result.rawValue {
         case MFMailComposeResultCancelled.rawValue: break
@@ -159,11 +177,14 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func showInfoMessage(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+    // MARK: Popover
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        // prevent popover presentation style adaption on iphone, so it is not presented as a modal instead of a popover
+        return UIModalPresentationStyle.None
     }
+    
+    // MARK: Table View
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
@@ -180,13 +201,6 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
         } else if cell == chatCell {
             openChat()
         }
-    }
-    
-    // MARK: Popover
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        // prevent popover presentation style adaption on iphone, so it is not presented as a modal instead of a popover
-        return UIModalPresentationStyle.None
     }
 
     // MARK: - Navigation

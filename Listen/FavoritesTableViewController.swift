@@ -10,6 +10,7 @@ import UIKit
 
 class FavoritesTableViewController: UITableViewController {
     
+    // contains the podcast slugs of all favorites
     var favorites = [String]()
     var messageVC: MessageViewController?
     
@@ -63,8 +64,8 @@ class FavoritesTableViewController: UITableViewController {
         cell.podcastSlug = favorites[indexPath.row]
         return cell
     }
-    
-    // Override to support editing the table view.
+
+    // removing favorites is possible
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
@@ -83,19 +84,15 @@ class FavoritesTableViewController: UITableViewController {
         }
     }
     
-    
-    @IBAction func dismissSettings(segue:UIStoryboardSegue) {
-        
-    }
-    
-    @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {
-        
-    }
-    
-    
     // MARK: - Navigation
     
+    // rewind segues
+    @IBAction func dismissSettings(segue:UIStoryboardSegue) {}
+    @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {}
+    
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        // only allow segue to podcast detail view controller if podcast data for the cell
+        // has already been fetched.
         if identifier == "PodcastDetail" {
             if let cell = sender as? FavoriteTableViewCell {
                 if cell.podcast == nil {
@@ -103,6 +100,7 @@ class FavoritesTableViewController: UITableViewController {
                 }
             }
         }
+        // for all other segues return true by default
         return true
     }
     

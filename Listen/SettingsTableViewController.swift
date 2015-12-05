@@ -19,12 +19,6 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,11 +50,13 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     }
     
     func sendMail() {
+        // check if the user is able to send mail
         if MFMailComposeViewController.canSendMail() {
             let emailTitle = NSLocalizedString("settings_view_mail_title", value: "Listen Support", comment: "mail title for a new support mail message")
             let messageBody = NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.", comment: "mail body for a new support mail message")
             let toRecipents = ["app@funkenstrahlen.de"]
             
+            // configure mail compose view controller
             let mc: MFMailComposeViewController = MFMailComposeViewController()
             mc.mailComposeDelegate = self
             mc.setSubject(emailTitle)
@@ -75,6 +71,9 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         }
     }
     
+    /**
+        Mail compose view controller delegate method to dismiss if finished and react to errors
+    */
     func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError?) {
         switch result.rawValue {
         case MFMailComposeResultCancelled.rawValue: break

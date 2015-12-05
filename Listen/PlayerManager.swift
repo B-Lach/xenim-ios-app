@@ -18,37 +18,15 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     var player = AudioPlayer()
     var currentItem: AudioItem?
     
+    // MARK: - init
+    
     override init() {
         super.init()
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         player.delegate = self
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
-//        print("\(from) -> \(to)")
-        NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self])
-    }
-    
-    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {}
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {}
-    func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {}
-    
-    private func playEvent(event: Event) {
-        self.event = event
-        
-        currentItem = AudioItem(mediumQualitySoundURL: event.streamurl)
-        currentItem?.artist = event.podcastDescription
-        currentItem?.title = event.title
-        player.playItem(currentItem!)
-
-        // fetch coverart from image cache and set it as lockscreen artwork
-        Alamofire.request(.GET, event.imageurl)
-            .responseImage { response in
-                if let image = response.result.value {
-                    self.currentItem?.artworkImage = image
-                }
-        }
-    }
+    // MARK: - Actions
     
     func stop() {
         player.stop()
@@ -76,6 +54,33 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         }
     }
     
+    func forwardPressed() {
+        plus30seconds()
+    }
+    
+    func backwardPressed() {
+        minus30seconds()
+    }
+    
+    // MARK: private
+    
+    private func playEvent(event: Event) {
+        self.event = event
+        
+        currentItem = AudioItem(mediumQualitySoundURL: event.streamurl)
+        currentItem?.artist = event.podcastDescription
+        currentItem?.title = event.title
+        player.playItem(currentItem!)
+        
+        // fetch coverart from image cache and set it as lockscreen artwork
+        Alamofire.request(.GET, event.imageurl)
+            .responseImage { response in
+                if let image = response.result.value {
+                    self.currentItem?.artworkImage = image
+                }
+        }
+    }
+    
     private func plus30seconds() {
         let currentTime = player.currentItemProgression
         let newTime = currentTime?.advancedBy(30)
@@ -88,14 +93,20 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         player.seekToTime(newTime!)
     }
     
-    func forwardPressed() {
-        plus30seconds()
+    // MARK: - Notifications
+    
+    func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
+        //        print("\(from) -> \(to)")
+        NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self])
     }
     
-    func backwardPressed() {
-        minus30seconds()
-    }
+    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {}
+    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {}
+    func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {}
     
+    /**
+     remote control event is received in app delegate and passed for processing here
+    */
     func remoteControlReceivedWithEvent(event: UIEvent) {
         if event.type == .RemoteControl {
             //ControlCenter Or Lock screen
