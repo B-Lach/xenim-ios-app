@@ -24,8 +24,6 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var favoriteStarImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var delegate: PlayerDelegator?
-    
     var event: Event? {
         didSet {
             // notifications have to be updated every time a new event is set to this cell
@@ -40,6 +38,18 @@ class EventTableViewCell: UITableViewCell {
             podcastNameLabel?.text = event.title
             descriptionLabel?.text = event.podcastDescription
             
+            let placeholderImage = UIImage(named: "event_placeholder")!
+            eventCoverartImage.af_setImageWithURL(event.imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            
+            updateLivedate()
+            updateProgressBar()
+            updatePlayButton()
+            updateFavstar()
+        }
+    }
+    
+    func updateLivedate() {
+        if let event = event {
             // display livedate differently according to how far in the future
             // the event is taking place
             let formatter = NSDateFormatter();
@@ -48,55 +58,51 @@ class EventTableViewCell: UITableViewCell {
             if event.isToday() || event.isTomorrow() {
                 formatter.setLocalizedDateFormatFromTemplate("HH:mm")
             } else if event.isThisWeek() {
-                // TODO: customize this style
                 formatter.setLocalizedDateFormatFromTemplate("EEEE HH:mm")
             } else {
                 formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM HH:mm")
             }
             
             if event.isLive() {
-                playButton?.hidden = false
-                progressView.hidden = false
                 liveDateLabel?.text = "since \(formatter.stringFromDate(event.livedate))"
             } else {
-                playButton?.hidden = true
-                progressView.hidden = true
                 liveDateLabel?.text = formatter.stringFromDate(event.livedate)
             }
-
-            updateFavstar()
-            
-            let placeholderImage = UIImage(named: "event_placeholder")!
-            eventCoverartImage.af_setImageWithURL(event.imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
-            
-            updateProgressBar()
-            updatePlayButton()
         }
     }
     
     func updatePlayButton() {
-        let playerManager = PlayerManager.sharedInstance
-        if let playerEvent = playerManager.event, let myEvent = self.event {
-            if playerEvent.equals(myEvent) {
-                switch playerManager.player.state {
-                case .Buffering:
-                    playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
-                case .Paused:
-                    playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
-                case .Playing:
-                    playButton?.setImage(UIImage(named: "brandeis-blue-25-pause"), forState: .Normal)
-                case .Stopped:
-                    playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
-                case .WaitingForConnection:
-                    playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
-                case .Failed(_):
+        if let event = event {
+            // only show the playbutton if the event is live
+            if event.isLive() {
+                playButton?.hidden = false
+                // configure the play button image accordingly to the player state
+                let playerManager = PlayerManager.sharedInstance
+                if let playerEvent = playerManager.event, let myEvent = self.event {
+                    if playerEvent.equals(myEvent) {
+                        switch playerManager.player.state {
+                        case .Buffering:
+                            playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
+                        case .Paused:
+                            playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                        case .Playing:
+                            playButton?.setImage(UIImage(named: "brandeis-blue-25-pause"), forState: .Normal)
+                        case .Stopped:
+                            playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                        case .WaitingForConnection:
+                            playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
+                        case .Failed(_):
+                            playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                        }
+                    } else {
+                        playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                    }
+                } else {
                     playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
                 }
             } else {
-                playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                playButton?.hidden = true
             }
-        } else {
-            playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
         }
     }
     
@@ -113,12 +119,17 @@ class EventTableViewCell: UITableViewCell {
     func updateProgressBar() {
         if let event = event {
             progressView?.setProgress(event.progress, animated: true)
+            if event.isLive() {
+                progressView?.hidden = false
+            } else {
+                progressView?.hidden = true
+            }
         }
     }
     
     @IBAction func play(sender: AnyObject) {
-        if let delegate = self.delegate {
-            delegate.togglePlayPause(event: event!)
+        if let event = event {
+            PlayerManager.sharedInstance.togglePlayPause(event)
         }
     }
     

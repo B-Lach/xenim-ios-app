@@ -8,14 +8,13 @@
 
 import UIKit
 
-protocol PlayerDelegator {
-    func togglePlayPause(event event: Event)
+protocol EventDetailDelegate {
     func showEventInfo(event event: Event)
 }
 
-class EventTableViewController: UITableViewController, PlayerDelegator {
+class EventTableViewController: UITableViewController, EventDetailDelegate {
     
-    @IBOutlet weak var spinner: UIRefreshControl!
+    // possible sections
     enum Section {
         case Live
         case Today
@@ -23,19 +22,33 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         case ThisWeek
         case Later
     }
+    
+    // all events with no sorting
     var unsortedEvents = [Event]()
+    // events sorted into sections (see above) and sorted by time
     var events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+    // same as events, but filtered by current favorites
     var favoriteEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+    
+    // toggle to show favorites only
     var showFavoritesOnly = false
     @IBOutlet weak var filterFavoritesBarButtonItem: UIBarButtonItem!
     
+    @IBOutlet weak var spinner: UIRefreshControl!
+    
+    // user defaults to store favorites filter enabled status
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let userDefaultsFavoritesSettingKey = "showFavoritesOnly"
     
     var timer : NSTimer? // timer to update view periodically
     let updateInterval: NSTimeInterval = 60 // seconds
     
+    // background view for message when no data is available
     var messageVC: MessageViewController?
+    
+    var playerViewController: PlayerViewController?
+    
+    // MARK: - init
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +58,8 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         // increase content inset for audio player
         tableView.contentInset.bottom = tableView.contentInset.bottom + 40
         
+        // check if filter was enabled when the app was use the last time
+        // fetch it from user defaults
         if let favoritesFilterSetting = userDefaults.objectForKey(userDefaultsFavoritesSettingKey) as? Bool {
             showFavoritesOnly = favoritesFilterSetting
         }
@@ -64,6 +79,10 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
         timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
+        
+        // setup the player managers view controllers which are required
+        PlayerManager.sharedInstance.baseViewController = self.tabBarController
+        PlayerManager.sharedInstance.eventTableViewController = self
     }
     
     deinit {
@@ -71,40 +90,33 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         timer?.invalidate()
     }
     
-    func favoritesChanged(notification: NSNotification) {
+    // MARK: - Update UI
+    
+    func updateFilterFavoritesButton() {
         if showFavoritesOnly {
-            filterFavorites()
-            tableView.reloadData()
+            filterFavoritesBarButtonItem?.image = UIImage(named: "corn-25-star")
+        } else {
+            filterFavoritesBarButtonItem?.image = UIImage(named: "corn-25-star-o")
         }
     }
     
-    private func sortEventsInSections(events: [Event]) {
-        for event in events {
-            if event.isFinished() {
-                // event already finished, do not add to the list
-            } else if event.isLive() {
-                addEvent(event, section: Section.Live)
-            } else if event.isToday() {
-                addEvent(event, section: Section.Today)
-            } else if event.isTomorrow() {
-                addEvent(event, section: Section.Tomorrow)
-            } else if event.isThisWeek() {
-                addEvent(event, section: Section.ThisWeek)
+    func updateBackground() {
+        let messageLabel = messageVC?.messageLabel
+        if numberOfRows() == 0 {
+            if showFavoritesOnly {
+                messageLabel?.text = NSLocalizedString("event_tableview_empty_favorites_only_message", value: "None of your favorite podcast shows will be live in the near future. Add more shows to your favorites to see something here.", comment: "this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display.")
             } else {
-                addEvent(event, section: Section.Later)
+                messageLabel?.text = NSLocalizedString("event_tableview_empty_message", value: "Did no receive any upcoming events.", comment: "this message gets displayed if no events could be displayed / fetched from the API")
             }
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            tableView.backgroundView?.hidden = false
+        } else {
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            tableView.backgroundView?.hidden = true
         }
     }
     
-    private func addEvent(event: Event, section: Section) {
-        switch section {
-            case .Live: events[0].append(event)
-            case .Today: events[1].append(event)
-            case .Tomorrow: events[2].append(event)
-            case .ThisWeek: events[3].append(event)
-            case .Later: events[4].append(event)
-        }
-    }
+    // MARK: Actions
     
     @IBAction func refresh(spinner: UIRefreshControl) {
         spinner.beginRefreshing()
@@ -128,31 +140,12 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         tableView.reloadData()
     }
     
-    func resortEvents() {
-        self.events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
-        self.sortEventsInSections(unsortedEvents)
-        if self.showFavoritesOnly {
-            self.filterFavorites()
-        }
-    }
+    // MARK: - Notifications
     
-    func filterFavorites() {
-        favoriteEvents = events
-        let favorites = Favorites.fetch()
-        
-        for i in 0 ..< favoriteEvents.count {
-            let section = favoriteEvents[i]
-            favoriteEvents[i] = section.filter({ (event) -> Bool in
-                return favorites.contains(event.podcastSlug)
-            })
-        }
-    }
-    
-    func updateFilterFavoritesButton() {
+    func favoritesChanged(notification: NSNotification) {
         if showFavoritesOnly {
-            filterFavoritesBarButtonItem?.image = UIImage(named: "corn-25-star")
-        } else {
-            filterFavoritesBarButtonItem?.image = UIImage(named: "corn-25-star-o")         
+            filterFavorites()
+            tableView.reloadData()
         }
     }
 
@@ -185,14 +178,6 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         }
     }
     
-    // helper method because calling tableView.numberOfRowsInSection(section) crashes the app
-    func numberOfRowsInSection(section: Int) -> Int {
-        if showFavoritesOnly {
-            return favoriteEvents[section].count
-        }
-        return events[section].count
-    }
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventTableViewCell
         if showFavoritesOnly {
@@ -200,27 +185,18 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         } else {
             cell.event = events[indexPath.section][indexPath.row]
         }
-        cell.delegate = self
         return cell
     }
     
-    func updateBackground() {
-        let messageLabel = messageVC?.messageLabel
-        if numberOfRows() == 0 {
-            if showFavoritesOnly {
-                messageLabel?.text = NSLocalizedString("event_tableview_empty_favorites_only_message", value: "None of your favorite podcast shows will be live in the near future. Add more shows to your favorites to see something here.", comment: "this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display.")
-            } else {
-                messageLabel?.text = NSLocalizedString("event_tableview_empty_message", value: "Did no receive any upcoming events.", comment: "this message gets displayed if no events could be displayed / fetched from the API")
-            }
-            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-            tableView.backgroundView?.hidden = false
-        } else {
-            tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-            tableView.backgroundView?.hidden = true
+    // helper method because calling tableView.numberOfRowsInSection(section) crashes the app
+    private func numberOfRowsInSection(section: Int) -> Int {
+        if showFavoritesOnly {
+            return favoriteEvents[section].count
         }
+        return events[section].count
     }
     
-    func numberOfRows() -> Int {
+    private func numberOfRows() -> Int {
         if showFavoritesOnly {
             var count = 0
             for section in favoriteEvents {
@@ -282,6 +258,56 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         return true
     }
     */
+    
+    // MARK: process data
+    
+    private func addEvent(event: Event, section: Section) {
+        switch section {
+        case .Live: events[0].append(event)
+        case .Today: events[1].append(event)
+        case .Tomorrow: events[2].append(event)
+        case .ThisWeek: events[3].append(event)
+        case .Later: events[4].append(event)
+        }
+    }
+    
+    private func sortEventsInSections(events: [Event]) {
+        for event in events {
+            if event.isFinished() {
+                // event already finished, do not add to the list
+            } else if event.isLive() {
+                addEvent(event, section: Section.Live)
+            } else if event.isToday() {
+                addEvent(event, section: Section.Today)
+            } else if event.isTomorrow() {
+                addEvent(event, section: Section.Tomorrow)
+            } else if event.isThisWeek() {
+                addEvent(event, section: Section.ThisWeek)
+            } else {
+                addEvent(event, section: Section.Later)
+            }
+        }
+    }
+    
+    private func resortEvents() {
+        self.events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+        self.sortEventsInSections(unsortedEvents)
+        if self.showFavoritesOnly {
+            self.filterFavorites()
+        }
+    }
+    
+    private func filterFavorites() {
+        favoriteEvents = events
+        let favorites = Favorites.fetch()
+        
+        for i in 0 ..< favoriteEvents.count {
+            let section = favoriteEvents[i]
+            favoriteEvents[i] = section.filter({ (event) -> Bool in
+                return favorites.contains(event.podcastSlug)
+            })
+        }
+    }
 
     
     // MARK: - Navigation
@@ -293,10 +319,8 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
                 case "PodcastDetail":
                     if let cell = sender as? EventTableViewCell {
                         destinationVC.event = cell.event
-                        destinationVC.delegate = self
                     } else if let event = sender as? Event {
                         destinationVC.event = event
-                        destinationVC.delegate = self
                     }
                 default: break
                 }
@@ -305,6 +329,14 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         
     }
     
+    @IBAction func dismissSettings(segue:UIStoryboardSegue) {
+        // do nothing
+    }
+    
+    // MARK: - delegate
+    
+    // if the info button in the player for a specific event is pressed
+    // this table view controller should segue to the event detail view
     func showEventInfo(event event: Event) {
         // switch to event detail view
         tabBarController?.selectedViewController = self.navigationController
@@ -327,30 +359,9 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         }
     }
     
-    @IBAction func dismissSettings(segue:UIStoryboardSegue) {
-        // do nothing
-    }
+    // MARK: - timer
     
-    var playerViewController: PlayerViewController?
-    
-    func togglePlayPause(event event: Event) {
-        if playerViewController == nil {
-            playerViewController = storyboard?.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
-        }
-        
-        let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: "handleLongPress:")
-        longpressRecognizer.delegate = playerViewController
-
-        playerViewController!.delegate = self
-        playerViewController!.presenter = tabBarController
-        playerViewController!.event = event
-        
-        tabBarController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
-        tabBarController?.popupBar.addGestureRecognizer(longpressRecognizer)
-    }
-    
-    
-    // MARK: timer
+    // update events every minute automatically
     @objc func timerTicked() {
         resortEvents()
         tableView.reloadData()

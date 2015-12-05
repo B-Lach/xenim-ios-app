@@ -17,6 +17,11 @@ class PodcastTableViewCell: UITableViewCell {
             }
         }
     }
+    
+    /**
+     podcastName and podcastSlug have to be set in prepareForSegue
+     the complete podcast data will then be fetched and displayed async
+    */
     var podcastName: String! {
         didSet {
             podcastNameLabel?.text = podcastName
@@ -29,6 +34,7 @@ class PodcastTableViewCell: UITableViewCell {
             updateFavoriteButton()
             HoersuppeAPI.fetchPodcastDetail(podcastSlug) { (podcast) -> Void in
                 if let podcast = podcast {
+                    // check if the returned data still matches the cell
                     if podcast.slug == self.podcastSlug {
                         self.podcast = podcast
                     }
@@ -61,12 +67,6 @@ class PodcastTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     // MARK: notifications
