@@ -26,8 +26,6 @@ class PodcastDetailViewController: UIViewController {
     }
     var event: Event?
     
-    var delegate: PlayerDelegator?
-    
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
@@ -143,9 +141,7 @@ class PodcastDetailViewController: UIViewController {
     
     @IBAction func playEvent(sender: AnyObject) {
         if let event = event {
-            if let delegate = self.delegate {
-                delegate.togglePlayPause(event: event)
-            }
+            PlayerManager.sharedInstance.togglePlayPause(event)
         }
     }
     

@@ -8,12 +8,11 @@
 
 import UIKit
 
-protocol PlayerDelegator {
-    func togglePlayPause(event event: Event)
+protocol EventDetailDelegate {
     func showEventInfo(event event: Event)
 }
 
-class EventTableViewController: UITableViewController, PlayerDelegator {
+class EventTableViewController: UITableViewController, EventDetailDelegate {
     
     // possible sections
     enum Section {
@@ -80,6 +79,9 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
         timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
+        
+        PlayerManager.sharedInstance.baseViewController = self.tabBarController
+        PlayerManager.sharedInstance.eventTableViewController = self
     }
     
     deinit {
@@ -182,7 +184,6 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
         } else {
             cell.event = events[indexPath.section][indexPath.row]
         }
-        cell.delegate = self
         return cell
     }
     
@@ -317,10 +318,8 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
                 case "PodcastDetail":
                     if let cell = sender as? EventTableViewCell {
                         destinationVC.event = cell.event
-                        destinationVC.delegate = self
                     } else if let event = sender as? Event {
                         destinationVC.event = event
-                        destinationVC.delegate = self
                     }
                 default: break
                 }
@@ -334,22 +333,6 @@ class EventTableViewController: UITableViewController, PlayerDelegator {
     }
     
     // MARK: - delegate
-    
-    func togglePlayPause(event event: Event) {
-        if playerViewController == nil {
-            playerViewController = storyboard?.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
-        }
-        
-        let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: "handleLongPress:")
-        longpressRecognizer.delegate = playerViewController
-
-        playerViewController!.delegate = self
-        playerViewController!.presenter = tabBarController
-        playerViewController!.event = event
-        
-        tabBarController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
-        tabBarController?.popupBar.addGestureRecognizer(longpressRecognizer)
-    }
     
     // if the info button in the player for a specific event is pressed
     // this table view controller should segue to the event detail view

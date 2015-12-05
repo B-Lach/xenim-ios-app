@@ -144,7 +144,7 @@
 				22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */,
 				2226CC251C06FB050077D22B /* NextupEventsTableViewController.swift */,
 				2226CC231C06044A0077D22B /* PodcastInteractTableViewController.swift */,
-				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
+				22BC05A91C12F995005356C8 /* Player */,
 				2232FE5F1BDE235A00BE368E /* Model */,
 				2222ECC11BD52E480040100F /* Info.plist */,
 				22C31DF61BECB64E006F2999 /* HelperExtensions.swift */,
@@ -168,12 +168,20 @@
 			isa = PBXGroup;
 			children = (
 				229B7D4B1BD53DBD00F1CF6B /* Event.swift */,
-				222FB9FC1BF0E90A0007257A /* PlayerManager.swift */,
 				229B7D4D1BD5623500F1CF6B /* Podcast.swift */,
 				2291D8A21BDFB1D600CB6536 /* Favorites.swift */,
 				229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		22BC05A91C12F995005356C8 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				222FB9FC1BF0E90A0007257A /* PlayerManager.swift */,
+				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 		4CD0EF0E6BE3DB36059D8E8C /* Frameworks */ = {

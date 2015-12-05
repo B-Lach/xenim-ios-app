@@ -12,18 +12,24 @@ import Alamofire
 import AlamofireImage
 import KDEAudioPlayer
 
+protocol PlayerManagerDelegate {
+    func backwardPressed()
+    func forwardPressed()
+    func togglePlayPause(event: Event)
+    func longPress()
+}
+
 class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var event: Event! {
         didSet {
             fetchPodcastInfo()
             updateUI()
-            togglePlayPause(self)
         }
     }
     var podcast: Podcast?
-    var delegate: PlayerDelegator?
-    var presenter: UIViewController?
+    var eventDelegate: EventDetailDelegate?
+    var playerManagerDelegate: PlayerManagerDelegate?
 
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
@@ -123,15 +129,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Actions
     
     func handleLongPress(recognizer: UILongPressGestureRecognizer) {
-        if !(self.presenter?.presentedViewController is UIAlertController) {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            alert.addAction(UIAlertAction(title: "End Playback", style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
-                self.presenter?.dismissViewControllerAnimated(true, completion: nil)
-                PlayerManager.sharedInstance.stop()
-            }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presenter?.presentViewController(alert, animated: true, completion: nil)
-        }
+        playerManagerDelegate?.longPress()
     }
     
     @IBAction func favorite(sender: AnyObject) {
@@ -141,11 +139,11 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func showEventInfo(sender: AnyObject) {
-        delegate?.showEventInfo(event: event)
+        eventDelegate?.showEventInfo(event: event)
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
-        PlayerManager.sharedInstance.togglePlayPause(event)
+        playerManagerDelegate?.togglePlayPause(event)
     }
     
     @IBAction func openChat(sender: AnyObject) {
@@ -161,17 +159,11 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func backwardPressed(sender: AnyObject) {
-        PlayerManager.sharedInstance.backwardPressed()
+        playerManagerDelegate?.backwardPressed()
     }
     
     @IBAction func forwardPressed(sender: AnyObject) {
-        PlayerManager.sharedInstance.forwardPressed()
-    }
-    
-    func showInfoMessage(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presenter?.presentViewController(alert, animated: true, completion: nil)
+        playerManagerDelegate?.forwardPressed()
     }
     
     // MARK: notifications
@@ -208,17 +200,14 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
         case .Stopped:
-            // dismiss the player
-            self.presenter?.dismissPopupBarAnimated(true, completion: nil)
+            // TODO
+            break
         case .WaitingForConnection:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
         case .Failed(_):
-            let errorTitle = NSLocalizedString("player_failed_state_alertview_title", value: "Playback Error", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.")
-            let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
-            showInfoMessage(errorTitle, message: errorMessage)
-            // .Stopped will be the next state automatically
-            // this will dismiss the player
+            break
+            // TODO
         }
     }
     

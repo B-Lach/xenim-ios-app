@@ -24,8 +24,6 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var favoriteStarImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var delegate: PlayerDelegator?
-    
     var event: Event? {
         didSet {
             // notifications have to be updated every time a new event is set to this cell
@@ -130,8 +128,8 @@ class EventTableViewCell: UITableViewCell {
     }
     
     @IBAction func play(sender: AnyObject) {
-        if let delegate = self.delegate {
-            delegate.togglePlayPause(event: event!)
+        if let event = event {
+            PlayerManager.sharedInstance.togglePlayPause(event)
         }
     }
     
