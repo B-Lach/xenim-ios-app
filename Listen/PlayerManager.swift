@@ -20,7 +20,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     var currentItem: AudioItem?
     var playerViewController: PlayerViewController?
     var baseViewController: UIViewController?
-    var eventTableViewController: EventTableViewController?
+    var eventDetailDelegate: EventDetailDelegate?
     
     // MARK: - init
     
@@ -96,7 +96,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             playerViewController = storyboard.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
             playerViewController!.playerManagerDelegate = self
-            playerViewController!.eventDelegate = eventTableViewController
+            playerViewController!.eventDelegate = eventDetailDelegate
         }
         
         let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: "handleLongPress:")

@@ -82,7 +82,7 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
         
         // setup the player managers view controllers which are required
         PlayerManager.sharedInstance.baseViewController = self.tabBarController
-        PlayerManager.sharedInstance.eventTableViewController = self
+        PlayerManager.sharedInstance.eventDetailDelegate = self
     }
     
     deinit {
