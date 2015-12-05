@@ -23,7 +23,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     var podcast: Podcast?
     var delegate: PlayerDelegator?
-    var presenter: UITabBarController?
+    var presenter: UIViewController?
 
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
