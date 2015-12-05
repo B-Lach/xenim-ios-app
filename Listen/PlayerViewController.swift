@@ -200,14 +200,14 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
         case .Stopped:
-            // TODO
-            break
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
         case .WaitingForConnection:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
         case .Failed(_):
-            break
-            // TODO
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
         }
     }
     
