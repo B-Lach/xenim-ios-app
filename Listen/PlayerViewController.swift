@@ -132,6 +132,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         playerManagerDelegate?.longPress()
     }
     
+    @IBAction func longPressPauseButton(sender: AnyObject) {
+        playerManagerDelegate?.longPress()
+    }
+    
     @IBAction func favorite(sender: AnyObject) {
         if let event = event {
             Favorites.toggle(slug: event.podcastSlug)

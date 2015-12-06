@@ -843,6 +843,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEP-S7-LTS" userLabel="Play">
                                                     <rect key="frame" x="288" y="88" width="25" height="25"/>
                                                     <animations/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="hEP-S7-LTS" secondAttribute="height" multiplier="1:1" id="Ttg-4F-ptk"/>
                                                         <constraint firstAttribute="width" constant="25" id="zmt-S6-kyW"/>
@@ -851,6 +852,7 @@
                                                     <state key="normal" image="black-44-pause"/>
                                                     <connections>
                                                         <action selector="togglePlayPause:" destination="Pke-AM-PdW" eventType="touchUpInside" id="xhf-HR-CA0"/>
+                                                        <outletCollection property="gestureRecognizers" destination="FpF-hD-Bd3" appends="YES" id="Jol-SM-02i"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfM-Ve-lgr" userLabel="Next">
@@ -1027,6 +1029,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYo-m6-Ihn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="FpF-hD-Bd3">
+                    <connections>
+                        <action selector="longPressPauseButton:" destination="Pke-AM-PdW" id="WWe-Hq-BYm"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="277" y="1263"/>
         </scene>
