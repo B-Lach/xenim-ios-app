@@ -554,10 +554,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qD9-gp-gdZ">
                             <size key="itemSize" width="214" height="194"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="50" height="50"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
@@ -569,7 +570,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="mKq-FS-44E">
-                                            <rect key="frame" x="8" y="8" width="198" height="178"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="214" height="194"/>
                                             <animations/>
                                         </imageView>
                                     </subviews>
@@ -578,10 +579,10 @@
                                 </view>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstItem="mKq-FS-44E" firstAttribute="top" secondItem="dgO-D1-CpS" secondAttribute="topMargin" id="3Bl-rT-4us"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="mKq-FS-44E" secondAttribute="bottom" id="KYR-wd-Hf1"/>
-                                    <constraint firstItem="mKq-FS-44E" firstAttribute="leading" secondItem="dgO-D1-CpS" secondAttribute="leadingMargin" id="bYo-6m-UfO"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="mKq-FS-44E" secondAttribute="trailing" id="oUr-Sw-q3c"/>
+                                    <constraint firstAttribute="bottom" secondItem="mKq-FS-44E" secondAttribute="bottom" id="J2r-tA-tG4"/>
+                                    <constraint firstItem="mKq-FS-44E" firstAttribute="top" secondItem="dgO-D1-CpS" secondAttribute="top" id="RjW-9m-Gbv"/>
+                                    <constraint firstItem="mKq-FS-44E" firstAttribute="leading" secondItem="dgO-D1-CpS" secondAttribute="leading" id="hyn-iQ-NhA"/>
+                                    <constraint firstAttribute="trailing" secondItem="mKq-FS-44E" secondAttribute="trailing" id="iSR-tq-xeA"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="coverartImageView" destination="mKq-FS-44E" id="Bwk-cQ-ynH"/>
@@ -589,6 +590,26 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="d1y-Bx-SWv">
+                            <rect key="frame" x="0.0" y="258" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will receive push notifications if any of your favorite podcast shows goes live." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSQ-M9-vBX">
+                                    <rect key="frame" x="70" y="17" width="460" height="15"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                    <color key="textColor" red="0.1764705882" green="0.18039215689999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <animations/>
+                            <constraints>
+                                <constraint firstItem="LSQ-M9-vBX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="d1y-Bx-SWv" secondAttribute="leadingMargin" constant="8" id="3nr-d5-BuX"/>
+                                <constraint firstItem="LSQ-M9-vBX" firstAttribute="centerY" secondItem="d1y-Bx-SWv" secondAttribute="centerY" id="5vB-N6-2bc"/>
+                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="LSQ-M9-vBX" secondAttribute="trailing" constant="8" id="S0z-wx-1yK"/>
+                                <constraint firstItem="LSQ-M9-vBX" firstAttribute="centerX" secondItem="d1y-Bx-SWv" secondAttribute="centerX" id="kqH-jT-8Ko"/>
+                            </constraints>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="hWJ-s5-bhr" id="dod-ex-8AI"/>
                             <outlet property="delegate" destination="hWJ-s5-bhr" id="7ym-Po-jFK"/>

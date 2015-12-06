@@ -18,17 +18,13 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Register cell classes
-        self.collectionView!.registerClass(FavoriteCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged"), name: "favoritesChanged", object: nil)
         
         // add background view to display error message if no data is available to display
-//        if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
-//            self.messageVC = messageVC
-//            collectionView!.backgroundView = messageVC.view
-//        }
+        if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
+            self.messageVC = messageVC
+            collectionView!.backgroundView = messageVC.view
+        }
         
         // increase content inset for audio player
         collectionView!.contentInset.bottom = collectionView!.contentInset.bottom + 40
@@ -43,7 +39,7 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
     // MARK: UICollectionViewDataSource
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        //updateBackground()
+        updateBackground()
         return 1
     }
     
@@ -70,33 +66,45 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
         collectionView!.reloadData()
     }
 
-//    func updateBackground() {
-//        if favorites.count == 0 {
-//            messageVC?.messageLabel.text = NSLocalizedString("favorites_tableview_empty_message", value: "Add podcast shows as your favorite to see them here.", comment: "this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.")
-//            collectionView!.backgroundView?.hidden = false
-//        } else {
-//            collectionView!.backgroundView?.hidden = true
-//        }
-//    }
+    func updateBackground() {
+        if favorites.count == 0 {
+            messageVC?.messageLabel.text = NSLocalizedString("favorites_tableview_empty_message", value: "Add podcast shows as your favorite to see them here.", comment: "this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.")
+            collectionView!.backgroundView?.hidden = false
+        } else {
+            collectionView!.backgroundView?.hidden = true
+        }
+    }
     
     // MARK: - Layout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
         if UIApplication.sharedApplication().statusBarOrientation == UIInterfaceOrientation.Portrait {
-            let columns: CGFloat = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad ? 3.0 : 2.0
+            let columns: CGFloat = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad ? 5.0 : 3.0
             
-            let width = CGRectGetWidth(self.view.frame) / columns
+            let width = self.view.bounds.width / columns
             
             return CGSizeMake(width, width)
         }
         else {
-            let columns: CGFloat = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad ? 4.0 : 3.0
+            let columns: CGFloat = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad ? 7.0 : 5.0
             
-            let width = CGRectGetWidth(self.view.frame) / columns
+            let width = self.view.bounds.width / columns
             
             return CGSizeMake(width, width)
         }
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     // MARK: - Navigation
