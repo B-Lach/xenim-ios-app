@@ -38,8 +38,10 @@ class EventTableViewCell: UITableViewCell {
             podcastNameLabel?.text = event.title
             descriptionLabel?.text = event.podcastDescription
             
-            let placeholderImage = UIImage(named: "event_placeholder")!
-            eventCoverartImage.af_setImageWithURL(event.imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            if let imageurl = event.imageurl {
+                let placeholderImage = UIImage(named: "event_placeholder")!
+                eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            }
             
             updateLivedate()
             updateProgressBar()

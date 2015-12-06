@@ -20,10 +20,10 @@ class Event : NSObject {
     }
     var podcastSlug: String
     var streamurl = NSURL(string: "")!
-    var imageurl = NSURL(string: "")!
+    var imageurl: NSURL?
     var podcastDescription: String
     var title: String
-    var url: String
+    var url: NSURL?
     
     //value between 0 and 1
     var progress: Float = 0 {
@@ -39,17 +39,13 @@ class Event : NSObject {
         self.podcastSlug = podcastSlug
         self.podcastDescription = podcastDescription
         self.title = title
-        self.url = url
+        self.url = url != "" ? NSURL(string: url) : nil
+        self.imageurl = imageurl != "" ? NSURL(string: imageurl) : nil
         
         super.init()
         
         if let streamurl = NSURL(string: streamurl) {
             self.streamurl = streamurl
-        } else {
-            return nil
-        }
-        if let imageurl = NSURL(string: imageurl) {
-            self.imageurl = imageurl
         } else {
             return nil
         }

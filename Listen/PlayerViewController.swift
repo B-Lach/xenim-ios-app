@@ -75,20 +75,24 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         popupItem.title = event.title
         subtitleLabel?.text = event.podcastDescription
         popupItem.subtitle = event.podcastDescription
-        coverartView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
-        backgroundImageView?.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
-        miniCoverartImageView.af_setImageWithURL(event.imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+
+        if let imageurl = event.imageurl {
+            coverartView?.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+            backgroundImageView?.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+            miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+
+            Alamofire.request(.GET, imageurl)
+                .responseImage { response in
+                    if let image = response.result.value {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.updateStatusBarStyle(image)
+                        })
+                    }
+            }
+        }
+        
         updateProgressBar()
         updateFavoritesButton()
-        
-        Alamofire.request(.GET, event.imageurl)
-            .responseImage { response in
-                if let image = response.result.value {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.updateStatusBarStyle(image)
-                    })
-                }
-        }
     }
     
     func updateStatusBarStyle(image: UIImage) {

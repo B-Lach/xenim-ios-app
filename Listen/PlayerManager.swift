@@ -113,11 +113,13 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
         player.playItem(currentItem!)
         
         // fetch coverart from image cache and set it as lockscreen artwork
-        Alamofire.request(.GET, event.imageurl)
-            .responseImage { response in
-                if let image = response.result.value {
-                    self.currentItem?.artworkImage = image
-                }
+        if let imageurl = event.imageurl {
+            Alamofire.request(.GET, imageurl)
+                .responseImage { response in
+                    if let image = response.result.value {
+                        self.currentItem?.artworkImage = image
+                    }
+            }
         }
     }
     

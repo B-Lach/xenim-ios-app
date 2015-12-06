@@ -62,14 +62,25 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
                 sendMailCell?.detailTextLabel?.textColor = UIColor.grayColor()
                 sendMailCell?.imageView?.image = UIImage(named: "steel-25-envelope")
             }
+            if podcast.url == nil {
+                openWebsiteCell?.textLabel?.textColor = UIColor.grayColor()
+                openWebsiteCell?.detailTextLabel?.textColor = UIColor.grayColor()
+                openWebsiteCell?.imageView?.image = UIImage(named: "steel-25-safari")
+            }
+            if podcast.feedurl == nil {
+                subscribeCell?.textLabel?.textColor = UIColor.grayColor()
+                subscribeCell?.detailTextLabel?.textColor = UIColor.grayColor()
+                subscribeCell?.imageView?.image = UIImage(named: "steel-25-rss-square")
+            }
         }
     }
     
     // MARK: - Actions
     
     func openPodcastWebsite() {
-        if let podcast = podcast {
-            let svc = SFSafariViewController(URL: podcast.url)
+        if let podcast = podcast, let url = podcast.url {
+            print(url)
+            let svc = SFSafariViewController(URL: url)
             svc.delegate = self
             self.presentViewController(svc, animated: true, completion: nil)
         }
@@ -104,11 +115,11 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     }
     
     func subscribePodcast() {
-        if let podcast = self.podcast {
+        if let podcast = self.podcast, let subscribeClients = podcast.subscribeClients {
             let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
             
             // create one option for each podcast client
-            for client in podcast.subscribeClients {
+            for client in subscribeClients {
                 let clientName = client.0
                 let subscribeURL = client.1
                 
