@@ -1,15 +1,14 @@
 //
-//  FavoriteTableViewCell.swift
+//  PodcastCollectionViewCell.swift
 //  Listen
 //
-//  Created by Stefan Trauth on 27/10/15.
+//  Created by Stefan Trauth on 06/12/15.
 //  Copyright © 2015 Stefan Trauth. All rights reserved.
 //
 
 import UIKit
-import AlamofireImage
 
-class FavoriteTableViewCell: UITableViewCell {
+class FavoriteCollectionViewCell: UICollectionViewCell {
     
     var podcastSlug: String! {
         didSet {
@@ -17,25 +16,17 @@ class FavoriteTableViewCell: UITableViewCell {
         }
     }
     var podcast: Podcast?
-
-    @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var coverartImageView: UIImageView! {
-        didSet {
-            coverartImageView.layer.cornerRadius = 5.0
-            coverartImageView.layer.masksToBounds = true
-        }
-    }
+    
+    @IBOutlet weak var coverartImageView: UIImageView!
     
     func updateUI() {
         // check if we have detailed podcast data that still matches our cells podcast slug
         if podcast != nil && podcast!.slug == podcastSlug {
-            podcastNameLabel.text = podcast!.name
             if let imageurl = podcast!.imageurl {
                 coverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
             }
         } else {
             // if there is no data, fetch from API
-            podcastNameLabel?.text = podcastSlug
             HoersuppeAPI.fetchPodcastDetail(podcastSlug, onComplete: { (podcast) -> Void in
                 if let podcast = podcast {
                     // check if the request that came back still matches the cell
@@ -49,4 +40,5 @@ class FavoriteTableViewCell: UITableViewCell {
             })
         }
     }
+    
 }
