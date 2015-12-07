@@ -43,12 +43,14 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     func longPress() {
         if !(baseViewController?.presentedViewController is UIAlertController) {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            alert.addAction(UIAlertAction(title: "End Playback", style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
+            let endPlayback = NSLocalizedString("player_manager_actionsheet_end_playback", value: "End Playback", comment: "long pressing in the player view shows an action sheet to end playback. this is the action message to end playback.")
+            alert.addAction(UIAlertAction(title: endPlayback, style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
                 // dissmiss the action sheet
                 self.baseViewController?.dismissViewControllerAnimated(true, completion: nil)
                 self.stop()
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            let cancel = NSLocalizedString("cancel", value: "Cancel", comment: "Cancel")
+            alert.addAction(UIAlertAction(title: cancel, style: UIAlertActionStyle.Cancel, handler: nil))
             baseViewController?.presentViewController(alert, animated: true, completion: nil)
         }
     }
@@ -85,7 +87,8 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     
     private func showInfoMessage(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
+        let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
+        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
         baseViewController?.presentViewController(alert, animated: true, completion: nil)
     }
     

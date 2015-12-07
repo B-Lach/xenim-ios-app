@@ -80,7 +80,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         case MFMailComposeResultSaved.rawValue: break
         case MFMailComposeResultSent.rawValue: break
         case MFMailComposeResultFailed.rawValue:
-            showInfoMessage("Mail sent failure", message: (error?.localizedDescription)!)
+            let mailFailureTitle = NSLocalizedString("info_message_mail_sent_failure_message", value: "Mail sent failure", comment: "If the user tried to sent an email and it could not be sent an alert view does show the error message. this is the title of the alert view popup")
+            showInfoMessage(mailFailureTitle, message: (error?.localizedDescription)!)
         default:
             break
         }
@@ -89,7 +90,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     
     func showInfoMessage(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
+        let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
+        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
