@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "FavoriteCell"
 
-class FavoritesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class FavoritesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
     
     // contains the podcast slugs of all favorites
     var favorites = [String]()
@@ -20,14 +20,20 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged"), name: "favoritesChanged", object: nil)
         
+        // attach long press gesture to collectionView
+        let lpgr = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+        lpgr.delegate = self
+        lpgr.delaysTouchesBegan = true
+        self.collectionView?.addGestureRecognizer(lpgr)
+        
         // add background view to display error message if no data is available to display
         if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
             self.messageVC = messageVC
-            collectionView!.backgroundView = messageVC.view
+            collectionView?.backgroundView = messageVC.view
         }
         
         // increase content inset for audio player
-        collectionView!.contentInset.bottom = collectionView!.contentInset.bottom + 40
+        collectionView?.contentInset.bottom = collectionView!.contentInset.bottom + 40
         
         refresh()
     }
@@ -63,22 +69,47 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
     func refresh() {
         favorites = Favorites.fetch()
         favorites.sortInPlace()
-        collectionView!.reloadData()
+        collectionView?.reloadData()
     }
 
     func updateBackground() {
         if favorites.count == 0 {
             messageVC?.messageLabel.text = NSLocalizedString("favorites_tableview_empty_message", value: "Add podcast shows as your favorite to see them here.", comment: "this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.")
-            collectionView!.backgroundView?.hidden = false
+            collectionView?.backgroundView?.hidden = false
         } else {
-            collectionView!.backgroundView?.hidden = true
+            collectionView?.backgroundView?.hidden = true
         }
+    }
+    
+    func handleLongPress(lpgr: UILongPressGestureRecognizer) {
+        // do not trigger on release
+        if lpgr.state == UIGestureRecognizerState.Ended {
+            return
+        }
+        // prevent multiple triggers of the action sheet
+        if self.presentedViewController is UIAlertController {
+            return
+        }
+        let point = lpgr.locationInView(self.collectionView!)
+        if let indexPath = self.collectionView?.indexPathForItemAtPoint(point) {
+            let cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! FavoriteCollectionViewCell
+            
+            let alert = UIAlertController(title: cell.podcast?.name, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            alert.addAction(UIAlertAction(title: "Remove from Favorites", style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
+                Favorites.remove(slug: cell.podcastSlug)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        
     }
     
     // MARK: - Layout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
+        // define the size of the cells according to the number of columns
+        // column count is different for each device category
         if UIApplication.sharedApplication().statusBarOrientation == UIInterfaceOrientation.Portrait {
             let columns: CGFloat = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad ? 5.0 : 3.0
             
