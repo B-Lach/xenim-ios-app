@@ -24,6 +24,8 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         if podcast != nil && podcast!.slug == podcastSlug {
             if let imageurl = podcast!.imageurl {
                 coverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+            } else {
+                coverartImageView.image = UIImage(named: "event_placeholder")
             }
         } else {
             // if there is no data, fetch from API
