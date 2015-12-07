@@ -38,9 +38,11 @@ class EventTableViewCell: UITableViewCell {
             podcastNameLabel?.text = event.title
             descriptionLabel?.text = event.podcastDescription
             
+            let placeholderImage = UIImage(named: "event_placeholder")!
             if let imageurl = event.imageurl {
-                let placeholderImage = UIImage(named: "event_placeholder")!
                 eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            } else {
+                eventCoverartImage.image = placeholderImage
             }
             
             updateLivedate()

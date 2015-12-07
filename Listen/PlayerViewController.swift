@@ -76,10 +76,11 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         subtitleLabel?.text = event.podcastDescription
         popupItem.subtitle = event.podcastDescription
 
+        let placeholderImage = UIImage(named: "event_placeholder")!
         if let imageurl = event.imageurl {
-            coverartView?.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
-            backgroundImageView?.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
-            miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+            coverartView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            backgroundImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
 
             Alamofire.request(.GET, imageurl)
                 .responseImage { response in
@@ -89,6 +90,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
                         })
                     }
             }
+        } else {
+            coverartView?.image = placeholderImage
+            backgroundImageView?.image = placeholderImage
+            miniCoverartImageView.image = placeholderImage
         }
         
         updateProgressBar()
