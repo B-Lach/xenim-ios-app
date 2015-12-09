@@ -43,9 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
-        } else {
-            // this is for devices without ios9
-            application.registerForRemoteNotificationTypes([.Badge, .Alert, .Sound])
         }
     }
     
