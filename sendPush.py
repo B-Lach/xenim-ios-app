@@ -8,11 +8,11 @@ connection = httplib.HTTPSConnection('api.parse.com', 443)
 connection.connect()
 connection.request('POST', '/1/push', json.dumps({
        "where": {
-         "channels": "wasmitmedien",
+         #"channels": "wasmitmedien",
          "localeIdentifier": "de-DE"
        },
        "data": {
-         "alert": "Live soon!"
+         "alert": "This is a test push message."
        }
      }), {
        "X-Parse-Application-Id": parseApplicationID,
