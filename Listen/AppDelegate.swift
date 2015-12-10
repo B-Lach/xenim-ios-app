@@ -50,6 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let installation = PFInstallation.currentInstallation()
         installation.setDeviceTokenFromData(deviceToken)
+        
+        // subscribe to the users current language channel
+        if let language = NSBundle.mainBundle().preferredLocalizations.first {
+            installation.addUniqueObject(language, forKey: "channels")
+        }
+
         installation.saveInBackground()
     }
     
