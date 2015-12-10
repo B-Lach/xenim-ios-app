@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import CRToast
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,6 +36,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         if ( application.applicationState == UIApplicationState.Active ) {
             // app was already in the foreground
+            
+//            var options: NSDictionary = [
+//                kCRToastTextKey : "Hello World!",
+//                kCRToastTextAlignmentKey : NSTextAlignment.Center.rawValue,
+//                kCRToastBackgroundColorKey : UIColor.redColor(),
+//                kCRToastAnimationInTypeKey : CRToastAnimationType.Gravity.rawValue,
+//                kCRToastAnimationOutTypeKey : CRToastAnimationType.Gravity.rawValue,
+//                kCRToastAnimationInDirectionKey : CRToastAnimationDirection.Left.rawValue,
+//                kCRToastAnimationOutDirectionKey : CRToastAnimationDirection.Right.rawValue
+//            ]
+            
+            CRToastManager.showNotificationWithMessage("test message", completionBlock: nil)
             
         } else {
             // app was just brought from background to foreground because the user clicked on a notification

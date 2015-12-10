@@ -3,6 +3,7 @@ PODS:
   - AlamofireImage (2.1.1):
     - Alamofire (~> 3.1)
   - Bolts/Tasks (1.5.0)
+  - CRToast (0.0.9)
   - KDEAudioPlayer (0.3.4)
   - MarqueeLabel-Swift (2.3.5)
   - Parse (1.10.0):
@@ -12,6 +13,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - AlamofireImage
+  - CRToast
   - KDEAudioPlayer (from `https://github.com/funkenstrahlen/AudioPlayer.git`, branch
     `develop`)
   - MarqueeLabel-Swift
@@ -32,6 +34,7 @@ SPEC CHECKSUMS:
   Alamofire: 9f93b56389e48def9220dd57d1f44b1927229a5a
   AlamofireImage: 31f7c4e9f516183e0ef2d2da18318de28a4628b8
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
+  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   KDEAudioPlayer: 8238a011987c675af6dfff96fe909578a05220ae
   MarqueeLabel-Swift: 4f90901990c45ce28aab5b0cc8fc1831eca3b616
   Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
