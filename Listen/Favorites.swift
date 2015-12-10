@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 class Favorites {
     
@@ -27,6 +28,7 @@ class Favorites {
         if !favorites.contains(slug) {
             favorites.append(slug)
             userDefaults.setObject(favorites, forKey: key)
+            subscribeForPush(slug: slug)
             notifyChange()
         }
     }
@@ -36,27 +38,40 @@ class Favorites {
         if let index = favorites.indexOf(slug) {
             favorites.removeAtIndex(index)
             userDefaults.setObject(favorites, forKey: key)
+            unsubscribeForPush(slug: slug)
             notifyChange()
         }
     }
     
     static func toggle(slug slug: String) {
-        var favorites = fetch()
+        let favorites = fetch()
         if !favorites.contains(slug) {
-            favorites.append(slug)
-            userDefaults.setObject(favorites, forKey: key)
-            notifyChange()
+            add(slug: slug)
         } else {
-            if let index = favorites.indexOf(slug) {
-                favorites.removeAtIndex(index)
-                userDefaults.setObject(favorites, forKey: key)
-                notifyChange()
-            }
+            remove(slug: slug)
         }
     }
     
     private static func notifyChange() {
         NSNotificationCenter.defaultCenter().postNotificationName("favoritesChanged", object: nil, userInfo: nil)
+    }
+    
+    // MARK: - Parse Push Notification Channels
+    
+    static func subscribeForPush(slug slug: String) {
+        if slug != "" {
+            let installation = PFInstallation.currentInstallation()
+            installation.addUniqueObject(slug, forKey: "channels")
+            installation.saveInBackground()
+        }
+    }
+    
+    static func unsubscribeForPush(slug slug: String) {
+        if slug != "" {
+            let installation = PFInstallation.currentInstallation()
+            installation.removeObject(slug, forKey: "channels")
+            installation.saveInBackground()
+        }
     }
     
 }
