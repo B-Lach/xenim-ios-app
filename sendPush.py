@@ -19,7 +19,6 @@ connection.request('POST', '/1/push', json.dumps({
        "X-Parse-REST-API-Key": parseRestAPIKey,
        "Content-Type": "application/json"
      })
-print connection.request
 result = json.loads(connection.getresponse().read())
 print result
 
