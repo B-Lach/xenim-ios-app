@@ -25,6 +25,9 @@ class Favorites {
     
     static func add(slug slug: String) {
         var favorites = fetch()
+        if favorites.count == 0 {
+            setupPushNotifications()
+        }
         if !favorites.contains(slug) {
             favorites.append(slug)
             userDefaults.setObject(favorites, forKey: key)
@@ -57,6 +60,17 @@ class Favorites {
     }
     
     // MARK: - Parse Push Notification Channels
+    
+    static func setupPushNotifications() {
+        let application = UIApplication.sharedApplication()
+        Parse.setApplicationId("8MWfUM4grO3NqKBxXqgxZ61JblY6PtbgrcM0d4f2",
+            clientKey: "fymCS10s2tuBBS0GjBKxYoPXcH7pwUaW6BPlyo6I")
+        if application.respondsToSelector("registerUserNotificationSettings:") {
+            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
+    }
     
     static func subscribeForPush(slug slug: String) {
         if slug != "" {
