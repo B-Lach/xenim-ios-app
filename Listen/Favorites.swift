@@ -62,9 +62,16 @@ class Favorites {
     // MARK: - Parse Push Notification Channels
     
     static func setupPushNotifications() {
+        
+        // fetch parse keys from Keys.plist
+        // this is force unwrapped intentionally. I want it to crash if this file is not working.
+        let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist")
+        let keys = NSDictionary(contentsOfFile: path!)
+        let applicationId = keys!["parseApplicationID"] as! String
+        let clientKey = keys!["parseClientKey"] as! String
+        Parse.setApplicationId(applicationId, clientKey: clientKey)
+        
         let application = UIApplication.sharedApplication()
-        Parse.setApplicationId("8MWfUM4grO3NqKBxXqgxZ61JblY6PtbgrcM0d4f2",
-            clientKey: "fymCS10s2tuBBS0GjBKxYoPXcH7pwUaW6BPlyo6I")
         if application.respondsToSelector("registerUserNotificationSettings:") {
             let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
             application.registerUserNotificationSettings(settings)

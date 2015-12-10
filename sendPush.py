@@ -1,4 +1,9 @@
-import json,httplib
+import json,httplib,plistlib
+
+keys = plistlib.readPlist("Listen/Keys.plist")
+parseApplicationID = keys["parseApplicationID"]
+parseRestAPIKey = keys["parseRestAPIKey"]
+
 connection = httplib.HTTPSConnection('api.parse.com', 443)
 connection.connect()
 connection.request('POST', '/1/push', json.dumps({
@@ -10,9 +15,12 @@ connection.request('POST', '/1/push', json.dumps({
          "alert": "Live soon!"
        }
      }), {
-       "X-Parse-Application-Id": "8MWfUM4grO3NqKBxXqgxZ61JblY6PtbgrcM0d4f2",
-       "X-Parse-REST-API-Key": "OxbsDT5VJ2UTaSdTwInFmr0rfMmj8kXeWecRwlAs",
+       "X-Parse-Application-Id": parseApplicationID,
+       "X-Parse-REST-API-Key": parseRestAPIKey,
        "Content-Type": "application/json"
      })
+print connection.request
 result = json.loads(connection.getresponse().read())
 print result
+
+
