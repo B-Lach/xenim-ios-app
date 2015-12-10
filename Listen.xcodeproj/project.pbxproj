@@ -16,6 +16,7 @@
 		2226CC261C06FB050077D22B /* NextupEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226CC251C06FB050077D22B /* NextupEventsTableViewController.swift */; };
 		222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222913CC1C032221005C74BB /* SettingsTableViewController.swift */; };
 		222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222FB9FC1BF0E90A0007257A /* PlayerManager.swift */; };
+		223510421C1A1D4300DB521A /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223510411C1A1D4300DB521A /* PushNotificationManager.swift */; };
 		224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224180071BFA21AA004D1B5D /* MessageViewController.swift */; };
 		22799D431BD8E13500A7E9E1 /* PodcastDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */; };
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
@@ -63,6 +64,7 @@
 		2226CC251C06FB050077D22B /* NextupEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextupEventsTableViewController.swift; sourceTree = "<group>"; };
 		222913CC1C032221005C74BB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		222FB9FC1BF0E90A0007257A /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
+		223510411C1A1D4300DB521A /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		224180071BFA21AA004D1B5D /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastDetailViewController.swift; sourceTree = "<group>"; };
 		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				229B7D4B1BD53DBD00F1CF6B /* Event.swift */,
 				229B7D4D1BD5623500F1CF6B /* Podcast.swift */,
 				2291D8A21BDFB1D600CB6536 /* Favorites.swift */,
+				223510411C1A1D4300DB521A /* PushNotificationManager.swift */,
 				229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */,
 			);
 			name = Model;
@@ -345,6 +348,7 @@
 			files = (
 				229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */,
 				2226CC241C06044A0077D22B /* PodcastInteractTableViewController.swift in Sources */,
+				223510421C1A1D4300DB521A /* PushNotificationManager.swift in Sources */,
 				228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */,
 				2226CC261C06FB050077D22B /* NextupEventsTableViewController.swift in Sources */,
 				22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */,

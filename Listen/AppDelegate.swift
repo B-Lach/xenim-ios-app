@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         return true
     }
@@ -34,7 +33,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
+        if ( application.applicationState == UIApplicationState.Active ) {
+            // app was already in the foreground
+            
+        } else {
+            // app was just brought from background to foreground because the user clicked on a notification
+            
+            // reset application badge count if the app was opened
+            application.applicationIconBadgeNumber = 0
+            
+            showEventInfo(userInfo)
+        }
+    }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        
+        // reset application badge count if the app was opened
+        application.applicationIconBadgeNumber = 0
+        
+        if identifier == "SHOW_INFO_IDENTIFIER" {
+            showEventInfo(userInfo)
+        } else if identifier == "LISTEN_NOW_IDENTIFIER" {
+            playEvent(userInfo)
+        }
+        
+        completionHandler()
+    }
+    
+    func showEventInfo(userInfo: [NSObject : AnyObject]) {
+        // Extract the notification event data
+        if let eventId = userInfo["event_id"] as? String {
+            print("show event info for: \(eventId)")
+        }
+    }
+    
+    func playEvent(userInfo: [NSObject : AnyObject]) {
+        // Extract the notification event data
+        if let eventId = userInfo["event_id"] as? String {
+            print("play event \(eventId)")
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
