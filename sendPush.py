@@ -2,9 +2,10 @@ import json,httplib
 connection = httplib.HTTPSConnection('api.parse.com', 443)
 connection.connect()
 connection.request('POST', '/1/push', json.dumps({
-       "channels": [
-         "wasmitmedien"
-       ],
+       "where": {
+         "channels": "wasmitmedien",
+         "localeIdentifier": "de-DE"
+       },
        "data": {
          "alert": "Live soon!"
        }
