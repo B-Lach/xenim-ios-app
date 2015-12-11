@@ -7,17 +7,19 @@ parseRestAPIKey = keys["parseRestAPIKey"]
 connection = httplib.HTTPSConnection('api.parse.com', 443)
 connection.connect()
 connection.request('POST', '/1/push', json.dumps({
-       #"expiration_time": "2015-03-19T22:05:08Z",
+       # if the notification can not be delivered to the user until this point in time
+       # it will not be delivered at all. this should be 'now + event.duration'
+       "expiration_time": "2018-03-19T22:05:08Z",
        "where": {
          "channels": "breitband",
          "localeIdentifier": "de-DE"
        },
        "data": {
          "alert": "Event XYZ is live now.",
+         "event_id": "13wfdbvkb123",
          "badge": "1",
-         "category": "EVENT_CATEGORY",
-         "sound": "ios_defaultsound.caf",
-         "event_id": "13wfdbvkb123"
+         "category": "EVENT_LIVE_NOW_CATEGORY",
+         "sound": "ios_defaultsound.caf"
        }
      }), {
        "X-Parse-Application-Id": parseApplicationID,

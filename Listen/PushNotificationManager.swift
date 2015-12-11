@@ -39,7 +39,7 @@ class PushNotificationManager {
             listenNowAction.authenticationRequired = false
             
             let eventNotificationCategory = UIMutableUserNotificationCategory()
-            eventNotificationCategory.identifier = "EVENT_CATEGORY"
+            eventNotificationCategory.identifier = "EVENT_LIVE_NOW_CATEGORY"
             
             let defaultActions: NSArray = [showInfoAction, listenNowAction]
             let minimalActions: NSArray = [showInfoAction, listenNowAction]
