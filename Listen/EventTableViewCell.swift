@@ -21,8 +21,8 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var liveDateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var favoriteStarImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     var event: Event? {
         didSet {
@@ -48,7 +48,7 @@ class EventTableViewCell: UITableViewCell {
             updateLivedate()
             updateProgressBar()
             updatePlayButton()
-            updateFavstar()
+            updateFavoriteButton()
         }
     }
     
@@ -77,6 +77,12 @@ class EventTableViewCell: UITableViewCell {
     
     func updatePlayButton() {
         if let event = event {
+            
+            playButton?.layer.cornerRadius = 5
+            playButton?.layer.borderWidth = 1
+            playButton?.layer.borderColor = Constants.Colors.tintColor.CGColor
+            playButton?.contentEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 0)
+            
             // only show the playbutton if the event is live
             if event.isLive() {
                 playButton?.hidden = false
@@ -86,23 +92,23 @@ class EventTableViewCell: UITableViewCell {
                     if playerEvent.equals(myEvent) {
                         switch playerManager.player.state {
                         case .Buffering:
-                            playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
+                            updatePlayButtonForBuffering()
                         case .Paused:
-                            playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                            updatePlayButtonForPlay()
                         case .Playing:
-                            playButton?.setImage(UIImage(named: "brandeis-blue-25-pause"), forState: .Normal)
+                            updatePlayButtonForPause()
                         case .Stopped:
-                            playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                            updatePlayButtonForPlay()
                         case .WaitingForConnection:
-                            playButton?.setImage(UIImage(named: "brandeis-blue-25-hourglass"), forState: .Normal)
+                            updatePlayButtonForBuffering()
                         case .Failed(_):
-                            playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                            updatePlayButtonForPlay()
                         }
                     } else {
-                        playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                        updatePlayButtonForPlay()
                     }
                 } else {
-                    playButton?.setImage(UIImage(named: "brandeis-blue-25-play"), forState: .Normal)
+                    updatePlayButtonForPlay()
                 }
             } else {
                 playButton?.hidden = true
@@ -110,12 +116,42 @@ class EventTableViewCell: UITableViewCell {
         }
     }
     
-    func updateFavstar() {
+    func updatePlayButtonForBuffering() {
+        playButton?.setTitle("Listen", forState: .Normal)
+        playButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        playButton?.setImage(UIImage(named: "white-20-hourglass"), forState: .Normal)
+        playButton?.backgroundColor = Constants.Colors.tintColor
+    }
+    
+    func updatePlayButtonForPlay() {
+        playButton?.setTitle("Listen", forState: .Normal)
+        playButton?.setTitleColor(Constants.Colors.tintColor, forState: .Normal)
+        playButton?.setImage(UIImage(named: "scarlet-20-play"), forState: .Normal)
+        playButton?.backgroundColor = UIColor.clearColor()
+    }
+    
+    func updatePlayButtonForPause() {
+        playButton?.setTitle("Pause", forState: .Normal)
+        playButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        playButton?.setImage(UIImage(named: "white-20-pause"), forState: .Normal)
+        playButton?.backgroundColor = Constants.Colors.tintColor
+    }
+    
+    func updateFavoriteButton() {
         if let event = event {
+            favoriteButton?.layer.cornerRadius = 5
+            favoriteButton?.layer.borderWidth = 1
+            favoriteButton?.layer.borderColor = Constants.Colors.tintColor.CGColor
+            favoriteButton?.contentEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 0)
+            
             if !Favorites.fetch().contains(event.podcastSlug) {
-                favoriteStarImageView.hidden = true
+                favoriteButton?.setTitleColor(Constants.Colors.tintColor, forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "scarlet-20-star"), forState: .Normal)
+                favoriteButton?.backgroundColor = UIColor.clearColor()
             } else {
-                favoriteStarImageView.hidden = false
+                favoriteButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "white-20-star"), forState: .Normal)
+                favoriteButton?.backgroundColor = Constants.Colors.tintColor
             }
         }
     }
@@ -129,6 +165,16 @@ class EventTableViewCell: UITableViewCell {
                 progressView?.hidden = true
             }
         }
+    }
+    
+    
+    // MARK: - Actions
+    
+    @IBAction func favorite(sender: UIButton) {
+        if let event = event {
+            Favorites.toggle(slug: event.podcastSlug)
+        }
+        
     }
     
     @IBAction func play(sender: AnyObject) {
@@ -159,7 +205,7 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func favoritesChanged(notification: NSNotification) {
-        updateFavstar()
+        updateFavoriteButton()
     }
     
 }

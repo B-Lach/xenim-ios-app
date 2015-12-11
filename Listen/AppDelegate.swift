@@ -10,12 +10,23 @@ import UIKit
 import Parse
 import CRToast
 
+struct Constants {
+    struct Colors {
+        static let tintColor = UIColor(red:0.98, green:0.18, blue:0.25, alpha:1)
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        UINavigationBar.appearance().tintColor = Constants.Colors.tintColor
+        UITabBar.appearance().tintColor = Constants.Colors.tintColor
+//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+
         return true
     }
     
