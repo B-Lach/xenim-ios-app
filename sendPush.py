@@ -9,12 +9,12 @@ connection.connect()
 connection.request('POST', '/1/push', json.dumps({
        #"expiration_time": "2015-03-19T22:05:08Z",
        "where": {
-         "channels": "wasmitmedien",
+         "channels": "breitband",
          "localeIdentifier": "de-DE"
        },
        "data": {
          "alert": "Event XYZ is live now.",
-         "badge": "Increment",
+         "badge": "1",
          "category": "EVENT_CATEGORY",
          #"sound": "cheering.caf",
          "event_id": "13wfdbvkb123"

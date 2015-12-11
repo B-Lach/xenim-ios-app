@@ -19,6 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func applicationDidBecomeActive(application: UIApplication) {
+        resetApplicationBadge(application)
+    }
+    
+    func resetApplicationBadge(application: UIApplication) {
+        application.applicationIconBadgeNumber = 0
+    }
+    
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let installation = PFInstallation.currentInstallation()
         installation.setDeviceTokenFromData(deviceToken)
@@ -48,21 +56,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            ]
             
             CRToastManager.showNotificationWithMessage("test message", completionBlock: nil)
+            resetApplicationBadge(application)
             
         } else {
             // app was just brought from background to foreground because the user clicked on a notification
-            
-            // reset application badge count if the app was opened
-            application.applicationIconBadgeNumber = 0
-            
             showEventInfo(userInfo)
         }
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
-        
-        // reset application badge count if the app was opened
-        application.applicationIconBadgeNumber = 0
         
         if identifier == "SHOW_INFO_IDENTIFIER" {
             showEventInfo(userInfo)
@@ -99,10 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
     func applicationWillTerminate(application: UIApplication) {
