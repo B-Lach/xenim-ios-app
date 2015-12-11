@@ -24,34 +24,34 @@ class PushNotificationManager {
         let application = UIApplication.sharedApplication()
         if application.respondsToSelector("registerUserNotificationSettings:") {
             
-            let firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-            firstAction.identifier = "SHOW_INFO_IDENTIFIER"
-            firstAction.title = "Show Info"
-            firstAction.activationMode = UIUserNotificationActivationMode.Foreground
-            firstAction.destructive = false
-            firstAction.authenticationRequired = false
+            let showInfoAction = UIMutableUserNotificationAction()
+            showInfoAction.identifier = "SHOW_INFO_IDENTIFIER"
+            showInfoAction.title = NSLocalizedString("push_notification_action_show_info", value: "Show Info", comment: "the title of the button in a push notification for the action to show info of the event")
+            showInfoAction.activationMode = UIUserNotificationActivationMode.Foreground
+            showInfoAction.destructive = false
+            showInfoAction.authenticationRequired = false
             
-            let secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-            secondAction.identifier = "LISTEN_NOW_IDENTIFIER"
-            secondAction.title = "Listen Now"
-            secondAction.activationMode = UIUserNotificationActivationMode.Foreground
-            secondAction.destructive = false
-            secondAction.authenticationRequired = false
+            let listenNowAction = UIMutableUserNotificationAction()
+            listenNowAction.identifier = "LISTEN_NOW_IDENTIFIER"
+            listenNowAction.title = NSLocalizedString("push_notification_action_listen_now", value: "Listen Now", comment: "the title of the button in a push notification for the action to start streaming the event now")
+            listenNowAction.activationMode = UIUserNotificationActivationMode.Foreground
+            listenNowAction.destructive = false
+            listenNowAction.authenticationRequired = false
             
-            let firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
-            firstCategory.identifier = "EVENT_CATEGORY"
+            let eventNotificationCategory = UIMutableUserNotificationCategory()
+            eventNotificationCategory.identifier = "EVENT_CATEGORY"
             
-            let defaultActions:NSArray = [firstAction, secondAction]
-            let minimalActions:NSArray = [firstAction, secondAction]
+            let defaultActions: NSArray = [showInfoAction, listenNowAction]
+            let minimalActions: NSArray = [showInfoAction, listenNowAction]
             
-            firstCategory.setActions(defaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
-            firstCategory.setActions(minimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
+            eventNotificationCategory.setActions(defaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
+            eventNotificationCategory.setActions(minimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
             
-            let categories:NSSet = NSSet(object: firstCategory)
+            let categories:NSSet = NSSet(object: eventNotificationCategory)
             
-            let types:UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
+            let types: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
             
-            let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories as? Set<UIUserNotificationCategory>)
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories as? Set<UIUserNotificationCategory>)
             
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
