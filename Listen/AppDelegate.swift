@@ -45,17 +45,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if ( application.applicationState == UIApplicationState.Active ) {
             // app was already in the foreground
             
-//            var options: NSDictionary = [
-//                kCRToastTextKey : "Hello World!",
-//                kCRToastTextAlignmentKey : NSTextAlignment.Center.rawValue,
-//                kCRToastBackgroundColorKey : UIColor.redColor(),
-//                kCRToastAnimationInTypeKey : CRToastAnimationType.Gravity.rawValue,
-//                kCRToastAnimationOutTypeKey : CRToastAnimationType.Gravity.rawValue,
-//                kCRToastAnimationInDirectionKey : CRToastAnimationDirection.Left.rawValue,
-//                kCRToastAnimationOutDirectionKey : CRToastAnimationDirection.Right.rawValue
-//            ]
-            
-            CRToastManager.showNotificationWithMessage("test message", completionBlock: nil)
+            if let message = userInfo["aps"]?["alert"] as? String {
+                let options: [NSObject:AnyObject] = [
+                    kCRToastTextKey : message,
+                    kCRToastTextAlignmentKey : NSTextAlignment.Center.rawValue,
+                    kCRToastBackgroundColorKey : UIColor(red:0.01, green:0.44, blue:0.91, alpha:1),
+                    kCRToastTextColorKey: UIColor.whiteColor(),
+                    kCRToastTimeIntervalKey: NSTimeInterval(3)
+                ]
+                
+                CRToastManager.showNotificationWithOptions(options, completionBlock: nil)
+            }
+
             resetApplicationBadge(application)
             
         } else {
