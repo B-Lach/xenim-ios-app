@@ -16,7 +16,7 @@ connection.request('POST', '/1/push', json.dumps({
          "alert": "Event XYZ is live now.",
          "badge": "1",
          "category": "EVENT_CATEGORY",
-         #"sound": "cheering.caf",
+         "sound": "ios_defaultsound.caf",
          "event_id": "13wfdbvkb123"
        }
      }), {
