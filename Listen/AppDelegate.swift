@@ -53,27 +53,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     kCRToastTextColorKey: UIColor.whiteColor(),
                     kCRToastTimeIntervalKey: NSTimeInterval(3)
                 ]
-                
                 CRToastManager.showNotificationWithOptions(options, completionBlock: nil)
             }
-
             resetApplicationBadge(application)
-            
         } else {
             // app was just brought from background to foreground because the user clicked on a notification
             showEventInfo(userInfo)
         }
     }
     
+    /**
+     This is called when a user clicks on a notifcation action button.
+     registering for notification actions happens in PushNotificationManager.swift
+    */
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
         
         if identifier == "SHOW_INFO_IDENTIFIER" {
             showEventInfo(userInfo)
         } else if identifier == "LISTEN_NOW_IDENTIFIER" {
             playEvent(userInfo)
+        } else {
+            // action clicked is unknown. ignore
         }
         
-        completionHandler()
+        completionHandler() // apple says you have to call this
     }
     
     func showEventInfo(userInfo: [NSObject : AnyObject]) {
