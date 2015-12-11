@@ -16,10 +16,12 @@
 		2226CC261C06FB050077D22B /* NextupEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226CC251C06FB050077D22B /* NextupEventsTableViewController.swift */; };
 		222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222913CC1C032221005C74BB /* SettingsTableViewController.swift */; };
 		222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222FB9FC1BF0E90A0007257A /* PlayerManager.swift */; };
+		223510421C1A1D4300DB521A /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223510411C1A1D4300DB521A /* PushNotificationManager.swift */; };
 		224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224180071BFA21AA004D1B5D /* MessageViewController.swift */; };
 		22799D431BD8E13500A7E9E1 /* PodcastDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */; };
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
 		2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291D8A21BDFB1D600CB6536 /* Favorites.swift */; };
+		229421FB1C1989DA00033AAB /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229421FA1C1989DA00033AAB /* Keys.plist */; };
 		229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4B1BD53DBD00F1CF6B /* Event.swift */; };
 		229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4D1BD5623500F1CF6B /* Podcast.swift */; };
 		229B7D501BD564DC00F1CF6B /* HoersuppeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */; };
@@ -62,10 +64,12 @@
 		2226CC251C06FB050077D22B /* NextupEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextupEventsTableViewController.swift; sourceTree = "<group>"; };
 		222913CC1C032221005C74BB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		222FB9FC1BF0E90A0007257A /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
+		223510411C1A1D4300DB521A /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		224180071BFA21AA004D1B5D /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastDetailViewController.swift; sourceTree = "<group>"; };
 		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2291D8A21BDFB1D600CB6536 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		229421FA1C1989DA00033AAB /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		229B7D4B1BD53DBD00F1CF6B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		229B7D4D1BD5623500F1CF6B /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoersuppeAPI.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				22BC05A91C12F995005356C8 /* Player */,
 				2232FE5F1BDE235A00BE368E /* Model */,
 				2222ECC11BD52E480040100F /* Info.plist */,
+				229421FA1C1989DA00033AAB /* Keys.plist */,
 				22C31DF61BECB64E006F2999 /* HelperExtensions.swift */,
 				2222ECB51BD52E470040100F /* AppDelegate.swift */,
 				221109551BD5336F0095F25D /* Listen-Bridging-Header.h */,
@@ -170,6 +175,7 @@
 				229B7D4B1BD53DBD00F1CF6B /* Event.swift */,
 				229B7D4D1BD5623500F1CF6B /* Podcast.swift */,
 				2291D8A21BDFB1D600CB6536 /* Favorites.swift */,
+				223510411C1A1D4300DB521A /* PushNotificationManager.swift */,
 				229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */,
 			);
 			name = Model;
@@ -230,7 +236,7 @@
 				TargetAttributes = {
 					2222ECB11BD52E470040100F = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = NGS4T5MUTG;
+						DevelopmentTeam = Y85FVF2A97;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -264,6 +270,7 @@
 			files = (
 				22DAD4961BFCC26600B3043E /* Localizable.strings in Resources */,
 				2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */,
+				229421FB1C1989DA00033AAB /* Keys.plist in Resources */,
 				22DAD4911BFCC26500B3043E /* InfoPlist.strings in Resources */,
 				2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */,
 				2222ECBB1BD52E480040100F /* Main.storyboard in Resources */,
@@ -341,6 +348,7 @@
 			files = (
 				229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */,
 				2226CC241C06044A0077D22B /* PodcastInteractTableViewController.swift in Sources */,
+				223510421C1A1D4300DB521A /* PushNotificationManager.swift in Sources */,
 				228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */,
 				2226CC261C06FB050077D22B /* NextupEventsTableViewController.swift in Sources */,
 				22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */,
@@ -418,7 +426,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -463,7 +472,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -490,6 +500,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LNPopupController/build/Debug-iphoneos",
@@ -498,7 +509,7 @@
 				);
 				INFOPLIST_FILE = Listen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.Listen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Listen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Listen/Listen-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -512,6 +523,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LNPopupController/build/Debug-iphoneos",
@@ -520,7 +532,7 @@
 				);
 				INFOPLIST_FILE = Listen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.Listen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Listen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Listen/Listen-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;

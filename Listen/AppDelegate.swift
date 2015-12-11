@@ -7,16 +7,92 @@
 //
 
 import UIKit
+import Parse
+import CRToast
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         return true
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        resetApplicationBadge(application)
+    }
+    
+    func resetApplicationBadge(application: UIApplication) {
+        application.applicationIconBadgeNumber = 0
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let installation = PFInstallation.currentInstallation()
+        installation.setDeviceTokenFromData(deviceToken)
+        installation.saveInBackground()
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        if error.code == 3010 {
+            print("Push notifications are not supported in the iOS Simulator.")
+        } else {
+            print("application:didFailToRegisterForRemoteNotificationsWithError: %@", error)
+        }
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        if ( application.applicationState == UIApplicationState.Active ) {
+            // app was already in the foreground
+            
+            if let message = userInfo["aps"]?["alert"] as? String {
+                let options: [NSObject:AnyObject] = [
+                    kCRToastTextKey : message,
+                    kCRToastTextAlignmentKey : NSTextAlignment.Center.rawValue,
+                    kCRToastBackgroundColorKey : UIColor(red:0.01, green:0.44, blue:0.91, alpha:1),
+                    kCRToastTextColorKey: UIColor.whiteColor(),
+                    kCRToastTimeIntervalKey: NSTimeInterval(3)
+                ]
+                CRToastManager.showNotificationWithOptions(options, completionBlock: nil)
+            }
+            resetApplicationBadge(application)
+        } else {
+            // app was just brought from background to foreground because the user clicked on a notification
+            showEventInfo(userInfo)
+        }
+    }
+    
+    /**
+     This is called when a user clicks on a notifcation action button.
+     registering for notification actions happens in PushNotificationManager.swift
+    */
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        
+        if identifier == "SHOW_INFO_IDENTIFIER" {
+            showEventInfo(userInfo)
+        } else if identifier == "LISTEN_NOW_IDENTIFIER" {
+            playEvent(userInfo)
+        } else {
+            // action clicked is unknown. ignore
+        }
+        
+        completionHandler() // apple says you have to call this
+    }
+    
+    func showEventInfo(userInfo: [NSObject : AnyObject]) {
+        // Extract the notification event data
+        if let eventId = userInfo["event_id"] as? String {
+            print("show event info for: \(eventId)")
+        }
+    }
+    
+    func playEvent(userInfo: [NSObject : AnyObject]) {
+        // Extract the notification event data
+        if let eventId = userInfo["event_id"] as? String {
+            print("play event \(eventId)")
+            let event = Event(duration: "90", livedate: "2015-12-11 20:00:00", podcastSlug: "breitband", streamurl: "http://www.dradio.de/streaming/dkultur.m3u", imageurl: "http://www.deutschlandradiokultur.de/media/files/2/258cfe6db750912b0bb36410d2fdf775v1.jpg", podcastDescription: "Magazin für Medien und digitale Kultur, immer samstags 13:05 im Deutschlandradio Kultur", title: "Breitband", url: "http://www.deutschlandradio.de/weiterleitung-breitband-de.233.de.html")
+            PlayerManager.sharedInstance.togglePlayPause(event!)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -31,10 +107,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
     func applicationWillTerminate(application: UIApplication) {

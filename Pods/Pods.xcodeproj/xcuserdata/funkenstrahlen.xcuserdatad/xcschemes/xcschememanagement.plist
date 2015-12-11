@@ -14,12 +14,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>CRToast.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>KDEAudioPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>MarqueeLabel-Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,12 +57,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>511B536F0DE06D9C3BD65397A91990C0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>541E9AD8F0209976F59A780F49A3F069</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80ACF827C5B56CA70BDA38E1EBD74BB8</key>
+		<key>708E01B006A9F88B3C13711562282B5E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>90CDE3F47A9EBE870EF7958BEE07C140</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,7 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BFB85A50D8BA60C1F8CF1CE6D75793FF</key>
+		<key>AB7360021CAA2913AC77DDE689D5A2AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD01AABCBF8A9A7886807CDED4E8E5C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

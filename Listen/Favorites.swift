@@ -24,9 +24,13 @@ class Favorites {
     
     static func add(slug slug: String) {
         var favorites = fetch()
+        if favorites.count == 0 {
+            PushNotificationManager.setupPushNotifications()
+        }
         if !favorites.contains(slug) {
             favorites.append(slug)
             userDefaults.setObject(favorites, forKey: key)
+            PushNotificationManager.subscribeToChannel(slug)
             notifyChange()
         }
     }
@@ -36,22 +40,17 @@ class Favorites {
         if let index = favorites.indexOf(slug) {
             favorites.removeAtIndex(index)
             userDefaults.setObject(favorites, forKey: key)
+            PushNotificationManager.unsubscribeFromChannel(slug)
             notifyChange()
         }
     }
     
     static func toggle(slug slug: String) {
-        var favorites = fetch()
+        let favorites = fetch()
         if !favorites.contains(slug) {
-            favorites.append(slug)
-            userDefaults.setObject(favorites, forKey: key)
-            notifyChange()
+            add(slug: slug)
         } else {
-            if let index = favorites.indexOf(slug) {
-                favorites.removeAtIndex(index)
-                userDefaults.setObject(favorites, forKey: key)
-                notifyChange()
-            }
+            remove(slug: slug)
         }
     }
     
