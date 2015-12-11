@@ -90,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Extract the notification event data
         if let eventId = userInfo["event_id"] as? String {
             print("play event \(eventId)")
+            let event = Event(duration: "90", livedate: "2015-12-11 20:00:00", podcastSlug: "breitband", streamurl: "http://www.dradio.de/streaming/dkultur.m3u", imageurl: "http://www.deutschlandradiokultur.de/media/files/2/258cfe6db750912b0bb36410d2fdf775v1.jpg", podcastDescription: "Magazin für Medien und digitale Kultur, immer samstags 13:05 im Deutschlandradio Kultur", title: "Breitband", url: "http://www.deutschlandradio.de/weiterleitung-breitband-de.233.de.html")
+            PlayerManager.sharedInstance.togglePlayPause(event!)
         }
     }
 
