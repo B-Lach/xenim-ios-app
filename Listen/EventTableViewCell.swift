@@ -22,6 +22,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var playButtonMaxHeightConstraint: NSLayoutConstraint!
     
     var event: Event? {
         didSet {
@@ -79,11 +80,15 @@ class EventTableViewCell: UITableViewCell {
             playButton?.layer.cornerRadius = 5
             playButton?.layer.borderWidth = 1
             playButton?.layer.borderColor = Constants.Colors.tintColor.CGColor
-            playButton?.contentEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 0)
+            let contentInset: CGFloat = 5
+            playButton?.contentEdgeInsets = UIEdgeInsetsMake(contentInset, 0, contentInset, 0)
             
             // only show the playbutton if the event is live
             if event.isLive() {
                 playButton?.hidden = false
+                // when player was hidden his height was set to 0. set it back to default here
+                playButtonMaxHeightConstraint.constant = 50
+                
                 // configure the play button image accordingly to the player state
                 let playerManager = PlayerManager.sharedInstance
                 if let playerEvent = playerManager.event, let myEvent = self.event {
@@ -110,6 +115,9 @@ class EventTableViewCell: UITableViewCell {
                 }
             } else {
                 playButton?.hidden = true
+                // set the height to 0
+                playButtonMaxHeightConstraint.constant = 0
+                
             }
         }
     }

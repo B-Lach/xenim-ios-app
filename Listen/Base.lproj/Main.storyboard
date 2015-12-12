@@ -353,6 +353,7 @@
                                             <rect key="frame" x="8" y="134" width="90" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="DAR-3c-jHn"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="itm-uf-ddd"/>
                                                 <constraint firstAttribute="width" secondItem="idX-LT-SMd" secondAttribute="height" multiplier="1:1" id="nqq-uq-M46"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -395,7 +396,7 @@
                                                 <action selector="favorite:" destination="hiw-wf-THJ" eventType="touchUpInside" id="JOg-FV-fOO"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="99" text="Label" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHY-V1-cI6">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="99" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHY-V1-cI6">
                                             <rect key="frame" x="106" y="72" width="478" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -450,6 +451,7 @@
                                     <outlet property="favoriteButton" destination="xnr-v3-chi" id="Gwa-6Y-wtB"/>
                                     <outlet property="liveDateLabel" destination="sRm-H4-jze" id="wv2-wQ-3zP"/>
                                     <outlet property="playButton" destination="idX-LT-SMd" id="yh3-dp-Urk"/>
+                                    <outlet property="playButtonMaxHeightConstraint" destination="itm-uf-ddd" id="xvQ-uG-PLb"/>
                                     <outlet property="podcastNameLabel" destination="l5d-ya-iW5" id="Kvp-1b-1yu"/>
                                     <segue destination="jLW-Aw-Blu" kind="show" identifier="PodcastDetail" id="5u9-ce-4fW"/>
                                 </connections>
