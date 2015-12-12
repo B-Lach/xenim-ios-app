@@ -117,6 +117,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             items.append(chatItem)
         }
         
+        let shareItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-share"), style: .Plain, target: self, action: "share:")
+        items.append(spaceItem)
+        items.append(shareItem)
+        
         items.append(spaceItem)
         toolbar?.setItems(items, animated: true)
     }
@@ -170,6 +174,12 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     func favorite(sender: AnyObject) {
         if let event = event {
             Favorites.toggle(slug: event.podcastSlug)
+        }
+    }
+    
+    func share(sender: AnyObject) {
+        if let event = event {
+            // TODO
         }
     }
     
