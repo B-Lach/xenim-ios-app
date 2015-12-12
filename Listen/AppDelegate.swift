@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
+        PushNotificationManager.setupPushNotifications()
         resetApplicationBadge(application)
     }
     

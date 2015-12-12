@@ -24,9 +24,6 @@ class Favorites {
     
     static func add(slug slug: String) {
         var favorites = fetch()
-        if favorites.count == 0 {
-            PushNotificationManager.setupPushNotifications()
-        }
         if !favorites.contains(slug) {
             favorites.append(slug)
             userDefaults.setObject(favorites, forKey: key)
