@@ -632,7 +632,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaA-7x-at3">
                                             <rect key="frame" x="106" y="50" width="486" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.1764705882" green="0.18039215689999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1801,6 +1801,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="scarlet-25-twitter-square" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lkZ-jg-qVS"/>
+        <segue reference="5u9-ce-4fW"/>
     </inferredMetricsTieBreakers>
 </document>
