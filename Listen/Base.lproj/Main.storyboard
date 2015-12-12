@@ -103,7 +103,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="tangelo-25-heart" id="Zma-1z-xSZ">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="scarlet-25-heart" id="Zma-1z-xSZ">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -1805,7 +1805,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="event_placeholder" width="420" height="420"/>
         <image name="scarlet-20-play" width="15" height="15"/>
         <image name="scarlet-20-star" width="15" height="15"/>
-        <image name="tangelo-25-heart" width="19" height="19"/>
+        <image name="scarlet-25-heart" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5u9-ce-4fW"/>
