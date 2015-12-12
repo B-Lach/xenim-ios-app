@@ -257,6 +257,7 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
         for event in events {
             if event.isFinished() {
                 // event already finished, do not add to the list
+                continue
             } else if event.isLive() {
                 addEvent(event, section: Section.Live)
             } else if event.isToday() {
