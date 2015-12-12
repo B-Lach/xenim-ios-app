@@ -26,6 +26,8 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         resultSearchController.searchResultsUpdater = self
         resultSearchController.dimsBackgroundDuringPresentation = false
         resultSearchController.searchBar.sizeToFit()
+        resultSearchController.searchBar.tintColor = Constants.Colors.tintColor
+        resultSearchController.searchBar.setValue("Done", forKey:"_cancelButtonText")
         tableView.tableHeaderView = resultSearchController.searchBar
         
         // dynamic row height
