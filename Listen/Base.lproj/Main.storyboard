@@ -988,7 +988,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99D-Ge-NfZ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1003"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1010"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MYR-Bd-I21">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -997,13 +997,13 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PLU-zi-7Az">
-                                                <rect key="frame" x="8" y="618" width="584" height="33"/>
+                                                <rect key="frame" x="8" y="625" width="584" height="33"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqw-7J-EQl">
-                                                <rect key="frame" x="8" y="659" width="584" height="20"/>
+                                                <rect key="frame" x="8" y="666" width="584" height="20"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -1044,7 +1044,7 @@
                                                 <blurEffect style="light"/>
                                             </visualEffectView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zn3-Qw-pwZ">
-                                                <rect key="frame" x="0.0" y="687" width="600" height="308"/>
+                                                <rect key="frame" x="0.0" y="694" width="600" height="308"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="308" id="EHu-TY-Czz"/>
                                                 </constraints>
@@ -1068,7 +1068,7 @@
                                             <constraint firstItem="sqw-7J-EQl" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="JW7-4D-Llf"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="OHg-wo-X2n"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="PWw-km-8hN"/>
-                                            <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="fTO-Hw-zIA" secondAttribute="bottom" constant="8" id="SBr-TL-LXQ"/>
+                                            <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="fTO-Hw-zIA" secondAttribute="bottom" constant="15" id="SBr-TL-LXQ"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="TFL-VM-4l6"/>
                                             <constraint firstItem="W6b-nc-qxN" firstAttribute="centerX" secondItem="MYR-Bd-I21" secondAttribute="centerX" id="Xhe-Aq-hLm"/>
                                             <constraint firstItem="Zn3-Qw-pwZ" firstAttribute="top" secondItem="sqw-7J-EQl" secondAttribute="bottom" constant="8" id="c5l-vO-IUT"/>
