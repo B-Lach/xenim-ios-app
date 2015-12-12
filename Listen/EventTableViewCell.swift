@@ -20,7 +20,6 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var liveDateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     
@@ -46,7 +45,6 @@ class EventTableViewCell: UITableViewCell {
             }
             
             updateLivedate()
-            updateProgressBar()
             updatePlayButton()
             updateFavoriteButton()
         }
@@ -156,17 +154,6 @@ class EventTableViewCell: UITableViewCell {
         }
     }
     
-    func updateProgressBar() {
-        if let event = event {
-            progressView?.setProgress(event.progress, animated: true)
-            if event.isLive() {
-                progressView?.hidden = false
-            } else {
-                progressView?.hidden = true
-            }
-        }
-    }
-    
     
     // MARK: - Actions
     
@@ -187,17 +174,12 @@ class EventTableViewCell: UITableViewCell {
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    func progressUpdate(notification: NSNotification) {
-        updateProgressBar()
     }
     
     func playerStateChanged(notification: NSNotification) {

@@ -329,7 +329,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event" rowHeight="179" id="hiw-wf-THJ" customClass="EventTableViewCell" customModule="Listen" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Event" rowHeight="179" id="hiw-wf-THJ" customClass="EventTableViewCell" customModule="Listen" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="179"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hiw-wf-THJ" id="jQY-dg-Cex">
@@ -349,11 +349,8 @@
                                                 <constraint firstAttribute="width" constant="90" id="m5Y-lt-jpg"/>
                                             </constraints>
                                         </imageView>
-                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XgJ-FZ-h6y">
-                                            <rect key="frame" x="8" y="100" width="90" height="2"/>
-                                        </progressView>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idX-LT-SMd">
-                                            <rect key="frame" x="8" y="136" width="90" height="20"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idX-LT-SMd">
+                                            <rect key="frame" x="8" y="134" width="90" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="DAR-3c-jHn"/>
                                                 <constraint firstAttribute="width" secondItem="idX-LT-SMd" secondAttribute="height" multiplier="1:1" id="nqq-uq-M46"/>
@@ -378,8 +375,8 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xnr-v3-chi">
-                                            <rect key="frame" x="8" y="108" width="90" height="20"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xnr-v3-chi">
+                                            <rect key="frame" x="8" y="108" width="90" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="6CN-Tx-Ezr"/>
                                                 <constraint firstAttribute="width" secondItem="xnr-v3-chi" secondAttribute="height" multiplier="1:1" id="cTK-yT-LUe"/>
@@ -406,7 +403,6 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="xnr-v3-chi" firstAttribute="top" secondItem="XgJ-FZ-h6y" secondAttribute="bottom" constant="6" id="4bG-BJ-KmG"/>
                                         <constraint firstItem="SHY-V1-cI6" firstAttribute="width" secondItem="l5d-ya-iW5" secondAttribute="width" id="7cz-UH-7E1"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="idX-LT-SMd" secondAttribute="bottom" constant="8" id="Db2-To-8Yg"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="leading" secondItem="IhM-9d-ONQ" secondAttribute="trailing" constant="8" id="GPB-0b-btu"/>
@@ -429,13 +425,11 @@
                                         <constraint firstItem="xnr-v3-chi" firstAttribute="width" secondItem="IhM-9d-ONQ" secondAttribute="width" id="e2U-od-6UZ"/>
                                         <constraint firstItem="idX-LT-SMd" firstAttribute="centerX" secondItem="xnr-v3-chi" secondAttribute="centerX" id="eZd-4B-V4Y"/>
                                         <constraint firstItem="l5d-ya-iW5" firstAttribute="top" secondItem="sRm-H4-jze" secondAttribute="bottom" constant="8" id="fmR-9e-owi"/>
-                                        <constraint firstItem="XgJ-FZ-h6y" firstAttribute="centerX" secondItem="IhM-9d-ONQ" secondAttribute="centerX" id="j0y-GY-PLV"/>
+                                        <constraint firstItem="xnr-v3-chi" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="bottom" constant="8" id="j0a-ef-FGW"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="SHY-V1-cI6" secondAttribute="bottom" constant="8" id="oeR-ET-kWJ"/>
                                         <constraint firstItem="xnr-v3-chi" firstAttribute="centerX" secondItem="IhM-9d-ONQ" secondAttribute="centerX" id="s8s-xp-PQ1"/>
                                         <constraint firstItem="l5d-ya-iW5" firstAttribute="leading" secondItem="sRm-H4-jze" secondAttribute="leading" id="tNQ-NG-5vP"/>
                                         <constraint firstItem="sRm-H4-jze" firstAttribute="width" secondItem="l5d-ya-iW5" secondAttribute="width" id="tz4-sI-fDo"/>
-                                        <constraint firstItem="XgJ-FZ-h6y" firstAttribute="top" secondItem="IhM-9d-ONQ" secondAttribute="bottom" id="ya9-js-J4y"/>
-                                        <constraint firstItem="XgJ-FZ-h6y" firstAttribute="width" secondItem="IhM-9d-ONQ" secondAttribute="width" id="yaD-Ss-vaU"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -457,7 +451,6 @@
                                     <outlet property="liveDateLabel" destination="sRm-H4-jze" id="wv2-wQ-3zP"/>
                                     <outlet property="playButton" destination="idX-LT-SMd" id="yh3-dp-Urk"/>
                                     <outlet property="podcastNameLabel" destination="l5d-ya-iW5" id="Kvp-1b-1yu"/>
-                                    <outlet property="progressView" destination="XgJ-FZ-h6y" id="rpl-17-SyZ"/>
                                     <segue destination="jLW-Aw-Blu" kind="show" identifier="PodcastDetail" id="5u9-ce-4fW"/>
                                 </connections>
                             </tableViewCell>
