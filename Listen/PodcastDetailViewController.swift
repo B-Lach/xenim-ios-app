@@ -143,7 +143,7 @@ class PodcastDetailViewController: UIViewController {
         if !Favorites.fetch().contains(podcastSlug) {
             favoriteButton?.setTitleColor(Constants.Colors.tintColor, forState: .Normal)
             favoriteButton?.setImage(UIImage(named: "scarlet-25-star"), forState: .Normal)
-            favoriteButton?.backgroundColor = UIColor.clearColor()
+            favoriteButton?.backgroundColor = UIColor.whiteColor()
         } else {
             favoriteButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             favoriteButton?.setImage(UIImage(named: "white-25-star"), forState: .Normal)
