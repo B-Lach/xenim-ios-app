@@ -117,6 +117,7 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     func subscribePodcast() {
         if let podcast = self.podcast, let subscribeClients = podcast.subscribeClients {
             let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
+            optionMenu.view.tintColor = Constants.Colors.tintColor
             
             // create one option for each podcast client
             for client in subscribeClients {
@@ -165,6 +166,7 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     
     func showInfoMessage(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.view.tintColor = Constants.Colors.tintColor
         let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
         alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)

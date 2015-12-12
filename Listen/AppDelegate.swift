@@ -10,12 +10,23 @@ import UIKit
 import Parse
 import CRToast
 
+struct Constants {
+    struct Colors {
+        static let tintColor = UIColor(red:0.98, green:0.18, blue:0.25, alpha:1)
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        UINavigationBar.appearance().tintColor = Constants.Colors.tintColor
+        UITabBar.appearance().tintColor = Constants.Colors.tintColor
+//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+
         return true
     }
     
@@ -49,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let options: [NSObject:AnyObject] = [
                     kCRToastTextKey : message,
                     kCRToastTextAlignmentKey : NSTextAlignment.Center.rawValue,
-                    kCRToastBackgroundColorKey : UIColor(red:0.01, green:0.44, blue:0.91, alpha:1),
+                    kCRToastBackgroundColorKey : Constants.Colors.tintColor,
                     kCRToastTextColorKey: UIColor.whiteColor(),
                     kCRToastTimeIntervalKey: NSTimeInterval(3)
                 ]

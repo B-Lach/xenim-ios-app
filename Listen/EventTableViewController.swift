@@ -32,8 +32,8 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
     
     // toggle to show favorites only
     var showFavoritesOnly = false
-    @IBOutlet weak var filterFavoritesBarButtonItem: UIBarButtonItem!
     
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var spinner: UIRefreshControl!
     
     // user defaults to store favorites filter enabled status
@@ -62,6 +62,8 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
         // fetch it from user defaults
         if let favoritesFilterSetting = userDefaults.objectForKey(userDefaultsFavoritesSettingKey) as? Bool {
             showFavoritesOnly = favoritesFilterSetting
+            segmentControl.selectedSegmentIndex = showFavoritesOnly ? 1 : 0
+            
         }
         
         // add background view to display error message if no data is available to display
@@ -73,7 +75,6 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
 
         refresh(spinner)
-        updateFilterFavoritesButton()
         
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
@@ -91,14 +92,6 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
     }
     
     // MARK: - Update UI
-    
-    func updateFilterFavoritesButton() {
-        if showFavoritesOnly {
-            filterFavoritesBarButtonItem?.image = UIImage(named: "corn-25-star")
-        } else {
-            filterFavoritesBarButtonItem?.image = UIImage(named: "corn-25-star-o")
-        }
-    }
     
     func updateBackground() {
         let messageLabel = messageVC?.messageLabel
@@ -130,10 +123,14 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
         }
     }
     
-    @IBAction func toggleFilter(sender: UIBarButtonItem) {
-        showFavoritesOnly = !showFavoritesOnly
+    @IBAction func segmentChanged(sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            showFavoritesOnly = false
+        } else {
+            showFavoritesOnly = true
+        }
+        
         userDefaults.setObject(showFavoritesOnly, forKey: userDefaultsFavoritesSettingKey)
-        updateFilterFavoritesButton()
         if showFavoritesOnly {
             filterFavorites()
         }
@@ -216,21 +213,6 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
         return true
     }
     */
-
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "★") { (action, indexPath) -> Void in
-            if self.showFavoritesOnly {
-                let event = self.favoriteEvents[indexPath.section][indexPath.row]
-                Favorites.toggle(slug: event.podcastSlug)
-            } else {
-                let event = self.events[indexPath.section][indexPath.row]
-                Favorites.toggle(slug: event.podcastSlug)
-            }
-            tableView.setEditing(false, animated: true)
-        }
-        shareAction.backgroundColor = UIColor(red:0.93, green:0.76, blue:0, alpha:1)
-        return [shareAction]
-    }
     
     /*
     // Override to support editing the table view.
@@ -275,6 +257,7 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
         for event in events {
             if event.isFinished() {
                 // event already finished, do not add to the list
+                continue
             } else if event.isLive() {
                 addEvent(event, section: Section.Live)
             } else if event.isToday() {
