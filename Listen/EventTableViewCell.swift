@@ -80,8 +80,7 @@ class EventTableViewCell: UITableViewCell {
             playButton?.layer.cornerRadius = 5
             playButton?.layer.borderWidth = 1
             playButton?.layer.borderColor = Constants.Colors.tintColor.CGColor
-            let contentInset: CGFloat = 5
-            playButton?.contentEdgeInsets = UIEdgeInsetsMake(contentInset, 0, contentInset, 0)
+            playButton?.contentEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 0)
             
             // only show the playbutton if the event is live
             if event.isLive() {
