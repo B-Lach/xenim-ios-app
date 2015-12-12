@@ -777,6 +777,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="xTj-LC-cmg"/>
                                         </constraints>
+                                        <color key="progressTintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </progressView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbj-o8-EdW">
                                         <rect key="frame" x="0.0" y="400" width="600" height="200"/>
