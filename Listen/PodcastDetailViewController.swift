@@ -135,10 +135,19 @@ class PodcastDetailViewController: UIViewController {
             podcastSlug = event.podcastSlug
         }
         
+        favoriteButton?.layer.cornerRadius = 5
+        favoriteButton?.layer.borderWidth = 1
+        favoriteButton?.layer.borderColor = Constants.Colors.tintColor.CGColor
+        favoriteButton?.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
+        
         if !Favorites.fetch().contains(podcastSlug) {
-            favoriteButton?.setImage(UIImage(named: "corn-44-star-o"), forState: .Normal)
+            favoriteButton?.setTitleColor(Constants.Colors.tintColor, forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "scarlet-25-star"), forState: .Normal)
+            favoriteButton?.backgroundColor = UIColor.clearColor()
         } else {
-            favoriteButton?.setImage(UIImage(named: "corn-44-star"), forState: .Normal)
+            favoriteButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "white-25-star"), forState: .Normal)
+            favoriteButton?.backgroundColor = Constants.Colors.tintColor
         }
     }
     
