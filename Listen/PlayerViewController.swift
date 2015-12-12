@@ -35,11 +35,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	@IBOutlet weak var subtitleLabel: UILabel!
 	@IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var coverartView: UIImageView!
-    @IBOutlet weak var backgroundImageView: UIImageView!
     let miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
     @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var starButtonView: UIButton!
-    @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var toolbar: UIToolbar!
+    var favoriteItem: UIBarButtonItem?
     
     var statusBarStyle = UIStatusBarStyle.Default
     
@@ -79,7 +78,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         let placeholderImage = UIImage(named: "event_placeholder")!
         if let imageurl = event.imageurl {
             coverartView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
-            backgroundImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
             miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
 
             Alamofire.request(.GET, imageurl)
@@ -92,12 +90,35 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         } else {
             coverartView?.image = placeholderImage
-            backgroundImageView?.image = placeholderImage
             miniCoverartImageView.image = placeholderImage
         }
         
         updateProgressBar()
+        updateToolbar()
         updateFavoritesButton()
+    }
+    
+    func updateToolbar() {
+        let spaceItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        
+        var items = [UIBarButtonItem]()
+        
+        favoriteItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-star-o"), style: .Plain, target: self, action: "favorite:")
+        items.append(spaceItem)
+        items.append(favoriteItem!)
+        
+        let infoItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-info"), style: .Plain, target: self, action: "showEventInfo:")
+        items.append(spaceItem)
+        items.append(infoItem)
+        
+        if podcast?.webchatUrl != nil {
+            let chatItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-comments"), style: .Plain, target: self, action: "openChat:")
+            items.append(spaceItem)
+            items.append(chatItem)
+        }
+        
+        items.append(spaceItem)
+        toolbar?.setItems(items, animated: true)
     }
     
     func updateStatusBarStyle(image: UIImage) {
@@ -122,10 +143,11 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     func updateFavoritesButton() {
         if let event = event {
             if !Favorites.fetch().contains(event.podcastSlug) {
-                starButtonView?.setImage(UIImage(named: "black-44-star-o"), forState: .Normal)
+                favoriteItem?.image = UIImage(named: "scarlet-25-star-o")
             } else {
-                starButtonView?.setImage(UIImage(named: "black-44-star"), forState: .Normal)
+                favoriteItem?.image = UIImage(named: "scarlet-25-star")
             }
+
         }
     }
     
@@ -145,13 +167,13 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         playerManagerDelegate?.longPress()
     }
     
-    @IBAction func favorite(sender: AnyObject) {
+    func favorite(sender: AnyObject) {
         if let event = event {
             Favorites.toggle(slug: event.podcastSlug)
         }
     }
     
-    @IBAction func showEventInfo(sender: AnyObject) {
+    func showEventInfo(sender: AnyObject) {
         eventDelegate?.showEventInfo(event: event)
     }
     
@@ -159,7 +181,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         playerManagerDelegate?.togglePlayPause(event)
     }
     
-    @IBAction func openChat(sender: AnyObject) {
+    func openChat(sender: AnyObject) {
         if let chatUrl = podcast?.chatUrl, let webchatUrl = podcast?.webchatUrl {
             if UIApplication.sharedApplication().canOpenURL(chatUrl) {
                 // open associated app
@@ -234,9 +256,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
                     if podcast.slug == self.event.podcastSlug {
                         self.podcast = podcast
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            if podcast.webchatUrl != nil {
-                                self.chatButton.hidden = false
-                            }
+                            self.updateToolbar()
                         })
                     }
                 }
