@@ -337,7 +337,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="100" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l5d-ya-iW5">
-                                            <rect key="frame" x="106" y="38" width="478" height="26"/>
+                                            <rect key="frame" x="106" y="36" width="478" height="26"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -371,8 +371,8 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="100" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRm-H4-jze">
-                                            <rect key="frame" x="106" y="10" width="478" height="20"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <rect key="frame" x="106" y="10" width="478" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -397,7 +397,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="99" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHY-V1-cI6">
-                                            <rect key="frame" x="106" y="72" width="478" height="18"/>
+                                            <rect key="frame" x="106" y="70" width="478" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -599,46 +599,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PodcastCell" rowHeight="85" id="zUc-fG-eS6" customClass="PodcastTableViewCell" customModule="Listen" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="85"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PodcastCell" rowHeight="149" id="zUc-fG-eS6" customClass="PodcastTableViewCell" customModule="Listen" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="149"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zUc-fG-eS6" id="BZb-It-dTh">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="84"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="148"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXd-1h-OnC">
-                                            <rect key="frame" x="76" y="32" width="442" height="20"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <rect key="frame" x="106" y="16" width="486" height="26"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="xVf-i5-faw">
-                                            <rect key="frame" x="8" y="12" width="60" height="60"/>
+                                            <rect key="frame" x="8" y="16" width="90" height="90"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="xVf-i5-faw" secondAttribute="height" multiplier="1:1" id="3tD-HM-ead"/>
-                                                <constraint firstAttribute="width" constant="60" id="jNd-Do-hAg"/>
+                                                <constraint firstAttribute="width" secondItem="xVf-i5-faw" secondAttribute="height" multiplier="1:1" id="7Of-C5-hit"/>
+                                                <constraint firstAttribute="width" constant="90" id="cJ7-Uc-ZGH"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tw8-jD-evh">
-                                            <rect key="frame" x="526" y="25" width="33" height="33"/>
-                                            <state key="normal" image="corn-44-star-o"/>
+                                            <rect key="frame" x="8" y="114" width="90" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" title="Favorite" image="scarlet-25-star">
+                                                <color key="titleColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="toggleFavorite:" destination="zUc-fG-eS6" eventType="touchUpInside" id="na7-LF-n3A"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaA-7x-at3">
+                                            <rect key="frame" x="106" y="50" width="486" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.1764705882" green="0.18039215689999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="jXd-1h-OnC" firstAttribute="leading" secondItem="xVf-i5-faw" secondAttribute="trailing" constant="8" id="17V-UD-RVf"/>
                                         <constraint firstAttribute="topMargin" relation="greaterThanOrEqual" secondItem="xVf-i5-faw" secondAttribute="top" constant="8" id="1ao-5W-6T1"/>
-                                        <constraint firstItem="xVf-i5-faw" firstAttribute="centerY" secondItem="jXd-1h-OnC" secondAttribute="centerY" id="47s-WZ-j5u"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="xVf-i5-faw" secondAttribute="bottom" constant="4" id="CUE-BQ-EPP"/>
-                                        <constraint firstItem="xVf-i5-faw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="BZb-It-dTh" secondAttribute="topMargin" constant="4" id="H0u-OI-cFY"/>
-                                        <constraint firstItem="xVf-i5-faw" firstAttribute="centerY" secondItem="tw8-jD-evh" secondAttribute="centerY" id="Udj-xO-8QW"/>
-                                        <constraint firstItem="xVf-i5-faw" firstAttribute="centerY" secondItem="BZb-It-dTh" secondAttribute="centerY" id="bV1-81-ZSH"/>
-                                        <constraint firstItem="tw8-jD-evh" firstAttribute="leading" secondItem="jXd-1h-OnC" secondAttribute="trailing" constant="8" id="cuI-pp-ZZV"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="xVf-i5-faw" secondAttribute="leading" id="hD5-b2-QwL"/>
-                                        <constraint firstItem="jXd-1h-OnC" firstAttribute="leading" secondItem="xVf-i5-faw" secondAttribute="trailing" constant="8" id="k3K-dE-h78"/>
+                                        <constraint firstItem="JaA-7x-at3" firstAttribute="leading" secondItem="xVf-i5-faw" secondAttribute="trailing" constant="8" id="6fQ-2N-6dH"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="xVf-i5-faw" secondAttribute="leading" id="6td-Wz-mcs"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="jXd-1h-OnC" secondAttribute="trailing" id="9sO-D7-S1H"/>
+                                        <constraint firstItem="xVf-i5-faw" firstAttribute="top" secondItem="BZb-It-dTh" secondAttribute="topMargin" constant="8" id="EBc-cK-qXf"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="JaA-7x-at3" secondAttribute="trailing" id="NPv-t7-8g2"/>
+                                        <constraint firstItem="JaA-7x-at3" firstAttribute="top" secondItem="jXd-1h-OnC" secondAttribute="bottom" constant="8" id="O3e-0c-dOi"/>
+                                        <constraint firstItem="tw8-jD-evh" firstAttribute="width" secondItem="xVf-i5-faw" secondAttribute="width" id="SOo-4T-5nX"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="tw8-jD-evh" secondAttribute="bottom" constant="8" id="VKt-S5-HAR"/>
+                                        <constraint firstItem="tw8-jD-evh" firstAttribute="centerX" secondItem="xVf-i5-faw" secondAttribute="centerX" id="Y9Q-8k-3uy"/>
+                                        <constraint firstItem="jXd-1h-OnC" firstAttribute="top" secondItem="xVf-i5-faw" secondAttribute="top" id="qbc-Pc-7TQ"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="JaA-7x-at3" secondAttribute="bottom" constant="8" id="sXl-7b-nZ2"/>
+                                        <constraint firstItem="tw8-jD-evh" firstAttribute="top" secondItem="xVf-i5-faw" secondAttribute="bottom" constant="8" id="x2s-nI-RXE"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="xVf-i5-faw" secondAttribute="bottom" constant="8" id="y8n-8o-eEA"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="tw8-jD-evh" secondAttribute="trailing" id="zMx-i8-X0a"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -649,13 +662,14 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="coverartImageView" destination="xVf-i5-faw" id="cAy-JD-6rC"/>
+                                    <outlet property="descriptionLabel" destination="JaA-7x-at3" id="Ajk-WC-AkB"/>
                                     <outlet property="favoriteButton" destination="tw8-jD-evh" id="i6t-Pk-s2A"/>
                                     <outlet property="podcastNameLabel" destination="jXd-1h-OnC" id="LSY-MR-ley"/>
                                     <segue destination="jLW-Aw-Blu" kind="push" identifier="PodcastDetail2" id="7bS-8m-yWi"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoResultsCell" textLabel="vnY-mw-wVw" imageView="XI5-bU-IdI" rowHeight="55" style="IBUITableViewCellStyleDefault" id="f0m-GL-Qw2">
-                                <rect key="frame" x="0.0" y="177" width="600" height="55"/>
+                                <rect key="frame" x="0.0" y="241" width="600" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f0m-GL-Qw2" id="Kyv-Hk-ObC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
@@ -1775,7 +1789,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="brandeis-blue-25-plus" width="19" height="19"/>
         <image name="brandeis-blue-25-star" width="19" height="19"/>
         <image name="brandeis-blue-25-star-o" width="19" height="19"/>
-        <image name="corn-44-star-o" width="33" height="33"/>
         <image name="event_placeholder" width="420" height="420"/>
         <image name="scarlet-20-play" width="15" height="15"/>
         <image name="scarlet-20-star" width="15" height="15"/>
@@ -1789,6 +1802,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="scarlet-25-twitter-square" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5u9-ce-4fW"/>
+        <segue reference="7bS-8m-yWi"/>
     </inferredMetricsTieBreakers>
 </document>
