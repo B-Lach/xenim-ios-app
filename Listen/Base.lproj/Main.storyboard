@@ -665,7 +665,6 @@
                                     <outlet property="descriptionLabel" destination="JaA-7x-at3" id="Ajk-WC-AkB"/>
                                     <outlet property="favoriteButton" destination="tw8-jD-evh" id="i6t-Pk-s2A"/>
                                     <outlet property="podcastNameLabel" destination="jXd-1h-OnC" id="LSY-MR-ley"/>
-                                    <segue destination="jLW-Aw-Blu" kind="push" identifier="PodcastDetail2" id="7bS-8m-yWi"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoResultsCell" textLabel="vnY-mw-wVw" imageView="XI5-bU-IdI" rowHeight="55" style="IBUITableViewCellStyleDefault" id="f0m-GL-Qw2">
@@ -1802,6 +1801,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="scarlet-25-twitter-square" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7bS-8m-yWi"/>
+        <segue reference="lkZ-jg-qVS"/>
     </inferredMetricsTieBreakers>
 </document>

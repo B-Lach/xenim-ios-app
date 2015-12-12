@@ -151,33 +151,6 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         return true
     }
     */
-
-    
-    // MARK: - Navigation
-    
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if identifier == "PodcastDetail2" {
-            if let cell = sender as? PodcastTableViewCell {
-                if cell.podcast == nil {
-                    return false
-                }
-            }
-        }
-        return true
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let dvc = segue.destinationViewController as? PodcastDetailViewController {
-            if segue.identifier == "PodcastDetail2" {
-                if let cell = sender as? PodcastTableViewCell {
-                    if let podcast = cell.podcast {
-                        dvc.podcast = podcast
-                        resultSearchController.active = false
-                    }
-                }
-            }
-        }
-    }
     
 
 }
