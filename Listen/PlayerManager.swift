@@ -43,6 +43,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     func longPress() {
         if !(baseViewController?.presentedViewController is UIAlertController) {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            alert.view.tintColor = Constants.Colors.tintColor
             let endPlayback = NSLocalizedString("player_manager_actionsheet_end_playback", value: "End Playback", comment: "long pressing in the player view shows an action sheet to end playback. this is the action message to end playback.")
             alert.addAction(UIAlertAction(title: endPlayback, style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
                 // dissmiss the action sheet
@@ -87,6 +88,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     
     private func showInfoMessage(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.view.tintColor = Constants.Colors.tintColor
         let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
         alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
         baseViewController?.presentViewController(alert, animated: true, completion: nil)
