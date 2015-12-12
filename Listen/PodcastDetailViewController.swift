@@ -122,6 +122,8 @@ class PodcastDetailViewController: UIViewController {
             } else {
                 playButton.hidden = true
             }
+        } else {
+            playButton.hidden = true
         }
 
     }
