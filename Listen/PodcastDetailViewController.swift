@@ -30,7 +30,6 @@ class PodcastDetailViewController: UIViewController {
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var podcastDescriptionLabel: UILabel!
-    @IBOutlet weak var playButtonEffectView: UIVisualEffectView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     var interactionTableViewController: PodcastInteractTableViewController?
@@ -44,10 +43,6 @@ class PodcastDetailViewController: UIViewController {
         scrollView.contentInset.bottom = scrollView.contentInset.bottom + 40
         
         setupNotifications()
-        
-        // make the effect view a circle
-        playButtonEffectView.layer.cornerRadius = playButtonEffectView.frame.size.width/2
-        playButtonEffectView.layer.masksToBounds = true
         
         updateUI()
     }
@@ -98,30 +93,34 @@ class PodcastDetailViewController: UIViewController {
     func updatePlayButton() {
         if let event = event {
             if event.isLive() {
-                playButtonEffectView.hidden = false
-            }
-            let playerManager = PlayerManager.sharedInstance
-            if let playerEvent = playerManager.event {
-                if playerEvent.equals(event) {
-                    switch playerManager.player.state {
-                    case .Buffering:
-                        playButton?.setImage(UIImage(named: "black-44-hourglass"), forState: .Normal)
-                    case .Paused:
-                        playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
-                    case .Playing:
-                        playButton?.setImage(UIImage(named: "black-44-pause"), forState: .Normal)
-                    case .Stopped:
-                        playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
-                    case .WaitingForConnection:
-                        playButton?.setImage(UIImage(named: "black-44-hourglass"), forState: .Normal)
-                    case .Failed(_):
-                        playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
+                playButton.hidden = false
+                
+                let playerManager = PlayerManager.sharedInstance
+                if let playerEvent = playerManager.event {
+                    if playerEvent.equals(event) {
+                        switch playerManager.player.state {
+                        case .Buffering:
+                            playButton.hidden = true
+                        case .Paused:
+                            playButton.hidden = true
+                        case .Playing:
+                            playButton.hidden = true
+                        case .Stopped:
+                            playButton?.setImage(UIImage(named: "scarlet-70-play-circle"), forState: .Normal)
+                        case .WaitingForConnection:
+                            playButton.hidden = true
+                        case .Failed(_):
+                            playButton?.setImage(UIImage(named: "scarlet-70-play-circle"), forState: .Normal)
+                        }
+                    } else {
+                        playButton?.setImage(UIImage(named: "scarlet-70-play-circle"), forState: .Normal)
                     }
                 } else {
-                    playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
+                    playButton?.setImage(UIImage(named: "scarlet-70-play-circle"), forState: .Normal)
                 }
+                
             } else {
-                playButton?.setImage(UIImage(named: "black-44-play"), forState: .Normal)
+                playButton.hidden = true
             }
         }
 

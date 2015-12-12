@@ -983,31 +983,17 @@
                                                     <action selector="favorite:" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Fa0-Ej-sTb"/>
                                                 </connections>
                                             </button>
-                                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-nc-qxN">
-                                                <rect key="frame" x="260" y="260" width="80" height="80"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DA6-02-k1q">
-                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aao-SN-YGR">
-                                                            <rect key="frame" x="24" y="24" width="33" height="33"/>
-                                                            <state key="normal" image="black-44-play"/>
-                                                            <connections>
-                                                                <action selector="playEvent:" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Urn-RU-hSf"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="Aao-SN-YGR" firstAttribute="centerY" secondItem="DA6-02-k1q" secondAttribute="centerY" id="3oe-Ai-TNz"/>
-                                                        <constraint firstItem="Aao-SN-YGR" firstAttribute="centerX" secondItem="DA6-02-k1q" secondAttribute="centerX" id="shm-ob-Z3B"/>
-                                                    </constraints>
-                                                </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aao-SN-YGR">
+                                                <rect key="frame" x="270" y="270" width="60" height="60"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="7aA-FF-EZe"/>
-                                                    <constraint firstAttribute="width" secondItem="W6b-nc-qxN" secondAttribute="height" multiplier="1:1" id="wge-ya-F7c"/>
+                                                    <constraint firstAttribute="width" constant="60" id="A6b-s5-FsA"/>
+                                                    <constraint firstAttribute="width" secondItem="Aao-SN-YGR" secondAttribute="height" multiplier="1:1" id="VAK-Bt-Cqg"/>
                                                 </constraints>
-                                                <blurEffect style="light"/>
-                                            </visualEffectView>
+                                                <state key="normal" image="scarlet-70-play-circle"/>
+                                                <connections>
+                                                    <action selector="playEvent:" destination="jLW-Aw-Blu" eventType="touchUpInside" id="Urn-RU-hSf"/>
+                                                </connections>
+                                            </button>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zn3-Qw-pwZ">
                                                 <rect key="frame" x="0.0" y="694" width="600" height="308"/>
                                                 <constraints>
@@ -1020,8 +1006,8 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="W6b-nc-qxN" firstAttribute="centerY" secondItem="MYR-Bd-I21" secondAttribute="centerY" id="0OI-fW-6z9"/>
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" id="0Te-7E-UDQ"/>
+                                            <constraint firstItem="Aao-SN-YGR" firstAttribute="centerX" secondItem="MYR-Bd-I21" secondAttribute="centerX" id="164-1s-GaW"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="-11" id="3CP-zm-sC2"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="centerX" secondItem="99D-Ge-NfZ" secondAttribute="centerX" id="5YY-IO-BV2"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="20" id="6bg-J4-CTb"/>
@@ -1035,13 +1021,13 @@
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" constant="8" id="PWw-km-8hN"/>
                                             <constraint firstItem="PLU-zi-7Az" firstAttribute="top" secondItem="fTO-Hw-zIA" secondAttribute="bottom" constant="15" id="SBr-TL-LXQ"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="TFL-VM-4l6"/>
-                                            <constraint firstItem="W6b-nc-qxN" firstAttribute="centerX" secondItem="MYR-Bd-I21" secondAttribute="centerX" id="Xhe-Aq-hLm"/>
                                             <constraint firstItem="Zn3-Qw-pwZ" firstAttribute="top" secondItem="sqw-7J-EQl" secondAttribute="bottom" constant="8" id="c5l-vO-IUT"/>
                                             <constraint firstItem="Zn3-Qw-pwZ" firstAttribute="leading" secondItem="99D-Ge-NfZ" secondAttribute="leading" id="e9h-OX-XzW"/>
                                             <constraint firstItem="MYR-Bd-I21" firstAttribute="top" secondItem="99D-Ge-NfZ" secondAttribute="top" id="pBf-aN-B6H"/>
                                             <constraint firstItem="fTO-Hw-zIA" firstAttribute="top" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="8" id="qcz-lv-Clo"/>
                                             <constraint firstAttribute="trailing" secondItem="MYR-Bd-I21" secondAttribute="trailing" id="rAF-s5-cem"/>
                                             <constraint firstAttribute="bottom" secondItem="MYR-Bd-I21" secondAttribute="bottom" constant="636" id="sAJ-jx-eg2"/>
+                                            <constraint firstItem="Aao-SN-YGR" firstAttribute="centerY" secondItem="MYR-Bd-I21" secondAttribute="centerY" id="wjK-0S-0IJ"/>
                                             <constraint firstAttribute="trailing" secondItem="sqw-7J-EQl" secondAttribute="trailing" constant="8" id="ytB-UT-P8F"/>
                                         </constraints>
                                         <variation key="default">
@@ -1121,7 +1107,6 @@
                         <outlet property="coverartImageView" destination="MYR-Bd-I21" id="5Ij-Pl-eMW"/>
                         <outlet property="favoriteButton" destination="fTO-Hw-zIA" id="Cmw-uy-aQU"/>
                         <outlet property="playButton" destination="Aao-SN-YGR" id="Bpv-yR-KU5"/>
-                        <outlet property="playButtonEffectView" destination="W6b-nc-qxN" id="iBJ-J6-RBU"/>
                         <outlet property="podcastDescriptionLabel" destination="sqw-7J-EQl" id="hDz-RZ-G8V"/>
                         <outlet property="podcastNameLabel" destination="PLU-zi-7Az" id="F6U-UL-ITu"/>
                         <outlet property="scrollView" destination="CtL-UK-Ihq" id="BnV-7c-zaw"/>
@@ -1744,7 +1729,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="black-44-backward" width="33" height="33"/>
         <image name="black-44-forward" width="33" height="33"/>
         <image name="black-44-pause" width="33" height="33"/>
-        <image name="black-44-play" width="33" height="33"/>
         <image name="brandeis-blue-25-calendar" width="19" height="19"/>
         <image name="brandeis-blue-25-cog" width="19" height="19"/>
         <image name="brandeis-blue-25-plus" width="19" height="19"/>
@@ -1761,6 +1745,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="scarlet-25-safari" width="19" height="19"/>
         <image name="scarlet-25-star" width="19" height="19"/>
         <image name="scarlet-25-twitter-square" width="19" height="19"/>
+        <image name="scarlet-70-play-circle" width="70" height="70"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5u9-ce-4fW"/>
