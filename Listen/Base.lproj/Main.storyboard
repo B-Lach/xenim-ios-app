@@ -476,7 +476,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="All Events"/>
-                                <segment title="Favorites Only"/>
+                                <segment title="Favorite Events"/>
                             </segments>
                             <connections>
                                 <action selector="segmentChanged:" destination="Vdh-qv-U2O" eventType="valueChanged" id="oC0-HR-62L"/>
