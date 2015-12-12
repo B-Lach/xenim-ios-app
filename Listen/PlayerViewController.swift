@@ -17,6 +17,7 @@ protocol PlayerManagerDelegate {
     func forwardPressed()
     func togglePlayPause(event: Event)
     func longPress()
+    func sharePressed()
 }
 
 class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
@@ -179,7 +180,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func share(sender: AnyObject) {
         if let event = event {
-            // TODO
+            playerManagerDelegate?.sharePressed()
         }
     }
     
