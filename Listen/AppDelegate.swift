@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let options: [NSObject:AnyObject] = [
                     kCRToastTextKey : message,
                     kCRToastTextAlignmentKey : NSTextAlignment.Center.rawValue,
-                    kCRToastBackgroundColorKey : UIColor(red:0.01, green:0.44, blue:0.91, alpha:1),
+                    kCRToastBackgroundColorKey : Constants.Colors.tintColor,
                     kCRToastTextColorKey: UIColor.whiteColor(),
                     kCRToastTimeIntervalKey: NSTimeInterval(3)
                 ]
