@@ -95,7 +95,7 @@
 "ca9-40-SUQ.segmentTitles[0]" = "Alle Events";
 
 /* Class = "UISegmentedControl"; ca9-40-SUQ.segmentTitles[1] = "Favorite Events"; ObjectID = "ca9-40-SUQ"; */
-"ca9-40-SUQ.segmentTitles[1]" = "Favoriten Events";
+"ca9-40-SUQ.segmentTitles[1]" = "Nur Favoriten";
 
 /* Class = "UILabel"; text = "Stefan Trauth
 Alte Rathausstraße 15
@@ -167,10 +167,7 @@ Alte Rathausstraße 15
 /* Class = "UILabel"; text = "About the App"; ObjectID = "z7V-Vc-Jj0"; */
 "z7V-Vc-Jj0.text" = "Über die App";
 
-/* Class = "UIButton"; normalTitle = " Listen"; ObjectID = "idX-LT-SMd"; */
-"idX-LT-SMd.normalTitle" = "Hören";
-
-/* Class = "UIButton"; normalTitle = " Favorite"; ObjectID = "xnr-v3-chi"; */
+/* Class = "UIButton"; normalTitle = "Favorite"; ObjectID = "xnr-v3-chi"; */
 "xnr-v3-chi.normalTitle" = "Favorit";
 
 /* Class = "UILabel"; text = "The live dates in the event calendar are provided by the podcast creators. Sometimes they do not start the show exactly in time. It is also possible that the show will not take place but the Hörsuppe has not been informed yet.\nIn rare cases the audio format provided by the podcast show is not supported by iOS."; ObjectID = "zjp-PR-i3k"; */
@@ -179,3 +176,6 @@ Alte Rathausstraße 15
 /* Class = "UILabel"; text = "The list of events only shows the next 50 upcoming events. There is no live date available in the Hörsuppe calender for your favorite show in the near future.
  \nIt is therefore also possible that your favorite podcast show is not part of the Hörsuppe directory."; ObjectID = "8hl-TQ-7Bs"; */
 "8hl-TQ-7Bs.text" = "Es werden immer die nächsten 50 Events angezeigt. Es ist kein Livetermin des Podcasts in naher Zukunft im Kalender der Hörsuppe eingetragen.\nEs ist auch möglich, dass der Podcast gar nicht Teil der Hörsuppe ist.";
+
+/* Class = "UIButton"; normalTitle = "Listen"; ObjectID = "idX-LT-SMd"; */
+"idX-LT-SMd.normalTitle" = "Hören";

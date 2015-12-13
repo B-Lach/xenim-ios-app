@@ -80,3 +80,13 @@
 /* mail body for a new feedback mail message */
 "podcast_detailview_feedback_mail_body" = "Hallo,";
 
+/* "title of the play button if stream is buffering" */
+"event_tableview_cell_playerbutton_buffering" = "Hören";
+
+/* "title of the play button if stream is not playing" */
+"event_tableview_cell_playerbutton_not_playing" = "Hören";
+
+/* "title of the play button if stream is playing" */
+"event_tableview_cell_playerbutton_playing" = "Pause";
+
+

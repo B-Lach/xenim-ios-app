@@ -67,7 +67,7 @@ class EventTableViewCell: UITableViewCell {
             }
             
             if event.isLive() {
-                liveDateLabel?.text = "since \(formatter.stringFromDate(event.livedate))"
+                liveDateLabel?.text = "\(formatter.stringFromDate(event.livedate))"
             } else {
                 liveDateLabel?.text = formatter.stringFromDate(event.livedate)
             }
@@ -122,21 +122,24 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func updatePlayButtonForBuffering() {
-        playButton?.setTitle("Listen", forState: .Normal)
+        let title = NSLocalizedString("event_tableview_cell_playerbutton_buffering", value: "Listen", comment: "title of the play button if stream is buffering")
+        playButton?.setTitle(title, forState: .Normal)
         playButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         playButton?.setImage(UIImage(named: "white-20-hourglass"), forState: .Normal)
         playButton?.backgroundColor = Constants.Colors.tintColor
     }
     
     func updatePlayButtonForPlay() {
-        playButton?.setTitle("Listen", forState: .Normal)
+        let title = NSLocalizedString("event_tableview_cell_playerbutton_not_playing", value: "Listen", comment: "title of the play button if stream is not playing")
+        playButton?.setTitle(title, forState: .Normal)
         playButton?.setTitleColor(Constants.Colors.tintColor, forState: .Normal)
         playButton?.setImage(UIImage(named: "scarlet-20-play"), forState: .Normal)
         playButton?.backgroundColor = UIColor.clearColor()
     }
     
     func updatePlayButtonForPause() {
-        playButton?.setTitle("Pause", forState: .Normal)
+        let title = NSLocalizedString("event_tableview_cell_playerbutton_playing", value: "Pause", comment: "title of the play button if stream is playing")
+        playButton?.setTitle(title, forState: .Normal)
         playButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         playButton?.setImage(UIImage(named: "white-20-pause"), forState: .Normal)
         playButton?.backgroundColor = Constants.Colors.tintColor
