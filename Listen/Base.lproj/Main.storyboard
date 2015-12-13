@@ -358,7 +358,7 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title=" Listen" image="scarlet-20-play">
+                                            <state key="normal" title="Listen" image="scarlet-20-play">
                                                 <color key="titleColor" red="0.047058823530000002" green="0.37254901959999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <variation key="default">
@@ -385,7 +385,7 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title=" Favorite" image="scarlet-20-star">
+                                            <state key="normal" title="Favorite" image="scarlet-20-star">
                                                 <color key="titleColor" red="0.047058823530000002" green="0.37254901959999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <variation key="default">

@@ -1,59 +1,135 @@
-/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "8uz-SL-DGJ"; */
-"8uz-SL-DGJ.title" = "Favoriten";
+/* Class = "UINavigationItem"; title = "Add Favorites"; ObjectID = "1rl-9j-OAR"; */
+"1rl-9j-OAR.title" = "Alle Podcasts";
 
-/* Class = "UIButton"; normalTitle = "Subscribe"; ObjectID = "ETv-v4-8gG"; */
-"ETv-v4-8gG.normalTitle" = "Abonnieren";
+/* Class = "UILabel"; text = "Next scheduled shows"; ObjectID = "3ct-5M-rzx"; */
+"3ct-5M-rzx.text" = "Nächste Sendetermine";
 
-/* Class = "UIButton"; normalTitle = "Website"; ObjectID = "GdW-z8-0dX"; */
-"GdW-z8-0dX.normalTitle" = "Webseite";
+/* Class = "UILabel"; text = "lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing"; ObjectID = "5uN-NM-aDd"; */
+"5uN-NM-aDd.text" = "lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing";
 
-/* Class = "UIBarButtonItem"; title = "★"; ObjectID = "IT3-va-4jo"; */
-"IT3-va-4jo.title" = "★";
+/* Class = "UILabel"; text = "Contact us"; ObjectID = "A2h-Or-hEM"; */
+"A2h-Or-hEM.text" = "Kontaktiere uns";
 
-/* Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts goes live."; ObjectID = "Ib6-hb-yx1"; */
-"Ib6-hb-yx1.text" = "Erhalte Push Nachrichten sobald einer deiner Lieblingspodcasts live sendet.";
+/* Class = "UILabel"; text = "Date"; ObjectID = "AVA-VH-r5G"; */
+"AVA-VH-r5G.text" = "Datum";
+
+/* Class = "UILabel"; text = "Subscribe"; ObjectID = "BKJ-xG-PoN"; */
+"BKJ-xG-PoN.text" = "Abonnieren";
+
+/* Class = "UILabel"; text = "Twitter"; ObjectID = "FnL-SL-Hn8"; */
+"FnL-SL-Hn8.text" = "Twitter";
+
+/* Class = "UITableViewSection"; headerTitle = "legal"; ObjectID = "G28-IZ-CPe"; */
+"G28-IZ-CPe.headerTitle" = "rechtlich";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "GN8-DU-uSD"; */
+"GN8-DU-uSD.text" = "Untertitel";
+
+/* Class = "UIViewController"; title = "FAQ"; ObjectID = "Gde-zd-lwM"; */
+"Gde-zd-lwM.title" = "FAQ";
+
+/* Class = "UILabel"; text = "FAQ"; ObjectID = "IUY-6Q-Kmf"; */
+"IUY-6Q-Kmf.text" = "FAQ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "JaA-7x-at3"; */
+"JaA-7x-at3.text" = "Label";
 
 /* Class = "UITabBarItem"; title = "Events"; ObjectID = "KKU-KO-aCN"; */
 "KKU-KO-aCN.title" = "Events";
 
-/* Class = "UILabel"; text = "Next Livedates"; ObjectID = "L5f-t2-KEW"; */
-"L5f-t2-KEW.text" = "Nächste Livetermine";
+/* Class = "UILabel"; text = "You have to be part of the Hörsuppe directory and provide a calendar with your scheduled shows."; ObjectID = "KP9-IT-5RM"; */
+"KP9-IT-5RM.text" = "Werde Teil der Hörsuppe und stelle einen Kalender deiner Livetermine zur Verfügung.";
+
+/* Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcast shows goes live."; ObjectID = "LSQ-M9-vBX"; */
+"LSQ-M9-vBX.text" = "Du erhältst eine Push Nachricht, sobald ein Podcast deiner Favoriten live sendet.";
+
+/* Class = "UILabel"; text = "Demo Album"; ObjectID = "MMC-P0-b9z"; */
+"MMC-P0-b9z.text" = "Demo Album";
+
+/* Class = "UILabel"; text = "Add this podcast to your favorites to receive push notifications"; ObjectID = "NLR-1P-bdQ"; */
+"NLR-1P-bdQ.text" = "Markiere diesen Podcast als deinen Favoriten, um Push Nachrichten zu erhalten";
+
+/* Class = "UITableViewSection"; headerTitle = "About"; ObjectID = "Nb1-Lj-6W7"; */
+"Nb1-Lj-6W7.headerTitle" = "Über";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "PLU-zi-7Az"; */
 "PLU-zi-7Az.text" = "Label";
 
+/* Class = "UILabel"; text = "Flattr"; ObjectID = "Pfs-v4-oHs"; */
+"Pfs-v4-oHs.text" = "Flattr";
+
+/* Class = "UIViewController"; title = "About"; ObjectID = "R6f-XE-dYm"; */
+"R6f-XE-dYm.title" = "Über";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "SHY-V1-cI6"; */
 "SHY-V1-cI6.text" = "Label";
 
-/* Class = "UILabel"; text = "Demo Album"; ObjectID = "WkI-6i-Qxv"; */
-"WkI-6i-Qxv.text" = "Demo Album";
+/* Class = "UILabel"; text = "Loading"; ObjectID = "U1e-cz-HQe"; */
+"U1e-cz-HQe.text" = "Laden";
 
-/* Class = "UINavigationItem"; title = "Events"; ObjectID = "Z1Y-08-P79"; */
-"Z1Y-08-P79.title" = "Events";
+/* Class = "UILabel"; text = "Contact the podcaster"; ObjectID = "VBj-wG-vw4"; */
+"VBj-wG-vw4.text" = "Kontaktiere den Podcaster";
 
-/* Class = "UILabel"; text = "★"; ObjectID = "f6j-so-r8A"; */
-"f6j-so-r8A.text" = "★";
+/* Class = "UILabel"; text = "Paypal"; ObjectID = "XKP-uY-s9v"; */
+"XKP-uY-s9v.text" = "Paypal";
 
-/* Class = "UIButton"; normalTitle = "☆"; ObjectID = "fTO-Hw-zIA"; */
-"fTO-Hw-zIA.normalTitle" = "☆";
+/* Class = "UILabel"; text = "No shows scheduled"; ObjectID = "XRK-kr-DIS"; */
+"XRK-kr-DIS.text" = "Keine Livesendung geplant";
 
-/* Class = "UILabel"; text = "Date"; ObjectID = "hVb-5H-N0P"; */
-"hVb-5H-N0P.text" = "Date";
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "YFG-BN-gTI"; */
+"YFG-BN-gTI.title" = "Einstellungen";
 
-/* Class = "UIButton"; normalTitle = " "; ObjectID = "idX-LT-SMd"; */
-"idX-LT-SMd.normalTitle" = " ";
+/* Class = "UILabel"; text = "Why is an event shown as live, but I can not play it?"; ObjectID = "Z1k-Rx-IsW"; */
+"Z1k-Rx-IsW.text" = "Warum lässt sich ein Event, das als Live angezeigt wird nicht anhören?";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "jmH-Yd-Nmt"; */
-"jmH-Yd-Nmt.text" = "Label";
+/* Class = "UILabel"; text = "Report a bug on Github"; ObjectID = "ZDd-88-y9e"; */
+"ZDd-88-y9e.text" = "Melde einen Bug auf Github";
+
+/* Class = "UILabel"; text = "Your question has not been answered? Feel free to use the contact possibility in settings."; ObjectID = "aNZ-gq-i0L"; */
+"aNZ-gq-i0L.text" = "Deine Frage wurde nicht beantwortet? Du findest in den Einstellungen die Möglichkeit uns direkt zu kontaktieren.";
+
+/* Class = "UITableViewSection"; headerTitle = "Support us"; ObjectID = "c2j-9c-ZsQ"; */
+"c2j-9c-ZsQ.headerTitle" = "Unterstütze uns";
+
+/* Class = "UISegmentedControl"; ca9-40-SUQ.segmentTitles[0] = "All Events"; ObjectID = "ca9-40-SUQ"; */
+"ca9-40-SUQ.segmentTitles[0]" = "Alle Events";
+
+/* Class = "UISegmentedControl"; ca9-40-SUQ.segmentTitles[1] = "Favorite Events"; ObjectID = "ca9-40-SUQ"; */
+"ca9-40-SUQ.segmentTitles[1]" = "Nur Favoriten";
+
+/* Class = "UILabel"; text = "Stefan Trauth
+Alte Rathausstraße 15
+76467 Bietigheim"; ObjectID = "d9H-Fy-TUN"; */
+"d9H-Fy-TUN.text" = "Stefan Trauth
+Alte Rathausstraße 15
+76467 Bietigheim";
+
+/* Class = "UILabel"; text = "Open Website"; ObjectID = "f1E-9Z-jd4"; */
+"f1E-9Z-jd4.text" = "Webseite öffnen";
+
+/* Class = "UIButton"; normalTitle = "Favorite"; ObjectID = "fTO-Hw-zIA"; */
+"fTO-Hw-zIA.normalTitle" = "Favorit";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "jXd-1h-OnC"; */
+"jXd-1h-OnC.text" = "Label";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "l5d-ya-iW5"; */
 "l5d-ya-iW5.text" = "Label";
 
-/* Class = "UILabel"; text = "Demo Song"; ObjectID = "pv3-L5-9Jg"; */
-"pv3-L5-9Jg.text" = "Demo Song";
+/* Class = "UILabel"; text = "Why can I not find my favorite podcast show in the list of events?"; ObjectID = "lZw-LZ-4jq"; */
+"lZw-LZ-4jq.text" = "Warum kann ich meinen Lieblingspodcast nicht in der Liste der Events finden?";
+
+/* Class = "UILabel"; text = "I am a podcast creator and also do live shows. What do I have to do to see my show in Listen?"; ObjectID = "mV7-DQ-bPK"; */
+"mV7-DQ-bPK.text" = "Ich produziere einem Podcast und sende live, was muss ich tun damit mein Podcast über Listen gehört werden kann?";
+
+/* Class = "UIViewController"; title = "Impressum"; ObjectID = "md5-oX-01O"; */
+"md5-oX-01O.title" = "Impressum";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "rBC-zr-6KO"; */
 "rBC-zr-6KO.text" = "Label";
+
+/* Class = "UILabel"; text = "Next scheduled shows"; ObjectID = "rfj-cq-4If"; */
+"rfj-cq-4If.text" = "Nächste Sendetermine";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "sRm-H4-jze"; */
 "sRm-H4-jze.text" = "Label";
@@ -61,12 +137,45 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "sqw-7J-EQl"; */
 "sqw-7J-EQl.text" = "Label";
 
-/* Class = "UIButton"; normalTitle = "Chat"; ObjectID = "v51-r4-3cg"; */
-"v51-r4-3cg.normalTitle" = "Chat";
+/* Class = "UILabel"; text = "Chat with the Community"; ObjectID = "suW-ga-gqb"; */
+"suW-ga-gqb.text" = "Chatte mit der Community";
 
-/* Class = "UIButton"; normalTitle = "Chat"; ObjectID = "xJh-eu-Wkm"; */
-"xJh-eu-Wkm.normalTitle" = "Chat";
+/* Class = "UILabel"; text = "Flattr"; ObjectID = "teo-Vi-HMw"; */
+"teo-Vi-HMw.text" = "Flattr";
 
-/* Class = "UIButton"; normalTitle = "☆"; ObjectID = "zkG-r2-6yf"; */
-"zkG-r2-6yf.normalTitle" = "☆";
+/* Class = "UIButton"; normalTitle = "Favorite"; ObjectID = "tw8-jD-evh"; */
+"tw8-jD-evh.normalTitle" = "Favorit";
 
+/* Class = "UILabel"; text = "Impressum"; ObjectID = "uH6-Hz-Od1"; */
+"uH6-Hz-Od1.text" = "Impressum";
+
+/* Class = "UITabBarItem"; title = "Favorites"; ObjectID = "uy0-hV-u60"; */
+"uy0-hV-u60.title" = "Favoriten";
+
+/* Class = "UILabel"; text = "Demo Song"; ObjectID = "uzN-m1-SqS"; */
+"uzN-m1-SqS.text" = "Demo Song";
+
+/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "vLn-wN-nQz"; */
+"vLn-wN-nQz.title" = "Favoriten";
+
+/* Class = "UILabel"; text = "Nothing found"; ObjectID = "vnY-mw-wVw"; */
+"vnY-mw-wVw.text" = "Keine Suchergebnisse";
+
+/* Class = "UITableViewSection"; headerTitle = "Get Support"; ObjectID = "yMm-PT-597"; */
+"yMm-PT-597.headerTitle" = "Support";
+
+/* Class = "UILabel"; text = "About the App"; ObjectID = "z7V-Vc-Jj0"; */
+"z7V-Vc-Jj0.text" = "Über die App";
+
+/* Class = "UIButton"; normalTitle = "Favorite"; ObjectID = "xnr-v3-chi"; */
+"xnr-v3-chi.normalTitle" = "Favorit";
+
+/* Class = "UILabel"; text = "The live dates in the event calendar are provided by the podcast creators. Sometimes they do not start the show exactly in time. It is also possible that the show will not take place but the Hörsuppe has not been informed yet.\nIn rare cases the audio format provided by the podcast show is not supported by iOS."; ObjectID = "zjp-PR-i3k"; */
+"zjp-PR-i3k.text" = "Die Termine im Kalender werden von den Podcastern festgelegt. Nicht immer werden die exakten Sendetermine eingehalten und der Livestream ist erst verspätet verfügbar. Auch kann es passieren, dass eine Sendung ausfällt ohne dass die Hörsuppe darüber informiert wird.\nIn seltenen Fällen verwendet der Podcast auch ein Audioformat, das iOS nicht verarbeiten kann.";
+
+/* Class = "UILabel"; text = "The list of events only shows the next 50 upcoming events. There is no live date available in the Hörsuppe calender for your favorite show in the near future.
+ \nIt is therefore also possible that your favorite podcast show is not part of the Hörsuppe directory."; ObjectID = "8hl-TQ-7Bs"; */
+"8hl-TQ-7Bs.text" = "Es werden immer die nächsten 50 Events angezeigt. Es ist kein Livetermin des Podcasts in naher Zukunft im Kalender der Hörsuppe eingetragen.\nEs ist auch möglich, dass der Podcast gar nicht Teil der Hörsuppe ist.";
+
+/* Class = "UIButton"; normalTitle = "Listen"; ObjectID = "idX-LT-SMd"; */
+"idX-LT-SMd.normalTitle" = "Hören";
