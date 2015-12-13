@@ -77,3 +77,6 @@
 /* mail title for a new support mail message */
 "settings_view_mail_title" = "Listen Support";
 
+/* mail body for a new feedback mail message */
+"podcast_detailview_feedback_mail_body" = "Hallo,";
+
