@@ -8,11 +8,7 @@
 
 import UIKit
 
-protocol EventDetailDelegate {
-    func showEventInfo(event event: Event)
-}
-
-class EventTableViewController: UITableViewController, EventDetailDelegate {
+class EventTableViewController: UITableViewController {
     
     // possible sections
     enum Section {
@@ -81,8 +77,6 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
         // this will cause a memory cycle
         timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
         
-        // setup the player managers view controllers which are required
-        PlayerManager.sharedInstance.eventDetailDelegate = self
     }
     
     deinit {
@@ -300,8 +294,10 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
                 switch identifier {
                 case "PodcastDetail":
                     if let cell = sender as? EventTableViewCell {
+                        // this is the case when the segue is caused by the user tappin on a cell
                         destinationVC.event = cell.event
                     } else if let event = sender as? Event {
+                        // this is the case for showEventInfo delegate method.
                         destinationVC.event = event
                     }
                 default: break
@@ -315,29 +311,35 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
         // do nothing
     }
     
-    // MARK: - delegate
+    // MARK: - static global
     
     // if the info button in the player for a specific event is pressed
     // this table view controller should segue to the event detail view
-    func showEventInfo(event event: Event) {
-        // switch to event detail view
-        tabBarController?.selectedViewController = self.navigationController
-        
-        // minify the player
-        tabBarController?.closePopupAnimated(true, completion: nil)
-        
-        if let podcastDetailVC = self.navigationController?.visibleViewController as? PodcastDetailViewController {
-            if podcastDetailVC.event != event {
-                // there is already a detail view open, but with the wrong event
-                // so we close it
-                self.navigationController?.popViewControllerAnimated(false)
-                // and open the correct one
-                performSegueWithIdentifier("PodcastDetail", sender: event)
+    static func showEventInfo(event event: Event) {
+        if let tabBarController = UIApplication.sharedApplication().keyWindow?.rootViewController as? UITabBarController {
+            // switch to event detail view
+            tabBarController.selectedIndex = 0
+            
+            // minify the player
+            tabBarController.closePopupAnimated(true, completion: nil)
+            
+            if let navigationController = tabBarController.childViewControllers.first as? UINavigationController {
+                if let podcastDetailVC = navigationController.visibleViewController as? PodcastDetailViewController {
+                    if !podcastDetailVC.event!.equals(event) {
+                        // there is already a detail view open, but with the wrong event
+                        // so we close it
+                        navigationController.popViewControllerAnimated(false)
+                        // and open the correct one
+                        if let eventTableViewController = navigationController.visibleViewController as? EventTableViewController {
+                            eventTableViewController.performSegueWithIdentifier("PodcastDetail", sender: event)
+                        }
+                    }
+                    // else the correct info is already present
+                } else if let eventTableViewController = navigationController.visibleViewController as? EventTableViewController {
+                    // there is no detail view open yet, so just open it
+                    eventTableViewController.performSegueWithIdentifier("PodcastDetail", sender: event)
+                }
             }
-            // else the correct info is already present
-        } else {
-            // there is no detail view open yet, so just open it
-            performSegueWithIdentifier("PodcastDetail", sender: event)
         }
     }
     

@@ -112,6 +112,7 @@ class Event : NSObject {
     }
     
     func equals(otherEvent: Event) -> Bool {
+        // TODO: change to match event IDss
         return podcastSlug == otherEvent.podcastSlug && livedate.timeIntervalSinceDate(otherEvent.livedate) == 0
     }
     

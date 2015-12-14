@@ -19,13 +19,13 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     var player = AudioPlayer()
     var currentItem: AudioItem?
     var playerViewController: PlayerViewController?
-    var baseViewController: UIViewController?
-    var eventDetailDelegate: EventDetailDelegate?
+    private var baseViewController: UIViewController?
     
     // MARK: - init
     
     override init() {
         super.init()
+        baseViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         player.delegate = self
     }
@@ -112,7 +112,6 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             playerViewController = storyboard.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
             playerViewController!.playerManagerDelegate = self
-            playerViewController!.eventDelegate = eventDetailDelegate
         }
         
         let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: "handleLongPress:")

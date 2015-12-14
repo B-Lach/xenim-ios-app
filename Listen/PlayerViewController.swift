@@ -29,7 +29,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     var podcast: Podcast?
-    var eventDelegate: EventDetailDelegate?
     var playerManagerDelegate: PlayerManagerDelegate?
 
 	@IBOutlet weak var podcastNameLabel: UILabel!
@@ -185,7 +184,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func showEventInfo(sender: AnyObject) {
-        eventDelegate?.showEventInfo(event: event)
+        EventTableViewController.showEventInfo(event: event)
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
