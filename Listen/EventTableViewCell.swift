@@ -83,7 +83,7 @@ class EventTableViewCell: UITableViewCell {
             playButton?.contentEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 0)
             
             // only show the playbutton if the event is live
-            if true {
+            if event.isLive() {
                 playButton?.hidden = false
                 // when player was hidden his height was set to 0. set it back to default here
                 playButtonMaxHeightConstraint.constant = 50
