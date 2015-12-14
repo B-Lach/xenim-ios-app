@@ -18,6 +18,7 @@
 		222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222FB9FC1BF0E90A0007257A /* PlayerManager.swift */; };
 		223510421C1A1D4300DB521A /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223510411C1A1D4300DB521A /* PushNotificationManager.swift */; };
 		224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224180071BFA21AA004D1B5D /* MessageViewController.swift */; };
+		2257A6661C1F2BB300CDE2F2 /* ListenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257A6651C1F2BB300CDE2F2 /* ListenAPI.swift */; };
 		22799D431BD8E13500A7E9E1 /* PodcastDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */; };
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
 		2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291D8A21BDFB1D600CB6536 /* Favorites.swift */; };
@@ -66,6 +67,7 @@
 		222FB9FC1BF0E90A0007257A /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		223510411C1A1D4300DB521A /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		224180071BFA21AA004D1B5D /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		2257A6651C1F2BB300CDE2F2 /* ListenAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenAPI.swift; sourceTree = "<group>"; };
 		22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastDetailViewController.swift; sourceTree = "<group>"; };
 		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2291D8A21BDFB1D600CB6536 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				229B7D4F1BD564DC00F1CF6B /* XenimAPI.swift */,
+				2257A6651C1F2BB300CDE2F2 /* ListenAPI.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				22799D431BD8E13500A7E9E1 /* PodcastDetailViewController.swift in Sources */,
 				2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */,
 				224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */,
+				2257A6661C1F2BB300CDE2F2 /* ListenAPI.swift in Sources */,
 				229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */,
 				222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */,
 				222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */,

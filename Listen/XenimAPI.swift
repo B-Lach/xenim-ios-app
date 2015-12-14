@@ -10,16 +10,33 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class XenimAPI {
+class XenimAPI : ListenAPI {
     
     static let apiBaseURL = "http://hoersuppe.de/api/"
     
-    static func fetchEventById(eventId: String, onComplete: (event: Event?) -> Void) {}
-    static func fetchScheduledEvents(maxCount maxCount: Int?, startDate: NSDate = NSDate(), endDate: NSDate?, onComplete: (event: [Event]) -> Void) {}
-    static func fetchLiveEvents(onComplete: (event: [Event]) -> Void) {}
-    static func fetchPodcastById(podcastId: String, onComplete: (podcast: Podcast?) -> Void) {}
-    static func fetchPodcastScheduledEvents(podcastId: String, maxCount: Int = 3, startDate: NSDate = NSDate(), onComplete: (event: [Event]) -> Void) {}
-    static func fetchAllPodcasts(onComplete: (podcasts: [Podcast]) -> Void) {}
+    static func fetchEventById(eventId: String, onComplete: (event: Event?) -> Void) {
+    
+    }
+    
+    static func fetchScheduledEvents(maxCount maxCount: Int?, startDate: NSDate? = NSDate(), endDate: NSDate?, onComplete: (event: [Event]) -> Void) {
+    
+    }
+    
+    static func fetchLiveEvents(onComplete: (event: [Event]) -> Void) {
+    
+    }
+    
+    static func fetchPodcastById(podcastId: String, onComplete: (podcast: Podcast?) -> Void) {
+    
+    }
+    
+    static func fetchPodcastScheduledEvents(podcastId: String, maxCount: Int? = 3, startDate: NSDate? = NSDate(), onComplete: (event: [Event]) -> Void) {
+    
+    }
+    
+    static func fetchAllPodcasts(onComplete: (podcasts: [Podcast]) -> Void) {
+    
+    }
     
     
     
