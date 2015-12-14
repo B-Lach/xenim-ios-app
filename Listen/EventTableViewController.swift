@@ -82,7 +82,6 @@ class EventTableViewController: UITableViewController, EventDetailDelegate {
         timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
         
         // setup the player managers view controllers which are required
-        PlayerManager.sharedInstance.baseViewController = self.tabBarController
         PlayerManager.sharedInstance.eventDetailDelegate = self
     }
     

@@ -22,6 +22,7 @@
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
 		2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291D8A21BDFB1D600CB6536 /* Favorites.swift */; };
 		229421FB1C1989DA00033AAB /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229421FA1C1989DA00033AAB /* Keys.plist */; };
+		229B3C431C1EF85300187BA0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B3C421C1EF85300187BA0 /* TabBarController.swift */; };
 		229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4B1BD53DBD00F1CF6B /* Event.swift */; };
 		229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4D1BD5623500F1CF6B /* Podcast.swift */; };
 		229B7D501BD564DC00F1CF6B /* HoersuppeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */; };
@@ -70,6 +71,7 @@
 		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2291D8A21BDFB1D600CB6536 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		229421FA1C1989DA00033AAB /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		229B3C421C1EF85300187BA0 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		229B7D4B1BD53DBD00F1CF6B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		229B7D4D1BD5623500F1CF6B /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		229B7D4F1BD564DC00F1CF6B /* HoersuppeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoersuppeAPI.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				2222ECB91BD52E480040100F /* Main.storyboard */,
 				22FAACC31C1486D70085ACBC /* FavoriteCollectionViewCell.swift */,
 				22FAACC51C1486EA0085ACBC /* FavoritesCollectionViewController.swift */,
+				229B3C421C1EF85300187BA0 /* TabBarController.swift */,
 				22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */,
 				22EB45BD1C07614F00C765BA /* PodcastTableViewCell.swift */,
 				222913CC1C032221005C74BB /* SettingsTableViewController.swift */,
@@ -364,6 +367,7 @@
 				224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */,
 				229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */,
 				222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */,
+				229B3C431C1EF85300187BA0 /* TabBarController.swift in Sources */,
 				222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */,
 				2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */,
 			);
