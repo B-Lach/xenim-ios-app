@@ -10,9 +10,9 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class HoersuppeAPI {
+class XenimAPI {
     
-    static let url = "http://hoersuppe.de/api/"
+    static let apiBaseURL = "http://hoersuppe.de/api/"
     
     static func fetchEvents(count count: Int, onComplete: (events: [Event]) -> Void) {
         var events = [Event]()
@@ -20,7 +20,7 @@ class HoersuppeAPI {
             "action": "getUpcomingPodlive",
             "count": "\(count)"
         ]
-        Alamofire.request(.GET, url, parameters: parameters)
+        Alamofire.request(.GET, apiBaseURL, parameters: parameters)
             .responseJSON { response in
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
@@ -57,7 +57,7 @@ class HoersuppeAPI {
             "action": "getPodcastData",
             "podcast": podcastSlug
         ]
-        Alamofire.request(.GET, url, parameters: parameters)
+        Alamofire.request(.GET, apiBaseURL, parameters: parameters)
             .responseJSON { response in
                 if let responseData = response.data {                    
                     let json = JSON(data: responseData)
@@ -90,7 +90,7 @@ class HoersuppeAPI {
             "podcast": podcastSlug,
             "count": "\(count)"
         ]
-        Alamofire.request(.GET, url, parameters: parameters)
+        Alamofire.request(.GET, apiBaseURL, parameters: parameters)
             .responseJSON { response in
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
@@ -129,7 +129,7 @@ class HoersuppeAPI {
         let parameters = [
             "action": "getPodcasts"
         ]
-        Alamofire.request(.GET, url, parameters: parameters)
+        Alamofire.request(.GET, apiBaseURL, parameters: parameters)
             .responseJSON { response in
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
