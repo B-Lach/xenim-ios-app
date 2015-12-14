@@ -13,6 +13,9 @@ class Podcast : NSObject {
     
     var feedurl: NSURL?
     var imageurl: NSURL?
+    
+    // do not forget to enable them in Info.plist
+    static private let subscribeURLSchemes = ["Castro" : "castro://subscribe/", "Downcast" : "downcast://", "Instacast" : "instacast://", "Overcast" : "overcast://x-callback-url/add?url=", "PocketCasts" : "pktc://subscribe/", "Podcasts" : "pcast://", "Podcat" : "podcat://"]
     var subscribeClients: [String:NSURL]? {
         get {
             if let feedurl = feedurl {
@@ -82,8 +85,5 @@ class Podcast : NSObject {
         
         super.init()
     }
-    
-    // do not forget to enable them in Info.plist
-    static private let subscribeURLSchemes = ["Castro" : "castro://subscribe/", "Downcast" : "downcast://", "Instacast" : "instacast://", "Overcast" : "overcast://x-callback-url/add?url=", "PocketCasts" : "pktc://subscribe/", "Podcasts" : "pcast://", "Podcat" : "podcat://"]
     
 }
