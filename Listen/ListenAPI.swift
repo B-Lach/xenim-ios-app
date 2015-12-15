@@ -8,10 +8,10 @@
 
 protocol ListenAPI {
     static func fetchEventById(eventId: String, onComplete: (event: Event?) -> Void)
-    static func fetchScheduledEvents(maxCount maxCount: Int?, startDate: NSDate?, endDate: NSDate?, onComplete: (event: [Event]) -> Void)
+    static func fetchUpcomingEvents(maxCount maxCount: Int?, onComplete: (event: [Event]) -> Void)
     static func fetchLiveEvents(onComplete: (event: [Event]) -> Void)
     static func fetchPodcastById(podcastId: String, onComplete: (podcast: Podcast?) -> Void)
-    static func fetchPodcastScheduledEvents(podcastId: String, maxCount: Int?, startDate: NSDate?, onComplete: (event: [Event]) -> Void)
+    static func fetchPodcastUpcomingEvents(podcastId: String, maxCount: Int?, onComplete: (event: [Event]) -> Void)
     static func fetchAllPodcasts(onComplete: (podcasts: [Podcast]) -> Void)
     
 }
