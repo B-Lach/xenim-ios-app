@@ -53,27 +53,25 @@ class PodcastDetailViewController: UIViewController {
         
         var title = ""
         var description = ""
-        var imageurl: NSURL?
-        var podcastSlug = ""
+        var podcastId = ""
         
         if let event = event {
             title = event.title
-            description = event.podcastDescription
-            imageurl = event.imageurl
-            podcastSlug = event.podcastSlug
+            description = event.eventDescription != nil ? event.eventDescription! : ""
+            podcastId = event.podcastId
         } else if let podcast = podcast {
             title = podcast.name
             description = podcast.podcastDescription
-            imageurl = podcast.imageurl
-            podcastSlug = podcast.slug
+            podcastId = podcast.id
         }
         
         let placeholderImage = UIImage(named: "event_placeholder")
-        if imageurl != nil {
-            self.coverartImageView?.af_setImageWithURL(imageurl!, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+        if let imageurl = podcast?.artwork.originalUrl {
+            self.coverartImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
         } else {
             self.coverartImageView?.image = placeholderImage
         }
+        
         podcastNameLabel?.text = title
         self.title = title
         podcastDescriptionLabel?.text = description
@@ -82,9 +80,12 @@ class PodcastDetailViewController: UIViewController {
         updateFavoritesButton()
         
         if podcast == nil {
-            HoersuppeAPI.fetchPodcastDetail(podcastSlug, onComplete: { (podcast) -> Void in
-                if podcast != nil {
+            XenimAPI.fetchPodcastById(podcastId, onComplete: { (podcast) -> Void in
+                if let podcast = podcast {
                     self.podcast = podcast
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.updateUI()
+                    })
                 }
             })
         }
@@ -129,11 +130,11 @@ class PodcastDetailViewController: UIViewController {
     }
     
     func updateFavoritesButton() {
-        var podcastSlug = ""
+        var podcastId = ""
         if let podcast = podcast {
-            podcastSlug = podcast.slug
+            podcastId = podcast.id
         } else if let event = event {
-            podcastSlug = event.podcastSlug
+            podcastId = event.podcastId
         }
         
         favoriteButton?.layer.cornerRadius = 5
@@ -141,7 +142,7 @@ class PodcastDetailViewController: UIViewController {
         favoriteButton?.layer.borderColor = Constants.Colors.tintColor.CGColor
         favoriteButton?.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
         
-        if !Favorites.fetch().contains(podcastSlug) {
+        if !Favorites.fetch().contains(podcastId) {
             favoriteButton?.setTitleColor(Constants.Colors.tintColor, forState: .Normal)
             favoriteButton?.setImage(UIImage(named: "scarlet-25-star"), forState: .Normal)
             favoriteButton?.backgroundColor = UIColor.whiteColor()
@@ -161,13 +162,16 @@ class PodcastDetailViewController: UIViewController {
     }
     
     @IBAction func favorite(sender: UIButton) {
-        var podcastSlug = ""
+        var podcastId: String? = nil
         if let podcast = podcast {
-            podcastSlug = podcast.slug
+            podcastId = podcast.id
         } else if let event = event {
-            podcastSlug = event.podcastSlug
+            podcastId = event.podcastId
         }
-        Favorites.toggle(slug: podcastSlug)
+        if podcastId != nil {
+            Favorites.toggle(podcastId: podcastId!)
+        }
+
     }
     
     // MARK: - Navigation
