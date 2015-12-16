@@ -145,9 +145,10 @@ class XenimAPI : ListenAPI {
         let feedUrl = podcastJSON["feed_url"].URL
         let twitterUsername = podcastJSON["twitter_handle"].stringValue
         let flattrId: String? = nil
+        let email: String? = nil
         
         if id != "" && name != "" && podcastDescription != "" {
-            return Podcast(id: id, name: name, description: podcastDescription, artwork: artwork, subtitle: subtitle, podcastXenimWebUrl: podcastXenimWebUrl, websiteUrl: websiteUrl, ircUrl: ircUrl, webchatUrl: webchatUrl, feedUrl: feedUrl, twitterUsername: twitterUsername, flattrId: flattrId)
+            return Podcast(id: id, name: name, description: podcastDescription, artwork: artwork, subtitle: subtitle, podcastXenimWebUrl: podcastXenimWebUrl, websiteUrl: websiteUrl, ircUrl: ircUrl, webchatUrl: webchatUrl, feedUrl: feedUrl, email: email, twitterUsername: twitterUsername, flattrId: flattrId)
         } else {
             return nil
         }
@@ -185,8 +186,8 @@ class XenimAPI : ListenAPI {
         
         // only add this event to the list if it has a minimum number
         // of attributes set
-        if id != "" && begin != nil && end != nil && title != "" && status != nil {
-            let event = Event(id: id, title: title, status: status!, begin: begin!, end: end!, podcastId: podcastId, eventXenimWebUrl: absoluteUrl, streams: streams, shownotes: shownotes, description: description)
+        if id != "" && begin != nil && end != nil && title != "" && status != nil && podcastId != nil {
+            let event = Event(id: id, title: title, status: status!, begin: begin!, end: end!, podcastId: podcastId!, eventXenimWebUrl: absoluteUrl, streams: streams, shownotes: shownotes, description: description)
             return event
         } else {
             return nil
