@@ -22,32 +22,32 @@ class Favorites {
         }
     }
     
-    static func add(slug slug: String) {
+    static func add(podcastId podcastId: String) {
         var favorites = fetch()
-        if !favorites.contains(slug) {
-            favorites.append(slug)
+        if !favorites.contains(podcastId) {
+            favorites.append(podcastId)
             userDefaults.setObject(favorites, forKey: key)
-            PushNotificationManager.subscribeToChannel(slug)
+            PushNotificationManager.subscribeToChannel(podcastId)
             notifyChange()
         }
     }
     
-    static func remove(slug slug: String) {
+    static func remove(podcastId podcastId: String) {
         var favorites = fetch()
-        if let index = favorites.indexOf(slug) {
+        if let index = favorites.indexOf(podcastId) {
             favorites.removeAtIndex(index)
             userDefaults.setObject(favorites, forKey: key)
-            PushNotificationManager.unsubscribeFromChannel(slug)
+            PushNotificationManager.unsubscribeFromChannel(podcastId)
             notifyChange()
         }
     }
     
-    static func toggle(slug slug: String) {
+    static func toggle(podcastId podcastId: String) {
         let favorites = fetch()
-        if !favorites.contains(slug) {
-            add(slug: slug)
+        if !favorites.contains(podcastId) {
+            add(podcastId: podcastId)
         } else {
-            remove(slug: slug)
+            remove(podcastId: podcastId)
         }
     }
     
