@@ -9,21 +9,39 @@
 import Foundation
 import UIKit
 
+struct Artwork {
+    let originalUrl: NSURL?
+    let thumb150Url: NSURL?
+    init(originalUrl: NSURL?, thumb150Url: NSURL?) {
+        self.originalUrl = originalUrl
+        self.thumb150Url = thumb150Url
+    }
+}
+
 class Podcast : NSObject {
     
-    var feedurl: NSURL?
-    var imageurl: NSURL?
+    let id: String
+    let name: String
+    let podcastDescription: String
+    let artwork: Artwork
+
+    let subtitle: String?
+    let podcastXenimWebUrl: NSURL?
+    let websiteUrl: NSURL?
+    let ircUrl: NSURL?
+    let webchatUrl: NSURL?
     
+    let feedUrl: NSURL?
     // do not forget to enable them in Info.plist
     static private let subscribeURLSchemes = ["Castro" : "castro://subscribe/", "Downcast" : "downcast://", "Instacast" : "instacast://", "Overcast" : "overcast://x-callback-url/add?url=", "PocketCasts" : "pktc://subscribe/", "Podcasts" : "pcast://", "Podcat" : "podcat://"]
-    var subscribeClients: [String:NSURL]? {
+    var subscribeURLSchemesDictionary: [String:NSURL]? {
         get {
-            if let feedurl = feedurl {
+            if let feedUrl = feedUrl {
                 var subscribeClients = [String:NSURL]()
                 for client in Podcast.subscribeURLSchemes {
                     let urlScheme = client.1
                     let clientName = client.0
-                    if let subscribeURL = NSURL(string: urlScheme + feedurl.description) {
+                    if let subscribeURL = NSURL(string: urlScheme + feedUrl.description) {
                         subscribeClients[clientName] = subscribeURL
                     }
                 }
@@ -33,15 +51,8 @@ class Podcast : NSObject {
             }
         }
     }
-    var slug: String
-    var subtitle: String
-    var name: String // title
-    var podcastDescription: String
-    var url: NSURL?
-    var chatUrl: NSURL?
-    var webchatUrl: NSURL?
-    var email: String?
-    var twitterUsername: String?
+
+    let twitterUsername: String?
     var twitterURL: NSURL? {
         get {
             if let username = twitterUsername {
@@ -52,11 +63,11 @@ class Podcast : NSObject {
 
         }
     }
-    var flattrID: String?
+    let flattrId: String?
     var flattrURL: NSURL? {
         get {
-            if let flattrID = self.flattrID {
-                return NSURL(string: "https://flattr.com/profile/\(flattrID)")
+            if let flattrId = self.flattrId {
+                return NSURL(string: "https://flattr.com/profile/\(flattrId)")
             } else {
                 return nil
             }
@@ -64,24 +75,20 @@ class Podcast : NSObject {
         }
     }
     
-    init(name: String, subtitle: String, url: String, feedurl: String, imageurl: String, slug: String, podcastDescription: String, chatServer: String, chatChannel: String, webchatUrl: String, twitterUsername: String, email: String, flattrID: String) {
+    init(id: String, name: String, description: String, artwork: Artwork, subtitle: String?, podcastXenimWebUrl: NSURL?, websiteUrl: NSURL?, ircUrl: NSURL?, webchatUrl: NSURL?, feedUrl: NSURL?, twitterUsername: String?, flattrId: String?) {
+        
+        self.id = id
         self.name = name
+        self.podcastDescription = description
+        self.artwork = artwork
         self.subtitle = subtitle
-        self.slug = slug
-        self.podcastDescription = podcastDescription
-
-        self.email = email != "" ? email : nil
-        self.twitterUsername = twitterUsername != "" ? twitterUsername : nil
-        self.flattrID = flattrID != "" ? flattrID : nil
-        
-        if chatServer != "" && chatChannel != "" {
-            self.chatUrl = NSURL(string: "irc://\(chatServer)/\(chatChannel)")
-            self.webchatUrl = NSURL(string: webchatUrl)
-        }
-        
-        self.url = url != "" ? NSURL(string: url) : nil
-        self.imageurl = imageurl != "" ? NSURL(string: imageurl) : nil
-        self.feedurl = feedurl != "" ? NSURL(string: feedurl) : nil
+        self.podcastXenimWebUrl = podcastXenimWebUrl
+        self.websiteUrl = websiteUrl
+        self.ircUrl = ircUrl
+        self.webchatUrl = webchatUrl
+        self.feedUrl = feedUrl
+        self.twitterUsername = twitterUsername
+        self.flattrId = flattrId
         
         super.init()
     }

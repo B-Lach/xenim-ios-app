@@ -12,56 +12,24 @@ import Alamofire
 
 class XenimAPI : ListenAPI {
     
-    static let apiBaseURL = "http://hoersuppe.de/api/"
+    static let apiBaseURL = "http://feeds.streams.demo.xenim.de/api/v1/"
     
-    static func fetchEventById(eventId: String, onComplete: (event: Event?) -> Void){}
-    static func fetchUpcomingEvents(maxCount maxCount: Int?, onComplete: (event: [Event]) -> Void){}
-    static func fetchLiveEvents(onComplete: (event: [Event]) -> Void){}
-    static func fetchPodcastById(podcastId: String, onComplete: (podcast: Podcast?) -> Void){}
-    static func fetchPodcastUpcomingEvents(podcastId: String, maxCount: Int?, onComplete: (event: [Event]) -> Void){}
-    static func fetchAllPodcasts(onComplete: (podcasts: [Podcast]) -> Void){}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    static func fetchEvents(count count: Int, onComplete: (events: [Event]) -> Void) {
-        var events = [Event]()
+    static func fetchUpcomingEvents(maxCount maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
+        let url = apiBaseURL + "episode/"
         let parameters = [
-            "action": "getUpcomingPodlive",
-            "count": "\(count)"
+            "state": "UPCOMING",
+            "limit": "\(maxCount)"
         ]
-        Alamofire.request(.GET, apiBaseURL, parameters: parameters)
+        Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
-                    let data = json["data"]
-                    if data != nil {
-                        for i in 0 ..< data.count {
-                            
-                            let eventJSON = json["data"][i]
-                            
-                            let duration = eventJSON["duration"].stringValue
-                            let livedate = eventJSON["liveDate"].stringValue
-                            let imageurl = eventJSON["imageUrl"].stringValue
-                            let slug = eventJSON["podcast"].stringValue
-                            let description = eventJSON["description"].stringValue.trim()
-                            let streamurl = eventJSON["streamUrl"].stringValue
-                            let title = eventJSON["eventTitle"].stringValue.trim()
-                            let url = eventJSON["url"].stringValue
-                            
-                            if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: imageurl, podcastDescription: description, title: title, url: url) {
-                                events.append(event)
-                            } else {
-                                print("dropping event.")
-                            }
-                            
+                    let objects = json["objects"]
+                    
+                    var events = [Event]()
+                    for eventJSON in objects.array! {
+                        if let event = eventFromJSON(eventJSON) {
+                            events.append(event)
                         }
                     }
                     onComplete(events: events)
@@ -69,71 +37,34 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func fetchPodcastDetail(podcastSlug: String, onComplete: (podcast: Podcast?) -> Void) {
-        let parameters = [
-            "action": "getPodcastData",
-            "podcast": podcastSlug
-        ]
-        Alamofire.request(.GET, apiBaseURL, parameters: parameters)
+    static func fetchEventById(eventId: String, onComplete: (event: Event?) -> Void){
+        let url = apiBaseURL + "episode/\(eventId)/"
+        Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
-                if let responseData = response.data {                    
-                    let json = JSON(data: responseData)
-                    let podcastJSON = json["data"]
-                    
-                    let name = podcastJSON["title"].stringValue.trim()
-                    let subtitle = podcastJSON["subtitle"].stringValue.trim()
-                    let url = podcastJSON["url"].stringValue
-                    let feedurl = podcastJSON["feedurl"].stringValue
-                    let imageurl = podcastJSON["imageurl"].stringValue
-                    let slug = podcastJSON["slug"].stringValue
-                    let description = podcastJSON["description"].stringValue.trim()
-                    let chatServer = podcastJSON["chat_server"].stringValue
-                    let chatChannel = podcastJSON["chat_channel"].stringValue
-                    let webchatUrl = podcastJSON["chat_url"].stringValue
-                    let twitterUsername = podcastJSON["contact"]["twitter"].stringValue
-                    let email = podcastJSON["contact"]["email"].stringValue
-                    let flattrID = podcastJSON["flattrid"].stringValue
-                    
-                    let podcast = Podcast(name: name, subtitle: subtitle, url: url, feedurl: feedurl, imageurl: imageurl, slug: slug, podcastDescription: description, chatServer: chatServer, chatChannel: chatChannel, webchatUrl: webchatUrl, twitterUsername: twitterUsername, email: email, flattrID: flattrID)
-                    onComplete(podcast: podcast)
+                if let responseData = response.data {
+                    let eventJSON = JSON(data: responseData)
+                    if let event = eventFromJSON(eventJSON) {
+                        onComplete(event: event)
+                    }
                 }
         }
     }
     
-    static func fetchPodcastNextLiveEvents(podcastSlug: String, count: Int, onComplete: (events: [Event]) -> Void) {
-        var events = [Event]()
+    static func fetchLiveEvents(onComplete: (events: [Event]) -> Void){
+        let url = apiBaseURL + "episode/"
         let parameters = [
-            "action": "getPodcastLive",
-            "podcast": podcastSlug,
-            "count": "\(count)"
+            "state": "RUNNING"
         ]
-        Alamofire.request(.GET, apiBaseURL, parameters: parameters)
+        Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
-                    let data = json["data"]
-                    if data != nil {
-                        for i in 0 ..< data.count {
-                            
-                            let eventJSON = json["data"][i]
-                            
-                            // important: there is no description or imageurl in this API call response!
-                            
-                            let duration = eventJSON["duration"].stringValue
-                            let livedate = eventJSON["livedate"].stringValue
-                            let slug = eventJSON["podcast"].stringValue
-                            let streamurl = eventJSON["streamurl"].stringValue
-                            let title = eventJSON["title"].stringValue.trim()
-                            let url = eventJSON["url"].stringValue
-                            
-                            // TODO imageurl fix, as this is not how this initializer should be used
-                            
-                            if let event = Event(duration: duration, livedate: livedate, podcastSlug: slug, streamurl: streamurl, imageurl: "", podcastDescription: "", title: title, url: url) {
-                                events.append(event)
-                            } else {
-                                print("dropping event.")
-                            }
-                            
+                    let objects = json["objects"]
+                    
+                    var events = [Event]()
+                    for eventJSON in objects.array! {
+                        if let event = eventFromJSON(eventJSON) {
+                            events.append(event)
                         }
                     }
                     onComplete(events: events)
@@ -141,26 +72,124 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func fetchAllPodcasts(onComplete: (podcasts: [String:String]) -> Void) {
-        var podcasts = [String:String]()
+    static func fetchPodcastUpcomingEvents(podcastId: String, maxCount: Int?, onComplete: (events: [Event]) -> Void){
+        let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         let parameters = [
-            "action": "getPodcasts"
+            "state": "UPCOMING",
+            "limit": "\(maxCount)"
         ]
-        Alamofire.request(.GET, apiBaseURL, parameters: parameters)
+        Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
-                    let data = json["data"]
-                    if data != nil {
-                        for i in 0 ..< data.count {
-                            
-                            let podcast = json["data"][i]
-                            podcasts[podcast["slug"].stringValue] = podcast["title"].stringValue
-                        
+                    let objects = json["objects"]
+                    
+                    var events = [Event]()
+                    for eventJSON in objects.array! {
+                        if let event = eventFromJSON(eventJSON) {
+                            events.append(event)
+                        }
+                    }
+                    onComplete(events: events)
+                }
+        }
+    }
+    
+    static func fetchPodcastById(podcastId: String, onComplete: (podcast: Podcast?) -> Void){
+        let url = apiBaseURL + "podcast/\(podcastId)/"
+        Alamofire.request(.GET, url, parameters: nil)
+            .responseJSON { response in
+                if let responseData = response.data {
+                    let podcastJSON = JSON(data: responseData)
+                    
+                    if let podcast = podcastFromJSON(podcastJSON) {
+                        onComplete(podcast: podcast)
+                    }
+
+                }
+        }
+    }
+
+    static func fetchAllPodcasts(onComplete: (podcasts: [Podcast]) -> Void){
+        let url = apiBaseURL + "podcast/"
+        Alamofire.request(.GET, url, parameters: nil)
+            .responseJSON { response in
+                if let responseData = response.data {
+                    let json = JSON(data: responseData)
+                    let objects = json["objects"]
+                    
+                    var podcasts = [Podcast]()
+                    for podcastJSON in objects.array! {
+                        if let podcast = podcastFromJSON(podcastJSON) {
+                            podcasts.append(podcast)
                         }
                     }
                     onComplete(podcasts: podcasts)
                 }
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    static func podcastFromJSON(podcastJSON: JSON) -> Podcast? {
+        let id = podcastJSON["id"].stringValue
+        let name = podcastJSON["name"].stringValue
+        let podcastDescription = podcastJSON["description"].stringValue
+        
+        let artwork = Artwork(originalUrl: podcastJSON["artwork_original_url"].URL, thumb150Url: podcastJSON["artwork_thumb_url"].URL)
+        let subtitle = podcastJSON["subtitle"].stringValue
+        let podcastXenimWebUrl = podcastJSON["absolute_url"].URL
+        let websiteUrl = podcastJSON["website_url"].URL
+        let ircUrl = podcastJSON["irc_url"].URL
+        let webchatUrl = podcastJSON["webchat_url"].URL
+        let feedUrl = podcastJSON["feed_url"].URL
+        let twitterUsername = podcastJSON["twitter_handle"].stringValue
+        let flattrId: String? = nil
+        
+        if id != "" && name != "" && podcastDescription != "" {
+            return Podcast(id: id, name: name, description: podcastDescription, artwork: artwork, subtitle: subtitle, podcastXenimWebUrl: podcastXenimWebUrl, websiteUrl: websiteUrl, ircUrl: ircUrl, webchatUrl: webchatUrl, feedUrl: feedUrl, twitterUsername: twitterUsername, flattrId: flattrId)
+        } else {
+            return nil
+        }
+    }
+    
+    static func eventFromJSON(eventJSON: JSON) -> Event? {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let absoluteUrl = eventJSON["absolute_url"].URL
+        let begin = formatter.dateFromString(eventJSON["begin"].stringValue)
+        let description = eventJSON["description"].stringValue.trim()
+        let end = formatter.dateFromString(eventJSON["end"].stringValue)
+        let id = eventJSON["id"].stringValue
+        let podcastId = eventJSON["podcast"].stringValue.characters.split{$0 == "/"}.map(String.init).last
+        let shownotes = eventJSON["shownotes"].stringValue
+        let title = eventJSON["title"].stringValue.trim()
+        
+        var status: Status? = nil
+        switch eventJSON["status"].stringValue {
+            case "RUNNING": status = .RUNNING
+            case "UPCOMING": status = .UPCOMING
+            case "ARCHIVED": status = .ARCHIVED
+            default: break
+        }
+        
+        var streams = [Stream]()
+        for streamJSON in eventJSON["streams"].array! {
+            let bitrate = streamJSON["bitrate"].stringValue
+            let codec = streamJSON["bitrate"].stringValue
+            if let url = streamJSON["url"].URL {
+                streams.append(Stream(codec: codec, bitrate: bitrate, url: url))
+            }
+        }
+        
+        // only add this event to the list if it has a minimum number
+        // of attributes set
+        if id != "" && begin != nil && end != nil && title != "" && status != nil {
+            let event = Event(id: id, title: title, status: status!, begin: begin!, end: end!, podcastId: podcastId, eventXenimWebUrl: absoluteUrl, streams: streams, shownotes: shownotes, description: description)
+            return event
+        } else {
+            return nil
         }
     }
 }
