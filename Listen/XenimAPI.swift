@@ -18,7 +18,7 @@ class XenimAPI : ListenAPI {
         let url = apiBaseURL + "episode/"
         let parameters = [
             "state": "UPCOMING",
-            "limit": "\(maxCount)"
+            "limit": "\(maxCount!)"
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
@@ -100,7 +100,7 @@ class XenimAPI : ListenAPI {
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         let parameters = [
             "state": "UPCOMING",
-            "limit": "\(maxCount)"
+            "limit": "\(maxCount!)"
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
