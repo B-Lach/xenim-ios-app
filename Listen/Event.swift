@@ -33,7 +33,8 @@ class Event : NSObject {
     let status: Status
     let begin: NSDate
     let end: NSDate
-
+    let podcastId: String
+    
     let eventXenimWebUrl: NSURL?
     let eventDescription: String?
     var listeners: Int? {
@@ -41,7 +42,6 @@ class Event : NSObject {
             NSNotificationCenter.defaultCenter().postNotificationName("listenersUpdate", object: self, userInfo: nil)
         }
     }
-    let podcastId: String?
     let shownotes: String?
     let streams = [Stream]()
     
@@ -60,7 +60,7 @@ class Event : NSObject {
     var timer : NSTimer? // timer to update the progress periodically
     let updateInterval: NSTimeInterval = 60
     
-    init(id: String, title: String, status: Status, begin: NSDate, end: NSDate, podcastId: String?, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?) {
+    init(id: String, title: String, status: Status, begin: NSDate, end: NSDate, podcastId: String, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?) {
         self.id = id
         self.title = title
         self.status = status
