@@ -11,7 +11,7 @@ import UIKit
 class NextupEventsTableViewController: UITableViewController {
     
     var upcomingEvents = [Event]()
-    var podcastSlug: String!
+    var podcastId: String!
     var isLoading = true
     @IBOutlet weak var addToFavoritesInformationLabel: UILabel!
     
@@ -33,12 +33,12 @@ class NextupEventsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if Favorites.fetch().contains(podcastSlug) {
+        if Favorites.fetch().contains(podcastId) {
             addToFavoritesInformationLabel.text = NSLocalizedString("nextup_events_popupview_information_label_if_favorite", value: "You will receive push notifications.", comment: "Message shown in nextup popup view controller as info message at the end of the table if the user has already added this podcast to his favorites. Text should be like 'You will receive push notifications'.")
         }
         
         // fetch upcoming events
-        HoersuppeAPI.fetchPodcastNextLiveEvents(podcastSlug, count: upcomingEventCount) { (events) -> Void in
+        XenimAPI.fetchPodcastUpcomingEvents(podcastId, maxCount: upcomingEventCount) { (events) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.upcomingEvents = events
                 self.tableView.reloadData()
@@ -69,7 +69,6 @@ class NextupEventsTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("UpcomingEvent", forIndexPath: indexPath)
             
             let event = upcomingEvents[indexPath.row]
-            let eventDate = event.livedate
             
             // format livedate
             let formatter = NSDateFormatter();
@@ -81,11 +80,11 @@ class NextupEventsTableViewController: UITableViewController {
             let today = cal.startOfDayForDate(NSDate())
             let diff = cal.components(NSCalendarUnit.Day,
                 fromDate: today,
-                toDate: eventDate,
+                toDate: event.begin,
                 options: NSCalendarOptions.WrapComponents )
             
             // setup cell
-            cell.textLabel?.text = formatter.stringFromDate(eventDate)
+            cell.textLabel?.text = formatter.stringFromDate(event.begin)
             if event.isToday() {
                 cell.detailTextLabel?.text = NSLocalizedString("Today", value: "Today", comment: "Today").lowercaseString
             } else {
