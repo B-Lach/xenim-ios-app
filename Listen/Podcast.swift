@@ -26,6 +26,7 @@ class Podcast : NSObject {
     let artwork: Artwork
 
     let subtitle: String?
+    let email: String?
     let podcastXenimWebUrl: NSURL?
     let websiteUrl: NSURL?
     let ircUrl: NSURL?
@@ -75,7 +76,7 @@ class Podcast : NSObject {
         }
     }
     
-    init(id: String, name: String, description: String, artwork: Artwork, subtitle: String?, podcastXenimWebUrl: NSURL?, websiteUrl: NSURL?, ircUrl: NSURL?, webchatUrl: NSURL?, feedUrl: NSURL?, twitterUsername: String?, flattrId: String?) {
+    init(id: String, name: String, description: String, artwork: Artwork, subtitle: String?, podcastXenimWebUrl: NSURL?, websiteUrl: NSURL?, ircUrl: NSURL?, webchatUrl: NSURL?, feedUrl: NSURL?, email: String?, twitterUsername: String?, flattrId: String?) {
         
         self.id = id
         self.name = name
@@ -89,6 +90,7 @@ class Podcast : NSObject {
         self.feedUrl = feedUrl
         self.twitterUsername = twitterUsername
         self.flattrId = flattrId
+        self.email = email
         
         super.init()
     }
