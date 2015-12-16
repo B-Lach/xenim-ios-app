@@ -11,11 +11,11 @@ import UIKit
 class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpdating {
 
     // contains all podcasts with slug:title
-    var podcasts = [String:String]()
+    var podcasts = [Podcast]()
     // contains podcast slugs filtered by search term
-    var filteredPodcasts = [String]()
+    var filteredPodcasts = [Podcast]()
     // contains all podcast slugs ordered alphabetically
-    var orderedPodcasts = [String]()
+    var orderedPodcasts = [Podcast]()
     var resultSearchController: UISearchController!
     
     override func viewDidLoad() {
@@ -36,9 +36,12 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
 
         // fetch podcast list from API
         refreshControl?.beginRefreshing()
-        HoersuppeAPI.fetchAllPodcasts { (podcasts) -> Void in
+        XenimAPI.fetchAllPodcasts { (podcasts) -> Void in
             self.podcasts = podcasts
-            self.orderedPodcasts = Array(podcasts.keys).sort()
+            self.orderedPodcasts = podcasts.sort({ (podcast1, podcast2) -> Bool in
+                // is podcast1 ordererd before podcast2
+                return podcast1.name < podcast2.name
+            })
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
@@ -78,7 +81,7 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         
         // set the datasource depending on the current state
         // if the user is searching use the filtered array
-        let dataSource: [String]
+        let dataSource: [Podcast]
         if resultSearchController.active {
             dataSource = filteredPodcasts
         } else {
@@ -88,8 +91,7 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         // check if there is data to display, otherwise show the no results cell
         if dataSource.count > 0 {
             if let cell = tableView.dequeueReusableCellWithIdentifier("PodcastCell", forIndexPath: indexPath) as? PodcastTableViewCell {
-                cell.podcastSlug = dataSource[indexPath.row]
-                cell.podcastName = podcasts[dataSource[indexPath.row]]
+                cell.podcast = dataSource[indexPath.row]
                 return cell
             }
         }
@@ -101,8 +103,8 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     
     func filterContentForSearchText(searchText: String) {
         // Filter the array using the filter method
-        self.filteredPodcasts = self.orderedPodcasts.filter({ (podcastSlug) -> Bool in
-            let podcastName = podcasts[podcastSlug]!.lowercaseString
+        self.filteredPodcasts = self.orderedPodcasts.filter({ (podcast) -> Bool in
+            let podcastName = podcast.name.lowercaseString
             let stringMatch = podcastName.rangeOfString(searchText.lowercaseString)
             return stringMatch != nil
         })
