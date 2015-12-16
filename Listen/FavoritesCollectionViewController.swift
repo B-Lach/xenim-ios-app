@@ -13,7 +13,7 @@ private let reuseIdentifier = "FavoriteCell"
 class FavoritesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
     
     // contains the podcast slugs of all favorites
-    var favorites = [String]()
+    var favorites = [Podcast]()
     var messageVC: MessageViewController?
 
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FavoriteCollectionViewCell
         
         // Configure the cell
-        cell.podcastId = favorites[indexPath.row]
+        cell.podcast = favorites[indexPath.row]
         
         return cell
     }
@@ -67,9 +67,15 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
     }
     
     func refresh() {
-        favorites = Favorites.fetch()
-        favorites.sortInPlace()
-        collectionView?.reloadData()
+        Favorites.fetchFavoritePodcasts({ (podcasts) -> Void in
+            self.favorites = podcasts
+            self.favorites.sortInPlace({ (podcast1, podcast2) -> Bool in
+                return podcast1.name < podcast2.name
+            })
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.collectionView?.reloadData()
+            })
+        })
     }
 
     func updateBackground() {
@@ -98,7 +104,7 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
             alert.view.tintColor = Constants.Colors.tintColor
             let removeFavorite = NSLocalizedString("favorites_controller_actionsheet_remove_favorite", value: "Remove from Favorites", comment: "If the user does a long press on a favorite an action sheets pops up to remove that podcast from favorites. This is the action sheet action title.")
             alert.addAction(UIAlertAction(title: removeFavorite, style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
-                Favorites.remove(podcastId: cell.podcastId)
+                Favorites.remove(podcastId: cell.podcast!.id)
             }))
             let cancel = NSLocalizedString("cancel", value: "Cancel", comment: "Cancel")
             alert.addAction(UIAlertAction(title: cancel, style: UIAlertActionStyle.Cancel, handler: nil))

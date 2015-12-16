@@ -122,13 +122,13 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
         baseViewController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
         baseViewController?.popupBar.addGestureRecognizer(longpressRecognizer)
         
-        currentItem = AudioItem(mediumQualitySoundURL: event.streamurl)
-        currentItem?.artist = event.podcastDescription
+        currentItem = AudioItem(mediumQualitySoundURL: event.streams.first?.url)
+        currentItem?.artist = event.podcast.podcastDescription
         currentItem?.title = event.title
         player.playItem(currentItem!)
         
         // fetch coverart from image cache and set it as lockscreen artwork
-        if let imageurl = event.imageurl {
+        if let imageurl = event.podcast.artwork.originalUrl {
             Alamofire.request(.GET, imageurl)
                 .responseImage { response in
                     if let image = response.result.value {

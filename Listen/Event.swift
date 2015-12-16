@@ -33,7 +33,7 @@ class Event : NSObject {
     let status: Status
     let begin: NSDate
     let end: NSDate
-    let podcastId: String
+    let podcast: Podcast
     
     let eventXenimWebUrl: NSURL?
     let eventDescription: String?
@@ -43,12 +43,12 @@ class Event : NSObject {
         }
     }
     let shownotes: String?
-    let streams = [Stream]()
+    var streams = [Stream]()
     
     // in seconds    
     var duration: NSTimeInterval {
         get {
-            end.timeIntervalSinceDate(begin)
+            return end.timeIntervalSinceDate(begin)
         }
     }
     //value between 0 and 1
@@ -60,17 +60,26 @@ class Event : NSObject {
     var timer : NSTimer? // timer to update the progress periodically
     let updateInterval: NSTimeInterval = 60
     
-    init(id: String, title: String, status: Status, begin: NSDate, end: NSDate, podcastId: String, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?) {
+    
+    
+    
+    
+    
+    
+    
+    init(id: String, title: String, status: Status, begin: NSDate, end: NSDate, podcast: Podcast, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?) {
         self.id = id
         self.title = title
         self.status = status
         self.begin = begin
         self.end = end
-        self.podcastId = podcastId
+        self.podcast = podcast
         self.eventXenimWebUrl = eventXenimWebUrl
         self.streams = streams
         self.shownotes = shownotes
         self.eventDescription = description
+        
+        super.init()
         
         if isLive() {
             // setup timer to update progressbar every minute
@@ -79,8 +88,6 @@ class Event : NSObject {
             timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
             timerTicked()
         }
-
-        super.init()
     }
     
     deinit {
@@ -93,7 +100,7 @@ class Event : NSObject {
     
     func isFinished() -> Bool {
         let now = NSDate()
-        return endDate.earlierDate(now) == endDate
+        return end.earlierDate(now) == end
     }
     
     func isToday() -> Bool {

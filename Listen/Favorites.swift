@@ -51,6 +51,29 @@ class Favorites {
         }
     }
     
+    static func fetchFavoritePodcasts(onComplete: (podcasts: [Podcast]) -> Void) {
+        let podcastIds = fetch()
+        var podcasts = [Podcast]()
+        let serviceGroup = dispatch_group_create()
+        
+        for podcastId in podcastIds {
+            dispatch_group_enter(serviceGroup)
+            XenimAPI.fetchPodcastById(podcastId, onComplete: { (podcast) -> Void in
+                if podcast != nil {
+                    // this has to be thread safe
+                    objc_sync_enter(podcasts)
+                    podcasts.append(podcast!)
+                    objc_sync_exit(podcasts)
+                    dispatch_group_leave(serviceGroup)
+                }
+            })
+        }
+        
+        // only continue if all calls from before finished
+        dispatch_group_wait(serviceGroup, DISPATCH_TIME_FOREVER)
+        onComplete(podcasts: podcasts)
+    }
+    
     private static func notifyChange() {
         NSNotificationCenter.defaultCenter().postNotificationName("favoritesChanged", object: nil, userInfo: nil)
     }

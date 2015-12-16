@@ -27,11 +27,23 @@ class XenimAPI : ListenAPI {
                     let objects = json["objects"]
                     
                     var events = [Event]()
+                    let serviceGroup = dispatch_group_create()
+                    
                     for eventJSON in objects.array! {
-                        if let event = eventFromJSON(eventJSON) {
-                            events.append(event)
-                        }
+                        dispatch_group_enter(serviceGroup)
+                        eventFromJSON(eventJSON, onComplete: { (event) -> Void in
+                            if event != nil {
+                                // this has to be thread safe
+                                objc_sync_enter(events)
+                                events.append(event!)
+                                objc_sync_exit(events)
+                                dispatch_group_leave(serviceGroup)
+                            }
+                        })
                     }
+                    
+                    // only continue if all calls from before finished
+                    dispatch_group_wait(serviceGroup, DISPATCH_TIME_FOREVER)
                     onComplete(events: events)
                 }
         }
@@ -43,9 +55,9 @@ class XenimAPI : ListenAPI {
             .responseJSON { response in
                 if let responseData = response.data {
                     let eventJSON = JSON(data: responseData)
-                    if let event = eventFromJSON(eventJSON) {
+                    eventFromJSON(eventJSON, onComplete: { (event) -> Void in
                         onComplete(event: event)
-                    }
+                    })
                 }
         }
     }
@@ -62,11 +74,23 @@ class XenimAPI : ListenAPI {
                     let objects = json["objects"]
                     
                     var events = [Event]()
+                    let serviceGroup = dispatch_group_create()
+                    
                     for eventJSON in objects.array! {
-                        if let event = eventFromJSON(eventJSON) {
-                            events.append(event)
-                        }
+                        dispatch_group_enter(serviceGroup)
+                        eventFromJSON(eventJSON, onComplete: { (event) -> Void in
+                            if event != nil {
+                                // this has to be thread safe
+                                objc_sync_enter(events)
+                                events.append(event!)
+                                objc_sync_exit(events)
+                                dispatch_group_leave(serviceGroup)
+                            }
+                        })
                     }
+                    
+                    // only continue if all calls from before finished
+                    dispatch_group_wait(serviceGroup, DISPATCH_TIME_FOREVER)
                     onComplete(events: events)
                 }
         }
@@ -86,9 +110,11 @@ class XenimAPI : ListenAPI {
                     
                     var events = [Event]()
                     for eventJSON in objects.array! {
-                        if let event = eventFromJSON(eventJSON) {
-                            events.append(event)
-                        }
+                        eventFromJSON(eventJSON, onComplete: { (event) -> Void in
+                            if event != nil {
+                                events.append(event!)
+                            }
+                        })
                     }
                     onComplete(events: events)
                 }
@@ -145,7 +171,7 @@ class XenimAPI : ListenAPI {
         let feedUrl = podcastJSON["feed_url"].URL
         let twitterUsername = podcastJSON["twitter_handle"].stringValue
         let flattrId: String? = nil
-        let email: String? = nil
+        let email = podcastJSON["email"].stringValue
         
         if id != "" && name != "" && podcastDescription != "" {
             return Podcast(id: id, name: name, description: podcastDescription, artwork: artwork, subtitle: subtitle, podcastXenimWebUrl: podcastXenimWebUrl, websiteUrl: websiteUrl, ircUrl: ircUrl, webchatUrl: webchatUrl, feedUrl: feedUrl, email: email, twitterUsername: twitterUsername, flattrId: flattrId)
@@ -154,7 +180,7 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func eventFromJSON(eventJSON: JSON) -> Event? {
+    static func eventFromJSON(eventJSON: JSON, onComplete: (event: Event?) -> Void) {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
@@ -184,13 +210,20 @@ class XenimAPI : ListenAPI {
             }
         }
         
-        // only add this event to the list if it has a minimum number
-        // of attributes set
-        if id != "" && begin != nil && end != nil && title != "" && status != nil && podcastId != nil {
-            let event = Event(id: id, title: title, status: status!, begin: begin!, end: end!, podcastId: podcastId!, eventXenimWebUrl: absoluteUrl, streams: streams, shownotes: shownotes, description: description)
-            return event
+        if podcastId != nil && podcastId != "" {
+            fetchPodcastById(podcastId!) { (podcast) -> Void in
+                // only add this event to the list if it has a minimum number
+                // of attributes set
+                if id != "" && begin != nil && end != nil && title != "" && status != nil && podcast != nil {
+                    let event = Event(id: id, title: title, status: status!, begin: begin!, end: end!, podcast: podcast!, eventXenimWebUrl: absoluteUrl, streams: streams, shownotes: shownotes, description: description)
+                    onComplete(event: event)
+                } else {
+                    onComplete(event: nil)
+                }
+            }
         } else {
-            return nil
+            onComplete(event: nil)
         }
+
     }
 }
