@@ -26,21 +26,6 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func fetchEventById(eventId: String, onComplete: (event: Event?) -> Void){
-        let url = apiBaseURL + "episode/\(eventId)/"
-        Alamofire.request(.GET, url, parameters: nil)
-            .responseJSON { response in
-                if let responseData = response.data {
-                    let eventJSON = JSON(data: responseData)
-                    eventFromJSON(eventJSON, onComplete: { (event) -> Void in
-                        onComplete(event: event)
-                    })
-                } else {
-                    onComplete(event: nil)
-                }
-        }
-    }
-    
     static func fetchLiveEvents(onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
         let parameters = [
@@ -61,6 +46,21 @@ class XenimAPI : ListenAPI {
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
                 handleMultipleEventsResponse(response, onComplete: onComplete)
+        }
+    }
+    
+    static func fetchEventById(eventId: String, onComplete: (event: Event?) -> Void){
+        let url = apiBaseURL + "episode/\(eventId)/"
+        Alamofire.request(.GET, url, parameters: nil)
+            .responseJSON { response in
+                if let responseData = response.data {
+                    let eventJSON = JSON(data: responseData)
+                    eventFromJSON(eventJSON, onComplete: { (event) -> Void in
+                        onComplete(event: event)
+                    })
+                } else {
+                    onComplete(event: nil)
+                }
         }
     }
     
