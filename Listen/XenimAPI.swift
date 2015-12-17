@@ -22,11 +22,11 @@ class XenimAPI : ListenAPI {
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
+                var events = [Event]()
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
                     let objects = json["objects"]
                     
-                    var events = [Event]()
                     let serviceGroup = dispatch_group_create()
                     
                     for eventJSON in objects.array! {
@@ -44,8 +44,8 @@ class XenimAPI : ListenAPI {
                     
                     // only continue if all calls from before finished
                     dispatch_group_wait(serviceGroup, DISPATCH_TIME_FOREVER)
-                    onComplete(events: events)
                 }
+                onComplete(events: events)
         }
     }
     
@@ -58,6 +58,8 @@ class XenimAPI : ListenAPI {
                     eventFromJSON(eventJSON, onComplete: { (event) -> Void in
                         onComplete(event: event)
                     })
+                } else {
+                    onComplete(event: nil)
                 }
         }
     }
@@ -69,11 +71,11 @@ class XenimAPI : ListenAPI {
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
+                var events = [Event]()
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
                     let objects = json["objects"]
                     
-                    var events = [Event]()
                     let serviceGroup = dispatch_group_create()
                     
                     for eventJSON in objects.array! {
@@ -91,8 +93,8 @@ class XenimAPI : ListenAPI {
                     
                     // only continue if all calls from before finished
                     dispatch_group_wait(serviceGroup, DISPATCH_TIME_FOREVER)
-                    onComplete(events: events)
                 }
+                onComplete(events: events)
         }
     }
     
@@ -104,20 +106,30 @@ class XenimAPI : ListenAPI {
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
+                var events = [Event]()
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
                     let objects = json["objects"]
                     
-                    var events = [Event]()
+                    let serviceGroup = dispatch_group_create()
+                    
                     for eventJSON in objects.array! {
+                        dispatch_group_enter(serviceGroup)
                         eventFromJSON(eventJSON, onComplete: { (event) -> Void in
                             if event != nil {
+                                // this has to be thread safe
+                                objc_sync_enter(events)
                                 events.append(event!)
+                                objc_sync_exit(events)
+                                dispatch_group_leave(serviceGroup)
                             }
                         })
                     }
-                    onComplete(events: events)
+                    
+                    // only continue if all calls from before finished
+                    dispatch_group_wait(serviceGroup, DISPATCH_TIME_FOREVER)
                 }
+                onComplete(events: events)
         }
     }
     
@@ -130,8 +142,11 @@ class XenimAPI : ListenAPI {
                     
                     if let podcast = podcastFromJSON(podcastJSON) {
                         onComplete(podcast: podcast)
+                    } else {
+                        onComplete(podcast: nil)
                     }
-
+                } else {
+                    onComplete(podcast: nil)
                 }
         }
     }
@@ -140,18 +155,18 @@ class XenimAPI : ListenAPI {
         let url = apiBaseURL + "podcast/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
+                var podcasts = [Podcast]()
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
                     let objects = json["objects"]
                     
-                    var podcasts = [Podcast]()
                     for podcastJSON in objects.array! {
                         if let podcast = podcastFromJSON(podcastJSON) {
                             podcasts.append(podcast)
                         }
                     }
-                    onComplete(podcasts: podcasts)
                 }
+                onComplete(podcasts: podcasts)
         }
     }
     
