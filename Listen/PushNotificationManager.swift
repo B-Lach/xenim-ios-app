@@ -58,6 +58,20 @@ class PushNotificationManager {
         }
     }
     
+    static func subscribeToPodcastChannel(podcastId: String) {
+        if podcastId != "" {
+            let channel = "podcast_\(podcastId)"
+            subscribeToChannel(channel)
+        }
+    }
+    
+    static func unsubscribeFromPodcastChannel(podcastId: String) {
+        if podcastId != "" {
+            let channel = "podcast_\(podcastId)"
+            unsubscribeFromChannel(channel)
+        }
+    }
+    
     static func subscribeToChannel(channel: String) {
         if channel != "" {
             let installation = PFInstallation.currentInstallation()

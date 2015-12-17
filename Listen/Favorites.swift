@@ -27,7 +27,7 @@ class Favorites {
         if !favorites.contains(podcastId) {
             favorites.append(podcastId)
             userDefaults.setObject(favorites, forKey: key)
-            PushNotificationManager.subscribeToChannel(podcastId)
+            PushNotificationManager.subscribeToPodcastChannel(podcastId)
             notifyChange()
         }
     }
@@ -37,7 +37,7 @@ class Favorites {
         if let index = favorites.indexOf(podcastId) {
             favorites.removeAtIndex(index)
             userDefaults.setObject(favorites, forKey: key)
-            PushNotificationManager.unsubscribeFromChannel(podcastId)
+            PushNotificationManager.unsubscribeFromPodcastChannel(podcastId)
             notifyChange()
         }
     }
