@@ -64,14 +64,14 @@ class Favorites {
                     objc_sync_enter(podcasts)
                     podcasts.append(podcast!)
                     objc_sync_exit(podcasts)
-                    dispatch_group_leave(serviceGroup)
                 }
+                dispatch_group_leave(serviceGroup)
             })
         }
         
-        // only continue if all calls from before finished
-        dispatch_group_wait(serviceGroup, DISPATCH_TIME_FOREVER)
-        onComplete(podcasts: podcasts)
+        dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
+            onComplete(podcasts: podcasts)
+        }
     }
     
     private static func notifyChange() {
