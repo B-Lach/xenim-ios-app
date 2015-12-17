@@ -22,32 +22,7 @@ class XenimAPI : ListenAPI {
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
-                var events = [Event]()
-                if let responseData = response.data {
-                    let json = JSON(data: responseData)
-                    let objects = json["objects"]
-                    
-                    let serviceGroup = dispatch_group_create()
-                    
-                    for eventJSON in objects.array! {
-                        dispatch_group_enter(serviceGroup)
-                        eventFromJSON(eventJSON, onComplete: { (event) -> Void in
-                            if event != nil {
-                                // this has to be thread safe
-                                objc_sync_enter(events)
-                                events.append(event!)
-                                objc_sync_exit(events)
-                            }
-                            dispatch_group_leave(serviceGroup)
-                        })
-                    }
-                    
-                    dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
-                        onComplete(events: events)
-                    })
-                } else {
-                    onComplete(events: events)
-                }
+                handleMultipleEventsResponse(response, onComplete: onComplete)
         }
     }
     
@@ -73,32 +48,7 @@ class XenimAPI : ListenAPI {
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
-                var events = [Event]()
-                if let responseData = response.data {
-                    let json = JSON(data: responseData)
-                    let objects = json["objects"]
-                    
-                    let serviceGroup = dispatch_group_create()
-                    
-                    for eventJSON in objects.array! {
-                        dispatch_group_enter(serviceGroup)
-                        eventFromJSON(eventJSON, onComplete: { (event) -> Void in
-                            if event != nil {
-                                // this has to be thread safe
-                                objc_sync_enter(events)
-                                events.append(event!)
-                                objc_sync_exit(events)
-                            }
-                            dispatch_group_leave(serviceGroup)
-                        })
-                    }
-                    
-                    dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
-                        onComplete(events: events)
-                    })
-                } else {
-                    onComplete(events: events)
-                }
+                handleMultipleEventsResponse(response, onComplete: onComplete)
         }
     }
     
@@ -110,32 +60,7 @@ class XenimAPI : ListenAPI {
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
-                var events = [Event]()
-                if let responseData = response.data {
-                    let json = JSON(data: responseData)
-                    let objects = json["objects"]
-                    
-                    let serviceGroup = dispatch_group_create()
-                    
-                    for eventJSON in objects.array! {
-                        dispatch_group_enter(serviceGroup)
-                        eventFromJSON(eventJSON, onComplete: { (event) -> Void in
-                            if event != nil {
-                                // this has to be thread safe
-                                objc_sync_enter(events)
-                                events.append(event!)
-                                objc_sync_exit(events)
-                            }
-                            dispatch_group_leave(serviceGroup)
-                        })
-                    }
-                    
-                    dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
-                        onComplete(events: events)
-                    })
-                } else {
-                    onComplete(events: events)
-                }
+                handleMultipleEventsResponse(response, onComplete: onComplete)
         }
     }
     
@@ -177,6 +102,36 @@ class XenimAPI : ListenAPI {
     }
     
     // MARK: - Helpers
+    
+    
+    static func handleMultipleEventsResponse(response: Response<AnyObject, NSError>, onComplete: (events: [Event]) -> Void) {
+        var events = [Event]()
+        if let responseData = response.data {
+            let json = JSON(data: responseData)
+            let objects = json["objects"]
+            
+            let serviceGroup = dispatch_group_create()
+            
+            for eventJSON in objects.array! {
+                dispatch_group_enter(serviceGroup)
+                eventFromJSON(eventJSON, onComplete: { (event) -> Void in
+                    if event != nil {
+                        // this has to be thread safe
+                        objc_sync_enter(events)
+                        events.append(event!)
+                        objc_sync_exit(events)
+                    }
+                    dispatch_group_leave(serviceGroup)
+                })
+            }
+            
+            dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+                onComplete(events: events)
+            })
+        } else {
+            onComplete(events: events)
+        }
+    }
     
     static func podcastFromJSON(podcastJSON: JSON) -> Podcast? {
         let id = podcastJSON["id"].stringValue
