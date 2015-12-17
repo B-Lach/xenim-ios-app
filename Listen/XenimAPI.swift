@@ -188,7 +188,7 @@ class XenimAPI : ListenAPI {
         let flattrId: String? = nil
         let email = podcastJSON["email"].stringValue
         
-        if id != "" && name != "" && podcastDescription != "" {
+        if id != "" && name != "" {
             return Podcast(id: id, name: name, description: podcastDescription, artwork: artwork, subtitle: subtitle, podcastXenimWebUrl: podcastXenimWebUrl, websiteUrl: websiteUrl, ircUrl: ircUrl, webchatUrl: webchatUrl, feedUrl: feedUrl, email: email, twitterUsername: twitterUsername, flattrId: flattrId)
         } else {
             return nil
