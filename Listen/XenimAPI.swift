@@ -37,15 +37,17 @@ class XenimAPI : ListenAPI {
                                 objc_sync_enter(events)
                                 events.append(event!)
                                 objc_sync_exit(events)
-                                dispatch_group_leave(serviceGroup)
                             }
+                            dispatch_group_leave(serviceGroup)
                         })
                     }
                     
-                    // only continue if all calls from before finished
-                    dispatch_group_wait(serviceGroup, DISPATCH_TIME_FOREVER)
+                    dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+                        onComplete(events: events)
+                    })
+                } else {
+                    onComplete(events: events)
                 }
-                onComplete(events: events)
         }
     }
     
@@ -86,15 +88,17 @@ class XenimAPI : ListenAPI {
                                 objc_sync_enter(events)
                                 events.append(event!)
                                 objc_sync_exit(events)
-                                dispatch_group_leave(serviceGroup)
                             }
+                            dispatch_group_leave(serviceGroup)
                         })
                     }
                     
-                    // only continue if all calls from before finished
-                    dispatch_group_wait(serviceGroup, DISPATCH_TIME_FOREVER)
+                    dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+                        onComplete(events: events)
+                    })
+                } else {
+                    onComplete(events: events)
                 }
-                onComplete(events: events)
         }
     }
     
@@ -121,15 +125,17 @@ class XenimAPI : ListenAPI {
                                 objc_sync_enter(events)
                                 events.append(event!)
                                 objc_sync_exit(events)
-                                dispatch_group_leave(serviceGroup)
                             }
+                            dispatch_group_leave(serviceGroup)
                         })
                     }
                     
-                    // only continue if all calls from before finished
-                    dispatch_group_wait(serviceGroup, DISPATCH_TIME_FOREVER)
+                    dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+                        onComplete(events: events)
+                    })
+                } else {
+                    onComplete(events: events)
                 }
-                onComplete(events: events)
         }
     }
     
