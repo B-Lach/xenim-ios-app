@@ -17,7 +17,7 @@ class XenimAPI : ListenAPI {
     static func fetchUpcomingEvents(maxCount maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
         let parameters = [
-            "state": "UPCOMING",
+            "status": "UPCOMING",
             "limit": "\(maxCount!)"
         ]
         Alamofire.request(.GET, url, parameters: parameters)
@@ -29,7 +29,7 @@ class XenimAPI : ListenAPI {
     static func fetchLiveEvents(onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
         let parameters = [
-            "state": "RUNNING"
+            "status": "RUNNING"
         ]
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
@@ -40,7 +40,7 @@ class XenimAPI : ListenAPI {
     static func fetchPodcastUpcomingEvents(podcastId: String, maxCount: Int?, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         let parameters = [
-            "state": "UPCOMING",
+            "status": "UPCOMING",
             "limit": "\(maxCount!)"
         ]
         Alamofire.request(.GET, url, parameters: parameters)
