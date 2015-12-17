@@ -25,7 +25,7 @@ for locale in supported_locales:
          # it will not be delivered at all. this should be 'now + event.duration'
          "expiration_time": "2018-03-19T22:05:08Z",
          "where": {
-           "channels": podcast_id,
+           "channels": "podcast_" + podcast_id,
            "localeIdentifier": locale
          },
          "data": {
@@ -50,7 +50,7 @@ connection.request('POST', '/1/push', json.dumps({
        # it will not be delivered at all. this should be 'now + event.duration'
        "expiration_time": "2018-03-19T22:05:08Z",
        "where": {
-         "channels": podcast_id,
+         "channels": "podcast_" + podcast_id,
          "localeIdentifier": {
            "$nin": supported_locales
          }
