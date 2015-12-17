@@ -144,7 +144,7 @@ class XenimAPI : ListenAPI {
         let websiteUrl: NSURL? = podcastJSON["website_url"].stringValue != "" ? podcastJSON["website_url"].URL : nil
         let ircUrl: NSURL? = podcastJSON["irc_url"].stringValue != "" ? podcastJSON["irc_url"].URL : nil
         let webchatUrl: NSURL? = podcastJSON["webchat_url"].stringValue != "" ? podcastJSON["webchat_url"].URL : nil
-        let feedUrl: NSURL? = podcastJSON["feed_url"].URL
+        let feedUrl: NSURL? = podcastJSON["feed_url"].stringValue != "" ? podcastJSON["feed_url"].URL : nil
         let twitterUsername: String? = podcastJSON["twitter_handle"].stringValue != "" ? podcastJSON["twitter_handle"].stringValue : nil
         let flattrId: String? = nil
         let email: String? =  podcastJSON["email"].stringValue != "" ? podcastJSON["email"].stringValue : nil
