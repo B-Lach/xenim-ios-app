@@ -41,8 +41,9 @@ class Event : NSObject {
         get {
             if self.ptitle == nil {
                 return podcast.name
+            } else {
+                return ptitle
             }
-            return nil
         }
     }
     let eventXenimWebUrl: NSURL?
