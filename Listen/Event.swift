@@ -24,6 +24,7 @@ enum Status {
     case RUNNING
     case UPCOMING
     case ARCHIVED
+    case EXPIRED
 }
 
 class Event : NSObject {

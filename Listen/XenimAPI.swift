@@ -213,6 +213,7 @@ class XenimAPI : ListenAPI {
             case "RUNNING": status = .RUNNING
             case "UPCOMING": status = .UPCOMING
             case "ARCHIVED": status = .ARCHIVED
+            case "EXPIRED": status = .EXPIRED
             default: break
         }
         
