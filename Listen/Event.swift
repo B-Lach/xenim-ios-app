@@ -30,12 +30,21 @@ enum Status {
 class Event : NSObject {
     
     let id: String
-    let title: String
     let status: Status
     let begin: NSDate
     let end: NSDate
     let podcast: Podcast
     
+    // return podcast name as event title if title is not set
+    private var ptitle: String? = nil
+    var title: String? {
+        get {
+            if self.ptitle == nil {
+                return podcast.name
+            }
+            return nil
+        }
+    }
     let eventXenimWebUrl: NSURL?
     let eventDescription: String?
     var listeners: Int? {
@@ -61,16 +70,9 @@ class Event : NSObject {
     var timer : NSTimer? // timer to update the progress periodically
     let updateInterval: NSTimeInterval = 60
     
-    
-    
-    
-    
-    
-    
-    
-    init(id: String, title: String, status: Status, begin: NSDate, end: NSDate, podcast: Podcast, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?) {
+    init(id: String, status: Status, begin: NSDate, end: NSDate, podcast: Podcast, title: String?, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?) {
         self.id = id
-        self.title = title
+        self.ptitle = title
         self.status = status
         self.begin = begin
         self.end = end

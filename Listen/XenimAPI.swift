@@ -139,15 +139,15 @@ class XenimAPI : ListenAPI {
         let podcastDescription = podcastJSON["description"].stringValue
         
         let artwork = Artwork(originalUrl: podcastJSON["artwork_original_url"].URL, thumb150Url: podcastJSON["artwork_thumb_url"].URL)
-        let subtitle = podcastJSON["subtitle"].stringValue
-        let podcastXenimWebUrl = podcastJSON["absolute_url"].URL
-        let websiteUrl = podcastJSON["website_url"].URL
-        let ircUrl = podcastJSON["irc_url"].URL
-        let webchatUrl = podcastJSON["webchat_url"].URL
-        let feedUrl = podcastJSON["feed_url"].URL
-        let twitterUsername = podcastJSON["twitter_handle"].stringValue
+        let subtitle: String? = podcastJSON["subtitle"].stringValue != "" ? podcastJSON["subtitle"].stringValue : nil
+        let podcastXenimWebUrl: NSURL? = podcastJSON["absolute_url"].stringValue != "" ? podcastJSON["absolute_url"].URL : nil
+        let websiteUrl: NSURL? = podcastJSON["website_url"].stringValue != "" ? podcastJSON["website_url"].URL : nil
+        let ircUrl: NSURL? = podcastJSON["irc_url"].stringValue != "" ? podcastJSON["irc_url"].URL : nil
+        let webchatUrl: NSURL? = podcastJSON["webchat_url"].stringValue != "" ? podcastJSON["webchat_url"].URL : nil
+        let feedUrl: NSURL? = podcastJSON["feed_url"].URL
+        let twitterUsername: String? = podcastJSON["twitter_handle"].stringValue != "" ? podcastJSON["twitter_handle"].stringValue : nil
         let flattrId: String? = nil
-        let email = podcastJSON["email"].stringValue
+        let email: String? =  podcastJSON["email"].stringValue != "" ? podcastJSON["email"].stringValue : nil
         
         if id != "" && name != "" {
             return Podcast(id: id, name: name, description: podcastDescription, artwork: artwork, subtitle: subtitle, podcastXenimWebUrl: podcastXenimWebUrl, websiteUrl: websiteUrl, ircUrl: ircUrl, webchatUrl: webchatUrl, feedUrl: feedUrl, email: email, twitterUsername: twitterUsername, flattrId: flattrId)
@@ -159,15 +159,16 @@ class XenimAPI : ListenAPI {
     static func eventFromJSON(eventJSON: JSON, onComplete: (event: Event?) -> Void) {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
-        let absoluteUrl = eventJSON["absolute_url"].URL
-        let begin = formatter.dateFromString(eventJSON["begin"].stringValue)
-        let description = eventJSON["description"].stringValue.trim()
-        let end = formatter.dateFromString(eventJSON["end"].stringValue)
+
         let id = eventJSON["id"].stringValue
         let podcastId = eventJSON["podcast"].stringValue.characters.split{$0 == "/"}.map(String.init).last
-        let shownotes = eventJSON["shownotes"].stringValue
-        let title = eventJSON["title"].stringValue.trim()
+        
+        let absoluteUrl: NSURL? = eventJSON["absolute_url"].stringValue != "" ? eventJSON["absolute_url"].URL : nil
+        let begin = formatter.dateFromString(eventJSON["begin"].stringValue)
+        let description: String? = eventJSON["description"].stringValue.trim() != "" ? eventJSON["description"].stringValue.trim() : nil
+        let end = formatter.dateFromString(eventJSON["end"].stringValue)
+        let shownotes: String? = eventJSON["shownotes"].stringValue.trim() != "" ? eventJSON["shownotes"].stringValue.trim() : nil
+        let title: String? = eventJSON["title"].stringValue.trim() != "" ? eventJSON["title"].stringValue.trim() : nil
         
         var status: Status? = nil
         switch eventJSON["status"].stringValue {
@@ -187,12 +188,12 @@ class XenimAPI : ListenAPI {
             }
         }
         
-        if podcastId != nil && podcastId != "" {
+        if podcastId != nil {
             fetchPodcastById(podcastId!) { (podcast) -> Void in
                 // only add this event to the list if it has a minimum number
                 // of attributes set
-                if id != "" && begin != nil && end != nil && title != "" && status != nil && podcast != nil {
-                    let event = Event(id: id, title: title, status: status!, begin: begin!, end: end!, podcast: podcast!, eventXenimWebUrl: absoluteUrl, streams: streams, shownotes: shownotes, description: description)
+                if id != "" && begin != nil && end != nil && status != nil && podcast != nil {
+                    let event = Event(id: id, status: status!, begin: begin!, end: end!, podcast: podcast!, title: title, eventXenimWebUrl: absoluteUrl, streams: streams, shownotes: shownotes, description: description)
                     onComplete(event: event)
                 } else {
                     onComplete(event: nil)
