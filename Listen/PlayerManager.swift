@@ -85,14 +85,15 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     }
     
     func sharePressed() {
-        let toShare = NSURL(string: "http://www.codingexplorer.com/")!
-        let objectsToShare = [toShare]
-        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        
-        // Excluded Activities
-//      activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
-        
-        baseViewController?.presentViewController(activityVC, animated: true, completion: nil)
+        if let url = event?.eventXenimWebUrl {
+            let objectsToShare = [url]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            // Excluded Activities
+            //      activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
+            
+            baseViewController?.presentViewController(activityVC, animated: true, completion: nil)
+        }
     }
     
     // MARK: private
