@@ -32,7 +32,7 @@ class Event : NSObject {
     let id: String
     let status: Status
     let begin: NSDate
-    let end: NSDate
+    let end: NSDate?
     let podcast: Podcast
     
     // return podcast name as event title if title is not set
@@ -57,9 +57,9 @@ class Event : NSObject {
     var streams = [Stream]()
     
     // in seconds    
-    var duration: NSTimeInterval {
+    var duration: NSTimeInterval? {
         get {
-            return end.timeIntervalSinceDate(begin)
+            return end?.timeIntervalSinceDate(begin)
         }
     }
     //value between 0 and 1
@@ -71,7 +71,7 @@ class Event : NSObject {
     var timer : NSTimer? // timer to update the progress periodically
     let updateInterval: NSTimeInterval = 60
     
-    init(id: String, status: Status, begin: NSDate, end: NSDate, podcast: Podcast, title: String?, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?) {
+    init(id: String, status: Status, begin: NSDate, end: NSDate?, podcast: Podcast, title: String?, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?) {
         self.id = id
         self.ptitle = title
         self.status = status
@@ -102,11 +102,6 @@ class Event : NSObject {
         return status == Status.RUNNING
     }
     
-    func isFinished() -> Bool {
-        let now = NSDate()
-        return end.earlierDate(now) == end
-    }
-    
     func isToday() -> Bool {
         let calendar = NSCalendar.currentCalendar()
         return calendar.isDateInToday(begin)
@@ -126,10 +121,12 @@ class Event : NSObject {
     }
     
     @objc func timerTicked() {
-        // update progress value
-        let timePassed = NSDate().timeIntervalSinceDate(begin)
-        let factor = (Float)(timePassed/duration)
-        progress = min(max(factor, 0.0), 1.0)
+        if let duration = duration {
+            // update progress value
+            let timePassed = NSDate().timeIntervalSinceDate(begin)
+            let factor = (Float)(timePassed/duration)
+            progress = min(max(factor, 0.0), 1.0)
+        }
 
         // update listeners
         XenimAPI.fetchEventById(id) { (event) -> Void in
