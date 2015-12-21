@@ -35,8 +35,17 @@ class EventTableViewCell: UITableViewCell {
     
     func updateUI() {
         if let event = event {
-            podcastNameLabel?.text = event.title
-            descriptionLabel?.text = event.eventDescription
+            if let title = event.title {
+                podcastNameLabel?.text = title
+            } else {
+                podcastNameLabel?.text = event.podcast.name
+            }
+            
+            if let description = event.eventDescription {
+                descriptionLabel?.text = description
+            } else {
+                descriptionLabel?.text = event.podcast.podcastDescription
+            }
 
             updateCoverart()
             updateLivedate()

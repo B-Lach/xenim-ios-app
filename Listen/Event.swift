@@ -36,16 +36,7 @@ class Event : NSObject {
     let podcast: Podcast
     
     // return podcast name as event title if title is not set
-    private var ptitle: String? = nil
-    var title: String? {
-        get {
-            if self.ptitle == nil {
-                return podcast.name
-            } else {
-                return ptitle
-            }
-        }
-    }
+    var title: String?
     let eventXenimWebUrl: NSURL?
     let eventDescription: String?
     var listeners: Int? {
@@ -86,7 +77,7 @@ class Event : NSObject {
     
     init(id: String, status: Status, begin: NSDate, end: NSDate?, podcast: Podcast, title: String?, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?) {
         self.id = id
-        self.ptitle = title
+        self.title = title
         self.status = status
         self.begin = begin
         self.end = end
