@@ -303,10 +303,15 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scarlet-44-info-circle" translatesAutoresizingMaskIntoConstraints="NO" id="KXK-1h-7Gr">
+                                <rect key="frame" x="284" y="249" width="33" height="33"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="KXK-1h-7Gr" firstAttribute="centerX" secondItem="rBC-zr-6KO" secondAttribute="centerX" id="6zf-bY-oE2"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="rBC-zr-6KO" secondAttribute="trailing" constant="8" id="YR4-V2-YUK"/>
+                            <constraint firstItem="rBC-zr-6KO" firstAttribute="top" secondItem="KXK-1h-7Gr" secondAttribute="bottom" constant="8" id="bWZ-Ly-uwi"/>
                             <constraint firstItem="rBC-zr-6KO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jVZ-q4-52m" secondAttribute="leadingMargin" constant="8" id="fow-YB-ZIG"/>
                             <constraint firstItem="rBC-zr-6KO" firstAttribute="centerX" secondItem="jVZ-q4-52m" secondAttribute="centerX" id="jDg-r2-AcN"/>
                             <constraint firstItem="rBC-zr-6KO" firstAttribute="centerY" secondItem="jVZ-q4-52m" secondAttribute="centerY" id="pGp-Tl-wTc"/>
@@ -1752,6 +1757,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="scarlet-25-safari" width="19" height="19"/>
         <image name="scarlet-25-star" width="19" height="19"/>
         <image name="scarlet-25-twitter-square" width="19" height="19"/>
+        <image name="scarlet-44-info-circle" width="33" height="33"/>
         <image name="scarlet-70-play-circle" width="70" height="70"/>
     </resources>
     <inferredMetricsTieBreakers>

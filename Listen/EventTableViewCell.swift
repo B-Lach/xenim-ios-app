@@ -24,7 +24,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var playButtonMaxHeightConstraint: NSLayoutConstraint!
     
-    var event: Event? {
+    var event: Event! {
         didSet {
             // notifications have to be updated every time a new event is set to this cell
             // as one notifications is based on the event this cell represents
@@ -35,19 +35,22 @@ class EventTableViewCell: UITableViewCell {
     
     func updateUI() {
         if let event = event {
-            podcastNameLabel?.text = event.title
-            descriptionLabel?.text = event.podcastDescription
-            
-            let placeholderImage = UIImage(named: "event_placeholder")!
-            if let imageurl = event.imageurl {
-                eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
-            } else {
-                eventCoverartImage.image = placeholderImage
-            }
-            
+            podcastNameLabel?.text = event.title != nil ? event.title : event.podcast.name
+            descriptionLabel?.text = event.eventDescription != nil ? event.eventDescription : event.podcast.podcastDescription
+
+            updateCoverart()
             updateLivedate()
             updatePlayButton()
             updateFavoriteButton()
+        }
+    }
+    
+    func updateCoverart() {
+        let placeholderImage = UIImage(named: "event_placeholder")!
+        if let imageurl = event.podcast.artwork.thumb150Url{
+            eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+        } else {
+            eventCoverartImage.image = placeholderImage
         }
     }
     
@@ -67,9 +70,9 @@ class EventTableViewCell: UITableViewCell {
             }
             
             if event.isLive() {
-                liveDateLabel?.text = "\(formatter.stringFromDate(event.livedate))"
+                liveDateLabel?.text = "\(formatter.stringFromDate(event.begin))"
             } else {
-                liveDateLabel?.text = formatter.stringFromDate(event.livedate)
+                liveDateLabel?.text = formatter.stringFromDate(event.begin)
             }
         }
     }
@@ -152,7 +155,7 @@ class EventTableViewCell: UITableViewCell {
             favoriteButton?.layer.borderColor = Constants.Colors.tintColor.CGColor
             favoriteButton?.contentEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 0)
             
-            if !Favorites.fetch().contains(event.podcastSlug) {
+            if !Favorites.fetch().contains(event.podcast.id) {
                 favoriteButton?.setTitleColor(Constants.Colors.tintColor, forState: .Normal)
                 favoriteButton?.setImage(UIImage(named: "scarlet-20-star"), forState: .Normal)
                 favoriteButton?.backgroundColor = UIColor.clearColor()
@@ -169,7 +172,7 @@ class EventTableViewCell: UITableViewCell {
     
     @IBAction func favorite(sender: UIButton) {
         if let event = event {
-            Favorites.toggle(slug: event.podcastSlug)
+            Favorites.toggle(podcastId: event.podcast.id)
         }
         
     }

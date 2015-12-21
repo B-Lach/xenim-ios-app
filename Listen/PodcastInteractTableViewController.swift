@@ -47,7 +47,7 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
                 flattrCell?.detailTextLabel?.textColor = UIColor.grayColor()
                 flattrCell?.imageView?.image = UIImage(named: "steel-25-heart")
             }
-            if podcast.chatUrl == nil {
+            if podcast.webchatUrl == nil {
                 chatCell?.textLabel?.textColor = UIColor.grayColor()
                 chatCell?.detailTextLabel?.textColor = UIColor.grayColor()
                 chatCell?.imageView?.image = UIImage(named: "steel-25-comments")
@@ -62,12 +62,12 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
                 sendMailCell?.detailTextLabel?.textColor = UIColor.grayColor()
                 sendMailCell?.imageView?.image = UIImage(named: "steel-25-envelope")
             }
-            if podcast.url == nil {
+            if podcast.websiteUrl == nil {
                 openWebsiteCell?.textLabel?.textColor = UIColor.grayColor()
                 openWebsiteCell?.detailTextLabel?.textColor = UIColor.grayColor()
                 openWebsiteCell?.imageView?.image = UIImage(named: "steel-25-safari")
             }
-            if podcast.feedurl == nil {
+            if podcast.feedUrl == nil {
                 subscribeCell?.textLabel?.textColor = UIColor.grayColor()
                 subscribeCell?.detailTextLabel?.textColor = UIColor.grayColor()
                 subscribeCell?.imageView?.image = UIImage(named: "steel-25-rss-square")
@@ -78,7 +78,7 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     // MARK: - Actions
     
     func openPodcastWebsite() {
-        if let podcast = podcast, let url = podcast.url {
+        if let podcast = podcast, let url = podcast.websiteUrl {
             print(url)
             let svc = SFSafariViewController(URL: url)
             svc.delegate = self
@@ -103,10 +103,10 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     }
     
     func openChat() {
-        if let podcast = podcast, let chatUrl = podcast.chatUrl, let webchatUrl = podcast.webchatUrl {
-            if UIApplication.sharedApplication().canOpenURL(chatUrl) {
+        if let podcast = podcast, let ircUrl = podcast.ircUrl, let webchatUrl = podcast.webchatUrl {
+            if UIApplication.sharedApplication().canOpenURL(ircUrl) {
                 // open associated app
-                UIApplication.sharedApplication().openURL(chatUrl)
+                UIApplication.sharedApplication().openURL(ircUrl)
             } else {
                 // open webchat in safari
                 UIApplication.sharedApplication().openURL(webchatUrl)
@@ -115,7 +115,7 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
     }
     
     func subscribePodcast() {
-        if let podcast = self.podcast, let subscribeClients = podcast.subscribeClients {
+        if let podcast = self.podcast, let subscribeClients = podcast.subscribeURLSchemesDictionary {
             let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
             optionMenu.view.tintColor = Constants.Colors.tintColor
             
@@ -237,7 +237,7 @@ class PodcastInteractTableViewController: UITableViewController, SFSafariViewCon
                         popupController.permittedArrowDirections = [.Down, .Up]
                         popupController.sourceRect = cell.textLabel!.frame
                     }
-                    nextupEventsTableViewController.podcastSlug = podcast?.slug
+                    nextupEventsTableViewController.podcastId = podcast?.id
                 }
             }
         }

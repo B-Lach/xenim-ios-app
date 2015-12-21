@@ -24,11 +24,9 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var event: Event! {
         didSet {
-            fetchPodcastInfo()
             updateUI()
         }
     }
-    var podcast: Podcast?
     var playerManagerDelegate: PlayerManagerDelegate?
 
 	@IBOutlet weak var podcastNameLabel: UILabel!
@@ -72,11 +70,11 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     func updateUI() {
         podcastNameLabel?.text = event.title
         popupItem.title = event.title
-        subtitleLabel?.text = event.podcastDescription
-        popupItem.subtitle = event.podcastDescription
+        subtitleLabel?.text = event.podcast.podcastDescription
+        popupItem.subtitle = event.podcast.podcastDescription
 
         let placeholderImage = UIImage(named: "event_placeholder")!
-        if let imageurl = event.imageurl {
+        if let imageurl = event.podcast.artwork.originalUrl {
             coverartView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
             miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
 
@@ -111,7 +109,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         items.append(spaceItem)
         items.append(infoItem)
         
-        if podcast?.webchatUrl != nil {
+        if event.podcast.webchatUrl != nil {
             let chatItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-comments"), style: .Plain, target: self, action: "openChat:")
             items.append(spaceItem)
             items.append(chatItem)
@@ -146,7 +144,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func updateFavoritesButton() {
         if let event = event {
-            if !Favorites.fetch().contains(event.podcastSlug) {
+            if !Favorites.fetch().contains(event.podcast.id) {
                 favoriteItem?.image = UIImage(named: "scarlet-25-star-o")
             } else {
                 favoriteItem?.image = UIImage(named: "scarlet-25-star")
@@ -173,12 +171,12 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func favorite(sender: AnyObject) {
         if let event = event {
-            Favorites.toggle(slug: event.podcastSlug)
+            Favorites.toggle(podcastId: event.podcast.id)
         }
     }
     
     func share(sender: AnyObject) {
-        if let event = event {
+        if event != nil {
             playerManagerDelegate?.sharePressed()
         }
     }
@@ -192,10 +190,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func openChat(sender: AnyObject) {
-        if let chatUrl = podcast?.chatUrl, let webchatUrl = podcast?.webchatUrl {
-            if UIApplication.sharedApplication().canOpenURL(chatUrl) {
+        if let ircUrl = event.podcast.ircUrl, let webchatUrl = event.podcast.webchatUrl {
+            if UIApplication.sharedApplication().canOpenURL(ircUrl) {
                 // open associated app
-                UIApplication.sharedApplication().openURL(chatUrl)
+                UIApplication.sharedApplication().openURL(ircUrl)
             } else {
                 // open webchat in safari
                 UIApplication.sharedApplication().openURL(webchatUrl)
@@ -253,24 +251,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         case .Failed(_):
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
-        }
-    }
-    
-    // MARK: - Data source
-    
-    func fetchPodcastInfo() {
-        if podcast == nil || podcast!.slug != event.podcastSlug {
-            HoersuppeAPI.fetchPodcastDetail(event.podcastSlug, onComplete: { (podcast) -> Void in
-                if let podcast = podcast {
-                    // check if the request that came back still matches the cell
-                    if podcast.slug == self.event.podcastSlug {
-                        self.podcast = podcast
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.updateToolbar()
-                        })
-                    }
-                }
-            })
         }
     }
     

@@ -18,9 +18,7 @@ class EventTableViewController: UITableViewController {
         case ThisWeek
         case Later
     }
-    
-    // all events with no sorting
-    var unsortedEvents = [Event]()
+
     // events sorted into sections (see above) and sorted by time
     var events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
     // same as events, but filtered by current favorites
@@ -66,6 +64,7 @@ class EventTableViewController: UITableViewController {
         if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
             self.messageVC = messageVC
             tableView.backgroundView = messageVC.view
+            tableView.backgroundView?.layer.zPosition -= 1
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
@@ -90,9 +89,9 @@ class EventTableViewController: UITableViewController {
         let messageLabel = messageVC?.messageLabel
         if numberOfRows() == 0 {
             if showFavoritesOnly {
-                messageLabel?.text = NSLocalizedString("event_tableview_empty_favorites_only_message", value: "None of your favorite podcast shows will be live in the near future. Add more shows to your favorites to see something here.", comment: "this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display.")
+                messageLabel?.text = NSLocalizedString("event_tableview_empty_favorites_only_message", value: "This is a filtered event list. You only see events of your favorite shows here. Currently there are no events of your favorite podcasts scheduled.", comment: "this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display.")
             } else {
-                messageLabel?.text = NSLocalizedString("event_tableview_empty_message", value: "Did no receive any upcoming events.", comment: "this message gets displayed if no events could be displayed / fetched from the API")
+                messageLabel?.text = NSLocalizedString("event_tableview_empty_message", value: "Did not receive any upcoming events. Pull to refresh to try again.", comment: "this message gets displayed if no events could be displayed / fetched from the API")
             }
             tableView.separatorStyle = UITableViewCellSeparatorStyle.None
             tableView.backgroundView?.hidden = false
@@ -106,13 +105,36 @@ class EventTableViewController: UITableViewController {
     
     @IBAction func refresh(spinner: UIRefreshControl) {
         spinner.beginRefreshing()
-        HoersuppeAPI.fetchEvents(count: 50) { (events) -> Void in
-            self.unsortedEvents = events
-            self.resortEvents()
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.tableView.reloadData()
-                spinner.endRefreshing()
-            })
+        events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+        
+        let serviceGroup = dispatch_group_create()
+        
+        dispatch_group_enter(serviceGroup)
+        XenimAPI.fetchUpcomingEvents(maxCount: 50) { (events) -> Void in
+            for event in events {
+                if event.isToday() {
+                    self.addEventToSection(event, section: Section.Today)
+                } else if event.isTomorrow() {
+                    self.addEventToSection(event, section: Section.Tomorrow)
+                } else if event.isThisWeek() {
+                    self.addEventToSection(event, section: Section.ThisWeek)
+                } else {
+                    self.addEventToSection(event, section: Section.Later)
+                }
+            }
+            dispatch_group_leave(serviceGroup)
+        }
+        dispatch_group_enter(serviceGroup)
+        XenimAPI.fetchLiveEvents { (events) -> Void in
+            for event in events {
+                self.addEventToSection(event, section: Section.Live)
+            }
+            dispatch_group_leave(serviceGroup)
+        }
+        
+        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) { () -> Void in
+            self.tableView.reloadData()
+            spinner.endRefreshing()
         }
     }
     
@@ -160,11 +182,11 @@ class EventTableViewController: UITableViewController {
         }
         switch section {
         case 0: return NSLocalizedString("event_tableview_sectionheader_live", value: "Live now", comment: "section header in event table view for the live now section")
-            case 1: return NSLocalizedString("event_tableview_sectionheader_today", value: "Upcoming Today", comment: "section header in event table view for the upcoming today section")
-            case 2: return NSLocalizedString("event_tableview_sectionheader_tomorrow", value: "Tomorrow", comment: "section header in event table view for the tomorrow section")
-            case 3: return NSLocalizedString("event_tableview_sectionheader_thisweek", value: "Later this Week", comment: "section header in event table view for the later this week section")
-            case 4: return NSLocalizedString("event_tableview_sectionheader_later", value: "Next week and later", comment: "section header in event table view for the later than next week section")
-            default: return "Unknown"
+        case 1: return NSLocalizedString("event_tableview_sectionheader_today", value: "Upcoming Today", comment: "section header in event table view for the upcoming today section")
+        case 2: return NSLocalizedString("event_tableview_sectionheader_tomorrow", value: "Tomorrow", comment: "section header in event table view for the tomorrow section")
+        case 3: return NSLocalizedString("event_tableview_sectionheader_thisweek", value: "Later this Week", comment: "section header in event table view for the later this week section")
+        case 4: return NSLocalizedString("event_tableview_sectionheader_later", value: "Next week and later", comment: "section header in event table view for the later than next week section")
+        default: return "Unknown"
         }
     }
     
@@ -194,7 +216,11 @@ class EventTableViewController: UITableViewController {
             }
             return count
         } else {
-            return unsortedEvents.count
+            var count = 0
+            for section in events {
+                count += section.count
+            }
+            return count
         }
     }
     
@@ -236,7 +262,8 @@ class EventTableViewController: UITableViewController {
     
     // MARK: process data
     
-    private func addEvent(event: Event, section: Section) {
+    private func addEventToSection(event: Event, section: Section) {
+        objc_sync_enter(events)
         switch section {
         case .Live: events[0].append(event)
         case .Today: events[1].append(event)
@@ -244,33 +271,7 @@ class EventTableViewController: UITableViewController {
         case .ThisWeek: events[3].append(event)
         case .Later: events[4].append(event)
         }
-    }
-    
-    private func sortEventsInSections(events: [Event]) {
-        for event in events {
-            if event.isFinished() {
-                // event already finished, do not add to the list
-                continue
-            } else if event.isLive() {
-                addEvent(event, section: Section.Live)
-            } else if event.isToday() {
-                addEvent(event, section: Section.Today)
-            } else if event.isTomorrow() {
-                addEvent(event, section: Section.Tomorrow)
-            } else if event.isThisWeek() {
-                addEvent(event, section: Section.ThisWeek)
-            } else {
-                addEvent(event, section: Section.Later)
-            }
-        }
-    }
-    
-    private func resortEvents() {
-        self.events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
-        self.sortEventsInSections(unsortedEvents)
-        if self.showFavoritesOnly {
-            self.filterFavorites()
-        }
+        objc_sync_exit(events)
     }
     
     private func filterFavorites() {
@@ -280,7 +281,7 @@ class EventTableViewController: UITableViewController {
         for i in 0 ..< favoriteEvents.count {
             let section = favoriteEvents[i]
             favoriteEvents[i] = section.filter({ (event) -> Bool in
-                return favorites.contains(event.podcastSlug)
+                return favorites.contains(event.podcast.id)
             })
         }
     }
@@ -347,8 +348,7 @@ class EventTableViewController: UITableViewController {
     
     // update events every minute automatically
     @objc func timerTicked() {
-        resortEvents()
-        tableView.reloadData()
+        // TODO
     }
     
 }

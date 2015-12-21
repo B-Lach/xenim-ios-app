@@ -22,32 +22,55 @@ class Favorites {
         }
     }
     
-    static func add(slug slug: String) {
+    static func add(podcastId podcastId: String) {
         var favorites = fetch()
-        if !favorites.contains(slug) {
-            favorites.append(slug)
+        if !favorites.contains(podcastId) {
+            favorites.append(podcastId)
             userDefaults.setObject(favorites, forKey: key)
-            PushNotificationManager.subscribeToChannel(slug)
+            PushNotificationManager.subscribeToPodcastChannel(podcastId)
             notifyChange()
         }
     }
     
-    static func remove(slug slug: String) {
+    static func remove(podcastId podcastId: String) {
         var favorites = fetch()
-        if let index = favorites.indexOf(slug) {
+        if let index = favorites.indexOf(podcastId) {
             favorites.removeAtIndex(index)
             userDefaults.setObject(favorites, forKey: key)
-            PushNotificationManager.unsubscribeFromChannel(slug)
+            PushNotificationManager.unsubscribeFromPodcastChannel(podcastId)
             notifyChange()
         }
     }
     
-    static func toggle(slug slug: String) {
+    static func toggle(podcastId podcastId: String) {
         let favorites = fetch()
-        if !favorites.contains(slug) {
-            add(slug: slug)
+        if !favorites.contains(podcastId) {
+            add(podcastId: podcastId)
         } else {
-            remove(slug: slug)
+            remove(podcastId: podcastId)
+        }
+    }
+    
+    static func fetchFavoritePodcasts(onComplete: (podcasts: [Podcast]) -> Void) {
+        let podcastIds = fetch()
+        var podcasts = [Podcast]()
+        let serviceGroup = dispatch_group_create()
+        
+        for podcastId in podcastIds {
+            dispatch_group_enter(serviceGroup)
+            XenimAPI.fetchPodcastById(podcastId, onComplete: { (podcast) -> Void in
+                if podcast != nil {
+                    // this has to be thread safe
+                    objc_sync_enter(podcasts)
+                    podcasts.append(podcast!)
+                    objc_sync_exit(podcasts)
+                }
+                dispatch_group_leave(serviceGroup)
+            })
+        }
+        
+        dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
+            onComplete(podcasts: podcasts)
         }
     }
     

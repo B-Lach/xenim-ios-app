@@ -94,16 +94,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func showEventInfo(userInfo: [NSObject : AnyObject]) {
         // Extract the notification event data
         if let eventId = userInfo["event_id"] as? String {
-            let event = Event(duration: "90", livedate: "2015-12-11 20:00:00", podcastSlug: "breitband", streamurl: "http://www.dradio.de/streaming/dkultur.m3u", imageurl: "http://www.deutschlandradiokultur.de/media/files/2/258cfe6db750912b0bb36410d2fdf775v1.jpg", podcastDescription: "Magazin für Medien und digitale Kultur, immer samstags 13:05 im Deutschlandradio Kultur", title: "Breitband", url: "http://www.deutschlandradio.de/weiterleitung-breitband-de.233.de.html")!
-            EventTableViewController.showEventInfo(event: event)
+            XenimAPI.fetchEventById(eventId, onComplete: { (event) -> Void in
+                if let event = event {
+                    EventTableViewController.showEventInfo(event: event)
+                }
+            })
         }
     }
     
     func playEvent(userInfo: [NSObject : AnyObject]) {
         // Extract the notification event data
         if let eventId = userInfo["event_id"] as? String {
-            let event = Event(duration: "90", livedate: "2015-12-11 20:00:00", podcastSlug: "breitband", streamurl: "http://www.dradio.de/streaming/dkultur.m3u", imageurl: "http://www.deutschlandradiokultur.de/media/files/2/258cfe6db750912b0bb36410d2fdf775v1.jpg", podcastDescription: "Magazin für Medien und digitale Kultur, immer samstags 13:05 im Deutschlandradio Kultur", title: "Breitband", url: "http://www.deutschlandradio.de/weiterleitung-breitband-de.233.de.html")
-            PlayerManager.sharedInstance.togglePlayPause(event!)
+            XenimAPI.fetchEventById(eventId, onComplete: { (event) -> Void in
+                if let event = event {
+                    PlayerManager.sharedInstance.togglePlayPause(event)
+                }
+            })
+
         }
     }
 

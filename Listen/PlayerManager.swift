@@ -85,17 +85,24 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     }
     
     func sharePressed() {
-        let toShare = NSURL(string: "http://www.codingexplorer.com/")!
-        let objectsToShare = [toShare]
-        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        
-        // Excluded Activities
-//      activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
-        
-        baseViewController?.presentViewController(activityVC, animated: true, completion: nil)
+        if let url = event?.eventXenimWebUrl {
+            let objectsToShare = [url]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            // Excluded Activities
+            //      activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
+            
+            baseViewController?.presentViewController(activityVC, animated: true, completion: nil)
+        }
     }
     
     // MARK: private
+    
+    private func showStreamErrorMessage() {
+        let errorTitle = NSLocalizedString("player_failed_state_alertview_title", value: "Playback Error", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.")
+        let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
+        showInfoMessage(errorTitle, message: errorMessage)
+    }
     
     private func showInfoMessage(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -106,35 +113,38 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     }
     
     private func playEvent(event: Event) {
-        self.event = event
-        
-        if playerViewController == nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            playerViewController = storyboard.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
-            playerViewController!.playerManagerDelegate = self
-        }
-        
-        let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: "handleLongPress:")
-        longpressRecognizer.delegate = playerViewController
-        
-        playerViewController!.event = event
-        
-        baseViewController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
-        baseViewController?.popupBar.addGestureRecognizer(longpressRecognizer)
-        
-        currentItem = AudioItem(mediumQualitySoundURL: event.streamurl)
-        currentItem?.artist = event.podcastDescription
-        currentItem?.title = event.title
-        player.playItem(currentItem!)
-        
-        // fetch coverart from image cache and set it as lockscreen artwork
-        if let imageurl = event.imageurl {
-            Alamofire.request(.GET, imageurl)
-                .responseImage { response in
-                    if let image = response.result.value {
-                        self.currentItem?.artworkImage = image
-                    }
+        if let audioItem = AudioItem(mediumQualitySoundURL: event.streamUrl) {
+            self.event = event
+            if playerViewController == nil {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                playerViewController = storyboard.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
+                playerViewController!.playerManagerDelegate = self
             }
+            
+            let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: "handleLongPress:")
+            longpressRecognizer.delegate = playerViewController
+            
+            playerViewController!.event = event
+            
+            baseViewController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
+            baseViewController?.popupBar.addGestureRecognizer(longpressRecognizer)
+            
+            currentItem = audioItem
+            currentItem?.artist = event.podcast.podcastDescription
+            currentItem?.title = event.title
+            player.playItem(currentItem!) // save as this can not be nil
+            
+            // fetch coverart from image cache and set it as lockscreen artwork
+            if let imageurl = event.podcast.artwork.originalUrl {
+                Alamofire.request(.GET, imageurl)
+                    .responseImage { response in
+                        if let image = response.result.value {
+                            self.currentItem?.artworkImage = image
+                        }
+                }
+            }
+        } else {
+            showStreamErrorMessage()
         }
     }
     
@@ -165,9 +175,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
             baseViewController?.dismissPopupBarAnimated(true, completion: nil)
         case .WaitingForConnection: break
         case .Failed(_):
-            let errorTitle = NSLocalizedString("player_failed_state_alertview_title", value: "Playback Error", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.")
-            let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
-            showInfoMessage(errorTitle, message: errorMessage)
+            showStreamErrorMessage()
             // .Stopped will be the next state automatically
             // this will dismiss the player
         }

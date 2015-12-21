@@ -10,41 +10,18 @@ import UIKit
 
 class PodcastTableViewCell: UITableViewCell {
 
-    var podcast: Podcast? {
+    var podcast: Podcast! {
         didSet {
             let placeholderImage = UIImage(named: "event_placeholder")
-            if let url = podcast?.imageurl {
-                coverartImageView.af_setImageWithURL(url, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            if let imageurl = podcast.artwork.thumb150Url {
+                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
             } else {
                 coverartImageView.image = placeholderImage
             }
-            descriptionLabel?.text = podcast?.podcastDescription
-        }
-    }
-    
-    /**
-     podcastName and podcastSlug have to be set in prepareForSegue
-     the complete podcast data will then be fetched and displayed async
-    */
-    var podcastName: String! {
-        didSet {
-            podcastNameLabel?.text = podcastName
-        }
-    }
-    var podcastSlug: String! {
-        didSet {
             setupNotifications()
-            coverartImageView.image = UIImage(named: "event_placeholder")
-            descriptionLabel.text = ""
             updateFavoriteButton()
-            HoersuppeAPI.fetchPodcastDetail(podcastSlug) { (podcast) -> Void in
-                if let podcast = podcast {
-                    // check if the returned data still matches the cell
-                    if podcast.slug == self.podcastSlug {
-                        self.podcast = podcast
-                    }
-                }
-            }
+            descriptionLabel?.text = podcast?.podcastDescription
+            podcastNameLabel?.text = podcast.name
         }
     }
     
@@ -64,7 +41,7 @@ class PodcastTableViewCell: UITableViewCell {
         favoriteButton?.layer.borderColor = Constants.Colors.tintColor.CGColor
         favoriteButton?.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
         
-        if !Favorites.fetch().contains(podcastSlug) {
+        if !Favorites.fetch().contains(podcast.id) {
             favoriteButton?.setTitleColor(Constants.Colors.tintColor, forState: .Normal)
             favoriteButton?.setImage(UIImage(named: "scarlet-25-star"), forState: .Normal)
             favoriteButton?.backgroundColor = UIColor.whiteColor()
@@ -76,7 +53,7 @@ class PodcastTableViewCell: UITableViewCell {
     }
     
     @IBAction func toggleFavorite(sender: AnyObject) {
-        Favorites.toggle(slug: podcastSlug)
+        Favorites.toggle(podcastId: podcast.id)
     }
     
     override func awakeFromNib() {
