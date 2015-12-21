@@ -55,6 +55,19 @@ class Event : NSObject {
     }
     let shownotes: String?
     var streams = [Stream]()
+    // returns a supported streamUrl or nil
+    var streamUrl: NSURL? {
+        get {
+            let supportedCodecs = ["mp3", "aac"]
+            // try to find a stream that is supported by ios
+            for stream in streams {
+                if supportedCodecs.contains(stream.codec) {
+                    return stream.url
+                }
+            }
+            return nil
+        }
+    }
     
     // in seconds    
     var duration: NSTimeInterval? {
