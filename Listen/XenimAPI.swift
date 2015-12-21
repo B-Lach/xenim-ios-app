@@ -89,11 +89,11 @@ class XenimAPI : ListenAPI {
                 var podcasts = [Podcast]()
                 if let responseData = response.data {
                     let json = JSON(data: responseData)
-                    let objects = json["objects"]
-                    
-                    for podcastJSON in objects.array! {
-                        if let podcast = podcastFromJSON(podcastJSON) {
-                            podcasts.append(podcast)
+                    if let objects = json["objects"].array {
+                        for podcastJSON in objects {
+                            if let podcast = podcastFromJSON(podcastJSON) {
+                                podcasts.append(podcast)
+                            }
                         }
                     }
                 }
@@ -108,26 +108,28 @@ class XenimAPI : ListenAPI {
         var events = [Event]()
         if let responseData = response.data {
             let json = JSON(data: responseData)
-            let objects = json["objects"]
-            
-            let serviceGroup = dispatch_group_create()
-            
-            for eventJSON in objects.array! {
-                dispatch_group_enter(serviceGroup)
-                eventFromJSON(eventJSON, onComplete: { (event) -> Void in
-                    if event != nil {
-                        // this has to be thread safe
-                        objc_sync_enter(events)
-                        events.append(event!)
-                        objc_sync_exit(events)
-                    }
-                    dispatch_group_leave(serviceGroup)
+            if let objects = json["objects"].array {
+                let serviceGroup = dispatch_group_create()
+                
+                for eventJSON in objects {
+                    dispatch_group_enter(serviceGroup)
+                    eventFromJSON(eventJSON, onComplete: { (event) -> Void in
+                        if event != nil {
+                            // this has to be thread safe
+                            objc_sync_enter(events)
+                            events.append(event!)
+                            objc_sync_exit(events)
+                        }
+                        dispatch_group_leave(serviceGroup)
+                    })
+                }
+                
+                dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+                    onComplete(events: events)
                 })
-            }
-            
-            dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+            } else {
                 onComplete(events: events)
-            })
+            }
         } else {
             onComplete(events: events)
         }
@@ -180,13 +182,16 @@ class XenimAPI : ListenAPI {
         }
         
         var streams = [Stream]()
-        for streamJSON in eventJSON["streams"].array! {
-            let bitrate = streamJSON["bitrate"].stringValue
-            let codec = streamJSON["bitrate"].stringValue
-            if let url = NSURL(string: streamJSON["transport"].stringValue + ":" + streamJSON["url"].stringValue) {
-                streams.append(Stream(codec: codec, bitrate: bitrate, url: url))
+        if let streamsJSON = eventJSON["streams"].array {
+            for streamJSON in streamsJSON {
+                let bitrate = streamJSON["bitrate"].stringValue
+                let codec = streamJSON["bitrate"].stringValue
+                if let url = NSURL(string: streamJSON["transport"].stringValue + ":" + streamJSON["url"].stringValue) {
+                    streams.append(Stream(codec: codec, bitrate: bitrate, url: url))
+                }
             }
         }
+
         
         if podcastId != nil {
             fetchPodcastById(podcastId!) { (podcast) -> Void in
