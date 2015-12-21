@@ -62,7 +62,8 @@ class PodcastDetailViewController: UIViewController {
             self.coverartImageView?.image = placeholderImage
         }
         
-        podcastNameLabel?.text = podcast?.name
+        // TODO
+        podcastNameLabel?.text = event?.title != nil ? event?.title : podcast?.name
         self.title = podcast?.name
         podcastDescriptionLabel?.text = podcast?.podcastDescription
 
