@@ -183,7 +183,7 @@ class XenimAPI : ListenAPI {
         for streamJSON in eventJSON["streams"].array! {
             let bitrate = streamJSON["bitrate"].stringValue
             let codec = streamJSON["bitrate"].stringValue
-            if let url = streamJSON["url"].URL {
+            if let url = NSURL(string: streamJSON["transport"].stringValue + ":" + streamJSON["url"].stringValue) {
                 streams.append(Stream(codec: codec, bitrate: bitrate, url: url))
             }
         }
