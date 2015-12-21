@@ -193,7 +193,7 @@ class XenimAPI : ListenAPI {
                 // only add this event to the list if it has a minimum number
                 // of attributes set
                 if id != "" && begin != nil && status != nil && podcast != nil {
-                    let event = Event(id: id, status: status!, begin: begin!, end: end!, podcast: podcast!, title: title, eventXenimWebUrl: absoluteUrl, streams: streams, shownotes: shownotes, description: description)
+                    let event = Event(id: id, status: status!, begin: begin!, end: end, podcast: podcast!, title: title, eventXenimWebUrl: absoluteUrl, streams: streams, shownotes: shownotes, description: description)
                     onComplete(event: event)
                 } else {
                     onComplete(event: nil)
