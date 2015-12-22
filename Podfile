@@ -9,7 +9,7 @@ target 'Listen' do
   pod 'Parse'
   pod "CRToast"
   #pod 'KDEAudioPlayer'
-  #pod 'KDEAudioPlayer', :git => 'https://github.com/delannoyk/AudioPlayer.git', :branch => 'master'
-  pod 'KDEAudioPlayer', :git => 'https://github.com/funkenstrahlen/AudioPlayer.git', :branch => 'develop'
+  pod 'KDEAudioPlayer', :git => 'https://github.com/delannoyk/AudioPlayer.git', :branch => 'develop'
+  #pod 'KDEAudioPlayer', :git => 'https://github.com/funkenstrahlen/AudioPlayer.git', :branch => 'develop'
 end
 
