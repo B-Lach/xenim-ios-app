@@ -184,6 +184,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {}
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {}
     func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {}
+    func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem) {}
     
     /**
      remote control event is received in app delegate and passed for processing here
