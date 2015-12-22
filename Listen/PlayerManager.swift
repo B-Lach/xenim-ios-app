@@ -150,14 +150,16 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     
     private func plus30seconds() {
         let currentTime = player.currentItemProgression
-        let newTime = currentTime?.advancedBy(30)
-        player.seekToTime(newTime!)
+        if let newTime = currentTime?.advancedBy(30) {
+            player.seekToTime(newTime)
+        }
     }
     
     private func minus30seconds() {
         let currentTime = player.currentItemProgression
-        let newTime = currentTime?.advancedBy(-30)
-        player.seekToTime(newTime!)
+        if let newTime = currentTime?.advancedBy(-30) {
+            player.seekToTime(newTime)
+        }
     }
     
     // MARK: - Notifications
