@@ -15,7 +15,7 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
     // contains the podcast slugs of all favorites
     var favorites = [Podcast]()
     var messageVC: MessageViewController?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged"), name: "favoritesChanged", object: nil)
@@ -60,6 +60,22 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
         cell.podcast = favorites[indexPath.row]
         
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath)
+            return headerView
+            
+        case UICollectionElementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Footer", forIndexPath: indexPath)
+            return footerView
+            
+        default:
+            assert(false, "Unexpected element kind")
+        }
     }
     
     func favoritesChanged() {
