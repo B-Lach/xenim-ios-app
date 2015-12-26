@@ -1300,7 +1300,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9T-Sd-zcf" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="501"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="496"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why can I not find my favorite podcast show in the list of events?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZw-LZ-4jq">
                                                 <rect key="frame" x="8" y="8" width="584" height="20"/>
@@ -1343,8 +1343,8 @@ In rare cases the audio format provided by the podcast show is not supported by 
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your question has not been answered? Feel free to use the contact possibility in settings." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-gq-i0L">
-                                                <rect key="frame" x="8" y="452" width="584" height="41"/>
-                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                <rect key="frame" x="8" y="452" width="584" height="36"/>
+                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
