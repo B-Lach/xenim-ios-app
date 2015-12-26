@@ -12,9 +12,11 @@ import UIKit
 struct Artwork {
     let originalUrl: NSURL?
     let thumb150Url: NSURL?
-    init(originalUrl: NSURL?, thumb150Url: NSURL?) {
+    let thumb180Url: NSURL?
+    init(originalUrl: NSURL?, thumb150Url: NSURL?, thumb180Url: NSURL?) {
         self.originalUrl = originalUrl
         self.thumb150Url = thumb150Url
+        self.thumb180Url = thumb180Url
     }
 }
 
