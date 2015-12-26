@@ -1,43 +1,32 @@
 PODS:
-  - Alamofire (3.1.3)
-  - AlamofireImage (2.1.1):
+  - Alamofire (3.1.4)
+  - AlamofireImage (2.2.0):
     - Alamofire (~> 3.1)
   - Bolts/Tasks (1.5.0)
   - CRToast (0.0.9)
-  - KDEAudioPlayer (0.3.4)
-  - MarqueeLabel-Swift (2.3.5)
-  - Parse (1.10.0):
+  - KDEAudioPlayer (0.4.0)
+  - MarqueeLabel-Swift (2.4.2)
+  - Parse (1.11.0):
     - Bolts/Tasks (~> 1.5)
-  - SwiftyJSON (2.3.1)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
-  - AlamofireImage
-  - CRToast
-  - KDEAudioPlayer (from `https://github.com/funkenstrahlen/AudioPlayer.git`, branch
-    `develop`)
-  - MarqueeLabel-Swift
-  - Parse
+  - AlamofireImage (~> 2.1)
+  - CRToast (~> 0.0)
+  - KDEAudioPlayer (~> 0.4)
+  - MarqueeLabel-Swift (~> 2.3)
+  - Parse (~> 1.10)
   - SwiftyJSON (~> 2.3)
 
-EXTERNAL SOURCES:
-  KDEAudioPlayer:
-    :branch: develop
-    :git: https://github.com/funkenstrahlen/AudioPlayer.git
-
-CHECKOUT OPTIONS:
-  KDEAudioPlayer:
-    :commit: 8993874ad964bd1abe553e0adbc2f0140a6efd65
-    :git: https://github.com/funkenstrahlen/AudioPlayer.git
-
 SPEC CHECKSUMS:
-  Alamofire: 9f93b56389e48def9220dd57d1f44b1927229a5a
-  AlamofireImage: 31f7c4e9f516183e0ef2d2da18318de28a4628b8
+  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
+  AlamofireImage: bedb8a4bdfb98eda81ba12952fba6e9e90420922
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
-  KDEAudioPlayer: 8238a011987c675af6dfff96fe909578a05220ae
-  MarqueeLabel-Swift: 4f90901990c45ce28aab5b0cc8fc1831eca3b616
-  Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
-  SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
+  KDEAudioPlayer: b70cbda4c847f1ab78bf7c0b23b29b6e03538ac6
+  MarqueeLabel-Swift: 02f82b53b7b01a4cbc06f00ec8cd165093b0c7cb
+  Parse: 886af46a0a677402f6374bb97ac212e795f70afe
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

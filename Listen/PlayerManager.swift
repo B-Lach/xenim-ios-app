@@ -150,14 +150,16 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     
     private func plus30seconds() {
         let currentTime = player.currentItemProgression
-        let newTime = currentTime?.advancedBy(30)
-        player.seekToTime(newTime!)
+        if let newTime = currentTime?.advancedBy(30) {
+            player.seekToTime(newTime)
+        }
     }
     
     private func minus30seconds() {
         let currentTime = player.currentItemProgression
-        let newTime = currentTime?.advancedBy(-30)
-        player.seekToTime(newTime!)
+        if let newTime = currentTime?.advancedBy(-30) {
+            player.seekToTime(newTime)
+        }
     }
     
     // MARK: - Notifications
@@ -184,6 +186,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {}
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {}
     func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {}
+    func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem) {}
     
     /**
      remote control event is received in app delegate and passed for processing here

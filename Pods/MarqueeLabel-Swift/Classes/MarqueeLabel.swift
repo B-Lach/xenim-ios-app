@@ -64,7 +64,7 @@ public class MarqueeLabel: UILabel {
     public var holdScrolling: Bool = false {
         didSet {
             if holdScrolling != oldValue {
-                if oldValue == true && !(awayFromHome() || labelize || tapToScroll ){
+                if oldValue == true && !(awayFromHome() || labelize || tapToScroll ) && labelShouldScroll() {
                     beginScroll()
                 }
             }
@@ -709,18 +709,15 @@ public class MarqueeLabel: UILabel {
         let transparent = UIColor.clearColor().CGColor
         let opaque = UIColor.blackColor().CGColor
         
+        // Set mask
+        self.layer.mask = gradientMask
+        
         gradientMask.bounds = self.layer.bounds
         gradientMask.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))
         gradientMask.shouldRasterize = true
         gradientMask.rasterizationScale = UIScreen.mainScreen().scale
         gradientMask.startPoint = CGPointMake(0.0, 0.5)
         gradientMask.endPoint = CGPointMake(1.0, 0.5)
-        // Start with default (no fade) locations
-        gradientMask.colors = [opaque, opaque, opaque, opaque]
-        gradientMask.locations = [0.0, 0.0, 1.0, 1.0]
-        
-        // Set mask
-        self.layer.mask = gradientMask
         
         let leftFadeStop = fadeLength/self.bounds.size.width
         let rightFadeStop = fadeLength/self.bounds.size.width
@@ -985,8 +982,9 @@ public class MarqueeLabel: UILabel {
     }
     
     public func restartLabel() {
-        applyGradientMask(fadeLength, animated: false)
-        
+        // Shutdown the label
+        shutdownLabel()
+        // Restart scrolling if appropriate
         if labelShouldScroll() && !tapToScroll && !holdScrolling {
             beginScroll()
         }
@@ -999,10 +997,18 @@ public class MarqueeLabel: UILabel {
     }
     
     public func shutdownLabel() {
+        // Bring label to home location
         returnLabelToHome()
+        // Apply gradient mask for home location
+        applyGradientMask(fadeLength, animated: false)
     }
     
     public func pauseLabel() {
+        // Prevent pausing label while not in scrolling animation, or when already paused
+        guard (!isPaused && awayFromHome()) else {
+            return
+        }
+        
         // Pause sublabel position animations
         let labelPauseTime = sublabel.layer.convertTime(CACurrentMediaTime(), fromLayer: nil)
         sublabel.layer.speed = 0.0
@@ -1015,6 +1021,11 @@ public class MarqueeLabel: UILabel {
     }
     
     public func unpauseLabel() {
+        // Only unpause if label was previously paused
+        guard (isPaused) else {
+            return
+        }
+        
         // Unpause sublabel position animations
         let labelPausedTime = sublabel.layer.timeOffset
         sublabel.layer.speed = 1.0
