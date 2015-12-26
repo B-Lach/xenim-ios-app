@@ -47,7 +47,7 @@ class EventTableViewCell: UITableViewCell {
     
     func updateCoverart() {
         let placeholderImage = UIImage(named: "event_placeholder")!
-        if let imageurl = event.podcast.artwork.thumb150Url{
+        if let imageurl = event.podcast.artwork.thumb180Url{
             eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
         } else {
             eventCoverartImage.image = placeholderImage
