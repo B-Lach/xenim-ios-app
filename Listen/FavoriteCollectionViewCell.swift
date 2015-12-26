@@ -20,7 +20,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     func updateUI() {
         if let podcast = podcast {
-            if let imageurl = podcast.artwork.thumb150Url {
+            if let imageurl = podcast.artwork.thumb180Url {
                 coverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
             } else {
                 coverartImageView.image = UIImage(named: "event_placeholder")

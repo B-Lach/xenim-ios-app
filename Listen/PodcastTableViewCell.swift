@@ -13,7 +13,7 @@ class PodcastTableViewCell: UITableViewCell {
     var podcast: Podcast! {
         didSet {
             let placeholderImage = UIImage(named: "event_placeholder")
-            if let imageurl = podcast.artwork.thumb150Url {
+            if let imageurl = podcast.artwork.thumb180Url {
                 coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
             } else {
                 coverartImageView.image = placeholderImage
