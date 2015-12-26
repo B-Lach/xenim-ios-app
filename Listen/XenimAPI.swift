@@ -140,7 +140,8 @@ class XenimAPI : ListenAPI {
         let name = podcastJSON["name"].stringValue
         let podcastDescription = podcastJSON["description"].stringValue
         
-        let artwork = Artwork(originalUrl: podcastJSON["artwork_original_url"].URL, thumb150Url: podcastJSON["artwork_thumb_url"].URL)
+        let artworkJSON = podcastJSON["artwork"]
+        let artwork = Artwork(originalUrl: artworkJSON["original"].URL, thumb150Url: artworkJSON["150"].URL, thumb180Url: artworkJSON["180"].URL)
         let subtitle: String? = podcastJSON["subtitle"].stringValue != "" ? podcastJSON["subtitle"].stringValue : nil
         let podcastXenimWebUrl: NSURL? = podcastJSON["absolute_url"].stringValue != "" ? podcastJSON["absolute_url"].URL : nil
         let websiteUrl: NSURL? = podcastJSON["website_url"].stringValue != "" ? podcastJSON["website_url"].URL : nil

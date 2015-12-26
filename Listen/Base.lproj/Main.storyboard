@@ -533,7 +533,7 @@
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qD9-gp-gdZ">
                             <size key="itemSize" width="214" height="194"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="50" height="97"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
@@ -562,12 +562,12 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="d1y-Bx-SWv">
-                            <rect key="frame" x="0.0" y="258" width="600" height="50"/>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Footer" id="d1y-Bx-SWv">
+                            <rect key="frame" x="0.0" y="258" width="600" height="97"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will receive push notifications if any of your favorite podcast shows goes live." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSQ-M9-vBX">
-                                    <rect key="frame" x="70" y="17" width="460" height="15"/>
+                                    <rect key="frame" x="70" y="16" width="460" height="65"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                     <color key="textColor" red="0.1764705882" green="0.18039215689999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -578,6 +578,8 @@
                                 <constraint firstItem="LSQ-M9-vBX" firstAttribute="centerY" secondItem="d1y-Bx-SWv" secondAttribute="centerY" id="5vB-N6-2bc"/>
                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="LSQ-M9-vBX" secondAttribute="trailing" constant="8" id="S0z-wx-1yK"/>
                                 <constraint firstItem="LSQ-M9-vBX" firstAttribute="centerX" secondItem="d1y-Bx-SWv" secondAttribute="centerX" id="kqH-jT-8Ko"/>
+                                <constraint firstItem="LSQ-M9-vBX" firstAttribute="top" secondItem="d1y-Bx-SWv" secondAttribute="topMargin" constant="8" id="yec-s6-GfZ"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="LSQ-M9-vBX" secondAttribute="bottom" constant="8" id="zSo-CM-Cvq"/>
                             </constraints>
                         </collectionReusableView>
                         <connections>
@@ -1761,6 +1763,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="scarlet-70-play-circle" width="70" height="70"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5u9-ce-4fW"/>
+        <segue reference="lkZ-jg-qVS"/>
     </inferredMetricsTieBreakers>
 </document>
