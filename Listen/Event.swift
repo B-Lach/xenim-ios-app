@@ -39,13 +39,9 @@ class Event : NSObject {
     var title: String?
     let eventXenimWebUrl: NSURL?
     let eventDescription: String?
-    var listeners: Int? {
-        didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName("listenersUpdate", object: self, userInfo: nil)
-        }
-    }
     let shownotes: String?
     var streams = [Stream]()
+    var listeners: Int?
     // returns a supported streamUrl or nil
     var streamUrl: NSURL? {
         get {
@@ -67,15 +63,17 @@ class Event : NSObject {
         }
     }
     //value between 0 and 1
-    var progress: Float = 0 {
-        didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName("progressUpdate", object: self, userInfo: nil)
+    var progress: Float {
+        if let duration = duration {
+            let timePassed = NSDate().timeIntervalSinceDate(begin)
+            let factor = (Float)(timePassed/duration)
+            return min(max(factor, 0.0), 1.0)
+        } else {
+            return 0
         }
     }
-    var timer : NSTimer? // timer to update the progress periodically
-    let updateInterval: NSTimeInterval = 60
     
-    init(id: String, status: Status, begin: NSDate, end: NSDate?, podcast: Podcast, title: String?, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?) {
+    init(id: String, status: Status, begin: NSDate, end: NSDate?, podcast: Podcast, title: String?, eventXenimWebUrl: NSURL?, streams: [Stream], shownotes: String?, description: String?, listeners: Int?) {
         self.id = id
         self.title = title
         self.status = status
@@ -86,20 +84,18 @@ class Event : NSObject {
         self.streams = streams
         self.shownotes = shownotes
         self.eventDescription = description
+        self.listeners = listeners
         
         super.init()
-        
-        if isLive() {
-            // setup timer to update progressbar every minute
-            // remember to invalidate timer as soon this view gets cleared otherwise
-            // this will cause a memory cycle
-            timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
-            timerTicked()
-        }
     }
     
-    deinit {
-        timer?.invalidate()
+    func fetchCurrentListeners(onComplete: (listeners: Int?) -> Void) {
+        XenimAPI.fetchEventById(id) { (event) -> Void in
+            if let event = event {
+                onComplete(listeners: event.listeners)
+                self.listeners = event.listeners
+            }
+        }
     }
 
     func isLive() -> Bool {
@@ -122,20 +118,6 @@ class Event : NSObject {
         let nowWeek = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: now).weekOfYear
         let eventWeek = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: begin).weekOfYear
         return nowWeek == eventWeek
-    }
-    
-    @objc func timerTicked() {
-        if let duration = duration {
-            // update progress value
-            let timePassed = NSDate().timeIntervalSinceDate(begin)
-            let factor = (Float)(timePassed/duration)
-            progress = min(max(factor, 0.0), 1.0)
-        }
-
-        // update listeners
-        XenimAPI.fetchEventById(id) { (event) -> Void in
-            self.listeners = event?.listeners
-        }
     }
     
     func equals(otherEvent: Event) -> Bool {
