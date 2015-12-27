@@ -471,11 +471,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Z1Y-08-P79">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="brandeis-blue-25-cog" id="nIR-VZ-m8O">
-                            <connections>
-                                <segue destination="rFQ-ny-7OW" kind="presentation" id="ThT-rA-0Ul"/>
-                            </connections>
-                        </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ca9-40-SUQ">
                             <rect key="frame" x="188" y="7" width="225" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -588,6 +583,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Favorites" id="vLn-wN-nQz">
+                        <barButtonItem key="leftBarButtonItem" image="brandeis-blue-25-cog" id="pK0-e1-Mdq">
+                            <connections>
+                                <segue destination="rFQ-ny-7OW" kind="presentation" id="lw8-eV-eBL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="brandeis-blue-25-plus" id="RyC-Pd-utt">
                             <connections>
                                 <segue destination="esV-ik-5s6" kind="presentation" id="1DS-dK-T8N"/>
@@ -1763,6 +1763,6 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="scarlet-70-play-circle" width="70" height="70"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5u9-ce-4fW"/>
+        <segue reference="lkZ-jg-qVS"/>
     </inferredMetricsTieBreakers>
 </document>

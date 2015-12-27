@@ -304,10 +304,6 @@ class EventTableViewController: UITableViewController {
         
     }
     
-    @IBAction func dismissSettings(segue:UIStoryboardSegue) {
-        // do nothing
-    }
-    
     // MARK: - static global
     
     // if the info button in the player for a specific event is pressed
