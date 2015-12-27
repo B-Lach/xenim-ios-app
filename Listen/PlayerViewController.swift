@@ -38,6 +38,9 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var toolbar: UIToolbar!
     var favoriteItem: UIBarButtonItem?
     
+    var timer : NSTimer? // timer to update view periodically
+    let updateInterval: NSTimeInterval = 60 // seconds
+    
     var statusBarStyle = UIStatusBarStyle.Default
     
     // MARK: - init
@@ -61,6 +64,13 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // setup timer to update every minute
+        // remember to invalidate timer as soon this view gets cleared otherwise
+        // this will cause a memory cycle
+        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
+        timerTicked()
+        
         setupNotifications()
         updateUI()
 	}
@@ -142,6 +152,16 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         progressView?.progress = progress
     }
     
+    func updateListeners() {
+        event.fetchCurrentListeners { (listeners) -> Void in
+            if let listeners = listeners {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    print(listeners)
+                })
+            }
+        }
+    }
+    
     func updateFavoritesButton() {
         if let event = event {
             if !Favorites.fetch().contains(event.podcast.id) {
@@ -212,17 +232,18 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("progressUpdate:"), name: "progressUpdate", object: event)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        timer?.invalidate()
     }
     
-    func progressUpdate(notification: NSNotification) {
+    @objc func timerTicked() {
         updateProgressBar()
+        updateListeners()
 	}
 
     func favoritesChanged(notification: NSNotification) {

@@ -4,7 +4,7 @@ PODS:
     - Alamofire (~> 3.1)
   - Bolts/Tasks (1.5.0)
   - CRToast (0.0.9)
-  - KDEAudioPlayer (0.4.0)
+  - KDEAudioPlayer (0.4.1)
   - MarqueeLabel-Swift (2.4.2)
   - Parse (1.11.0):
     - Bolts/Tasks (~> 1.5)
@@ -24,7 +24,7 @@ SPEC CHECKSUMS:
   AlamofireImage: bedb8a4bdfb98eda81ba12952fba6e9e90420922
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
-  KDEAudioPlayer: b70cbda4c847f1ab78bf7c0b23b29b6e03538ac6
+  KDEAudioPlayer: 51379621376e1e52853a1d15845392edc55f57b9
   MarqueeLabel-Swift: 02f82b53b7b01a4cbc06f00ec8cd165093b0c7cb
   Parse: 886af46a0a677402f6374bb97ac212e795f70afe
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

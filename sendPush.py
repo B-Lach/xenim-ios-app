@@ -1,8 +1,8 @@
 import json,httplib,plistlib
 
-podcast_name = "Breitband"
-podcast_id = "breitband"
-event_id = "13wfdbvkb123"
+podcast_name = "Funkenstrahlen"
+podcast_id = "c4123648-b697-4093-bbcd-d79d1ff6b558"
+event_id = "0edbb110-c1c4-46fb-a0a4-4741f07f7b13"
 
 # setup parse connection
 keys = plistlib.readPlist("Listen/Keys.plist")

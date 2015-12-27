@@ -105,34 +105,42 @@ class EventTableViewController: UITableViewController {
     
     @IBAction func refresh(spinner: UIRefreshControl) {
         spinner.beginRefreshing()
-        events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+        var newEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
         
+        // create a dispatch group to have multiple async tasks and be notified when all of them finished
         let serviceGroup = dispatch_group_create()
         
         dispatch_group_enter(serviceGroup)
         XenimAPI.fetchUpcomingEvents(maxCount: 50) { (events) -> Void in
             for event in events {
+                objc_sync_enter(newEvents)
                 if event.isToday() {
-                    self.addEventToSection(event, section: Section.Today)
+                    newEvents[1].append(event)
                 } else if event.isTomorrow() {
-                    self.addEventToSection(event, section: Section.Tomorrow)
+                    newEvents[2].append(event)
                 } else if event.isThisWeek() {
-                    self.addEventToSection(event, section: Section.ThisWeek)
+                    newEvents[3].append(event)
                 } else {
-                    self.addEventToSection(event, section: Section.Later)
+                    newEvents[4].append(event)
                 }
+                objc_sync_exit(newEvents)
             }
             dispatch_group_leave(serviceGroup)
         }
         dispatch_group_enter(serviceGroup)
         XenimAPI.fetchLiveEvents { (events) -> Void in
             for event in events {
-                self.addEventToSection(event, section: Section.Live)
+                objc_sync_enter(newEvents)
+                newEvents[0].append(event)
+                objc_sync_exit(newEvents)
             }
             dispatch_group_leave(serviceGroup)
         }
         
+        // this will only be executed if all threads of the dispatch_group have finished their work
+        // this will also automatically dispatch to main queue
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) { () -> Void in
+            self.events = newEvents
             self.tableView.reloadData()
             spinner.endRefreshing()
         }
@@ -262,18 +270,6 @@ class EventTableViewController: UITableViewController {
     
     // MARK: process data
     
-    private func addEventToSection(event: Event, section: Section) {
-        objc_sync_enter(events)
-        switch section {
-        case .Live: events[0].append(event)
-        case .Today: events[1].append(event)
-        case .Tomorrow: events[2].append(event)
-        case .ThisWeek: events[3].append(event)
-        case .Later: events[4].append(event)
-        }
-        objc_sync_exit(events)
-    }
-    
     private func filterFavorites() {
         favoriteEvents = events
         let favorites = Favorites.fetch()
@@ -306,10 +302,6 @@ class EventTableViewController: UITableViewController {
             }
         }
         
-    }
-    
-    @IBAction func dismissSettings(segue:UIStoryboardSegue) {
-        // do nothing
     }
     
     // MARK: - static global
