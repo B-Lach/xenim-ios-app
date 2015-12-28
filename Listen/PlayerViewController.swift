@@ -78,10 +78,13 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Update UI
     
     func updateUI() {
-        podcastNameLabel?.text = event.title
-        popupItem.title = event.title
-        subtitleLabel?.text = event.podcast.podcastDescription
-        popupItem.subtitle = event.podcast.podcastDescription
+        let title = event.title != nil ? event.title : event.podcast.name
+        let description = event.eventDescription != nil ? event.eventDescription : event.podcast.podcastDescription
+        
+        podcastNameLabel?.text = title
+        popupItem.title = title
+        subtitleLabel?.text = description
+        popupItem.subtitle = description
 
         let placeholderImage = UIImage(named: "event_placeholder")!
         if let imageurl = event.podcast.artwork.originalUrl {

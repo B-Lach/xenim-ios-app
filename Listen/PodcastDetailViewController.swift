@@ -62,10 +62,9 @@ class PodcastDetailViewController: UIViewController {
             self.coverartImageView?.image = placeholderImage
         }
         
-        // TODO
         podcastNameLabel?.text = event?.title != nil ? event?.title : podcast?.name
         self.title = podcast?.name
-        podcastDescriptionLabel?.text = podcast?.podcastDescription
+        podcastDescriptionLabel?.text = event?.eventDescription != nil ? event?.eventDescription : podcast?.podcastDescription
 
         updatePlayButton()
         updateFavoritesButton()
