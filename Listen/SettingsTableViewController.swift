@@ -16,6 +16,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     @IBOutlet weak var flattrCell: UITableViewCell!
     @IBOutlet weak var reportBugCell: UITableViewCell!
     @IBOutlet weak var paypalCell: UITableViewCell!
+    @IBOutlet weak var xenimDonationCell: UITableViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,17 +32,13 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         if selectedCell == contactCell {
             sendMail()
         } else if selectedCell == flattrCell {
-            let svc = SFSafariViewController(URL: NSURL(string: "https://flattr.com/profile/i42n")!)
-            svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
+            openWebsite("https://flattr.com/profile/i42n")
         } else if selectedCell == reportBugCell {
-            let svc = SFSafariViewController(URL: NSURL(string: "https://github.com/funkenstrahlen/Listen/issues/new")!)
-            svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
+            openWebsite("https://github.com/funkenstrahlen/Listen/issues/new")
         } else if selectedCell == paypalCell {
-            let svc = SFSafariViewController(URL: NSURL(string: "https://paypal.me/stefantrauth")!)
-            svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
+            openWebsite("https://paypal.me/stefantrauth")
+        } else if selectedCell == xenimDonationCell {
+            openWebsite("http://streams.xenim.de/about/#donate")
         }
     }
     
@@ -49,12 +46,22 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func openWebsite(urlString: String) {
+        if let url = NSURL(string: urlString) {
+            let svc = SFSafariViewController(URL: url)
+            svc.delegate = self
+            self.presentViewController(svc, animated: true, completion: nil)
+        }
+    }
+    
     func sendMail() {
         // check if the user is able to send mail
         if MFMailComposeViewController.canSendMail() {
+            
+            let appVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")
             let emailTitle = NSLocalizedString("settings_view_mail_title", value: "Listen Support", comment: "mail title for a new support mail message")
-            let messageBody = NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.", comment: "mail body for a new support mail message")
-            let toRecipents = ["app@funkenstrahlen.de"]
+            let messageBody = NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.\n\nInstalled Version: \(appVersionString)", comment: "mail body for a new support mail message")
+            let toRecipents = ["app-support@funkenstrahlen.de"]
             
             // configure mail compose view controller
             let mc: MFMailComposeViewController = MFMailComposeViewController()

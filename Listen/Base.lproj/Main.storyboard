@@ -131,12 +131,33 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="w5m-oy-VCf" imageView="6ml-Ik-6Bs" style="IBUITableViewCellStyleDefault" id="BDG-ya-zDn">
+                                        <rect key="frame" x="0.0" y="385" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BDG-ya-zDn" id="Abo-5Q-8ld">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Xenim Streaming Network" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w5m-oy-VCf">
+                                                    <rect key="frame" x="49" y="0.0" width="536" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-heart" id="6ml-Ik-6Bs">
+                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="About" id="Nb1-Lj-6W7">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="z7V-Vc-Jj0" imageView="0IU-qS-FRE" style="IBUITableViewCellStyleDefault" id="JFa-4i-AEY">
-                                        <rect key="frame" x="0.0" y="436" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="480" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JFa-4i-AEY" id="L1A-so-Ou0">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -146,7 +167,7 @@
                                                     <rect key="frame" x="49" y="0.0" width="516" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-info" id="0IU-qS-FRE">
@@ -164,7 +185,7 @@
                             <tableViewSection headerTitle="legal" id="G28-IZ-CPe">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="uH6-Hz-Od1" imageView="gpi-p0-BA0" style="IBUITableViewCellStyleDefault" id="dqj-n3-hbQ">
-                                        <rect key="frame" x="0.0" y="531" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="575" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dqj-n3-hbQ" id="zU7-rx-41Y">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -209,6 +230,7 @@
                         <outlet property="flattrCell" destination="9o2-NO-VBI" id="vVk-M4-qpT"/>
                         <outlet property="paypalCell" destination="yOG-pQ-STP" id="Vg1-1i-Iln"/>
                         <outlet property="reportBugCell" destination="eBi-9V-vnw" id="6e4-i5-Vla"/>
+                        <outlet property="xenimDonationCell" destination="BDG-ya-zDn" id="xsq-xV-lvN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7Y-xA-LGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1164,18 +1186,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PtB-qi-QCq" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="124"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="251"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a hobby project.  Thanks for help to create this app goes to: Christian Bednarek (Hörsuppe), epirat, Ugo" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukR-HY-Eol">
-                                                <rect key="frame" x="8" y="8" width="584" height="83"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukR-HY-Eol">
+                                                <rect key="frame" x="8" y="8" width="584" height="188"/>
+                                                <string key="text">This app features podcast livestreams from the Xenim streaming network. It is developed by Stefan Trauth.
+
+You can find the code as Open Source on Github.
+
+Special thanks for helping to develop the app goes to: @_cato, @ePirat, @ugo
+
+Pods this app uses: Alamofire, AlamofireImage, Alamofire, Bolts/Tasks, CRToast, KDEAudioPlayer, MarqueeLabel-Swift, Parse, Bolts/Tasks, SwiftyJSON</string>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2id-gK-Ct0">
-                                                <rect key="frame" x="281" y="99" width="38" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2id-gK-Ct0">
+                                                <rect key="frame" x="254" y="226" width="93" height="17"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <color key="textColor" red="0.1764705882" green="0.18039215689999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -1184,7 +1213,7 @@
                                             <constraint firstItem="2id-gK-Ct0" firstAttribute="centerX" secondItem="PtB-qi-QCq" secondAttribute="centerX" id="EjB-vu-lqE"/>
                                             <constraint firstAttribute="bottom" secondItem="2id-gK-Ct0" secondAttribute="bottom" constant="8" id="IhB-2K-Li0"/>
                                             <constraint firstAttribute="bottom" secondItem="ukR-HY-Eol" secondAttribute="bottom" constant="8" id="TLN-2j-4H5"/>
-                                            <constraint firstItem="2id-gK-Ct0" firstAttribute="top" secondItem="ukR-HY-Eol" secondAttribute="bottom" constant="8" id="chJ-p4-7el"/>
+                                            <constraint firstItem="2id-gK-Ct0" firstAttribute="top" secondItem="ukR-HY-Eol" secondAttribute="bottom" constant="30" id="chJ-p4-7el"/>
                                             <constraint firstItem="ukR-HY-Eol" firstAttribute="top" secondItem="PtB-qi-QCq" secondAttribute="top" constant="8" id="ext-Nh-lXb"/>
                                             <constraint firstAttribute="trailing" secondItem="ukR-HY-Eol" secondAttribute="trailing" constant="8" id="uqp-45-WW1"/>
                                             <constraint firstItem="ukR-HY-Eol" firstAttribute="leading" secondItem="PtB-qi-QCq" secondAttribute="leading" constant="8" id="vN0-UG-eG6"/>
@@ -1317,9 +1346,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9T-Sd-zcf" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="496"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="415"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why can I not find my favorite podcast show in the list of events?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZw-LZ-4jq">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why could I not see a livestream as an upcoming event before it started?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZw-LZ-4jq">
                                                 <rect key="frame" x="8" y="8" width="584" height="20"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1327,40 +1356,40 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-TQ-7Bs">
                                                 <rect key="frame" x="8" y="36" width="584" height="104"/>
-                                                <string key="text">The list of events only shows the next 50 upcoming events. There is no live date available in the Hörsuppe calender for your favorite show in the near future. 
-It is therefore also possible that your favorite podcast show is not part of the Hörsuppe directory.</string>
+                                                <string key="text">You see all upcoming events known to Xenim in your event list. However some podcasters do not schedule their livestream before actually doing the show.
+
+If you want to see the shows scheduled before taking place, please talk to the podcaster so they schedule the event next time.</string>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why is an event shown as live, but I can not play it?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1k-Rx-IsW">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why can I not listen to this event though it is scheduled to be live now?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1k-Rx-IsW">
                                                 <rect key="frame" x="8" y="170" width="584" height="20"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjp-PR-i3k">
-                                                <rect key="frame" x="8" y="198" width="584" height="104"/>
-                                                <string key="text">The live dates in the event calendar are provided by the podcast creators. Sometimes they do not start the show exactly in time. It is also possible that the show will not take place but the Hörsuppe has not been informed yet.
-In rare cases the audio format provided by the podcast show is not supported by iOS.</string>
+                                                <rect key="frame" x="8" y="198" width="584" height="62"/>
+                                                <string key="text">Sometimes podcasters schedule their event for a specific time but can not start the show right in time. Try checking out their website or their Twitter account for more information.</string>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am a podcast creator and also do live shows. What do I have to do to see my show in Listen?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mV7-DQ-bPK">
-                                                <rect key="frame" x="8" y="332" width="584" height="41"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why can I not find my favorite podcast show here though it does live shows?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mV7-DQ-bPK">
+                                                <rect key="frame" x="8" y="290" width="584" height="20"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have to be part of the Hörsuppe directory and provide a calendar with your scheduled shows." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KP9-IT-5RM">
-                                                <rect key="frame" x="8" y="381" width="584" height="41"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app only supports podcasts which do livestreams via the Xenim streaming network." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KP9-IT-5RM">
+                                                <rect key="frame" x="8" y="318" width="584" height="41"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your question has not been answered? Feel free to use the contact possibility in settings." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-gq-i0L">
-                                                <rect key="frame" x="8" y="452" width="584" height="36"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your question has not been answered? Feel free to contect us." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-gq-i0L">
+                                                <rect key="frame" x="8" y="389" width="584" height="18"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -1753,6 +1782,7 @@ In rare cases the audio format provided by the podcast show is not supported by 
         <image name="black-25-calendar" width="19" height="19"/>
         <image name="black-25-envelope" width="19" height="19"/>
         <image name="black-25-github-square" width="19" height="19"/>
+        <image name="black-25-heart" width="19" height="19"/>
         <image name="black-25-info" width="19" height="19"/>
         <image name="black-25-legal" width="19" height="19"/>
         <image name="black-25-paypal" width="19" height="19"/>
