@@ -125,12 +125,18 @@ class XenimAPI : ListenAPI {
                 }
                 
                 dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
-                    onComplete(events: events)
+                    // sort events by time as async processing appends them unordered
+                    let sortedEvents = events.sort({ (event1, event2) -> Bool in
+                        event1.begin.compare(event2.begin) == .OrderedAscending
+                    })
+                    onComplete(events: sortedEvents)
                 })
             } else {
+                // return empty array
                 onComplete(events: events)
             }
         } else {
+            // return empty array
             onComplete(events: events)
         }
     }

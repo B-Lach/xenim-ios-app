@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22170D5F1C3136A30077AEC1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22170D5E1C3136A30077AEC1 /* AboutViewController.swift */; };
 		2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECB51BD52E470040100F /* AppDelegate.swift */; };
 		2222ECBB1BD52E480040100F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECB91BD52E480040100F /* Main.storyboard */; };
 		2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBC1BD52E480040100F /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		221109551BD5336F0095F25D /* Listen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Listen-Bridging-Header.h"; sourceTree = "<group>"; };
+		22170D5E1C3136A30077AEC1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2222ECB21BD52E470040100F /* Listen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Listen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2222ECB51BD52E470040100F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2222ECBA1BD52E480040100F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				2222ECB91BD52E480040100F /* Main.storyboard */,
+				22170D5E1C3136A30077AEC1 /* AboutViewController.swift */,
 				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
 				222913CC1C032221005C74BB /* SettingsTableViewController.swift */,
 				229B3C471C1F08F500187BA0 /* Podcast Detail */,
@@ -391,6 +394,7 @@
 			files = (
 				229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */,
 				2226CC241C06044A0077D22B /* PodcastInteractTableViewController.swift in Sources */,
+				22170D5F1C3136A30077AEC1 /* AboutViewController.swift in Sources */,
 				223510421C1A1D4300DB521A /* PushNotificationManager.swift in Sources */,
 				228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */,
 				2226CC261C06FB050077D22B /* NextupEventsTableViewController.swift in Sources */,
