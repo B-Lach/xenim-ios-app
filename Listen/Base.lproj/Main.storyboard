@@ -146,7 +146,7 @@
                                                     <rect key="frame" x="49" y="0.0" width="516" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-info" id="0IU-qS-FRE">
@@ -1151,7 +1151,7 @@
         <!--About-->
         <scene sceneID="ya7-mF-Q7p">
             <objects>
-                <viewController title="About" id="R6f-XE-dYm" sceneMemberID="viewController">
+                <viewController title="About" id="R6f-XE-dYm" customClass="AboutViewController" customModule="Listen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="l5E-se-eRX"/>
                         <viewControllerLayoutGuide type="bottom" id="YDX-Vg-HZm"/>
@@ -1164,7 +1164,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PtB-qi-QCq" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="124"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a hobby project.  Thanks for help to create this app goes to: Christian Bednarek (Hörsuppe), epirat, Ugo" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukR-HY-Eol">
                                                 <rect key="frame" x="8" y="8" width="584" height="83"/>
@@ -1172,14 +1172,28 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2id-gK-Ct0">
+                                                <rect key="frame" x="281" y="99" width="38" height="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" red="0.1764705882" green="0.18039215689999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="2id-gK-Ct0" firstAttribute="centerX" secondItem="PtB-qi-QCq" secondAttribute="centerX" id="EjB-vu-lqE"/>
+                                            <constraint firstAttribute="bottom" secondItem="2id-gK-Ct0" secondAttribute="bottom" constant="8" id="IhB-2K-Li0"/>
                                             <constraint firstAttribute="bottom" secondItem="ukR-HY-Eol" secondAttribute="bottom" constant="8" id="TLN-2j-4H5"/>
+                                            <constraint firstItem="2id-gK-Ct0" firstAttribute="top" secondItem="ukR-HY-Eol" secondAttribute="bottom" constant="8" id="chJ-p4-7el"/>
                                             <constraint firstItem="ukR-HY-Eol" firstAttribute="top" secondItem="PtB-qi-QCq" secondAttribute="top" constant="8" id="ext-Nh-lXb"/>
                                             <constraint firstAttribute="trailing" secondItem="ukR-HY-Eol" secondAttribute="trailing" constant="8" id="uqp-45-WW1"/>
                                             <constraint firstItem="ukR-HY-Eol" firstAttribute="leading" secondItem="PtB-qi-QCq" secondAttribute="leading" constant="8" id="vN0-UG-eG6"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="TLN-2j-4H5"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1211,6 +1225,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="versionLabel" destination="2id-gK-Ct0" id="ic4-QI-XAy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Thr-5I-ZvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
