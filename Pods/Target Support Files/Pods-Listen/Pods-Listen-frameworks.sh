@@ -84,10 +84,22 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-Listen/AFNetworking.framework"
+  install_framework "Pods-Listen/Alamofire.framework"
+  install_framework "Pods-Listen/AlamofireImage.framework"
+  install_framework "Pods-Listen/Bolts.framework"
+  install_framework "Pods-Listen/CRToast.framework"
+  install_framework "Pods-Listen/KDEAudioPlayer.framework"
+  install_framework "Pods-Listen/MarqueeLabel_Swift.framework"
+  install_framework "Pods-Listen/Parse.framework"
   install_framework "Pods-Listen/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-Listen/AFNetworking.framework"
+  install_framework "Pods-Listen/Alamofire.framework"
+  install_framework "Pods-Listen/AlamofireImage.framework"
+  install_framework "Pods-Listen/Bolts.framework"
+  install_framework "Pods-Listen/CRToast.framework"
+  install_framework "Pods-Listen/KDEAudioPlayer.framework"
+  install_framework "Pods-Listen/MarqueeLabel_Swift.framework"
+  install_framework "Pods-Listen/Parse.framework"
   install_framework "Pods-Listen/SwiftyJSON.framework"
 fi

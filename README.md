@@ -1,0 +1,1 @@
+This is an iOS application to listen to podcast livestreams from Xenim Streaming Network.
