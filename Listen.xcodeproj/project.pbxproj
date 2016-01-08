@@ -139,9 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				2222ECB91BD52E480040100F /* Main.storyboard */,
-				22170D5E1C3136A30077AEC1 /* AboutViewController.swift */,
 				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
-				222913CC1C032221005C74BB /* SettingsTableViewController.swift */,
+				22E6DD9E1C314B7500E427C8 /* Settings */,
 				229B3C471C1F08F500187BA0 /* Podcast Detail */,
 				229B3C461C1F08D100187BA0 /* Favorites */,
 				229B3C481C1F090100187BA0 /* Events */,
@@ -234,6 +233,15 @@
 				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
 			);
 			name = Player;
+			sourceTree = "<group>";
+		};
+		22E6DD9E1C314B7500E427C8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				22170D5E1C3136A30077AEC1 /* AboutViewController.swift */,
+				222913CC1C032221005C74BB /* SettingsTableViewController.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		4CD0EF0E6BE3DB36059D8E8C /* Frameworks */ = {
