@@ -39,8 +39,11 @@ class NextupEventsTableViewController: UITableViewController {
         
         // fetch upcoming events
         XenimAPI.fetchPodcastUpcomingEvents(podcastId, maxCount: upcomingEventCount) { (events) -> Void in
+            let filteredEvents = events.filter({ (event) -> Bool in
+                event.isUpcoming()
+            })
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.upcomingEvents = events
+                self.upcomingEvents = filteredEvents
                 self.tableView.reloadData()
                 self.isLoading = false
             })
