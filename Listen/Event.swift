@@ -102,22 +102,39 @@ class Event : NSObject {
         return status == Status.RUNNING
     }
     
-    func isToday() -> Bool {
-        let calendar = NSCalendar.currentCalendar()
-        return calendar.isDateInToday(begin)
+    /*
+        An event is upcoming if it is scheduled for today or in the future.
+        It can be in the past, but only if it is still today.
+    */
+    func isUpcoming() -> Bool {
+        if status == Status.UPCOMING {
+            let now = NSDate()
+            let calendar = NSCalendar.currentCalendar()
+            
+            // check if the begin date is in the future or today
+            if now.compare(begin) == NSComparisonResult.OrderedAscending || calendar.isDateInToday(begin) {
+               return true
+            }
+        }
+        return false
     }
     
-    func isTomorrow() -> Bool {
+    func isUpcomingToday() -> Bool {
         let calendar = NSCalendar.currentCalendar()
-        return calendar.isDateInTomorrow(begin)
+        return calendar.isDateInToday(begin) && isUpcoming()
     }
     
-    func isThisWeek() -> Bool {
+    func isUpcomingTomorrow() -> Bool {
+        let calendar = NSCalendar.currentCalendar()
+        return calendar.isDateInTomorrow(begin) && isUpcoming()
+    }
+    
+    func isUpcomingThisWeek() -> Bool {
         let calendar = NSCalendar.currentCalendar()
         let now = NSDate()
         let nowWeek = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: now).weekOfYear
         let eventWeek = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: begin).weekOfYear
-        return nowWeek == eventWeek
+        return nowWeek == eventWeek && isUpcoming()
     }
     
     func equals(otherEvent: Event) -> Bool {

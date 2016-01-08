@@ -85,7 +85,7 @@ class NextupEventsTableViewController: UITableViewController {
             
             // setup cell
             cell.textLabel?.text = formatter.stringFromDate(event.begin)
-            if event.isToday() {
+            if event.isUpcomingToday() {
                 cell.detailTextLabel?.text = NSLocalizedString("Today", value: "Today", comment: "Today").lowercaseString
             } else {
                 let diffDaysString = String(format: NSLocalizedString("podcast_detailview_diff_date_string", value: "in %d days", comment: "Tells the user in how many dates the event takes place. It is a formatted string like 'in %d days'."), diff.day)

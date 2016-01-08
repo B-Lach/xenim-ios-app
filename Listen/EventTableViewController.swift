@@ -114,13 +114,13 @@ class EventTableViewController: UITableViewController {
         XenimAPI.fetchUpcomingEvents(maxCount: 50) { (events) -> Void in
             for event in events {
                 objc_sync_enter(newEvents)
-                if event.isToday() {
+                if event.isUpcomingToday() {
                     newEvents[1].append(event)
-                } else if event.isTomorrow() {
+                } else if event.isUpcomingTomorrow() {
                     newEvents[2].append(event)
-                } else if event.isThisWeek() {
+                } else if event.isUpcomingThisWeek() {
                     newEvents[3].append(event)
-                } else {
+                } else if event.isUpcoming() {
                     newEvents[4].append(event)
                 }
                 objc_sync_exit(newEvents)

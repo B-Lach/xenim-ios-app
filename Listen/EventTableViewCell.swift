@@ -61,9 +61,9 @@ class EventTableViewCell: UITableViewCell {
             let formatter = NSDateFormatter();
             formatter.locale = NSLocale.currentLocale()
             
-            if event.isLive() || event.isToday() || event.isTomorrow() {
+            if event.isLive() || event.isUpcomingToday() || event.isUpcomingTomorrow() {
                 formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            } else if event.isThisWeek() {
+            } else if event.isUpcomingThisWeek() {
                 formatter.setLocalizedDateFormatFromTemplate("EEEE HH:mm")
             } else {
                 formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM HH:mm")
