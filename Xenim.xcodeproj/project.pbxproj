@@ -56,7 +56,7 @@
 /* Begin PBXFileReference section */
 		221109551BD5336F0095F25D /* Listen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Listen-Bridging-Header.h"; sourceTree = "<group>"; };
 		22170D5E1C3136A30077AEC1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		2222ECB21BD52E470040100F /* Listen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Listen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2222ECB21BD52E470040100F /* Xenim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xenim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2222ECB51BD52E470040100F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2222ECBA1BD52E480040100F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2222ECBC1BD52E480040100F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		2222ECB31BD52E470040100F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2222ECB21BD52E470040100F /* Listen.app */,
+				2222ECB21BD52E470040100F /* Xenim.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -256,9 +256,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2222ECB11BD52E470040100F /* Listen */ = {
+		2222ECB11BD52E470040100F /* Xenim */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2222ECC41BD52E480040100F /* Build configuration list for PBXNativeTarget "Listen" */;
+			buildConfigurationList = 2222ECC41BD52E480040100F /* Build configuration list for PBXNativeTarget "Xenim" */;
 			buildPhases = (
 				6109ED3DEF32E2B0CF17571C /* Check Pods Manifest.lock */,
 				2222ECAE1BD52E470040100F /* Sources */,
@@ -273,9 +273,9 @@
 			);
 			dependencies = (
 			);
-			name = Listen;
+			name = Xenim;
 			productName = Listen;
-			productReference = 2222ECB21BD52E470040100F /* Listen.app */;
+			productReference = 2222ECB21BD52E470040100F /* Xenim.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -299,7 +299,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2222ECAD1BD52E470040100F /* Build configuration list for PBXProject "Listen" */;
+			buildConfigurationList = 2222ECAD1BD52E470040100F /* Build configuration list for PBXProject "Xenim" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -312,7 +312,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2222ECB11BD52E470040100F /* Listen */,
+				2222ECB11BD52E470040100F /* Xenim */,
 			);
 		};
 /* End PBXProject section */
@@ -565,8 +565,8 @@
 				);
 				INFOPLIST_FILE = Listen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Listen;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Xenim;
+				PRODUCT_NAME = Xenim;
 				SWIFT_OBJC_BRIDGING_HEADER = "Listen/Listen-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -588,8 +588,8 @@
 				);
 				INFOPLIST_FILE = Listen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Listen;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Xenim;
+				PRODUCT_NAME = Xenim;
 				SWIFT_OBJC_BRIDGING_HEADER = "Listen/Listen-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -598,7 +598,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2222ECAD1BD52E470040100F /* Build configuration list for PBXProject "Listen" */ = {
+		2222ECAD1BD52E470040100F /* Build configuration list for PBXProject "Xenim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2222ECC21BD52E480040100F /* Debug */,
@@ -607,7 +607,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2222ECC41BD52E480040100F /* Build configuration list for PBXNativeTarget "Listen" */ = {
+		2222ECC41BD52E480040100F /* Build configuration list for PBXNativeTarget "Xenim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2222ECC51BD52E480040100F /* Debug */,
