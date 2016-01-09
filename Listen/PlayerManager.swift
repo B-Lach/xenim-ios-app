@@ -127,7 +127,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
             playerViewController!.event = event
             
             baseViewController?.presentPopupBarWithContentViewController(playerViewController!, animated: true, completion: nil)
-            baseViewController?.popupBar.addGestureRecognizer(longpressRecognizer)
+            baseViewController?.popupBar!.addGestureRecognizer(longpressRecognizer)
             
             currentItem = audioItem
             currentItem?.artist = event.podcast.podcastDescription
