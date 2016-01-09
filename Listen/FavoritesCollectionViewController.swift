@@ -75,6 +75,7 @@ class FavoritesCollectionViewController: UICollectionViewController, UICollectio
             
         default:
             assert(false, "Unexpected element kind")
+            return UICollectionReusableView()
         }
     }
     
