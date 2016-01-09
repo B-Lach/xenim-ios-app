@@ -34,7 +34,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         } else if selectedCell == flattrCell {
             openWebsite("https://flattr.com/profile/i42n")
         } else if selectedCell == reportBugCell {
-            openWebsite("https://github.com/funkenstrahlen/Listen/issues/new")
+            openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
         } else if selectedCell == paypalCell {
             openWebsite("https://paypal.me/stefantrauth")
         } else if selectedCell == xenimDonationCell {
