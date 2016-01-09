@@ -1,6 +1,6 @@
 //
 //  NextupEventsTableViewController.swift
-//  Listen
+//  Xenim
 //
 //  Created by Stefan Trauth on 26/11/15.
 //  Copyright © 2015 Stefan Trauth. All rights reserved.
