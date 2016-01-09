@@ -19,6 +19,8 @@
 		222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222FB9FC1BF0E90A0007257A /* PlayerManager.swift */; };
 		223510421C1A1D4300DB521A /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223510411C1A1D4300DB521A /* PushNotificationManager.swift */; };
 		224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224180071BFA21AA004D1B5D /* MessageViewController.swift */; };
+		224B0FE81C41A67900E0EFEB /* Pods_Xenim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224B0FE71C41A67900E0EFEB /* Pods_Xenim.framework */; };
+		224B0FE91C41A69400E0EFEB /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22BEF0FA1C1192F000496C2F /* LNPopupController.framework */; };
 		2257A6661C1F2BB300CDE2F2 /* ListenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257A6651C1F2BB300CDE2F2 /* ListenAPI.swift */; };
 		22799D431BD8E13500A7E9E1 /* PodcastDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */; };
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
@@ -28,7 +30,6 @@
 		229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4D1BD5623500F1CF6B /* Podcast.swift */; };
 		229B7D501BD564DC00F1CF6B /* XenimAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4F1BD564DC00F1CF6B /* XenimAPI.swift */; };
 		229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */; };
-		22BEF0FB1C1192F000496C2F /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22BEF0FA1C1192F000496C2F /* LNPopupController.framework */; };
 		22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
 		22DAD4911BFCC26500B3043E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22DAD4931BFCC26500B3043E /* InfoPlist.strings */; };
@@ -37,7 +38,6 @@
 		22EB45BE1C07614F00C765BA /* PodcastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* PodcastTableViewCell.swift */; };
 		22FAACC41C1486D70085ACBC /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FAACC31C1486D70085ACBC /* FavoriteCollectionViewCell.swift */; };
 		22FAACC61C1486EA0085ACBC /* FavoritesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FAACC51C1486EA0085ACBC /* FavoritesCollectionViewController.swift */; };
-		22FCCFC11BDCE68E00BC772A /* Pods_Listen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FCCFC01BDCE68E00BC772A /* Pods_Listen.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,7 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		221109551BD5336F0095F25D /* Listen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Listen-Bridging-Header.h"; sourceTree = "<group>"; };
+		221109551BD5336F0095F25D /* Xenim-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Xenim-Bridging-Header.h"; sourceTree = "<group>"; };
 		22170D5E1C3136A30077AEC1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2222ECB21BD52E470040100F /* Xenim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xenim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2222ECB51BD52E470040100F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +69,7 @@
 		222FB9FC1BF0E90A0007257A /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		223510411C1A1D4300DB521A /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		224180071BFA21AA004D1B5D /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		224B0FE71C41A67900E0EFEB /* Pods_Xenim.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Xenim.framework; path = "Pods/../build/Debug-iphoneos/Pods_Xenim.framework"; sourceTree = "<group>"; };
 		2257A6651C1F2BB300CDE2F2 /* ListenAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenAPI.swift; sourceTree = "<group>"; };
 		22799D421BD8E13500A7E9E1 /* PodcastDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastDetailViewController.swift; sourceTree = "<group>"; };
 		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -89,9 +90,9 @@
 		22EB45BD1C07614F00C765BA /* PodcastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastTableViewCell.swift; sourceTree = "<group>"; };
 		22FAACC31C1486D70085ACBC /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		22FAACC51C1486EA0085ACBC /* FavoritesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewController.swift; sourceTree = "<group>"; };
-		22FCCFC01BDCE68E00BC772A /* Pods_Listen.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Listen.framework; path = "Pods/../build/Debug-iphoneos/Pods_Listen.framework"; sourceTree = "<group>"; };
-		9B4F24029920A3FD527B19F4 /* Pods-Listen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Listen.release.xcconfig"; path = "Pods/Target Support Files/Pods-Listen/Pods-Listen.release.xcconfig"; sourceTree = "<group>"; };
-		EEB7C55264BBFDE1CC5C8294 /* Pods-Listen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Listen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Listen/Pods-Listen.debug.xcconfig"; sourceTree = "<group>"; };
+		3DA7EFEEBA852C8AD4EEBD0C /* Pods_Xenim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Xenim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79010272337AB10F4033551B /* Pods-Xenim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Xenim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Xenim/Pods-Xenim.debug.xcconfig"; sourceTree = "<group>"; };
+		A5300C358A5A74205618A8FB /* Pods-Xenim.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Xenim.release.xcconfig"; path = "Pods/Target Support Files/Pods-Xenim/Pods-Xenim.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,31 +100,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22BEF0FB1C1192F000496C2F /* LNPopupController.framework in Frameworks */,
-				22FCCFC11BDCE68E00BC772A /* Pods_Listen.framework in Frameworks */,
+				224B0FE91C41A69400E0EFEB /* LNPopupController.framework in Frameworks */,
+				224B0FE81C41A67900E0EFEB /* Pods_Xenim.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1AF3F55A1686DEC774FED923 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				EEB7C55264BBFDE1CC5C8294 /* Pods-Listen.debug.xcconfig */,
-				9B4F24029920A3FD527B19F4 /* Pods-Listen.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		2222ECA91BD52E470040100F = {
 			isa = PBXGroup;
 			children = (
 				22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */,
-				2222ECB41BD52E470040100F /* Listen */,
+				2222ECB41BD52E470040100F /* Xenim */,
 				2222ECB31BD52E470040100F /* Products */,
-				1AF3F55A1686DEC774FED923 /* Pods */,
 				4CD0EF0E6BE3DB36059D8E8C /* Frameworks */,
+				78ABA8D45059D97B21664594 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,7 +127,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2222ECB41BD52E470040100F /* Listen */ = {
+		2222ECB41BD52E470040100F /* Xenim */ = {
 			isa = PBXGroup;
 			children = (
 				2222ECB91BD52E480040100F /* Main.storyboard */,
@@ -148,13 +140,13 @@
 				2232FE5F1BDE235A00BE368E /* Model */,
 				229B3C441C1F084C00187BA0 /* API */,
 				229B3C451C1F087400187BA0 /* Helpers */,
-				221109551BD5336F0095F25D /* Listen-Bridging-Header.h */,
+				221109551BD5336F0095F25D /* Xenim-Bridging-Header.h */,
 				2222ECB51BD52E470040100F /* AppDelegate.swift */,
 				2232FE5E1BDE234D00BE368E /* Assets */,
 				2222ECC11BD52E480040100F /* Info.plist */,
 				229421FA1C1989DA00033AAB /* Keys.plist */,
 			);
-			path = Listen;
+			path = Xenim;
 			sourceTree = "<group>";
 		};
 		2232FE5E1BDE234D00BE368E /* Assets */ = {
@@ -247,10 +239,20 @@
 		4CD0EF0E6BE3DB36059D8E8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				224B0FE71C41A67900E0EFEB /* Pods_Xenim.framework */,
 				22BEF0FA1C1192F000496C2F /* LNPopupController.framework */,
-				22FCCFC01BDCE68E00BC772A /* Pods_Listen.framework */,
+				3DA7EFEEBA852C8AD4EEBD0C /* Pods_Xenim.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		78ABA8D45059D97B21664594 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				79010272337AB10F4033551B /* Pods-Xenim.debug.xcconfig */,
+				A5300C358A5A74205618A8FB /* Pods-Xenim.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,7 +276,7 @@
 			dependencies = (
 			);
 			name = Xenim;
-			productName = Listen;
+			productName = Xenim;
 			productReference = 2222ECB21BD52E470040100F /* Xenim.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -360,7 +362,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Listen/Pods-Listen-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Xenim/Pods-Xenim-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6109ED3DEF32E2B0CF17571C /* Check Pods Manifest.lock */ = {
@@ -390,7 +392,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Listen/Pods-Listen-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Xenim/Pods-Xenim-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -552,7 +554,7 @@
 		};
 		2222ECC51BD52E480040100F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EEB7C55264BBFDE1CC5C8294 /* Pods-Listen.debug.xcconfig */;
+			baseConfigurationReference = 79010272337AB10F4033551B /* Pods-Xenim.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -563,11 +565,11 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = Listen/Info.plist;
+				INFOPLIST_FILE = Xenim/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Xenim;
 				PRODUCT_NAME = Xenim;
-				SWIFT_OBJC_BRIDGING_HEADER = "Listen/Listen-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Xenim/Xenim-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -575,22 +577,22 @@
 		};
 		2222ECC61BD52E480040100F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B4F24029920A3FD527B19F4 /* Pods-Listen.release.xcconfig */;
+			baseConfigurationReference = A5300C358A5A74205618A8FB /* Pods-Xenim.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Stefan Trauth (Y85FVF2A97)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LNPopupController/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = Listen/Info.plist;
+				INFOPLIST_FILE = Xenim/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Xenim;
 				PRODUCT_NAME = Xenim;
-				SWIFT_OBJC_BRIDGING_HEADER = "Listen/Listen-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Xenim/Xenim-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
