@@ -1,0 +1,281 @@
+//
+//  DemoMusicPlayerController.swift
+//  LNPopupControllerExample
+//
+//  Created by Leo Natan on 8/8/15.
+//  Copyright © 2015 Leo Natan. All rights reserved.
+//
+
+import UIKit
+import MediaPlayer
+import Alamofire
+import AlamofireImage
+import KDEAudioPlayer
+
+protocol PlayerManagerDelegate {
+    func backwardPressed()
+    func forwardPressed()
+    func togglePlayPause(event: Event)
+    func longPress()
+    func sharePressed()
+}
+
+class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    var event: Event! {
+        didSet {
+            updateUI()
+        }
+    }
+    var playerManagerDelegate: PlayerManagerDelegate?
+
+	@IBOutlet weak var podcastNameLabel: UILabel!
+	@IBOutlet weak var subtitleLabel: UILabel!
+	@IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var coverartView: UIImageView!
+    let miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
+    @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var toolbar: UIToolbar!
+    var favoriteItem: UIBarButtonItem?
+    
+    var timer : NSTimer? // timer to update view periodically
+    let updateInterval: NSTimeInterval = 60 // seconds
+    
+    var statusBarStyle = UIStatusBarStyle.Default
+    
+    // MARK: - init
+    
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		
+        // use this to add more controls on ipad interface
+		//if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
+
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+        
+        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
+        miniCoverartImageView.layer.cornerRadius = 5.0
+        miniCoverartImageView.layer.masksToBounds = true
+        
+        let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
+        self.popupItem.leftBarButtonItems = [popupItem]
+
+	}
+	
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // setup timer to update every minute
+        // remember to invalidate timer as soon this view gets cleared otherwise
+        // this will cause a memory cycle
+        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
+        timerTicked()
+        
+        setupNotifications()
+        updateUI()
+	}
+    
+    // MARK: - Update UI
+    
+    func updateUI() {
+        let title = event.title != nil ? event.title : event.podcast.name
+        let description = event.eventDescription != nil ? event.eventDescription : event.podcast.podcastDescription
+        
+        podcastNameLabel?.text = title
+        popupItem.title = title
+        subtitleLabel?.text = description
+        popupItem.subtitle = description
+
+        let placeholderImage = UIImage(named: "event_placeholder")!
+        if let imageurl = event.podcast.artwork.originalUrl {
+            coverartView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+
+            Alamofire.request(.GET, imageurl)
+                .responseImage { response in
+                    if let image = response.result.value {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.updateStatusBarStyle(image)
+                        })
+                    }
+            }
+        } else {
+            coverartView?.image = placeholderImage
+            miniCoverartImageView.image = placeholderImage
+        }
+        
+        updateProgressBar()
+        updateToolbar()
+        updateFavoritesButton()
+    }
+    
+    func updateToolbar() {
+        let spaceItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        
+        var items = [UIBarButtonItem]()
+        
+        favoriteItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-star-o"), style: .Plain, target: self, action: "favorite:")
+        items.append(spaceItem)
+        items.append(favoriteItem!)
+        
+        let infoItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-info"), style: .Plain, target: self, action: "showEventInfo:")
+        items.append(spaceItem)
+        items.append(infoItem)
+        
+        if event.podcast.webchatUrl != nil {
+            let chatItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-comments"), style: .Plain, target: self, action: "openChat:")
+            items.append(spaceItem)
+            items.append(chatItem)
+        }
+        
+        let shareItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-share"), style: .Plain, target: self, action: "share:")
+        items.append(spaceItem)
+        items.append(shareItem)
+        
+        items.append(spaceItem)
+        toolbar?.setItems(items, animated: true)
+    }
+    
+    func updateStatusBarStyle(image: UIImage) {
+        if image.averageColor().isDarkColor() {
+            statusBarStyle = UIStatusBarStyle.LightContent
+        } else {
+            statusBarStyle = UIStatusBarStyle.Default
+        }
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return statusBarStyle
+    }
+    
+    func updateProgressBar() {
+        let progress = event.progress
+        popupItem.progress = progress
+        progressView?.progress = progress
+    }
+    
+    func updateListeners() {
+        event.fetchCurrentListeners { (listeners) -> Void in
+            if let listeners = listeners {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    print(listeners)
+                })
+            }
+        }
+    }
+    
+    func updateFavoritesButton() {
+        if let event = event {
+            if !Favorites.fetch().contains(event.podcast.id) {
+                favoriteItem?.image = UIImage(named: "scarlet-25-star-o")
+            } else {
+                favoriteItem?.image = UIImage(named: "scarlet-25-star")
+            }
+
+        }
+    }
+    
+    // MARK: - delegate
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    // MARK: - Actions
+    
+    func handleLongPress(recognizer: UILongPressGestureRecognizer) {
+        playerManagerDelegate?.longPress()
+    }
+    
+    @IBAction func longPressPauseButton(sender: AnyObject) {
+        playerManagerDelegate?.longPress()
+    }
+    
+    func favorite(sender: AnyObject) {
+        if let event = event {
+            Favorites.toggle(podcastId: event.podcast.id)
+        }
+    }
+    
+    func share(sender: AnyObject) {
+        if event != nil {
+            playerManagerDelegate?.sharePressed()
+        }
+    }
+    
+    func showEventInfo(sender: AnyObject) {
+        EventTableViewController.showEventInfo(event: event)
+    }
+    
+    @IBAction func togglePlayPause(sender: AnyObject) {
+        playerManagerDelegate?.togglePlayPause(event)
+    }
+    
+    func openChat(sender: AnyObject) {
+        if let ircUrl = event.podcast.ircUrl, let webchatUrl = event.podcast.webchatUrl {
+            if UIApplication.sharedApplication().canOpenURL(ircUrl) {
+                // open associated app
+                UIApplication.sharedApplication().openURL(ircUrl)
+            } else {
+                // open webchat in safari
+                UIApplication.sharedApplication().openURL(webchatUrl)
+            }
+        }
+    }
+    
+    @IBAction func backwardPressed(sender: AnyObject) {
+        playerManagerDelegate?.backwardPressed()
+    }
+    
+    @IBAction func forwardPressed(sender: AnyObject) {
+        playerManagerDelegate?.forwardPressed()
+    }
+    
+    // MARK: notifications
+    
+    func setupNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        timer?.invalidate()
+    }
+    
+    @objc func timerTicked() {
+        updateProgressBar()
+        updateListeners()
+	}
+
+    func favoritesChanged(notification: NSNotification) {
+        updateFavoritesButton()
+    }
+    
+    func playerStateChanged(notification: NSNotification) {
+        let player = PlayerManager.sharedInstance.player
+        
+        switch player.state {
+        case .Buffering:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
+        case .Paused:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+        case .Playing:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
+        case .Stopped:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+        case .WaitingForConnection:
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
+        case .Failed(_):
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+        }
+    }
+    
+}

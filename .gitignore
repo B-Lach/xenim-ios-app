@@ -28,7 +28,8 @@
 #
 #########################
 
-Listen/keys.plist
+Xenim/keys.plist
+Certificates
 
 #####
 # OS X temporary files that should never be committed
