@@ -12,7 +12,7 @@ import Alamofire
 
 class XenimAPI : ListenAPI {
     
-    static let apiBaseURL = "http://feeds.streams.demo.xenim.de/api/v1/"
+    static let apiBaseURL = "http://feeds.streams.xenim.de/api/v1/"
     
     static func fetchUpcomingEvents(maxCount maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
