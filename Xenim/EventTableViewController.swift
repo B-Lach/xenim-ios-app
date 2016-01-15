@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventTableViewController: UITableViewController {
+class EventTableViewController: UITableViewController,UIPopoverPresentationControllerDelegate {
     
     // possible sections
     enum Section {
@@ -284,22 +284,36 @@ class EventTableViewController: UITableViewController {
 
     
     // MARK: - Navigation
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destinationVC = segue.destinationViewController as? PodcastDetailViewController {
-            if let identifier = segue.identifier {
-                switch identifier {
-                case "PodcastDetail":
-                    if let cell = sender as? EventTableViewCell {
-                        // this is the case when the segue is caused by the user tappin on a cell
-                        destinationVC.event = cell.event
-                    } else if let event = sender as? Event {
-                        // this is the case for showEventInfo delegate method.
-                        destinationVC.event = event
-                    }
-                default: break
-                }
-            }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        // this is required to prevent the popover to be shown as a modal view on iPhone
+        return UIModalPresentationStyle.None
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // get the cell and the storyboard
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // configure event detail view controller as popup content
+        let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("EventDetail") as! EventDetailViewController
+        eventDetailVC.modalPresentationStyle = .Popover
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        // scale the popover
+        eventDetailVC.preferredContentSize = CGSizeMake(screenSize.width * 0.9, 300)
+        eventDetailVC.event = cell.event
+        
+        // configure the popover controller
+        let popoverController = eventDetailVC.popoverPresentationController!
+        popoverController.delegate = self
+        popoverController.sourceView = self.view
+        // set the source arrow pointing to the cell
+        popoverController.sourceRect = tableView.rectForRowAtIndexPath(indexPath)
+        popoverController.permittedArrowDirections = [.Down, .Up]
+        
+        // apple bug workaround
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.presentViewController(eventDetailVC, animated: true, completion: nil)
         }
         
     }

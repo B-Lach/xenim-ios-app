@@ -482,9 +482,6 @@
                                     <outlet property="playButton" destination="idX-LT-SMd" id="yh3-dp-Urk"/>
                                     <outlet property="playButtonMaxHeightConstraint" destination="itm-uf-ddd" id="xvQ-uG-PLb"/>
                                     <outlet property="podcastNameLabel" destination="l5d-ya-iW5" id="Kvp-1b-1yu"/>
-                                    <segue destination="wJx-YQ-pcG" kind="popoverPresentation" popoverAnchorView="hiw-wf-THJ" id="58a-F9-bWv">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -522,19 +519,22 @@
             </objects>
             <point key="canvasLocation" x="2024" y="364"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Detail View Controller-->
         <scene sceneID="9bu-oZ-lPX">
             <objects>
-                <viewController id="wJx-YQ-pcG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventDetail" id="wJx-YQ-pcG" customClass="EventDetailViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hsl-Lx-XgJ"/>
                         <viewControllerLayoutGuide type="bottom" id="fOa-0D-3PP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="V45-93-c7R">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="500" height="500"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ED2-bT-dik" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -556,11 +556,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="hLm-5M-eOo" kind="popoverPresentation" popoverAnchorView="ahl-HS-Ukt" id="FR6-aq-hGV">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
