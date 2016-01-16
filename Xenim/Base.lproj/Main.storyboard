@@ -535,16 +535,18 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojL-yv-MT9">
-                                <rect key="frame" x="150" y="259" width="200" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojL-yv-MT9">
+                                <rect key="frame" x="20" y="270" width="460" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="gRZ-Pd-W0M"/>
-                                    <constraint firstAttribute="width" priority="900" constant="200" id="iTh-Vh-Rta"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="Ouy-kd-N1z"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="Listen">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Listen" image="white-25-play-circle">
                                     <color key="titleColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="playEvent:" destination="wJx-YQ-pcG" eventType="touchUpInside" id="Mvx-4F-abh"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ju-t9-JAQ">
                                 <rect key="frame" x="48" y="87" width="354" height="15"/>
@@ -557,10 +559,16 @@
                                 <state key="normal" title="More">
                                     <color key="titleColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="moreActions:" destination="wJx-YQ-pcG" eventType="touchUpInside" id="yR9-BB-PNn"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvU-6p-Oq4">
                                 <rect key="frame" x="410" y="84" width="19" height="22"/>
                                 <state key="normal" image="scarlet-25-star"/>
+                                <connections>
+                                    <action selector="toggleFavorite:" destination="wJx-YQ-pcG" eventType="touchUpInside" id="f3u-UV-ABK"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mOy-Hs-4vs">
                                 <rect key="frame" x="20" y="76" width="460" height="1"/>
@@ -609,6 +617,7 @@
                             <constraint firstItem="nvU-hu-y4j" firstAttribute="leading" secondItem="xvU-6p-Oq4" secondAttribute="trailing" constant="15" id="hEC-4J-z2K"/>
                             <constraint firstItem="8Ju-t9-JAQ" firstAttribute="centerY" secondItem="pql-6d-hvV" secondAttribute="centerY" id="lBG-KR-Km9"/>
                             <constraint firstItem="xvU-6p-Oq4" firstAttribute="centerY" secondItem="pql-6d-hvV" secondAttribute="centerY" id="lGx-bm-5HX"/>
+                            <constraint firstItem="ojL-yv-MT9" firstAttribute="width" secondItem="mOy-Hs-4vs" secondAttribute="width" id="lXd-yO-rxK"/>
                             <constraint firstItem="qXQ-bF-2NI" firstAttribute="centerX" secondItem="mOy-Hs-4vs" secondAttribute="centerX" id="miB-3Q-AtV"/>
                             <constraint firstItem="ICk-hJ-8gz" firstAttribute="leading" secondItem="NT3-b8-rRn" secondAttribute="leading" id="nuW-C8-9Zg"/>
                             <constraint firstItem="qXQ-bF-2NI" firstAttribute="width" secondItem="mOy-Hs-4vs" secondAttribute="width" id="oV9-HD-fJB"/>
@@ -619,12 +628,24 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Tgk-ZQ-g0r"/>
+                                <exclude reference="3Mz-vO-fzJ"/>
+                                <exclude reference="Y17-bk-6c3"/>
                             </mask>
                         </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="500" height="300"/>
+                    <connections>
+                        <outlet property="coverartImageView" destination="GAo-pz-0eg" id="4Vo-Jt-UeE"/>
+                        <outlet property="dateLabel" destination="8Ju-t9-JAQ" id="tAu-cr-WZb"/>
+                        <outlet property="eventDescriptionLabel" destination="YhU-An-gHv" id="i6w-Ho-kc0"/>
+                        <outlet property="eventTitleLabel" destination="ICk-hJ-8gz" id="9Vh-dD-kRz"/>
+                        <outlet property="favoriteButton" destination="xvU-6p-Oq4" id="tz5-ws-ylF"/>
+                        <outlet property="playButton" destination="ojL-yv-MT9" id="0e9-5e-Vi3"/>
+                        <outlet property="playButtonHeightConstraint" destination="Ouy-kd-N1z" id="Lbo-hD-MdT"/>
+                        <outlet property="podcastNameLabel" destination="NT3-b8-rRn" id="anq-rP-mba"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ED2-bT-dik" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1597,5 +1618,6 @@ If you want to see the shows scheduled before taking place, please talk to the p
         <image name="scarlet-44-info-circle" width="33" height="33"/>
         <image name="scarlet-44-play-circle" width="33" height="33"/>
         <image name="steel-25-bell" width="19" height="19"/>
+        <image name="white-25-play-circle" width="19" height="19"/>
     </resources>
 </document>
