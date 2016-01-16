@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesTableViewController: UITableViewController {
+class FavoritesTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
     // contains the podcast slugs of all favorites
     var favorites = [Podcast]()
@@ -111,6 +111,40 @@ class FavoritesTableViewController: UITableViewController {
 //            }
 //        }
 //    }
+    
+    
+    // MARK: - Navigation
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        // this is required to prevent the popover to be shown as a modal view on iPhone
+        return UIModalPresentationStyle.None
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // configure event detail view controller as popup content
+        let favoriteDetailVC = storyboard.instantiateViewControllerWithIdentifier("FavoriteDetail") as! FavoriteDetailViewController
+        favoriteDetailVC.modalPresentationStyle = .Popover
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        // scale the popover
+        favoriteDetailVC.preferredContentSize = CGSizeMake(screenSize.width * 0.9, 300)
+        favoriteDetailVC.podcast = favorites[indexPath.row]
+        
+        // configure the popover controller
+        let popoverController = favoriteDetailVC.popoverPresentationController!
+        popoverController.delegate = self
+        popoverController.sourceView = self.view
+        // set the source arrow pointing to the cell
+        popoverController.sourceRect = CGRectMake(screenSize.width / 2, 200, 1, 1)
+        popoverController.permittedArrowDirections = []
+        
+        // apple bug workaround
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.presentViewController(favoriteDetailVC, animated: true, completion: nil)
+        }
+        
+    }
 
 
     /*

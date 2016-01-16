@@ -444,11 +444,11 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="GPB-0b-btu"/>
-                                            <exclude reference="tz4-sI-fDo"/>
                                             <exclude reference="RMR-2q-895"/>
                                             <exclude reference="d8B-Gq-Fmy"/>
                                             <exclude reference="tNQ-NG-5vP"/>
+                                            <exclude reference="GPB-0b-btu"/>
+                                            <exclude reference="tz4-sI-fDo"/>
                                             <exclude reference="7cz-UH-7E1"/>
                                         </mask>
                                     </variation>
@@ -743,10 +743,10 @@
             </objects>
             <point key="canvasLocation" x="2031" y="1088"/>
         </scene>
-        <!--Podcast Detail View Controller-->
+        <!--Favorite Detail View Controller-->
         <scene sceneID="8LN-iw-afs">
             <objects>
-                <viewController storyboardIdentifier="PodcastDetail" id="hLm-5M-eOo" customClass="PodcastDetailViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteDetail" id="hLm-5M-eOo" customClass="FavoriteDetailViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B7U-WD-kAH"/>
                         <viewControllerLayoutGuide type="bottom" id="UPi-dJ-HsT"/>
@@ -756,43 +756,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RsP-ac-ylb">
-                                <rect key="frame" x="20" y="13" width="60" height="60"/>
+                                <rect key="frame" x="20" y="28" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="C1G-Hh-xlX"/>
                                     <constraint firstAttribute="width" secondItem="RsP-ac-ylb" secondAttribute="height" multiplier="1:1" id="tXx-rn-9XP"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXo-HN-BmU">
-                                <rect key="frame" x="88" y="13" width="384" height="21"/>
+                                <rect key="frame" x="88" y="28" width="384" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBj-XH-4rv">
-                                <rect key="frame" x="88" y="42" width="384" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBj-XH-4rv">
+                                <rect key="frame" x="88" y="57" width="384" height="15"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pth-Xf-Qvz">
-                                <rect key="frame" x="20" y="129" width="460" height="15"/>
+                                <rect key="frame" x="20" y="144" width="460" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdO-JZ-tKH">
-                                <rect key="frame" x="20" y="81" width="454" height="1"/>
+                                <rect key="frame" x="20" y="96" width="454" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Z0S-Fm-Ew3"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ggx-NJ-qMv">
-                                <rect key="frame" x="20" y="120" width="454" height="1"/>
+                                <rect key="frame" x="20" y="135" width="454" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jzz-Zw-qFE">
-                                <rect key="frame" x="455" y="91" width="19" height="22"/>
+                                <rect key="frame" x="455" y="106" width="19" height="22"/>
                                 <state key="normal" image="scarlet-25-star"/>
                             </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIe-fL-XCx">
@@ -812,13 +812,13 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" text="Next Event" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Py4-uQ-GDU">
-                                <rect key="frame" x="48" y="94" width="399" height="15"/>
+                                <rect key="frame" x="48" y="109" width="399" height="15"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steel-25-bell" translatesAutoresizingMaskIntoConstraints="NO" id="p3d-4m-28u">
-                                <rect key="frame" x="20" y="92" width="20" height="20"/>
+                                <rect key="frame" x="20" y="107" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="2B9-bO-oW0"/>
                                     <constraint firstAttribute="width" secondItem="p3d-4m-28u" secondAttribute="height" multiplier="1:1" id="5LQ-Zk-LCw"/>
@@ -839,7 +839,7 @@
                             <constraint firstItem="qIe-fL-XCx" firstAttribute="centerX" secondItem="vYA-MN-FP9" secondAttribute="centerX" id="IsA-WE-NQn"/>
                             <constraint firstItem="qIe-fL-XCx" firstAttribute="width" secondItem="vYA-MN-FP9" secondAttribute="width" id="J3N-P1-d3B"/>
                             <constraint firstItem="GdO-JZ-tKH" firstAttribute="leading" secondItem="RsP-ac-ylb" secondAttribute="leading" id="Jne-9m-fgG"/>
-                            <constraint firstItem="RsP-ac-ylb" firstAttribute="top" secondItem="B7U-WD-kAH" secondAttribute="bottom" constant="-7" id="LsB-V2-TLy"/>
+                            <constraint firstItem="RsP-ac-ylb" firstAttribute="top" secondItem="B7U-WD-kAH" secondAttribute="bottom" constant="8" id="LsB-V2-TLy"/>
                             <constraint firstItem="Ggx-NJ-qMv" firstAttribute="width" secondItem="GdO-JZ-tKH" secondAttribute="width" id="MiA-nA-40Q"/>
                             <constraint firstAttribute="leadingMargin" secondItem="RsP-ac-ylb" secondAttribute="leading" id="QHt-In-rMi"/>
                             <constraint firstItem="Py4-uQ-GDU" firstAttribute="leading" secondItem="p3d-4m-28u" secondAttribute="trailing" constant="8" id="TG7-7H-N0o"/>

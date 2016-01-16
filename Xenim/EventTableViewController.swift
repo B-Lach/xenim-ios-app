@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventTableViewController: UITableViewController,UIPopoverPresentationControllerDelegate {
+class EventTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
     // possible sections
     enum Section {
