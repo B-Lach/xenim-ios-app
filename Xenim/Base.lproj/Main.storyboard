@@ -797,17 +797,7 @@
                             </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIe-fL-XCx">
                                 <rect key="frame" x="0.0" y="256" width="500" height="44"/>
-                                <items>
-                                    <barButtonItem image="scarlet-25-safari" id="YJx-p6-CiS"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Hei-JE-QnD"/>
-                                    <barButtonItem image="scarlet-25-twitter-square" id="4Lc-a1-I4s"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="iMp-6M-yY8"/>
-                                    <barButtonItem image="scarlet-25-envelope" id="IrG-J6-N2i"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="66F-e4-EWQ"/>
-                                    <barButtonItem image="scarlet-25-rss-square" id="ejv-z2-gvC"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="61m-fJ-Koy"/>
-                                    <barButtonItem title="..." id="u3c-jz-5qR"/>
-                                </items>
+                                <items/>
                                 <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
@@ -1610,13 +1600,9 @@ If you want to see the shows scheduled before taking place, please talk to the p
         <image name="brandeis-blue-25-star" width="19" height="19"/>
         <image name="brandeis-blue-25-star-o" width="19" height="19"/>
         <image name="event_placeholder" width="420" height="420"/>
-        <image name="scarlet-25-envelope" width="19" height="19"/>
         <image name="scarlet-25-heart" width="19" height="19"/>
         <image name="scarlet-25-info-circle" width="19" height="19"/>
-        <image name="scarlet-25-rss-square" width="19" height="19"/>
-        <image name="scarlet-25-safari" width="19" height="19"/>
         <image name="scarlet-25-star" width="19" height="19"/>
-        <image name="scarlet-25-twitter-square" width="19" height="19"/>
         <image name="scarlet-44-info-circle" width="33" height="33"/>
         <image name="scarlet-44-play-circle" width="33" height="33"/>
         <image name="steel-25-bell" width="19" height="19"/>
