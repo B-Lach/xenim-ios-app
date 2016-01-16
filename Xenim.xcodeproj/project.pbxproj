@@ -37,6 +37,8 @@
 		22DAD4961BFCC26600B3043E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22DAD4981BFCC26600B3043E /* Localizable.strings */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
 		22EB45BE1C07614F00C765BA /* PodcastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* PodcastTableViewCell.swift */; };
+		22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */; };
+		22F1B3D51C4A5A43005B03F7 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D41C4A5A43005B03F7 /* FavoriteTableViewCell.swift */; };
 		22FAACC41C1486D70085ACBC /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FAACC31C1486D70085ACBC /* FavoriteCollectionViewCell.swift */; };
 		22FAACC61C1486EA0085ACBC /* FavoritesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FAACC51C1486EA0085ACBC /* FavoritesCollectionViewController.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +92,8 @@
 		22DAD4971BFCC26600B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewController.swift; sourceTree = "<group>"; };
 		22EB45BD1C07614F00C765BA /* PodcastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastTableViewCell.swift; sourceTree = "<group>"; };
+		22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		22F1B3D41C4A5A43005B03F7 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		22FAACC31C1486D70085ACBC /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		22FAACC51C1486EA0085ACBC /* FavoritesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewController.swift; sourceTree = "<group>"; };
 		3DA7EFEEBA852C8AD4EEBD0C /* Pods_Xenim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Xenim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +197,8 @@
 		229B3C461C1F08D100187BA0 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */,
+				22F1B3D41C4A5A43005B03F7 /* FavoriteTableViewCell.swift */,
 				22FAACC31C1486D70085ACBC /* FavoriteCollectionViewCell.swift */,
 				22FAACC51C1486EA0085ACBC /* FavoritesCollectionViewController.swift */,
 				22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */,
@@ -414,6 +420,7 @@
 				223510421C1A1D4300DB521A /* PushNotificationManager.swift in Sources */,
 				228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */,
 				2226CC261C06FB050077D22B /* NextupEventsTableViewController.swift in Sources */,
+				22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */,
 				22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */,
 				22FAACC61C1486EA0085ACBC /* FavoritesCollectionViewController.swift in Sources */,
 				229B7D501BD564DC00F1CF6B /* XenimAPI.swift in Sources */,
@@ -426,6 +433,7 @@
 				22799D431BD8E13500A7E9E1 /* PodcastDetailViewController.swift in Sources */,
 				2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */,
 				224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */,
+				22F1B3D51C4A5A43005B03F7 /* FavoriteTableViewCell.swift in Sources */,
 				2257A6661C1F2BB300CDE2F2 /* ListenAPI.swift in Sources */,
 				229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */,
 				222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */,
