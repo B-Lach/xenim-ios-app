@@ -397,6 +397,9 @@
                                             <state key="normal" image="scarlet-44-play-circle">
                                                 <color key="titleColor" red="0.0" green="0.084724564651545098" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="play:" destination="hiw-wf-THJ" eventType="touchUpInside" id="vkO-kR-4W9"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="787-WT-oEN">
                                             <rect key="frame" x="96" y="50" width="496" height="21"/>
@@ -451,9 +454,12 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="descriptionLabel" destination="SHY-V1-cI6" id="eVB-eH-JAz"/>
+                                    <outlet property="dateLabel" destination="sRm-H4-jze" id="quO-iy-RbZ"/>
                                     <outlet property="eventCoverartImage" destination="IhM-9d-ONQ" id="jPM-8x-6rV"/>
-                                    <outlet property="liveDateLabel" destination="sRm-H4-jze" id="wv2-wQ-3zP"/>
+                                    <outlet property="eventDescriptionLabel" destination="SHY-V1-cI6" id="w0e-47-U2U"/>
+                                    <outlet property="eventTitleLabel" destination="787-WT-oEN" id="zId-9C-89Y"/>
+                                    <outlet property="favoriteImageView" destination="TKx-qU-JoM" id="P9x-sj-Rmh"/>
+                                    <outlet property="playButton" destination="6Yc-GY-wIz" id="YOQ-DC-b4t"/>
                                     <outlet property="podcastNameLabel" destination="l5d-ya-iW5" id="Kvp-1b-1yu"/>
                                 </connections>
                             </tableViewCell>
