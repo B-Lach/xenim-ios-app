@@ -308,8 +308,8 @@ class EventTableViewController: UITableViewController,UIPopoverPresentationContr
         popoverController.delegate = self
         popoverController.sourceView = self.view
         // set the source arrow pointing to the cell
-        popoverController.sourceRect = tableView.rectForRowAtIndexPath(indexPath)
-        popoverController.permittedArrowDirections = [.Down, .Up]
+        popoverController.sourceRect = CGRectMake(screenSize.width / 2, 200, 1, 1)
+        popoverController.permittedArrowDirections = []
         
         // apple bug workaround
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
