@@ -34,9 +34,6 @@ class EventTableViewController: UITableViewController,UIPopoverPresentationContr
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let userDefaultsFavoritesSettingKey = "showFavoritesOnly"
     
-    var timer : NSTimer? // timer to update view periodically
-    let updateInterval: NSTimeInterval = 60 // seconds
-    
     // background view for message when no data is available
     var messageVC: MessageViewController?
     
@@ -71,16 +68,10 @@ class EventTableViewController: UITableViewController,UIPopoverPresentationContr
 
         refresh(spinner)
         
-        // setup timer to update every minute
-        // remember to invalidate timer as soon this view gets cleared otherwise
-        // this will cause a memory cycle
-        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
-        
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        timer?.invalidate()
     }
     
     // MARK: - Update UI
@@ -232,41 +223,6 @@ class EventTableViewController: UITableViewController,UIPopoverPresentationContr
         }
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-    
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
     
     // MARK: process data
     
@@ -348,13 +304,6 @@ class EventTableViewController: UITableViewController,UIPopoverPresentationContr
                 }
             }
         }
-    }
-    
-    // MARK: - timer
-    
-    // update events every minute automatically
-    @objc func timerTicked() {
-        // TODO
     }
     
 }
