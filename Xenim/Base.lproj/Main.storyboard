@@ -794,6 +794,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jzz-Zw-qFE">
                                 <rect key="frame" x="455" y="106" width="19" height="22"/>
                                 <state key="normal" image="scarlet-25-star"/>
+                                <connections>
+                                    <action selector="toggleFavorite:" destination="hLm-5M-eOo" eventType="touchUpInside" id="kQQ-aV-fFI"/>
+                                </connections>
                             </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIe-fL-XCx">
                                 <rect key="frame" x="0.0" y="256" width="500" height="44"/>
@@ -862,6 +865,15 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="500" height="300"/>
+                    <connections>
+                        <outlet property="coverartImageView" destination="RsP-ac-ylb" id="75m-Ga-dnv"/>
+                        <outlet property="favoriteButton" destination="Jzz-Zw-qFE" id="5le-4A-Qer"/>
+                        <outlet property="nextDateLabel" destination="Py4-uQ-GDU" id="Z5j-bK-2Cb"/>
+                        <outlet property="podcastDescriptionLabel" destination="pth-Xf-Qvz" id="MdN-wp-Osm"/>
+                        <outlet property="podcastNameLabel" destination="DXo-HN-BmU" id="3c0-zO-MVJ"/>
+                        <outlet property="subtitleLabel" destination="DBj-XH-4rv" id="3uz-03-yuQ"/>
+                        <outlet property="toolbar" destination="qIe-fL-XCx" id="Mvn-Vf-RUL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zks-tt-wam" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
