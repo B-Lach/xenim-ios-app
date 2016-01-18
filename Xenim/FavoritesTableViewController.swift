@@ -122,7 +122,6 @@ class FavoritesTableViewController: UITableViewController{
         let favoriteDetailVC = storyboard.instantiateViewControllerWithIdentifier("FavoriteDetail") as! FavoriteDetailViewController
         favoriteDetailVC.podcast = favorites[indexPath.row]
         
-        
         let view = favoriteDetailVC.view
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         // scale the popover

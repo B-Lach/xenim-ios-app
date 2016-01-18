@@ -247,30 +247,23 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // get the cell and the storyboard
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
+
         // configure event detail view controller as popup content
         let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("EventDetail") as! EventDetailViewController
-        eventDetailVC.modalPresentationStyle = .Popover
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        // scale the popover
-        eventDetailVC.preferredContentSize = CGSizeMake(screenSize.width * 0.9, 300)
         eventDetailVC.event = cell.event
         
-        // configure the popover controller
-        let popoverController = eventDetailVC.popoverPresentationController!
-        popoverController.delegate = self
-        popoverController.sourceView = self.view
-        // set the source arrow pointing to the cell
-        popoverController.sourceRect = CGRectMake(screenSize.width / 2, 200, 1, 1)
-        popoverController.permittedArrowDirections = []
+        let view = eventDetailVC.view
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        // scale the popover
+        view.layer.cornerRadius = 5.0
+        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
         
-        // apple bug workaround
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.presentViewController(eventDetailVC, animated: true, completion: nil)
-        }
+        let window = UIApplication.sharedApplication().delegate?.window!
+        let modal = PathDynamicModal.show(modalView: view, inView: window!)
+        
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
         
     }
     
