@@ -19,7 +19,7 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var nextDateLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var podcastDescriptionLabel: UILabel!
+    @IBOutlet weak var podcastDescriptionTextView: UITextView!
     @IBOutlet weak var toolbar: UIToolbar!
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
         
         podcastNameLabel.text = podcast.name
         subtitleLabel.text = podcast.subtitle
-        podcastDescriptionLabel.text = podcast.podcastDescription
+        podcastDescriptionTextView.text = podcast.podcastDescription
         
         updateNextDateLabel()
         updateFavoriteButton()
