@@ -198,8 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */,
-				22F1B3D61C4A81D0005B03F7 /* FavoriteDetailViewController.swift */,
 				22F1B3D41C4A5A43005B03F7 /* FavoriteTableViewCell.swift */,
+				22F1B3D61C4A81D0005B03F7 /* FavoriteDetailViewController.swift */,
 			);
 			name = Favorites;
 			sourceTree = "<group>";
@@ -216,9 +216,9 @@
 		229B3C481C1F090100187BA0 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				2222ECC71BD52EEA0040100F /* EventTableViewController.swift */,
 				229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */,
 				224EB6D11C492F1500CDE9B0 /* EventDetailViewController.swift */,
-				2222ECC71BD52EEA0040100F /* EventTableViewController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";

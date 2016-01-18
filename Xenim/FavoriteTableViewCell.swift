@@ -30,7 +30,7 @@ class FavoriteTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.tintColor = Constants.Colors.tintColor
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

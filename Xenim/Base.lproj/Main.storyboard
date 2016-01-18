@@ -660,62 +660,59 @@
         <scene sceneID="kgs-cb-QZq">
             <objects>
                 <tableViewController id="umd-ub-pQI" customClass="FavoritesTableViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="28" sectionFooterHeight="28" id="WNd-p6-7dj">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" id="WNd-p6-7dj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="58" id="ahl-HS-Ukt" customClass="FavoriteTableViewCell" customModule="Xenim" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="58"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="63" id="ahl-HS-Ukt" customClass="FavoriteTableViewCell" customModule="Xenim" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ahl-HS-Ukt" id="ItQ-PR-HjU">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="57"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="553" height="62"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tuh-X7-b6l">
-                                            <rect key="frame" x="8" y="8" width="35" height="35"/>
+                                            <rect key="frame" x="8" y="11" width="40" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="35" id="6KF-nC-Dnc"/>
+                                                <constraint firstAttribute="width" constant="40" id="6KF-nC-Dnc"/>
                                                 <constraint firstAttribute="width" secondItem="Tuh-X7-b6l" secondAttribute="height" multiplier="1:1" id="dM6-ZU-bZx"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3h-bQ-DFo">
-                                            <rect key="frame" x="51" y="8" width="508" height="18"/>
+                                            <rect key="frame" x="56" y="11" width="481" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nextup Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onN-H0-80u">
-                                            <rect key="frame" x="51" y="31" width="508" height="14"/>
+                                            <rect key="frame" x="56" y="34" width="481" height="14"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scarlet-25-info-circle" translatesAutoresizingMaskIntoConstraints="NO" id="bMH-ml-jrD">
-                                            <rect key="frame" x="567" y="16" width="25" height="25"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="25" id="8Cp-N5-zVB"/>
-                                                <constraint firstAttribute="width" secondItem="bMH-ml-jrD" secondAttribute="height" multiplier="1:1" id="Tpv-fT-9cb"/>
-                                            </constraints>
-                                        </imageView>
                                     </subviews>
                                     <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="bMH-ml-jrD" firstAttribute="centerY" secondItem="ItQ-PR-HjU" secondAttribute="centerY" id="GUp-9y-ewJ"/>
-                                        <constraint firstAttribute="topMargin" secondItem="Tuh-X7-b6l" secondAttribute="top" id="KsC-v3-CuK"/>
+                                        <constraint firstAttribute="topMargin" secondItem="Tuh-X7-b6l" secondAttribute="top" constant="5" id="KsC-v3-CuK"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="u3h-bQ-DFo" secondAttribute="trailing" constant="8" id="LF1-pt-EHP"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="Tuh-X7-b6l" secondAttribute="leading" id="LRe-v6-uSf"/>
                                         <constraint firstItem="u3h-bQ-DFo" firstAttribute="leading" secondItem="Tuh-X7-b6l" secondAttribute="trailing" constant="8" id="NVh-Hc-4d4"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Tuh-X7-b6l" secondAttribute="bottom" id="NhG-yc-Zt0"/>
                                         <constraint firstItem="u3h-bQ-DFo" firstAttribute="width" secondItem="onN-H0-80u" secondAttribute="width" id="U1H-Nq-9g4"/>
                                         <constraint firstItem="onN-H0-80u" firstAttribute="leading" secondItem="u3h-bQ-DFo" secondAttribute="leading" id="ajS-Df-qi5"/>
-                                        <constraint firstItem="bMH-ml-jrD" firstAttribute="leading" secondItem="u3h-bQ-DFo" secondAttribute="trailing" constant="8" id="bSI-eN-pFb"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="bMH-ml-jrD" secondAttribute="trailing" id="off-of-zA3"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Tuh-X7-b6l" secondAttribute="bottom" constant="5" id="dG5-g6-vna"/>
+                                        <constraint firstItem="Tuh-X7-b6l" firstAttribute="top" secondItem="ItQ-PR-HjU" secondAttribute="topMargin" constant="5" id="dJr-Eb-YGn"/>
                                         <constraint firstItem="u3h-bQ-DFo" firstAttribute="top" secondItem="Tuh-X7-b6l" secondAttribute="top" id="xwy-5m-NXI"/>
                                         <constraint firstItem="onN-H0-80u" firstAttribute="top" secondItem="u3h-bQ-DFo" secondAttribute="bottom" constant="5" id="zPC-xX-GHp"/>
+                                        <constraint firstItem="Tuh-X7-b6l" firstAttribute="centerY" secondItem="ItQ-PR-HjU" secondAttribute="centerY" id="zSF-Dp-6rQ"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="KsC-v3-CuK"/>
                                             <exclude reference="NhG-yc-Zt0"/>
+                                            <exclude reference="dG5-g6-vna"/>
+                                            <exclude reference="dJr-Eb-YGn"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -1624,7 +1621,6 @@ If you want to see the shows scheduled before taking place, please talk to the p
         <image name="brandeis-blue-25-star-o" width="19" height="19"/>
         <image name="event_placeholder" width="420" height="420"/>
         <image name="scarlet-25-heart" width="19" height="19"/>
-        <image name="scarlet-25-info-circle" width="19" height="19"/>
         <image name="scarlet-25-star" width="19" height="19"/>
         <image name="scarlet-44-info-circle" width="33" height="33"/>
         <image name="scarlet-44-play-circle" width="33" height="33"/>
