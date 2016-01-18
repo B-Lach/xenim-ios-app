@@ -131,6 +131,8 @@ class FavoritesTableViewController: UITableViewController{
         
         let window = UIApplication.sharedApplication().delegate?.window!
         let modal = PathDynamicModal.show(modalView: view, inView: window!)
+        
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }
 
 
