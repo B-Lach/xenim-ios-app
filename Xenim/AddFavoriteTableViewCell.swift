@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PodcastTableViewCell: UITableViewCell {
+class AddFavoriteTableViewCell: UITableViewCell {
 
     var podcast: Podcast! {
         didSet {
@@ -27,28 +27,14 @@ class PodcastTableViewCell: UITableViewCell {
     
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var coverartImageView: UIImageView! {
-        didSet {
-            coverartImageView.layer.cornerRadius = 5.0
-            coverartImageView.layer.masksToBounds = true
-        }
-    }
+    @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     func updateFavoriteButton() {
-        favoriteButton?.layer.cornerRadius = 5
-        favoriteButton?.layer.borderWidth = 1
-        favoriteButton?.layer.borderColor = Constants.Colors.tintColor.CGColor
-        favoriteButton?.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
-        
         if !Favorites.fetch().contains(podcast.id) {
-            favoriteButton?.setTitleColor(Constants.Colors.tintColor, forState: .Normal)
-            favoriteButton?.setImage(UIImage(named: "scarlet-25-star"), forState: .Normal)
-            favoriteButton?.backgroundColor = UIColor.whiteColor()
+            favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
         } else {
-            favoriteButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            favoriteButton?.setImage(UIImage(named: "white-25-star"), forState: .Normal)
-            favoriteButton?.backgroundColor = Constants.Colors.tintColor
+            favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
         }
     }
     

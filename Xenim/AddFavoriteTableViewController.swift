@@ -90,7 +90,7 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         
         // check if there is data to display, otherwise show the no results cell
         if dataSource.count > 0 {
-            if let cell = tableView.dequeueReusableCellWithIdentifier("PodcastCell", forIndexPath: indexPath) as? PodcastTableViewCell {
+            if let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCell", forIndexPath: indexPath) as? AddFavoriteTableViewCell {
                 cell.podcast = dataSource[indexPath.row]
                 return cell
             }
