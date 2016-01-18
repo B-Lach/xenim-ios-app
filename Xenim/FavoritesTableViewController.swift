@@ -158,21 +158,17 @@ class FavoritesTableViewController: UITableViewController{
         }    
     }
     */
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let removeFavoriteAction = UITableViewRowAction(style: .Default, title: "Remove") { (action, indexPath) -> Void in
+            let podcast = self.favorites[indexPath.row]
+            Favorites.remove(podcastId: podcast.id)
+        }
+        removeFavoriteAction.backgroundColor = Constants.Colors.tintColor
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+        return [removeFavoriteAction]
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation

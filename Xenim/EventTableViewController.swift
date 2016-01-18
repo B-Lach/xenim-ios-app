@@ -237,6 +237,20 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
             })
         }
     }
+    
+    // MARK: Actions
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let toggleFavoriteAction = UITableViewRowAction(style: .Default, title: "★") { (action, indexPath) -> Void in
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
+            Favorites.toggle(podcastId: cell.event.podcast.id)
+            self.tableView.editing = false
+        }
+        toggleFavoriteAction.backgroundColor = Constants.Colors.tintColor
+        
+        return [toggleFavoriteAction]
+    }
 
     
     // MARK: - Navigation
