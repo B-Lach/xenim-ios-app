@@ -23,7 +23,7 @@ class PathDynamicModal: NSObject, UIGestureRecognizerDelegate {
         }
     }
     var showMagnitude: CGFloat = 250.0
-    var closeMagnitude: CGFloat = 170.0
+    var closeMagnitude: CGFloat = 250.0
     var closeByTapBackground: Bool = true
     var closeBySwipeBackground: Bool = true
     var showedHandler: (() -> Void)?

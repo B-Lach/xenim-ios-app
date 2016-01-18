@@ -120,17 +120,17 @@ class FavoritesTableViewController: UITableViewController{
         
         // configure event detail view controller as popup content
         let favoriteDetailVC = storyboard.instantiateViewControllerWithIdentifier("FavoriteDetail") as! FavoriteDetailViewController
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        // scale the popover
-        favoriteDetailVC.preferredContentSize = CGSizeMake(screenSize.width * 0.9, 300)
-        favoriteDetailVC.view.layer.cornerRadius = 5.0
-        favoriteDetailVC.view.bounds = CGRectMake(10, 10, favoriteDetailVC.preferredContentSize.width, favoriteDetailVC.preferredContentSize.height)
-        
         favoriteDetailVC.podcast = favorites[indexPath.row]
         
-        let window = UIApplication.sharedApplication().delegate?.window!
-        PathDynamicModal.show(modalView: favoriteDetailVC.view, inView: window!)
         
+        let view = favoriteDetailVC.view
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        // scale the popover
+        view.layer.cornerRadius = 5.0
+        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
+        
+        let window = UIApplication.sharedApplication().delegate?.window!
+        let modal = PathDynamicModal.show(modalView: view, inView: window!)
     }
 
 
