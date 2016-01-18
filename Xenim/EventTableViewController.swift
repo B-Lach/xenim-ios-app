@@ -279,31 +279,31 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     // if the info button in the player for a specific event is pressed
     // this table view controller should segue to the event detail view
     static func showEventInfo(event event: Event) {
-        if let tabBarController = UIApplication.sharedApplication().keyWindow?.rootViewController as? UITabBarController {
-            // switch to event detail view
-            tabBarController.selectedIndex = 0
-            
-            // minify the player
-            tabBarController.closePopupAnimated(true, completion: nil)
-            
-            if let navigationController = tabBarController.childViewControllers.first as? UINavigationController {
-                if let podcastDetailVC = navigationController.visibleViewController as? PodcastDetailViewController {
-                    if !podcastDetailVC.event!.equals(event) {
-                        // there is already a detail view open, but with the wrong event
-                        // so we close it
-                        navigationController.popViewControllerAnimated(false)
-                        // and open the correct one
-                        if let eventTableViewController = navigationController.visibleViewController as? EventTableViewController {
-                            eventTableViewController.performSegueWithIdentifier("PodcastDetail", sender: event)
-                        }
-                    }
-                    // else the correct info is already present
-                } else if let eventTableViewController = navigationController.visibleViewController as? EventTableViewController {
-                    // there is no detail view open yet, so just open it
-                    eventTableViewController.performSegueWithIdentifier("PodcastDetail", sender: event)
-                }
-            }
-        }
+//        if let tabBarController = UIApplication.sharedApplication().keyWindow?.rootViewController as? UITabBarController {
+//            // switch to event detail view
+//            tabBarController.selectedIndex = 0
+//            
+//            // minify the player
+//            tabBarController.closePopupAnimated(true, completion: nil)
+//            
+//            if let navigationController = tabBarController.childViewControllers.first as? UINavigationController {
+//                if let podcastDetailVC = navigationController.visibleViewController as? PodcastDetailViewController {
+//                    if !podcastDetailVC.event!.equals(event) {
+//                        // there is already a detail view open, but with the wrong event
+//                        // so we close it
+//                        navigationController.popViewControllerAnimated(false)
+//                        // and open the correct one
+//                        if let eventTableViewController = navigationController.visibleViewController as? EventTableViewController {
+//                            eventTableViewController.performSegueWithIdentifier("PodcastDetail", sender: event)
+//                        }
+//                    }
+//                    // else the correct info is already present
+//                } else if let eventTableViewController = navigationController.visibleViewController as? EventTableViewController {
+//                    // there is no detail view open yet, so just open it
+//                    eventTableViewController.performSegueWithIdentifier("PodcastDetail", sender: event)
+//                }
+//            }
+//        }
     }
     
 }
