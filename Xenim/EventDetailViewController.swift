@@ -17,7 +17,7 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var eventDescriptionLabel: UILabel!
+    @IBOutlet weak var eventDescriptionTextView: UITextView!
     
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playButtonHeightConstraint: NSLayoutConstraint!
@@ -35,7 +35,7 @@ class EventDetailViewController: UIViewController {
         
         podcastNameLabel.text = event.podcast.name
         eventTitleLabel.text = event.title
-        eventDescriptionLabel.text = event.eventDescription
+        eventDescriptionTextView.text = event.eventDescription
         
         // display livedate differently according to how far in the future
         // the event is taking place
