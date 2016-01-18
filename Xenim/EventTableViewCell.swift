@@ -57,15 +57,20 @@ class EventTableViewCell: UITableViewCell {
             let formatter = NSDateFormatter();
             formatter.locale = NSLocale.currentLocale()
             
-            if event.isLive() || event.isUpcomingToday() || event.isUpcomingTomorrow() {
-                formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            } else if event.isUpcomingThisWeek() {
-                formatter.setLocalizedDateFormatFromTemplate("EEEE HH:mm")
-            } else {
-                formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM HH:mm")
-            }
+            formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+            let time = formatter.stringFromDate(event.begin)
             
-            dateLabel?.text = formatter.stringFromDate(event.begin)
+            if event.isLive() || event.isUpcomingToday() || event.isUpcomingTomorrow() {
+                dateLabel?.text = time
+            } else if event.isUpcomingThisWeek() {
+                formatter.setLocalizedDateFormatFromTemplate("EEEE")
+                let date = formatter.stringFromDate(event.begin)
+                dateLabel?.text = "\(date)\n\(time)"
+            } else {
+                formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM")
+                let date = formatter.stringFromDate(event.begin)
+                dateLabel?.text = "\(date)\n\(time)"
+            }
         }
     }
     
