@@ -275,7 +275,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
         
         let window = UIApplication.sharedApplication().delegate?.window!
-        let modal = PathDynamicModal.show(modalView: view, inView: window!)
+        let modal = PathDynamicModal.show(modalView: eventDetailVC, inView: window!)
         
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
         

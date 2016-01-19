@@ -133,7 +133,7 @@ class FavoritesTableViewController: UITableViewController{
         view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
         
         let window = UIApplication.sharedApplication().delegate?.window!
-        let modal = PathDynamicModal.show(modalView: view, inView: window!)
+        let modal = PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
         
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }

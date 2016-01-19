@@ -31,7 +31,8 @@ class PathDynamicModal: NSObject, UIGestureRecognizerDelegate {
     
     /* private properties */
     
-    private weak var view: UIView!
+    private var view: UIView!
+    private var viewController: UIViewController!
     private var contentView: UIView! = UIView()
     private var backgroundView: ModalRetainView! = ModalRetainView()
     private var animator: UIDynamicAnimator!
@@ -43,15 +44,16 @@ class PathDynamicModal: NSObject, UIGestureRecognizerDelegate {
     
     /* internal functions */
     
-    class func show(modalView view: UIView, inView: UIView) -> PathDynamicModal {
+    class func show(modalView viewController: UIViewController, inView: UIView) -> PathDynamicModal {
         let modal = PathDynamicModal()
-        modal.show(modalView: view, inView: inView)
+        modal.show(modalView: viewController, inView: inView)
         
         return modal
     }
     
-    func show(modalView view: UIView, inView: UIView) {
-        self.view = view
+    func show(modalView viewController: UIViewController, inView: UIView) {
+        self.viewController = viewController
+        self.view = viewController.view
         self.backgroundView.modal = self
         
         self.backgroundView.center = inView.center
@@ -239,7 +241,7 @@ class PathDynamicModal: NSObject, UIGestureRecognizerDelegate {
     /* delegate functions */
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        return gestureRecognizer.view == touch.view ? true : false
+        return gestureRecognizer.view == touch.view
     }
 }
 
