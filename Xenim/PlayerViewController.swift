@@ -170,7 +170,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             } else {
                 favoriteItem?.image = UIImage(named: "scarlet-25-star")
             }
-
         }
     }
     
