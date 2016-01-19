@@ -103,7 +103,7 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     }
     
     func updateNextDateLabel() {
-        nextDateLabel.text = "Loading..."
+        nextDateLabel.text = NSLocalizedString("favorite_detailview_loading_next_event", value: "Loading...", comment: "Loading message while loading next event date")
         podcast.daysUntilNextEventString { (string) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.nextDateLabel.text = string

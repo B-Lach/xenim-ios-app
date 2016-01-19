@@ -119,7 +119,7 @@ class FavoritesTableViewController: UITableViewController{
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        let removeFavoriteAction = UITableViewRowAction(style: .Default, title: "Remove") { (action, indexPath) -> Void in
+        let removeFavoriteAction = UITableViewRowAction(style: .Default, title:  NSLocalizedString("remove_favorite", value: "Remove", comment: "remove a favorite by swiping left to edit")) { (action, indexPath) -> Void in
             let podcast = self.favorites[indexPath.row]
             Favorites.remove(podcastId: podcast.id)
         }

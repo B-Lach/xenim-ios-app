@@ -21,7 +21,7 @@ class FavoriteTableViewCell: UITableViewCell {
             
             podcastNameLabel.text = podcast.name
             
-            nextDateLabel.text = "Loading..."
+            nextDateLabel.text = NSLocalizedString("favorite_tableview_loading_next_event", value: "Loading...", comment: "Loading message while loading next event date")
             podcast.daysUntilNextEventString { (string) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.nextDateLabel.text = string

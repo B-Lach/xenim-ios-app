@@ -62,7 +62,7 @@ class EventTableViewCell: UITableViewCell {
             dateLabel.textColor = UIColor.grayColor()
             
             if event.isLive() {
-                dateLabel?.text = "Live now"
+                dateLabel?.text = NSLocalizedString("live_now", value: "Live Now", comment: "live now string")
                 dateLabel.textColor = Constants.Colors.tintColor
             }
             else if event.isUpcomingToday() || event.isUpcomingTomorrow() {
