@@ -96,9 +96,9 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     
     func updateFavoriteButton() {
         if Favorites.fetch().contains(podcast.id) {
-            favoriteButton?.setImage(UIImage(named: "scarlet-25-star"), forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
         } else {
-            favoriteButton?.setImage(UIImage(named: "scarlet-25-star-o"), forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
         }
     }
     

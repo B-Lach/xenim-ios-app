@@ -74,14 +74,14 @@ class EventDetailViewController: UIViewController {
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         // scale the popover
         view.layer.cornerRadius = 5.0
-        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
+        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 300)
     }
     
     func updateFavoriteButton() {
         if Favorites.fetch().contains(event.podcast.id) {
-            favoriteButton?.setImage(UIImage(named: "scarlet-25-star"), forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
         } else {
-            favoriteButton?.setImage(UIImage(named: "scarlet-25-star-o"), forState: .Normal)
+            favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
         }
     }
     
