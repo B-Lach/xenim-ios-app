@@ -130,7 +130,7 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         favoriteDetailVC.podcast = cell.podcast
         
         let window = UIApplication.sharedApplication().delegate?.window!
-        let modal = PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
+        PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
         
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }
