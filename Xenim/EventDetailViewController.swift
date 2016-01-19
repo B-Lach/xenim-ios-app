@@ -22,6 +22,8 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playButtonHeightConstraint: NSLayoutConstraint!
     
+    var dismissHandler: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,7 +107,9 @@ class EventDetailViewController: UIViewController {
     
     @IBAction func playEvent(sender: AnyObject) {
         PlayerManager.sharedInstance.play(event)
-        //TODO dismiss
+        if dismissHandler != nil {
+            dismissHandler!()
+        }
     }
     
     @IBAction func moreActions(sender: AnyObject) {

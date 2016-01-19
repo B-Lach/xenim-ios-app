@@ -271,6 +271,11 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         let window = UIApplication.sharedApplication().delegate?.window!
         let modal = PathDynamicModal.show(modalView: eventDetailVC, inView: window!)
         
+        eventDetailVC.dismissHandler = {[weak modal] in
+            modal?.closeWithStraight()
+            return
+        }
+        
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
         
     }
