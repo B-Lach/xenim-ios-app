@@ -263,8 +263,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
         EventTableViewController.showEventInfo(event: cell.event)
-        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     // MARK: - static global

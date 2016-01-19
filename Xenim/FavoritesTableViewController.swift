@@ -119,7 +119,7 @@ class FavoritesTableViewController: UITableViewController{
         let window = UIApplication.sharedApplication().delegate?.window!
         PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
         
-        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
