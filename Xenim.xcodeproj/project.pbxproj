@@ -13,7 +13,6 @@
 		2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBC1BD52E480040100F /* Assets.xcassets */; };
 		2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */; };
 		2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECC71BD52EEA0040100F /* EventTableViewController.swift */; };
-		2226CC261C06FB050077D22B /* NextupEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226CC251C06FB050077D22B /* NextupEventsTableViewController.swift */; };
 		222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222913CC1C032221005C74BB /* SettingsTableViewController.swift */; };
 		222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222FB9FC1BF0E90A0007257A /* PlayerManager.swift */; };
 		223510421C1A1D4300DB521A /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223510411C1A1D4300DB521A /* PushNotificationManager.swift */; };
@@ -64,7 +63,6 @@
 		2222ECBF1BD52E480040100F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2222ECC11BD52E480040100F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2222ECC71BD52EEA0040100F /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
-		2226CC251C06FB050077D22B /* NextupEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextupEventsTableViewController.swift; sourceTree = "<group>"; };
 		222913CC1C032221005C74BB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		222FB9FC1BF0E90A0007257A /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		223510411C1A1D4300DB521A /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 				2222ECB91BD52E480040100F /* Main.storyboard */,
 				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
 				22E6DD9E1C314B7500E427C8 /* Settings */,
-				229B3C471C1F08F500187BA0 /* Podcast Detail */,
 				22D515CA1C4BFE2700BE8D21 /* AddFavorite */,
 				229B3C461C1F08D100187BA0 /* Favorites */,
 				229B3C481C1F090100187BA0 /* Events */,
@@ -200,14 +197,6 @@
 				22F1B3D61C4A81D0005B03F7 /* FavoriteDetailViewController.swift */,
 			);
 			name = Favorites;
-			sourceTree = "<group>";
-		};
-		229B3C471C1F08F500187BA0 /* Podcast Detail */ = {
-			isa = PBXGroup;
-			children = (
-				2226CC251C06FB050077D22B /* NextupEventsTableViewController.swift */,
-			);
-			name = "Podcast Detail";
 			sourceTree = "<group>";
 		};
 		229B3C481C1F090100187BA0 /* Events */ = {
@@ -420,7 +409,6 @@
 				22170D5F1C3136A30077AEC1 /* AboutViewController.swift in Sources */,
 				223510421C1A1D4300DB521A /* PushNotificationManager.swift in Sources */,
 				228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */,
-				2226CC261C06FB050077D22B /* NextupEventsTableViewController.swift in Sources */,
 				22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */,
 				22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */,
 				22D515CC1C4CE99700BE8D21 /* PathDynamicModal.swift in Sources */,
