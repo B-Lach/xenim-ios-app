@@ -41,6 +41,7 @@ class FavoritesTableViewController: UITableViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
     // MARK: - Table view data source
 
@@ -92,32 +93,6 @@ class FavoritesTableViewController: UITableViewController{
     @IBAction func dismissSettings(segue:UIStoryboardSegue) {}
     @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {}
     
-//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-//        // only allow segue to podcast detail view controller if podcast data for the cell
-//        // has already been fetched.
-//        if identifier == "PodcastDetail" {
-//            if let cell = sender as? FavoriteCollectionViewCell {
-//                if cell.podcast == nil {
-//                    return false
-//                }
-//            }
-//        }
-//        // for all other segues return true by default
-//        return true
-//    }
-//    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if let dvc = segue.destinationViewController as? PodcastDetailViewController {
-//            if segue.identifier == "PodcastDetail" {
-//                if let cell = sender as? FavoriteCollectionViewCell {
-//                    if let podcast = cell.podcast {
-//                        dvc.podcast = podcast
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
     
     // MARK: - Navigation
     
@@ -141,27 +116,6 @@ class FavoritesTableViewController: UITableViewController{
         
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
@@ -173,15 +127,5 @@ class FavoritesTableViewController: UITableViewController{
 
         return [removeFavoriteAction]
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
