@@ -212,8 +212,8 @@
 		22BC05A91C12F995005356C8 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				222FB9FC1BF0E90A0007257A /* PlayerManager.swift */,
 				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
+				222FB9FC1BF0E90A0007257A /* PlayerManager.swift */,
 			);
 			name = Player;
 			sourceTree = "<group>";
