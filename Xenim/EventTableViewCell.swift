@@ -59,8 +59,13 @@ class EventTableViewCell: UITableViewCell {
             
             formatter.setLocalizedDateFormatFromTemplate("HH:mm")
             let time = formatter.stringFromDate(event.begin)
+            dateLabel.textColor = UIColor.grayColor()
             
-            if event.isLive() || event.isUpcomingToday() || event.isUpcomingTomorrow() {
+            if event.isLive() {
+                dateLabel?.text = "Live now"
+                dateLabel.textColor = Constants.Colors.tintColor
+            }
+            else if event.isUpcomingToday() || event.isUpcomingTomorrow() {
                 dateLabel?.text = time
             } else if event.isUpcomingThisWeek() {
                 formatter.setLocalizedDateFormatFromTemplate("EEEE")
