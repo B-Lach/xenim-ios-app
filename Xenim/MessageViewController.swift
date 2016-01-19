@@ -10,5 +10,14 @@ import UIKit
 
 class MessageViewController: UIViewController {
 
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel! {
+        didSet {
+            messageLabel?.text = message
+        }
+    }
+    var message: String! {
+        didSet {
+            messageLabel?.text = message
+        }
+    }
 }

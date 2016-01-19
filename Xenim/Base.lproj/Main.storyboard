@@ -307,6 +307,42 @@
             </objects>
             <point key="canvasLocation" x="2837" y="-2655"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="0Gj-Fs-SiI">
+            <objects>
+                <viewController storyboardIdentifier="LoadingViewController" id="xYt-ly-da3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vvE-3v-v14"/>
+                        <viewControllerLayoutGuide type="bottom" id="C9E-41-8Ow"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9bf-Gr-XwN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="EeN-if-cm7">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ze7-Qo-4W6">
+                                <rect key="frame" x="270" y="326" width="61" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ze7-Qo-4W6" firstAttribute="centerX" secondItem="EeN-if-cm7" secondAttribute="centerX" id="FRc-4I-p7N"/>
+                            <constraint firstItem="ze7-Qo-4W6" firstAttribute="top" secondItem="EeN-if-cm7" secondAttribute="bottom" constant="8" id="f3D-s0-ltX"/>
+                            <constraint firstItem="EeN-if-cm7" firstAttribute="centerX" secondItem="9bf-Gr-XwN" secondAttribute="centerX" id="hSN-co-14f"/>
+                            <constraint firstItem="EeN-if-cm7" firstAttribute="centerY" secondItem="9bf-Gr-XwN" secondAttribute="centerY" id="t1G-Zs-wmv"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="12H-de-Mz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="400" y="-312"/>
+        </scene>
         <!--Message View Controller-->
         <scene sceneID="Jcg-KW-DCX">
             <objects>
@@ -345,7 +381,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3c-Cb-80N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1931" y="-377"/>
+            <point key="canvasLocation" x="1207" y="-359"/>
         </scene>
         <!--Event Table View Controller-->
         <scene sceneID="UEB-V1-gUW">

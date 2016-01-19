@@ -13,6 +13,7 @@ class FavoritesTableViewController: UITableViewController{
     // contains the podcast slugs of all favorites
     var favorites = [Podcast]()
     var messageVC: MessageViewController?
+    var loadingVC: UIViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,9 @@ class FavoritesTableViewController: UITableViewController{
         // add background view to display error message if no data is available to display
         if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
             self.messageVC = messageVC
-            tableView?.backgroundView = messageVC.view
+            self.messageVC?.message = NSLocalizedString("favorites_tableview_empty_message", value: "Add podcast shows as your favorite to see them here.", comment: "this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.")
         }
+        loadingVC = storyboard?.instantiateViewControllerWithIdentifier("LoadingViewController")
         
         // increase content inset for audio player
         tableView?.contentInset.bottom = tableView!.contentInset.bottom + 40
@@ -46,7 +48,6 @@ class FavoritesTableViewController: UITableViewController{
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        updateBackground()
         return 1
     }
 
@@ -65,6 +66,9 @@ class FavoritesTableViewController: UITableViewController{
     }
     
     func refresh() {
+        tableView.backgroundView = loadingVC!.view
+        updateBackground()
+        
         Favorites.fetchFavoritePodcasts({ (podcasts) -> Void in
             self.favorites = podcasts
             self.favorites.sortInPlace({ (podcast1, podcast2) -> Bool in
@@ -72,13 +76,14 @@ class FavoritesTableViewController: UITableViewController{
             })
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView?.reloadData()
+                self.tableView.backgroundView = self.messageVC!.view
+                self.updateBackground()
             })
         })
     }
     
     func updateBackground() {
         if favorites.count == 0 {
-            messageVC?.messageLabel.text = NSLocalizedString("favorites_tableview_empty_message", value: "Add podcast shows as your favorite to see them here.", comment: "this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.")
             tableView?.backgroundView?.hidden = false
             tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         } else {
