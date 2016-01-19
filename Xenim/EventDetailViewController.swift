@@ -42,17 +42,22 @@ class EventDetailViewController: UIViewController {
         // the event is taking place
         let formatter = NSDateFormatter();
         formatter.locale = NSLocale.currentLocale()
+        dateLabel.textColor = UIColor.grayColor()
         
-        if event.isLive() || event.isUpcomingToday() || event.isUpcomingTomorrow() {
+        if event.isLive() {
+            dateLabel.textColor = Constants.Colors.tintColor
+            dateLabel?.text = "Live now"
+        } else if event.isUpcomingToday() || event.isUpcomingTomorrow() {
             formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+            dateLabel?.text = formatter.stringFromDate(event.begin)
         } else if event.isUpcomingThisWeek() {
             formatter.setLocalizedDateFormatFromTemplate("EEEE HH:mm")
+            dateLabel?.text = formatter.stringFromDate(event.begin)
         } else {
             formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM HH:mm")
+            dateLabel?.text = formatter.stringFromDate(event.begin)
         }
-        
-        dateLabel?.text = formatter.stringFromDate(event.begin)
-        
+                
         updateFavoriteButton()
         updatePlayButton()
 

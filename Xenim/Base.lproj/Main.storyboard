@@ -536,7 +536,8 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="Ouy-kd-N1z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" image="white-25-play-circle">
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                <state key="normal" title="Listen" image="white-25-play-circle">
                                     <color key="titleColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
