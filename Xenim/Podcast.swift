@@ -120,4 +120,21 @@ class Podcast : NSObject {
         }
     }
     
+    func daysUntilNextEventString(onComplete: (string: String) -> Void) {
+        getDaysUntilNextEvent { (days) -> Void in
+            if days < 0 {
+                // no event scheduled
+                let noEventString = String(format: NSLocalizedString("favorite_tableviewcell_no_event_scheduled", value: "Nothing scheduled", comment: "Tells the user that there is no event scheduled in the future"))
+                onComplete(string: noEventString)
+            } else if days == 0 {
+                // the event is today
+                onComplete(string: NSLocalizedString("Today", value: "Today", comment: "Today").lowercaseString)
+            } else {
+                // the event is in the future
+                let diffDaysString = String(format: NSLocalizedString("favorite_tableviewcell_diff_date_string", value: "in %d days", comment: "Tells the user in how many dates the event takes place. It is a formatted string like 'in %d days'."), days)
+                onComplete(string: diffDaysString)
+            }
+        }
+    }
+    
 }

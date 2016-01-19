@@ -103,7 +103,12 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     }
     
     func updateNextDateLabel() {
-        // TODO
+        nextDateLabel.text = "Loading..."
+        podcast.daysUntilNextEventString { (string) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.nextDateLabel.text = string
+            })
+        }
     }
     
     // MARK: - Actions
