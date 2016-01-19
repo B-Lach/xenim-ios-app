@@ -131,7 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				2222ECB91BD52E480040100F /* Main.storyboard */,
-				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
 				22E6DD9E1C314B7500E427C8 /* Settings */,
 				22D515CA1C4BFE2700BE8D21 /* AddFavorite */,
 				229B3C461C1F08D100187BA0 /* Favorites */,
@@ -182,6 +181,7 @@
 		229B3C451C1F087400187BA0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
 				22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */,
 				223510411C1A1D4300DB521A /* PushNotificationManager.swift */,
 				22C31DF61BECB64E006F2999 /* HelperExtensions.swift */,
