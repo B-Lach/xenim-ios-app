@@ -44,8 +44,8 @@ class PathDynamicModal: NSObject, UIGestureRecognizerDelegate {
             self.backgroundView.backgroundColor = self.backgroundColor.colorWithAlphaComponent(backgroundAlpha)
         }
     }
-    var showMagnitude: CGFloat = 250.0
-    var closeMagnitude: CGFloat = 250.0
+    var showMagnitude: CGFloat = 500.0
+    var closeMagnitude: CGFloat = 500.0
     var closeByTapBackground: Bool = true
     var closeBySwipeBackground: Bool = true
     var showedHandler: (() -> Void)?
