@@ -40,6 +40,15 @@ class AddFavoriteTableViewCell: UITableViewCell {
     
     @IBAction func toggleFavorite(sender: AnyObject) {
         Favorites.toggle(podcastId: podcast.id)
+        favoriteButton.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        UIView.animateWithDuration(0.3,
+            delay: 0,
+            usingSpringWithDamping: 2,
+            initialSpringVelocity: 1.0,
+            options: [UIViewAnimationOptions.CurveEaseOut],
+            animations: {
+                self.favoriteButton.transform = CGAffineTransformIdentity
+            }, completion: nil)
     }
     
     override func awakeFromNib() {
