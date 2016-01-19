@@ -37,7 +37,7 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func fetchPodcastUpcomingEvents(podcastId: String, maxCount: Int?, onComplete: (events: [Event]) -> Void){
+    static func fetchPodcastUpcomingEvents(podcastId: String, maxCount: Int? = 1, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         let parameters = [
             "status": "UPCOMING",
