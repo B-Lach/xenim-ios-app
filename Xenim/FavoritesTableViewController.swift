@@ -79,8 +79,10 @@ class FavoritesTableViewController: UITableViewController{
         if favorites.count == 0 {
             messageVC?.messageLabel.text = NSLocalizedString("favorites_tableview_empty_message", value: "Add podcast shows as your favorite to see them here.", comment: "this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.")
             tableView?.backgroundView?.hidden = false
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         } else {
             tableView?.backgroundView?.hidden = true
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
         }
     }
     
