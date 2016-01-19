@@ -104,19 +104,18 @@ class Podcast : NSObject {
     func getDaysUntilNextEvent(onComplete: (days: Int) -> Void) {
         // fetch upcoming events
         XenimAPI.fetchPodcastUpcomingEvents(self.id, maxCount: 1) { (events) -> Void in
-            if let event = events.first {
-                if event.isUpcoming() {
-                    // calculate in how many days this event takes place
-                    let cal = NSCalendar.currentCalendar()
-                    let today = cal.startOfDayForDate(NSDate())
-                    let diff = cal.components(NSCalendarUnit.Day,
-                        fromDate: today,
-                        toDate: event.begin,
-                        options: NSCalendarOptions.WrapComponents )
-                    onComplete(days: diff.day)
-                }
+            if events.first != nil && events.first!.isUpcoming() {
+                // calculate in how many days this event takes place
+                let cal = NSCalendar.currentCalendar()
+                let today = cal.startOfDayForDate(NSDate())
+                let diff = cal.components(NSCalendarUnit.Day,
+                    fromDate: today,
+                    toDate: events.first!.begin,
+                    options: NSCalendarOptions.WrapComponents )
+                onComplete(days: diff.day)
+            } else {
+                onComplete(days: -1)
             }
-            onComplete(days: -1)
         }
     }
     
