@@ -91,6 +91,15 @@ class EventTableViewCell: UITableViewCell {
     // MARK: - Actions
     
     @IBAction func play(sender: AnyObject) {
+        playButton.transform = CGAffineTransformMakeScale(1.8, 1.8)
+        UIView.animateWithDuration(0.3,
+            delay: 0,
+            usingSpringWithDamping: 2,
+            initialSpringVelocity: 1.0,
+            options: [UIViewAnimationOptions.CurveEaseOut],
+            animations: {
+                self.playButton.transform = CGAffineTransformIdentity
+            }, completion: nil)
         PlayerManager.sharedInstance.play(event)
     }
     
