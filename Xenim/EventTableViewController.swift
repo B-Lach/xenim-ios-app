@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventTableViewController: UITableViewController {
+class EventTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
     // possible sections
     enum Section {
@@ -33,9 +33,6 @@ class EventTableViewController: UITableViewController {
     // user defaults to store favorites filter enabled status
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let userDefaultsFavoritesSettingKey = "showFavoritesOnly"
-    
-    var timer : NSTimer? // timer to update view periodically
-    let updateInterval: NSTimeInterval = 60 // seconds
     
     // background view for message when no data is available
     var messageVC: MessageViewController?
@@ -71,16 +68,10 @@ class EventTableViewController: UITableViewController {
 
         refresh(spinner)
         
-        // setup timer to update every minute
-        // remember to invalidate timer as soon this view gets cleared otherwise
-        // this will cause a memory cycle
-        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
-        
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        timer?.invalidate()
     }
     
     // MARK: - Update UI
@@ -232,41 +223,6 @@ class EventTableViewController: UITableViewController {
         }
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-    
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
     
     // MARK: process data
     
@@ -281,26 +237,33 @@ class EventTableViewController: UITableViewController {
             })
         }
     }
+    
+    // MARK: Actions
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let toggleFavoriteAction = UITableViewRowAction(style: .Default, title: "★") { (action, indexPath) -> Void in
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
+            Favorites.toggle(podcastId: cell.event.podcast.id)
+            self.tableView.editing = false
+        }
+        toggleFavoriteAction.backgroundColor = Constants.Colors.tintColor
+        
+        return [toggleFavoriteAction]
+    }
 
     
     // MARK: - Navigation
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destinationVC = segue.destinationViewController as? PodcastDetailViewController {
-            if let identifier = segue.identifier {
-                switch identifier {
-                case "PodcastDetail":
-                    if let cell = sender as? EventTableViewCell {
-                        // this is the case when the segue is caused by the user tappin on a cell
-                        destinationVC.event = cell.event
-                    } else if let event = sender as? Event {
-                        // this is the case for showEventInfo delegate method.
-                        destinationVC.event = event
-                    }
-                default: break
-                }
-            }
-        }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        // this is required to prevent the popover to be shown as a modal view on iPhone
+        return UIModalPresentationStyle.None
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
+        EventTableViewController.showEventInfo(event: cell.event)
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
         
     }
     
@@ -309,38 +272,19 @@ class EventTableViewController: UITableViewController {
     // if the info button in the player for a specific event is pressed
     // this table view controller should segue to the event detail view
     static func showEventInfo(event event: Event) {
-        if let tabBarController = UIApplication.sharedApplication().keyWindow?.rootViewController as? UITabBarController {
-            // switch to event detail view
-            tabBarController.selectedIndex = 0
-            
-            // minify the player
-            tabBarController.closePopupAnimated(true, completion: nil)
-            
-            if let navigationController = tabBarController.childViewControllers.first as? UINavigationController {
-                if let podcastDetailVC = navigationController.visibleViewController as? PodcastDetailViewController {
-                    if !podcastDetailVC.event!.equals(event) {
-                        // there is already a detail view open, but with the wrong event
-                        // so we close it
-                        navigationController.popViewControllerAnimated(false)
-                        // and open the correct one
-                        if let eventTableViewController = navigationController.visibleViewController as? EventTableViewController {
-                            eventTableViewController.performSegueWithIdentifier("PodcastDetail", sender: event)
-                        }
-                    }
-                    // else the correct info is already present
-                } else if let eventTableViewController = navigationController.visibleViewController as? EventTableViewController {
-                    // there is no detail view open yet, so just open it
-                    eventTableViewController.performSegueWithIdentifier("PodcastDetail", sender: event)
-                }
-            }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // configure event detail view controller as popup content
+        let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("EventDetail") as! EventDetailViewController
+        eventDetailVC.event = event
+        
+        let window = UIApplication.sharedApplication().delegate?.window!
+        let modal = PathDynamicModal.show(modalView: eventDetailVC, inView: window!)
+        
+        eventDetailVC.dismissHandler = {[weak modal] in
+            modal?.closeWithStraight()
+            return
         }
-    }
-    
-    // MARK: - timer
-    
-    // update events every minute automatically
-    @objc func timerTicked() {
-        // TODO
     }
     
 }
