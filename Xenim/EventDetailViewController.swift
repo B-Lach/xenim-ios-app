@@ -24,6 +24,7 @@ class EventDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupNotifications()
         
         let placeholderImage = UIImage(named: "event_placeholder")!
@@ -60,6 +61,13 @@ class EventDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillLayoutSubviews() {
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        // scale the popover
+        view.layer.cornerRadius = 5.0
+        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
     }
     
     func updateFavoriteButton() {

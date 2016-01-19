@@ -49,6 +49,13 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillLayoutSubviews() {
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        // scale the popover
+        view.layer.cornerRadius = 5.0
+        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
+    }
+    
     func setupToolbar() {
         var items = [UIBarButtonItem]()
         let space = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)

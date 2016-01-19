@@ -268,12 +268,6 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("EventDetail") as! EventDetailViewController
         eventDetailVC.event = cell.event
         
-        let view = eventDetailVC.view
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        // scale the popover
-        view.layer.cornerRadius = 5.0
-        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
-        
         let window = UIApplication.sharedApplication().delegate?.window!
         let modal = PathDynamicModal.show(modalView: eventDetailVC, inView: window!)
         

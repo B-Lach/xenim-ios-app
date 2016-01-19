@@ -126,12 +126,6 @@ class FavoritesTableViewController: UITableViewController{
         let favoriteDetailVC = storyboard.instantiateViewControllerWithIdentifier("FavoriteDetail") as! FavoriteDetailViewController
         favoriteDetailVC.podcast = favorites[indexPath.row]
         
-        let view = favoriteDetailVC.view
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        // scale the popover
-        view.layer.cornerRadius = 5.0
-        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
-        
         let window = UIApplication.sharedApplication().delegate?.window!
         let modal = PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
         

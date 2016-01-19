@@ -129,12 +129,6 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AddFavoriteTableViewCell
         favoriteDetailVC.podcast = cell.podcast
         
-        let view = favoriteDetailVC.view
-        // scale the popover
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        view.layer.cornerRadius = 5.0
-        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
-        
         let window = UIApplication.sharedApplication().delegate?.window!
         let modal = PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
         
