@@ -120,6 +120,14 @@ class FavoritesTableViewController: UITableViewController{
     // MARK: - Navigation
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        showFavoriteDetailViewForIndexPath(indexPath)
+    }
+    
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        showFavoriteDetailViewForIndexPath(indexPath)
+    }
+    
+    func showFavoriteDetailViewForIndexPath(indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // configure event detail view controller as popup content
@@ -127,7 +135,7 @@ class FavoritesTableViewController: UITableViewController{
         favoriteDetailVC.podcast = favorites[indexPath.row]
         
         let window = UIApplication.sharedApplication().delegate?.window!
-        let modal = PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
+        PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
         
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }
