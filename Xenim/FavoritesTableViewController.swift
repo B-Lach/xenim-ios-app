@@ -75,7 +75,7 @@ class FavoritesTableViewController: UITableViewController{
                 return podcast1.name < podcast2.name
             })
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.tableView?.reloadData()
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
                 self.tableView.backgroundView = self.messageVC!.view
                 self.updateBackground()
             })
