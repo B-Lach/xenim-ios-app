@@ -75,6 +75,7 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     func updateBackground() {
         if state == .LOADING {
             tableView.backgroundView = loadingVC?.view
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         } else if state == .SHOW {
             var elementCount = 0
             if resultSearchController.active {
@@ -84,9 +85,11 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
             }
             
             if elementCount == 0 {
+                tableView.separatorStyle = UITableViewCellSeparatorStyle.None
                 tableView.backgroundView = messageVC?.view
             } else {
                 tableView.backgroundView = nil
+                tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
             }
         }
     }
