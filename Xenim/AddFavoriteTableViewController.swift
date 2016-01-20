@@ -9,6 +9,13 @@
 import UIKit
 
 class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpdating {
+    
+    enum State {
+        case LOADING
+        case SHOW
+    }
+    
+    var state: State = .LOADING
 
     // contains all podcasts with slug:title
     var podcasts = [Podcast]()
@@ -17,6 +24,9 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     // contains all podcast slugs ordered alphabetically
     var orderedPodcasts = [Podcast]()
     var resultSearchController: UISearchController!
+    
+    var messageVC: MessageViewController?
+    var loadingVC: UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,16 +45,19 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         tableView.rowHeight = UITableViewAutomaticDimension
 
         // fetch podcast list from API
-        refreshControl?.beginRefreshing()
+        loadingVC = storyboard?.instantiateViewControllerWithIdentifier("LoadingViewController")
+        messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
+        messageVC?.message = NSLocalizedString("add_favorites_tableview_no_data_message", value: "Could not find something", comment: "this message gets displayed if add favorites table view controller does not have any item to display")
+        
+        updateBackground()
+        
         XenimAPI.fetchAllPodcasts { (podcasts) -> Void in
             self.podcasts = podcasts
-            self.orderedPodcasts = podcasts.sort({ (podcast1, podcast2) -> Bool in
-                // is podcast1 ordererd before podcast2
-                return podcast1.name < podcast2.name
-            })
+            self.orderedPodcasts = podcasts.sort()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.refreshControl?.endRefreshing()
-                self.tableView.reloadData()
+                self.state = .SHOW
+                self.updateBackground()
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
             })
         }
     }
@@ -59,8 +72,23 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func refresh(sender: AnyObject) {
-        refreshControl?.endRefreshing()
+    func updateBackground() {
+        if state == .LOADING {
+            tableView.backgroundView = loadingVC?.view
+        } else if state == .SHOW {
+            var elementCount = 0
+            if resultSearchController.active {
+                elementCount = filteredPodcasts.count
+            } else {
+                elementCount = orderedPodcasts.count
+            }
+            
+            if elementCount == 0 {
+                tableView.backgroundView = messageVC?.view
+            } else {
+                tableView.backgroundView = nil
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -71,9 +99,9 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if resultSearchController.active {
-            return max(1, filteredPodcasts.count)
+            return filteredPodcasts.count
         }
-        return max(1, orderedPodcasts.count)
+        return orderedPodcasts.count
     }
 
     
@@ -88,14 +116,9 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
             dataSource = orderedPodcasts
         }
         
-        // check if there is data to display, otherwise show the no results cell
-        if dataSource.count > 0 {
-            if let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCell", forIndexPath: indexPath) as? AddFavoriteTableViewCell {
-                cell.podcast = dataSource[indexPath.row]
-                return cell
-            }
-        }
-        let cell = tableView.dequeueReusableCellWithIdentifier("NoResultsCell", forIndexPath: indexPath)
+
+        let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCell", forIndexPath: indexPath) as! AddFavoriteTableViewCell
+        cell.podcast = dataSource[indexPath.row]
         return cell
     }
     
@@ -116,7 +139,8 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filterContentForSearchText(searchText)
-            tableView.reloadData()
+            self.tableView.reloadData()
+            self.updateBackground()
         }
 
     }
