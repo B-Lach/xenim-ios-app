@@ -105,17 +105,48 @@ class EventTableViewCell: UITableViewCell {
     
     // MARK: notifications
     
+    // MARK: notifications
+    
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func favoritesChanged(notification: NSNotification) {
-        updateFavoriteButton()
+    func favoriteAdded(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // check if this affects this cell
+            if podcastId == event.podcast.id {
+                favoriteImageView?.hidden = false
+                animateFavoriteButton()
+            }
+        }
+    }
+    
+    func favoriteRemoved(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // check if this affects this cell
+            if podcastId == event.podcast.id {
+                favoriteImageView?.hidden = true
+                animateFavoriteButton()
+            }
+        }
+    }
+    
+    func animateFavoriteButton() {
+        favoriteImageView.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        UIView.animateWithDuration(0.3,
+            delay: 0,
+            usingSpringWithDamping: 2,
+            initialSpringVelocity: 1.0,
+            options: [UIViewAnimationOptions.CurveEaseOut],
+            animations: {
+                self.favoriteImageView.transform = CGAffineTransformIdentity
+            }, completion: nil)
     }
     
 }

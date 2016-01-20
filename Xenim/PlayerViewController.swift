@@ -233,22 +233,38 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
     }
+    
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         timer?.invalidate()
     }
     
+    func favoriteAdded(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // check if this affects this cell
+            if podcastId == event.podcast.id {
+                favoriteItem?.image = UIImage(named: "scarlet-25-star")
+            }
+        }
+    }
+    
+    func favoriteRemoved(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // check if this affects this cell
+            if podcastId == event.podcast.id {
+                favoriteItem?.image = UIImage(named: "scarlet-25-star-o")
+            }
+        }
+    }
+    
     @objc func timerTicked() {
         updateProgressBar()
         updateListeners()
 	}
-
-    func favoritesChanged(notification: NSNotification) {
-        updateFavoritesButton()
-    }
     
     func playerStateChanged(notification: NSNotification) {
         let player = PlayerManager.sharedInstance.player

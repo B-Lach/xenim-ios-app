@@ -21,7 +21,8 @@ class FavoritesTableViewController: UITableViewController{
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged"), name: "favoritesChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
         
         // add background view to display error message if no data is available to display
         if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
@@ -61,8 +62,48 @@ class FavoritesTableViewController: UITableViewController{
         return cell
     }
     
-    func favoritesChanged() {
-        refresh()
+    func favoriteAdded(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // fetch podcast info
+            XenimAPI.fetchPodcastById(podcastId, onComplete: { (newPodcast) -> Void in
+                // find the right place to insert it
+                if let newPodcast = newPodcast {
+                    
+                    let index = self.favorites.orderedIndexOf(newPodcast, isOrderedBefore: <)
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        // add the new podcast to data source
+                        self.favorites.insert(newPodcast, atIndex: index)
+                        // update tableview
+                        self.tableView.beginUpdates()
+                        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Left)
+                        self.tableView.endUpdates()
+                        self.updateBackground()
+                    })
+                }
+            })
+
+        }
+    }
+    
+    func favoriteRemoved(notification: NSNotification) {
+        // extract which favorite was deleted
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // find the correct podcast in data source
+            for (index, podcast) in favorites.enumerate() {
+                if podcast.id == podcastId {
+                    // remove it drom data source and tableview
+                    favorites.removeAtIndex(index)
+                    tableView.beginUpdates()
+                    tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Left)
+                    tableView.endUpdates()
+                    break
+                }
+            }
+            // there might be 0 elements now, so show message if required
+            updateBackground()
+        }
+
     }
     
     func refresh() {
@@ -71,9 +112,7 @@ class FavoritesTableViewController: UITableViewController{
         
         Favorites.fetchFavoritePodcasts({ (podcasts) -> Void in
             self.favorites = podcasts
-            self.favorites.sortInPlace({ (podcast1, podcast2) -> Bool in
-                return podcast1.name < podcast2.name
-            })
+            self.favorites.sortInPlace()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
                 self.tableView.backgroundView = self.messageVC!.view
@@ -97,9 +136,6 @@ class FavoritesTableViewController: UITableViewController{
     // rewind segues
     @IBAction func dismissSettings(segue:UIStoryboardSegue) {}
     @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {}
-    
-    
-    // MARK: - Navigation
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         showFavoriteDetailViewForIndexPath(indexPath)

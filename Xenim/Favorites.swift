@@ -28,7 +28,7 @@ class Favorites {
             favorites.append(podcastId)
             userDefaults.setObject(favorites, forKey: key)
             PushNotificationManager.subscribeToPodcastChannel(podcastId)
-            notifyChange()
+            notifyFavoriteAdded(podcastId)
         }
     }
     
@@ -38,7 +38,7 @@ class Favorites {
             favorites.removeAtIndex(index)
             userDefaults.setObject(favorites, forKey: key)
             PushNotificationManager.unsubscribeFromPodcastChannel(podcastId)
-            notifyChange()
+            notifyFavoriteRemoved(podcastId)
         }
     }
     
@@ -74,8 +74,12 @@ class Favorites {
         }
     }
     
-    private static func notifyChange() {
-        NSNotificationCenter.defaultCenter().postNotificationName("favoritesChanged", object: nil, userInfo: nil)
+    private static func notifyFavoriteAdded(podcastId: String) {
+        NSNotificationCenter.defaultCenter().postNotificationName("favoriteAdded", object: nil, userInfo: ["podcastId": podcastId])
+    }
+    
+    private static func notifyFavoriteRemoved(podcastId: String) {
+        NSNotificationCenter.defaultCenter().postNotificationName("favoriteRemoved", object: nil, userInfo: ["podcastId": podcastId])
     }
     
 }
