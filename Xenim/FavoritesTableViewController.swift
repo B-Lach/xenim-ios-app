@@ -137,9 +137,6 @@ class FavoritesTableViewController: UITableViewController{
     @IBAction func dismissSettings(segue:UIStoryboardSegue) {}
     @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {}
     
-    
-    // MARK: - Navigation
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         showFavoriteDetailViewForIndexPath(indexPath)
     }
