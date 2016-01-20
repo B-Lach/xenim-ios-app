@@ -20,7 +20,7 @@ struct Artwork {
     }
 }
 
-class Podcast : NSObject {
+class Podcast : NSObject, Comparable {
     
     let id: String
     let name: String
@@ -135,5 +135,11 @@ class Podcast : NSObject {
             }
         }
     }
-    
 }
+
+
+// MARK: Comparable
+
+func ==(x: Podcast, y: Podcast) -> Bool { return x.id == y.id }
+func <(x: Podcast, y: Podcast) -> Bool { return x.name < y.name }
+

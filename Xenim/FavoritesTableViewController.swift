@@ -68,16 +68,8 @@ class FavoritesTableViewController: UITableViewController{
             XenimAPI.fetchPodcastById(podcastId, onComplete: { (newPodcast) -> Void in
                 // find the right place to insert it
                 if let newPodcast = newPodcast {
-                    var index = 0 // default is 0 if no podcast is there yet
                     
-                    // find the correct index to insert the new podcast
-                    for podcast in self.favorites {
-                        if podcast.name > newPodcast.name {
-                            // we reached a podcast that is alphabetically after the newPodcast
-                            index = self.favorites.indexOf(podcast)!
-                            break
-                        }
-                    }
+                    let index = self.favorites.orderedIndexOf(newPodcast, isOrderedBefore: <)
                     
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         // add the new podcast to data source
@@ -98,10 +90,8 @@ class FavoritesTableViewController: UITableViewController{
         // extract which favorite was deleted
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // find the correct podcast in data source
-            for podcast in favorites {
+            for (index, podcast) in favorites.enumerate() {
                 if podcast.id == podcastId {
-                    // get its index
-                    let index = favorites.indexOf(podcast)!
                     // remove it drom data source and tableview
                     favorites.removeAtIndex(index)
                     tableView.beginUpdates()
@@ -122,9 +112,7 @@ class FavoritesTableViewController: UITableViewController{
         
         Favorites.fetchFavoritePodcasts({ (podcasts) -> Void in
             self.favorites = podcasts
-            self.favorites.sortInPlace({ (podcast1, podcast2) -> Bool in
-                return podcast1.name < podcast2.name
-            })
+            self.favorites.sortInPlace()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
                 self.tableView.backgroundView = self.messageVC!.view
