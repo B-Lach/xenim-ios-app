@@ -76,16 +76,10 @@ class Favorites {
     
     private static func notifyFavoriteAdded(podcastId: String) {
         NSNotificationCenter.defaultCenter().postNotificationName("favoriteAdded", object: nil, userInfo: ["podcastId": podcastId])
-        notifyChange()
     }
     
     private static func notifyFavoriteRemoved(podcastId: String) {
         NSNotificationCenter.defaultCenter().postNotificationName("favoriteRemoved", object: nil, userInfo: ["podcastId": podcastId])
-        notifyChange()
-    }
-    
-    private static func notifyChange() {
-        NSNotificationCenter.defaultCenter().postNotificationName("favoritesChanged", object: nil, userInfo: nil)
     }
     
 }

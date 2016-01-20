@@ -19,7 +19,13 @@ class AddFavoriteTableViewCell: UITableViewCell {
                 coverartImageView.image = placeholderImage
             }
             setupNotifications()
-            updateFavoriteButton()
+            
+            if !Favorites.fetch().contains(podcast.id) {
+                favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
+            } else {
+                favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
+            }
+            
             descriptionLabel?.text = podcast?.podcastDescription
             podcastNameLabel?.text = podcast.name
         }
@@ -30,25 +36,8 @@ class AddFavoriteTableViewCell: UITableViewCell {
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    func updateFavoriteButton() {
-        if !Favorites.fetch().contains(podcast.id) {
-            favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
-        } else {
-            favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
-        }
-    }
-    
     @IBAction func toggleFavorite(sender: AnyObject) {
         Favorites.toggle(podcastId: podcast.id)
-        favoriteButton.transform = CGAffineTransformMakeScale(1.3, 1.3)
-        UIView.animateWithDuration(0.3,
-            delay: 0,
-            usingSpringWithDamping: 2,
-            initialSpringVelocity: 1.0,
-            options: [UIViewAnimationOptions.CurveEaseOut],
-            animations: {
-                self.favoriteButton.transform = CGAffineTransformIdentity
-            }, completion: nil)
     }
     
     override func awakeFromNib() {
@@ -60,15 +49,44 @@ class AddFavoriteTableViewCell: UITableViewCell {
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func favoritesChanged(notification: NSNotification) {
-        updateFavoriteButton()
+    func favoriteAdded(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // check if this affects this cell
+            if podcastId == podcast.id {
+                favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
+                animateFavoriteButton()
+            }
+        }
+    }
+    
+    func favoriteRemoved(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // check if this affects this cell
+            if podcastId == podcast.id {
+                favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
+                animateFavoriteButton()
+            }
+        }
     }
 
+    func animateFavoriteButton() {
+        favoriteButton.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        UIView.animateWithDuration(0.3,
+            delay: 0,
+            usingSpringWithDamping: 2,
+            initialSpringVelocity: 1.0,
+            options: [UIViewAnimationOptions.CurveEaseOut],
+            animations: {
+                self.favoriteButton.transform = CGAffineTransformIdentity
+            }, completion: nil)
+    }
+    
 }
