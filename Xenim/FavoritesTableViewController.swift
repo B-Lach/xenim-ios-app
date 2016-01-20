@@ -21,7 +21,8 @@ class FavoritesTableViewController: UITableViewController{
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged"), name: "favoritesChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
         
         // add background view to display error message if no data is available to display
         if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
@@ -61,8 +62,58 @@ class FavoritesTableViewController: UITableViewController{
         return cell
     }
     
-    func favoritesChanged() {
-        refresh()
+    func favoriteAdded(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // fetch podcast info
+            XenimAPI.fetchPodcastById(podcastId, onComplete: { (newPodcast) -> Void in
+                // find the right place to insert it
+                if let newPodcast = newPodcast {
+                    var index = 0 // default is 0 if no podcast is there yet
+                    
+                    // find the correct index to insert the new podcast
+                    for podcast in self.favorites {
+                        if podcast.name > newPodcast.name {
+                            // we reached a podcast that is alphabetically after the newPodcast
+                            index = self.favorites.indexOf(podcast)!
+                            break
+                        }
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        // add the new podcast to data source
+                        self.favorites.insert(newPodcast, atIndex: index)
+                        // update tableview
+                        self.tableView.beginUpdates()
+                        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Left)
+                        self.tableView.endUpdates()
+                        self.updateBackground()
+                    })
+                }
+            })
+
+        }
+    }
+    
+    func favoriteRemoved(notification: NSNotification) {
+        // extract which favorite was deleted
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // find the correct podcast in data source
+            for podcast in favorites {
+                if podcast.id == podcastId {
+                    // get its index
+                    let index = favorites.indexOf(podcast)!
+                    // remove it drom data source and tableview
+                    favorites.removeAtIndex(index)
+                    tableView.beginUpdates()
+                    tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Left)
+                    tableView.endUpdates()
+                    break
+                }
+            }
+            // there might be 0 elements now, so show message if required
+            updateBackground()
+        }
+
     }
     
     func refresh() {
