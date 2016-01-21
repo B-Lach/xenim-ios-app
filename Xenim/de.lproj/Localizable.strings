@@ -86,7 +86,7 @@
 /* mail body for a new support mail message */
 "settings_view_mail_body" = "Versuche dein Problem so genau wie möglich zu beschreiben. So können wir am schnellsten eine Lösung finden.
 
-Installed Version: (appVersionString)";
+Installed Version: %@";
 
 /* the message shown to the user in an alert view if his device is not setup to send email */
 "settings_view_mail_not_supported_message" = "Dein Gerät ist nicht für den Mailversand eingerichtet";
