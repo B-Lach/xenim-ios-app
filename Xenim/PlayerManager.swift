@@ -136,8 +136,8 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
             baseViewController?.popupBar!.addGestureRecognizer(longpressRecognizer)
             
             currentItem = audioItem
-            currentItem?.artist = event.podcast.podcastDescription
-            currentItem?.title = event.title
+            currentItem?.artist = event.title
+            currentItem?.title = event.eventDescription
             player.playItem(currentItem!) // save as this can not be nil
             
             // fetch coverart from image cache and set it as lockscreen artwork
