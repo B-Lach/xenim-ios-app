@@ -1,0 +1,174 @@
+/* Class = "UINavigationItem"; title = "Add Favorites"; ObjectID = "1rl-9j-OAR"; */
+"1rl-9j-OAR.title" = "Favoriten Finden";
+
+/* Class = "UILabel"; text = "Version Label"; ObjectID = "2id-gK-Ct0"; */
+"2id-gK-Ct0.text" = "Version Label";
+
+/* Class = "UILabel"; text = "lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing"; ObjectID = "5uN-NM-aDd"; */
+"5uN-NM-aDd.text" = "lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "8Ju-t9-JAQ"; */
+"8Ju-t9-JAQ.text" = "Date";
+
+/* Class = "UILabel"; text = "You see all upcoming events known to Xenim in your event list. However some podcasters do not schedule their livestream before actually doing the show.\n\nIf you want to see the shows scheduled before taking place, please talk to the podcaster so they schedule the event next time."; ObjectID = "8hl-TQ-7Bs"; */
+"8hl-TQ-7Bs.text" = "Du siehst alle geplanten Folgen in der Event Übersicht. Einige Podcast kündigen ihre Sendungen allerdings nicht rechtzeitig an.
+
+Wenn du Sendungen eines Podcast im Voraus im Kalender sehen möchtest, dann bitte den Podcaster darum die Sendung rechtzeitig bei Xenim anzukündigen.";
+
+/* Class = "UILabel"; text = "Event Title"; ObjectID = "787-WT-oEN"; */
+"787-WT-oEN.text" = "Event Title";
+
+/* Class = "UILabel"; text = "Contact us"; ObjectID = "A2h-Or-hEM"; */
+"A2h-Or-hEM.text" = "Kontaktiere Uns";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "DBj-XH-4rv"; */
+"DBj-XH-4rv.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Podcast Name"; ObjectID = "DXo-HN-BmU"; */
+"DXo-HN-BmU.text" = "Podcast Name";
+
+/* Class = "UITableViewSection"; headerTitle = "legal"; ObjectID = "G28-IZ-CPe"; */
+"G28-IZ-CPe.headerTitle" = "Rechtliches";
+
+/* Class = "UIViewController"; title = "FAQ"; ObjectID = "Gde-zd-lwM"; */
+"Gde-zd-lwM.title" = "FAQ";
+
+/* Class = "UILabel"; text = "Event Title"; ObjectID = "ICk-hJ-8gz"; */
+"ICk-hJ-8gz.text" = "Event Title";
+
+/* Class = "UILabel"; text = "FAQ"; ObjectID = "IUY-6Q-Kmf"; */
+"IUY-6Q-Kmf.text" = "FAQ";
+
+/* Class = "UILabel"; text = "Podcast Description"; ObjectID = "JaA-7x-at3"; */
+"JaA-7x-at3.text" = "Podcast Description";
+
+/* Class = "UITabBarItem"; title = "Events"; ObjectID = "KKU-KO-aCN"; */
+"KKU-KO-aCN.title" = "Events";
+
+/* Class = "UILabel"; text = "This app only supports podcasts which do livestreams via the Xenim streaming network."; ObjectID = "KP9-IT-5RM"; */
+"KP9-IT-5RM.text" = "Diese App unterstützt nur Podcasts, die ihren Livestream über das Xenim Streaming Network senden.";
+
+/* Class = "UILabel"; text = "Demo Album"; ObjectID = "MMC-P0-b9z"; */
+"MMC-P0-b9z.text" = "Demo Album";
+
+/* Class = "UILabel"; text = "Podcast Name"; ObjectID = "NT3-b8-rRn"; */
+"NT3-b8-rRn.text" = "Podcast Name";
+
+/* Class = "UITableViewSection"; headerTitle = "About"; ObjectID = "Nb1-Lj-6W7"; */
+"Nb1-Lj-6W7.headerTitle" = "Über uns";
+
+/* Class = "UILabel"; text = "Flattr"; ObjectID = "Pfs-v4-oHs"; */
+"Pfs-v4-oHs.text" = "Flattr";
+
+/* Class = "UILabel"; text = "Next Event"; ObjectID = "Py4-uQ-GDU"; */
+"Py4-uQ-GDU.text" = "Nächste Sendung";
+
+/* Class = "UIViewController"; title = "About"; ObjectID = "R6f-XE-dYm"; */
+"R6f-XE-dYm.title" = "Über die App";
+
+/* Class = "UILabel"; text = "Event Description"; ObjectID = "SHY-V1-cI6"; */
+"SHY-V1-cI6.text" = "Event Description";
+
+/* Class = "UITextView"; text = "Event Description"; ObjectID = "UGG-At-oAm"; */
+"UGG-At-oAm.text" = "Event Description";
+
+/* Class = "UILabel"; text = "Paypal"; ObjectID = "XKP-uY-s9v"; */
+"XKP-uY-s9v.text" = "Paypal";
+
+/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "Xwt-Mx-qxe"; */
+"Xwt-Mx-qxe.title" = "Favoriten";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "YFG-BN-gTI"; */
+"YFG-BN-gTI.title" = "Einstellungen";
+
+/* Class = "UITextView"; text = "Podcast Description"; ObjectID = "YgZ-tw-SQR"; */
+"YgZ-tw-SQR.text" = "Podcast Description";
+
+/* Class = "UILabel"; text = "Why can I not listen to this event though it is scheduled to be live now?"; ObjectID = "Z1k-Rx-IsW"; */
+"Z1k-Rx-IsW.text" = "Warum kann ich diese Livesendung nicht hören, obwohl sie als live angezeigt wird?";
+
+/* Class = "UILabel"; text = "Report a bug on Github"; ObjectID = "ZDd-88-y9e"; */
+"ZDd-88-y9e.text" = "Melde einen Bug auf Github";
+
+/* Class = "UILabel"; text = "Your question has not been answered? Feel free to contect us."; ObjectID = "aNZ-gq-i0L"; */
+"aNZ-gq-i0L.text" = "Deine Frage wurde nicht beantwortet? Du kannst dich gerne direkt an uns wenden.";
+
+/* Class = "UITableViewSection"; headerTitle = "Support us"; ObjectID = "c2j-9c-ZsQ"; */
+"c2j-9c-ZsQ.headerTitle" = "Unterstütze Uns";
+
+/* Class = "UISegmentedControl"; ca9-40-SUQ.segmentTitles[0] = "All Events"; ObjectID = "ca9-40-SUQ"; */
+"ca9-40-SUQ.segmentTitles[0]" = "Alle Events";
+
+/* Class = "UISegmentedControl"; ca9-40-SUQ.segmentTitles[1] = "Favorite Events"; ObjectID = "ca9-40-SUQ"; */
+"ca9-40-SUQ.segmentTitles[1]" = "Nur Favoriten";
+
+/* Class = "UILabel"; text = "Stefan Trauth Alte Rathausstraße 15 76467 Bietigheim\nmail@stefantrauth.de"; ObjectID = "d9H-Fy-TUN"; */
+"d9H-Fy-TUN.text" = "Stefan Trauth Alte Rathausstraße 15 76467 Bietigheim
+mail@stefantrauth.de";
+
+/* Class = "UILabel"; text = "Podcast Name"; ObjectID = "jXd-1h-OnC"; */
+"jXd-1h-OnC.text" = "Podcast Name";
+
+/* Class = "UILabel"; text = "Podcast Name"; ObjectID = "l5d-ya-iW5"; */
+"l5d-ya-iW5.text" = "Podcast Name";
+
+/* Class = "UILabel"; text = "Why could I not see a livestream as an upcoming event before it started?"; ObjectID = "lZw-LZ-4jq"; */
+"lZw-LZ-4jq.text" = "Warum konnte ich einen Livestream nicht als angekündigt im Kalender sehen, bevor die Sendung losging?";
+
+/* Class = "UILabel"; text = "Why can I not find my favorite podcast show here though it does live shows?"; ObjectID = "mV7-DQ-bPK"; */
+"mV7-DQ-bPK.text" = "Warum kann ich meinen Lieblingspodcast nicht hier finden, obwohl er Livesendungen macht?";
+
+/* Class = "UIViewController"; title = "Impressum"; ObjectID = "md5-oX-01O"; */
+"md5-oX-01O.title" = "Impressum";
+
+/* Class = "UIButton"; normalTitle = "Listen"; ObjectID = "ojL-yv-MT9"; */
+"ojL-yv-MT9.normalTitle" = "Hören";
+
+/* Class = "UILabel"; text = "Nextup Date"; ObjectID = "onN-H0-80u"; */
+"onN-H0-80u.text" = "Nextup Date";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "rBC-zr-6KO"; */
+"rBC-zr-6KO.text" = "Label";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "sRm-H4-jze"; */
+"sRm-H4-jze.text" = "Date";
+
+/* Class = "UILabel"; text = "Podcast Name"; ObjectID = "u3h-bQ-DFo"; */
+"u3h-bQ-DFo.text" = "Podcast Name";
+
+/* Class = "UILabel"; text = "Impressum"; ObjectID = "uH6-Hz-Od1"; */
+"uH6-Hz-Od1.text" = "Impressum";
+
+/* Class = "UILabel"; text = "This app features podcast livestreams from the Xenim streaming network. It is developed by Stefan Trauth.\n\nYou can find the code as Open Source on Github.\n\nSpecial thanks for helping to develop the app goes to: @_cato, @ePirat, @ugo\n\nPods this app uses: Alamofire, AlamofireImage, Alamofire, Bolts/Tasks, CRToast, KDEAudioPlayer, MarqueeLabel-Swift, Parse, Bolts/Tasks, SwiftyJSON"; ObjectID = "ukR-HY-Eol"; */
+"ukR-HY-Eol.text" = "Diese App präsentiert euch Podcast Livestreams des Xenim Streaming Networks. Die App wurde von Stefan Trauth entwickelt.
+
+Der Code ist Open Source und steht auf Github.
+
+Besonderen Dank an @_cato, @ePirat und @ugo für die Unterstützung bei der Entwicklung der App.
+
+Verwendete Pods: Alamofire, AlamofireImage, Bolts/Tasks, CRToast, KDEAudioPlayer, MarqeeLabel-Swift, Parse, SwiftyJSON";
+
+/* Class = "UITabBarItem"; title = "Favorites"; ObjectID = "uy0-hV-u60"; */
+"uy0-hV-u60.title" = "Favoriten";
+
+/* Class = "UILabel"; text = "Demo Song"; ObjectID = "uzN-m1-SqS"; */
+"uzN-m1-SqS.text" = "Demo Song";
+
+/* Class = "UILabel"; text = "Xenim Streaming Network"; ObjectID = "w5m-oy-VCf"; */
+"w5m-oy-VCf.text" = "Xenim Streaming Network";
+
+/* Class = "UITableViewSection"; headerTitle = "Get Support"; ObjectID = "yMm-PT-597"; */
+"yMm-PT-597.headerTitle" = "Support erhalten";
+
+/* Class = "UILabel"; text = "About the App"; ObjectID = "z7V-Vc-Jj0"; */
+"z7V-Vc-Jj0.text" = "Über die App";
+
+/* Class = "UILabel"; text = "Loading"; ObjectID = "ze7-Qo-4W6"; */
+"ze7-Qo-4W6.text" = "Lade";
+
+/* Class = "UILabel"; text = "Sometimes podcasters schedule their event for a specific time but can not start the show right in time. Try checking out their website or their Twitter account for more information."; ObjectID = "zjp-PR-i3k"; */
+"zjp-PR-i3k.text" = "Manchmal beginnen Podcaster den Livestream nicht genau zu der Zeit wie sie es im Kalender angekündigt haben. Das kann verschiedene Gründe haben. Schaue auf ihre Webseite oder ihren Twitter Account, um Informationen zu bekommen.";
+
+/* Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts does a live show."; ObjectID = "zkh-v8-yay"; */
+"zkh-v8-yay.text" = "Du erhälst Push Notifications sobald einer deiner Lieblingspodcasts eine Livesendung startet.";
+
