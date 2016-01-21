@@ -33,7 +33,13 @@ class AddFavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var coverartImageView: UIImageView!
+    @IBOutlet weak var coverartImageView: UIImageView! {
+        didSet {
+            coverartImageView.layer.cornerRadius = 5.0
+            coverartImageView.layer.masksToBounds = true
+        }
+    }
+
     @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBAction func toggleFavorite(sender: AnyObject) {

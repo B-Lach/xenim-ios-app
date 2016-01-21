@@ -12,7 +12,12 @@ class EventDetailViewController: UIViewController {
     
     var event: Event!
 
-    @IBOutlet weak var coverartImageView: UIImageView!
+    @IBOutlet weak var coverartImageView: UIImageView! {
+        didSet {
+            coverartImageView.layer.cornerRadius = 5.0
+            coverartImageView.layer.masksToBounds = true
+        }
+    }
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!

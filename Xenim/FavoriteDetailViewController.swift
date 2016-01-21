@@ -14,7 +14,12 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     
     var podcast: Podcast!
 
-    @IBOutlet weak var coverartImageView: UIImageView!
+    @IBOutlet weak var coverartImageView: UIImageView! {
+        didSet {
+            coverartImageView.layer.cornerRadius = 5.0
+            coverartImageView.layer.masksToBounds = true
+        }
+    }
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var nextDateLabel: UILabel!

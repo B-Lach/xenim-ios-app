@@ -54,6 +54,8 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
         
         miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
+        miniCoverartImageView.layer.cornerRadius = 5.0
+        miniCoverartImageView.layer.masksToBounds = true
         
         let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
         self.popupItem.leftBarButtonItems = [popupItem]
