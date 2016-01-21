@@ -141,10 +141,6 @@ class FavoritesTableViewController: UITableViewController{
         showFavoriteDetailViewForIndexPath(indexPath)
     }
     
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        showFavoriteDetailViewForIndexPath(indexPath)
-    }
-    
     func showFavoriteDetailViewForIndexPath(indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         

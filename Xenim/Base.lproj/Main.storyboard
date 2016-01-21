@@ -707,11 +707,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="63" id="ahl-HS-Ukt" customClass="FavoriteTableViewCell" customModule="Xenim" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="63" id="ahl-HS-Ukt" customClass="FavoriteTableViewCell" customModule="Xenim" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ahl-HS-Ukt" id="ItQ-PR-HjU">
-                                    <rect key="frame" x="0.0" y="0.0" width="553" height="62"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tuh-X7-b6l">
@@ -722,13 +722,13 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3h-bQ-DFo">
-                                            <rect key="frame" x="56" y="11" width="481" height="18"/>
+                                            <rect key="frame" x="56" y="11" width="528" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nextup Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onN-H0-80u">
-                                            <rect key="frame" x="56" y="34" width="481" height="14"/>
+                                            <rect key="frame" x="56" y="34" width="528" height="14"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
