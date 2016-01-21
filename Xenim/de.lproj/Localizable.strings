@@ -12,7 +12,7 @@
 "dismiss" = "Schließen";
 
 /* this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display. */
-"event_tableview_empty_favorites_only_message" = "Das ist eine gefilterte Listen. Hier findest du nur Events deiner Favoriten. Aktuell hat keiner deiner Favoriten einen Livestream geplant.";
+"event_tableview_empty_favorites_only_message" = "Das ist eine gefilterte Liste. Hier findest du nur Events deiner Favoriten. Aktuell hat keiner deiner Favoriten einen Livestream geplant.";
 
 /* this message gets displayed if no events could be displayed / fetched from the API */
 "event_tableview_empty_message" = "Es konntent keine Daten geladen werden. Pull to Refresh, um es noch einmal zu versuchen.";

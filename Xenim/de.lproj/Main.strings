@@ -170,5 +170,5 @@ Verwendete Pods: Alamofire, AlamofireImage, Bolts/Tasks, CRToast, KDEAudioPlayer
 "zjp-PR-i3k.text" = "Manchmal beginnen Podcaster den Livestream nicht genau zu der Zeit wie sie es im Kalender angekündigt haben. Das kann verschiedene Gründe haben. Schaue auf ihre Webseite oder ihren Twitter Account, um Informationen zu bekommen.";
 
 /* Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts does a live show."; ObjectID = "zkh-v8-yay"; */
-"zkh-v8-yay.text" = "Du erhälst Push Notifications sobald einer deiner Lieblingspodcasts eine Livesendung startet.";
+"zkh-v8-yay.text" = "Du erhältst Push Notifications sobald einer deiner Lieblingspodcasts eine Livesendung startet.";
 
