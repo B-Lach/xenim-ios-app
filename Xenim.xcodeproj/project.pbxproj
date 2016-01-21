@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220A323C1C510911005A00A0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 220A323E1C510911005A00A0 /* Localizable.strings */; };
+		220A32411C510912005A00A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 220A32431C510912005A00A0 /* InfoPlist.strings */; };
 		22170D5F1C3136A30077AEC1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22170D5E1C3136A30077AEC1 /* AboutViewController.swift */; };
 		2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECB51BD52E470040100F /* AppDelegate.swift */; };
 		2222ECBB1BD52E480040100F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECB91BD52E480040100F /* Main.storyboard */; };
@@ -31,8 +33,6 @@
 		22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
 		22D515CC1C4CE99700BE8D21 /* PathDynamicModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */; };
-		22DAD4911BFCC26500B3043E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22DAD4931BFCC26500B3043E /* InfoPlist.strings */; };
-		22DAD4961BFCC26600B3043E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22DAD4981BFCC26600B3043E /* Localizable.strings */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
 		22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */; };
 		22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */; };
@@ -54,6 +54,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		220A32381C510127005A00A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		220A32391C510127005A00A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		220A323D1C510911005A00A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		220A32421C510912005A00A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		221109551BD5336F0095F25D /* Xenim-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Xenim-Bridging-Header.h"; sourceTree = "<group>"; };
 		22170D5E1C3136A30077AEC1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2222ECB21BD52E470040100F /* Xenim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xenim.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,10 +85,6 @@
 		22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = LNPopupController.framework.dSYM; path = Carthage/Build/iOS/LNPopupController.framework.dSYM; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
 		22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathDynamicModal.swift; sourceTree = "<group>"; };
-		22DAD48D1BFCB2A700B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		22DAD48E1BFCB2A700B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		22DAD4921BFCC26500B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		22DAD4971BFCC26600B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewController.swift; sourceTree = "<group>"; };
 		22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +130,8 @@
 		2222ECB41BD52E470040100F /* Xenim */ = {
 			isa = PBXGroup;
 			children = (
+				220A32431C510912005A00A0 /* InfoPlist.strings */,
+				220A323E1C510911005A00A0 /* Localizable.strings */,
 				2222ECB91BD52E480040100F /* Main.storyboard */,
 				22E6DD9E1C314B7500E427C8 /* Settings */,
 				22D515CA1C4BFE2700BE8D21 /* AddFavorite */,
@@ -151,8 +153,6 @@
 		2232FE5E1BDE234D00BE368E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				22DAD4981BFCC26600B3043E /* Localizable.strings */,
-				22DAD4931BFCC26500B3043E /* InfoPlist.strings */,
 				2222ECBC1BD52E480040100F /* Assets.xcassets */,
 				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
 			);
@@ -327,10 +327,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22DAD4961BFCC26600B3043E /* Localizable.strings in Resources */,
+				220A323C1C510911005A00A0 /* Localizable.strings in Resources */,
+				220A32411C510912005A00A0 /* InfoPlist.strings in Resources */,
 				2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */,
 				229421FB1C1989DA00033AAB /* Keys.plist in Resources */,
-				22DAD4911BFCC26500B3043E /* InfoPlist.strings in Resources */,
 				2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */,
 				2222ECBB1BD52E480040100F /* Main.storyboard in Resources */,
 			);
@@ -433,11 +433,27 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		220A323E1C510911005A00A0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				220A323D1C510911005A00A0 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		220A32431C510912005A00A0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				220A32421C510912005A00A0 /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		2222ECB91BD52E480040100F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBA1BD52E480040100F /* Base */,
-				22DAD48D1BFCB2A700B3043E /* de */,
+				220A32381C510127005A00A0 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -446,25 +462,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBF1BD52E480040100F /* Base */,
-				22DAD48E1BFCB2A700B3043E /* de */,
+				220A32391C510127005A00A0 /* de */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		22DAD4931BFCC26500B3043E /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22DAD4921BFCC26500B3043E /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		22DAD4981BFCC26600B3043E /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22DAD4971BFCC26600B3043E /* de */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

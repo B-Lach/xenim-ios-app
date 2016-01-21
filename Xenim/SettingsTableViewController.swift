@@ -59,9 +59,9 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         // check if the user is able to send mail
         if MFMailComposeViewController.canSendMail() {
             
-            let appVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!
-            let emailTitle = NSLocalizedString("settings_view_mail_title", value: "Listen Support", comment: "mail title for a new support mail message")
-            let messageBody = NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.\n\nInstalled Version: \(appVersionString)", comment: "mail body for a new support mail message")
+            let appVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")! as! String
+            let emailTitle = NSLocalizedString("settings_view_mail_title", value: "Xenim Support", comment: "mail title for a new support mail message")
+            let messageBody = String(format: NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.\n\nInstalled Version: %@", comment: "mail body for a new support mail message"), appVersionString)
             let toRecipents = ["xenimapp@stefantrauth.de"]
             
             // configure mail compose view controller
