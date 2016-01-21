@@ -39,6 +39,10 @@ class FavoritesTableViewController: UITableViewController{
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -48,6 +48,10 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
         
         setupToolbar()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -121,12 +125,14 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     func openWebsite() {
         let svc = SFSafariViewController(URL: podcast.websiteUrl!)
         svc.delegate = self
+        UIApplication.sharedApplication().statusBarStyle = .Default
         self.presentViewController(svc, animated: true, completion: nil)
     }
     
     func openTwitter() {
         let svc = SFSafariViewController(URL: podcast.twitterURL!)
         svc.delegate = self
+        UIApplication.sharedApplication().statusBarStyle = .Default
         self.presentViewController(svc, animated: true, completion: nil)
 
     }
@@ -170,7 +176,9 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
             mc.setSubject(emailTitle)
             mc.setMessageBody(messageBody, isHTML: false)
             mc.setToRecipients(toRecipents)
-            
+
+            UIApplication.sharedApplication().statusBarStyle = .Default
+
             self.presentViewController(mc, animated: true, completion: nil)
         } else {
             // show error message if device is not configured to send mail

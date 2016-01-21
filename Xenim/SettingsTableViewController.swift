@@ -20,6 +20,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
 
     override func didReceiveMemoryWarning() {

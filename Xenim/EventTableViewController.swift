@@ -70,6 +70,10 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
     // MARK: - Update UI
     
     func updateBackground() {
