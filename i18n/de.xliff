@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+    <file original="Xenim/Base.lproj/LaunchScreen.storyboard" source-language="en" datatype="plaintext" target-language="de">
+        <header>
+            <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"></tool>
+        </header>
+        <body></body>
+    </file>
+    <file original="Xenim/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="de">
+        <header>
+            <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"></tool>
+        </header>
+        <body>
+            <trans-unit id="1rl-9j-OAR.title">
+                <source>Add Favorites</source>
+                <target>Favoriten Finden</target>
+                <note>Class = "UINavigationItem"; title = "Add Favorites"; ObjectID = "1rl-9j-OAR";</note>
+            </trans-unit>
+            <trans-unit id="2id-gK-Ct0.text">
+                <source>Version Label</source>
+                <target>Version Label</target>
+                <note>Class = "UILabel"; text = "Version Label"; ObjectID = "2id-gK-Ct0";</note>
+            </trans-unit>
+            <trans-unit id="5uN-NM-aDd.text">
+                <source>lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing</source>
+                <target>lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing</target>
+                <note>Class = "UILabel"; text = "lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing"; ObjectID = "5uN-NM-aDd";</note>
+            </trans-unit>
+            <trans-unit id="8Ju-t9-JAQ.text">
+                <source>Date</source>
+                <target>Date</target>
+                <note>Class = "UILabel"; text = "Date"; ObjectID = "8Ju-t9-JAQ";</note>
+            </trans-unit>
+            <trans-unit id="8hl-TQ-7Bs.text">
+                <source>You see all upcoming events known to Xenim in your event list. However some podcasters do not schedule their livestream before actually doing the show.
+
+If you want to see the shows scheduled before taking place, please talk to the podcaster so they schedule the event next time.</source>
+                <target>Du siehst alle geplanten Folgen in der Event Übersicht. Einige Podcast kündigen ihre Sendungen allerdings nicht rechtzeitig an.
+
+Wenn du Sendungen eines Podcast im Voraus im Kalender sehen möchtest, dann bitte den Podcaster darum die Sendung rechtzeitig bei Xenim anzukündigen.</target>
+                <note>Class = "UILabel"; text = "You see all upcoming events known to Xenim in your event list. However some podcasters do not schedule their livestream before actually doing the show.\n\nIf you want to see the shows scheduled before taking place, please talk to the podcaster so they schedule the event next time."; ObjectID = "8hl-TQ-7Bs";</note>
+            </trans-unit>
+            <trans-unit id="787-WT-oEN.text">
+                <source>Event Title</source>
+                <target>Event Title</target>
+                <note>Class = "UILabel"; text = "Event Title"; ObjectID = "787-WT-oEN";</note>
+            </trans-unit>
+            <trans-unit id="A2h-Or-hEM.text">
+                <source>Contact us</source>
+                <target>Kontaktiere Uns</target>
+                <note>Class = "UILabel"; text = "Contact us"; ObjectID = "A2h-Or-hEM";</note>
+            </trans-unit>
+            <trans-unit id="DBj-XH-4rv.text">
+                <source>Subtitle</source>
+                <target>Subtitle</target>
+                <note>Class = "UILabel"; text = "Subtitle"; ObjectID = "DBj-XH-4rv";</note>
+            </trans-unit>
+            <trans-unit id="DXo-HN-BmU.text">
+                <source>Podcast Name</source>
+                <target>Podcast Name</target>
+                <note>Class = "UILabel"; text = "Podcast Name"; ObjectID = "DXo-HN-BmU";</note>
+            </trans-unit>
+            <trans-unit id="G28-IZ-CPe.headerTitle">
+                <source>legal</source>
+                <target>Rechtliches</target>
+                <note>Class = "UITableViewSection"; headerTitle = "legal"; ObjectID = "G28-IZ-CPe";</note>
+            </trans-unit>
+            <trans-unit id="Gde-zd-lwM.title">
+                <source>FAQ</source>
+                <target>FAQ</target>
+                <note>Class = "UIViewController"; title = "FAQ"; ObjectID = "Gde-zd-lwM";</note>
+            </trans-unit>
+            <trans-unit id="ICk-hJ-8gz.text">
+                <source>Event Title</source>
+                <target>Event Title</target>
+                <note>Class = "UILabel"; text = "Event Title"; ObjectID = "ICk-hJ-8gz";</note>
+            </trans-unit>
+            <trans-unit id="IUY-6Q-Kmf.text">
+                <source>FAQ</source>
+                <target>FAQ</target>
+                <note>Class = "UILabel"; text = "FAQ"; ObjectID = "IUY-6Q-Kmf";</note>
+            </trans-unit>
+            <trans-unit id="JaA-7x-at3.text">
+                <source>Podcast Description</source>
+                <target>Podcast Description</target>
+                <note>Class = "UILabel"; text = "Podcast Description"; ObjectID = "JaA-7x-at3";</note>
+            </trans-unit>
+            <trans-unit id="KKU-KO-aCN.title">
+                <source>Events</source>
+                <target>Events</target>
+                <note>Class = "UITabBarItem"; title = "Events"; ObjectID = "KKU-KO-aCN";</note>
+            </trans-unit>
+            <trans-unit id="KP9-IT-5RM.text">
+                <source>This app only supports podcasts which do livestreams via the Xenim streaming network.</source>
+                <target>Diese App unterstützt nur Podcasts, die ihren Livestream über das Xenim Streaming Network senden.</target>
+                <note>Class = "UILabel"; text = "This app only supports podcasts which do livestreams via the Xenim streaming network."; ObjectID = "KP9-IT-5RM";</note>
+            </trans-unit>
+            <trans-unit id="MMC-P0-b9z.text">
+                <source>Demo Album</source>
+                <target>Demo Album</target>
+                <note>Class = "UILabel"; text = "Demo Album"; ObjectID = "MMC-P0-b9z";</note>
+            </trans-unit>
+            <trans-unit id="NT3-b8-rRn.text">
+                <source>Podcast Name</source>
+                <target>Podcast Name</target>
+                <note>Class = "UILabel"; text = "Podcast Name"; ObjectID = "NT3-b8-rRn";</note>
+            </trans-unit>
+            <trans-unit id="Nb1-Lj-6W7.headerTitle">
+                <source>About</source>
+                <target>Über uns</target>
+                <note>Class = "UITableViewSection"; headerTitle = "About"; ObjectID = "Nb1-Lj-6W7";</note>
+            </trans-unit>
+            <trans-unit id="Pfs-v4-oHs.text">
+                <source>Flattr</source>
+                <target>Flattr</target>
+                <note>Class = "UILabel"; text = "Flattr"; ObjectID = "Pfs-v4-oHs";</note>
+            </trans-unit>
+            <trans-unit id="Py4-uQ-GDU.text">
+                <source>Next Event</source>
+                <target>Nächste Sendung</target>
+                <note>Class = "UILabel"; text = "Next Event"; ObjectID = "Py4-uQ-GDU";</note>
+            </trans-unit>
+            <trans-unit id="R6f-XE-dYm.title">
+                <source>About</source>
+                <target>Über die App</target>
+                <note>Class = "UIViewController"; title = "About"; ObjectID = "R6f-XE-dYm";</note>
+            </trans-unit>
+            <trans-unit id="SHY-V1-cI6.text">
+                <source>Event Description</source>
+                <target>Event Description</target>
+                <note>Class = "UILabel"; text = "Event Description"; ObjectID = "SHY-V1-cI6";</note>
+            </trans-unit>
+            <trans-unit id="UGG-At-oAm.text">
+                <source>Event Description</source>
+                <target>Event Description</target>
+                <note>Class = "UITextView"; text = "Event Description"; ObjectID = "UGG-At-oAm";</note>
+            </trans-unit>
+            <trans-unit id="XKP-uY-s9v.text">
+                <source>Paypal</source>
+                <target>Paypal</target>
+                <note>Class = "UILabel"; text = "Paypal"; ObjectID = "XKP-uY-s9v";</note>
+            </trans-unit>
+            <trans-unit id="Xwt-Mx-qxe.title">
+                <source>Favorites</source>
+                <target>Favoriten</target>
+                <note>Class = "UINavigationItem"; title = "Favorites"; ObjectID = "Xwt-Mx-qxe";</note>
+            </trans-unit>
+            <trans-unit id="YFG-BN-gTI.title">
+                <source>Settings</source>
+                <target>Einstellungen</target>
+                <note>Class = "UINavigationItem"; title = "Settings"; ObjectID = "YFG-BN-gTI";</note>
+            </trans-unit>
+            <trans-unit id="YgZ-tw-SQR.text">
+                <source>Podcast Description</source>
+                <target>Podcast Description</target>
+                <note>Class = "UITextView"; text = "Podcast Description"; ObjectID = "YgZ-tw-SQR";</note>
+            </trans-unit>
+            <trans-unit id="Z1k-Rx-IsW.text">
+                <source>Why can I not listen to this event though it is scheduled to be live now?</source>
+                <target>Warum kann ich diese Livesendung nicht hören, obwohl sie als live angezeigt wird?</target>
+                <note>Class = "UILabel"; text = "Why can I not listen to this event though it is scheduled to be live now?"; ObjectID = "Z1k-Rx-IsW";</note>
+            </trans-unit>
+            <trans-unit id="ZDd-88-y9e.text">
+                <source>Report a bug on Github</source>
+                <target>Melde einen Bug auf Github</target>
+                <note>Class = "UILabel"; text = "Report a bug on Github"; ObjectID = "ZDd-88-y9e";</note>
+            </trans-unit>
+            <trans-unit id="aNZ-gq-i0L.text">
+                <source>Your question has not been answered? Feel free to contect us.</source>
+                <target>Deine Frage wurde nicht beantwortet? Du kannst dich gerne direkt an uns wenden.</target>
+                <note>Class = "UILabel"; text = "Your question has not been answered? Feel free to contect us."; ObjectID = "aNZ-gq-i0L";</note>
+            </trans-unit>
+            <trans-unit id="c2j-9c-ZsQ.headerTitle">
+                <source>Support us</source>
+                <target>Unterstütze Uns</target>
+                <note>Class = "UITableViewSection"; headerTitle = "Support us"; ObjectID = "c2j-9c-ZsQ";</note>
+            </trans-unit>
+            <trans-unit id="ca9-40-SUQ.segmentTitles[0]">
+                <source>All Events</source>
+                <target>Alle Events</target>
+                <note>Class = "UISegmentedControl"; ca9-40-SUQ.segmentTitles[0] = "All Events"; ObjectID = "ca9-40-SUQ";</note>
+            </trans-unit>
+            <trans-unit id="ca9-40-SUQ.segmentTitles[1]">
+                <source>Favorite Events</source>
+                <target>Nur Favoriten</target>
+                <note>Class = "UISegmentedControl"; ca9-40-SUQ.segmentTitles[1] = "Favorite Events"; ObjectID = "ca9-40-SUQ";</note>
+            </trans-unit>
+            <trans-unit id="d9H-Fy-TUN.text">
+                <source>Stefan Trauth Alte Rathausstraße 15 76467 Bietigheim
+mail@stefantrauth.de</source>
+                <target>Stefan Trauth Alte Rathausstraße 15 76467 Bietigheim
+mail@stefantrauth.de</target>
+                <note>Class = "UILabel"; text = "Stefan Trauth Alte Rathausstraße 15 76467 Bietigheim\nmail@stefantrauth.de"; ObjectID = "d9H-Fy-TUN";</note>
+            </trans-unit>
+            <trans-unit id="jXd-1h-OnC.text">
+                <source>Podcast Name</source>
+                <target>Podcast Name</target>
+                <note>Class = "UILabel"; text = "Podcast Name"; ObjectID = "jXd-1h-OnC";</note>
+            </trans-unit>
+            <trans-unit id="l5d-ya-iW5.text">
+                <source>Podcast Name</source>
+                <target>Podcast Name</target>
+                <note>Class = "UILabel"; text = "Podcast Name"; ObjectID = "l5d-ya-iW5";</note>
+            </trans-unit>
+            <trans-unit id="lZw-LZ-4jq.text">
+                <source>Why could I not see a livestream as an upcoming event before it started?</source>
+                <target>Warum konnte ich einen Livestream nicht als angekündigt im Kalender sehen, bevor die Sendung losging?</target>
+                <note>Class = "UILabel"; text = "Why could I not see a livestream as an upcoming event before it started?"; ObjectID = "lZw-LZ-4jq";</note>
+            </trans-unit>
+            <trans-unit id="mV7-DQ-bPK.text">
+                <source>Why can I not find my favorite podcast show here though it does live shows?</source>
+                <target>Warum kann ich meinen Lieblingspodcast nicht hier finden, obwohl er Livesendungen macht?</target>
+                <note>Class = "UILabel"; text = "Why can I not find my favorite podcast show here though it does live shows?"; ObjectID = "mV7-DQ-bPK";</note>
+            </trans-unit>
+            <trans-unit id="md5-oX-01O.title">
+                <source>Impressum</source>
+                <target>Impressum</target>
+                <note>Class = "UIViewController"; title = "Impressum"; ObjectID = "md5-oX-01O";</note>
+            </trans-unit>
+            <trans-unit id="ojL-yv-MT9.normalTitle">
+                <source>Listen</source>
+                <target>Hören</target>
+                <note>Class = "UIButton"; normalTitle = "Listen"; ObjectID = "ojL-yv-MT9";</note>
+            </trans-unit>
+            <trans-unit id="onN-H0-80u.text">
+                <source>Nextup Date</source>
+                <target>Nextup Date</target>
+                <note>Class = "UILabel"; text = "Nextup Date"; ObjectID = "onN-H0-80u";</note>
+            </trans-unit>
+            <trans-unit id="rBC-zr-6KO.text">
+                <source>Label</source>
+                <target>Label</target>
+                <note>Class = "UILabel"; text = "Label"; ObjectID = "rBC-zr-6KO";</note>
+            </trans-unit>
+            <trans-unit id="sRm-H4-jze.text">
+                <source>Date</source>
+                <target>Date</target>
+                <note>Class = "UILabel"; text = "Date"; ObjectID = "sRm-H4-jze";</note>
+            </trans-unit>
+            <trans-unit id="u3h-bQ-DFo.text">
+                <source>Podcast Name</source>
+                <target>Podcast Name</target>
+                <note>Class = "UILabel"; text = "Podcast Name"; ObjectID = "u3h-bQ-DFo";</note>
+            </trans-unit>
+            <trans-unit id="uH6-Hz-Od1.text">
+                <source>Impressum</source>
+                <target>Impressum</target>
+                <note>Class = "UILabel"; text = "Impressum"; ObjectID = "uH6-Hz-Od1";</note>
+            </trans-unit>
+            <trans-unit id="ukR-HY-Eol.text">
+                <source>This app features podcast livestreams from the Xenim streaming network. It is developed by Stefan Trauth.
+
+You can find the code as Open Source on Github.
+
+Special thanks for helping to develop the app goes to: @_cato, @ePirat, @ugo
+
+Pods this app uses: Alamofire, AlamofireImage, Alamofire, Bolts/Tasks, CRToast, KDEAudioPlayer, MarqueeLabel-Swift, Parse, Bolts/Tasks, SwiftyJSON</source>
+                <target>Diese App präsentiert euch Podcast Livestreams des Xenim Streaming Networks. Die App wurde von Stefan Trauth entwickelt.
+
+Der Code ist Open Source und steht auf Github.
+
+Besonderen Dank an @_cato, @ePirat und @ugo für die Unterstützung bei der Entwicklung der App.
+
+Verwendete Pods: Alamofire, AlamofireImage, Bolts/Tasks, CRToast, KDEAudioPlayer, MarqeeLabel-Swift, Parse, SwiftyJSON</target>
+                <note>Class = "UILabel"; text = "This app features podcast livestreams from the Xenim streaming network. It is developed by Stefan Trauth.\n\nYou can find the code as Open Source on Github.\n\nSpecial thanks for helping to develop the app goes to: @_cato, @ePirat, @ugo\n\nPods this app uses: Alamofire, AlamofireImage, Alamofire, Bolts/Tasks, CRToast, KDEAudioPlayer, MarqueeLabel-Swift, Parse, Bolts/Tasks, SwiftyJSON"; ObjectID = "ukR-HY-Eol";</note>
+            </trans-unit>
+            <trans-unit id="uy0-hV-u60.title">
+                <source>Favorites</source>
+                <target>Favoriten</target>
+                <note>Class = "UITabBarItem"; title = "Favorites"; ObjectID = "uy0-hV-u60";</note>
+            </trans-unit>
+            <trans-unit id="uzN-m1-SqS.text">
+                <source>Demo Song</source>
+                <target>Demo Song</target>
+                <note>Class = "UILabel"; text = "Demo Song"; ObjectID = "uzN-m1-SqS";</note>
+            </trans-unit>
+            <trans-unit id="w5m-oy-VCf.text">
+                <source>Xenim Streaming Network</source>
+                <target>Xenim Streaming Network</target>
+                <note>Class = "UILabel"; text = "Xenim Streaming Network"; ObjectID = "w5m-oy-VCf";</note>
+            </trans-unit>
+            <trans-unit id="yMm-PT-597.headerTitle">
+                <source>Get Support</source>
+                <target>Support erhalten</target>
+                <note>Class = "UITableViewSection"; headerTitle = "Get Support"; ObjectID = "yMm-PT-597";</note>
+            </trans-unit>
+            <trans-unit id="z7V-Vc-Jj0.text">
+                <source>About the App</source>
+                <target>Über die App</target>
+                <note>Class = "UILabel"; text = "About the App"; ObjectID = "z7V-Vc-Jj0";</note>
+            </trans-unit>
+            <trans-unit id="ze7-Qo-4W6.text">
+                <source>Loading</source>
+                <target>Lade</target>
+                <note>Class = "UILabel"; text = "Loading"; ObjectID = "ze7-Qo-4W6";</note>
+            </trans-unit>
+            <trans-unit id="zjp-PR-i3k.text">
+                <source>Sometimes podcasters schedule their event for a specific time but can not start the show right in time. Try checking out their website or their Twitter account for more information.</source>
+                <target>Manchmal beginnen Podcaster den Livestream nicht genau zu der Zeit wie sie es im Kalender angekündigt haben. Das kann verschiedene Gründe haben. Schaue auf ihre Webseite oder ihren Twitter Account, um Informationen zu bekommen.</target>
+                <note>Class = "UILabel"; text = "Sometimes podcasters schedule their event for a specific time but can not start the show right in time. Try checking out their website or their Twitter account for more information."; ObjectID = "zjp-PR-i3k";</note>
+            </trans-unit>
+            <trans-unit id="zkh-v8-yay.text">
+                <source>You will receive push notifications if any of your favorite podcasts does a live show.</source>
+                <target>Du erhältst Push Notifications sobald einer deiner Lieblingspodcasts eine Livesendung startet.</target>
+                <note>Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts does a live show."; ObjectID = "zkh-v8-yay";</note>
+            </trans-unit>
+        </body>
+    </file>
+    <file original="Xenim/Info.plist" source-language="en" datatype="plaintext" target-language="de">
+        <header>
+            <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"></tool>
+        </header>
+        <body>
+            <trans-unit id="CFBundleName">
+                <source>$(PRODUCT_NAME)</source>
+            </trans-unit>
+            <trans-unit id="CFBundleShortVersionString">
+                <source>0.2</source>
+            </trans-unit>
+        </body>
+    </file>
+    <file original="Xenim/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
+        <header>
+            <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"></tool>
+        </header>
+        <body>
+            <trans-unit id="Today">
+                <source>Today</source>
+                <target>Heute</target>
+                <note>Today</note>
+            </trans-unit>
+            <trans-unit id="add_favorites_tableview_no_data_message">
+                <source>Could not find something</source>
+                <target>Keine Ergebnisse</target>
+                <note>this message gets displayed if add favorites table view controller does not have any item to display</note>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>Cancel</source>
+                <target>Abbrechen</target>
+                <note>Cancel
+   cancel string</note>
+            </trans-unit>
+            <trans-unit id="dismiss">
+                <source>Dismiss</source>
+                <target>Schließen</target>
+                <note>Dismiss</note>
+            </trans-unit>
+            <trans-unit id="event_tableview_empty_favorites_only_message">
+                <source>This is a filtered event list. You only see events of your favorite shows here. Currently there are no events of your favorite podcasts scheduled.</source>
+                <target>Das ist eine gefilterte Liste. Hier findest du nur Events deiner Favoriten. Aktuell hat keiner deiner Favoriten einen Livestream geplant.</target>
+                <note>this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display.</note>
+            </trans-unit>
+            <trans-unit id="event_tableview_empty_message">
+                <source>Did not receive any upcoming events. Pull to refresh to try again.</source>
+                <target>Es konntent keine Daten geladen werden. Pull to Refresh, um es noch einmal zu versuchen.</target>
+                <note>this message gets displayed if no events could be displayed / fetched from the API</note>
+            </trans-unit>
+            <trans-unit id="event_tableview_sectionheader_later">
+                <source>Next week and later</source>
+                <target>Nächste Woche und später</target>
+                <note>section header in event table view for the later than next week section</note>
+            </trans-unit>
+            <trans-unit id="event_tableview_sectionheader_live">
+                <source>Live now</source>
+                <target>Jetzt Live</target>
+                <note>section header in event table view for the live now section</note>
+            </trans-unit>
+            <trans-unit id="event_tableview_sectionheader_thisweek">
+                <source>Later this Week</source>
+                <target>Diese Woche</target>
+                <note>section header in event table view for the later this week section</note>
+            </trans-unit>
+            <trans-unit id="event_tableview_sectionheader_today">
+                <source>Upcoming Today</source>
+                <target>Heute noch</target>
+                <note>section header in event table view for the upcoming today section</note>
+            </trans-unit>
+            <trans-unit id="event_tableview_sectionheader_tomorrow">
+                <source>Tomorrow</source>
+                <target>Morgen</target>
+                <note>section header in event table view for the tomorrow section</note>
+            </trans-unit>
+            <trans-unit id="favorite_detailview_loading_next_event">
+                <source>Loading...</source>
+                <target>Lade...</target>
+                <note>Loading message while loading next event date</note>
+            </trans-unit>
+            <trans-unit id="favorite_tableview_loading_next_event">
+                <source>Loading...</source>
+                <target>Lade...</target>
+                <note>Loading message while loading next event date</note>
+            </trans-unit>
+            <trans-unit id="favorite_tableviewcell_diff_date_string">
+                <source>in %d days</source>
+                <target>in %d Tagen</target>
+                <note>Tells the user in how many dates the event takes place. It is a formatted string like 'in %d days'.</note>
+            </trans-unit>
+            <trans-unit id="favorite_tableviewcell_no_event_scheduled">
+                <source>Nothing scheduled</source>
+                <target>Nichts geplant</target>
+                <note>Tells the user that there is no event scheduled in the future</note>
+            </trans-unit>
+            <trans-unit id="favorites_tableview_empty_message">
+                <source>Add podcast shows as your favorite to see them here.</source>
+                <target>Markiere Podcasts als Favorit, um sie hier zu sehen.</target>
+                <note>this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.</note>
+            </trans-unit>
+            <trans-unit id="info_message_mail_sent_failure_message">
+                <source>Mail sent failure</source>
+                <target>Fehler beim Mailversand.</target>
+                <note>If the user tried to sent an email and it could not be sent an alert view does show the error message. this is the title of the alert view popup</note>
+            </trans-unit>
+            <trans-unit id="live_now">
+                <source>Live Now</source>
+                <target>Jetzt Live</target>
+                <note>live now string</note>
+            </trans-unit>
+            <trans-unit id="player_failed_state_alertview_message">
+                <source>The selected stream can not be played.</source>
+                <target>Dieser Livestream kann nicht abgespielt werden.</target>
+                <note>If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.</note>
+            </trans-unit>
+            <trans-unit id="player_failed_state_alertview_title">
+                <source>Playback Error</source>
+                <target>Fehler</target>
+                <note>If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.</note>
+            </trans-unit>
+            <trans-unit id="player_manager_actionsheet_end_playback">
+                <source>End Playback</source>
+                <target>Player schließen</target>
+                <note>long pressing in the player view shows an action sheet to end playback. this is the action message to end playback.</note>
+            </trans-unit>
+            <trans-unit id="podcast_detailview_feedback_mail_body">
+                <source>Hello,
+</source>
+                <target>Hallo,</target>
+                <note>mail body for a new feedback mail message</note>
+            </trans-unit>
+            <trans-unit id="podcast_detailview_feedback_mail_title">
+                <source>Feedback</source>
+                <target>Feedback</target>
+                <note>the user can send a feedback mail to the podcast. this is the preset mail title.</note>
+            </trans-unit>
+            <trans-unit id="podcast_detailview_mail_not_supported_message">
+                <source>Your device is not setup to send email.</source>
+                <target>Dein Gerät ist nicht für den Mailversand eingerichtet.</target>
+                <note>the message shown to the user in an alert view if his device is not setup to send email</note>
+            </trans-unit>
+            <trans-unit id="podcast_detailview_subscribe_alert_message">
+                <source>Choose Podcast Client</source>
+                <target>Wähle deinen Podcast Client</target>
+                <note>when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view.</note>
+            </trans-unit>
+            <trans-unit id="push_notification_action_listen_now">
+                <source>Listen Now</source>
+                <target>Jetzt hören</target>
+                <note>the title of the button in a push notification for the action to start streaming the event now</note>
+            </trans-unit>
+            <trans-unit id="push_notification_action_show_info">
+                <source>Show Info</source>
+                <target>Info ansehen</target>
+                <note>the title of the button in a push notification for the action to show info of the event</note>
+            </trans-unit>
+            <trans-unit id="remove_favorite">
+                <source>Remove</source>
+                <target>Entfernen</target>
+                <note>remove a favorite by swiping left to edit</note>
+            </trans-unit>
+            <trans-unit id="settings_view_mail_body">
+                <source>Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.
+
+Installed Version: %@</source>
+                <target>Versuche dein Problem so genau wie möglich zu beschreiben. So können wir am schnellsten eine Lösung finden.
+
+Installed Version: %@</target>
+                <note>mail body for a new support mail message</note>
+            </trans-unit>
+            <trans-unit id="settings_view_mail_not_supported_message">
+                <source>Your device is not setup to send email.</source>
+                <target>Dein Gerät ist nicht für den Mailversand eingerichtet</target>
+                <note>the message shown to the user in an alert view if his device is not setup to send email</note>
+            </trans-unit>
+            <trans-unit id="settings_view_mail_title">
+                <source>Xenim Support</source>
+                <target>Xenim Support</target>
+                <note>mail title for a new support mail message</note>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
