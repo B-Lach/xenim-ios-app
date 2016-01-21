@@ -31,8 +31,6 @@
 		22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
 		22D515CC1C4CE99700BE8D21 /* PathDynamicModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */; };
-		22DAD4911BFCC26500B3043E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22DAD4931BFCC26500B3043E /* InfoPlist.strings */; };
-		22DAD4961BFCC26600B3043E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22DAD4981BFCC26600B3043E /* Localizable.strings */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
 		22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */; };
 		22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */; };
@@ -81,10 +79,6 @@
 		22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = LNPopupController.framework.dSYM; path = Carthage/Build/iOS/LNPopupController.framework.dSYM; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
 		22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathDynamicModal.swift; sourceTree = "<group>"; };
-		22DAD48D1BFCB2A700B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		22DAD48E1BFCB2A700B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		22DAD4921BFCC26500B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		22DAD4971BFCC26600B3043E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewController.swift; sourceTree = "<group>"; };
 		22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
@@ -151,8 +145,6 @@
 		2232FE5E1BDE234D00BE368E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				22DAD4981BFCC26600B3043E /* Localizable.strings */,
-				22DAD4931BFCC26500B3043E /* InfoPlist.strings */,
 				2222ECBC1BD52E480040100F /* Assets.xcassets */,
 				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
 			);
@@ -327,10 +319,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22DAD4961BFCC26600B3043E /* Localizable.strings in Resources */,
 				2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */,
 				229421FB1C1989DA00033AAB /* Keys.plist in Resources */,
-				22DAD4911BFCC26500B3043E /* InfoPlist.strings in Resources */,
 				2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */,
 				2222ECBB1BD52E480040100F /* Main.storyboard in Resources */,
 			);
@@ -437,7 +427,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBA1BD52E480040100F /* Base */,
-				22DAD48D1BFCB2A700B3043E /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -446,25 +435,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBF1BD52E480040100F /* Base */,
-				22DAD48E1BFCB2A700B3043E /* de */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		22DAD4931BFCC26500B3043E /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22DAD4921BFCC26500B3043E /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		22DAD4981BFCC26600B3043E /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22DAD4971BFCC26600B3043E /* de */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
