@@ -1,9 +1,9 @@
 //
-//  DemoMusicPlayerController.swift
-//  LNPopupControllerExample
+//  PlayerViewController.swift
+//  Xenim
 //
-//  Created by Leo Natan on 8/8/15.
-//  Copyright © 2015 Leo Natan. All rights reserved.
+//  Created by Stefan Trauth on 09/11/15.
+//  Copyright © 2015 Stefan Trauth. All rights reserved.
 //
 
 import UIKit
