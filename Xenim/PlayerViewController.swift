@@ -1,9 +1,9 @@
 //
-//  DemoMusicPlayerController.swift
-//  LNPopupControllerExample
+//  PlayerViewController.swift
+//  Xenim
 //
-//  Created by Leo Natan on 8/8/15.
-//  Copyright © 2015 Leo Natan. All rights reserved.
+//  Created by Stefan Trauth on 09/11/15.
+//  Copyright © 2015 Stefan Trauth. All rights reserved.
 //
 
 import UIKit
@@ -51,7 +51,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         // use this to add more controls on ipad interface
 		//if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
 
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
         
         miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
         miniCoverartImageView.layer.cornerRadius = 5.0
@@ -172,7 +172,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             } else {
                 favoriteItem?.image = UIImage(named: "scarlet-25-star")
             }
-
         }
     }
     
@@ -236,44 +235,60 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoritesChanged:"), name: "favoritesChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
     }
+    
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         timer?.invalidate()
     }
     
+    func favoriteAdded(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // check if this affects this cell
+            if podcastId == event.podcast.id {
+                favoriteItem?.image = UIImage(named: "scarlet-25-star")
+            }
+        }
+    }
+    
+    func favoriteRemoved(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // check if this affects this cell
+            if podcastId == event.podcast.id {
+                favoriteItem?.image = UIImage(named: "scarlet-25-star-o")
+            }
+        }
+    }
+    
     @objc func timerTicked() {
         updateProgressBar()
         updateListeners()
 	}
-
-    func favoritesChanged(notification: NSNotification) {
-        updateFavoritesButton()
-    }
     
     func playerStateChanged(notification: NSNotification) {
         let player = PlayerManager.sharedInstance.player
         
         switch player.state {
         case .Buffering:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
         case .Paused:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
         case .Playing:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
         case .Stopped:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
         case .WaitingForConnection:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
         case .Failed(_):
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "brandeis-blue-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
         }
     }

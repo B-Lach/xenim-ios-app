@@ -9,6 +9,13 @@
 import UIKit
 
 class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpdating {
+    
+    enum State {
+        case LOADING
+        case SHOW
+    }
+    
+    var state: State = .LOADING
 
     // contains all podcasts with slug:title
     var podcasts = [Podcast]()
@@ -17,6 +24,9 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     // contains all podcast slugs ordered alphabetically
     var orderedPodcasts = [Podcast]()
     var resultSearchController: UISearchController!
+    
+    var messageVC: MessageViewController?
+    var loadingVC: UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +45,25 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         tableView.rowHeight = UITableViewAutomaticDimension
 
         // fetch podcast list from API
-        refreshControl?.beginRefreshing()
+        loadingVC = storyboard?.instantiateViewControllerWithIdentifier("LoadingViewController")
+        messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
+        messageVC?.message = NSLocalizedString("add_favorites_tableview_no_data_message", value: "Could not find something", comment: "this message gets displayed if add favorites table view controller does not have any item to display")
+        
+        updateBackground()
+        
         XenimAPI.fetchAllPodcasts { (podcasts) -> Void in
             self.podcasts = podcasts
-            self.orderedPodcasts = podcasts.sort({ (podcast1, podcast2) -> Bool in
-                // is podcast1 ordererd before podcast2
-                return podcast1.name < podcast2.name
-            })
+            self.orderedPodcasts = podcasts.sort()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.refreshControl?.endRefreshing()
-                self.tableView.reloadData()
+                self.state = .SHOW
+                self.updateBackground()
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
             })
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
     
     deinit {
@@ -59,8 +76,26 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func refresh(sender: AnyObject) {
-        refreshControl?.endRefreshing()
+    func updateBackground() {
+        if state == .LOADING {
+            tableView.backgroundView = loadingVC?.view
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        } else if state == .SHOW {
+            var elementCount = 0
+            if resultSearchController.active {
+                elementCount = filteredPodcasts.count
+            } else {
+                elementCount = orderedPodcasts.count
+            }
+            
+            if elementCount == 0 {
+                tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+                tableView.backgroundView = messageVC?.view
+            } else {
+                tableView.backgroundView = nil
+                tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -71,9 +106,9 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if resultSearchController.active {
-            return max(1, filteredPodcasts.count)
+            return filteredPodcasts.count
         }
-        return max(1, orderedPodcasts.count)
+        return orderedPodcasts.count
     }
 
     
@@ -88,14 +123,9 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
             dataSource = orderedPodcasts
         }
         
-        // check if there is data to display, otherwise show the no results cell
-        if dataSource.count > 0 {
-            if let cell = tableView.dequeueReusableCellWithIdentifier("PodcastCell", forIndexPath: indexPath) as? PodcastTableViewCell {
-                cell.podcast = dataSource[indexPath.row]
-                return cell
-            }
-        }
-        let cell = tableView.dequeueReusableCellWithIdentifier("NoResultsCell", forIndexPath: indexPath)
+
+        let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCell", forIndexPath: indexPath) as! AddFavoriteTableViewCell
+        cell.podcast = dataSource[indexPath.row]
         return cell
     }
     
@@ -116,45 +146,25 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filterContentForSearchText(searchText)
-            tableView.reloadData()
+            self.tableView.reloadData()
+            self.updateBackground()
         }
 
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // configure event detail view controller as popup content
+        let favoriteDetailVC = storyboard.instantiateViewControllerWithIdentifier("FavoriteDetail") as! FavoriteDetailViewController
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AddFavoriteTableViewCell
+        favoriteDetailVC.podcast = cell.podcast
+        
+        let window = UIApplication.sharedApplication().delegate?.window!
+        PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
     
 
 }

@@ -22,11 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        UINavigationBar.appearance().tintColor = Constants.Colors.tintColor
-        UITabBar.appearance().tintColor = Constants.Colors.tintColor
-//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-
         return true
     }
     

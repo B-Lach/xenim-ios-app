@@ -21,6 +21,10 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,6 +54,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         if let url = NSURL(string: urlString) {
             let svc = SFSafariViewController(URL: url)
             svc.delegate = self
+            UIApplication.sharedApplication().statusBarStyle = .Default
             self.presentViewController(svc, animated: true, completion: nil)
         }
     }
@@ -58,10 +63,10 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         // check if the user is able to send mail
         if MFMailComposeViewController.canSendMail() {
             
-            let appVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")
-            let emailTitle = NSLocalizedString("settings_view_mail_title", value: "Listen Support", comment: "mail title for a new support mail message")
-            let messageBody = NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.\n\nInstalled Version: \(appVersionString)", comment: "mail body for a new support mail message")
-            let toRecipents = ["app-support@funkenstrahlen.de"]
+            let appVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")! as! String
+            let emailTitle = NSLocalizedString("settings_view_mail_title", value: "Xenim Support", comment: "mail title for a new support mail message")
+            let messageBody = String(format: NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.\n\nInstalled Version: %@", comment: "mail body for a new support mail message"), appVersionString)
+            let toRecipents = ["xenimapp@stefantrauth.de"]
             
             // configure mail compose view controller
             let mc: MFMailComposeViewController = MFMailComposeViewController()
@@ -70,6 +75,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             mc.setMessageBody(messageBody, isHTML: false)
             mc.setToRecipients(toRecipents)
             
+            UIApplication.sharedApplication().statusBarStyle = .Default
             self.presentViewController(mc, animated: true, completion: nil)
         } else {
             // show error message if device is not configured to send mail
