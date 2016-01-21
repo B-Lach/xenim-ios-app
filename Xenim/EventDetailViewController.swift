@@ -103,6 +103,26 @@ class EventDetailViewController: UIViewController {
         if !event.isLive() {
             // hide the playbutton
             playButtonHeightConstraint.constant = 0
+        } else {
+            let playerManager = PlayerManager.sharedInstance
+            if let playerEvent = playerManager.event {
+                if playerEvent.equals(event) {
+                    switch playerManager.player.state {
+                    case .Buffering:
+                        playButtonHeightConstraint.constant = 0
+                    case .Paused:
+                        break
+                    case .Playing:
+                        playButtonHeightConstraint.constant = 0
+                    case .Stopped:
+                        break
+                    case .WaitingForConnection:
+                        playButtonHeightConstraint.constant = 0
+                    case .Failed(_):
+                        break
+                    }
+                }
+            }
         }
     }
     
@@ -113,7 +133,7 @@ class EventDetailViewController: UIViewController {
     }
     
     @IBAction func playEvent(sender: AnyObject) {
-        PlayerManager.sharedInstance.play(event)
+        PlayerManager.sharedInstance.togglePlayPause(event)
         if dismissHandler != nil {
             dismissHandler!()
         }
@@ -127,12 +147,17 @@ class EventDetailViewController: UIViewController {
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func playerStateChanged(notification: NSNotification) {
+        updatePlayButton()
     }
     
     func favoriteAdded(notification: NSNotification) {

@@ -56,12 +56,6 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
         }
     }
     
-    func play(event: Event) {
-        if event != self.event {
-            playEvent(event)
-        }
-    }
-    
     func togglePlayPause(event: Event) {
         // if it is a new event
         if event != self.event {
