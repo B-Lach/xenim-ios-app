@@ -130,8 +130,6 @@
 		2222ECB41BD52E470040100F /* Xenim */ = {
 			isa = PBXGroup;
 			children = (
-				220A32431C510912005A00A0 /* InfoPlist.strings */,
-				220A323E1C510911005A00A0 /* Localizable.strings */,
 				2222ECB91BD52E480040100F /* Main.storyboard */,
 				22E6DD9E1C314B7500E427C8 /* Settings */,
 				22D515CA1C4BFE2700BE8D21 /* AddFavorite */,
@@ -153,6 +151,8 @@
 		2232FE5E1BDE234D00BE368E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				220A32431C510912005A00A0 /* InfoPlist.strings */,
+				220A323E1C510911005A00A0 /* Localizable.strings */,
 				2222ECBC1BD52E480040100F /* Assets.xcassets */,
 				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
 			);
