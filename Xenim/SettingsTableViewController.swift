@@ -20,6 +20,9 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
 
@@ -51,6 +54,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         if let url = NSURL(string: urlString) {
             let svc = SFSafariViewController(URL: url)
             svc.delegate = self
+            UIApplication.sharedApplication().statusBarStyle = .Default
             self.presentViewController(svc, animated: true, completion: nil)
         }
     }
@@ -71,6 +75,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             mc.setMessageBody(messageBody, isHTML: false)
             mc.setToRecipients(toRecipents)
             
+            UIApplication.sharedApplication().statusBarStyle = .Default
             self.presentViewController(mc, animated: true, completion: nil)
         } else {
             // show error message if device is not configured to send mail
