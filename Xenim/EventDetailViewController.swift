@@ -44,10 +44,8 @@ class EventDetailViewController: UIViewController {
         // the event is taking place
         let formatter = NSDateFormatter();
         formatter.locale = NSLocale.currentLocale()
-        dateLabel.textColor = UIColor.grayColor()
         
         if event.isLive() {
-            dateLabel.textColor = Constants.Colors.tintColor
             dateLabel?.text = NSLocalizedString("live_now", value: "Live Now", comment: "live now string")
         } else if event.isUpcomingToday() || event.isUpcomingTomorrow() {
             formatter.setLocalizedDateFormatFromTemplate("HH:mm")
