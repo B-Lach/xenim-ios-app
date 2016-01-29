@@ -13,16 +13,16 @@ class EventTableViewCell: UITableViewCell {
     
     @IBOutlet weak var eventCoverartImage: UIImageView! {
         didSet {
-            eventCoverartImage.layer.cornerRadius = 5.0
+            eventCoverartImage.layer.cornerRadius = eventCoverartImage.frame.width / 2
             eventCoverartImage.layer.masksToBounds = true
         }
     }
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var eventDescriptionLabel: UILabel!
     @IBOutlet weak var favoriteImageView: UIImageView!
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var playButtonWidthConstraint: NSLayoutConstraint!
     
     var event: Event! {
         didSet {
@@ -36,7 +36,6 @@ class EventTableViewCell: UITableViewCell {
     func updateUI() {
         if let event = event {
             podcastNameLabel?.text = event.podcast.name
-            eventDescriptionLabel?.text = event.eventDescription
             eventTitleLabel?.text = event.title
 
             updateCoverart()
@@ -75,41 +74,54 @@ class EventTableViewCell: UITableViewCell {
             } else if event.isUpcomingThisWeek() {
                 formatter.setLocalizedDateFormatFromTemplate("EEEE")
                 let date = formatter.stringFromDate(event.begin)
-                dateLabel?.text = "\(date)\n\(time)"
+                dateLabel?.text = "\(date) \(time)"
             } else {
                 formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM")
                 let date = formatter.stringFromDate(event.begin)
-                dateLabel?.text = "\(date)\n\(time)"
+                dateLabel?.text = "\(date) \(time)"
             }
         }
     }
     
     func updatePlayButton() {
         if !event.isLive() {
-            // hide the playbutton
-            playButton.hidden = true
+            hidePlayButton()
         } else {
-            playButton.hidden = false
+            showPlayButton()
             let playerManager = PlayerManager.sharedInstance
             if let playerEvent = playerManager.event {
                 if playerEvent.equals(event) {
                     switch playerManager.player.state {
                     case .Buffering:
-                        playButton.hidden = true
+                        // TODO
+                        break
                     case .Paused:
+                        // TODO
                         break
                     case .Playing:
-                        playButton.hidden = true
+                        // TODO
+                        break
                     case .Stopped:
+                        // TODO
                         break
                     case .WaitingForConnection:
-                        playButton.hidden = true
+                        // TODO
+                        break
                     case .Failed(_):
+                        // TODO
                         break
                     }
                 }
             }
         }
+    }
+    
+    private func hidePlayButton() {
+        playButtonWidthConstraint.constant = 0
+    }
+    
+    private func showPlayButton() {
+        playButtonWidthConstraint.constant = 30
     }
     
     func updateFavoriteButton() {

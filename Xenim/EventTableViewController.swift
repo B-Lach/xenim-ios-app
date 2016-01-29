@@ -44,6 +44,8 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.separatorColor = UIColor.clearColor()
+        
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         // increase content inset for audio player
