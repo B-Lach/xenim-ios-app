@@ -55,7 +55,7 @@ class PodcastDetailViewController: UIViewController, SFSafariViewControllerDeleg
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         // scale the popover
         view.layer.cornerRadius = 10.0
-        view.bounds = CGRectMake(0, 0, screenSize.width * 0.75, 450)
+        view.bounds = CGRectMake(0, 0, screenSize.width * 0.8, screenSize.height * 0.75)
     }
     
     func setupToolbar() {

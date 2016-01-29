@@ -22,20 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        configureTabBarColors()
         return true
-    }
-    
-    private func configureTabBarColors() {
-        let tabBarController = window?.rootViewController as! UITabBarController
-        let tabBar = tabBarController.tabBar
-        
-        for item in tabBar.items! {
-            item.image = item.image?.imageWithRenderingMode(.AlwaysOriginal)
-            item.selectedImage = item.selectedImage?.imageWithRenderingMode(.AlwaysOriginal)
-            item.setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.whiteColor()], forState: .Normal)
-            item.setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.whiteColor()], forState: .Selected)
-        }
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
