@@ -296,7 +296,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         
         // configure event detail view controller as popup content
         let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("EventDetail") as! EventDetailViewController
-        eventDetailVC.event = event
+        eventDetailVC.podcast = event.podcast
         
         let window = UIApplication.sharedApplication().delegate?.window!
         let modal = PathDynamicModal.show(modalView: eventDetailVC, inView: window!)
