@@ -14,37 +14,22 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     
     var podcast: Podcast!
 
-    @IBOutlet weak var coverartImageView: UIImageView! {
-        didSet {
-            coverartImageView.layer.cornerRadius = 5.0
-            coverartImageView.layer.masksToBounds = true
-        }
-    }
-    @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var nextDateLabel: UILabel!
-    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastDescriptionTextView: UITextView!
     @IBOutlet weak var toolbar: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupNotifications()
-        
+                
         let placeholderImage = UIImage(named: "event_placeholder")!
-        if let imageurl = podcast.artwork.thumb180Url{
+        if let imageurl = podcast.artwork.originalUrl{
             coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
         } else {
             coverartImageView.image = placeholderImage
         }
         
-        podcastNameLabel.text = podcast.name
-        subtitleLabel.text = podcast.subtitle
         podcastDescriptionTextView.text = podcast.podcastDescription
-        
-        updateNextDateLabel()
-        updateFavoriteButton()
+        podcastDescriptionTextView.setContentOffset(CGPointZero, animated: false)
         
         setupToolbar()
     }
@@ -61,8 +46,8 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     override func viewWillLayoutSubviews() {
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         // scale the popover
-        view.layer.cornerRadius = 5.0
-        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
+        view.layer.cornerRadius = 10.0
+        view.bounds = CGRectMake(0, 0, screenSize.width * 0.75, 450)
     }
     
     func setupToolbar() {
@@ -101,23 +86,6 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
         }
         
         toolbar.setItems(items, animated: true)
-    }
-    
-    func updateFavoriteButton() {
-        if Favorites.fetch().contains(podcast.id) {
-            favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
-        } else {
-            favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
-        }
-    }
-    
-    func updateNextDateLabel() {
-        nextDateLabel.text = NSLocalizedString("favorite_detailview_loading_next_event", value: "Loading...", comment: "Loading message while loading next event date")
-        podcast.daysUntilNextEventString { (string) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.nextDateLabel.text = string
-            })
-        }
     }
     
     // MARK: - Actions
@@ -218,50 +186,6 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
             break
         }
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    // MARK: notifications
-    
-    func setupNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    func favoriteAdded(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
-            // check if this affects this cell
-            if podcastId == podcast.id {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
-                animateFavoriteButton()
-            }
-        }
-    }
-    
-    func favoriteRemoved(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
-            // check if this affects this cell
-            if podcastId == podcast.id {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
-                animateFavoriteButton()
-            }
-        }
-    }
-    
-    func animateFavoriteButton() {
-        favoriteButton.transform = CGAffineTransformMakeScale(1.3, 1.3)
-        UIView.animateWithDuration(0.3,
-            delay: 0,
-            usingSpringWithDamping: 2,
-            initialSpringVelocity: 1.0,
-            options: [UIViewAnimationOptions.CurveEaseOut],
-            animations: {
-                self.favoriteButton.transform = CGAffineTransformIdentity
-            }, completion: nil)
     }
 
 }
