@@ -35,7 +35,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var coverartImageView: UIImageView! {
         didSet {
-            coverartImageView.layer.cornerRadius = 5.0
+            coverartImageView.layer.cornerRadius = coverartImageView.frame.size.height / 2
             coverartImageView.layer.masksToBounds = true
         }
     }

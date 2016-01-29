@@ -283,28 +283,8 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
-        EventTableViewController.showEventInfo(event: cell.event)
+        EventDetailViewController.showEventInfo(event: cell.event)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
-    // MARK: - static global
-    
-    // if the info button in the player for a specific event is pressed
-    // this table view controller should segue to the event detail view
-    static func showEventInfo(event event: Event) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        // configure event detail view controller as popup content
-        let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("EventDetail") as! EventDetailViewController
-        eventDetailVC.podcast = event.podcast
-        
-        let window = UIApplication.sharedApplication().delegate?.window!
-        let modal = PathDynamicModal.show(modalView: eventDetailVC, inView: window!)
-        
-        eventDetailVC.dismissHandler = {[weak modal] in
-            modal?.closeWithStraight()
-            return
-        }
     }
     
 }

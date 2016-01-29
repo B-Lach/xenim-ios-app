@@ -115,4 +115,23 @@ class EventDetailViewController: UIViewController {
             }, completion: nil)
     }
 
+    // MARK: - static global
+    
+    // if the info button in the player for a specific event is pressed
+    // this table view controller should segue to the event detail view
+    static func showEventInfo(event event: Event) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // configure event detail view controller as popup content
+        let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("EventDetail") as! EventDetailViewController
+        eventDetailVC.podcast = event.podcast
+        
+        let window = UIApplication.sharedApplication().delegate?.window!
+        let modal = PathDynamicModal.show(modalView: eventDetailVC, inView: window!)
+        
+        eventDetailVC.dismissHandler = {[weak modal] in
+            modal?.closeWithStraight()
+            return
+        }
+    }
 }

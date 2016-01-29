@@ -10,17 +10,19 @@ import UIKit
 import SafariServices
 import MessageUI
 
-class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
+class PodcastDetailViewController: UIViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
     
     var podcast: Podcast!
-
+    
+    var dismissHandler: (() -> Void)?
+    
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastDescriptionTextView: UITextView!
     @IBOutlet weak var toolbar: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         let placeholderImage = UIImage(named: "event_placeholder")!
         if let imageurl = podcast.artwork.originalUrl{
             coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
@@ -37,7 +39,7 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -102,7 +104,7 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
         svc.delegate = self
         UIApplication.sharedApplication().statusBarStyle = .Default
         self.presentViewController(svc, animated: true, completion: nil)
-
+        
     }
     
     func subscribe() {
@@ -144,16 +146,16 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
             mc.setSubject(emailTitle)
             mc.setMessageBody(messageBody, isHTML: false)
             mc.setToRecipients(toRecipents)
-
+            
             UIApplication.sharedApplication().statusBarStyle = .Default
-
+            
             self.presentViewController(mc, animated: true, completion: nil)
         } else {
             // show error message if device is not configured to send mail
             let message = NSLocalizedString("podcast_detailview_mail_not_supported_message", value: "Your device is not setup to send email.", comment: "the message shown to the user in an alert view if his device is not setup to send email")
             showInfoMessage("Info", message: message)
         }
-
+        
     }
     
     func showInfoMessage(title: String, message: String) {
@@ -187,5 +189,25 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
+    // MARK: - static global
+    
+    // if the info button in the player for a specific event is pressed
+    // this table view controller should segue to the event detail view
+    static func showPodcastInfo(podcast podcast: Podcast) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // configure event detail view controller as popup content
+        let podcastDetailVC = storyboard.instantiateViewControllerWithIdentifier("PodcastDetail") as! PodcastDetailViewController
+        podcastDetailVC.podcast = podcast
+        
+        let window = UIApplication.sharedApplication().delegate?.window!
+        let modal = PathDynamicModal.show(modalView: podcastDetailVC, inView: window!)
+        
+        podcastDetailVC.dismissHandler = {[weak modal] in
+            modal?.closeWithStraight()
+            return
+        }
+    }
+    
 }

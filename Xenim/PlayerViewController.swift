@@ -204,7 +204,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func showEventInfo(sender: AnyObject) {
-        EventTableViewController.showEventInfo(event: event)
+        EventDetailViewController.showEventInfo(event: event)
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
