@@ -22,6 +22,8 @@ protocol PlayerManagerDelegate {
 
 class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
+    @IBOutlet weak var backgroundCoverartImageView: UIImageView!
+    
     var event: Event! {
         didSet {
             updateUI()
@@ -29,6 +31,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     var playerManagerDelegate: PlayerManagerDelegate?
 
+    @IBOutlet weak var blurView: UIVisualEffectView!
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
 	@IBOutlet weak var progressView: UIProgressView!
@@ -59,17 +62,32 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
         self.popupItem.leftBarButtonItems = [popupItem]
-
+        
+        LNPopupBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        LNPopupBar.appearance().subtitleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        LNPopupBar.appearance().barTintColor = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1)
+        LNPopupBar.appearance().tintColor = UIColor.whiteColor()
+        
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        let effect = UIBlurEffect(style: .Dark)
+//        let vibrancy = UIVibrancyEffect(forBlurEffect: effect)
+//        blurView.effect = vibrancy
         
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
         timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
         timerTicked()
+        
+        toolbar.setBackgroundImage(UIImage(),
+            forToolbarPosition: UIBarPosition.Any,
+            barMetrics: UIBarMetrics.Default)
+        toolbar.setShadowImage(UIImage(),
+            forToolbarPosition: UIBarPosition.Any)
         
         setupNotifications()
         updateUI()
@@ -89,6 +107,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         let placeholderImage = UIImage(named: "event_placeholder")!
         if let imageurl = event.podcast.artwork.originalUrl {
             coverartView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            backgroundCoverartImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
             miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
 
             Alamofire.request(.GET, imageurl)
@@ -204,7 +223,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func showEventInfo(sender: AnyObject) {
-        EventDetailViewController.showEventInfo(event: event)
+        PodcastDetailViewController.showPodcastInfo(podcast: event.podcast)
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
@@ -277,19 +296,19 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
         case .Paused:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "white-44-play-circle"), forState: UIControlState.Normal)
         case .Playing:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
         case .Stopped:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "white-44-play-circle"), forState: UIControlState.Normal)
         case .WaitingForConnection:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
         case .Failed(_):
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "white-44-play-circle"), forState: UIControlState.Normal)
         }
     }
     
