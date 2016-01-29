@@ -31,13 +31,19 @@ class PodcastDetailViewController: UIViewController, SFSafariViewControllerDeleg
         }
         
         podcastDescriptionTextView.text = podcast.podcastDescription
-        podcastDescriptionTextView.setContentOffset(CGPointZero, animated: false)
         
         setupToolbar()
     }
     
     override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
+    override func viewDidLayoutSubviews() {
+        // ensure text view is scrolled to the top
+        podcastDescriptionTextView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: false)
+        //eventDescriptionTextView.setContentOffset(CGPointZero, animated: false)
+        //eventDescriptionTextView.scrollRangeToVisible(NSMakeRange(0, 0))
     }
     
     override func didReceiveMemoryWarning() {
