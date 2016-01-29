@@ -762,7 +762,7 @@
         <scene sceneID="uLN-cE-2UG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EEx-ap-ZIj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Events" image="brandeis-blue-25-calendar" id="KKU-KO-aCN"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="white-25-calendar-o" selectedImage="white-25-calendar" id="KKU-KO-aCN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vs3-Mg-kYO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -925,7 +925,7 @@
         <scene sceneID="tw0-tu-Kco">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FUF-oZ-1Ao" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="brandeis-blue-25-star-o" selectedImage="brandeis-blue-25-star" id="uy0-hV-u60"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="white-25-star-o" selectedImage="white-25-star" id="uy0-hV-u60"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hBA-vo-dTy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1484,16 +1484,17 @@ If you want to see the shows scheduled before taking place, please talk to the p
         <image name="black-44-backward" width="33" height="33"/>
         <image name="black-44-forward" width="33" height="33"/>
         <image name="black-44-pause" width="33" height="33"/>
-        <image name="brandeis-blue-25-calendar" width="19" height="19"/>
         <image name="brandeis-blue-25-gear" width="19" height="19"/>
         <image name="brandeis-blue-25-plus" width="19" height="19"/>
-        <image name="brandeis-blue-25-star" width="19" height="19"/>
-        <image name="brandeis-blue-25-star-o" width="19" height="19"/>
         <image name="event_placeholder" width="420" height="420"/>
         <image name="scarlet-25-heart" width="19" height="19"/>
         <image name="scarlet-25-star" width="19" height="19"/>
         <image name="scarlet-44-info-circle" width="33" height="33"/>
         <image name="scarlet-44-play-circle-whitebg" width="44" height="44"/>
         <image name="scarlet-44-star" width="33" height="33"/>
+        <image name="white-25-calendar" width="19" height="19"/>
+        <image name="white-25-calendar-o" width="19" height="19"/>
+        <image name="white-25-star" width="19" height="19"/>
+        <image name="white-25-star-o" width="19" height="19"/>
     </resources>
 </document>

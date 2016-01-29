@@ -35,10 +35,15 @@ class EventDetailViewController: UIViewController {
         }
         
         eventDescriptionTextView.text = podcast.podcastDescription
-        eventDescriptionTextView.setContentOffset(CGPointZero, animated: false)
-                
         updateFavoriteButton()
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        // ensure text view is scrolled to the top
+        eventDescriptionTextView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: false)
+        //eventDescriptionTextView.setContentOffset(CGPointZero, animated: false)
+        //eventDescriptionTextView.scrollRangeToVisible(NSMakeRange(0, 0))
     }
 
     override func didReceiveMemoryWarning() {
