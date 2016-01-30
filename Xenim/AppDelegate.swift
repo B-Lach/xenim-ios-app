@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let eventId = userInfo["event_id"] as? String {
             XenimAPI.fetchEventById(eventId, onComplete: { (event) -> Void in
                 if let event = event {
-                    EventTableViewController.showEventInfo(event: event)
+                    EventDetailViewController.showEventInfo(event: event)
                 }
             })
         }

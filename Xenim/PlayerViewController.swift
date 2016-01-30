@@ -22,6 +22,8 @@ protocol PlayerManagerDelegate {
 
 class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
+    @IBOutlet weak var backgroundCoverartImageView: UIImageView!
+    
     var event: Event! {
         didSet {
             updateUI()
@@ -29,6 +31,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     var playerManagerDelegate: PlayerManagerDelegate?
 
+    @IBOutlet weak var blurView: UIVisualEffectView!
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
 	@IBOutlet weak var progressView: UIProgressView!
@@ -59,17 +62,26 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
         self.popupItem.leftBarButtonItems = [popupItem]
-
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        let effect = UIBlurEffect(style: .Dark)
+//        let vibrancy = UIVibrancyEffect(forBlurEffect: effect)
+//        blurView.effect = vibrancy
         
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
         timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
         timerTicked()
+        
+        toolbar.setBackgroundImage(UIImage(),
+            forToolbarPosition: UIBarPosition.Any,
+            barMetrics: UIBarMetrics.Default)
+        toolbar.setShadowImage(UIImage(),
+            forToolbarPosition: UIBarPosition.Any)
         
         setupNotifications()
         updateUI()
@@ -89,6 +101,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         let placeholderImage = UIImage(named: "event_placeholder")!
         if let imageurl = event.podcast.artwork.originalUrl {
             coverartView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            backgroundCoverartImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
             miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
 
             Alamofire.request(.GET, imageurl)
@@ -204,7 +217,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func showEventInfo(sender: AnyObject) {
-        EventTableViewController.showEventInfo(event: event)
+        PodcastDetailViewController.showPodcastInfo(podcast: event.podcast)
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {

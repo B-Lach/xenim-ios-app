@@ -146,15 +146,8 @@ class FavoritesTableViewController: UITableViewController{
     }
     
     func showFavoriteDetailViewForIndexPath(indexPath: NSIndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        // configure event detail view controller as popup content
-        let favoriteDetailVC = storyboard.instantiateViewControllerWithIdentifier("FavoriteDetail") as! FavoriteDetailViewController
-        favoriteDetailVC.podcast = favorites[indexPath.row]
-        
-        let window = UIApplication.sharedApplication().delegate?.window!
-        PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
-        
+        let podcast = favorites[indexPath.row]
+        PodcastDetailViewController.showPodcastInfo(podcast: podcast)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

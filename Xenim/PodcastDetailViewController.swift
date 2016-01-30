@@ -10,41 +10,27 @@ import UIKit
 import SafariServices
 import MessageUI
 
-class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
+class PodcastDetailViewController: UIViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
     
     var podcast: Podcast!
-
-    @IBOutlet weak var coverartImageView: UIImageView! {
-        didSet {
-            coverartImageView.layer.cornerRadius = 5.0
-            coverartImageView.layer.masksToBounds = true
-        }
-    }
-    @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var nextDateLabel: UILabel!
-    @IBOutlet weak var favoriteButton: UIButton!
+    
+    var dismissHandler: (() -> Void)?
+    
+    @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastDescriptionTextView: UITextView!
     @IBOutlet weak var toolbar: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNotifications()
-        
         let placeholderImage = UIImage(named: "event_placeholder")!
-        if let imageurl = podcast.artwork.thumb180Url{
+        if let imageurl = podcast.artwork.originalUrl{
             coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
         } else {
             coverartImageView.image = placeholderImage
         }
         
-        podcastNameLabel.text = podcast.name
-        subtitleLabel.text = podcast.subtitle
         podcastDescriptionTextView.text = podcast.podcastDescription
-        
-        updateNextDateLabel()
-        updateFavoriteButton()
         
         setupToolbar()
     }
@@ -52,7 +38,14 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        // ensure text view is scrolled to the top
+        podcastDescriptionTextView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: false)
+        //eventDescriptionTextView.setContentOffset(CGPointZero, animated: false)
+        //eventDescriptionTextView.scrollRangeToVisible(NSMakeRange(0, 0))
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,8 +54,8 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
     override func viewWillLayoutSubviews() {
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         // scale the popover
-        view.layer.cornerRadius = 5.0
-        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
+        view.layer.cornerRadius = 10.0
+        view.bounds = CGRectMake(0, 0, screenSize.width * 0.8, screenSize.height * 0.75)
     }
     
     func setupToolbar() {
@@ -103,23 +96,6 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
         toolbar.setItems(items, animated: true)
     }
     
-    func updateFavoriteButton() {
-        if Favorites.fetch().contains(podcast.id) {
-            favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
-        } else {
-            favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
-        }
-    }
-    
-    func updateNextDateLabel() {
-        nextDateLabel.text = NSLocalizedString("favorite_detailview_loading_next_event", value: "Loading...", comment: "Loading message while loading next event date")
-        podcast.daysUntilNextEventString { (string) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.nextDateLabel.text = string
-            })
-        }
-    }
-    
     // MARK: - Actions
     
     func openWebsite() {
@@ -134,7 +110,7 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
         svc.delegate = self
         UIApplication.sharedApplication().statusBarStyle = .Default
         self.presentViewController(svc, animated: true, completion: nil)
-
+        
     }
     
     func subscribe() {
@@ -176,16 +152,16 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
             mc.setSubject(emailTitle)
             mc.setMessageBody(messageBody, isHTML: false)
             mc.setToRecipients(toRecipents)
-
+            
             UIApplication.sharedApplication().statusBarStyle = .Default
-
+            
             self.presentViewController(mc, animated: true, completion: nil)
         } else {
             // show error message if device is not configured to send mail
             let message = NSLocalizedString("podcast_detailview_mail_not_supported_message", value: "Your device is not setup to send email.", comment: "the message shown to the user in an alert view if his device is not setup to send email")
             showInfoMessage("Info", message: message)
         }
-
+        
     }
     
     func showInfoMessage(title: String, message: String) {
@@ -220,48 +196,24 @@ class FavoriteDetailViewController: UIViewController, SFSafariViewControllerDele
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // MARK: notifications
+    // MARK: - static global
     
-    func setupNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    func favoriteAdded(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
-            // check if this affects this cell
-            if podcastId == podcast.id {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
-                animateFavoriteButton()
-            }
+    // if the info button in the player for a specific event is pressed
+    // this table view controller should segue to the event detail view
+    static func showPodcastInfo(podcast podcast: Podcast) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // configure event detail view controller as popup content
+        let podcastDetailVC = storyboard.instantiateViewControllerWithIdentifier("PodcastDetail") as! PodcastDetailViewController
+        podcastDetailVC.podcast = podcast
+        
+        let window = UIApplication.sharedApplication().delegate?.window!
+        let modal = PathDynamicModal.show(modalView: podcastDetailVC, inView: window!)
+        
+        podcastDetailVC.dismissHandler = {[weak modal] in
+            modal?.closeWithStraight()
+            return
         }
     }
     
-    func favoriteRemoved(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
-            // check if this affects this cell
-            if podcastId == podcast.id {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
-                animateFavoriteButton()
-            }
-        }
-    }
-    
-    func animateFavoriteButton() {
-        favoriteButton.transform = CGAffineTransformMakeScale(1.3, 1.3)
-        UIView.animateWithDuration(0.3,
-            delay: 0,
-            usingSpringWithDamping: 2,
-            initialSpringVelocity: 1.0,
-            options: [UIViewAnimationOptions.CurveEaseOut],
-            animations: {
-                self.favoriteButton.transform = CGAffineTransformIdentity
-            }, completion: nil)
-    }
-
 }
