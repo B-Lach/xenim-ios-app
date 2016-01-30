@@ -9,6 +9,7 @@ PODS:
   - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
   - SwiftyJSON (2.3.2)
+  - UIImageColors (1.0.3)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
@@ -18,6 +19,17 @@ DEPENDENCIES:
   - MarqueeLabel-Swift (~> 2.3)
   - Parse (~> 1.10)
   - SwiftyJSON (~> 2.3)
+  - UIImageColors (from `https://github.com/jathu/UIImageColors.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  UIImageColors:
+    :branch: master
+    :git: https://github.com/jathu/UIImageColors.git
+
+CHECKOUT OPTIONS:
+  UIImageColors:
+    :commit: 243d79e70b20ca5d6a73691d75d99ff22dab8a1a
+    :git: https://github.com/jathu/UIImageColors.git
 
 SPEC CHECKSUMS:
   Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
@@ -28,5 +40,6 @@ SPEC CHECKSUMS:
   MarqueeLabel-Swift: 02f82b53b7b01a4cbc06f00ec8cd165093b0c7cb
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  UIImageColors: 3c3b04ecd5786d3235f7f783316c6ef0f631216d
 
 COCOAPODS: 0.39.0
