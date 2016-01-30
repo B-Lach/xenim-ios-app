@@ -994,11 +994,11 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="oHQ-5s-pRQ">
-                                                                    <rect key="frame" x="213" y="85" width="159" height="33"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="oHQ-5s-pRQ">
+                                                                    <rect key="frame" x="227" y="85" width="131" height="33"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAQ-yS-bch" userLabel="Prev">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAQ-yS-bch" userLabel="Prev">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="19" height="33"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="25" id="9yS-Rf-Iit"/>
                                                                                 <constraint firstAttribute="width" constant="33" id="D3x-z8-lWH"/>
@@ -1007,7 +1007,7 @@
                                                                                 <constraint firstAttribute="height" constant="25" id="cYE-P8-lo1"/>
                                                                             </constraints>
                                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            <state key="normal" image="white-44-backward"/>
+                                                                            <state key="normal" image="black-25-backward"/>
                                                                             <variation key="default">
                                                                                 <mask key="constraints">
                                                                                     <exclude reference="9yS-Rf-Iit"/>
@@ -1021,8 +1021,8 @@
                                                                                 <action selector="backwardPressed:" destination="Pke-AM-PdW" eventType="touchUpInside" id="Ezv-ok-LPW"/>
                                                                             </connections>
                                                                         </button>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIy-6V-23T" userLabel="Play">
-                                                                            <rect key="frame" x="63" y="0.0" width="33" height="33"/>
+                                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIy-6V-23T" userLabel="Play">
+                                                                            <rect key="frame" x="49" y="0.0" width="33" height="33"/>
                                                                             <gestureRecognizers/>
                                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <state key="normal" image="black-44-pause"/>
@@ -1030,15 +1030,15 @@
                                                                                 <action selector="togglePlayPause:" destination="Pke-AM-PdW" eventType="touchUpInside" id="0Bl-7b-3JE"/>
                                                                             </connections>
                                                                         </button>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-BQ-ZHn" userLabel="Next">
-                                                                            <rect key="frame" x="126" y="0.0" width="33" height="33"/>
+                                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-BQ-ZHn" userLabel="Next">
+                                                                            <rect key="frame" x="112" y="0.0" width="19" height="33"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="aqK-BQ-ZHn" secondAttribute="height" multiplier="33:25" id="8Bm-cn-vDS"/>
                                                                                 <constraint firstAttribute="height" constant="25" id="BXR-lL-BtO"/>
                                                                                 <constraint firstAttribute="width" constant="33" id="Jw5-IA-MTh"/>
                                                                             </constraints>
                                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            <state key="normal" image="white-44-forward"/>
+                                                                            <state key="normal" image="black-25-forward"/>
                                                                             <variation key="default">
                                                                                 <mask key="constraints">
                                                                                     <exclude reference="8Bm-cn-vDS"/>
@@ -1509,7 +1509,9 @@ If you want to see the shows scheduled before taking place, please talk to the p
         </scene>
     </scenes>
     <resources>
+        <image name="black-25-backward" width="19" height="19"/>
         <image name="black-25-envelope" width="19" height="19"/>
+        <image name="black-25-forward" width="19" height="19"/>
         <image name="black-25-github-square" width="19" height="19"/>
         <image name="black-25-heart" width="19" height="19"/>
         <image name="black-25-info" width="19" height="19"/>
@@ -1529,7 +1531,5 @@ If you want to see the shows scheduled before taking place, please talk to the p
         <image name="white-25-calendar-o" width="19" height="19"/>
         <image name="white-25-star" width="19" height="19"/>
         <image name="white-25-star-o" width="19" height="19"/>
-        <image name="white-44-backward" width="33" height="33"/>
-        <image name="white-44-forward" width="33" height="33"/>
     </resources>
 </document>
