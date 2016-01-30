@@ -111,11 +111,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
                     if let image = response.result.value {
                         let colors = image.getColors()
                         if colors.backgroundColor.isDarkColor {
-                            self.statusBarStyle = UIStatusBarStyle.LightContent
+                            UIApplication.sharedApplication().statusBarStyle = .LightContent
                         } else {
-                            self.statusBarStyle = UIStatusBarStyle.Default
+                            UIApplication.sharedApplication().statusBarStyle = .Default
                         }
-                        self.setNeedsStatusBarAppearanceUpdate()
                     }
             }
         } else {
