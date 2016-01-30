@@ -32,6 +32,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     var playerManagerDelegate: PlayerManagerDelegate?
 
+    @IBOutlet weak var loadingSpinnerView: SpinnerView!
     @IBOutlet weak var blurView: UIVisualEffectView!
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
@@ -284,21 +285,27 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         case .Buffering:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = false
         case .Paused:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = true
         case .Playing:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = true
         case .Stopped:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = true
         case .WaitingForConnection:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = false
         case .Failed(_):
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = true
         }
     }
     
