@@ -1037,6 +1037,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="198"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yp-8w-90s" customClass="SpinnerView" customModule="Xenim" customModuleProvider="target">
+                                                            <rect key="frame" x="284" y="101" width="33" height="33"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zz0-Be-KJK">
                                                             <rect key="frame" x="8" y="16" width="584" height="118"/>
                                                             <subviews>
@@ -1131,11 +1135,16 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="EeN-LN-bO7" firstAttribute="top" secondItem="zz0-Be-KJK" secondAttribute="bottom" constant="20" id="0Kk-Bf-4DY"/>
+                                                        <constraint firstItem="9yp-8w-90s" firstAttribute="width" secondItem="kIy-6V-23T" secondAttribute="width" id="1eV-BF-tPj"/>
                                                         <constraint firstItem="EeN-LN-bO7" firstAttribute="leading" secondItem="7WC-WS-Rhe" secondAttribute="leading" id="4cg-KP-h5Q"/>
+                                                        <constraint firstItem="9yp-8w-90s" firstAttribute="centerY" secondItem="kIy-6V-23T" secondAttribute="centerY" id="HVu-8c-LYi"/>
                                                         <constraint firstAttribute="trailing" secondItem="EeN-LN-bO7" secondAttribute="trailing" id="Iw3-AD-3vH"/>
                                                         <constraint firstItem="zz0-Be-KJK" firstAttribute="top" secondItem="7WC-WS-Rhe" secondAttribute="top" constant="16" id="QiR-hb-WgK"/>
                                                         <constraint firstAttribute="bottom" secondItem="EeN-LN-bO7" secondAttribute="bottom" id="VT5-mv-SrN"/>
+                                                        <constraint firstItem="9yp-8w-90s" firstAttribute="centerX" secondItem="kIy-6V-23T" secondAttribute="centerX" id="Wnk-Py-ERd"/>
+                                                        <constraint firstItem="9yp-8w-90s" firstAttribute="width" secondItem="kIy-6V-23T" secondAttribute="height" multiplier="1:1" id="ffu-7v-WOy"/>
                                                         <constraint firstItem="zz0-Be-KJK" firstAttribute="leading" secondItem="7WC-WS-Rhe" secondAttribute="leading" constant="8" id="lpg-yI-Wwe"/>
+                                                        <constraint firstItem="9yp-8w-90s" firstAttribute="height" secondItem="kIy-6V-23T" secondAttribute="height" id="rgt-t1-nXp"/>
                                                         <constraint firstAttribute="trailing" secondItem="zz0-Be-KJK" secondAttribute="trailing" constant="8" id="w7Z-tw-kKN"/>
                                                     </constraints>
                                                 </view>
@@ -1214,6 +1223,7 @@
                         <outlet property="backgroundCoverartImageView" destination="Fiv-RC-YI8" id="aL7-ir-qxD"/>
                         <outlet property="blurView" destination="gKK-mp-zqe" id="MHH-4L-zfs"/>
                         <outlet property="coverartView" destination="9Z2-mv-QWo" id="YZn-A7-vvH"/>
+                        <outlet property="loadingSpinnerView" destination="9yp-8w-90s" id="2fq-SW-5Kg"/>
                         <outlet property="playPauseButton" destination="kIy-6V-23T" id="g37-id-2IZ"/>
                         <outlet property="podcastNameLabel" destination="uzN-m1-SqS" id="NVi-Vp-weR"/>
                         <outlet property="progressView" destination="1UZ-KQ-YVn" id="lEq-Ea-ZIK"/>
