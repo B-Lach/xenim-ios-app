@@ -548,13 +548,13 @@
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0K-CA-Svq">
-                                <rect key="frame" x="8" y="8" width="20" height="20"/>
+                                <rect key="frame" x="8" y="8" width="25" height="25"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wG6-JL-Bfj">
-                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kfb-Uu-JaY">
-                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                             <state key="normal" image="DismissChevron"/>
                                             <connections>
                                                 <action selector="dismiss:" destination="wJx-YQ-pcG" eventType="touchUpInside" id="oDa-Oj-Bkz"/>
@@ -570,9 +570,9 @@
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="X0K-CA-Svq" secondAttribute="height" multiplier="1:1" id="7db-fV-BWi"/>
-                                    <constraint firstAttribute="width" constant="20" id="f4F-CA-JLm"/>
+                                    <constraint firstAttribute="width" constant="25" id="f4F-CA-JLm"/>
                                 </constraints>
-                                <blurEffect style="light"/>
+                                <blurEffect style="extraLight"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -734,6 +734,34 @@
                                     <constraint firstAttribute="width" secondItem="RsP-ac-ylb" secondAttribute="height" multiplier="1:1" id="7lv-T6-b1i"/>
                                 </constraints>
                             </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYo-6m-DNA">
+                                <rect key="frame" x="10" y="10" width="25" height="25"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ltm-Xd-dQU">
+                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Kf-jD-5aD">
+                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                            <state key="normal" image="DismissChevron"/>
+                                            <connections>
+                                                <action selector="dismiss:" destination="hLm-5M-eOo" eventType="touchUpInside" id="9w6-Nv-OKL"/>
+                                                <action selector="dismiss:" destination="wJx-YQ-pcG" eventType="touchUpInside" id="JSu-3D-Lez"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4Kf-jD-5aD" firstAttribute="centerX" secondItem="Ltm-Xd-dQU" secondAttribute="centerX" id="9Qf-Xa-0FG"/>
+                                        <constraint firstItem="4Kf-jD-5aD" firstAttribute="height" secondItem="Ltm-Xd-dQU" secondAttribute="height" id="OHd-RC-FGF"/>
+                                        <constraint firstItem="4Kf-jD-5aD" firstAttribute="width" secondItem="Ltm-Xd-dQU" secondAttribute="width" id="saD-Ka-QAu"/>
+                                        <constraint firstItem="4Kf-jD-5aD" firstAttribute="centerY" secondItem="Ltm-Xd-dQU" secondAttribute="centerY" id="y6E-Nh-1Ny"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fYo-6m-DNA" secondAttribute="height" multiplier="1:1" id="UFa-4B-lLN"/>
+                                    <constraint firstAttribute="width" constant="25" id="mMc-nr-w2j"/>
+                                </constraints>
+                                <blurEffect style="extraLight"/>
+                            </visualEffectView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIe-fL-XCx">
                                 <rect key="frame" x="0.0" y="456" width="300" height="44"/>
                                 <items/>
@@ -752,8 +780,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="YgZ-tw-SQR" secondAttribute="trailing" constant="8" id="1Tn-3R-1om"/>
+                            <constraint firstItem="fYo-6m-DNA" firstAttribute="width" secondItem="fYo-6m-DNA" secondAttribute="height" multiplier="1:1" id="42B-XU-e5L"/>
                             <constraint firstItem="qIe-fL-XCx" firstAttribute="leading" secondItem="vYA-MN-FP9" secondAttribute="leading" id="4rz-dq-Aok"/>
                             <constraint firstItem="UPi-dJ-HsT" firstAttribute="top" secondItem="qIe-fL-XCx" secondAttribute="bottom" id="6fE-I0-eCY"/>
+                            <constraint firstItem="fYo-6m-DNA" firstAttribute="leading" secondItem="vYA-MN-FP9" secondAttribute="leading" constant="10" id="7fP-1O-SZl"/>
                             <constraint firstAttribute="bottomMargin" secondItem="qIe-fL-XCx" secondAttribute="bottom" id="8cU-5P-M3a"/>
                             <constraint firstItem="qIe-fL-XCx" firstAttribute="centerX" secondItem="vYA-MN-FP9" secondAttribute="centerX" id="IsA-WE-NQn"/>
                             <constraint firstItem="qIe-fL-XCx" firstAttribute="width" secondItem="vYA-MN-FP9" secondAttribute="width" constant="-20" id="J3N-P1-d3B"/>
@@ -763,6 +793,7 @@
                             <constraint firstItem="YgZ-tw-SQR" firstAttribute="leading" secondItem="vYA-MN-FP9" secondAttribute="leading" constant="8" id="Udb-an-YIs"/>
                             <constraint firstItem="qIe-fL-XCx" firstAttribute="top" secondItem="YgZ-tw-SQR" secondAttribute="bottom" constant="1" id="UpO-Q0-B7Z"/>
                             <constraint firstItem="RsP-ac-ylb" firstAttribute="leading" secondItem="vYA-MN-FP9" secondAttribute="leading" id="fHp-8v-vPD"/>
+                            <constraint firstItem="fYo-6m-DNA" firstAttribute="top" secondItem="vYA-MN-FP9" secondAttribute="topMargin" constant="10" id="hRk-ZS-tM1"/>
                             <constraint firstAttribute="trailing" secondItem="RsP-ac-ylb" secondAttribute="trailing" id="huy-My-Pyy"/>
                             <constraint firstItem="YgZ-tw-SQR" firstAttribute="top" secondItem="RsP-ac-ylb" secondAttribute="bottom" constant="1" id="jfI-6w-HYp"/>
                             <constraint firstItem="RsP-ac-ylb" firstAttribute="top" secondItem="vYA-MN-FP9" secondAttribute="topMargin" id="pui-9h-fDr"/>
@@ -785,6 +816,7 @@
                     <size key="freeformSize" width="300" height="500"/>
                     <connections>
                         <outlet property="coverartImageView" destination="RsP-ac-ylb" id="75m-Ga-dnv"/>
+                        <outlet property="dismissEffectView" destination="fYo-6m-DNA" id="Zmi-AO-Tsc"/>
                         <outlet property="podcastDescriptionTextView" destination="YgZ-tw-SQR" id="rFp-6F-umh"/>
                         <outlet property="toolbar" destination="qIe-fL-XCx" id="Mvn-Vf-RUL"/>
                     </connections>
