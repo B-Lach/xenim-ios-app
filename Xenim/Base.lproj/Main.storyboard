@@ -976,7 +976,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zz0-Be-KJK">
                                                             <rect key="frame" x="8" y="16" width="584" height="118"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Demo Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzN-m1-SqS">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzN-m1-SqS">
                                                                     <rect key="frame" x="227" y="0.0" width="131" height="30"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1002,6 +1002,7 @@
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="25" id="9yS-Rf-Iit"/>
                                                                                 <constraint firstAttribute="width" constant="33" id="D3x-z8-lWH"/>
+                                                                                <constraint firstAttribute="width" secondItem="iAQ-yS-bch" secondAttribute="height" multiplier="4:1" id="P3W-cn-8pW"/>
                                                                                 <constraint firstAttribute="width" secondItem="iAQ-yS-bch" secondAttribute="height" multiplier="33:25" id="SqK-51-Bu2"/>
                                                                                 <constraint firstAttribute="height" constant="25" id="cYE-P8-lo1"/>
                                                                             </constraints>
@@ -1011,6 +1012,7 @@
                                                                                 <mask key="constraints">
                                                                                     <exclude reference="9yS-Rf-Iit"/>
                                                                                     <exclude reference="D3x-z8-lWH"/>
+                                                                                    <exclude reference="P3W-cn-8pW"/>
                                                                                     <exclude reference="SqK-51-Bu2"/>
                                                                                     <exclude reference="cYE-P8-lo1"/>
                                                                                 </mask>

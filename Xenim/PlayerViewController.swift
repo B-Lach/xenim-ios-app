@@ -54,7 +54,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         // use this to add more controls on ipad interface
 		//if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
 
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
         
         miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
         miniCoverartImageView.layer.cornerRadius = 5.0
@@ -286,23 +286,23 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         switch player.state {
         case .Buffering:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
         case .Paused:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
         case .Playing:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "black-44-pause"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
         case .Stopped:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
         case .WaitingForConnection:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-hourglass"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "black-44-hourglass"), forState: UIControlState.Normal)
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
+            playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
         case .Failed(_):
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
-            playPauseButton?.setImage(UIImage(named: "black-44-play"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
         }
     }
     

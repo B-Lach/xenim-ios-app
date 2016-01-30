@@ -93,23 +93,17 @@ class EventTableViewCell: UITableViewCell {
                 if playerEvent.equals(event) {
                     switch playerManager.player.state {
                     case .Buffering:
-                        // TODO
-                        break
+                        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
                     case .Paused:
-                        // TODO
-                        break
+                        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
                     case .Playing:
-                        // TODO
-                        break
+                        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
                     case .Stopped:
-                        // TODO
-                        break
+                        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
                     case .WaitingForConnection:
-                        // TODO
-                        break
+                        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
                     case .Failed(_):
-                        // TODO
-                        break
+                        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
                     }
                 }
             }
