@@ -547,6 +547,33 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0K-CA-Svq">
+                                <rect key="frame" x="8" y="8" width="20" height="20"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wG6-JL-Bfj">
+                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kfb-Uu-JaY">
+                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                            <state key="normal" image="DismissChevron"/>
+                                            <connections>
+                                                <action selector="dismiss:" destination="wJx-YQ-pcG" eventType="touchUpInside" id="oDa-Oj-Bkz"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Kfb-Uu-JaY" firstAttribute="centerX" secondItem="wG6-JL-Bfj" secondAttribute="centerX" id="0rb-in-40z"/>
+                                        <constraint firstItem="Kfb-Uu-JaY" firstAttribute="centerY" secondItem="wG6-JL-Bfj" secondAttribute="centerY" id="I8j-J1-mzu"/>
+                                        <constraint firstItem="Kfb-Uu-JaY" firstAttribute="width" secondItem="wG6-JL-Bfj" secondAttribute="width" id="KoM-jC-Blp"/>
+                                        <constraint firstItem="Kfb-Uu-JaY" firstAttribute="height" secondItem="wG6-JL-Bfj" secondAttribute="height" id="vlm-y9-pVY"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="X0K-CA-Svq" secondAttribute="height" multiplier="1:1" id="7db-fV-BWi"/>
+                                    <constraint firstAttribute="width" constant="20" id="f4F-CA-JLm"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -554,11 +581,14 @@
                             <constraint firstItem="GAo-pz-0eg" firstAttribute="leading" secondItem="V45-93-c7R" secondAttribute="leading" id="32b-Pe-ubv"/>
                             <constraint firstItem="UGG-At-oAm" firstAttribute="top" secondItem="GAo-pz-0eg" secondAttribute="bottom" constant="1" id="AzV-kT-NkJ"/>
                             <constraint firstItem="UGG-At-oAm" firstAttribute="leading" secondItem="V45-93-c7R" secondAttribute="leading" constant="8" id="DBJ-IU-fJz"/>
+                            <constraint firstItem="X0K-CA-Svq" firstAttribute="top" secondItem="V45-93-c7R" secondAttribute="topMargin" constant="8" id="PIM-eJ-KHW"/>
                             <constraint firstItem="xvU-6p-Oq4" firstAttribute="top" secondItem="UGG-At-oAm" secondAttribute="bottom" id="RCv-bs-d8s"/>
                             <constraint firstItem="GAo-pz-0eg" firstAttribute="top" secondItem="Hsl-Lx-XgJ" secondAttribute="bottom" constant="15" id="XRS-wX-nS8"/>
+                            <constraint firstItem="X0K-CA-Svq" firstAttribute="leading" secondItem="V45-93-c7R" secondAttribute="leading" constant="8" id="Y76-TL-eM0"/>
                             <constraint firstAttribute="trailing" secondItem="UGG-At-oAm" secondAttribute="trailing" constant="8" id="fMk-Mg-F47"/>
                             <constraint firstItem="xvU-6p-Oq4" firstAttribute="centerX" secondItem="V45-93-c7R" secondAttribute="centerX" id="gWP-q8-z4g"/>
                             <constraint firstItem="UGG-At-oAm" firstAttribute="leading" secondItem="V45-93-c7R" secondAttribute="leadingMargin" id="h4W-pD-ZFP"/>
+                            <constraint firstAttribute="topMargin" secondItem="X0K-CA-Svq" secondAttribute="top" constant="-8" id="nHk-iF-Gtc"/>
                             <constraint firstItem="GAo-pz-0eg" firstAttribute="top" secondItem="V45-93-c7R" secondAttribute="topMargin" id="pjb-dA-uEb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UGG-At-oAm" secondAttribute="trailing" id="rp1-i3-heK"/>
                             <constraint firstItem="fOa-0D-3PP" firstAttribute="top" secondItem="xvU-6p-Oq4" secondAttribute="bottom" id="yJr-nK-jZy"/>
@@ -566,6 +596,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="XRS-wX-nS8"/>
+                                <exclude reference="nHk-iF-Gtc"/>
                                 <exclude reference="h4W-pD-ZFP"/>
                                 <exclude reference="rp1-i3-heK"/>
                             </mask>
@@ -576,6 +607,7 @@
                     <size key="freeformSize" width="300" height="500"/>
                     <connections>
                         <outlet property="coverartImageView" destination="GAo-pz-0eg" id="4Vo-Jt-UeE"/>
+                        <outlet property="dismissEffectView" destination="X0K-CA-Svq" id="F5b-CL-8rV"/>
                         <outlet property="eventDescriptionTextView" destination="UGG-At-oAm" id="LQa-bC-a3k"/>
                         <outlet property="favoriteButton" destination="xvU-6p-Oq4" id="tz5-ws-ylF"/>
                     </connections>
@@ -994,10 +1026,10 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="oHQ-5s-pRQ">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="oHQ-5s-pRQ">
                                                                     <rect key="frame" x="227" y="85" width="131" height="33"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAQ-yS-bch" userLabel="Prev">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAQ-yS-bch" userLabel="Prev">
                                                                             <rect key="frame" x="0.0" y="0.0" width="19" height="33"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="25" id="9yS-Rf-Iit"/>
@@ -1021,7 +1053,7 @@
                                                                                 <action selector="backwardPressed:" destination="Pke-AM-PdW" eventType="touchUpInside" id="Ezv-ok-LPW"/>
                                                                             </connections>
                                                                         </button>
-                                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIy-6V-23T" userLabel="Play">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIy-6V-23T" userLabel="Play">
                                                                             <rect key="frame" x="49" y="0.0" width="33" height="33"/>
                                                                             <gestureRecognizers/>
                                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1030,7 +1062,7 @@
                                                                                 <action selector="togglePlayPause:" destination="Pke-AM-PdW" eventType="touchUpInside" id="0Bl-7b-3JE"/>
                                                                             </connections>
                                                                         </button>
-                                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-BQ-ZHn" userLabel="Next">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-BQ-ZHn" userLabel="Next">
                                                                             <rect key="frame" x="112" y="0.0" width="19" height="33"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="aqK-BQ-ZHn" secondAttribute="height" multiplier="33:25" id="8Bm-cn-vDS"/>
@@ -1509,6 +1541,7 @@ If you want to see the shows scheduled before taking place, please talk to the p
         </scene>
     </scenes>
     <resources>
+        <image name="DismissChevron" width="10" height="6"/>
         <image name="black-25-backward" width="19" height="19"/>
         <image name="black-25-envelope" width="19" height="19"/>
         <image name="black-25-forward" width="19" height="19"/>
