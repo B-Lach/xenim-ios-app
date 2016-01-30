@@ -11,6 +11,7 @@ import MediaPlayer
 import Alamofire
 import AlamofireImage
 import KDEAudioPlayer
+import UIImageColors
 
 protocol PlayerManagerDelegate {
     func backwardPressed()
@@ -107,9 +108,13 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             Alamofire.request(.GET, imageurl)
                 .responseImage { response in
                     if let image = response.result.value {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.updateStatusBarStyle(image)
-                        })
+                        let colors = image.getColors()
+                        if colors.backgroundColor.isDarkColor {
+                            self.statusBarStyle = UIStatusBarStyle.LightContent
+                        } else {
+                            self.statusBarStyle = UIStatusBarStyle.Default
+                        }
+                        self.setNeedsStatusBarAppearanceUpdate()
                     }
             }
         } else {
@@ -147,15 +152,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         items.append(spaceItem)
         toolbar?.setItems(items, animated: true)
-    }
-    
-    func updateStatusBarStyle(image: UIImage) {
-        if image.averageColor().isDarkColor() {
-            statusBarStyle = UIStatusBarStyle.LightContent
-        } else {
-            statusBarStyle = UIStatusBarStyle.Default
-        }
-        setNeedsStatusBarAppearanceUpdate()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
