@@ -11,7 +11,7 @@ import Parse
 
 class PushNotificationManager {
     
-    private static let PARSE_SERVER_URL = "https://guarded-garden-40818.herokuapp.com"
+    private static let PARSE_SERVER_URL = "https://guarded-garden-40818.herokuapp.com/parse"
     
     static func setupPushNotifications() {
         
