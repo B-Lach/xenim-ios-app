@@ -11,6 +11,8 @@ import Parse
 
 class PushNotificationManager {
     
+    private static let PARSE_SERVER_URL = "https://guarded-garden-40818.herokuapp.com"
+    
     static func setupPushNotifications() {
         
         // fetch parse keys from Keys.plist
@@ -19,7 +21,12 @@ class PushNotificationManager {
         let keys = NSDictionary(contentsOfFile: path!)
         let applicationId = keys!["parseApplicationID"] as! String
         let clientKey = keys!["parseClientKey"] as! String
-        Parse.setApplicationId(applicationId, clientKey: clientKey)
+        
+        Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (config) -> Void in
+            config.applicationId = applicationId
+            config.clientKey = clientKey
+            config.server = PARSE_SERVER_URL
+        }))
         
         let application = UIApplication.sharedApplication()
         if application.respondsToSelector("registerUserNotificationSettings:") {
