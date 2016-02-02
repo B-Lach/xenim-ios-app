@@ -1,11 +1,11 @@
 PODS:
-  - Alamofire (3.1.4)
-  - AlamofireImage (2.2.0):
+  - Alamofire (3.1.5)
+  - AlamofireImage (2.3.0):
     - Alamofire (~> 3.1)
   - Bolts/Tasks (1.6.0)
   - CRToast (0.0.9)
   - KDEAudioPlayer (0.5.1)
-  - MarqueeLabel-Swift (2.4.2)
+  - MarqueeLabel-Swift (2.6.1)
   - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
   - SwiftyJSON (2.3.2)
@@ -32,12 +32,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/jathu/UIImageColors.git
 
 SPEC CHECKSUMS:
-  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
-  AlamofireImage: bedb8a4bdfb98eda81ba12952fba6e9e90420922
+  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
+  AlamofireImage: 4013fb5b99b10117bf2554a67b9bd2231d476b45
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   KDEAudioPlayer: 593df21b7ba5b1d5627ec58bca36077ba1e25e6b
-  MarqueeLabel-Swift: 02f82b53b7b01a4cbc06f00ec8cd165093b0c7cb
+  MarqueeLabel-Swift: 7010d1f32ca9d17e17c51c2b0b107fecd1be9ea3
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UIImageColors: 3c3b04ecd5786d3235f7f783316c6ef0f631216d
