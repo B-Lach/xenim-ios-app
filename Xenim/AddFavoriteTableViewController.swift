@@ -62,10 +62,6 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-    }
-    
     deinit {
         // fixes https://github.com/funkenstrahlen/Listen/issues/36
         resultSearchController.view.removeFromSuperview()

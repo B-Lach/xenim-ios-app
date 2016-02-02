@@ -44,14 +44,16 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         didSet {
             if let colors = coverartColors {
                 if colors.backgroundColor.isDarkColor {
-                    UIApplication.sharedApplication().statusBarStyle = .LightContent
+                    statusBarStyle = .LightContent
                 } else {
-                    UIApplication.sharedApplication().statusBarStyle = .Default
+                    statusBarStyle = .Default
                 }
-                setNeedsStatusBarAppearanceUpdate()
-                
-                listenersCountLabel.textColor = colors.primaryColor
-                listenersIconImageView.tintColor = colors.primaryColor
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.setNeedsStatusBarAppearanceUpdate()
+                    
+                    self.listenersCountLabel.textColor = colors.primaryColor
+                    self.listenersIconImageView.tintColor = colors.primaryColor
+                })
             }
 
         }
@@ -149,6 +151,15 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         updateFavoritesButton()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return statusBarStyle
+    }
+    
     func updateToolbar() {
         let spaceItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
@@ -174,10 +185,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         items.append(spaceItem)
         toolbar?.setItems(items, animated: true)
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return statusBarStyle
     }
     
     func updateProgressBar() {
