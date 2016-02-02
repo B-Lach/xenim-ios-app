@@ -41,10 +41,6 @@ class PodcastDetailViewController: UIViewController, SFSafariViewControllerDeleg
         setupToolbar()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-    }
-    
     override func viewDidLayoutSubviews() {
         // ensure text view is scrolled to the top
         podcastDescriptionTextView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: false)
@@ -113,14 +109,12 @@ class PodcastDetailViewController: UIViewController, SFSafariViewControllerDeleg
     func openWebsite() {
         let svc = SFSafariViewController(URL: podcast.websiteUrl!)
         svc.delegate = self
-        UIApplication.sharedApplication().statusBarStyle = .Default
         self.presentViewController(svc, animated: true, completion: nil)
     }
     
     func openTwitter() {
         let svc = SFSafariViewController(URL: podcast.twitterURL!)
         svc.delegate = self
-        UIApplication.sharedApplication().statusBarStyle = .Default
         self.presentViewController(svc, animated: true, completion: nil)
         
     }
@@ -164,9 +158,7 @@ class PodcastDetailViewController: UIViewController, SFSafariViewControllerDeleg
             mc.setSubject(emailTitle)
             mc.setMessageBody(messageBody, isHTML: false)
             mc.setToRecipients(toRecipents)
-            
-            UIApplication.sharedApplication().statusBarStyle = .Default
-            
+                        
             self.presentViewController(mc, animated: true, completion: nil)
         } else {
             // show error message if device is not configured to send mail

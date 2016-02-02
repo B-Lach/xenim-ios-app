@@ -111,10 +111,11 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
                     if let image = response.result.value {
                         let colors = image.getColors()
                         if colors.backgroundColor.isDarkColor {
-                            UIApplication.sharedApplication().statusBarStyle = .LightContent
+                            self.statusBarStyle = .LightContent
                         } else {
-                            UIApplication.sharedApplication().statusBarStyle = .Default
+                            self.statusBarStyle = .Default
                         }
+                        self.setNeedsStatusBarAppearanceUpdate()
                     }
             }
         } else {
@@ -125,6 +126,15 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         updateProgressBar()
         updateToolbar()
         updateFavoritesButton()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return statusBarStyle
     }
     
     func updateToolbar() {
@@ -152,10 +162,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         items.append(spaceItem)
         toolbar?.setItems(items, animated: true)
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return statusBarStyle
     }
     
     func updateProgressBar() {

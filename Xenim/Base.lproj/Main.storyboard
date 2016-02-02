@@ -831,7 +831,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EEx-ap-ZIj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" image="white-25-calendar-o" selectedImage="white-25-calendar" id="KKU-KO-aCN"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vs3-Mg-kYO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Vs3-Mg-kYO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -993,7 +993,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FUF-oZ-1Ao" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorites" image="white-25-star-o" selectedImage="white-25-star" id="uy0-hV-u60"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hBA-vo-dTy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="hBA-vo-dTy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1245,7 +1245,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rFQ-ny-7OW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TGd-yb-eDB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="TGd-yb-eDB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1564,7 +1564,7 @@ If you want to see the shows scheduled before taking place, please talk to the p
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="esV-ik-5s6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AWV-0E-OmH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="AWV-0E-OmH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
