@@ -16,6 +16,12 @@ class PodcastDetailViewController: UIViewController, SFSafariViewControllerDeleg
     
     var dismissHandler: (() -> Void)?
     
+    @IBOutlet weak var dismissEffectView: UIVisualEffectView! {
+        didSet {
+            dismissEffectView.layer.masksToBounds = true
+            dismissEffectView.layer.cornerRadius = dismissEffectView.frame.size.height / 2
+        }
+    }
     @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastDescriptionTextView: UITextView!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -97,6 +103,12 @@ class PodcastDetailViewController: UIViewController, SFSafariViewControllerDeleg
     }
     
     // MARK: - Actions
+    
+    @IBAction func dismiss(sender: AnyObject) {
+        if dismissHandler != nil {
+            dismissHandler!()
+        }
+    }
     
     func openWebsite() {
         let svc = SFSafariViewController(URL: podcast.websiteUrl!)

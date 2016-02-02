@@ -12,6 +12,12 @@ class EventDetailViewController: UIViewController {
     
     var podcast: Podcast!
 
+    @IBOutlet weak var dismissEffectView: UIVisualEffectView! {
+        didSet {
+            dismissEffectView.layer.cornerRadius = dismissEffectView.frame.size.height / 2
+            dismissEffectView.layer.masksToBounds = true
+        }
+    }
     @IBOutlet weak var coverartImageView: UIImageView! {
         didSet {
             coverartImageView.layer.masksToBounds = true
@@ -76,6 +82,11 @@ class EventDetailViewController: UIViewController {
         Favorites.toggle(podcastId: podcast.id)
     }
     
+    @IBAction func dismiss(sender: AnyObject) {
+        if dismissHandler != nil {
+            dismissHandler!()
+        }
+    }
     // MARK: notifications
     
     func setupNotifications() {

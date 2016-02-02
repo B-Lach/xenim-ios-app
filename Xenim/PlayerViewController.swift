@@ -11,6 +11,7 @@ import MediaPlayer
 import Alamofire
 import AlamofireImage
 import KDEAudioPlayer
+import UIImageColors
 
 protocol PlayerManagerDelegate {
     func backwardPressed()
@@ -31,6 +32,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     var playerManagerDelegate: PlayerManagerDelegate?
 
+    @IBOutlet weak var loadingSpinnerView: SpinnerView!
     @IBOutlet weak var blurView: UIVisualEffectView!
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
@@ -107,9 +109,12 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             Alamofire.request(.GET, imageurl)
                 .responseImage { response in
                     if let image = response.result.value {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.updateStatusBarStyle(image)
-                        })
+                        let colors = image.getColors()
+                        if colors.backgroundColor.isDarkColor {
+                            UIApplication.sharedApplication().statusBarStyle = .LightContent
+                        } else {
+                            UIApplication.sharedApplication().statusBarStyle = .Default
+                        }
                     }
             }
         } else {
@@ -147,15 +152,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         items.append(spaceItem)
         toolbar?.setItems(items, animated: true)
-    }
-    
-    func updateStatusBarStyle(image: UIImage) {
-        if image.averageColor().isDarkColor() {
-            statusBarStyle = UIStatusBarStyle.LightContent
-        } else {
-            statusBarStyle = UIStatusBarStyle.Default
-        }
-        setNeedsStatusBarAppearanceUpdate()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -288,21 +284,27 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         case .Buffering:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = false
         case .Paused:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = true
         case .Playing:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = true
         case .Stopped:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = true
         case .WaitingForConnection:
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = false
         case .Failed(_):
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
+            loadingSpinnerView.hidden = true
         }
     }
     
