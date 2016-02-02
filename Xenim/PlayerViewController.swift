@@ -49,10 +49,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
                     statusBarStyle = .Default
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    setNeedsStatusBarAppearanceUpdate()
+                    self.setNeedsStatusBarAppearanceUpdate()
                     
-                    listenersCountLabel.textColor = colors.primaryColor
-                    listenersIconImageView.tintColor = colors.primaryColor
+                    self.listenersCountLabel.textColor = colors.primaryColor
+                    self.listenersIconImageView.tintColor = colors.primaryColor
                 })
             }
 
