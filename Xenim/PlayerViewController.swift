@@ -48,10 +48,12 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
                 } else {
                     statusBarStyle = .Default
                 }
-                setNeedsStatusBarAppearanceUpdate()
-                
-                listenersCountLabel.textColor = colors.primaryColor
-                listenersIconImageView.tintColor = colors.primaryColor
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    setNeedsStatusBarAppearanceUpdate()
+                    
+                    listenersCountLabel.textColor = colors.primaryColor
+                    listenersIconImageView.tintColor = colors.primaryColor
+                })
             }
 
         }
