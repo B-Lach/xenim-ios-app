@@ -1193,11 +1193,27 @@
                                         </constraints>
                                         <color key="progressTintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </progressView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1337" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSw-84-18Y">
+                                        <rect key="frame" x="35" y="574" width="36" height="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white-25-user" translatesAutoresizingMaskIntoConstraints="NO" id="ShY-ub-31T">
+                                        <rect key="frame" x="5" y="570" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="7ax-tC-tBR"/>
+                                            <constraint firstAttribute="width" secondItem="ShY-ub-31T" secondAttribute="height" multiplier="1:1" id="qDn-mc-Rbb"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="mbj-o8-EdW" secondAttribute="trailing" id="77F-Bw-dWR"/>
                                     <constraint firstItem="mbj-o8-EdW" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="9lL-Ze-shi"/>
+                                    <constraint firstItem="9Z2-mv-QWo" firstAttribute="leading" secondItem="ShY-ub-31T" secondAttribute="trailing" constant="-30" id="Mmw-Zk-e5w"/>
+                                    <constraint firstItem="ShY-ub-31T" firstAttribute="top" secondItem="9Z2-mv-QWo" secondAttribute="bottom" constant="-30" id="Qir-Z1-aUq"/>
                                     <constraint firstItem="9Z2-mv-QWo" firstAttribute="top" secondItem="KdT-pi-g6m" secondAttribute="top" id="S2q-SN-R18"/>
                                     <constraint firstAttribute="trailing" secondItem="1UZ-KQ-YVn" secondAttribute="trailing" id="W22-fH-5bn"/>
                                     <constraint firstItem="mbj-o8-EdW" firstAttribute="top" secondItem="1UZ-KQ-YVn" secondAttribute="bottom" id="gE2-97-a3w"/>
@@ -1205,7 +1221,9 @@
                                     <constraint firstItem="1UZ-KQ-YVn" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="jb3-mD-ize"/>
                                     <constraint firstAttribute="trailing" secondItem="9Z2-mv-QWo" secondAttribute="trailing" id="raA-Vc-xkU"/>
                                     <constraint firstItem="1UZ-KQ-YVn" firstAttribute="top" secondItem="9Z2-mv-QWo" secondAttribute="bottom" id="vYG-sd-ugr"/>
+                                    <constraint firstItem="FSw-84-18Y" firstAttribute="leading" secondItem="ShY-ub-31T" secondAttribute="trailing" constant="5" id="xiV-8X-sTW"/>
                                     <constraint firstAttribute="bottom" secondItem="mbj-o8-EdW" secondAttribute="bottom" id="yco-ja-tCe"/>
+                                    <constraint firstItem="FSw-84-18Y" firstAttribute="centerY" secondItem="ShY-ub-31T" secondAttribute="centerY" id="zVg-yw-g03"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1223,6 +1241,8 @@
                         <outlet property="backgroundCoverartImageView" destination="Fiv-RC-YI8" id="aL7-ir-qxD"/>
                         <outlet property="blurView" destination="gKK-mp-zqe" id="MHH-4L-zfs"/>
                         <outlet property="coverartView" destination="9Z2-mv-QWo" id="YZn-A7-vvH"/>
+                        <outlet property="listenersCountLabel" destination="FSw-84-18Y" id="bfS-D7-vRr"/>
+                        <outlet property="listenersIconImageView" destination="ShY-ub-31T" id="LfE-1I-W5c"/>
                         <outlet property="loadingSpinnerView" destination="9yp-8w-90s" id="2fq-SW-5Kg"/>
                         <outlet property="playPauseButton" destination="kIy-6V-23T" id="g37-id-2IZ"/>
                         <outlet property="podcastNameLabel" destination="uzN-m1-SqS" id="NVi-Vp-weR"/>
@@ -1606,5 +1626,6 @@ If you want to see the shows scheduled before taking place, please talk to the p
         <image name="white-25-calendar-o" width="19" height="19"/>
         <image name="white-25-star" width="19" height="19"/>
         <image name="white-25-star-o" width="19" height="19"/>
+        <image name="white-25-user" width="19" height="19"/>
     </resources>
 </document>

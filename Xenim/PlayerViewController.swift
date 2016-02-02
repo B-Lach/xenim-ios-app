@@ -32,6 +32,31 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     var playerManagerDelegate: PlayerManagerDelegate?
 
+    @IBOutlet weak var listenersCountLabel: UILabel!
+    @IBOutlet weak var listenersIconImageView: UIImageView! {
+        didSet {
+            // set rendering mode to template to set tint color
+            listenersIconImageView.image = listenersIconImageView.image?.imageWithRenderingMode(.AlwaysTemplate)
+        }
+    }
+    
+    var coverartColors: UIImageColors? {
+        didSet {
+            if let colors = coverartColors {
+                if colors.backgroundColor.isDarkColor {
+                    statusBarStyle = .LightContent
+                } else {
+                    statusBarStyle = .Default
+                }
+                setNeedsStatusBarAppearanceUpdate()
+                
+                listenersCountLabel.textColor = colors.primaryColor
+                listenersIconImageView.tintColor = colors.primaryColor
+            }
+
+        }
+    }
+
     @IBOutlet weak var loadingSpinnerView: SpinnerView!
     @IBOutlet weak var blurView: UIVisualEffectView!
 	@IBOutlet weak var podcastNameLabel: UILabel!
@@ -85,6 +110,8 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         toolbar.setShadowImage(UIImage(),
             forToolbarPosition: UIBarPosition.Any)
         
+        self.listenersCountLabel.text = "\(event.listeners!)"
+        
         setupNotifications()
         updateUI()
 	}
@@ -109,13 +136,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             Alamofire.request(.GET, imageurl)
                 .responseImage { response in
                     if let image = response.result.value {
-                        let colors = image.getColors()
-                        if colors.backgroundColor.isDarkColor {
-                            self.statusBarStyle = .LightContent
-                        } else {
-                            self.statusBarStyle = .Default
-                        }
-                        self.setNeedsStatusBarAppearanceUpdate()
+                        self.coverartColors = image.getColors()
                     }
             }
         } else {
@@ -174,7 +195,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         event.fetchCurrentListeners { (listeners) -> Void in
             if let listeners = listeners {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    print(listeners)
+                    self.listenersCountLabel.text = "\(listeners)"
                 })
             }
         }
