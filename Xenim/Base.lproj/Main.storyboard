@@ -1657,6 +1657,25 @@ If you want to see the shows scheduled before taking place, please talk to the p
             </objects>
             <point key="canvasLocation" x="2867" y="1918"/>
         </scene>
+        <!--Chat Text View Controller-->
+        <scene sceneID="npF-qq-KYC">
+            <objects>
+                <viewController id="YUd-hH-1jE" customClass="ChatTextViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sPF-OZ-fhE"/>
+                        <viewControllerLayoutGuide type="bottom" id="rzC-kV-JJ9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xmx-Wp-7DY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uSB-It-Qe3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YGM-89-31B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-745" y="3303"/>
+        </scene>
         <!--#Freakshow-->
         <scene sceneID="SLv-nR-Waq">
             <objects>
@@ -1667,7 +1686,7 @@ If you want to see the shows scheduled before taking place, please talk to the p
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="s6T-xo-37f">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s6T-xo-37f" id="w0H-M7-cz9">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1697,7 +1716,7 @@ If you want to see the shows scheduled before taking place, please talk to the p
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="x4f-2p-3CB" kind="relationship" relationship="rootViewController" id="l0a-MH-U0e"/>
+                        <segue destination="YUd-hH-1jE" kind="relationship" relationship="rootViewController" id="aHT-Ab-oVk"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEg-hC-9En" userLabel="First Responder" sceneMemberID="firstResponder"/>
