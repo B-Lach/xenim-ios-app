@@ -14,16 +14,17 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     let pageViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
     let playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayerViewController") as! PlayerViewController
     let chatViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ChatViewController") as! ChatViewController
+    let podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pageViewController.setViewControllers([chatViewController], direction: .Forward, animated: false, completion: nil)
-        pageViewController.dataSource = self
-        
         playerViewController.event = event
         
         pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40.0)
+        pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: false, completion: nil)
+        pageViewController.dataSource = self
+        
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
@@ -109,12 +110,14 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     
     // MARK: - Page View Controller Data Source
     
+    // ORDER is: chatViewController, playerViewController, podcastInfoViewController
+    
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         switch viewController {
         case chatViewController:
             return playerViewController
         case playerViewController:
-            return nil
+            return podcastInfoViewController
         default:
             return nil
         }
@@ -124,15 +127,15 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         switch viewController {
         case playerViewController:
             return chatViewController
-        case chatViewController:
-            return nil
+        case podcastInfoViewController:
+            return playerViewController
         default:
             return nil
         }
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 2
+        return 3
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {

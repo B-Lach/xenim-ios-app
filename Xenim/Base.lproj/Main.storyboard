@@ -1026,7 +1026,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bbg-J8-QXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-651" y="1656"/>
+            <point key="canvasLocation" x="-565" y="1664"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="7cz-eA-nx7">
@@ -1284,7 +1284,37 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="194" y="2523"/>
+            <point key="canvasLocation" x="-256" y="2517"/>
+        </scene>
+        <!--Podcast Info View Controller-->
+        <scene sceneID="feS-GP-Wz5">
+            <objects>
+                <viewController storyboardIdentifier="PodcastInfoViewController" id="lfX-fA-YGK" customClass="PodcastInfoViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gYb-MP-gC2"/>
+                        <viewControllerLayoutGuide type="bottom" id="ntK-hm-Ojq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J6J-xQ-6ZS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sar-jw-nUE">
+                                <rect key="frame" x="252" y="289" width="96" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Sar-jw-nUE" firstAttribute="centerX" secondItem="J6J-xQ-6ZS" secondAttribute="centerX" id="83h-Qk-Wa4"/>
+                            <constraint firstItem="Sar-jw-nUE" firstAttribute="centerY" secondItem="J6J-xQ-6ZS" secondAttribute="centerY" id="HzP-Ko-osa"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yLJ-WX-avV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="438" y="2417"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8wy-hc-DV4">
@@ -1651,7 +1681,7 @@ If you want to see the shows scheduled before taking place, please talk to the p
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tr5-wD-MsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-637" y="2531"/>
+            <point key="canvasLocation" x="-905" y="2433"/>
         </scene>
     </scenes>
     <resources>
