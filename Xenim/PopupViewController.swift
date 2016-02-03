@@ -64,19 +64,18 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     }
     
     func handleLongPress(recognizer: UILongPressGestureRecognizer) {
-//        if !(baseViewController?.presentedViewController is UIAlertController) {
-//            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-//            alert.view.tintColor = Constants.Colors.tintColor
-//            let endPlayback = NSLocalizedString("player_manager_actionsheet_end_playback", value: "End Playback", comment: "long pressing in the player view shows an action sheet to end playback. this is the action message to end playback.")
-//            alert.addAction(UIAlertAction(title: endPlayback, style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
-//                // dissmiss the action sheet
-//                self.baseViewController?.dismissViewControllerAnimated(true, completion: nil)
-//                self.stop()
-//            }))
-//            let cancel = NSLocalizedString("cancel", value: "Cancel", comment: "Cancel")
-//            alert.addAction(UIAlertAction(title: cancel, style: UIAlertActionStyle.Cancel, handler: nil))
-//            baseViewController?.presentViewController(alert, animated: true, completion: nil)
-//        }
+        let baseViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        alert.view.tintColor = Constants.Colors.tintColor
+        let endPlayback = NSLocalizedString("player_manager_actionsheet_end_playback", value: "End Playback", comment: "long pressing in the player view shows an action sheet to end playback. this is the action message to end playback.")
+        alert.addAction(UIAlertAction(title: endPlayback, style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
+            // dissmiss the action sheet
+            baseViewController!.dismissViewControllerAnimated(true, completion: nil)
+            PlayerManager.sharedInstance.stop()
+        }))
+        let cancel = NSLocalizedString("cancel", value: "Cancel", comment: "Cancel")
+        alert.addAction(UIAlertAction(title: cancel, style: UIAlertActionStyle.Cancel, handler: nil))
+        baseViewController!.presentViewController(alert, animated: true, completion: nil)
     }
     
     
