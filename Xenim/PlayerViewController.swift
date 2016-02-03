@@ -139,15 +139,15 @@ class PlayerViewController: UIViewController {
         items.append(spaceItem)
         items.append(favoriteItem!)
         
-        let infoItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-info"), style: .Plain, target: self, action: "showEventInfo:")
-        items.append(spaceItem)
-        items.append(infoItem)
-        
         if event.podcast.webchatUrl != nil {
             let chatItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-comments"), style: .Plain, target: self, action: "openChat:")
             items.append(spaceItem)
             items.append(chatItem)
         }
+        
+        let infoItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-info"), style: .Plain, target: self, action: "showEventInfo:")
+        items.append(spaceItem)
+        items.append(infoItem)
         
         let shareItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-share"), style: .Plain, target: self, action: "share:")
         items.append(spaceItem)
