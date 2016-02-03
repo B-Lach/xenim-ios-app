@@ -13,7 +13,7 @@ import AlamofireImage
 import KDEAudioPlayer
 import UIImageColors
 
-class PlayerViewController: ContentViewController {
+class PlayerViewController: UIViewController {
     
     @IBOutlet weak var backgroundCoverartImageView: UIImageView!
         

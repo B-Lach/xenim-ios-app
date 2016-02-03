@@ -11,27 +11,19 @@ import UIKit
 class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDataSource {
 
     var event: Event!
-    var pageViewControllers = [ContentViewController]()
-    var pageViewController: UIPageViewController!
+    let pageViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
+    let playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayerViewController") as! PlayerViewController
+    let chatViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ChatViewController") as! ChatViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let playerViewController = storyboard.instantiateViewControllerWithIdentifier("PlayerViewController") as! PlayerViewController
-        let chatViewController = storyboard.instantiateViewControllerWithIdentifier("ChatViewController") as! ChatViewController
-        
-        chatViewController.pageViewControllerIndex = 0
-        playerViewController.pageViewControllerIndex = 1
-        
-        pageViewControllers = [playerViewController, chatViewController]
-        
-        pageViewController = storyboard.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
+        pageViewController.setViewControllers([chatViewController], direction: .Forward, animated: false, completion: nil)
         pageViewController.dataSource = self
         
-        pageViewController.setViewControllers(pageViewControllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        playerViewController.event = event
         
-        pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40.0)
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
@@ -118,27 +110,29 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     // MARK: - Page View Controller Data Source
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        if let contentVC = viewController as? ContentViewController {
-            let index = contentVC.pageViewControllerIndex + 1
-            if index >= 0 && index < pageViewControllers.count {
-                return pageViewControllers[index]
-            }
+        switch viewController {
+        case chatViewController:
+            return playerViewController
+        case playerViewController:
+            return nil
+        default:
+            return nil
         }
-        return nil
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        if let contentVC = viewController as? ContentViewController {
-            let index = contentVC.pageViewControllerIndex - 1
-            if index >= 0 && index < pageViewControllers.count{
-                return pageViewControllers[index]
-            }
+        switch viewController {
+        case playerViewController:
+            return chatViewController
+        case chatViewController:
+            return nil
+        default:
+            return nil
         }
-        return nil
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return pageViewControllers.count
+        return 2
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
