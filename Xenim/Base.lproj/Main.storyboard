@@ -960,7 +960,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I54-Ji-acM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1hn-L9-gaD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2871" y="1918"/>
+            <point key="canvasLocation" x="3683" y="1918"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="PpY-pf-FJO">
@@ -1284,7 +1284,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-256" y="2517"/>
+            <point key="canvasLocation" x="556" y="2517"/>
         </scene>
         <!--Podcast Info View Controller-->
         <scene sceneID="feS-GP-Wz5">
@@ -1314,7 +1314,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLJ-WX-avV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="438" y="2417"/>
+            <point key="canvasLocation" x="1250" y="2417"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8wy-hc-DV4">
@@ -1655,33 +1655,54 @@ If you want to see the shows scheduled before taking place, please talk to the p
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xKV-Ai-25r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2055" y="1918"/>
+            <point key="canvasLocation" x="2867" y="1918"/>
         </scene>
-        <!--Chat View Controller-->
-        <scene sceneID="vn3-CU-163">
+        <!--#Freakshow-->
+        <scene sceneID="SLv-nR-Waq">
             <objects>
-                <viewController storyboardIdentifier="ChatViewController" id="SLr-Gp-KQ1" customClass="ChatViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ocr-4V-HCQ">
+                <tableViewController storyboardIdentifier="ChatTableViewController" id="x4f-2p-3CB" customClass="ChatTableViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="NHi-di-IIQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ss-We-9XP">
-                                <rect key="frame" x="282" y="289" width="37" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="7Ss-We-9XP" firstAttribute="centerY" secondItem="Ocr-4V-HCQ" secondAttribute="centerY" id="GmZ-vq-Dbu"/>
-                            <constraint firstItem="7Ss-We-9XP" firstAttribute="centerX" secondItem="Ocr-4V-HCQ" secondAttribute="centerX" id="ekz-8j-u0t"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tr5-wD-MsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="s6T-xo-37f">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s6T-xo-37f" id="w0H-M7-cz9">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="x4f-2p-3CB" id="JRt-fH-dgB"/>
+                            <outlet property="delegate" destination="x4f-2p-3CB" id="hrX-f2-tiU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="#Freakshow" id="3Bg-zl-mhE"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="asg-t2-aWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-905" y="2433"/>
+            <point key="canvasLocation" x="-103" y="3303"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Lbr-GW-sgt">
+            <objects>
+                <navigationController storyboardIdentifier="ChatViewController" automaticallyAdjustsScrollViewInsets="NO" id="cMD-11-sYG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Joe-md-Dc7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="x4f-2p-3CB" kind="relationship" relationship="rootViewController" id="l0a-MH-U0e"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HEg-hC-9En" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-103" y="2447"/>
         </scene>
     </scenes>
     <resources>
