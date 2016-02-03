@@ -13,15 +13,7 @@ import AlamofireImage
 import KDEAudioPlayer
 import UIImageColors
 
-protocol PlayerManagerDelegate {
-    func backwardPressed()
-    func forwardPressed()
-    func togglePlayPause(event: Event)
-    func longPress()
-    func sharePressed()
-}
-
-class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
+class PlayerViewController: UIViewController {
     
     @IBOutlet weak var backgroundCoverartImageView: UIImageView!
     
@@ -30,7 +22,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             updateUI()
         }
     }
-    var playerManagerDelegate: PlayerManagerDelegate?
 
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenersIconImageView: UIImageView! {
@@ -65,7 +56,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	@IBOutlet weak var subtitleLabel: UILabel!
 	@IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var coverartView: UIImageView!
-    let miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var toolbar: UIToolbar!
     var favoriteItem: UIBarButtonItem?
@@ -74,24 +64,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     let updateInterval: NSTimeInterval = 60 // seconds
     
     var statusBarStyle = UIStatusBarStyle.Default
-    
-    // MARK: - init
-    
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		
-        // use this to add more controls on ipad interface
-		//if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
-
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
-        
-        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
-        miniCoverartImageView.layer.cornerRadius = 5.0
-        miniCoverartImageView.layer.masksToBounds = true
-        
-        let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
-        self.popupItem.leftBarButtonItems = [popupItem]
-	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,7 +105,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         if let imageurl = event.podcast.artwork.originalUrl {
             coverartView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
             backgroundCoverartImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
-            miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
 
             Alamofire.request(.GET, imageurl)
                 .responseImage { response in
@@ -143,7 +114,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         } else {
             coverartView?.image = placeholderImage
-            miniCoverartImageView.image = placeholderImage
         }
         
         updateProgressBar()
@@ -213,21 +183,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    // MARK: - delegate
-    
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-    
     // MARK: - Actions
-    
-    func handleLongPress(recognizer: UILongPressGestureRecognizer) {
-        playerManagerDelegate?.longPress()
-    }
-    
-    @IBAction func longPressPauseButton(sender: AnyObject) {
-        playerManagerDelegate?.longPress()
-    }
     
     func favorite(sender: AnyObject) {
         if let event = event {
@@ -236,8 +192,14 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func share(sender: AnyObject) {
-        if event != nil {
-            playerManagerDelegate?.sharePressed()
+        if let url = event?.eventXenimWebUrl {
+            let objectsToShare = [url]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+                
+            // Excluded Activities
+            //      activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
+            
+            self.presentViewController(activityVC, animated: true, completion: nil)
         }
     }
     
@@ -246,7 +208,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
-        playerManagerDelegate?.togglePlayPause(event)
+        PlayerManager.sharedInstance.togglePlayPause(event)
     }
     
     func openChat(sender: AnyObject) {
@@ -262,11 +224,11 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func backwardPressed(sender: AnyObject) {
-        playerManagerDelegate?.backwardPressed()
+        PlayerManager.sharedInstance.backwardPressed()
     }
     
     @IBAction func forwardPressed(sender: AnyObject) {
-        playerManagerDelegate?.forwardPressed()
+        PlayerManager.sharedInstance.forwardPressed()
     }
     
     // MARK: notifications
@@ -311,27 +273,21 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         switch player.state {
         case .Buffering:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = false
         case .Paused:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
         case .Playing:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
         case .Stopped:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
         case .WaitingForConnection:
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = false
         case .Failed(_):
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
             playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
         }

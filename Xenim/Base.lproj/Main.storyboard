@@ -1010,10 +1010,58 @@
             </objects>
             <point key="canvasLocation" x="1212" y="1086"/>
         </scene>
+        <!--Page View Controller-->
+        <scene sceneID="mYN-Of-ZNc">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="XJ8-oa-x1y" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PvM-2L-gCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-583" y="1851"/>
+        </scene>
+        <!--Popup View Controller-->
+        <scene sceneID="Ubn-sh-8h9">
+            <objects>
+                <viewController storyboardIdentifier="PopupViewController" id="gbf-GT-8pY" customClass="PopupViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xVI-cF-8ba"/>
+                        <viewControllerLayoutGuide type="bottom" id="lwH-rg-pns"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OKz-PC-xve">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EjA-lf-1iQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <connections>
+                                    <segue destination="XJ8-oa-x1y" kind="embed" id="dCw-6Z-M2R"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EjA-lf-1iQ" firstAttribute="leading" secondItem="OKz-PC-xve" secondAttribute="leading" id="Kip-UO-lJB"/>
+                            <constraint firstAttribute="trailing" secondItem="EjA-lf-1iQ" secondAttribute="trailing" id="Shv-8B-O3L"/>
+                            <constraint firstItem="EjA-lf-1iQ" firstAttribute="top" secondItem="OKz-PC-xve" secondAttribute="topMargin" id="WOZ-Lw-247"/>
+                            <constraint firstItem="EjA-lf-1iQ" firstAttribute="top" secondItem="xVI-cF-8ba" secondAttribute="bottom" id="aRl-jN-vZi"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="EjA-lf-1iQ" secondAttribute="bottom" id="nZZ-r3-izA"/>
+                            <constraint firstItem="lwH-rg-pns" firstAttribute="top" secondItem="EjA-lf-1iQ" secondAttribute="bottom" id="zh1-rQ-hxc"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="aRl-jN-vZi"/>
+                                <exclude reference="zh1-rQ-hxc"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bbg-J8-QXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-583" y="1128"/>
+        </scene>
         <!--Player View Controller-->
         <scene sceneID="xK3-Vi-0hh">
             <objects>
-                <viewController storyboardIdentifier="AudioPlayerController" id="Pke-AM-PdW" customClass="PlayerViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayerViewController" id="Pke-AM-PdW" customClass="PlayerViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qaw-y2-UuQ"/>
                         <viewControllerLayoutGuide type="bottom" id="2Ls-uh-f3q"/>
@@ -1258,7 +1306,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="284" y="1217"/>
+            <point key="canvasLocation" x="194" y="2523"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8wy-hc-DV4">
@@ -1600,6 +1648,32 @@ If you want to see the shows scheduled before taking place, please talk to the p
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xKV-Ai-25r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2055" y="1918"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="vn3-CU-163">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" id="SLr-Gp-KQ1" customClass="ChatViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ocr-4V-HCQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ss-We-9XP">
+                                <rect key="frame" x="284" y="146" width="37" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Ss-We-9XP" firstAttribute="leading" secondItem="Ocr-4V-HCQ" secondAttribute="leading" constant="284" id="f6R-Bk-irz"/>
+                            <constraint firstItem="7Ss-We-9XP" firstAttribute="top" secondItem="Ocr-4V-HCQ" secondAttribute="top" constant="146" id="lgw-Jp-zLQ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tr5-wD-MsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-637" y="2531"/>
         </scene>
     </scenes>
     <resources>
