@@ -13,10 +13,10 @@ import AlamofireImage
 import KDEAudioPlayer
 import UIImageColors
 
-class PlayerViewController: UIViewController {
+class PlayerViewController: ContentViewController {
     
     @IBOutlet weak var backgroundCoverartImageView: UIImageView!
-    
+        
     var event: Event! {
         didSet {
             updateUI()

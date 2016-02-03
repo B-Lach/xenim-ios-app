@@ -1,5 +1,5 @@
 //
-//  ChatViewController.swift
+//  ContentViewController.swift
 //  Xenim
 //
 //  Created by Stefan Trauth on 03/02/16.
@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ChatViewController: ContentViewController {
+class ContentViewController: UIViewController {
+    
+    var pageViewControllerIndex: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()

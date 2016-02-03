@@ -8,18 +8,25 @@
 
 import UIKit
 
-class PopupViewController: UIViewController, UIGestureRecognizerDelegate {
+class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDataSource {
 
     var event: Event!
+    var pageViewControllers = [ContentViewController]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let playerViewController = storyboard.instantiateViewControllerWithIdentifier("PlayerViewController") as! PlayerViewController
+        let chatViewController = storyboard.instantiateViewControllerWithIdentifier("ChatViewController") as! ChatViewController
+        
+        chatViewController.pageViewControllerIndex = 0
+        playerViewController.pageViewControllerIndex = 1
+        
+        pageViewControllers = [playerViewController, chatViewController]
     }
     
     // MARK: - init
-    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -69,15 +76,18 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "Embed" {
+            if let destVC = segue.destinationViewController as? UIPageViewController {
+                destVC.dataSource = self
+            }
+        }
     }
-    */
+    
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
@@ -105,6 +115,36 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate {
         case .Failed(_):
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
         }
+    }
+    
+    // MARK: - Page View Controller Data Source
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        if let contentVC = viewController as? ContentViewController {
+            let index = contentVC.pageViewControllerIndex + 1
+            if index >= 0 && index < pageViewControllers.count {
+                return pageViewControllers[index]
+            }
+        }
+        return nil
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        if let contentVC = viewController as? ContentViewController {
+            let index = contentVC.pageViewControllerIndex - 1
+            if index >= 0 && index < pageViewControllers.count{
+                return pageViewControllers[index]
+            }
+        }
+        return nil
+    }
+    
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return pageViewControllers.count
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 0
     }
 
 }
