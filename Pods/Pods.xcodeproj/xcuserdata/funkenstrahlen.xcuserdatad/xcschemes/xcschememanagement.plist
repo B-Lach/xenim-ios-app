@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SlackTextViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,7 +62,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>05012FC650B63EE815B30314A7512409</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>05094CC4A047119F7ADC14EE74C4881C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AE79E0A20492AE65C24C54D0A14B027</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>541E9AD8F0209976F59A780F49A3F069</key>
+		<key>49DAC992C58A0A84EFD849E19ABC2027</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>56FC1703F903C0EB14A06CA0F6DA29CA</key>
+		<key>541E9AD8F0209976F59A780F49A3F069</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,17 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C56CCB77E98021BA8115A63E5E675EEA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CFF858055EBBB40A023415F0A0168820</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EA9DCD65E3A0A2BE1FAF4471F92AFA46</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F0FA329EDB651ADD384C8B5C5DA80B65</key>
 		<dict>
 			<key>primary</key>
 			<true/>

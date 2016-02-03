@@ -8,6 +8,7 @@ PODS:
   - MarqueeLabel-Swift (2.6.1)
   - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
+  - SlackTextViewController (1.9)
   - SwiftyJSON (2.3.2)
   - UIImageColors (1.0.3)
 
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - KDEAudioPlayer (~> 0.4)
   - MarqueeLabel-Swift (~> 2.3)
   - Parse (~> 1.10)
+  - SlackTextViewController
   - SwiftyJSON (~> 2.3)
   - UIImageColors (from `https://github.com/jathu/UIImageColors.git`, branch `master`)
 
@@ -39,6 +41,7 @@ SPEC CHECKSUMS:
   KDEAudioPlayer: 593df21b7ba5b1d5627ec58bca36077ba1e25e6b
   MarqueeLabel-Swift: 7010d1f32ca9d17e17c51c2b0b107fecd1be9ea3
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
+  SlackTextViewController: d51503f7be846cb9976a273499dc90f2445e9447
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UIImageColors: 3c3b04ecd5786d3235f7f783316c6ef0f631216d
 
