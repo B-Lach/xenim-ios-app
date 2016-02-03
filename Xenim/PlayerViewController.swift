@@ -97,9 +97,7 @@ class PlayerViewController: UIViewController {
         let description = event.eventDescription != nil ? event.eventDescription : event.podcast.podcastDescription
         
         podcastNameLabel?.text = title
-        popupItem.title = title
         subtitleLabel?.text = description
-        popupItem.subtitle = description
 
         let placeholderImage = UIImage(named: "event_placeholder")!
         if let imageurl = event.podcast.artwork.originalUrl {

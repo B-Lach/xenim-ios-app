@@ -16,6 +16,8 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     let chatViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ChatViewController") as! ChatViewController
     let podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
     
+    var miniCoverartImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +30,15 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
+        
+        let title = event.title != nil ? event.title : event.podcast.name
+        let description = event.eventDescription != nil ? event.eventDescription : event.podcast.podcastDescription
+        
+        popupItem.title = title
+        popupItem.subtitle = description
+        if let imageurl = event.podcast.artwork.thumb150Url {
+            miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+        }
     }
     
     // MARK: - init
@@ -40,12 +51,13 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         
         self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
         
-//        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
-//        miniCoverartImageView.layer.cornerRadius = 5.0
-//        miniCoverartImageView.layer.masksToBounds = true
-//        
-//        let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
-//        self.popupItem.leftBarButtonItems = [popupItem]
+        miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
+        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
+        miniCoverartImageView.layer.cornerRadius = 5.0
+        miniCoverartImageView.layer.masksToBounds = true
+
+        let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
+        self.popupItem.leftBarButtonItems = [popupItem]
     }
     
     func togglePlayPause(sender: AnyObject) {
