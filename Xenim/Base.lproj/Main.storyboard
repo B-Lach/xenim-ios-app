@@ -1010,14 +1010,6 @@
             </objects>
             <point key="canvasLocation" x="1212" y="1086"/>
         </scene>
-        <!--Page View Controller-->
-        <scene sceneID="mYN-Of-ZNc">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="XJ8-oa-x1y" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PvM-2L-gCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-583" y="1851"/>
-        </scene>
         <!--Popup View Controller-->
         <scene sceneID="Ubn-sh-8h9">
             <objects>
@@ -1029,34 +1021,20 @@
                     <view key="view" contentMode="scaleToFill" id="OKz-PC-xve">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EjA-lf-1iQ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <connections>
-                                    <segue destination="XJ8-oa-x1y" kind="embed" identifier="Embed" id="dCw-6Z-M2R"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="EjA-lf-1iQ" firstAttribute="leading" secondItem="OKz-PC-xve" secondAttribute="leading" id="Kip-UO-lJB"/>
-                            <constraint firstAttribute="trailing" secondItem="EjA-lf-1iQ" secondAttribute="trailing" id="Shv-8B-O3L"/>
-                            <constraint firstItem="EjA-lf-1iQ" firstAttribute="top" secondItem="OKz-PC-xve" secondAttribute="topMargin" id="WOZ-Lw-247"/>
-                            <constraint firstItem="EjA-lf-1iQ" firstAttribute="top" secondItem="xVI-cF-8ba" secondAttribute="bottom" id="aRl-jN-vZi"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="EjA-lf-1iQ" secondAttribute="bottom" id="nZZ-r3-izA"/>
-                            <constraint firstItem="lwH-rg-pns" firstAttribute="top" secondItem="EjA-lf-1iQ" secondAttribute="bottom" id="zh1-rQ-hxc"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="aRl-jN-vZi"/>
-                                <exclude reference="zh1-rQ-hxc"/>
-                            </mask>
-                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bbg-J8-QXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-583" y="1128"/>
+            <point key="canvasLocation" x="-651" y="1656"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="7cz-eA-nx7">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Yb6-NR-ovM" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ux9-nZ-gk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="65" y="1664"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="xK3-Vi-0hh">

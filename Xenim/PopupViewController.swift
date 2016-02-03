@@ -12,6 +12,7 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
 
     var event: Event!
     var pageViewControllers = [ContentViewController]()
+    var pageViewController: UIPageViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,16 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         playerViewController.pageViewControllerIndex = 1
         
         pageViewControllers = [playerViewController, chatViewController]
+        
+        pageViewController = storyboard.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
+        pageViewController.dataSource = self
+        
+        pageViewController.setViewControllers(pageViewControllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        
+        pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        self.addChildViewController(pageViewController)
+        self.view.addSubview(pageViewController.view)
+        self.pageViewController.didMoveToParentViewController(self)
     }
     
     // MARK: - init
@@ -73,19 +84,6 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
 //            alert.addAction(UIAlertAction(title: cancel, style: UIAlertActionStyle.Cancel, handler: nil))
 //            baseViewController?.presentViewController(alert, animated: true, completion: nil)
 //        }
-    }
-    
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "Embed" {
-            if let destVC = segue.destinationViewController as? UIPageViewController {
-                destVC.dataSource = self
-            }
-        }
     }
     
     
