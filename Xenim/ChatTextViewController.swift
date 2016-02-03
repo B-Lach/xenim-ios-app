@@ -10,4 +10,17 @@ import SlackTextViewController
 
 class ChatTextViewController: SLKTextViewController {
     
+    override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
+        return UITableViewStyle.Plain;
+    }
+    
+    override func viewDidLoad() {
+        
+        // In progress in branch 'swift-example'
+        super.viewDidLoad()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 }
