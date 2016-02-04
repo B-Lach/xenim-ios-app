@@ -37,7 +37,7 @@
 		22B066891C5D3A3600870BF5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B066881C5D3A3600870BF5 /* SpinnerView.swift */; };
 		22BCBF941C63330400BAB21A /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22BCBF931C63330400BAB21A /* MessageTableViewCell.xib */; };
 		22BCBF961C63340800BAB21A /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCBF951C63340800BAB21A /* MessageTableViewCell.swift */; };
-		22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */; };
+		22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
 		22D515CC1C4CE99700BE8D21 /* PathDynamicModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
@@ -47,14 +47,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		22BEF0FD1C1193B400496C2F /* CopyFiles */ = {
+		22BEF0FD1C1193B400496C2F /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
+			dstPath = Xenim/Frameworks;
 			dstSubfolderSpec = 16;
 			files = (
-				22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in CopyFiles */,
+				22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -287,7 +288,7 @@
 				4FB7EEFDA1EBD3A39EF241F5 /* Embed Pods Frameworks */,
 				9EAB20B2B2D9173776E6C451 /* Copy Pods Resources */,
 				22BEF0FC1C11933B00496C2F /* ShellScript */,
-				22BEF0FD1C1193B400496C2F /* CopyFiles */,
+				22BEF0FD1C1193B400496C2F /* Copy Files */,
 			);
 			buildRules = (
 			);
