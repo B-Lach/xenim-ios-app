@@ -95,6 +95,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             
             baseViewController?.presentPopupBarWithContentViewController(popupViewController!, openPopup: true, animated: true, completion: nil)
             baseViewController?.popupBar!.addGestureRecognizer(longpressRecognizer)
+            baseViewController?.popupContentView.popupCloseButton!.hidden = true
             
             currentItem = audioItem
             currentItem?.artist = event.title
