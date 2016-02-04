@@ -27,11 +27,8 @@ class ChatTextViewController: SLKTextViewController {
         self.inverted = false // disable inverted mode
         tableView.separatorColor = UIColor.clearColor()
         
-        tableView.estimatedRowHeight = 80
+        tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        let testMessage = Message(sender: "funkenstrahlen", text: "Das ist eine Testnachricht", date: NSDate())
-        messages.append(testMessage)
         
         tableView.registerNib(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageTableViewCell")
     }
@@ -63,6 +60,11 @@ class ChatTextViewController: SLKTextViewController {
     
     override func didPressRightButton(sender: AnyObject!) {
         // send message
+        self.textView.refreshFirstResponder()
+        let testMessage = Message(sender: "funkenstrahlen", text: textView.text, date: NSDate())
+        messages.append(testMessage)
+        textView.text = ""
+        tableView.reloadData()
     }
     
     /*

@@ -21,7 +21,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Content" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBn-OT-FIh">
-                        <rect key="frame" x="8" y="31" width="304" height="18"/>
+                        <rect key="frame" x="8" y="28" width="304" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -29,10 +29,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="leadingMargin" secondItem="GxL-1A-jhr" secondAttribute="leading" id="HPP-lw-OLJ"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="zBn-OT-FIh" secondAttribute="bottom" constant="8" id="Jsa-8N-72e"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="zBn-OT-FIh" secondAttribute="bottom" constant="3" id="Jsa-8N-72e"/>
                     <constraint firstAttribute="topMargin" secondItem="GxL-1A-jhr" secondAttribute="top" id="Z59-SH-g4m"/>
                     <constraint firstItem="zBn-OT-FIh" firstAttribute="trailing" secondItem="GxL-1A-jhr" secondAttribute="trailing" id="bKz-aj-LVB"/>
-                    <constraint firstItem="zBn-OT-FIh" firstAttribute="top" secondItem="GxL-1A-jhr" secondAttribute="bottom" constant="8" id="hq9-p9-EMG"/>
+                    <constraint firstItem="zBn-OT-FIh" firstAttribute="top" secondItem="GxL-1A-jhr" secondAttribute="bottom" constant="5" id="hq9-p9-EMG"/>
                     <constraint firstAttribute="trailingMargin" secondItem="GxL-1A-jhr" secondAttribute="trailing" id="r1N-Qg-S6X"/>
                     <constraint firstItem="zBn-OT-FIh" firstAttribute="leading" secondItem="GxL-1A-jhr" secondAttribute="leading" id="zkH-c2-MwC"/>
                 </constraints>
