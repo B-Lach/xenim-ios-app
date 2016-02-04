@@ -27,7 +27,7 @@ class ChatTextViewController: SLKTextViewController {
         self.inverted = false // disable inverted mode
         tableView.separatorColor = UIColor.clearColor()
         
-        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
         
         let testMessage = Message(sender: "funkenstrahlen", text: "Das ist eine Testnachricht", date: NSDate())
