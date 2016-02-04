@@ -24,6 +24,7 @@ class ChatTextViewController: SLKTextViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.registerNib(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageTableViewCell")
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,7 +43,8 @@ class ChatTextViewController: SLKTextViewController {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("MessageTableViewCell", forIndexPath: indexPath) as! MessageTableViewCell
+        cell.message = messages[indexPath.row]
     
         return cell
     }
