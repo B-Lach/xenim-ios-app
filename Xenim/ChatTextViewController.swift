@@ -62,9 +62,17 @@ class ChatTextViewController: SLKTextViewController {
         // send message
         self.textView.refreshFirstResponder()
         let testMessage = Message(sender: "funkenstrahlen", text: textView.text, date: NSDate())
-        messages.append(testMessage)
         textView.text = ""
-        tableView.reloadData()
+        addNewMessage(testMessage)
+    }
+    
+    private func addNewMessage(message: Message) {
+        tableView.beginUpdates()
+        messages.append(message)
+        let indexPath = NSIndexPath(forRow: messages.count - 1, inSection: 0)
+        tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        tableView.endUpdates()
+        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
     }
     
     /*
