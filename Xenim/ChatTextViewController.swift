@@ -26,6 +26,10 @@ class ChatTextViewController: SLKTextViewController {
         super.viewDidLoad()
         self.inverted = false // disable inverted mode
         tableView.separatorColor = UIColor.clearColor()
+        
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         tableView.registerNib(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageTableViewCell")
     }
     
