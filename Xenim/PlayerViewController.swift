@@ -18,6 +18,7 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var backgroundCoverartImageView: UIImageView!
     
     var statusBarStyleDelegate: StatusBarDelegate!
+    var pageViewDelegate: PageViewDelegate!
         
     var event: Event! {
         didSet {
@@ -133,23 +134,23 @@ class PlayerViewController: UIViewController {
         
         var items = [UIBarButtonItem]()
         
-        favoriteItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-star-o"), style: .Plain, target: self, action: "favorite:")
-        items.append(spaceItem)
-        items.append(favoriteItem!)
-        
         if event.podcast.webchatUrl != nil {
             let chatItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-comments"), style: .Plain, target: self, action: "openChat:")
             items.append(spaceItem)
             items.append(chatItem)
         }
         
-        let infoItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-info"), style: .Plain, target: self, action: "showEventInfo:")
+        favoriteItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-star-o"), style: .Plain, target: self, action: "favorite:")
         items.append(spaceItem)
-        items.append(infoItem)
+        items.append(favoriteItem!)
         
         let shareItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-share"), style: .Plain, target: self, action: "share:")
         items.append(spaceItem)
         items.append(shareItem)
+        
+        let infoItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-info"), style: .Plain, target: self, action: "showEventInfo:")
+        items.append(spaceItem)
+        items.append(infoItem)
         
         items.append(spaceItem)
         toolbar?.setItems(items, animated: true)
@@ -202,7 +203,7 @@ class PlayerViewController: UIViewController {
     }
     
     func showEventInfo(sender: AnyObject) {
-        PodcastDetailViewController.showPodcastInfo(podcast: event.podcast)
+        pageViewDelegate.showPage(2)
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
@@ -210,15 +211,7 @@ class PlayerViewController: UIViewController {
     }
     
     func openChat(sender: AnyObject) {
-        if let ircUrl = event.podcast.ircUrl, let webchatUrl = event.podcast.webchatUrl {
-            if UIApplication.sharedApplication().canOpenURL(ircUrl) {
-                // open associated app
-                UIApplication.sharedApplication().openURL(ircUrl)
-            } else {
-                // open webchat in safari
-                UIApplication.sharedApplication().openURL(webchatUrl)
-            }
-        }
+        pageViewDelegate.showPage(0)
     }
     
     @IBAction func backwardPressed(sender: AnyObject) {

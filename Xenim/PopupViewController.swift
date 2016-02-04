@@ -12,7 +12,11 @@ protocol StatusBarDelegate {
     func updateStatusBarStyle(style: UIStatusBarStyle)
 }
 
-class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDataSource, StatusBarDelegate {
+protocol PageViewDelegate {
+    func showPage(index: Int)
+}
+
+class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDataSource, StatusBarDelegate, PageViewDelegate {
 
     var event: Event!
     let pageViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
@@ -40,6 +44,10 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         playerViewController.statusBarStyleDelegate = self
         chatTextViewController.statusBarStyleDelegate = self
         podcastInfoViewController.statusBarStyleDelegate = self
+        
+        playerViewController.pageViewDelegate = self
+        chatTextViewController.pageViewDelegate = self
+        podcastInfoViewController.pageViewDelegate = self
         
         chatViewController = UINavigationController(rootViewController: chatTextViewController)
         infoViewController = UINavigationController(rootViewController: podcastInfoViewController)
@@ -181,6 +189,18 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
+    }
+    
+    func showPage(index: Int) {
+        switch index {
+        case 0:
+            pageViewController.setViewControllers([chatViewController], direction: .Reverse, animated: true, completion: nil)
+        case 1:
+            pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: true, completion: nil)
+        case 2:
+            pageViewController.setViewControllers([infoViewController], direction: .Forward, animated: true, completion: nil)
+        default: break
+        }
     }
 
 }

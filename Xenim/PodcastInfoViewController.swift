@@ -11,6 +11,7 @@ import UIKit
 class PodcastInfoViewController: UIViewController {
     
     var statusBarStyleDelegate: StatusBarDelegate!
+    var pageViewDelegate: PageViewDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()

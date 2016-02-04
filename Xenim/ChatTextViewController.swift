@@ -26,6 +26,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     let realname = "Test"
     
     var statusBarStyleDelegate: StatusBarDelegate!
+    var pageViewDelegate: PageViewDelegate!
     
     override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
         return UITableViewStyle.Plain
