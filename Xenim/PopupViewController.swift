@@ -198,7 +198,14 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         case 0:
             pageViewController.setViewControllers([chatViewController], direction: .Reverse, animated: true, completion: nil)
         case 1:
-            pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: true, completion: nil)
+            switch pageViewController.presentedViewController! {
+            case chatViewController:
+                pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: true, completion: nil)
+            case infoViewController:
+                pageViewController.setViewControllers([playerViewController], direction: .Reverse, animated: true, completion: nil)
+            default: break
+            }
+
         case 2:
             pageViewController.setViewControllers([infoViewController], direction: .Forward, animated: true, completion: nil)
         default: break

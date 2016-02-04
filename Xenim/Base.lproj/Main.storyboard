@@ -1026,7 +1026,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bbg-J8-QXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-565" y="1664"/>
+            <point key="canvasLocation" x="-463" y="1664"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="7cz-eA-nx7">
@@ -1034,7 +1034,7 @@
                 <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Yb6-NR-ovM" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ux9-nZ-gk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="65" y="1664"/>
+            <point key="canvasLocation" x="163" y="1664"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="xK3-Vi-0hh">

@@ -51,6 +51,8 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
         self.title = "Connecting..."
         self.setTextInputbarHidden(true, animated: false)
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Player >", style: UIBarButtonItemStyle.Plain, target: self, action: "backToPlayer:")
+        
         connect()
     }
     
@@ -64,6 +66,10 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     override func viewDidAppear(animated: Bool) {
         statusBarStyleDelegate.updateStatusBarStyle(.Default)
+    }
+    
+    func backToPlayer(sender: AnyObject) {
+        pageViewDelegate.showPage(1)
     }
     
     // MARK: - Table view data source

@@ -17,17 +17,19 @@ class PodcastInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "< Player", style: UIBarButtonItemStyle.Plain, target: self, action: "backToPlayer:")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewDidAppear(animated: Bool) {
         statusBarStyleDelegate.updateStatusBarStyle(.Default)
+    }
+    
+    func backToPlayer(sender: AnyObject) {
+        pageViewDelegate.showPage(1)
     }
     
 
