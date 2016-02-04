@@ -1660,7 +1660,7 @@ If you want to see the shows scheduled before taking place, please talk to the p
         <!--Chat Text View Controller-->
         <scene sceneID="npF-qq-KYC">
             <objects>
-                <viewController id="YUd-hH-1jE" customClass="ChatTextViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatTextViewController" id="YUd-hH-1jE" customClass="ChatTextViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sPF-OZ-fhE"/>
                         <viewControllerLayoutGuide type="bottom" id="rzC-kV-JJ9"/>
@@ -1674,25 +1674,7 @@ If you want to see the shows scheduled before taking place, please talk to the p
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YGM-89-31B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-103" y="3257"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Lbr-GW-sgt">
-            <objects>
-                <navigationController storyboardIdentifier="ChatViewController" automaticallyAdjustsScrollViewInsets="NO" id="cMD-11-sYG" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Joe-md-Dc7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="YUd-hH-1jE" kind="relationship" relationship="rootViewController" id="aHT-Ab-oVk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HEg-hC-9En" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-103" y="2447"/>
+            <point key="canvasLocation" x="-131" y="2489"/>
         </scene>
     </scenes>
     <resources>

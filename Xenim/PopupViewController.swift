@@ -8,24 +8,41 @@
 
 import UIKit
 
-class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDataSource {
+protocol StatusBarDelegate {
+    func updateStatusBarStyle(style: UIStatusBarStyle)
+}
+
+class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDataSource, StatusBarDelegate {
 
     var event: Event!
     let pageViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
+    
     let playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayerViewController") as! PlayerViewController
-    let chatViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ChatViewController") as! UINavigationController
-    let podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
+    var chatViewController: UINavigationController!
+    var infoViewController: UINavigationController!
     
     var miniCoverartImageView: UIImageView!
     
+    var statusBarStyle = UIStatusBarStyle.Default
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let chatTextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ChatTextViewController") as! ChatTextViewController
+        let podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
         
         playerViewController.event = event
         
         pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40.0)
         pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: false, completion: nil)
         pageViewController.dataSource = self
+        
+        playerViewController.statusBarStyleDelegate = self
+        chatTextViewController.statusBarStyleDelegate = self
+        podcastInfoViewController.statusBarStyleDelegate = self
+        
+        chatViewController = UINavigationController(rootViewController: chatTextViewController)
+        infoViewController = UINavigationController(rootViewController: podcastInfoViewController)
         
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
@@ -67,6 +84,19 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - status bar
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return statusBarStyle
+    }
+    
+    func updateStatusBarStyle(style: UIStatusBarStyle) {
+        statusBarStyle = style
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
     }
     
     // MARK: - delegate
@@ -121,14 +151,14 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     
     // MARK: - Page View Controller Data Source
     
-    // ORDER is: chatViewController, playerViewController, podcastInfoViewController
+    // ORDER is: chatViewController, playerViewController, infoViewController
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         switch viewController {
         case chatViewController:
             return playerViewController
         case playerViewController:
-            return podcastInfoViewController
+            return infoViewController
         default:
             return nil
         }
@@ -138,7 +168,7 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         switch viewController {
         case playerViewController:
             return chatViewController
-        case podcastInfoViewController:
+        case infoViewController:
             return playerViewController
         default:
             return nil

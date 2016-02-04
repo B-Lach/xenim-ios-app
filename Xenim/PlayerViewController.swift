@@ -16,6 +16,8 @@ import UIImageColors
 class PlayerViewController: UIViewController {
     
     @IBOutlet weak var backgroundCoverartImageView: UIImageView!
+    
+    var statusBarStyleDelegate: StatusBarDelegate!
         
     var event: Event! {
         didSet {
@@ -34,14 +36,8 @@ class PlayerViewController: UIViewController {
     var coverartColors: UIImageColors? {
         didSet {
             if let colors = coverartColors {
-                if colors.backgroundColor.isDarkColor {
-                    statusBarStyle = .LightContent
-                } else {
-                    statusBarStyle = .Default
-                }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.setNeedsStatusBarAppearanceUpdate()
-                    
+                self.updateStatusBarColor()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in                    
                     self.listenersCountLabel.textColor = colors.primaryColor
                     self.listenersIconImageView.tintColor = colors.primaryColor
                 })
@@ -63,8 +59,6 @@ class PlayerViewController: UIViewController {
     var timer : NSTimer? // timer to update view periodically
     let updateInterval: NSTimeInterval = 60 // seconds
     
-    var statusBarStyle = UIStatusBarStyle.Default
-	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,6 +83,10 @@ class PlayerViewController: UIViewController {
         setupNotifications()
         updateUI()
 	}
+    
+    override func viewDidAppear(animated: Bool) {
+        updateStatusBarColor()
+    }
     
     // MARK: - Update UI
     
@@ -119,13 +117,15 @@ class PlayerViewController: UIViewController {
         updateFavoritesButton()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.setNeedsStatusBarAppearanceUpdate()
-    }
-    
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return statusBarStyle
+    func updateStatusBarColor() {
+        if let colors = coverartColors {
+            if colors.backgroundColor.isDarkColor {
+                statusBarStyleDelegate.updateStatusBarStyle(.LightContent)
+            } else {
+                statusBarStyleDelegate.updateStatusBarStyle(.Default)
+            }
+        }
+
     }
     
     func updateToolbar() {

@@ -25,6 +25,8 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     let nickname = "ios-irc-test"
     let realname = "Test"
     
+    var statusBarStyleDelegate: StatusBarDelegate!
+    
     override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
         return UITableViewStyle.Plain
     }
@@ -52,6 +54,10 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     deinit {
         disconnect()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        statusBarStyleDelegate.updateStatusBarStyle(.Default)
     }
     
     // MARK: - Table view data source

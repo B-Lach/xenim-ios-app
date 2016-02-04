@@ -150,7 +150,7 @@
 				2215EEBF1C5B78FA00FF1475 /* PodcastDetailViewController.swift */,
 				229B3C461C1F08D100187BA0 /* Favorites */,
 				229B3C481C1F090100187BA0 /* Events */,
-				22BC05A91C12F995005356C8 /* Player */,
+				22BC05A91C12F995005356C8 /* Popup */,
 				2232FE5F1BDE235A00BE368E /* Model */,
 				229B3C441C1F084C00187BA0 /* API */,
 				229B3C451C1F087400187BA0 /* Helpers */,
@@ -224,17 +224,17 @@
 			name = Events;
 			sourceTree = "<group>";
 		};
-		22BC05A91C12F995005356C8 /* Player */ = {
+		22BC05A91C12F995005356C8 /* Popup */ = {
 			isa = PBXGroup;
 			children = (
-				22920B341C629301009C4CC8 /* ChatTextViewController.swift */,
-				22BCBF951C63340800BAB21A /* MessageTableViewCell.swift */,
 				22920B281C623E92009C4CC8 /* PopupViewController.swift */,
 				22920B2E1C628B1C009C4CC8 /* PodcastInfoViewController.swift */,
 				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
+				22920B341C629301009C4CC8 /* ChatTextViewController.swift */,
+				22BCBF951C63340800BAB21A /* MessageTableViewCell.swift */,
 				222FB9FC1BF0E90A0007257A /* PlayerManager.swift */,
 			);
-			name = Player;
+			name = Popup;
 			sourceTree = "<group>";
 		};
 		22D515CA1C4BFE2700BE8D21 /* AddFavorite */ = {
