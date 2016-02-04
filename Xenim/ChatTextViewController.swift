@@ -25,6 +25,7 @@ class ChatTextViewController: SLKTextViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.inverted = false // disable inverted mode
+        tableView.separatorColor = UIColor.clearColor()
         tableView.registerNib(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageTableViewCell")
     }
     
