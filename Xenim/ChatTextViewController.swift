@@ -7,6 +7,7 @@
 //
 
 import SlackTextViewController
+import GMIRCClient
 
 struct Message {
     var sender: String
@@ -14,9 +15,13 @@ struct Message {
     var date: NSDate
 }
 
-class ChatTextViewController: SLKTextViewController {
+class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     var messages = [Message]()
+    var irc: GMIRCClient!
+    let channel = "#xsn-irctest"
+    let nickname = "ios-irc-test"
+    let realname = "Test"
     
     override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
         return UITableViewStyle.Plain
@@ -31,6 +36,11 @@ class ChatTextViewController: SLKTextViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.registerNib(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageTableViewCell")
+        
+        let socket = GMSocket(host: "irc.freenode.net", port: 6667)
+        irc = GMIRCClient(socket: socket)
+        irc.delegate = self
+        irc.register(nickname, user: nickname, realName: realname)
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,11 +69,14 @@ class ChatTextViewController: SLKTextViewController {
     // MARK: - Text View Delegate
     
     override func didPressRightButton(sender: AnyObject!) {
-        // send message
-        self.textView.refreshFirstResponder()
-        let testMessage = Message(sender: "funkenstrahlen", text: textView.text, date: NSDate())
-        textView.text = ""
-        addNewMessage(testMessage)
+        if textView.text != nil && textView.text != "" {
+            // send message
+            self.textView.refreshFirstResponder()
+            let message = Message(sender: "funkenstrahlen", text: textView.text, date: NSDate())
+            irc.sendMessageToChannel(message.text, channel: channel)
+            textView.text = ""
+            addNewMessage(message)
+        }
     }
     
     private func addNewMessage(message: Message) {
@@ -72,7 +85,7 @@ class ChatTextViewController: SLKTextViewController {
         let indexPath = NSIndexPath(forRow: messages.count - 1, inSection: 0)
         tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         tableView.endUpdates()
-        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+        tableView.scrollToBottom(false)
     }
     
     /*
@@ -85,4 +98,28 @@ class ChatTextViewController: SLKTextViewController {
     }
     */
     
+    // MARK: IRC Delegate
+    
+    func didWelcome() {
+        print("Received welcome message - ready to join a chat room")
+        irc.join(channel)
+    }
+    
+    func didJoin(channel: String) {
+        print("Joined chat room: \(channel)")
+    }
+    
+    func didReceivePrivateMessage(text: String, from: String) {
+        let message = Message(sender: from, text: text, date: NSDate())
+        addNewMessage(message)
+    }
+    
+}
+
+extension UITableView {
+    func scrollToBottom(animated: Bool = true) {
+        let sections = self.numberOfSections
+        let rows = self.numberOfRowsInSection(sections - 1)
+        self.scrollToRowAtIndexPath(NSIndexPath(forRow: rows - 1, inSection: sections - 1), atScrollPosition: .Bottom, animated: animated)
+    }
 }
