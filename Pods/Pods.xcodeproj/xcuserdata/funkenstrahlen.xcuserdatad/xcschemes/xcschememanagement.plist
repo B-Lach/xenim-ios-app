@@ -24,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>GMIRCClient-GMIRCClient.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GMIRCClient.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>KDEAudioPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,17 +72,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>05012FC650B63EE815B30314A7512409</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>05094CC4A047119F7ADC14EE74C4881C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3AE79E0A20492AE65C24C54D0A14B027</key>
+		<key>05EFE1D86BD8DA622EED01C59C99D746</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +87,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>49DAC992C58A0A84EFD849E19ABC2027</key>
+		<key>43AE6CE05340EA36D47D7C0BD75EDFFA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>541E9AD8F0209976F59A780F49A3F069</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>70CB4AA5999E0F11E4D201573BD53D17</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,12 +112,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B5A2C96BDC2FC00722230BA8D26C87F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BCA053B6430690326435042FEB61B458</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C56CCB77E98021BA8115A63E5E675EEA</key>
+		<key>C38706018755C6C10FF377918DE2BB2D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C52C0BE4EC8667A7DC569EF3B8734B99</key>
 		<dict>
 			<key>primary</key>
 			<true/>

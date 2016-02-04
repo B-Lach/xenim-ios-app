@@ -10,6 +10,7 @@ target 'Xenim' do
   pod "CRToast", '~> 0.0'
   pod 'KDEAudioPlayer', '~> 0.4'
   pod "SlackTextViewController"
+  pod 'GMIRCClient'
   pod 'UIImageColors', :git => 'https://github.com/jathu/UIImageColors.git', :branch => 'master'
   #pod 'KDEAudioPlayer', :git => 'https://github.com/delannoyk/AudioPlayer.git', :branch => 'develop'
   #pod 'KDEAudioPlayer', :git => 'https://github.com/funkenstrahlen/AudioPlayer.git', :branch => 'develop'

@@ -1,0 +1,1 @@
+../../../GMIRCClient/Pod/Classes/IRC/ChatClient-Bridging-Header.h

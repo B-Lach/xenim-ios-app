@@ -4,6 +4,7 @@ PODS:
     - Alamofire (~> 3.1)
   - Bolts/Tasks (1.6.0)
   - CRToast (0.0.9)
+  - GMIRCClient (0.1.0)
   - KDEAudioPlayer (0.5.1)
   - MarqueeLabel-Swift (2.6.1)
   - Parse (1.12.0):
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.0)
   - AlamofireImage (~> 2.1)
   - CRToast (~> 0.0)
+  - GMIRCClient
   - KDEAudioPlayer (~> 0.4)
   - MarqueeLabel-Swift (~> 2.3)
   - Parse (~> 1.10)
@@ -38,6 +40,7 @@ SPEC CHECKSUMS:
   AlamofireImage: 4013fb5b99b10117bf2554a67b9bd2231d476b45
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
+  GMIRCClient: df4d94d969c83c265b7772829f7c9d21f37bb8d2
   KDEAudioPlayer: 593df21b7ba5b1d5627ec58bca36077ba1e25e6b
   MarqueeLabel-Swift: 7010d1f32ca9d17e17c51c2b0b107fecd1be9ea3
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
