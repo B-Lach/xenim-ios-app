@@ -18,6 +18,8 @@ struct Message {
 class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     var messages = [Message]()
+    
+    var socket: GMSocket!
     var irc: GMIRCClient!
     let channel = "#xsn-irctest"
     let nickname = "ios-irc-test"
@@ -37,14 +39,17 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
         
         tableView.registerNib(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageTableViewCell")
         
-        let socket = GMSocket(host: "irc.freenode.net", port: 6667)
-        irc = GMIRCClient(socket: socket)
-        irc.delegate = self
-        irc.register(nickname, user: nickname, realName: realname)
+        textView.placeholder = "Your Message"
+        
+        connect()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    deinit {
+        disconnect()
     }
     
     // MARK: - Table view data source
@@ -99,6 +104,17 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     */
     
     // MARK: IRC Delegate
+    
+    func connect() {
+        socket = GMSocket(host: "irc.freenode.net", port: 6667)
+        irc = GMIRCClient(socket: socket)
+        irc.delegate = self
+        irc.register(nickname, user: nickname, realName: realname)
+    }
+    
+    func disconnect() {
+        socket.close()
+    }
     
     func didWelcome() {
         print("Received welcome message - ready to join a chat room")
