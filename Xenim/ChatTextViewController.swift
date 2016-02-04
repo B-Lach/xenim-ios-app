@@ -18,10 +18,15 @@ struct Message {
 class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     var messages = [Message]()
+    var event: Event!
     
     var socket: GMSocket!
     var irc: GMIRCClient!
-    let channel = "#xsn-irctest"
+    var channel: String {
+        get {
+            return event.podcast.ircChannel!
+        }
+    }
     let nickname = "ios-irc-test"
     let realname = "Test"
     
@@ -112,10 +117,17 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     // MARK: IRC Delegate
     
     func connect() {
-        socket = GMSocket(host: "irc.freenode.net", port: 6667)
-        irc = GMIRCClient(socket: socket)
-        irc.delegate = self
-        irc.register(nickname, user: nickname, realName: realname)
+        if event.podcast.ircUrl != nil {
+            let server = event.podcast.ircServer!
+            socket = GMSocket(host: server, port: 6667)
+            irc = GMIRCClient(socket: socket)
+            irc.delegate = self
+            irc.register(nickname, user: nickname, realName: realname)
+        } else {
+            self.title = "No Chat"
+            // TODO: show alert view
+        }
+
     }
     
     func disconnect() {

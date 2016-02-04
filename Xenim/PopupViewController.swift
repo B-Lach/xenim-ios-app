@@ -36,6 +36,8 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         let podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
         
         playerViewController.event = event
+        chatTextViewController.event = event
+        podcastInfoViewController.event = event
         
         pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40.0)
         pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: false, completion: nil)
