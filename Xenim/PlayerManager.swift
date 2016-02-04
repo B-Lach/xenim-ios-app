@@ -24,7 +24,8 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     
     override init() {
         super.init()
-        baseViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController! as! UITabBarController
+        baseViewController = rootViewController
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         player.delegate = self
     }
