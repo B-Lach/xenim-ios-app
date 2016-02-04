@@ -30,6 +30,9 @@ class ChatTextViewController: SLKTextViewController {
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        let testMessage = Message(sender: "funkenstrahlen", text: "Das ist eine Testnachricht", date: NSDate())
+        messages.append(testMessage)
+        
         tableView.registerNib(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageTableViewCell")
     }
     
@@ -50,6 +53,7 @@ class ChatTextViewController: SLKTextViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MessageTableViewCell", forIndexPath: indexPath) as! MessageTableViewCell
+        
         cell.message = messages[indexPath.row]
     
         return cell
