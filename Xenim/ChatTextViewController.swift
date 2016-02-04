@@ -40,6 +40,8 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
         tableView.registerNib(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageTableViewCell")
         
         textView.placeholder = "Your Message"
+        self.title = "Connecting..."
+        self.setTextInputbarHidden(true, animated: false)
         
         connect()
     }
@@ -71,13 +73,20 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! MessageTableViewCell
+        let username = cell.message.sender
+        textView.text = textView.text + "\(username): "
+        cell.setSelected(false, animated: true)
+    }
+    
     // MARK: - Text View Delegate
     
     override func didPressRightButton(sender: AnyObject!) {
         if textView.text != nil && textView.text != "" {
             // send message
             self.textView.refreshFirstResponder()
-            let message = Message(sender: "funkenstrahlen", text: textView.text, date: NSDate())
+            let message = Message(sender: nickname, text: textView.text, date: NSDate())
             irc.sendMessageToChannel(message.text, channel: channel)
             textView.text = ""
             addNewMessage(message)
@@ -92,16 +101,6 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
         tableView.endUpdates()
         tableView.scrollToBottom(false)
     }
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     
     // MARK: IRC Delegate
     
@@ -123,6 +122,8 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     func didJoin(channel: String) {
         print("Joined chat room: \(channel)")
+        self.title = channel
+        self.setTextInputbarHidden(false, animated: true)
     }
     
     func didReceivePrivateMessage(text: String, from: String) {
