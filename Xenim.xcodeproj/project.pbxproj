@@ -28,7 +28,6 @@
 		2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291D8A21BDFB1D600CB6536 /* Favorites.swift */; };
 		22920B291C623E92009C4CC8 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22920B281C623E92009C4CC8 /* PopupViewController.swift */; };
 		22920B2F1C628B1C009C4CC8 /* PodcastInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22920B2E1C628B1C009C4CC8 /* PodcastInfoViewController.swift */; };
-		22920B311C62906C009C4CC8 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22920B301C62906C009C4CC8 /* ChatTableViewController.swift */; };
 		22920B351C629301009C4CC8 /* ChatTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22920B341C629301009C4CC8 /* ChatTextViewController.swift */; };
 		229421FB1C1989DA00033AAB /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229421FA1C1989DA00033AAB /* Keys.plist */; };
 		229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4B1BD53DBD00F1CF6B /* Event.swift */; };
@@ -84,7 +83,6 @@
 		2291D8A21BDFB1D600CB6536 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		22920B281C623E92009C4CC8 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		22920B2E1C628B1C009C4CC8 /* PodcastInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastInfoViewController.swift; sourceTree = "<group>"; };
-		22920B301C62906C009C4CC8 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		22920B341C629301009C4CC8 /* ChatTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTextViewController.swift; sourceTree = "<group>"; };
 		229421FA1C1989DA00033AAB /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		229B7D4B1BD53DBD00F1CF6B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -225,7 +223,6 @@
 			children = (
 				22920B341C629301009C4CC8 /* ChatTextViewController.swift */,
 				22920B281C623E92009C4CC8 /* PopupViewController.swift */,
-				22920B301C62906C009C4CC8 /* ChatTableViewController.swift */,
 				22920B2E1C628B1C009C4CC8 /* PodcastInfoViewController.swift */,
 				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
 				222FB9FC1BF0E90A0007257A /* PlayerManager.swift */,
@@ -431,7 +428,6 @@
 				229B7D501BD564DC00F1CF6B /* XenimAPI.swift in Sources */,
 				22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */,
 				22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */,
-				22920B311C62906C009C4CC8 /* ChatTableViewController.swift in Sources */,
 				2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */,
 				224EB6D21C492F1500CDE9B0 /* EventDetailViewController.swift in Sources */,
 				229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */,
