@@ -80,8 +80,10 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MessageTableViewCell", forIndexPath: indexPath) as! MessageTableViewCell
-        
+
+        cell.nickname = nickname
         cell.message = messages[indexPath.row]
+
     
         return cell
     }
