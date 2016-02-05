@@ -34,6 +34,7 @@ class ChatContainerViewController: UIViewController, ChatStatusViewDelegate {
     }
     
     func updateStatusMessage(message: String) {
+        statusMessageLabel.hidden = message == ""
         statusMessageLabel.text = message
     }
     

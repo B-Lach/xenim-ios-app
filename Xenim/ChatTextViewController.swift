@@ -140,7 +140,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     func didJoin(channel: String) {
         print("Joined chat room: \(channel)")
-        statusViewDelegate.updateStatusMessage(channel)
+        statusViewDelegate.updateStatusMessage("")
         self.setTextInputbarHidden(false, animated: true)
     }
     

@@ -1721,7 +1721,7 @@ If you want to see the shows scheduled before taking place, please talk to the p
                                 </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8N-Yc-6Mk">
-                                <rect key="frame" x="20" y="72" width="560" height="17"/>
+                                <rect key="frame" x="20" y="563" width="560" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1729,8 +1729,7 @@ If you want to see the shows scheduled before taking place, please talk to the p
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="j8N-Yc-6Mk" secondAttribute="trailing" constant="20" id="2Tl-Gn-5km"/>
-                            <constraint firstItem="j8N-Yc-6Mk" firstAttribute="top" secondItem="KfA-0n-9NX" secondAttribute="bottom" constant="8" id="806-lO-KoE"/>
+                            <constraint firstAttribute="trailing" secondItem="j8N-Yc-6Mk" secondAttribute="trailing" constant="20" id="9k7-NY-8IP"/>
                             <constraint firstAttribute="topMargin" secondItem="KfA-0n-9NX" secondAttribute="top" id="F8k-Ck-PXJ"/>
                             <constraint firstAttribute="bottomMargin" secondItem="MJm-vb-sJw" secondAttribute="bottom" id="KUX-SE-r8H"/>
                             <constraint firstItem="MJm-vb-sJw" firstAttribute="centerX" secondItem="yhf-ab-H0A" secondAttribute="centerX" id="QqL-yT-SPJ"/>
@@ -1739,10 +1738,11 @@ If you want to see the shows scheduled before taking place, please talk to the p
                             <constraint firstItem="MJm-vb-sJw" firstAttribute="top" secondItem="yhf-ab-H0A" secondAttribute="top" constant="70" id="Xdt-vb-Ppj"/>
                             <constraint firstAttribute="trailing" secondItem="KfA-0n-9NX" secondAttribute="trailing" id="cNI-V2-jKq"/>
                             <constraint firstItem="KfA-0n-9NX" firstAttribute="centerX" secondItem="yhf-ab-H0A" secondAttribute="centerX" id="fIn-hd-G4e"/>
-                            <constraint firstItem="j8N-Yc-6Mk" firstAttribute="leading" secondItem="yhf-ab-H0A" secondAttribute="leading" constant="20" id="hTQ-8c-cv6"/>
-                            <constraint firstItem="j8N-Yc-6Mk" firstAttribute="centerX" secondItem="MJm-vb-sJw" secondAttribute="centerX" id="sv4-m1-O39"/>
+                            <constraint firstItem="j8N-Yc-6Mk" firstAttribute="leading" secondItem="yhf-ab-H0A" secondAttribute="leading" constant="20" id="qsg-Na-Djx"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="j8N-Yc-6Mk" secondAttribute="bottom" constant="20" id="sdE-zA-WZt"/>
                             <constraint firstItem="MJm-vb-sJw" firstAttribute="top" secondItem="KfA-0n-9NX" secondAttribute="bottom" id="tkL-jC-8bd"/>
                             <constraint firstAttribute="trailing" secondItem="MJm-vb-sJw" secondAttribute="trailing" id="uj5-dM-IIb"/>
+                            <constraint firstItem="j8N-Yc-6Mk" firstAttribute="centerX" secondItem="yhf-ab-H0A" secondAttribute="centerX" id="zdk-dj-CCC"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -1751,7 +1751,6 @@ If you want to see the shows scheduled before taking place, please talk to the p
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="statusMessageLabel" destination="j8N-Yc-6Mk" id="mgr-Gd-T37"/>
                         <outlet property="titleLabel" destination="As3-EB-8Kv" id="pKe-Pn-1dK"/>
