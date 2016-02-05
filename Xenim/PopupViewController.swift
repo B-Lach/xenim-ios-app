@@ -65,6 +65,8 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         if let imageurl = event.podcast.artwork.thumb150Url {
             miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
         }
+        
+        setupNotifications()
     }
     
     // MARK: - init
