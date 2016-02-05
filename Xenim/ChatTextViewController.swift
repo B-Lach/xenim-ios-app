@@ -54,6 +54,8 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
         statusViewDelegate.updateStatusMessage("Connecting")
         self.setTextInputbarHidden(true, animated: false)
         
+        self.rightButton.tintColor = Constants.Colors.tintColor
+        
         connect()
     }
     
