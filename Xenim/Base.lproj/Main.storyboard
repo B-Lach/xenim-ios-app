@@ -1678,42 +1678,51 @@ If you want to see the shows scheduled before taking place, please talk to the p
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KfA-0n-9NX">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Lq-TR-RDI">
-                                        <rect key="frame" x="8" y="17" width="57" height="30"/>
-                                        <state key="normal" title="Account"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Lq-TR-RDI">
+                                        <rect key="frame" x="8" y="31" width="19" height="22"/>
+                                        <state key="normal" image="white-25-user"/>
                                         <connections>
                                             <action selector="accountPressed:" destination="3KP-Vb-V5t" eventType="touchUpInside" id="gQw-Mx-jTO"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="As3-EB-8Kv">
-                                        <rect key="frame" x="281" y="22" width="38" height="21"/>
+                                        <rect key="frame" x="281" y="31" width="38" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKz-dy-lDE">
-                                        <rect key="frame" x="536" y="17" width="56" height="30"/>
-                                        <state key="normal" title="Player &gt;"/>
+                                        <rect key="frame" x="562" y="15" width="30" height="53"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                        <state key="normal" title="&gt;"/>
                                         <connections>
                                             <action selector="backToPlayer:" destination="3KP-Vb-V5t" eventType="touchUpInside" id="Tp2-x3-lBa"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.21568627450980393" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="As3-EB-8Kv" firstAttribute="centerY" secondItem="KfA-0n-9NX" secondAttribute="centerY" id="RoL-v1-X9v"/>
-                                    <constraint firstAttribute="trailing" secondItem="dKz-dy-lDE" secondAttribute="trailing" constant="8" id="UXF-GJ-Aj7"/>
-                                    <constraint firstItem="dKz-dy-lDE" firstAttribute="centerY" secondItem="KfA-0n-9NX" secondAttribute="centerY" id="ZX4-Nc-6sf"/>
-                                    <constraint firstItem="As3-EB-8Kv" firstAttribute="centerX" secondItem="KfA-0n-9NX" secondAttribute="centerX" id="bhU-iG-pIN"/>
-                                    <constraint firstItem="0Lq-TR-RDI" firstAttribute="centerY" secondItem="KfA-0n-9NX" secondAttribute="centerY" id="jGT-a3-i3M"/>
-                                    <constraint firstItem="0Lq-TR-RDI" firstAttribute="leading" secondItem="KfA-0n-9NX" secondAttribute="leading" constant="8" id="jOe-Et-weu"/>
+                                    <constraint firstItem="0Lq-TR-RDI" firstAttribute="centerY" secondItem="As3-EB-8Kv" secondAttribute="centerY" id="8lq-tb-10w"/>
+                                    <constraint firstAttribute="bottom" secondItem="As3-EB-8Kv" secondAttribute="bottom" constant="12" id="FT1-iY-vre"/>
+                                    <constraint firstItem="dKz-dy-lDE" firstAttribute="centerY" secondItem="As3-EB-8Kv" secondAttribute="centerY" id="b1P-UZ-yyB"/>
+                                    <constraint firstItem="0Lq-TR-RDI" firstAttribute="baseline" secondItem="As3-EB-8Kv" secondAttribute="baseline" id="dNX-7q-ekh"/>
+                                    <constraint firstItem="As3-EB-8Kv" firstAttribute="centerX" secondItem="KfA-0n-9NX" secondAttribute="centerX" id="jRo-uj-bB9"/>
+                                    <constraint firstAttribute="trailing" secondItem="dKz-dy-lDE" secondAttribute="trailing" constant="8" id="kPS-Gn-B7R"/>
+                                    <constraint firstItem="0Lq-TR-RDI" firstAttribute="leading" secondItem="KfA-0n-9NX" secondAttribute="leading" constant="8" id="p2y-K8-PCY"/>
+                                    <constraint firstItem="dKz-dy-lDE" firstAttribute="baseline" secondItem="As3-EB-8Kv" secondAttribute="baseline" id="vrm-EK-mS8"/>
                                     <constraint firstAttribute="height" constant="64" id="y7q-Ci-4qA"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="dNX-7q-ekh"/>
+                                        <exclude reference="vrm-EK-mS8"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8N-Yc-6Mk">
-                                <rect key="frame" x="20" y="72" width="560" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="20" y="72" width="560" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
