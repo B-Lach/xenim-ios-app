@@ -22,7 +22,8 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     let pageViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
     
     let playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayerViewController") as! PlayerViewController
-    var chatViewController: UINavigationController!
+    var chatContainerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ChatContainerViewController") as! ChatContainerViewController
+    
     var infoViewController: UINavigationController!
     
     var miniCoverartImageView: UIImageView!
@@ -32,11 +33,10 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let chatTextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ChatTextViewController") as! ChatTextViewController
         let podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
         
         playerViewController.event = event
-        chatTextViewController.event = event
+        chatContainerViewController.event = event
         podcastInfoViewController.event = event
         
         pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40.0)
@@ -44,14 +44,13 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         pageViewController.dataSource = self
         
         playerViewController.statusBarStyleDelegate = self
-        chatTextViewController.statusBarStyleDelegate = self
+        chatContainerViewController.statusBarStyleDelegate = self
         podcastInfoViewController.statusBarStyleDelegate = self
         
         playerViewController.pageViewDelegate = self
-        chatTextViewController.pageViewDelegate = self
+        chatContainerViewController.pageViewDelegate = self
         podcastInfoViewController.pageViewDelegate = self
         
-        chatViewController = UINavigationController(rootViewController: chatTextViewController)
         infoViewController = UINavigationController(rootViewController: podcastInfoViewController)
         
         self.addChildViewController(pageViewController)
@@ -165,7 +164,7 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         switch viewController {
-        case chatViewController:
+        case chatContainerViewController:
             return playerViewController
         case playerViewController:
             return infoViewController
@@ -177,7 +176,7 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         switch viewController {
         case playerViewController:
-            return chatViewController
+            return chatContainerViewController
         case infoViewController:
             return playerViewController
         default:
@@ -196,10 +195,10 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     func showPage(index: Int) {
         switch index {
         case 0:
-            pageViewController.setViewControllers([chatViewController], direction: .Reverse, animated: true, completion: nil)
+            pageViewController.setViewControllers([chatContainerViewController], direction: .Reverse, animated: true, completion: nil)
         case 1:
             switch pageViewController.viewControllers!.last! {
-            case chatViewController:
+            case chatContainerViewController:
                 pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: true, completion: nil)
             case infoViewController:
                 pageViewController.setViewControllers([playerViewController], direction: .Reverse, animated: true, completion: nil)

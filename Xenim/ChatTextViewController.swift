@@ -15,10 +15,16 @@ struct Message {
     var date: NSDate
 }
 
+protocol ChatStatusViewDelegate {
+    func updateStatusMessage(message: String)
+}
+
 class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     var messages = [Message]()
     var event: Event!
+    
+    var statusViewDelegate: ChatStatusViewDelegate!
     
     var socket: GMSocket!
     var irc: GMIRCClient!
@@ -29,9 +35,6 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     }
     let nickname = "ios-irc-test"
     let realname = "Test"
-    
-    var statusBarStyleDelegate: StatusBarDelegate!
-    var pageViewDelegate: PageViewDelegate!
     
     override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
         return UITableViewStyle.Plain
@@ -48,10 +51,8 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
         tableView.registerNib(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageTableViewCell")
         
         textView.placeholder = "Your Message"
-        self.title = "Connecting..."
+        statusViewDelegate.updateStatusMessage("Connecting")
         self.setTextInputbarHidden(true, animated: false)
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Player >", style: UIBarButtonItemStyle.Plain, target: self, action: "backToPlayer:")
         
         connect()
     }
@@ -62,14 +63,6 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     deinit {
         disconnect()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        statusBarStyleDelegate.updateStatusBarStyle(.Default)
-    }
-    
-    func backToPlayer(sender: AnyObject) {
-        pageViewDelegate.showPage(1)
     }
     
     // MARK: - Table view data source
@@ -130,7 +123,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
             irc.delegate = self
             irc.register(nickname, user: nickname, realName: realname)
         } else {
-            self.title = "No Chat"
+            statusViewDelegate.updateStatusMessage("No Chat")
             // TODO: show alert view
         }
 
@@ -147,7 +140,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     func didJoin(channel: String) {
         print("Joined chat room: \(channel)")
-        self.title = channel
+        statusViewDelegate.updateStatusMessage(channel)
         self.setTextInputbarHidden(false, animated: true)
     }
     

@@ -37,6 +37,7 @@
 		22B066891C5D3A3600870BF5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B066881C5D3A3600870BF5 /* SpinnerView.swift */; };
 		22BCBF941C63330400BAB21A /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22BCBF931C63330400BAB21A /* MessageTableViewCell.xib */; };
 		22BCBF961C63340800BAB21A /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCBF951C63340800BAB21A /* MessageTableViewCell.swift */; };
+		22BD50891C64CF1F005E44D5 /* ChatContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BD50881C64CF1F005E44D5 /* ChatContainerViewController.swift */; };
 		22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
 		22D515CC1C4CE99700BE8D21 /* PathDynamicModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */; };
@@ -95,6 +96,7 @@
 		22B066881C5D3A3600870BF5 /* SpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		22BCBF931C63330400BAB21A /* MessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		22BCBF951C63340800BAB21A /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		22BD50881C64CF1F005E44D5 /* ChatContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContainerViewController.swift; sourceTree = "<group>"; };
 		22BEF0FA1C1192F000496C2F /* LNPopupController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LNPopupController.framework; path = Carthage/Build/iOS/LNPopupController.framework; sourceTree = "<group>"; };
 		22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = LNPopupController.framework.dSYM; path = Carthage/Build/iOS/LNPopupController.framework.dSYM; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				22920B281C623E92009C4CC8 /* PopupViewController.swift */,
 				22920B2E1C628B1C009C4CC8 /* PodcastInfoViewController.swift */,
 				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
+				22BD50881C64CF1F005E44D5 /* ChatContainerViewController.swift */,
 				22920B341C629301009C4CC8 /* ChatTextViewController.swift */,
 				22BCBF951C63340800BAB21A /* MessageTableViewCell.swift */,
 				222FB9FC1BF0E90A0007257A /* PlayerManager.swift */,
@@ -451,6 +454,7 @@
 				2215EEC01C5B78FA00FF1475 /* PodcastDetailViewController.swift in Sources */,
 				2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */,
 				22920B291C623E92009C4CC8 /* PopupViewController.swift in Sources */,
+				22BD50891C64CF1F005E44D5 /* ChatContainerViewController.swift in Sources */,
 				22920B2F1C628B1C009C4CC8 /* PodcastInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
