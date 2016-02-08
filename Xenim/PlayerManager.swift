@@ -40,6 +40,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     func togglePlayPause(event: Event) {
         // if it is a new event
         if event != self.event {
+            stop()
             playEvent(event)
         } else {
             switch player.state {
