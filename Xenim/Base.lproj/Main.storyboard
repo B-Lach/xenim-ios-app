@@ -1233,11 +1233,22 @@
                                             <constraint firstAttribute="width" secondItem="ShY-ub-31T" secondAttribute="height" multiplier="1:1" id="qDn-mc-Rbb"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqi-bX-AVg">
+                                        <rect key="frame" x="15" y="35" width="25" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="gFu-h9-4En"/>
+                                            <constraint firstAttribute="width" secondItem="hqi-bX-AVg" secondAttribute="height" multiplier="25:22" id="uQ3-ub-WzO"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="expand-more"/>
+                                    </button>
                                 </subviews>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="hqi-bX-AVg" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" constant="15" id="4Mc-yp-zo1"/>
                                     <constraint firstAttribute="trailing" secondItem="mbj-o8-EdW" secondAttribute="trailing" id="77F-Bw-dWR"/>
                                     <constraint firstItem="mbj-o8-EdW" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="9lL-Ze-shi"/>
+                                    <constraint firstItem="hqi-bX-AVg" firstAttribute="top" secondItem="KdT-pi-g6m" secondAttribute="top" constant="35" id="Dxz-8N-LQg"/>
                                     <constraint firstItem="9Z2-mv-QWo" firstAttribute="leading" secondItem="ShY-ub-31T" secondAttribute="trailing" constant="-30" id="Mmw-Zk-e5w"/>
                                     <constraint firstItem="ShY-ub-31T" firstAttribute="top" secondItem="9Z2-mv-QWo" secondAttribute="bottom" constant="-30" id="Qir-Z1-aUq"/>
                                     <constraint firstItem="9Z2-mv-QWo" firstAttribute="top" secondItem="KdT-pi-g6m" secondAttribute="top" id="S2q-SN-R18"/>
@@ -1691,10 +1702,14 @@ If you want to see the shows scheduled before taking place, please talk to the p
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKz-dy-lDE">
-                                        <rect key="frame" x="562" y="15" width="30" height="53"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
-                                        <state key="normal" title="&gt;"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKz-dy-lDE">
+                                        <rect key="frame" x="572" y="32" width="13" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Xn8-Iw-geh"/>
+                                            <constraint firstAttribute="width" secondItem="dKz-dy-lDE" secondAttribute="height" multiplier="16:25" id="zOz-Gf-dhj"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="chevron-right"/>
                                         <connections>
                                             <action selector="backToPlayer:" destination="3KP-Vb-V5t" eventType="touchUpInside" id="Tp2-x3-lBa"/>
                                         </connections>
@@ -1708,7 +1723,7 @@ If you want to see the shows scheduled before taking place, please talk to the p
                                     <constraint firstItem="dKz-dy-lDE" firstAttribute="centerY" secondItem="As3-EB-8Kv" secondAttribute="centerY" id="b1P-UZ-yyB"/>
                                     <constraint firstItem="0Lq-TR-RDI" firstAttribute="baseline" secondItem="As3-EB-8Kv" secondAttribute="baseline" id="dNX-7q-ekh"/>
                                     <constraint firstItem="As3-EB-8Kv" firstAttribute="centerX" secondItem="KfA-0n-9NX" secondAttribute="centerX" id="jRo-uj-bB9"/>
-                                    <constraint firstAttribute="trailing" secondItem="dKz-dy-lDE" secondAttribute="trailing" constant="8" id="kPS-Gn-B7R"/>
+                                    <constraint firstAttribute="trailing" secondItem="dKz-dy-lDE" secondAttribute="trailing" constant="15" id="kPS-Gn-B7R"/>
                                     <constraint firstItem="0Lq-TR-RDI" firstAttribute="leading" secondItem="KfA-0n-9NX" secondAttribute="leading" constant="8" id="p2y-K8-PCY"/>
                                     <constraint firstItem="dKz-dy-lDE" firstAttribute="baseline" secondItem="As3-EB-8Kv" secondAttribute="baseline" id="vrm-EK-mS8"/>
                                     <constraint firstAttribute="height" constant="64" id="y7q-Ci-4qA"/>
@@ -1794,7 +1809,9 @@ If you want to see the shows scheduled before taking place, please talk to the p
         <image name="black-44-pause" width="33" height="33"/>
         <image name="brandeis-blue-25-gear" width="19" height="19"/>
         <image name="brandeis-blue-25-plus" width="19" height="19"/>
+        <image name="chevron-right" width="16" height="25"/>
         <image name="event_placeholder" width="420" height="420"/>
+        <image name="expand-more" width="25" height="16"/>
         <image name="scarlet-25-heart" width="19" height="19"/>
         <image name="scarlet-25-star" width="19" height="19"/>
         <image name="scarlet-44-info-circle" width="33" height="33"/>
