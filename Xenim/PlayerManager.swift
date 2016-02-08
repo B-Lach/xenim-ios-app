@@ -26,7 +26,6 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         super.init()
         let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController! as! UITabBarController
         baseViewController = rootViewController
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         player.delegate = self
     }
     
@@ -84,6 +83,8 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     
     private func playEvent(event: Event) {
         if let audioItem = AudioItem(mediumQualitySoundURL: event.streamUrl) {
+            UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+            
             self.event = event
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let popupViewController = storyboard.instantiateViewControllerWithIdentifier("PopupViewController") as? PopupViewController
