@@ -10,8 +10,8 @@ import UIKit
 
 class ChatContainerViewController: UIViewController, ChatStatusViewDelegate {
 
-    var statusBarStyleDelegate: StatusBarDelegate!
-    var pageViewDelegate: PageViewDelegate!
+    weak var statusBarStyleDelegate: StatusBarDelegate!
+    weak var pageViewDelegate: PageViewDelegate!
     
     var event: Event!
     

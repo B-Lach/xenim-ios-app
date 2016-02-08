@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol StatusBarDelegate {
+protocol StatusBarDelegate: class {
     func updateStatusBarStyle(style: UIStatusBarStyle)
 }
 
-protocol PageViewDelegate {
+protocol PageViewDelegate: class {
     func showPage(index: Int)
 }
 
@@ -68,6 +68,8 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         
         setupNotifications()
     }
+    
+
     
     // MARK: - init
     

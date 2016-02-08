@@ -17,8 +17,8 @@ class PlayerViewController: UIViewController {
     
     @IBOutlet weak var backgroundCoverartImageView: UIImageView!
     
-    var statusBarStyleDelegate: StatusBarDelegate!
-    var pageViewDelegate: PageViewDelegate!
+    weak var statusBarStyleDelegate: StatusBarDelegate!
+    weak var pageViewDelegate: PageViewDelegate!
         
     var event: Event! {
         didSet {

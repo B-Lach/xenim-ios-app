@@ -15,7 +15,7 @@ struct Message {
     var date: NSDate
 }
 
-protocol ChatStatusViewDelegate {
+protocol ChatStatusViewDelegate: class {
     func updateStatusMessage(message: String)
 }
 
@@ -24,7 +24,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     var messages = [Message]()
     var event: Event!
     
-    var statusViewDelegate: ChatStatusViewDelegate!
+    weak var statusViewDelegate: ChatStatusViewDelegate!
     
     var socket: GMSocket!
     var irc: GMIRCClient!
@@ -64,6 +64,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     }
     
     deinit {
+        print("disconnecting")
         disconnect()
     }
     
