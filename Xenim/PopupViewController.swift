@@ -23,8 +23,7 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     
     let playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayerViewController") as! PlayerViewController
     var chatContainerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ChatContainerViewController") as! ChatContainerViewController
-    
-    var infoViewController: UINavigationController!
+    var podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
     
     var miniCoverartImageView: UIImageView!
     
@@ -32,8 +31,6 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
         
         playerViewController.event = event
         chatContainerViewController.event = event
@@ -50,8 +47,6 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         playerViewController.pageViewDelegate = self
         chatContainerViewController.pageViewDelegate = self
         podcastInfoViewController.pageViewDelegate = self
-        
-        infoViewController = UINavigationController(rootViewController: podcastInfoViewController)
         
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
@@ -171,7 +166,7 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         case chatContainerViewController:
             return playerViewController
         case playerViewController:
-            return infoViewController
+            return podcastInfoViewController
         default:
             return nil
         }
@@ -181,7 +176,7 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         switch viewController {
         case playerViewController:
             return chatContainerViewController
-        case infoViewController:
+        case podcastInfoViewController:
             return playerViewController
         default:
             return nil
@@ -204,13 +199,13 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
             switch pageViewController.viewControllers!.last! {
             case chatContainerViewController:
                 pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: true, completion: nil)
-            case infoViewController:
+            case podcastInfoViewController:
                 pageViewController.setViewControllers([playerViewController], direction: .Reverse, animated: true, completion: nil)
             default: break
             }
 
         case 2:
-            pageViewController.setViewControllers([infoViewController], direction: .Forward, animated: true, completion: nil)
+            pageViewController.setViewControllers([podcastInfoViewController], direction: .Forward, animated: true, completion: nil)
         default: break
         }
     }
