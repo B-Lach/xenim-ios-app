@@ -16,7 +16,12 @@ protocol PageViewDelegate: class {
     func showPage(index: Int)
 }
 
-class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDataSource, StatusBarDelegate, PageViewDelegate {
+protocol PopupDelegate: class {
+    func minify()
+    func dismiss()
+}
+
+class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDataSource, StatusBarDelegate, PageViewDelegate, PopupDelegate {
 
     var event: Event!
     let pageViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
@@ -28,6 +33,8 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     var miniCoverartImageView: UIImageView!
     
     var statusBarStyle = UIStatusBarStyle.Default
+    
+    weak var presenter: UITabBarController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +54,8 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         playerViewController.pageViewDelegate = self
         chatContainerViewController.pageViewDelegate = self
         podcastInfoViewController.pageViewDelegate = self
+        
+        playerViewController.popupDelegate = self
         
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
@@ -155,6 +164,16 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         case .Failed(_):
             self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: "togglePlayPause:")]
         }
+    }
+    
+    // MARK: - PopupDelegate
+    
+    func dismiss() {
+        presenter.dismissPopupBarAnimated(true, completion: nil)
+    }
+    
+    func minify() {
+        presenter.closePopupAnimated(true, completion: nil)
     }
     
     // MARK: - Page View Controller Data Source

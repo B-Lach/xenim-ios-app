@@ -18,7 +18,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     var event: Event?
     var player = AudioPlayer()
     var currentItem: AudioItem?
-    private var baseViewController: UIViewController?
+    private weak var baseViewController: UITabBarController?
     
     // MARK: - init
     
@@ -89,6 +89,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             self.event = event
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let popupViewController = storyboard.instantiateViewControllerWithIdentifier("PopupViewController") as? PopupViewController
+            popupViewController!.presenter = baseViewController
             
             let longpressRecognizer = UILongPressGestureRecognizer(target: popupViewController, action: "handleLongPress:")
             longpressRecognizer.delegate = popupViewController

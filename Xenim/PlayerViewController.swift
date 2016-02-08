@@ -19,6 +19,7 @@ class PlayerViewController: UIViewController {
     
     weak var statusBarStyleDelegate: StatusBarDelegate!
     weak var pageViewDelegate: PageViewDelegate!
+    weak var popupDelegate: PopupDelegate!
         
     var event: Event! {
         didSet {
@@ -221,7 +222,7 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func dismissPopup(sender: AnyObject) {
-        self.tabBarController?.closePopupAnimated(true, completion: nil)
+        popupDelegate.minify()
     }
     
     // MARK: notifications
