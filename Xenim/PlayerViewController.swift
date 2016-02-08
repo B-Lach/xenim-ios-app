@@ -27,20 +27,18 @@ class PlayerViewController: UIViewController {
     }
 
     @IBOutlet weak var listenersCountLabel: UILabel!
-    @IBOutlet weak var listenersIconImageView: UIImageView! {
-        didSet {
-            // set rendering mode to template to set tint color
-            listenersIconImageView.image = listenersIconImageView.image?.imageWithRenderingMode(.AlwaysTemplate)
-        }
-    }
+    @IBOutlet weak var listenersIconImageView: UIImageView!
+    @IBOutlet weak var dismissButton: UIButton!
     
     var coverartColors: UIImageColors? {
         didSet {
             if let colors = coverartColors {
                 self.updateStatusBarColor()
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in                    
-                    self.listenersCountLabel.textColor = colors.primaryColor
-                    self.listenersIconImageView.tintColor = colors.primaryColor
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let tintColor = colors.backgroundColor.isDarkColor ? UIColor.whiteColor() : UIColor.blackColor()
+                    self.dismissButton.tintColor = tintColor
+                    self.listenersCountLabel.textColor = tintColor
+                    self.listenersIconImageView.tintColor = tintColor
                 })
             }
 
@@ -135,20 +133,20 @@ class PlayerViewController: UIViewController {
         var items = [UIBarButtonItem]()
         
         if event.podcast.webchatUrl != nil {
-            let chatItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-comments"), style: .Plain, target: self, action: "openChat:")
+            let chatItem = UIBarButtonItem(image: UIImage(named: "chat"), style: .Plain, target: self, action: "openChat:")
             items.append(spaceItem)
             items.append(chatItem)
         }
         
-        favoriteItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-star-o"), style: .Plain, target: self, action: "favorite:")
+        favoriteItem = UIBarButtonItem(image: UIImage(named: "star-outline"), style: .Plain, target: self, action: "favorite:")
         items.append(spaceItem)
         items.append(favoriteItem!)
         
-        let shareItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-share"), style: .Plain, target: self, action: "share:")
+        let shareItem = UIBarButtonItem(image: UIImage(named: "share"), style: .Plain, target: self, action: "share:")
         items.append(spaceItem)
         items.append(shareItem)
         
-        let infoItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-info"), style: .Plain, target: self, action: "showEventInfo:")
+        let infoItem = UIBarButtonItem(image: UIImage(named: "info-outline"), style: .Plain, target: self, action: "showEventInfo:")
         items.append(spaceItem)
         items.append(infoItem)
         
@@ -175,9 +173,9 @@ class PlayerViewController: UIViewController {
     func updateFavoritesButton() {
         if let event = event {
             if !Favorites.fetch().contains(event.podcast.id) {
-                favoriteItem?.image = UIImage(named: "scarlet-25-star-o")
+                favoriteItem?.image = UIImage(named: "star-outline")
             } else {
-                favoriteItem?.image = UIImage(named: "scarlet-25-star")
+                favoriteItem?.image = UIImage(named: "star")
             }
         }
     }
@@ -222,6 +220,10 @@ class PlayerViewController: UIViewController {
         PlayerManager.sharedInstance.forwardPressed()
     }
     
+    @IBAction func dismissPopup(sender: AnyObject) {
+        self.tabBarController?.closePopupAnimated(true, completion: nil)
+    }
+    
     // MARK: notifications
     
     func setupNotifications() {
@@ -240,7 +242,7 @@ class PlayerViewController: UIViewController {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == event.podcast.id {
-                favoriteItem?.image = UIImage(named: "scarlet-25-star")
+                favoriteItem?.image = UIImage(named: "star")
             }
         }
     }
@@ -249,7 +251,7 @@ class PlayerViewController: UIViewController {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == event.podcast.id {
-                favoriteItem?.image = UIImage(named: "scarlet-25-star-o")
+                favoriteItem?.image = UIImage(named: "star-outline")
             }
         }
     }
@@ -264,22 +266,22 @@ class PlayerViewController: UIViewController {
         
         switch player.state {
         case .Buffering:
-            playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = false
         case .Paused:
-            playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
         case .Playing:
-            playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
         case .Stopped:
-            playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
         case .WaitingForConnection:
-            playPauseButton?.setImage(UIImage(named: "Pause-white"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = false
         case .Failed(_):
-            playPauseButton?.setImage(UIImage(named: "Play-white"), forState: UIControlState.Normal)
+            playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
         }
     }
