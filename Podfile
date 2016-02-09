@@ -11,5 +11,6 @@ target 'Xenim' do
   pod 'KDEAudioPlayer', '~> 0.4'
   pod "SlackTextViewController"
   pod 'UIImageColors', :git => 'https://github.com/jathu/UIImageColors.git', :branch => 'master'
+  pod 'XMPPFramework'
 end
 

@@ -3,6 +3,12 @@ PODS:
   - AlamofireImage (2.3.0):
     - Alamofire (~> 3.1)
   - Bolts/Tasks (1.6.0)
+  - CocoaAsyncSocket (7.4.2)
+  - CocoaLumberjack (1.9.2):
+    - CocoaLumberjack/Extensions (= 1.9.2)
+  - CocoaLumberjack/Core (1.9.2)
+  - CocoaLumberjack/Extensions (1.9.2):
+    - CocoaLumberjack/Core
   - CRToast (0.0.9)
   - KDEAudioPlayer (0.5.1)
   - MarqueeLabel-Swift (2.6.1)
@@ -11,6 +17,148 @@ PODS:
   - SlackTextViewController (1.9)
   - SwiftyJSON (2.3.2)
   - UIImageColors (1.0.3)
+  - XMPPFramework (3.6.6):
+    - XMPPFramework/Authentication (= 3.6.6)
+    - XMPPFramework/BandwidthMonitor (= 3.6.6)
+    - XMPPFramework/Categories (= 3.6.6)
+    - XMPPFramework/Core (= 3.6.6)
+    - XMPPFramework/CoreDataStorage (= 3.6.6)
+    - XMPPFramework/GoogleSharedStatus (= 3.6.6)
+    - XMPPFramework/KissXML (= 3.6.6)
+    - XMPPFramework/ProcessOne (= 3.6.6)
+    - XMPPFramework/Reconnect (= 3.6.6)
+    - XMPPFramework/Roster (= 3.6.6)
+    - XMPPFramework/SystemInputActivityMonitor (= 3.6.6)
+    - XMPPFramework/Utilities (= 3.6.6)
+    - XMPPFramework/XEP-0009 (= 3.6.6)
+    - XMPPFramework/XEP-0012 (= 3.6.6)
+    - XMPPFramework/XEP-0016 (= 3.6.6)
+    - XMPPFramework/XEP-0045 (= 3.6.6)
+    - XMPPFramework/XEP-0054 (= 3.6.6)
+    - XMPPFramework/XEP-0059 (= 3.6.6)
+    - XMPPFramework/XEP-0060 (= 3.6.6)
+    - XMPPFramework/XEP-0065 (= 3.6.6)
+    - XMPPFramework/XEP-0066 (= 3.6.6)
+    - XMPPFramework/XEP-0082 (= 3.6.6)
+    - XMPPFramework/XEP-0085 (= 3.6.6)
+    - XMPPFramework/XEP-0092 (= 3.6.6)
+    - XMPPFramework/XEP-0100 (= 3.6.6)
+    - XMPPFramework/XEP-0106 (= 3.6.6)
+    - XMPPFramework/XEP-0115 (= 3.6.6)
+    - XMPPFramework/XEP-0136 (= 3.6.6)
+    - XMPPFramework/XEP-0153 (= 3.6.6)
+    - XMPPFramework/XEP-0172 (= 3.6.6)
+    - XMPPFramework/XEP-0184 (= 3.6.6)
+    - XMPPFramework/XEP-0191 (= 3.6.6)
+    - XMPPFramework/XEP-0198 (= 3.6.6)
+    - XMPPFramework/XEP-0199 (= 3.6.6)
+    - XMPPFramework/XEP-0202 (= 3.6.6)
+    - XMPPFramework/XEP-0203 (= 3.6.6)
+    - XMPPFramework/XEP-0223 (= 3.6.6)
+    - XMPPFramework/XEP-0224 (= 3.6.6)
+    - XMPPFramework/XEP-0280 (= 3.6.6)
+    - XMPPFramework/XEP-0297 (= 3.6.6)
+    - XMPPFramework/XEP-0308 (= 3.6.6)
+    - XMPPFramework/XEP-0333 (= 3.6.6)
+    - XMPPFramework/XEP-0335 (= 3.6.6)
+  - XMPPFramework/Authentication (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/BandwidthMonitor (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/Categories (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/Core (3.6.6):
+    - CocoaAsyncSocket (~> 7.4.1)
+    - CocoaLumberjack (~> 1.9)
+    - XMPPFramework/KissXML
+  - XMPPFramework/CoreDataStorage (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/GoogleSharedStatus (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/KissXML (3.6.6)
+  - XMPPFramework/ProcessOne (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/Reconnect (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/Roster (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/CoreDataStorage
+  - XMPPFramework/SystemInputActivityMonitor (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/Utilities (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0009 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0012 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0016 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0045 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/CoreDataStorage
+    - XMPPFramework/XEP-0203
+  - XMPPFramework/XEP-0054 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/Roster
+  - XMPPFramework/XEP-0059 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0060 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0065 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0066 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0082 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0085 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0092 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0100 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0106 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0115 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/CoreDataStorage
+  - XMPPFramework/XEP-0136 (3.6.6):
+    - XMPPFramework/CoreDataStorage
+    - XMPPFramework/XEP-0085
+    - XMPPFramework/XEP-0203
+  - XMPPFramework/XEP-0153 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/XEP-0054
+  - XMPPFramework/XEP-0172 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0184 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0191 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0198 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0199 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0202 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/XEP-0082
+  - XMPPFramework/XEP-0203 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/XEP-0082
+  - XMPPFramework/XEP-0223 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0224 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0280 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0297 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/XEP-0203
+  - XMPPFramework/XEP-0308 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0333 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0335 (3.6.6):
+    - XMPPFramework/Core
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
@@ -22,6 +170,7 @@ DEPENDENCIES:
   - SlackTextViewController
   - SwiftyJSON (~> 2.3)
   - UIImageColors (from `https://github.com/jathu/UIImageColors.git`, branch `master`)
+  - XMPPFramework
 
 EXTERNAL SOURCES:
   UIImageColors:
@@ -37,6 +186,8 @@ SPEC CHECKSUMS:
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
   AlamofireImage: 4013fb5b99b10117bf2554a67b9bd2231d476b45
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  CocoaAsyncSocket: f5783bdedd232d91b89769bc4b5a1580aed518ad
+  CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   KDEAudioPlayer: 593df21b7ba5b1d5627ec58bca36077ba1e25e6b
   MarqueeLabel-Swift: 7010d1f32ca9d17e17c51c2b0b107fecd1be9ea3
@@ -44,5 +195,6 @@ SPEC CHECKSUMS:
   SlackTextViewController: d51503f7be846cb9976a273499dc90f2445e9447
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UIImageColors: 3c3b04ecd5786d3235f7f783316c6ef0f631216d
+  XMPPFramework: b06c210b0b71c08aa41a646bffd2021fa43bb43b
 
 COCOAPODS: 0.39.0
