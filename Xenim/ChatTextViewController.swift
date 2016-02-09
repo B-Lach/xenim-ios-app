@@ -7,7 +7,6 @@
 //
 
 import SlackTextViewController
-import GMIRCClient
 
 struct Message {
     var sender: String
@@ -19,15 +18,13 @@ protocol ChatStatusViewDelegate: class {
     func updateStatusMessage(message: String)
 }
 
-class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
+class ChatTextViewController: SLKTextViewController {
     
     var messages = [Message]()
     var event: Event!
     
     weak var statusViewDelegate: ChatStatusViewDelegate!
     
-    var socket: GMSocket!
-    var irc: GMIRCClient!
     var channel: String {
         get {
             return event.podcast.ircChannel!
@@ -56,7 +53,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
         
         self.rightButton.tintColor = Constants.Colors.tintColor
         
-        connect()
+        //connect()
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,7 +62,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     deinit {
         print("disconnecting")
-        disconnect()
+        //disconnect()
     }
     
     // MARK: - Table view data source
@@ -103,7 +100,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
             // send message
             self.textView.refreshFirstResponder()
             let message = Message(sender: nickname, text: textView.text, date: NSDate())
-            irc.sendMessageToChannel(message.text, channel: channel)
+            //irc.sendMessageToChannel(message.text, channel: channel)
             textView.text = ""
             addNewMessage(message)
         }
@@ -120,6 +117,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     
     // MARK: IRC Delegate
     
+    /*
     func connect() {
         if event.podcast.ircUrl != nil {
             let server = event.podcast.ircServer!
@@ -152,7 +150,7 @@ class ChatTextViewController: SLKTextViewController, GMIRCClientDelegate {
     func didReceivePrivateMessage(text: String, from: String) {
         let message = Message(sender: from, text: text, date: NSDate())
         addNewMessage(message)
-    }
+    } */
     
 }
 
