@@ -208,7 +208,7 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     }
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
-        // TODO configure the room with defaults
+        xmppRoom.configureRoomUsingOptions(nil) // nil to accept default configuration
         print("created room \(sender.roomJID.bare())")
     }
     
