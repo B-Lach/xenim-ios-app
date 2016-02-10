@@ -103,10 +103,10 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         if textView.text != nil && textView.text != "" {
             // send message
             self.textView.refreshFirstResponder()
-            let message = Message(sender: nickname, text: textView.text, date: NSDate())
-            //irc.sendMessageToChannel(message.text, channel: channel)
+            let xmppMessage = XMPPMessage(type: "chat")
+            xmppMessage.addBody(textView.text)
+            xmppRoom.sendMessage(xmppMessage)
             textView.text = ""
-            addNewMessage(message)
         }
     }
     
@@ -114,7 +114,7 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         tableView.beginUpdates()
         messages.append(message)
         let indexPath = NSIndexPath(forRow: messages.count - 1, inSection: 0)
-        tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .None)
         tableView.endUpdates()
         tableView.scrollToBottom(false)
     }
@@ -124,20 +124,16 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     func connect() {
         // setup the stream
         xmppStream = XMPPStream()
-        xmppStream.myJID = XMPPJID.jidWithString("user@gmail.com")
-        xmppStream.hostName = "13948239"
+        xmppStream.myJID = XMPPJID.jidWithString("funkenstrahlen@xmpp.stefantrauth.de")
         xmppStream.addDelegate(self, delegateQueue: dispatch_get_main_queue())
 
         // setting up plugins
         let xmppReconnect = XMPPReconnect()
         xmppReconnect.activate(xmppStream)
         
-        xmppRoom = XMPPRoom(roomStorage: XMPPRoomMemoryStorage(), jid: XMPPJID.jidWithString("channel jid"), dispatchQueue: dispatch_get_main_queue())
-        xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
-        xmppRoom.activate(xmppStream)
-        
         // connecting
         do {
+            print("connecting")
             try xmppStream.connectWithTimeout(10)
         } catch {
             print("connection error")
@@ -163,6 +159,9 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     
     func xmppStreamDidAuthenticate(sender: XMPPStream!) {
         print("authenticated successfully")
+        xmppRoom = XMPPRoom(roomStorage: XMPPRoomMemoryStorage(), jid: XMPPJID.jidWithString("freakshow@conference.xmpp.stefantrauth.de"), dispatchQueue: dispatch_get_main_queue())
+        xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        xmppRoom.activate(xmppStream)
         xmppRoom.joinRoomUsingNickname(nickname, history: nil)
     }
     
@@ -171,8 +170,17 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     }
     
     func xmppStreamDidConnect(sender: XMPPStream!) {
+        print("did connect")
         // register if not registered
+//        xmppStream.registerWithPassword("")
         // else authenticate
+        
+        do {
+            print("authenticating")
+            try xmppStream.authenticateWithPassword("password")
+        } catch {
+            print("error authenticating")
+        }
     }
     
     func xmppStreamDidDisconnect(sender: XMPPStream!, withError error: NSError!) {
@@ -195,14 +203,19 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     
     func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
         print("\(sender.roomJID.bare()) [\(occupantJID.bare())]: \(message.body())")
+        let message = Message(sender: "user", text: message.body(), date: NSDate())
+        addNewMessage(message)
     }
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
+        // TODO configure the room with defaults
         print("created room \(sender.roomJID.bare())")
     }
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
         print("joined room \(sender.roomJID.bare())")
+        statusViewDelegate.updateStatusMessage("")
+        self.setTextInputbarHidden(false, animated: true)
     }
     
     
