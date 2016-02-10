@@ -202,8 +202,8 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     // MARK: - XMPP Room Delegate
     
     func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
-        print("\(sender.roomJID.bare()) [\(occupantJID.bare())]: \(message.body())")
-        let message = Message(sender: "user", text: message.body(), date: NSDate())
+        print("\(message.fromStr()): \(message.body())")
+        let message = Message(sender: message.from().user, text: message.body(), date: NSDate())
         addNewMessage(message)
     }
     
