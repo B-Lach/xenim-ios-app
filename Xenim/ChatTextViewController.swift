@@ -7,6 +7,7 @@
 //
 
 import SlackTextViewController
+import XMPPFramework
 
 struct Message {
     var sender: String
@@ -18,10 +19,11 @@ protocol ChatStatusViewDelegate: class {
     func updateStatusMessage(message: String)
 }
 
-class ChatTextViewController: SLKTextViewController {
+class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoomDelegate {
     
     var messages = [Message]()
     var event: Event!
+    
     
     weak var statusViewDelegate: ChatStatusViewDelegate!
     
@@ -32,6 +34,8 @@ class ChatTextViewController: SLKTextViewController {
     }
     let nickname = "ios-irc-test"
     let realname = "Test"
+    var xmppStream: XMPPStream!
+    var xmppRoom: XMPPRoom!
     
     override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
         return UITableViewStyle.Plain
@@ -53,7 +57,7 @@ class ChatTextViewController: SLKTextViewController {
         
         self.rightButton.tintColor = Constants.Colors.tintColor
         
-        //connect()
+        connect()
     }
     
     override func didReceiveMemoryWarning() {
@@ -115,22 +119,94 @@ class ChatTextViewController: SLKTextViewController {
         tableView.scrollToBottom(false)
     }
     
-    // MARK: IRC Delegate
+    // MARK: XMPP Stream Delegate
+    
+    func connect() {
+        // setup the stream
+        xmppStream = XMPPStream()
+        xmppStream.myJID = XMPPJID.jidWithString("user@gmail.com")
+        xmppStream.hostName = "13948239"
+        xmppStream.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+
+        // setting up plugins
+        let xmppReconnect = XMPPReconnect()
+        xmppReconnect.activate(xmppStream)
+        
+        xmppRoom = XMPPRoom(roomStorage: XMPPRoomMemoryStorage(), jid: XMPPJID.jidWithString("channel jid"), dispatchQueue: dispatch_get_main_queue())
+        xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        xmppRoom.activate(xmppStream)
+        
+        // connecting
+        do {
+            try xmppStream.connectWithTimeout(10)
+        } catch {
+            print("connection error")
+//            statusViewDelegate.updateStatusMessage("No Chat")
+        }
+    }
+    
+    func disconnect() {
+        xmppStream.disconnect()
+    }
+    
+    func xmppStream(sender: XMPPStream!, didFailToSendMessage message: XMPPMessage!, error: NSError!) {
+        print("error sending message: \(error)")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didNotAuthenticate error: DDXMLElement!) {
+        print("could not authenticate \(error)")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didNotRegister error: DDXMLElement!) {
+        print("could not register \(error)")
+    }
+    
+    func xmppStreamDidAuthenticate(sender: XMPPStream!) {
+        print("authenticated successfully")
+        xmppRoom.joinRoomUsingNickname(nickname, history: nil)
+    }
+    
+    func xmppStreamDidRegister(sender: XMPPStream!) {
+        print("registered successfully")
+    }
+    
+    func xmppStreamDidConnect(sender: XMPPStream!) {
+        // register if not registered
+        // else authenticate
+    }
+    
+    func xmppStreamDidDisconnect(sender: XMPPStream!, withError error: NSError!) {
+        print("disconnected due to \(error)")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didReceiveError error: DDXMLElement!) {
+        print("received error \(error)")
+    }
+    
+    func xmppStreamConnectDidTimeout(sender: XMPPStream!) {
+        print("timeout")
+    }
+    
+    func xmppStreamDidSecure(sender: XMPPStream!) {
+        print("secured stream")
+    }
+    
+    // MARK: - XMPP Room Delegate
+    
+    func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
+        print("\(sender.roomJID.bare()) [\(occupantJID.bare())]: \(message.body())")
+    }
+    
+    func xmppRoomDidCreate(sender: XMPPRoom!) {
+        print("created room \(sender.roomJID.bare())")
+    }
+    
+    func xmppRoomDidJoin(sender: XMPPRoom!) {
+        print("joined room \(sender.roomJID.bare())")
+    }
+    
     
     /*
-    func connect() {
-        if event.podcast.ircUrl != nil {
-            let server = event.podcast.ircServer!
-            socket = GMSocket(host: server, port: 6667)
-            irc = GMIRCClient(socket: socket)
-            irc.delegate = self
-            irc.register(nickname, user: nickname, realName: realname)
-        } else {
-            statusViewDelegate.updateStatusMessage("No Chat")
-            // TODO: show alert view
-        }
-
-    }
     
     func disconnect() {
         socket.close()
