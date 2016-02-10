@@ -66,7 +66,7 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     
     deinit {
         print("disconnecting")
-        //disconnect()
+        disconnect()
     }
     
     // MARK: - Table view data source
