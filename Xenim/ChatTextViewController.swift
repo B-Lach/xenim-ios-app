@@ -32,10 +32,12 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
             return event.podcast.ircChannel!
         }
     }
-    let nickname = "ios-irc-test"
-    let realname = "Test"
+    
+    var nickname = "ios"
     var xmppStream: XMPPStream!
     var xmppRoom: XMPPRoom!
+    let xmppServer = "xmpp.stefantrauth.de"
+    var mucRoomName = "freakshow"
     
     override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
         return UITableViewStyle.Plain
@@ -124,7 +126,8 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     func connect() {
         // setup the stream
         xmppStream = XMPPStream()
-        xmppStream.myJID = XMPPJID.jidWithString("funkenstrahlen@xmpp.stefantrauth.de")
+        let randomUsername = self.randomStringWithLength(20)
+        xmppStream.myJID = XMPPJID.jidWithString("\(randomUsername)@\(xmppServer)")
         xmppStream.addDelegate(self, delegateQueue: dispatch_get_main_queue())
 
         // setting up plugins
@@ -159,7 +162,7 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     
     func xmppStreamDidAuthenticate(sender: XMPPStream!) {
         print("authenticated successfully")
-        xmppRoom = XMPPRoom(roomStorage: XMPPRoomMemoryStorage(), jid: XMPPJID.jidWithString("freakshow@conference.xmpp.stefantrauth.de"), dispatchQueue: dispatch_get_main_queue())
+        xmppRoom = XMPPRoom(roomStorage: XMPPRoomMemoryStorage(), jid: XMPPJID.jidWithString("\(mucRoomName)@conference.\(xmppServer)"), dispatchQueue: dispatch_get_main_queue())
         xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         xmppRoom.activate(xmppStream)
         xmppRoom.joinRoomUsingNickname(nickname, history: nil)
@@ -171,15 +174,20 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     
     func xmppStreamDidConnect(sender: XMPPStream!) {
         print("did connect")
-        // register if not registered
-//        xmppStream.registerWithPassword("")
-        // else authenticate
-        
-        do {
-            print("authenticating")
-            try xmppStream.authenticateWithPassword("password")
-        } catch {
-            print("error authenticating")
+        if xmppStream.isSecure() {
+            do {
+                print("authenticating")
+                try xmppStream.authenticateAnonymously()
+            } catch let error {
+                print("error authenticating: \(error)")
+            }
+        } else {
+            print("securing connection")
+            do {
+                try xmppStream.secureConnection()
+            } catch {
+                print("failed to secure stream")
+            }
         }
     }
     
@@ -203,7 +211,7 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     
     func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
         print("\(message.fromStr()): \(message.body())")
-        let message = Message(sender: message.from().user, text: message.body(), date: NSDate())
+        let message = Message(sender: NSURL(string: message.fromStr())!.lastPathComponent!, text: message.body(), date: NSDate())
         addNewMessage(message)
     }
     
@@ -218,28 +226,22 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         self.setTextInputbarHidden(false, animated: true)
     }
     
+    // MARK: Helper
     
-    /*
-    
-    func disconnect() {
-        socket.close()
+    func randomStringWithLength (len : Int) -> NSString {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        
+        let randomString : NSMutableString = NSMutableString(capacity: len)
+        
+        for (var i=0; i < len; i++){
+            let length = UInt32 (letters.length)
+            let rand = arc4random_uniform(length)
+            randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+        }
+        
+        return randomString
     }
-    
-    func didWelcome() {
-        print("Received welcome message - ready to join a chat room")
-        irc.join(channel)
-    }
-    
-    func didJoin(channel: String) {
-        print("Joined chat room: \(channel)")
-        statusViewDelegate.updateStatusMessage("")
-        self.setTextInputbarHidden(false, animated: true)
-    }
-    
-    func didReceivePrivateMessage(text: String, from: String) {
-        let message = Message(sender: from, text: text, date: NSDate())
-        addNewMessage(message)
-    } */
     
 }
 
