@@ -87,7 +87,6 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
 
         cell.nickname = nickname
         cell.message = messages[indexPath.row]
-
     
         return cell
     }
@@ -137,10 +136,11 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         // connecting
         do {
             print("connecting")
+            statusViewDelegate.updateStatusMessage("connecting")
             try xmppStream.connectWithTimeout(10)
-        } catch {
-            print("connection error")
-//            statusViewDelegate.updateStatusMessage("No Chat")
+        } catch let error {
+            print("Connection error: \(error)")
+            showInfoMessage("Connection error", message: "\(error)")
         }
     }
     
@@ -148,28 +148,13 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         xmppStream.disconnect()
     }
     
-    func xmppStream(sender: XMPPStream!, didFailToSendMessage message: XMPPMessage!, error: NSError!) {
-        print("error sending message: \(error)")
-    }
-    
-    func xmppStream(sender: XMPPStream!, didNotAuthenticate error: DDXMLElement!) {
-        print("could not authenticate \(error)")
-    }
-    
-    func xmppStream(sender: XMPPStream!, didNotRegister error: DDXMLElement!) {
-        print("could not register \(error)")
-    }
-    
     func xmppStreamDidAuthenticate(sender: XMPPStream!) {
         print("authenticated successfully")
+        statusViewDelegate.updateStatusMessage("authenticated sucessfully")
         xmppRoom = XMPPRoom(roomStorage: XMPPRoomMemoryStorage(), jid: XMPPJID.jidWithString("\(mucRoomName)@conference.\(xmppServer)"), dispatchQueue: dispatch_get_main_queue())
         xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         xmppRoom.activate(xmppStream)
         xmppRoom.joinRoomUsingNickname(nickname, history: nil)
-    }
-    
-    func xmppStreamDidRegister(sender: XMPPStream!) {
-        print("registered successfully")
     }
     
     func xmppStreamDidConnect(sender: XMPPStream!) {
@@ -180,31 +165,49 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
                 try xmppStream.authenticateAnonymously()
             } catch let error {
                 print("error authenticating: \(error)")
+                showInfoMessage("Authentication Error", message: "\(error)")
             }
         } else {
             print("securing connection")
             do {
                 try xmppStream.secureConnection()
-            } catch {
-                print("failed to secure stream")
+            } catch let error {
+                print("failed to secure stream: \(error)")
+                showInfoMessage("Failed to secure stream", message: "\(error)")
             }
         }
     }
     
+    func xmppStreamDidSecure(sender: XMPPStream!) {
+        print("secured stream")
+        statusViewDelegate.updateStatusMessage("secured connection")
+    }
+    
+    // MARK: XMPP stream errors
+    
+    func xmppStream(sender: XMPPStream!, didFailToSendMessage message: XMPPMessage!, error: NSError!) {
+        print("error sending message: \(error)")
+        showInfoMessage("Could not send message", message: "\(error)")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didNotAuthenticate error: DDXMLElement!) {
+        print("could not authenticate \(error)")
+        showInfoMessage("Authentication error", message: "\(error)")
+    }
+    
     func xmppStreamDidDisconnect(sender: XMPPStream!, withError error: NSError!) {
         print("disconnected due to \(error)")
+        showInfoMessage("Disonnected", message: "\(error)")
     }
     
     func xmppStream(sender: XMPPStream!, didReceiveError error: DDXMLElement!) {
         print("received error \(error)")
+        showInfoMessage("Error Received", message: "\(error)")
     }
     
     func xmppStreamConnectDidTimeout(sender: XMPPStream!) {
         print("timeout")
-    }
-    
-    func xmppStreamDidSecure(sender: XMPPStream!) {
-        print("secured stream")
+        showInfoMessage("Timeout", message: "Timeout")
     }
     
     // MARK: - XMPP Room Delegate
@@ -241,6 +244,14 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         }
         
         return randomString
+    }
+    
+    func showInfoMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.view.tintColor = Constants.Colors.tintColor
+        let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
+        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
 }

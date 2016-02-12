@@ -17,6 +17,7 @@ class ChatContainerViewController: UIViewController, ChatStatusViewDelegate {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var statusMessageLabel: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ class ChatContainerViewController: UIViewController, ChatStatusViewDelegate {
     
     func updateStatusMessage(message: String) {
         statusMessageLabel.hidden = message == ""
+        loadingIndicator.hidden = message == ""
         statusMessageLabel.text = message
     }
     
