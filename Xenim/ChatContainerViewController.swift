@@ -43,7 +43,7 @@ class ChatContainerViewController: UIViewController, ChatStatusViewDelegate {
     }
     
     @IBAction func accountPressed(sender: AnyObject) {
-        chatTextVC?.changeNickname()
+        chatTextVC?.changeNickname("Choose a new nickname")
     }
 
     @IBAction func backToPlayer(sender: AnyObject) {

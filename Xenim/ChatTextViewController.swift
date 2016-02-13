@@ -27,17 +27,17 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     
     weak var statusViewDelegate: ChatStatusViewDelegate!
     
-    var channel: String {
-        get {
-            return event.podcast.ircChannel!
-        }
-    }
-    
     var nickname: String?
     var xmppStream: XMPPStream!
     var xmppRoom: XMPPRoom!
     let xmppServer = "xmpp.stefantrauth.de"
-    var mucRoomName = "freakshow"
+    var mucRoomName: String {
+        get {
+            // make lowercase and strip whitespaces
+            let podcastName = self.event.podcast.name.lowercaseString
+            return podcastName.stringByReplacingOccurrencesOfString(" ", withString: "_")
+        }
+    }
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let userDefaultsNicknameKey = "nickname"
@@ -76,30 +76,58 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     
     // MARK: - Actions
     
-    func changeNickname() {
-        let alert = UIAlertController(title: "Choose Nickname", message: "Enter your Nickname", preferredStyle: .Alert)
-        
-        alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
-            textField.text = self.nickname
-        })
-        
-        alert.addAction(UIAlertAction(title: "Choose", style: .Default, handler: { (action) -> Void in
-            let textField = alert.textFields![0] as UITextField
-            self.nickname = textField.text! // TODO add check!
-            // save
-            self.userDefaults.setObject(self.nickname, forKey: self.userDefaultsNicknameKey)
+    func changeNickname(message: String) {
+        if xmppStream.isAuthenticated() {
+            let alert = UIAlertController(title: "Choose Nickname", message: message, preferredStyle: .Alert)
+            alert.view.tintColor = Constants.Colors.tintColor
             
-            // update nickname if room is joined
-            if self.xmppRoom.isJoined {
-                self.xmppRoom.changeNickname(self.nickname)
+            alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
+                textField.text = self.nickname
+                textField.addTarget(self, action: "textChanged:", forControlEvents: .EditingChanged)
+            })
+            
+            let chooseAction = UIAlertAction(title: "Choose", style: .Default, handler: { (action) -> Void in
+                let textField = alert.textFields![0] as UITextField
+                // check if nick was changed
+                if self.nickname != textField.text {
+                    self.nickname = textField.text
+                    self.userDefaults.setObject(self.nickname, forKey: self.userDefaultsNicknameKey)
+                    print("updated nickname to \(self.nickname)")
+                    
+                    // update nickname if room is joined
+                    if self.xmppRoom.isJoined {
+                        print("changing nickname for room")
+                        self.xmppRoom.changeNickname(self.nickname)
+                    } else {
+                        self.xmppRoom.joinRoomUsingNickname(self.nickname, history: nil)
+                    }
+                }
+            })
+            chooseAction.enabled = self.nickname != "" && self.nickname != nil
+            alert.addAction(chooseAction)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+
+    }
+    
+    func textChanged(sender:AnyObject) {
+        let textField = sender as! UITextField
+        var resp : UIResponder = textField
+        while !(resp is UIAlertController) { resp = resp.nextResponder()! }
+        let alert = resp as! UIAlertController
+        
+        let chooseAction = alert.actions.first!
+        chooseAction.enabled = false
+        if let newNickname = textField.text {
+            if let match = newNickname.rangeOfString("([a-z|A-Z|0-9])\\w+", options: .RegularExpressionSearch) {
+                if match.startIndex == newNickname.startIndex && match.endIndex == newNickname.endIndex {
+                    // nickname is valid because the whole string matches
+                    chooseAction.enabled = true
+                }
             }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        
-        self.presentViewController(alert, animated: true, completion: nil)
+        }
+        alert.view.tintColor = Constants.Colors.tintColor
     }
     
     // MARK: - Table view data source
@@ -154,14 +182,6 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     // MARK: XMPP Stream Delegate
     
     func connect() {
-        if nickname == nil {
-            if let nickname = userDefaults.objectForKey(userDefaultsNicknameKey) as? String {
-                self.nickname = nickname
-            } else {
-                changeNickname()
-            }
-        }
-        
         // setup the stream
         xmppStream = XMPPStream()
         let randomUsername = self.randomStringWithLength(20)
@@ -190,10 +210,21 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     func xmppStreamDidAuthenticate(sender: XMPPStream!) {
         print("authenticated successfully")
         statusViewDelegate.updateStatusMessage("authenticated sucessfully")
+        
         xmppRoom = XMPPRoom(roomStorage: XMPPRoomMemoryStorage(), jid: XMPPJID.jidWithString("\(mucRoomName)@conference.\(xmppServer)"), dispatchQueue: dispatch_get_main_queue())
         xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         xmppRoom.activate(xmppStream)
-        xmppRoom.joinRoomUsingNickname(nickname, history: nil)
+        
+        if nickname == nil {
+            if let nickname = userDefaults.objectForKey(userDefaultsNicknameKey) as? String {
+                self.nickname = nickname
+                print("loaded nickname from user defaults: \(nickname)")
+                xmppRoom.joinRoomUsingNickname(nickname, history: nil)
+            } else {
+                print("could not load nickname from defaults, asking the user now")
+                changeNickname("Choose your nickname")
+            }
+        }
     }
     
     func xmppStreamDidConnect(sender: XMPPStream!) {
@@ -248,6 +279,9 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         print("timeout")
         showInfoMessage("Timeout", message: "Timeout")
     }
+    func xmppStreamWasToldToDisconnect(sender: XMPPStream!) {
+        sender.disconnect()
+    }
     
     // MARK: - XMPP Room Delegate
     
@@ -255,6 +289,11 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         print("\(message.fromStr()): \(message.body())")
         let message = Message(sender: NSURL(string: message.fromStr())!.lastPathComponent!, text: message.body(), date: NSDate())
         addNewMessage(message)
+    }
+    
+    // TODO this is missing as delegate
+    func xmppRoomFailedToJoin() {
+        changeNickname("\(nickname) is already taken as a nickname. Choose a different nickname.")
     }
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
