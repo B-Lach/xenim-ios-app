@@ -19,6 +19,8 @@ class ChatContainerViewController: UIViewController, ChatStatusViewDelegate {
     @IBOutlet weak var statusMessageLabel: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    var chatTextVC: ChatTextViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +43,7 @@ class ChatContainerViewController: UIViewController, ChatStatusViewDelegate {
     }
     
     @IBAction func accountPressed(sender: AnyObject) {
-        // TODO
+        chatTextVC?.changeNickname()
     }
 
     @IBAction func backToPlayer(sender: AnyObject) {
@@ -58,6 +60,7 @@ class ChatContainerViewController: UIViewController, ChatStatusViewDelegate {
                 if let destVC = segue.destinationViewController as? ChatTextViewController {
                     destVC.event = event
                     destVC.statusViewDelegate = self
+                    chatTextVC = destVC
                 }
             default: break
             }

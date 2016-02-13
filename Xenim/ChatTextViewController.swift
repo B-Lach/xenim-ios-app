@@ -33,11 +33,14 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         }
     }
     
-    var nickname = "ios"
+    var nickname: String?
     var xmppStream: XMPPStream!
     var xmppRoom: XMPPRoom!
     let xmppServer = "xmpp.stefantrauth.de"
     var mucRoomName = "freakshow"
+    
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let userDefaultsNicknameKey = "nickname"
     
     override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
         return UITableViewStyle.Plain
@@ -58,7 +61,7 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         self.setTextInputbarHidden(true, animated: false)
         
         self.rightButton.tintColor = Constants.Colors.tintColor
-        
+
         connect()
     }
     
@@ -69,6 +72,34 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     deinit {
         print("disconnecting")
         disconnect()
+    }
+    
+    // MARK: - Actions
+    
+    func changeNickname() {
+        let alert = UIAlertController(title: "Choose Nickname", message: "Enter your Nickname", preferredStyle: .Alert)
+        
+        alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
+            textField.text = self.nickname
+        })
+        
+        alert.addAction(UIAlertAction(title: "Choose", style: .Default, handler: { (action) -> Void in
+            let textField = alert.textFields![0] as UITextField
+            self.nickname = textField.text! // TODO add check!
+            // save
+            self.userDefaults.setObject(self.nickname, forKey: self.userDefaultsNicknameKey)
+            
+            // update nickname if room is joined
+            if self.xmppRoom.isJoined {
+                self.xmppRoom.changeNickname(self.nickname)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
@@ -123,6 +154,14 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     // MARK: XMPP Stream Delegate
     
     func connect() {
+        if nickname == nil {
+            if let nickname = userDefaults.objectForKey(userDefaultsNicknameKey) as? String {
+                self.nickname = nickname
+            } else {
+                changeNickname()
+            }
+        }
+        
         // setup the stream
         xmppStream = XMPPStream()
         let randomUsername = self.randomStringWithLength(20)
@@ -272,6 +311,7 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     
     func xmppRoomDidLeave(sender: XMPPRoom!) {
         print("left muc room")
+        self.setTextInputbarHidden(true, animated: true)
     }
     
     // MARK: Helper

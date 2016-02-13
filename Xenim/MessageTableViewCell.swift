@@ -13,7 +13,7 @@ class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var senderLabel: UILabel!
     @IBOutlet weak var messageContentLabel: UILabel!
     
-    var nickname: String!
+    var nickname: String?
     
     var message: Message! {
         didSet {
@@ -21,10 +21,12 @@ class MessageTableViewCell: UITableViewCell {
             messageContentLabel.text = message.text
             
             // highlight cell for mention
-            if message.text.containsString(nickname) {
-                self.backgroundColor = UIColor(red:0.94, green:0.94, blue:0.94, alpha:1)
-            } else {
-                self.backgroundColor = UIColor.whiteColor()
+            if let nickname = nickname {
+                if message.text.containsString(nickname) {
+                    self.backgroundColor = UIColor(red:0.94, green:0.94, blue:0.94, alpha:1)
+                } else {
+                    self.backgroundColor = UIColor.whiteColor()
+                }
             }
         }
     }
