@@ -219,14 +219,59 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
     }
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
+        //xmppRoom.fetchConfigurationForm()
         xmppRoom.configureRoomUsingOptions(nil) // nil to accept default configuration
         print("created room \(sender.roomJID.bare())")
     }
+    
+//    func xmppRoom(sender: XMPPRoom!, didFetchConfigurationForm configForm: DDXMLElement!) {
+//        print("fetched configuration form")
+//        print(configForm)
+//        let newConfig = configForm.copy() as! DDXMLElement
+//        let fields = newConfig.elementsForName("field")
+//        for field in fields {
+//            let variable = field.attributeStringValueForName("var")
+//            if variable == "muc#roomconfig_getmemberlist" {
+//                field.removeChildAtIndex(0)
+//                field.addChild(DDXMLElement(name: "value", stringValue: "1"))
+//            }
+//        }
+//        
+//        xmppRoom.configureRoomUsingOptions(newConfig)
+//        print("configured room")
+//    }
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
         print("joined room \(sender.roomJID.bare())")
         statusViewDelegate.updateStatusMessage("")
         self.setTextInputbarHidden(false, animated: true)
+        
+        print("fetching members")
+        xmppRoom.fetchMembersList()
+    }
+    
+    func xmppRoom(sender: XMPPRoom!, didFetchMembersList items: [AnyObject]!) {
+        print("members list: \(items)")
+    }
+    
+    func xmppRoom(sender: XMPPRoom!, didNotFetchMembersList iqError: XMPPIQ!) {
+        print("could not fetch members list: \(iqError)")
+    }
+    
+    func xmppRoom(sender: XMPPRoom!, occupantDidJoin occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
+        print("user joined")
+    }
+    
+    func xmppRoom(sender: XMPPRoom!, occupantDidLeave occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
+        print("user left")
+    }
+    
+    func xmppRoom(sender: XMPPRoom!, occupantDidUpdate occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
+        print("user updated")
+    }
+    
+    func xmppRoomDidLeave(sender: XMPPRoom!) {
+        print("left muc room")
     }
     
     // MARK: Helper
