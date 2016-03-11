@@ -35,7 +35,7 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         get {
             // make lowercase and strip whitespaces
             let podcastName = self.event.podcast.name.lowercaseString
-            return podcastName.stringByReplacingOccurrencesOfString(" ", withString: "_")
+            return podcastName.stringByReplacingOccurrencesOfString(" ", withString: "")
         }
     }
     
