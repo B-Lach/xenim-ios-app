@@ -1324,7 +1324,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="556" y="2517"/>
+            <point key="canvasLocation" x="-463" y="2471"/>
         </scene>
         <!--Podcast Info View Controller-->
         <scene sceneID="feS-GP-Wz5">
@@ -1366,7 +1366,6 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="backToPlayer:" destination="3KP-Vb-V5t" eventType="touchUpInside" id="OyE-FE-xnF"/>
                                             <action selector="backToPlayer:" destination="lfX-fA-YGK" eventType="touchUpInside" id="ymK-oh-JXU"/>
                                         </connections>
                                     </button>
@@ -1400,7 +1399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLJ-WX-avV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250" y="2417"/>
+            <point key="canvasLocation" x="172" y="2353"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8wy-hc-DV4">
@@ -1743,157 +1742,9 @@ If you want to see the shows scheduled before taking place, please talk to the p
             </objects>
             <point key="canvasLocation" x="2867" y="1918"/>
         </scene>
-        <!--Chat Container View Controller-->
-        <scene sceneID="Xif-v6-WJA">
-            <objects>
-                <viewController storyboardIdentifier="ChatContainerViewController" id="3KP-Vb-V5t" customClass="ChatContainerViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uv3-Bl-1lv"/>
-                        <viewControllerLayoutGuide type="bottom" id="gTz-cx-Rc6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yhf-ab-H0A">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MJm-vb-sJw">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <connections>
-                                    <segue destination="YUd-hH-1jE" kind="embed" identifier="EmbedChatTextViewController" id="WF0-YK-vId"/>
-                                </connections>
-                            </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KfA-0n-9NX">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Lq-TR-RDI">
-                                        <rect key="frame" x="15" y="31" width="22" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="22" id="2Lc-eg-1DZ"/>
-                                            <constraint firstAttribute="width" secondItem="0Lq-TR-RDI" secondAttribute="height" multiplier="1:1" id="SQY-HO-8MW"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="account-circle"/>
-                                        <connections>
-                                            <action selector="accountPressed:" destination="3KP-Vb-V5t" eventType="touchUpInside" id="gQw-Mx-jTO"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="As3-EB-8Kv">
-                                        <rect key="frame" x="281" y="31" width="38" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKz-dy-lDE">
-                                        <rect key="frame" x="540" y="24" width="45" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="Xn8-Iw-geh"/>
-                                            <constraint firstAttribute="width" constant="45" id="lpo-Dc-iPU"/>
-                                            <constraint firstAttribute="height" constant="35" id="yW1-LL-sQw"/>
-                                            <constraint firstAttribute="width" secondItem="dKz-dy-lDE" secondAttribute="height" multiplier="16:25" id="zOz-Gf-dhj"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <inset key="contentEdgeInsets" minX="30" minY="6" maxX="0.0" maxY="6"/>
-                                        <state key="normal" image="chevron-right"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="Xn8-Iw-geh"/>
-                                                <exclude reference="lpo-Dc-iPU"/>
-                                                <exclude reference="zOz-Gf-dhj"/>
-                                            </mask>
-                                        </variation>
-                                        <connections>
-                                            <action selector="backToPlayer:" destination="3KP-Vb-V5t" eventType="touchUpInside" id="Tp2-x3-lBa"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.21568627450980393" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="0Lq-TR-RDI" firstAttribute="centerY" secondItem="As3-EB-8Kv" secondAttribute="centerY" id="8lq-tb-10w"/>
-                                    <constraint firstAttribute="bottom" secondItem="As3-EB-8Kv" secondAttribute="bottom" constant="12" id="FT1-iY-vre"/>
-                                    <constraint firstItem="dKz-dy-lDE" firstAttribute="centerY" secondItem="As3-EB-8Kv" secondAttribute="centerY" id="b1P-UZ-yyB"/>
-                                    <constraint firstItem="0Lq-TR-RDI" firstAttribute="baseline" secondItem="As3-EB-8Kv" secondAttribute="baseline" id="dNX-7q-ekh"/>
-                                    <constraint firstItem="As3-EB-8Kv" firstAttribute="centerX" secondItem="KfA-0n-9NX" secondAttribute="centerX" id="jRo-uj-bB9"/>
-                                    <constraint firstAttribute="trailing" secondItem="dKz-dy-lDE" secondAttribute="trailing" constant="15" id="kPS-Gn-B7R"/>
-                                    <constraint firstItem="0Lq-TR-RDI" firstAttribute="leading" secondItem="KfA-0n-9NX" secondAttribute="leading" constant="15" id="p2y-K8-PCY"/>
-                                    <constraint firstItem="dKz-dy-lDE" firstAttribute="baseline" secondItem="As3-EB-8Kv" secondAttribute="baseline" id="vrm-EK-mS8"/>
-                                    <constraint firstAttribute="height" constant="64" id="y7q-Ci-4qA"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="dNX-7q-ekh"/>
-                                        <exclude reference="vrm-EK-mS8"/>
-                                    </mask>
-                                </variation>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8N-Yc-6Mk">
-                                <rect key="frame" x="20" y="563" width="560" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0uD-XX-KQz">
-                                <rect key="frame" x="290" y="535" width="20" height="20"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="j8N-Yc-6Mk" secondAttribute="trailing" constant="20" id="9k7-NY-8IP"/>
-                            <constraint firstItem="0uD-XX-KQz" firstAttribute="centerX" secondItem="j8N-Yc-6Mk" secondAttribute="centerX" id="EiC-qu-xfa"/>
-                            <constraint firstAttribute="topMargin" secondItem="KfA-0n-9NX" secondAttribute="top" id="F8k-Ck-PXJ"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="MJm-vb-sJw" secondAttribute="bottom" id="KUX-SE-r8H"/>
-                            <constraint firstItem="MJm-vb-sJw" firstAttribute="centerX" secondItem="yhf-ab-H0A" secondAttribute="centerX" id="QqL-yT-SPJ"/>
-                            <constraint firstItem="KfA-0n-9NX" firstAttribute="leading" secondItem="yhf-ab-H0A" secondAttribute="leading" id="TQJ-sv-Puo"/>
-                            <constraint firstItem="MJm-vb-sJw" firstAttribute="leading" secondItem="yhf-ab-H0A" secondAttribute="leading" id="TsC-lm-1qB"/>
-                            <constraint firstItem="MJm-vb-sJw" firstAttribute="top" secondItem="yhf-ab-H0A" secondAttribute="top" constant="70" id="Xdt-vb-Ppj"/>
-                            <constraint firstAttribute="trailing" secondItem="KfA-0n-9NX" secondAttribute="trailing" id="cNI-V2-jKq"/>
-                            <constraint firstItem="j8N-Yc-6Mk" firstAttribute="top" secondItem="0uD-XX-KQz" secondAttribute="bottom" constant="8" id="fF3-hU-bDx"/>
-                            <constraint firstItem="KfA-0n-9NX" firstAttribute="centerX" secondItem="yhf-ab-H0A" secondAttribute="centerX" id="fIn-hd-G4e"/>
-                            <constraint firstItem="j8N-Yc-6Mk" firstAttribute="leading" secondItem="yhf-ab-H0A" secondAttribute="leading" constant="20" id="qsg-Na-Djx"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="j8N-Yc-6Mk" secondAttribute="bottom" constant="20" id="sdE-zA-WZt"/>
-                            <constraint firstItem="MJm-vb-sJw" firstAttribute="top" secondItem="KfA-0n-9NX" secondAttribute="bottom" id="tkL-jC-8bd"/>
-                            <constraint firstAttribute="trailing" secondItem="MJm-vb-sJw" secondAttribute="trailing" id="uj5-dM-IIb"/>
-                            <constraint firstItem="j8N-Yc-6Mk" firstAttribute="centerX" secondItem="yhf-ab-H0A" secondAttribute="centerX" id="zdk-dj-CCC"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Xdt-vb-Ppj"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <toolbarItems/>
-                    <connections>
-                        <outlet property="loadingIndicator" destination="0uD-XX-KQz" id="tzB-zc-LF5"/>
-                        <outlet property="statusMessageLabel" destination="j8N-Yc-6Mk" id="mgr-Gd-T37"/>
-                        <outlet property="titleLabel" destination="As3-EB-8Kv" id="pKe-Pn-1dK"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GuC-Nx-xh6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-165" y="2424"/>
-        </scene>
-        <!--Chat Text View Controller-->
-        <scene sceneID="npF-qq-KYC">
-            <objects>
-                <viewController storyboardIdentifier="ChatTextViewController" id="YUd-hH-1jE" customClass="ChatTextViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="sPF-OZ-fhE"/>
-                        <viewControllerLayoutGuide type="bottom" id="rzC-kV-JJ9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Xmx-Wp-7DY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="uSB-It-Qe3"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YGM-89-31B" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-165" y="3185"/>
-        </scene>
     </scenes>
     <resources>
         <image name="DismissChevron" width="10" height="6"/>
-        <image name="account-circle" width="25" height="25"/>
         <image name="black-25-envelope" width="19" height="19"/>
         <image name="black-25-github-square" width="19" height="19"/>
         <image name="black-25-heart" width="19" height="19"/>
@@ -1904,7 +1755,6 @@ If you want to see the shows scheduled before taking place, please talk to the p
         <image name="brandeis-blue-25-gear" width="19" height="19"/>
         <image name="brandeis-blue-25-plus" width="19" height="19"/>
         <image name="chevron-left" width="16" height="25"/>
-        <image name="chevron-right" width="16" height="25"/>
         <image name="event_placeholder" width="420" height="420"/>
         <image name="expand-more" width="25" height="16"/>
         <image name="large-fast-forward" width="30" height="21"/>

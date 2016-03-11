@@ -27,7 +27,6 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     let pageViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
     
     let playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayerViewController") as! PlayerViewController
-    var chatContainerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ChatContainerViewController") as! ChatContainerViewController
     var podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
     
     var miniCoverartImageView: UIImageView!
@@ -40,7 +39,6 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         super.viewDidLoad()
         
         playerViewController.event = event
-        chatContainerViewController.event = event
         podcastInfoViewController.event = event
         
         pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40.0)
@@ -48,11 +46,9 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         pageViewController.dataSource = self
         
         playerViewController.statusBarStyleDelegate = self
-        chatContainerViewController.statusBarStyleDelegate = self
         podcastInfoViewController.statusBarStyleDelegate = self
         
         playerViewController.pageViewDelegate = self
-        chatContainerViewController.pageViewDelegate = self
         podcastInfoViewController.pageViewDelegate = self
         
         playerViewController.popupDelegate = self
@@ -182,8 +178,6 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         switch viewController {
-        case chatContainerViewController:
-            return playerViewController
         case playerViewController:
             return podcastInfoViewController
         default:
@@ -193,8 +187,6 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         switch viewController {
-        case playerViewController:
-            return chatContainerViewController
         case podcastInfoViewController:
             return playerViewController
         default:
@@ -203,7 +195,7 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 3
+        return 2
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
@@ -213,17 +205,8 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     func showPage(index: Int) {
         switch index {
         case 0:
-            pageViewController.setViewControllers([chatContainerViewController], direction: .Reverse, animated: true, completion: nil)
+            pageViewController.setViewControllers([playerViewController], direction: .Reverse, animated: true, completion: nil)
         case 1:
-            switch pageViewController.viewControllers!.last! {
-            case chatContainerViewController:
-                pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: true, completion: nil)
-            case podcastInfoViewController:
-                pageViewController.setViewControllers([playerViewController], direction: .Reverse, animated: true, completion: nil)
-            default: break
-            }
-
-        case 2:
             pageViewController.setViewControllers([podcastInfoViewController], direction: .Forward, animated: true, completion: nil)
         default: break
         }

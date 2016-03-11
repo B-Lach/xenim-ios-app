@@ -1,12 +1,8 @@
-CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES
 EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
-ENABLE_BITCODE = NO
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) $(SDKROOT)/usr/include/libxml2 $(PODS_ROOT)/XMPPFramework/module $(SDKROOT)/usr/include/libresolv
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/XMPPFramework/Vendor/libidn"
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Alamofire.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/AlamofireImage.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Bolts.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/CRToast.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/CocoaAsyncSocket.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/CocoaLumberjack.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/KDEAudioPlayer.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MarqueeLabel_Swift.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Parse.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SlackTextViewController.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SwiftyJSON.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/UIImageColors.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/XMPPFramework.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"xml2" -framework "Alamofire" -framework "AlamofireImage" -framework "Bolts" -framework "CRToast" -framework "CocoaAsyncSocket" -framework "CocoaLumberjack" -framework "KDEAudioPlayer" -framework "MarqueeLabel_Swift" -framework "Parse" -framework "SlackTextViewController" -framework "SwiftyJSON" -framework "UIImageColors" -framework "XMPPFramework"
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Alamofire.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/AlamofireImage.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Bolts.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/CRToast.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/KDEAudioPlayer.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MarqueeLabel_Swift.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Parse.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SwiftyJSON.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/UIImageColors.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "AlamofireImage" -framework "Bolts" -framework "CRToast" -framework "KDEAudioPlayer" -framework "MarqueeLabel_Swift" -framework "Parse" -framework "SwiftyJSON" -framework "UIImageColors"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Xenim
 PODS_ROOT = ${SRCROOT}/Pods

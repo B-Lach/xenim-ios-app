@@ -24,16 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>CocoaAsyncSocket.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>CocoaLumberjack.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>KDEAudioPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -54,11 +44,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SlackTextViewController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -69,25 +54,10 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>XMPPFramework.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>05094CC4A047119F7ADC14EE74C4881C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>05E61640FCE3104002AD1EDC7C54364D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2C6A38218B42D65C1A9FAAA8997BE124</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,6 +72,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>56FC1703F903C0EB14A06CA0F6DA29CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>AB7360021CAA2913AC77DDE689D5A2AE</key>
 		<dict>
 			<key>primary</key>
@@ -112,17 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0215FC9C92DB5016DC954C83480607A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>BCA053B6430690326435042FEB61B458</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BFE5072C8AE2F57CBEF196779296F84F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,17 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DCD3EF2DB4CEE3B66A7F14C3D98D5E66</key>
+		<key>EA9DCD65E3A0A2BE1FAF4471F92AFA46</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E365ED5A199EC8D144191276D016E213</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F7D0798FD84A68D558F84856F53EF0A6</key>
+		<key>F0FA329EDB651ADD384C8B5C5DA80B65</key>
 		<dict>
 			<key>primary</key>
 			<true/>
