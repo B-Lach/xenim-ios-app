@@ -202,7 +202,7 @@ class PlayerViewController: UIViewController {
     }
     
     func showEventInfo(sender: AnyObject) {
-        pageViewDelegate.showPage(2)
+        pageViewDelegate.showPage(1)
     }
     
     @IBAction func togglePlayPause(sender: AnyObject) {
@@ -210,7 +210,7 @@ class PlayerViewController: UIViewController {
     }
     
     func openChat(sender: AnyObject) {
-        pageViewDelegate.showPage(0)
+        // TODO
     }
     
     @IBAction func backwardPressed(sender: AnyObject) {

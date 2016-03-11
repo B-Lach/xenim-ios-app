@@ -28,7 +28,7 @@ class PodcastInfoViewController: UIViewController {
     }
     
     @IBAction func backToPlayer(sender: AnyObject) {
-        pageViewDelegate.showPage(1)
+        pageViewDelegate.showPage(0)
     }
     
 
