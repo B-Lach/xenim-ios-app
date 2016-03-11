@@ -211,7 +211,7 @@ class ChatTextViewController: SLKTextViewController, XMPPStreamDelegate, XMPPRoo
         print("authenticated successfully")
         statusViewDelegate.updateStatusMessage("authenticated sucessfully")
         
-        xmppRoom = XMPPRoom(roomStorage: XMPPRoomMemoryStorage(), jid: XMPPJID.jidWithString("\(mucRoomName)@conference.\(xmppServer)"), dispatchQueue: dispatch_get_main_queue())
+        xmppRoom = XMPPRoom(roomStorage: XMPPRoomMemoryStorage(), jid: XMPPJID.jidWithString("\(mucRoomName)%irc.freenode.net@irc.xmpp.stefantrauth.de"), dispatchQueue: dispatch_get_main_queue())
         xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         xmppRoom.activate(xmppStream)
         
