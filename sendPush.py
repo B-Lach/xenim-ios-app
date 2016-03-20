@@ -8,7 +8,8 @@ event_id = "0edbb110-c1c4-46fb-a0a4-4741f07f7b13"
 keys = plistlib.readPlist("Xenim/Keys.plist")
 parseApplicationID = keys["parseApplicationID"]
 parseRestAPIKey = keys["parseRestAPIKey"]
-connection = httplib.HTTPSConnection('api.parse.com', 443)
+parseMasterKey = keys["parseMasterKey"]
+connection = httplib.HTTPSConnection('dev.push.xenim.de', 443)
 connection.connect()
 
 supported_locales = ["de-DE"]
@@ -20,11 +21,14 @@ for locale in supported_locales:
   if locale == "de-DE":
     message = podcast_name + " sendet jetzt live."
      
-  connection.request('POST', '/1/push', json.dumps({
+  connection.request('POST', '/parse/push', json.dumps({
          # if the notification can not be delivered to the user until this point in time
          # it will not be delivered at all. this should be 'now + event.duration'
          "expiration_time": "2018-03-19T22:05:08Z",
          "where": {
+           "deviceType": {
+              "$in": ["ios"]
+            },
            "channels": "podcast_" + podcast_id,
            "localeIdentifier": locale
          },
@@ -38,6 +42,7 @@ for locale in supported_locales:
        }), {
          "X-Parse-Application-Id": parseApplicationID,
          "X-Parse-REST-API-Key": parseRestAPIKey,
+         "X-Parse-Master-Key": parseMasterKey,
          "Content-Type": "application/json"
        })
   result = json.loads(connection.getresponse().read())
@@ -45,11 +50,14 @@ for locale in supported_locales:
   print result
 
 # also send a message to users with unsupported locales. use default message (english)
-connection.request('POST', '/1/push', json.dumps({
+connection.request('POST', '/parse/push', json.dumps({
        # if the notification can not be delivered to the user until this point in time
        # it will not be delivered at all. this should be 'now + event.duration'
        "expiration_time": "2018-03-19T22:05:08Z",
        "where": {
+         "deviceType": {
+            "$in": ["ios"]
+          },
          "channels": "podcast_" + podcast_id,
          "localeIdentifier": {
            "$nin": supported_locales
@@ -65,6 +73,7 @@ connection.request('POST', '/1/push', json.dumps({
      }), {
        "X-Parse-Application-Id": parseApplicationID,
        "X-Parse-REST-API-Key": parseRestAPIKey,
+       "X-Parse-Master-Key": parseMasterKey,
        "Content-Type": "application/json"
      })
 result = json.loads(connection.getresponse().read())
