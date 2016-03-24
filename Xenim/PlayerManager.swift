@@ -91,7 +91,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             let popupViewController = storyboard.instantiateViewControllerWithIdentifier("PopupViewController") as? PopupViewController
             popupViewController!.presenter = baseViewController
             
-            let longpressRecognizer = UILongPressGestureRecognizer(target: popupViewController, action: Selector("handleLongPress:"))
+            let longpressRecognizer = UILongPressGestureRecognizer(target: popupViewController, action: #selector(popupViewController?.handleLongPress(_:)))
             longpressRecognizer.delegate = popupViewController
             
             popupViewController!.event = event
