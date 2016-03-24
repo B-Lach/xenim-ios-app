@@ -210,7 +210,9 @@ class PlayerViewController: UIViewController {
     }
     
     func openChat(sender: AnyObject) {
-        // TODO
+        if let webchatUrl = event.podcast.webchatUrl {
+            UIApplication.sharedApplication().openURL(webchatUrl)
+        }
     }
     
     @IBAction func backwardPressed(sender: AnyObject) {
