@@ -79,7 +79,7 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         // use this to add more controls on ipad interface
         //if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
         
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: "togglePlayPause:")]
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PopupViewController.togglePlayPause(_:)))]
         
         miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
         miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
