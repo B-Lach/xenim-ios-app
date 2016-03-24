@@ -22,11 +22,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // fetch parse keys from Keys.plist
+        // this is force unwrapped intentionally. I want it to crash if this file is not working.
+        let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist")
+        let keys = NSDictionary(contentsOfFile: path!)
+        let applicationId = keys!["parseApplicationID"] as! String
+        let clientKey = keys!["parseClientKey"] as! String
+        
+        Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (config) -> Void in
+            config.applicationId = applicationId
+            config.clientKey = clientKey
+            config.server = "https://dev.push.xenim.de/parse"
+            config.localDatastoreEnabled = true
+        }))
+        
         return true
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
-        PushNotificationManager.setupPushNotifications()
+        setupPushNotifications()
         resetApplicationBadge(application)
     }
     
@@ -37,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let installation = PFInstallation.currentInstallation()
         installation.setDeviceTokenFromData(deviceToken)
-        installation.saveInBackground()
+        installation.saveEventually()
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -49,64 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        if ( application.applicationState == UIApplicationState.Active ) {
-            // app was already in the foreground
-            
-            if let message = userInfo["aps"]?["alert"] as? String {
-                let options: [NSObject:AnyObject] = [
-                    kCRToastTextKey : message,
-                    kCRToastTextAlignmentKey : NSTextAlignment.Center.rawValue,
-                    kCRToastBackgroundColorKey : Constants.Colors.tintColor,
-                    kCRToastTextColorKey: UIColor.whiteColor(),
-                    kCRToastTimeIntervalKey: NSTimeInterval(3)
-                ]
-                CRToastManager.showNotificationWithOptions(options, completionBlock: nil)
-            }
-            resetApplicationBadge(application)
-        } else {
-            // app was just brought from background to foreground because the user clicked on a notification
-            showEventInfo(userInfo)
-        }
-    }
-    
-    /**
-     This is called when a user clicks on a notifcation action button.
-     registering for notification actions happens in PushNotificationManager.swift
-    */
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
-        
-        if identifier == "SHOW_INFO_IDENTIFIER" {
-            showEventInfo(userInfo)
-        } else if identifier == "LISTEN_NOW_IDENTIFIER" {
-            playEvent(userInfo)
-        } else {
-            // action clicked is unknown. ignore
-        }
-        
-        completionHandler() // apple says you have to call this
-    }
-    
-    func showEventInfo(userInfo: [NSObject : AnyObject]) {
-        // Extract the notification event data
-        if let eventId = userInfo["event_id"] as? String {
-            XenimAPI.fetchEventById(eventId, onComplete: { (event) -> Void in
-                if let event = event {
-                    EventDetailViewController.showEventInfo(event: event)
-                }
-            })
-        }
-    }
-    
-    func playEvent(userInfo: [NSObject : AnyObject]) {
-        // Extract the notification event data
-        if let eventId = userInfo["event_id"] as? String {
-            XenimAPI.fetchEventById(eventId, onComplete: { (event) -> Void in
-                if let event = event {
-                    PlayerManager.sharedInstance.togglePlayPause(event)
-                }
-            })
-
-        }
+        PFPush.handlePush(userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName("refreshEvents", object: nil, userInfo: nil)
+        resetApplicationBadge(application)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -131,6 +91,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let event = event {
             PlayerManager.sharedInstance.remoteControlReceivedWithEvent(event)
         }
+    }
+    
+    func setupPushNotifications() {
+        let application = UIApplication.sharedApplication()
+        let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
     }
 
 

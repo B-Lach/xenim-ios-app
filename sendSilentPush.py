@@ -15,12 +15,10 @@ message = podcast_name + " sendet jetzt live."
 
 connection.request('POST', '/parse/push', json.dumps({
        "where": {
-         "channels": "podcast_" + podcast_id
+         
        },
        "data": {
-         "alert": message,
-         "badge": "1",
-         "sound": "ios_defaultsound.caf"
+
        }
      }), {
        "X-Parse-Application-Id": parseApplicationID,

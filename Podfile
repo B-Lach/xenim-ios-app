@@ -7,7 +7,6 @@ target 'Xenim' do
   pod 'AlamofireImage', '~> 2.1'
   pod 'MarqueeLabel-Swift', '~> 2.3'
   pod 'Parse', '~> 1.10'
-  pod "CRToast", '~> 0.0'
   pod 'KDEAudioPlayer', '~> 0.4'
   pod 'UIImageColors', :git => 'https://github.com/jathu/UIImageColors.git', :branch => 'master'
 end

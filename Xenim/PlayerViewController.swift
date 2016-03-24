@@ -69,7 +69,7 @@ class PlayerViewController: UIViewController {
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
-        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("timerTicked"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: #selector(PlayerViewController.timerTicked), userInfo: nil, repeats: true)
         timerTicked()
         
         toolbar.setBackgroundImage(UIImage(),
@@ -134,20 +134,20 @@ class PlayerViewController: UIViewController {
         var items = [UIBarButtonItem]()
         
         if event.podcast.webchatUrl != nil {
-            let chatItem = UIBarButtonItem(image: UIImage(named: "chat"), style: .Plain, target: self, action: "openChat:")
+            let chatItem = UIBarButtonItem(image: UIImage(named: "chat"), style: .Plain, target: self, action: #selector(PlayerViewController.openChat(_:)))
             items.append(spaceItem)
             items.append(chatItem)
         }
         
-        favoriteItem = UIBarButtonItem(image: UIImage(named: "star-outline"), style: .Plain, target: self, action: "favorite:")
+        favoriteItem = UIBarButtonItem(image: UIImage(named: "star-outline"), style: .Plain, target: self, action: #selector(PlayerViewController.favorite(_:)))
         items.append(spaceItem)
         items.append(favoriteItem!)
         
-        let shareItem = UIBarButtonItem(image: UIImage(named: "share"), style: .Plain, target: self, action: "share:")
+        let shareItem = UIBarButtonItem(image: UIImage(named: "share"), style: .Plain, target: self, action: #selector(PlayerViewController.share(_:)))
         items.append(spaceItem)
         items.append(shareItem)
         
-        let infoItem = UIBarButtonItem(image: UIImage(named: "info-outline"), style: .Plain, target: self, action: "showEventInfo:")
+        let infoItem = UIBarButtonItem(image: UIImage(named: "info-outline"), style: .Plain, target: self, action: #selector(PlayerViewController.showEventInfo(_:)))
         items.append(spaceItem)
         items.append(infoItem)
         
@@ -173,7 +173,7 @@ class PlayerViewController: UIViewController {
     
     func updateFavoritesButton() {
         if let event = event {
-            if !Favorites.fetch().contains(event.podcast.id) {
+            if !Favorites.isFavorite(event.podcast.id) {
                 favoriteItem?.image = UIImage(named: "star-outline")
             } else {
                 favoriteItem?.image = UIImage(named: "star")
@@ -228,9 +228,9 @@ class PlayerViewController: UIViewController {
     // MARK: notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerViewController.playerStateChanged(_:)), name: "playerStateChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
     }
     
     
