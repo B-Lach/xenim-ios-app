@@ -34,6 +34,8 @@ class FavoriteTableViewCell: UITableViewCell {
         didSet {
             coverartImageView.layer.cornerRadius = coverartImageView.frame.size.height / 2
             coverartImageView.layer.masksToBounds = true
+            coverartImageView.layer.borderColor =  UIColor.lightGrayColor().CGColor
+            coverartImageView.layer.borderWidth = 1
         }
     }
     @IBOutlet weak var podcastNameLabel: UILabel!
