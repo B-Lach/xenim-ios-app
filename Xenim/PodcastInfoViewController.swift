@@ -13,8 +13,22 @@ class PodcastInfoViewController: UIViewController {
     weak var statusBarStyleDelegate: StatusBarDelegate!
     weak var pageViewDelegate: PageViewDelegate!
     
-    var event: Event!
+    var event: Event! {
+        didSet {
+            let placeholderImage = UIImage(named: "event_placeholder")!
+            if let imageurl = event.podcast.artwork.originalUrl {
+                coverartImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            }
+            podcastNameLabel.text = event.podcast.name
+            podcastDescriptionLabel.text = event.podcast.podcastDescription
+        }
+    }
 
+    @IBOutlet weak var podcastNameLabel: UILabel!
+    @IBOutlet weak var coverartImageView: UIImageView!
+    @IBOutlet weak var podcastDescriptionLabel: UILabel!
+    @IBOutlet weak var toolbar: UIToolbar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

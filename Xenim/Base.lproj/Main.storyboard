@@ -1398,6 +1398,12 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</mutableString>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="coverartImageView" destination="MxO-n1-oix" id="SOv-s3-kjU"/>
+                        <outlet property="podcastDescriptionLabel" destination="cFD-t3-OEJ" id="jyt-sk-Ogd"/>
+                        <outlet property="podcastNameLabel" destination="0bK-Lz-v1y" id="7b5-f7-T3V"/>
+                        <outlet property="toolbar" destination="581-bp-SeS" id="1ho-2T-lgM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLJ-WX-avV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
