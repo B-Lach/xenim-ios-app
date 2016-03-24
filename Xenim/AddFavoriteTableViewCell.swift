@@ -20,7 +20,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
             }
             setupNotifications()
             
-            if !Favorites.fetch().contains(podcast.id) {
+            if !Favorites.isFavorite(podcast.id) {
                 favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
             } else {
                 favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)

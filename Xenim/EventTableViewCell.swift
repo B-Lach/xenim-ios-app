@@ -121,7 +121,7 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func updateFavoriteButton() {
-        favoriteImageView.hidden = !Favorites.fetch().contains(event.podcast.id)
+        favoriteImageView.hidden = !Favorites.isFavorite(event.podcast.id)
     }
     
     

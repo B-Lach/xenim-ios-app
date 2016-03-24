@@ -21,8 +21,8 @@ class FavoritesTableViewController: UITableViewController{
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
         
         // add background view to display error message if no data is available to display
         if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
@@ -151,7 +151,7 @@ class FavoritesTableViewController: UITableViewController{
         
         let removeFavoriteAction = UITableViewRowAction(style: .Default, title:  NSLocalizedString("remove_favorite", value: "Remove", comment: "remove a favorite by swiping left to edit")) { (action, indexPath) -> Void in
             let podcast = self.favorites[indexPath.row]
-            Favorites.remove(podcastId: podcast.id)
+            Favorites.toggle(podcastId: podcast.id)
         }
         removeFavoriteAction.backgroundColor = Constants.Colors.tintColor
 

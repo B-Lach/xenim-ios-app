@@ -173,7 +173,7 @@ class PlayerViewController: UIViewController {
     
     func updateFavoritesButton() {
         if let event = event {
-            if !Favorites.fetch().contains(event.podcast.id) {
+            if !Favorites.isFavorite(event.podcast.id) {
                 favoriteItem?.image = UIImage(named: "star-outline")
             } else {
                 favoriteItem?.image = UIImage(named: "star")
