@@ -11,22 +11,21 @@ import Alamofire
 import KDEAudioPlayer
 import UIKit
 
-class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
+class PlayerManager : NSObject, AudioPlayerDelegate {
     
     static let sharedInstance = PlayerManager()
     
     var event: Event?
     var player = AudioPlayer()
     var currentItem: AudioItem?
-    var playerViewController: PlayerViewController?
-    private var baseViewController: UIViewController?
+    private weak var baseViewController: UITabBarController?
     
     // MARK: - init
     
     override init() {
         super.init()
-        baseViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController! as! UITabBarController
+        baseViewController = rootViewController
         player.delegate = self
     }
     
@@ -38,27 +37,10 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
         currentItem = nil
     }
     
-    // MARK: Delegate
-    
-    func longPress() {
-        if !(baseViewController?.presentedViewController is UIAlertController) {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            alert.view.tintColor = Constants.Colors.tintColor
-            let endPlayback = NSLocalizedString("player_manager_actionsheet_end_playback", value: "End Playback", comment: "long pressing in the player view shows an action sheet to end playback. this is the action message to end playback.")
-            alert.addAction(UIAlertAction(title: endPlayback, style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
-                // dissmiss the action sheet
-                self.baseViewController?.dismissViewControllerAnimated(true, completion: nil)
-                self.stop()
-            }))
-            let cancel = NSLocalizedString("cancel", value: "Cancel", comment: "Cancel")
-            alert.addAction(UIAlertAction(title: cancel, style: UIAlertActionStyle.Cancel, handler: nil))
-            baseViewController?.presentViewController(alert, animated: true, completion: nil)
-        }
-    }
-    
     func togglePlayPause(event: Event) {
         // if it is a new event
         if event != self.event {
+            stop()
             playEvent(event)
         } else {
             switch player.state {
@@ -84,18 +66,6 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
         minus30seconds()
     }
     
-    func sharePressed() {
-        if let url = event?.eventXenimWebUrl {
-            let objectsToShare = [url]
-            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            
-            // Excluded Activities
-            //      activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
-            
-            baseViewController?.presentViewController(activityVC, animated: true, completion: nil)
-        }
-    }
-    
     // MARK: private
     
     private func showStreamErrorMessage() {
@@ -114,20 +84,21 @@ class PlayerManager : NSObject, AudioPlayerDelegate, PlayerManagerDelegate {
     
     private func playEvent(event: Event) {
         if let audioItem = AudioItem(mediumQualitySoundURL: event.streamUrl) {
+            UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+            
             self.event = event
-            if playerViewController == nil {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                playerViewController = storyboard.instantiateViewControllerWithIdentifier("AudioPlayerController") as? PlayerViewController
-                playerViewController!.playerManagerDelegate = self
-            }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let popupViewController = storyboard.instantiateViewControllerWithIdentifier("PopupViewController") as? PopupViewController
+            popupViewController!.presenter = baseViewController
             
-            let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: "handleLongPress:")
-            longpressRecognizer.delegate = playerViewController
+            let longpressRecognizer = UILongPressGestureRecognizer(target: popupViewController, action: "handleLongPress:")
+            longpressRecognizer.delegate = popupViewController
             
-            playerViewController!.event = event
+            popupViewController!.event = event
             
-            baseViewController?.presentPopupBarWithContentViewController(playerViewController!, openPopup: true, animated: true, completion: nil)
+            baseViewController?.presentPopupBarWithContentViewController(popupViewController!, openPopup: true, animated: true, completion: nil)
             baseViewController?.popupBar!.addGestureRecognizer(longpressRecognizer)
+            baseViewController?.popupContentView.popupCloseButton!.hidden = true
             
             currentItem = audioItem
             currentItem?.artist = event.title

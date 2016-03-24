@@ -17,7 +17,7 @@ class SpinnerView : UIView {
         super.layoutSubviews()
         layer.fillColor = nil
         layer.strokeColor = UIColor.whiteColor().CGColor
-        layer.lineWidth = 3
+        layer.lineWidth = 5
         setPath()
     }
     
