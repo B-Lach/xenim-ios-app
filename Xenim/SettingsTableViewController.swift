@@ -13,7 +13,6 @@ import MessageUI
 class SettingsTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var contactCell: UITableViewCell!
-    @IBOutlet weak var flattrCell: UITableViewCell!
     @IBOutlet weak var reportBugCell: UITableViewCell!
     @IBOutlet weak var paypalCell: UITableViewCell!
     @IBOutlet weak var xenimDonationCell: UITableViewCell!
@@ -31,8 +30,6 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
         if selectedCell == contactCell {
             sendMail()
-        } else if selectedCell == flattrCell {
-            openWebsite("https://flattr.com/profile/i42n")
         } else if selectedCell == reportBugCell {
             openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
         } else if selectedCell == paypalCell {
