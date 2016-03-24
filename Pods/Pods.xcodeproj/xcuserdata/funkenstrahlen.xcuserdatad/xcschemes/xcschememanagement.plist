@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>CRToast.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>KDEAudioPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,7 +57,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>432ECC54282C84882B482CCB4CF227FC</key>
+		<key>2C8AA1BAF35413BDB954A1DF93576ED1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,17 +67,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>56FC1703F903C0EB14A06CA0F6DA29CA</key>
+		<key>56ACBFF04EA3C1E39DF0B03848D723DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB7360021CAA2913AC77DDE689D5A2AE</key>
+		<key>707CC1C72DC656466DEC3DDFC21FFEC2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0214E86E9E229E292863BC821997C4D</key>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ADB2ED74894E46C0F52B286BEA215575</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,16 +93,6 @@
 			<true/>
 		</dict>
 		<key>CFF858055EBBB40A023415F0A0168820</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EA9DCD65E3A0A2BE1FAF4471F92AFA46</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F0FA329EDB651ADD384C8B5C5DA80B65</key>
 		<dict>
 			<key>primary</key>
 			<true/>

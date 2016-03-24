@@ -11,6 +11,7 @@
 #else
     import Foundation
 #endif
+import AVFoundation
 
 // MARK: - AudioQuality
 
@@ -30,6 +31,10 @@ public enum AudioQuality {
 
 // MARK: - AudioItemURL
 
+/**
+`AudioItemURL` contains information about an Item URL such as its
+quality.
+*/
 public struct AudioItemURL {
     public let quality: AudioQuality
     public let URL: NSURL
@@ -175,6 +180,32 @@ public class AudioItem: NSObject {
 
     internal static var ap_KVOItems: [String] {
         return ["artist", "title", "album", "trackCount", "trackNumber", "artworkImage"]
+    }
+
+
+    // MARK: Metadata
+
+    public func parseMetadata(items: [AVMetadataItem]) {
+        items.forEach {
+            if let commonKey = $0.commonKey {
+                switch commonKey {
+                case AVMetadataCommonKeyTitle where title == nil:
+                    title = $0.value as? String
+                case AVMetadataCommonKeyArtist where artist == nil:
+                    artist = $0.value as? String
+                case AVMetadataCommonKeyAlbumName where album == nil:
+                    album = $0.value as? String
+                case AVMetadataID3MetadataKeyTrackNumber where trackNumber == nil:
+                    trackNumber = $0.value as? NSNumber
+                default:
+                    #if os(iOS)
+                        if commonKey == AVMetadataCommonKeyArtwork && artworkImage == nil {
+                            artworkImage = ($0.value as? NSData).map { UIImage(data: $0) } ?? nil
+                        }
+                    #endif
+                }
+            }
+        }
     }
 }
 
