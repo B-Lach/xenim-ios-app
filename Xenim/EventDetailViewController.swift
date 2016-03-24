@@ -87,8 +87,8 @@ class EventDetailViewController: UIViewController {
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventDetailViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventDetailViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
     }
     
     deinit {

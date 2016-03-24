@@ -155,8 +155,8 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     // MARK: - Notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewController.refresh(_:)), name: "refreshEvents", object: nil)
     }
     

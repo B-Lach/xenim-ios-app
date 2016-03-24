@@ -65,25 +65,25 @@ class PodcastDetailViewController: UIViewController, SFSafariViewControllerDeleg
         let space = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
         if podcast.websiteUrl != nil {
-            let websiteBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-safari"), style: .Plain, target: self, action: "openWebsite")
+            let websiteBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-safari"), style: .Plain, target: self, action: #selector(PodcastDetailViewController.openWebsite))
             items.append(websiteBarButton)
             items.append(space)
         }
         
         if podcast.twitterURL != nil {
-            let twitterBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-twitter-square"), style: .Plain, target: self, action: "openTwitter")
+            let twitterBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-twitter-square"), style: .Plain, target: self, action: #selector(PodcastDetailViewController.openTwitter))
             items.append(twitterBarButton)
             items.append(space)
         }
         
         if podcast.feedUrl != nil {
-            let subscribeBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-rss-square"), style: .Plain, target: self, action: "subscribe")
+            let subscribeBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-rss-square"), style: .Plain, target: self, action: #selector(PodcastDetailViewController.subscribe))
             items.append(subscribeBarButton)
             items.append(space)
         }
         
         if podcast.email != nil {
-            let mailBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-envelope"), style: .Plain, target: self, action: "sendMail")
+            let mailBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-envelope"), style: .Plain, target: self, action: #selector(PodcastDetailViewController.sendMail))
             items.append(mailBarButton)
             items.append(space)
         }
