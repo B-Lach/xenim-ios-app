@@ -661,12 +661,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="h5w-HX-QEX">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <action selector="pullToRefresh:" destination="umd-ub-pQI" eventType="valueChanged" id="4u4-P4-8rs"/>
-                        </connections>
-                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6T-LB-0o6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -33,7 +33,13 @@ class FavoritesTableViewController: UITableViewController{
         
         // increase content inset for audio player
         tableView?.contentInset.bottom = tableView!.contentInset.bottom + 40
-        refresh()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        // refresh every time this view appears if the stored favorites count does not match the displayed favorites count
+        if Favorites.fetch().count != favorites.count {
+            refresh()
+        }
     }
     
     deinit {
@@ -106,12 +112,7 @@ class FavoritesTableViewController: UITableViewController{
 
     }
     
-    @IBAction func pullToRefresh(sender: UIRefreshControl) {
-        refresh()
-    }
-    
     func refresh() {
-        self.refreshControl!.beginRefreshing()
         tableView.backgroundView = loadingVC!.view
         updateBackground()
         
@@ -122,7 +123,6 @@ class FavoritesTableViewController: UITableViewController{
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
                 self.tableView.backgroundView = self.messageVC!.view
                 self.updateBackground()
-                self.refreshControl!.endRefreshing()
             })
         })
     }
