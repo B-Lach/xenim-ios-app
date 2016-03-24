@@ -93,7 +93,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     // MARK: Actions
     
     @IBAction func refresh(spinner: UIRefreshControl) {
-        spinner.beginRefreshing()
+        refreshControl!.beginRefreshing()
         var newEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
         
         // create a dispatch group to have multiple async tasks and be notified when all of them finished
@@ -130,7 +130,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         // this will also automatically dispatch to main queue
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) { () -> Void in
             self.events = newEvents
-            spinner.endRefreshing()
+            self.refreshControl!.endRefreshing()
             if self.showFavoritesOnly {
                 self.filterFavorites()
             }
@@ -157,6 +157,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewController.refresh(_:)), name: "refreshEvents", object: nil)
     }
     
     deinit {
