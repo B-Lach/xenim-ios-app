@@ -106,7 +106,12 @@ class FavoritesTableViewController: UITableViewController{
 
     }
     
+    @IBAction func pullToRefresh(sender: UIRefreshControl) {
+        refresh()
+    }
+    
     func refresh() {
+        self.refreshControl!.beginRefreshing()
         tableView.backgroundView = loadingVC!.view
         updateBackground()
         
@@ -117,6 +122,7 @@ class FavoritesTableViewController: UITableViewController{
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
                 self.tableView.backgroundView = self.messageVC!.view
                 self.updateBackground()
+                self.refreshControl!.endRefreshing()
             })
         })
     }
