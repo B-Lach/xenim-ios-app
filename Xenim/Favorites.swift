@@ -80,6 +80,7 @@ class Favorites {
         // just return empty array if there is no favorite podcast at all
         if podcastIds.count == 0 {
             onComplete(podcasts: podcasts)
+            return
         }
         
         let serviceGroup = dispatch_group_create()

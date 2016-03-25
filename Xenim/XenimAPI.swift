@@ -110,6 +110,13 @@ class XenimAPI : ListenAPI {
         if let responseData = response.data {
             let json = JSON(data: responseData)
             if let objects = json["objects"].array {
+                
+                // return empty array if there is nothing to parse here
+                if objects.count == 0 {
+                    onComplete(events: events)
+                    return
+                }
+                
                 let serviceGroup = dispatch_group_create()
                 
                 for eventJSON in objects {
