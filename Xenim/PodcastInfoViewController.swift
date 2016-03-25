@@ -35,6 +35,7 @@ class PodcastInfoViewController: UIViewController, SFSafariViewControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        setupNotifications()
     }
     
     func updateUI() {
