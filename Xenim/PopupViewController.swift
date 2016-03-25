@@ -27,7 +27,7 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     let pageViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
     
     let playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayerViewController") as! PlayerViewController
-    var podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
+    let podcastInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PodcastInfoViewController") as! PodcastInfoViewController
     
     var miniCoverartImageView: UIImageView!
     
