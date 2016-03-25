@@ -104,8 +104,8 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             baseViewController?.popupContentView.popupCloseButton!.hidden = true
             
             currentItem = audioItem
-            currentItem?.artist = event.title
-            currentItem?.title = event.eventDescription
+            currentItem?.artist = event.podcast.name
+            currentItem?.title = event.title
             player.playItem(currentItem!) // save as this can not be nil
             
             // fetch coverart from image cache and set it as lockscreen artwork

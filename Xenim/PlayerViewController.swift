@@ -90,12 +90,9 @@ class PlayerViewController: UIViewController {
     
     // MARK: - Update UI
     
-    func updateUI() {
-        let title = event.title != nil ? event.title : event.podcast.name
-        let description = event.eventDescription != nil ? event.eventDescription : event.podcast.podcastDescription
-        
-        podcastNameLabel?.text = title
-        subtitleLabel?.text = description
+    func updateUI() {        
+        podcastNameLabel?.text = event.podcast.name
+        subtitleLabel?.text = event.title
 
         let placeholderImage = UIImage(named: "event_placeholder")!
         if let imageurl = event.podcast.artwork.originalUrl {
