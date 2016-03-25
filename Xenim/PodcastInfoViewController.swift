@@ -210,8 +210,8 @@ class PodcastInfoViewController: UIViewController, SFSafariViewControllerDelegat
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventDetailViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventDetailViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PodcastInfoViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PodcastInfoViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
     }
     
     deinit {
