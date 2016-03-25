@@ -17,32 +17,8 @@
                         <sections>
                             <tableViewSection headerTitle="Get Support" id="yMm-PT-597">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="IUY-6Q-Kmf" imageView="neA-gH-fO4" style="IBUITableViewCellStyleDefault" id="W3P-YO-kkp">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W3P-YO-kkp" id="4Eo-RU-Lo3">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="FAQ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IUY-6Q-Kmf">
-                                                    <rect key="frame" x="49" y="0.0" width="516" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-question" id="neA-gH-fO4">
-                                                    <rect key="frame" x="15" y="12" width="19" height="19"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Gde-zd-lwM" kind="show" id="Mpn-qj-7ck"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="A2h-Or-hEM" imageView="I8S-iN-pa2" style="IBUITableViewCellStyleDefault" id="qLw-T5-iOl">
-                                        <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qLw-T5-iOl" id="fVp-2M-JRm">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -64,7 +40,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ZDd-88-y9e" imageView="UMf-XT-gvz" style="IBUITableViewCellStyleDefault" id="eBi-9V-vnw">
-                                        <rect key="frame" x="0.0" y="202" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eBi-9V-vnw" id="1dY-iT-toe">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -89,7 +65,7 @@
                             <tableViewSection headerTitle="Support us" id="c2j-9c-ZsQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="XKP-uY-s9v" imageView="ZCT-qE-6ra" style="IBUITableViewCellStyleDefault" id="yOG-pQ-STP">
-                                        <rect key="frame" x="0.0" y="297" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="253" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yOG-pQ-STP" id="1Zx-uV-NRI">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -110,7 +86,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="w5m-oy-VCf" imageView="6ml-Ik-6Bs" style="IBUITableViewCellStyleDefault" id="BDG-ya-zDn">
-                                        <rect key="frame" x="0.0" y="341" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="297" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BDG-ya-zDn" id="Abo-5Q-8ld">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -135,7 +111,7 @@
                             <tableViewSection headerTitle="About" id="Nb1-Lj-6W7">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="z7V-Vc-Jj0" imageView="0IU-qS-FRE" style="IBUITableViewCellStyleDefault" id="JFa-4i-AEY">
-                                        <rect key="frame" x="0.0" y="436" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="392" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JFa-4i-AEY" id="L1A-so-Ou0">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -1546,140 +1522,6 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</string>
             </objects>
             <point key="canvasLocation" x="3524" y="-1067"/>
         </scene>
-        <!--FAQ-->
-        <scene sceneID="gtP-js-vJP">
-            <objects>
-                <viewController title="FAQ" id="Gde-zd-lwM" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FbX-ju-bzO"/>
-                        <viewControllerLayoutGuide type="bottom" id="ehR-54-QlZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Xn0-t6-Rhu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8x-2K-ocm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9T-Sd-zcf" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="415"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why could I not see a livestream as an upcoming event before it started?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZw-LZ-4jq">
-                                                <rect key="frame" x="8" y="8" width="584" height="20"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-TQ-7Bs">
-                                                <rect key="frame" x="8" y="36" width="584" height="104"/>
-                                                <string key="text">You see all upcoming events known to Xenim in your event list. However some podcasters do not schedule their livestream before actually doing the show.
-
-If you want to see the shows scheduled before taking place, please talk to the podcaster so they schedule the event next time.</string>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why can I not listen to this event though it is scheduled to be live now?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1k-Rx-IsW">
-                                                <rect key="frame" x="8" y="170" width="584" height="20"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjp-PR-i3k">
-                                                <rect key="frame" x="8" y="198" width="584" height="62"/>
-                                                <string key="text">Sometimes podcasters schedule their event for a specific time but can not start the show right in time. Try checking out their website or their Twitter account for more information.</string>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why can I not find my favorite podcast show here though it does live shows?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mV7-DQ-bPK">
-                                                <rect key="frame" x="8" y="290" width="584" height="20"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app only supports podcasts which do livestreams via the Xenim streaming network." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KP9-IT-5RM">
-                                                <rect key="frame" x="8" y="318" width="584" height="41"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your question has not been answered? Feel free to contact us." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-gq-i0L">
-                                                <rect key="frame" x="8" y="389" width="584" height="18"/>
-                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="aNZ-gq-i0L" secondAttribute="trailing" constant="8" id="2Ug-Uu-EMn"/>
-                                            <constraint firstItem="lZw-LZ-4jq" firstAttribute="top" secondItem="n9T-Sd-zcf" secondAttribute="top" constant="8" id="2WF-S6-K7d"/>
-                                            <constraint firstAttribute="trailing" secondItem="KP9-IT-5RM" secondAttribute="trailing" constant="8" id="2jX-m3-WFI"/>
-                                            <constraint firstAttribute="bottom" secondItem="KP9-IT-5RM" secondAttribute="bottom" constant="8" id="2oI-Mj-TRh"/>
-                                            <constraint firstItem="aNZ-gq-i0L" firstAttribute="leading" secondItem="n9T-Sd-zcf" secondAttribute="leading" constant="8" id="3h9-tv-s4O"/>
-                                            <constraint firstItem="aNZ-gq-i0L" firstAttribute="top" secondItem="KP9-IT-5RM" secondAttribute="bottom" constant="30" id="8f4-mq-uKT"/>
-                                            <constraint firstItem="mV7-DQ-bPK" firstAttribute="top" secondItem="zjp-PR-i3k" secondAttribute="bottom" constant="30" id="FnP-cq-Gt0"/>
-                                            <constraint firstItem="KP9-IT-5RM" firstAttribute="top" secondItem="mV7-DQ-bPK" secondAttribute="bottom" constant="8" id="I7s-V9-FHF"/>
-                                            <constraint firstAttribute="trailing" secondItem="Z1k-Rx-IsW" secondAttribute="trailing" constant="8" id="PZQ-zR-sy3"/>
-                                            <constraint firstItem="8hl-TQ-7Bs" firstAttribute="leading" secondItem="n9T-Sd-zcf" secondAttribute="leading" constant="8" id="Qzv-IW-dEg"/>
-                                            <constraint firstItem="8hl-TQ-7Bs" firstAttribute="top" secondItem="lZw-LZ-4jq" secondAttribute="bottom" constant="8" id="Rrb-lN-Peh"/>
-                                            <constraint firstItem="zjp-PR-i3k" firstAttribute="leading" secondItem="n9T-Sd-zcf" secondAttribute="leading" constant="8" id="TLD-1g-tt2"/>
-                                            <constraint firstItem="lZw-LZ-4jq" firstAttribute="leading" secondItem="n9T-Sd-zcf" secondAttribute="leading" constant="8" id="bk2-it-iV2"/>
-                                            <constraint firstAttribute="bottom" secondItem="aNZ-gq-i0L" secondAttribute="bottom" constant="8" id="gZV-78-YZR"/>
-                                            <constraint firstAttribute="trailing" secondItem="mV7-DQ-bPK" secondAttribute="trailing" constant="8" id="h48-a3-dIy"/>
-                                            <constraint firstItem="Z1k-Rx-IsW" firstAttribute="top" secondItem="8hl-TQ-7Bs" secondAttribute="bottom" constant="30" id="hgi-R9-JCl"/>
-                                            <constraint firstAttribute="trailing" secondItem="8hl-TQ-7Bs" secondAttribute="trailing" constant="8" id="kPb-Eb-LgR"/>
-                                            <constraint firstItem="Z1k-Rx-IsW" firstAttribute="leading" secondItem="n9T-Sd-zcf" secondAttribute="leading" constant="8" id="kWE-PW-g7k"/>
-                                            <constraint firstItem="mV7-DQ-bPK" firstAttribute="leading" secondItem="n9T-Sd-zcf" secondAttribute="leading" constant="8" id="ngn-R7-6ta"/>
-                                            <constraint firstAttribute="trailing" secondItem="zjp-PR-i3k" secondAttribute="trailing" constant="8" id="oj6-vt-NHh"/>
-                                            <constraint firstItem="KP9-IT-5RM" firstAttribute="leading" secondItem="n9T-Sd-zcf" secondAttribute="leading" constant="8" id="qbW-lJ-xBX"/>
-                                            <constraint firstAttribute="trailing" secondItem="lZw-LZ-4jq" secondAttribute="trailing" constant="8" id="vWv-VG-gqg"/>
-                                            <constraint firstItem="zjp-PR-i3k" firstAttribute="top" secondItem="Z1k-Rx-IsW" secondAttribute="bottom" constant="8" id="wPg-h4-nv9"/>
-                                            <constraint firstAttribute="bottom" secondItem="zjp-PR-i3k" secondAttribute="bottom" constant="8" id="xWz-21-IQ6"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="xWz-21-IQ6"/>
-                                                <exclude reference="2oI-Mj-TRh"/>
-                                            </mask>
-                                        </variation>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="n9T-Sd-zcf" firstAttribute="top" secondItem="j8x-2K-ocm" secondAttribute="top" id="MbH-m5-A3M"/>
-                                    <constraint firstAttribute="trailing" secondItem="n9T-Sd-zcf" secondAttribute="trailing" id="Oz5-sL-EPT"/>
-                                    <constraint firstAttribute="bottom" secondItem="n9T-Sd-zcf" secondAttribute="bottom" id="PZx-kl-s35"/>
-                                    <constraint firstItem="n9T-Sd-zcf" firstAttribute="leading" secondItem="j8x-2K-ocm" secondAttribute="leading" id="m3s-i5-Tdo"/>
-                                    <constraint firstAttribute="width" secondItem="n9T-Sd-zcf" secondAttribute="width" id="su7-wd-Vr3"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="su7-wd-Vr3"/>
-                                    </mask>
-                                </variation>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="j8x-2K-ocm" secondAttribute="width" id="Dct-cj-gls"/>
-                            <constraint firstAttribute="width" secondItem="j8x-2K-ocm" secondAttribute="width" id="LyL-og-aAH"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="j8x-2K-ocm" secondAttribute="bottom" id="avZ-Aw-BY4"/>
-                            <constraint firstItem="j8x-2K-ocm" firstAttribute="top" secondItem="Xn0-t6-Rhu" secondAttribute="topMargin" id="iYx-iE-9Bp"/>
-                            <constraint firstAttribute="width" secondItem="n9T-Sd-zcf" secondAttribute="width" id="kCF-jp-pOT"/>
-                            <constraint firstItem="j8x-2K-ocm" firstAttribute="centerX" secondItem="Xn0-t6-Rhu" secondAttribute="centerX" id="wso-hL-vQu"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="LyL-og-aAH"/>
-                            </mask>
-                        </variation>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="m6z-rQ-kOv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3611" y="-2547"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="TFL-Lm-KTG">
             <objects>
@@ -1710,7 +1552,6 @@ If you want to see the shows scheduled before taking place, please talk to the p
         <image name="black-25-heart" width="19" height="19"/>
         <image name="black-25-info" width="19" height="19"/>
         <image name="black-25-paypal" width="19" height="19"/>
-        <image name="black-25-question" width="19" height="19"/>
         <image name="brandeis-blue-25-gear" width="19" height="19"/>
         <image name="brandeis-blue-25-plus" width="19" height="19"/>
         <image name="chevron-left" width="16" height="25"/>
