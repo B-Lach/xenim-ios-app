@@ -1342,15 +1342,7 @@
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOC-b3-XUL">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0RA-tQ-ndi"/>
-                                    <barButtonItem title="Subscribe" id="fda-Of-HMl">
-                                        <connections>
-                                            <action selector="subscribe:" destination="lfX-fA-YGK" id="AdQ-Yj-QPf"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="iAh-Ih-s72"/>
-                                </items>
+                                <items/>
                                 <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
