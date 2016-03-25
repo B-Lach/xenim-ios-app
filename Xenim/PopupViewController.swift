@@ -24,6 +24,7 @@ protocol PopupDelegate: class {
 class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDataSource, StatusBarDelegate, PageViewDelegate, PopupDelegate {
 
     var event: Event!
+    
     let pageViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
     
     let playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayerViewController") as! PlayerViewController

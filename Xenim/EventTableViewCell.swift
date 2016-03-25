@@ -107,6 +107,8 @@ class EventTableViewCell: UITableViewCell {
                     case .Failed(_):
                         playButton.setImage(UIImage(named: "Play"), forState: .Normal)
                     }
+                } else {
+                    playButton.setImage(UIImage(named: "Play"), forState: .Normal)
                 }
             }
         }

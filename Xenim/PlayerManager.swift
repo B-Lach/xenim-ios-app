@@ -40,8 +40,11 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     func togglePlayPause(event: Event) {
         // if it is a new event
         if event != self.event {
-            stop()
             playEvent(event)
+            // fire this notification because if a new event is being played the player state
+            // might not change (only from playing to playing) but the interface needs to update
+            // to show the correct item as playing
+            NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self])
         } else {
             switch player.state {
             case .Buffering: break
@@ -145,7 +148,6 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         case .Playing: break
         case .Stopped:
             // dismiss the player
-            stop()
             baseViewController?.dismissPopupBarAnimated(true, completion: nil)
         case .WaitingForConnection: break
         case .Failed(_):
