@@ -19,7 +19,15 @@ class PodcastInfoViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var coverartImageView: UIImageView!
+    @IBOutlet weak var topbarView: UIView!
+    @IBOutlet weak var coverartImageView: UIImageView! {
+        didSet {
+            coverartImageView.layer.cornerRadius = coverartImageView.frame.width / 2
+            coverartImageView.layer.masksToBounds = true
+            coverartImageView.layer.borderColor =  UIColor.lightGrayColor().CGColor
+            coverartImageView.layer.borderWidth = 1
+        }
+    }
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var podcastDescriptionLabel: UILabel!
     @IBOutlet weak var eventTitleLabel: UILabel!
@@ -38,6 +46,7 @@ class PodcastInfoViewController: UIViewController {
         }
         podcastNameLabel?.text = event.podcast.name
         podcastDescriptionLabel?.text = event.podcast.podcastDescription
+        eventTitleLabel?.text = event.title
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +54,7 @@ class PodcastInfoViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        statusBarStyleDelegate.updateStatusBarStyle(.Default)
+        statusBarStyleDelegate.updateStatusBarStyle(.LightContent)
     }
     
     @IBAction func backToPlayer(sender: AnyObject) {
