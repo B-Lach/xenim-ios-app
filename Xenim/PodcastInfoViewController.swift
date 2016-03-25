@@ -69,6 +69,8 @@ class PodcastInfoViewController: UIViewController, SFSafariViewControllerDelegat
         var items = [UIBarButtonItem]()
         let space = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
+        items.append(space)
+        
         if event.podcast.websiteUrl != nil {
             let websiteBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-safari"), style: .Plain, target: self, action: #selector(PodcastInfoViewController.openWebsite))
             items.append(websiteBarButton)
@@ -96,9 +98,9 @@ class PodcastInfoViewController: UIViewController, SFSafariViewControllerDelegat
         // more
         
         // last item should not be a space, so remove it then
-        if items.last == space {
-            items.removeLast()
-        }
+//        if items.last == space {
+//            items.removeLast()
+//        }
         
         toolbar.setItems(items, animated: true)
         
