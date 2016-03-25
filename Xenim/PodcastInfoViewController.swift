@@ -27,7 +27,7 @@ class PodcastInfoViewController: UIViewController, SFSafariViewControllerDelegat
         }
     }
     @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var podcastDescriptionLabel: UILabel!
+    @IBOutlet weak var podcastDescriptionTextView: UITextView!
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -44,7 +44,7 @@ class PodcastInfoViewController: UIViewController, SFSafariViewControllerDelegat
             coverartImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
         }
         podcastNameLabel?.text = event.podcast.name
-        podcastDescriptionLabel?.text = event.podcast.podcastDescription
+        podcastDescriptionTextView?.text = event.podcast.podcastDescription
         eventTitleLabel?.text = event.title
         updateFavoriteButton()
         setupToolbar()
