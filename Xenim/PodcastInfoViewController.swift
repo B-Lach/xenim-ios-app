@@ -15,11 +15,7 @@ class PodcastInfoViewController: UIViewController, SFSafariViewControllerDelegat
     weak var statusBarStyleDelegate: StatusBarDelegate!
     weak var pageViewDelegate: PageViewDelegate!
     
-    var event: Event! {
-        didSet {
-            updateUI()
-        }
-    }
+    var event: Event!
 
     @IBOutlet weak var topbarView: UIView!
     @IBOutlet weak var coverartImageView: UIImageView! {
