@@ -181,6 +181,14 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    func showInfoMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.view.tintColor = Constants.Colors.tintColor
+        let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
+        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - Actions
     
     func favorite(sender: AnyObject) {
@@ -212,6 +220,9 @@ class PlayerViewController: UIViewController {
     func openChat(sender: AnyObject) {
         if let webchatUrl = event.podcast.webchatUrl {
             UIApplication.sharedApplication().openURL(webchatUrl)
+        } else {
+            let message = NSLocalizedString("player_view_no_chat_url", value: "There is no chat for this podcast", comment: "alert message presented to the user if chat button is pressed but there is no chat url for this podcast.")
+            showInfoMessage("Info", message: message)
         }
     }
     
