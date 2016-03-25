@@ -66,43 +66,42 @@ class PodcastInfoViewController: UIViewController, SFSafariViewControllerDelegat
     }
     
     func setupToolbar() {
-        func setupToolbar() {
-            var items = [UIBarButtonItem]()
-            let space = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-            
-            if event.podcast.websiteUrl != nil {
-                let websiteBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-safari"), style: .Plain, target: self, action: #selector(PodcastInfoViewController.openWebsite))
-                items.append(websiteBarButton)
-                items.append(space)
-            }
-            
-            if event.podcast.twitterURL != nil {
-                let twitterBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-twitter-square"), style: .Plain, target: self, action: #selector(PodcastInfoViewController.openTwitter))
-                items.append(twitterBarButton)
-                items.append(space)
-            }
-            
-            if event.podcast.feedUrl != nil {
-                let subscribeBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-rss-square"), style: .Plain, target: self, action: #selector(PodcastInfoViewController.subscribe))
-                items.append(subscribeBarButton)
-                items.append(space)
-            }
-            
-            if event.podcast.email != nil {
-                let mailBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-envelope"), style: .Plain, target: self, action: #selector(PodcastInfoViewController.sendMail))
-                items.append(mailBarButton)
-                items.append(space)
-            }
-            
-            // more
-            
-            // last item should not be a space, so remove it then
-            if items.last == space {
-                items.removeLast()
-            }
-            
-            toolbar.setItems(items, animated: true)
+        var items = [UIBarButtonItem]()
+        let space = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        
+        if event.podcast.websiteUrl != nil {
+            let websiteBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-safari"), style: .Plain, target: self, action: #selector(PodcastInfoViewController.openWebsite))
+            items.append(websiteBarButton)
+            items.append(space)
         }
+        
+        if event.podcast.twitterURL != nil {
+            let twitterBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-twitter-square"), style: .Plain, target: self, action: #selector(PodcastInfoViewController.openTwitter))
+            items.append(twitterBarButton)
+            items.append(space)
+        }
+        
+        if event.podcast.feedUrl != nil {
+            let subscribeBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-rss-square"), style: .Plain, target: self, action: #selector(PodcastInfoViewController.subscribe))
+            items.append(subscribeBarButton)
+            items.append(space)
+        }
+        
+        if event.podcast.email != nil {
+            let mailBarButton = UIBarButtonItem(image: UIImage(named: "scarlet-25-envelope"), style: .Plain, target: self, action: #selector(PodcastInfoViewController.sendMail))
+            items.append(mailBarButton)
+            items.append(space)
+        }
+        
+        // more
+        
+        // last item should not be a space, so remove it then
+        if items.last == space {
+            items.removeLast()
+        }
+        
+        toolbar.setItems(items, animated: true)
+        
     }
     
     func showInfoMessage(title: String, message: String) {
