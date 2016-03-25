@@ -80,21 +80,23 @@ class Favorites {
         // just return empty array if there is no favorite podcast at all
         if podcastIds.count == 0 {
             onComplete(podcasts: podcasts)
+            return
         }
         
+        let blocksDispatchQueue = dispatch_queue_create("com.domain.blocksArray.sync", DISPATCH_QUEUE_CONCURRENT)
         let serviceGroup = dispatch_group_create()
         
         // start one api requirest for each podcast
         for podcastId in podcastIds {
             dispatch_group_enter(serviceGroup)
             XenimAPI.fetchPodcastById(podcastId, onComplete: { (podcast) -> Void in
-                if podcast != nil {
-                    // this has to be thread safe
-                    objc_sync_enter(podcasts)
-                    podcasts.append(podcast!)
-                    objc_sync_exit(podcasts)
+                dispatch_barrier_async(blocksDispatchQueue) {
+                    if podcast != nil {
+                        // this has to be thread safe
+                        podcasts.append(podcast!)
+                    }
+                    dispatch_group_leave(serviceGroup)
                 }
-                dispatch_group_leave(serviceGroup)
             })
         }
         
@@ -102,8 +104,6 @@ class Favorites {
         dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
             onComplete(podcasts: podcasts)
         }
-        
-        // TODO onComplete will never be called if one of these request fails or times out
     }
     
     private static func notifyFavoriteAdded(podcastId: String) {

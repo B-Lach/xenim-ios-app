@@ -3,6 +3,7 @@ PODS:
   - AlamofireImage (2.3.1):
     - Alamofire (~> 3.2)
   - Bolts/Tasks (1.6.0)
+  - GCDKit (1.2.2)
   - KDEAudioPlayer (0.7.0)
   - MarqueeLabel-Swift (2.6.5)
   - Parse (1.13.0):
@@ -13,6 +14,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - AlamofireImage (~> 2.1)
+  - GCDKit
   - KDEAudioPlayer (~> 0.4)
   - MarqueeLabel-Swift (~> 2.3)
   - Parse (~> 1.10)
@@ -33,6 +35,7 @@ SPEC CHECKSUMS:
   Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
   AlamofireImage: e52336282757bbe1644f075d6cb85f19c891f939
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  GCDKit: 15e3d514cbf5d56699b2716b798031f778fb48c2
   KDEAudioPlayer: f2b1bf59884b8c2cc737c6c36dd7d7630026787d
   MarqueeLabel-Swift: 6fbc43d0bdd41fbd7107a4ca84e167933df42671
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc

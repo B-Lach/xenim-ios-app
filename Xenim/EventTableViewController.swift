@@ -96,34 +96,38 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         refreshControl!.beginRefreshing()
         var newEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
         
+        let blocksDispatchQueue = dispatch_queue_create("com.domain.blocksArray.sync", DISPATCH_QUEUE_CONCURRENT)
+        
         // create a dispatch group to have multiple async tasks and be notified when all of them finished
         let serviceGroup = dispatch_group_create()
         
         dispatch_group_enter(serviceGroup)
         XenimAPI.fetchUpcomingEvents(maxCount: 50) { (events) -> Void in
-            for event in events {
-                objc_sync_enter(newEvents)
-                if event.isUpcomingToday() {
-                    newEvents[1].append(event)
-                } else if event.isUpcomingTomorrow() {
-                    newEvents[2].append(event)
-                } else if event.isUpcomingThisWeek() {
-                    newEvents[3].append(event)
-                } else if event.isUpcoming() {
-                    newEvents[4].append(event)
+            dispatch_barrier_async(blocksDispatchQueue) {
+                for event in events {
+                    if event.isUpcomingToday() {
+                        newEvents[1].append(event)
+                    } else if event.isUpcomingTomorrow() {
+                        newEvents[2].append(event)
+                    } else if event.isUpcomingThisWeek() {
+                        newEvents[3].append(event)
+                    } else if event.isUpcoming() {
+                        newEvents[4].append(event)
+                    }
                 }
-                objc_sync_exit(newEvents)
+                dispatch_group_leave(serviceGroup)
             }
-            dispatch_group_leave(serviceGroup)
+
         }
         dispatch_group_enter(serviceGroup)
         XenimAPI.fetchLiveEvents { (events) -> Void in
-            for event in events {
-                objc_sync_enter(newEvents)
-                newEvents[0].append(event)
-                objc_sync_exit(newEvents)
+            dispatch_barrier_async(blocksDispatchQueue) {
+                for event in events {
+                    newEvents[0].append(event)
+                }
+                dispatch_group_leave(serviceGroup)
             }
-            dispatch_group_leave(serviceGroup)
+
         }
         
         // this will only be executed if all threads of the dispatch_group have finished their work

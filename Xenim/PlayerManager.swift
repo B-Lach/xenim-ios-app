@@ -145,6 +145,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         case .Playing: break
         case .Stopped:
             // dismiss the player
+            stop()
             baseViewController?.dismissPopupBarAnimated(true, completion: nil)
         case .WaitingForConnection: break
         case .Failed(_):

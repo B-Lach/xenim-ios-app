@@ -13,7 +13,7 @@ import Alamofire
 class XenimAPI : ListenAPI {
     
     // "http://feeds.streams.demo.xenim.de/api/v1/"
-    static let apiBaseURL = "http://feeds.streams.xenim.de/api/v1/"
+    static let apiBaseURL = "http://feeds.streams.demo.xenim.de/api/v1/"
     
     static func fetchUpcomingEvents(maxCount maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
@@ -110,18 +110,26 @@ class XenimAPI : ListenAPI {
         if let responseData = response.data {
             let json = JSON(data: responseData)
             if let objects = json["objects"].array {
+                
+                // return empty array if there is nothing to parse here
+                if objects.count == 0 {
+                    onComplete(events: events)
+                    return
+                }
+                
+                let blocksDispatchQueue = dispatch_queue_create("com.domain.blocksArray.sync", DISPATCH_QUEUE_CONCURRENT)
                 let serviceGroup = dispatch_group_create()
                 
                 for eventJSON in objects {
                     dispatch_group_enter(serviceGroup)
                     eventFromJSON(eventJSON, onComplete: { (event) -> Void in
-                        if event != nil {
-                            // this has to be thread safe
-                            objc_sync_enter(events)
-                            events.append(event!)
-                            objc_sync_exit(events)
+                        dispatch_barrier_async(blocksDispatchQueue) {
+                            if event != nil {
+                                // this has to be thread safe
+                                events.append(event!)
+                            }
+                            dispatch_group_leave(serviceGroup)
                         }
-                        dispatch_group_leave(serviceGroup)
                     })
                 }
                 
