@@ -217,10 +217,10 @@
 		22BC05A91C12F995005356C8 /* Popup */ = {
 			isa = PBXGroup;
 			children = (
-				22920B281C623E92009C4CC8 /* PopupViewController.swift */,
-				22920B2E1C628B1C009C4CC8 /* PodcastInfoViewController.swift */,
-				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
 				222FB9FC1BF0E90A0007257A /* PlayerManager.swift */,
+				22920B281C623E92009C4CC8 /* PopupViewController.swift */,
+				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
+				22920B2E1C628B1C009C4CC8 /* PodcastInfoViewController.swift */,
 			);
 			name = Popup;
 			sourceTree = "<group>";
