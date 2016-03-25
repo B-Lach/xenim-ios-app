@@ -19,9 +19,11 @@ class PodcastInfoViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var coverartImageView: UIImageView!
+    @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var podcastDescriptionLabel: UILabel!
+    @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var toolbar: UIToolbar!
     
     override func viewDidLoad() {
@@ -43,13 +45,15 @@ class PodcastInfoViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        statusBarStyleDelegate.updateStatusBarStyle(.LightContent)
+        statusBarStyleDelegate.updateStatusBarStyle(.Default)
     }
     
     @IBAction func backToPlayer(sender: AnyObject) {
         pageViewDelegate.showPage(0)
     }
     
+    @IBAction func toggleFavorite(sender: AnyObject) {
+    }
 
     /*
     // MARK: - Navigation
