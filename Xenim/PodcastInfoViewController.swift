@@ -15,12 +15,7 @@ class PodcastInfoViewController: UIViewController {
     
     var event: Event! {
         didSet {
-            let placeholderImage = UIImage(named: "event_placeholder")!
-            if let imageurl = event.podcast.artwork.originalUrl {
-                coverartImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
-            }
-            podcastNameLabel.text = event.podcast.name
-            podcastDescriptionLabel.text = event.podcast.podcastDescription
+            updateUI()
         }
     }
 
@@ -31,6 +26,16 @@ class PodcastInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateUI()
+    }
+    
+    func updateUI() {
+        let placeholderImage = UIImage(named: "event_placeholder")!
+        if let imageurl = event.podcast.artwork.originalUrl {
+            coverartImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+        }
+        podcastNameLabel?.text = event.podcast.name
+        podcastDescriptionLabel?.text = event.podcast.podcastDescription
     }
 
     override func didReceiveMemoryWarning() {
