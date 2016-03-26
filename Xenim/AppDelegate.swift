@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-import CRToast
 
 struct Constants {
     struct Colors {
