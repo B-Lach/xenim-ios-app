@@ -39,12 +39,9 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // configure the views
         playerViewController.event = event
         podcastInfoViewController.event = event
-        
-        pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40.0)
-        pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: false, completion: nil)
-        pageViewController.dataSource = self
         
         playerViewController.statusBarStyleDelegate = self
         podcastInfoViewController.statusBarStyleDelegate = self
@@ -53,6 +50,11 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         podcastInfoViewController.pageViewDelegate = self
         
         playerViewController.popupDelegate = self
+        
+        // setup page view
+        pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40.0)
+        pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: false, completion: nil)
+        pageViewController.dataSource = self
         
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
