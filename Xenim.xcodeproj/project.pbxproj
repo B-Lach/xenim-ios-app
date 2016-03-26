@@ -36,6 +36,7 @@
 		22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
 		22D515CC1C4CE99700BE8D21 /* PathDynamicModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */; };
+		22DCD9581CA67E01000E602A /* UIGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCD9571CA67E01000E602A /* UIGradientView.swift */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
 		22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */; };
 		22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */; };
@@ -91,6 +92,7 @@
 		22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = LNPopupController.framework.dSYM; path = Carthage/Build/iOS/LNPopupController.framework.dSYM; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
 		22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathDynamicModal.swift; sourceTree = "<group>"; };
+		22DCD9571CA67E01000E602A /* UIGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGradientView.swift; sourceTree = "<group>"; };
 		22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewController.swift; sourceTree = "<group>"; };
 		22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
 				22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */,
 				22C31DF61BECB64E006F2999 /* HelperExtensions.swift */,
+				22DCD9571CA67E01000E602A /* UIGradientView.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				2215EEC01C5B78FA00FF1475 /* PodcastDetailViewController.swift in Sources */,
 				2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */,
 				22920B291C623E92009C4CC8 /* PopupViewController.swift in Sources */,
+				22DCD9581CA67E01000E602A /* UIGradientView.swift in Sources */,
 				22920B2F1C628B1C009C4CC8 /* PodcastInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

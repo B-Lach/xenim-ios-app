@@ -39,12 +39,9 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // configure the views
         playerViewController.event = event
         podcastInfoViewController.event = event
-        
-        pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40.0)
-        pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: false, completion: nil)
-        pageViewController.dataSource = self
         
         playerViewController.statusBarStyleDelegate = self
         podcastInfoViewController.statusBarStyleDelegate = self
@@ -54,15 +51,17 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         
         playerViewController.popupDelegate = self
         
+        // setup page view
+        pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40.0)
+        pageViewController.setViewControllers([playerViewController], direction: .Forward, animated: false, completion: nil)
+        pageViewController.dataSource = self
+        
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
         
-        let title = event.title != nil ? event.title : event.podcast.name
-        let description = event.eventDescription != nil ? event.eventDescription : event.podcast.podcastDescription
-        
-        popupItem.title = title
-        popupItem.subtitle = description
+        popupItem.title = event.podcast.name
+        popupItem.subtitle = event.title
         if let imageurl = event.podcast.artwork.thumb150Url {
             miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
         }

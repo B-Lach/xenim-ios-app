@@ -30,22 +30,6 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenersIconImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
-    
-    var coverartColors: UIImageColors? {
-        didSet {
-            if let colors = coverartColors {
-                self.updateStatusBarColor()
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    let tintColor = colors.backgroundColor.isDarkColor ? UIColor.whiteColor() : UIColor.blackColor()
-                    self.dismissButton.tintColor = tintColor
-                    self.listenersCountLabel.textColor = tintColor
-                    self.listenersIconImageView.tintColor = tintColor
-                })
-            }
-
-        }
-    }
-
     @IBOutlet weak var loadingSpinnerView: SpinnerView!
     @IBOutlet weak var blurView: UIVisualEffectView!
 	@IBOutlet weak var podcastNameLabel: UILabel!
@@ -98,13 +82,6 @@ class PlayerViewController: UIViewController {
         if let imageurl = event.podcast.artwork.originalUrl {
             coverartView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
             backgroundCoverartImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
-
-            Alamofire.request(.GET, imageurl)
-                .responseImage { response in
-                    if let image = response.result.value {
-                        self.coverartColors = image.getColors()
-                    }
-            }
         } else {
             coverartView?.image = placeholderImage
         }
@@ -115,14 +92,7 @@ class PlayerViewController: UIViewController {
     }
     
     func updateStatusBarColor() {
-        if let colors = coverartColors {
-            if colors.backgroundColor.isDarkColor {
-                statusBarStyleDelegate.updateStatusBarStyle(.LightContent)
-            } else {
-                statusBarStyleDelegate.updateStatusBarStyle(.Default)
-            }
-        }
-
+        statusBarStyleDelegate.updateStatusBarStyle(.LightContent)
     }
     
     func updateToolbar() {
