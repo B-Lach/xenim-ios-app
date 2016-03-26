@@ -1147,6 +1147,24 @@
                                             <constraint firstAttribute="width" secondItem="9Z2-mv-QWo" secondAttribute="height" multiplier="1:1" priority="900" id="HrR-rg-ofm"/>
                                         </constraints>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t78-oR-vcF" customClass="UIGradientView" customModule="Xenim" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="172"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="172" id="w8g-ld-4E2"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                                <color key="value" red="0.078645833333333304" green="0.078645833333333304" blue="0.078645833333333304" alpha="0.70024245689655173" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="bottomYPoint">
+                                                <real key="value" value="0.80000000000000004"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-KQ-YVn">
                                         <rect key="frame" x="0.0" y="600" width="600" height="2"/>
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1201,13 +1219,17 @@
                                     <constraint firstItem="ShY-ub-31T" firstAttribute="centerY" secondItem="FSw-84-18Y" secondAttribute="centerY" id="Lnm-G5-ELu"/>
                                     <constraint firstItem="ShY-ub-31T" firstAttribute="leading" secondItem="hqi-bX-AVg" secondAttribute="leading" id="Lz0-sj-SZD"/>
                                     <constraint firstItem="9Z2-mv-QWo" firstAttribute="leading" secondItem="ShY-ub-31T" secondAttribute="trailing" constant="-30" id="Mmw-Zk-e5w"/>
+                                    <constraint firstItem="t78-oR-vcF" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="Q8Q-vA-suJ"/>
                                     <constraint firstItem="ShY-ub-31T" firstAttribute="top" secondItem="9Z2-mv-QWo" secondAttribute="bottom" constant="-30" id="Qir-Z1-aUq"/>
                                     <constraint firstItem="9Z2-mv-QWo" firstAttribute="top" secondItem="KdT-pi-g6m" secondAttribute="top" id="S2q-SN-R18"/>
                                     <constraint firstAttribute="trailing" secondItem="1UZ-KQ-YVn" secondAttribute="trailing" id="W22-fH-5bn"/>
+                                    <constraint firstItem="t78-oR-vcF" firstAttribute="top" secondItem="KdT-pi-g6m" secondAttribute="top" id="YBl-UA-OqC"/>
+                                    <constraint firstItem="t78-oR-vcF" firstAttribute="width" secondItem="KdT-pi-g6m" secondAttribute="width" id="a4l-PD-uTr"/>
                                     <constraint firstItem="mbj-o8-EdW" firstAttribute="top" secondItem="1UZ-KQ-YVn" secondAttribute="bottom" id="gE2-97-a3w"/>
                                     <constraint firstItem="9Z2-mv-QWo" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="j4D-YE-vPr"/>
                                     <constraint firstItem="1UZ-KQ-YVn" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="jb3-mD-ize"/>
                                     <constraint firstItem="FSw-84-18Y" firstAttribute="leading" secondItem="ShY-ub-31T" secondAttribute="trailing" constant="7" id="meo-Ne-Rp8"/>
+                                    <constraint firstAttribute="trailing" secondItem="t78-oR-vcF" secondAttribute="trailing" id="nem-jL-1Lz"/>
                                     <constraint firstAttribute="trailing" secondItem="9Z2-mv-QWo" secondAttribute="trailing" id="raA-Vc-xkU"/>
                                     <constraint firstItem="1UZ-KQ-YVn" firstAttribute="top" secondItem="9Z2-mv-QWo" secondAttribute="bottom" id="vYG-sd-ugr"/>
                                     <constraint firstItem="FSw-84-18Y" firstAttribute="leading" secondItem="ShY-ub-31T" secondAttribute="trailing" constant="5" id="xiV-8X-sTW"/>
