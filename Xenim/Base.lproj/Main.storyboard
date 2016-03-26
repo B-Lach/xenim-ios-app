@@ -360,17 +360,11 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="55" id="hp6-id-7W8"/>
                                                 <constraint firstAttribute="width" secondItem="6Yc-GY-wIz" secondAttribute="height" multiplier="1:1" id="r7R-4L-rAt"/>
-                                                <constraint firstAttribute="width" constant="44" id="s57-GW-TCA"/>
                                             </constraints>
                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                             <state key="normal" image="Play">
                                                 <color key="titleColor" red="0.0" green="0.084724564651545098" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="s57-GW-TCA"/>
-                                                </mask>
-                                            </variation>
                                             <connections>
                                                 <action selector="play:" destination="hiw-wf-THJ" eventType="touchUpInside" id="vkO-kR-4W9"/>
                                             </connections>
@@ -403,7 +397,7 @@
                                     <outlet property="eventTitleLabel" destination="787-WT-oEN" id="zId-9C-89Y"/>
                                     <outlet property="favoriteImageView" destination="TKx-qU-JoM" id="P9x-sj-Rmh"/>
                                     <outlet property="playButton" destination="6Yc-GY-wIz" id="YOQ-DC-b4t"/>
-                                    <outlet property="playButtonWidthConstraint" destination="s57-GW-TCA" id="KLS-MW-Brm"/>
+                                    <outlet property="playButtonWidthConstraint" destination="hp6-id-7W8" id="Cqu-b7-yBi"/>
                                     <outlet property="podcastNameLabel" destination="l5d-ya-iW5" id="Kvp-1b-1yu"/>
                                 </connections>
                             </tableViewCell>

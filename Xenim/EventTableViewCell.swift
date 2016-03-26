@@ -118,10 +118,12 @@ class EventTableViewCell: UITableViewCell {
     
     private func hidePlayButton() {
         playButtonWidthConstraint.constant = 0
+        playButton.hidden = true
     }
     
     private func showPlayButton() {
-        playButtonWidthConstraint.constant = 30
+        playButtonWidthConstraint.constant = 55
+        playButton.hidden = false
     }
     
     func updateFavoriteButton() {
