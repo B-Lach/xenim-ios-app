@@ -60,11 +60,8 @@ class PopupViewController: UIViewController, UIGestureRecognizerDelegate, UIPage
         self.view.addSubview(pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
         
-        let title = event.title != nil ? event.title : event.podcast.name
-        let description = event.eventDescription != nil ? event.eventDescription : event.podcast.podcastDescription
-        
-        popupItem.title = title
-        popupItem.subtitle = description
+        popupItem.title = event.podcast.name
+        popupItem.subtitle = event.title
         if let imageurl = event.podcast.artwork.thumb150Url {
             miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
         }
