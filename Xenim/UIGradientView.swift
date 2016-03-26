@@ -14,21 +14,21 @@ import UIKit
     var gradientLayer: CAGradientLayer!
     
     /// Top color of the gradient layer
-    @IBInspectable var topColor: UIColor = UIColor.blackColor() {
+    var topColor: UIColor = UIColor(red:0.16, green:0.17, blue:0.20, alpha:0.8) {
         didSet {
             updateUI()
         }
     }
     
     /// Bottom color of the gradient layer
-    @IBInspectable var bottomColor: UIColor = UIColor.clearColor() {
+    var bottomColor: UIColor = UIColor.clearColor() {
         didSet {
             updateUI()
         }
     }
     
     /// At which vertical point the layer should end
-    @IBInspectable var bottomYPoint: CGFloat = 0.6 {
+    var bottomYPoint: CGFloat = 0.8 {
         didSet {
             updateUI()
         }
