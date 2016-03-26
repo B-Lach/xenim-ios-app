@@ -1147,8 +1147,8 @@
                                             <constraint firstAttribute="width" secondItem="9Z2-mv-QWo" secondAttribute="height" multiplier="1:1" priority="900" id="HrR-rg-ofm"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t78-oR-vcF" customClass="UIGradientView" customModule="Xenim" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="105"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t78-oR-vcF" customClass="UIGradientView" customModule="Xenim" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="w8g-ld-4E2"/>
