@@ -110,6 +110,8 @@ class EventTableViewCell: UITableViewCell {
                 } else {
                     playButton.setImage(UIImage(named: "Play"), forState: .Normal)
                 }
+            } else {
+                playButton.setImage(UIImage(named: "Play"), forState: .Normal)
             }
         }
     }
