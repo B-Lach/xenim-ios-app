@@ -44,6 +44,8 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.separatorColor = UIColor.clearColor()
+        
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         // increase content inset for audio player
@@ -70,10 +72,6 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-    }
-    
     // MARK: - Update UI
     
     func updateBackground() {
@@ -95,44 +93,48 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     // MARK: Actions
     
     @IBAction func refresh(spinner: UIRefreshControl) {
-        spinner.beginRefreshing()
+        refreshControl!.beginRefreshing()
         var newEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+        
+        let blocksDispatchQueue = dispatch_queue_create("com.domain.blocksArray.sync", DISPATCH_QUEUE_CONCURRENT)
         
         // create a dispatch group to have multiple async tasks and be notified when all of them finished
         let serviceGroup = dispatch_group_create()
         
         dispatch_group_enter(serviceGroup)
         XenimAPI.fetchUpcomingEvents(maxCount: 50) { (events) -> Void in
-            for event in events {
-                objc_sync_enter(newEvents)
-                if event.isUpcomingToday() {
-                    newEvents[1].append(event)
-                } else if event.isUpcomingTomorrow() {
-                    newEvents[2].append(event)
-                } else if event.isUpcomingThisWeek() {
-                    newEvents[3].append(event)
-                } else if event.isUpcoming() {
-                    newEvents[4].append(event)
+            dispatch_barrier_async(blocksDispatchQueue) {
+                for event in events {
+                    if event.isUpcomingToday() {
+                        newEvents[1].append(event)
+                    } else if event.isUpcomingTomorrow() {
+                        newEvents[2].append(event)
+                    } else if event.isUpcomingThisWeek() {
+                        newEvents[3].append(event)
+                    } else if event.isUpcoming() {
+                        newEvents[4].append(event)
+                    }
                 }
-                objc_sync_exit(newEvents)
+                dispatch_group_leave(serviceGroup)
             }
-            dispatch_group_leave(serviceGroup)
+
         }
         dispatch_group_enter(serviceGroup)
         XenimAPI.fetchLiveEvents { (events) -> Void in
-            for event in events {
-                objc_sync_enter(newEvents)
-                newEvents[0].append(event)
-                objc_sync_exit(newEvents)
+            dispatch_barrier_async(blocksDispatchQueue) {
+                for event in events {
+                    newEvents[0].append(event)
+                }
+                dispatch_group_leave(serviceGroup)
             }
-            dispatch_group_leave(serviceGroup)
+
         }
         
         // this will only be executed if all threads of the dispatch_group have finished their work
         // this will also automatically dispatch to main queue
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) { () -> Void in
             self.events = newEvents
-            spinner.endRefreshing()
+            self.refreshControl!.endRefreshing()
             if self.showFavoritesOnly {
                 self.filterFavorites()
             }
@@ -157,8 +159,9 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     // MARK: - Notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewController.refresh(_:)), name: "refreshEvents", object: nil)
     }
     
     deinit {
@@ -281,28 +284,8 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
-        EventTableViewController.showEventInfo(event: cell.event)
+        EventDetailViewController.showEventInfo(event: cell.event)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
-    // MARK: - static global
-    
-    // if the info button in the player for a specific event is pressed
-    // this table view controller should segue to the event detail view
-    static func showEventInfo(event event: Event) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        // configure event detail view controller as popup content
-        let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("EventDetail") as! EventDetailViewController
-        eventDetailVC.event = event
-        
-        let window = UIApplication.sharedApplication().delegate?.window!
-        let modal = PathDynamicModal.show(modalView: eventDetailVC, inView: window!)
-        
-        eventDetailVC.dismissHandler = {[weak modal] in
-            modal?.closeWithStraight()
-            return
-        }
     }
     
 }

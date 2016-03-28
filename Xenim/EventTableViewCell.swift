@@ -13,16 +13,18 @@ class EventTableViewCell: UITableViewCell {
     
     @IBOutlet weak var eventCoverartImage: UIImageView! {
         didSet {
-            eventCoverartImage.layer.cornerRadius = 5.0
+            eventCoverartImage.layer.cornerRadius = eventCoverartImage.frame.width / 2
             eventCoverartImage.layer.masksToBounds = true
+            eventCoverartImage.layer.borderColor =  UIColor.lightGrayColor().CGColor
+            eventCoverartImage.layer.borderWidth = 1
         }
     }
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var eventDescriptionLabel: UILabel!
     @IBOutlet weak var favoriteImageView: UIImageView!
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var playButtonWidthConstraint: NSLayoutConstraint!
     
     var event: Event! {
         didSet {
@@ -36,7 +38,6 @@ class EventTableViewCell: UITableViewCell {
     func updateUI() {
         if let event = event {
             podcastNameLabel?.text = event.podcast.name
-            eventDescriptionLabel?.text = event.eventDescription
             eventTitleLabel?.text = event.title
 
             updateCoverart()
@@ -75,45 +76,58 @@ class EventTableViewCell: UITableViewCell {
             } else if event.isUpcomingThisWeek() {
                 formatter.setLocalizedDateFormatFromTemplate("EEEE")
                 let date = formatter.stringFromDate(event.begin)
-                dateLabel?.text = "\(date)\n\(time)"
+                dateLabel?.text = "\(date) \(time)"
             } else {
                 formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM")
                 let date = formatter.stringFromDate(event.begin)
-                dateLabel?.text = "\(date)\n\(time)"
+                dateLabel?.text = "\(date) \(time)"
             }
         }
     }
     
     func updatePlayButton() {
         if !event.isLive() {
-            // hide the playbutton
-            playButton.hidden = true
+            hidePlayButton()
         } else {
-            playButton.hidden = false
+            showPlayButton()
             let playerManager = PlayerManager.sharedInstance
             if let playerEvent = playerManager.event {
                 if playerEvent.equals(event) {
                     switch playerManager.player.state {
                     case .Buffering:
-                        playButton.hidden = true
+                        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
                     case .Paused:
-                        break
+                        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
                     case .Playing:
-                        playButton.hidden = true
+                        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
                     case .Stopped:
-                        break
+                        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
                     case .WaitingForConnection:
-                        playButton.hidden = true
+                        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
                     case .Failed(_):
-                        break
+                        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
                     }
+                } else {
+                    playButton.setImage(UIImage(named: "Play"), forState: .Normal)
                 }
+            } else {
+                playButton.setImage(UIImage(named: "Play"), forState: .Normal)
             }
         }
     }
     
+    private func hidePlayButton() {
+        playButtonWidthConstraint.constant = 0
+        playButton.hidden = true
+    }
+    
+    private func showPlayButton() {
+        playButtonWidthConstraint.constant = 55
+        playButton.hidden = false
+    }
+    
     func updateFavoriteButton() {
-        favoriteImageView.hidden = !Favorites.fetch().contains(event.podcast.id)
+        favoriteImageView.hidden = !Favorites.isFavorite(event.podcast.id)
     }
     
     
@@ -136,9 +150,9 @@ class EventTableViewCell: UITableViewCell {
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.playerStateChanged(_:)), name: "playerStateChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
     }
     
     deinit {

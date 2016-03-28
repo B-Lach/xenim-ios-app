@@ -30,11 +30,12 @@ private class ClosureContainer: NSObject {
 /**
 `AudioPlayerState` defines 4 state an `AudioPlayer` instance can be in.
 
-- `Buffering`:            Represents that the player is buffering data before playing them.
-- `Playing`:              Represents that the player is playing.
-- `Paused`:               Represents that the player is paused.
-- `Stopped`:              Represents that the player is stopped.
-- `WaitingForConnection`: Represents the state where the player is waiting for internet connection.
+- `Buffering`:            The player is buffering data before playing them.
+- `Playing`:              The player is playing.
+- `Paused`:               The player is paused.
+- `Stopped`:              The player is stopped.
+- `WaitingForConnection`: The player is waiting for internet connection.
+- `Failed`:               An error occured. It contains AVPlayer's error if any.
 */
 public enum AudioPlayerState {
     case Buffering
@@ -69,6 +70,14 @@ public func ==(lhs: AudioPlayerState, rhs: AudioPlayerState) -> Bool {
 
 // MARK: - AudioPlayerMode
 
+/**
+Represents the mode in which the player should play. Modes can be used as masks
+so that you can play in `.Shuffle` mode and still `.RepeatAll`.
+
+- `.Shuffle`:   In this mode, player's queue is shuffled randomly.
+- `.Repeat`:    In this mode, the player will continuously play the same item over and over.
+- `.RepeatAll`: In this mode, the player will continuously play the same queue over and over.
+*/
 public struct AudioPlayerModeMask: OptionSetType {
     public let rawValue: UInt
 
@@ -133,18 +142,80 @@ private extension Array {
 
 private extension NSURL {
     var isOfflineURL: Bool {
-        return fileURL || scheme == "ipod-library"
+        return fileURL || scheme == "ipod-library" || host == "localhost"
     }
 }
 
 
 // MARK: - AudioPlayerDelegate
 
+/// This typealias only serves the purpose of saving user to `import AVFoundation`.
+public typealias Metadata = [AVMetadataItem]
+
+/**
+This protocol contains helpful methods to alert you of specific events.
+If you want to be notified about those events, you will have to set a delegate
+to your `audioPlayer` instance.
+*/
 public protocol AudioPlayerDelegate: NSObjectProtocol {
+    /**
+     This method is called when the audio player changes its state.
+     A fresh created audioPlayer starts in `.Stopped` mode.
+
+     - parameter audioPlayer: The audio player.
+     - parameter from:        The state before any changes.
+     - parameter to:          The new state.
+     */
     func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState)
+
+    /**
+     This method is called when the audio player is about to start playing
+     a new item.
+
+     - parameter audioPlayer: The audio player.
+     - parameter item:        The item that is about to start being played.
+     */
     func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem)
+
+    /**
+     This method is called a regular time interval while playing. It notifies
+     the delegate that the current playing progression changed.
+
+     - parameter audioPlayer:    The audio player.
+     - parameter time:           The current progression.
+     - parameter percentageRead: The percentage of the file that has been read. 
+                                 It's a Float value between 0 & 100 so that you can
+                                easily update an `UISlider` for example.
+     */
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float)
+
+    /**
+     This method gets called when the current item duration has been found.
+
+     - parameter audioPlayer: The audio player.
+     - parameter duration:    Current item's duration.
+     - parameter item:        Current item.
+     */
     func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem)
+
+    /**
+     This methods gets called before duration gets updated with discovered metadata.
+
+     - parameter audioPlayer: The audio player.
+     - parameter item:        Found metadata.
+     - parameter data:        Current item.
+     */
+    func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata)
+
+    /**
+     This method gets called while the audio player is loading the file (over
+     the network or locally). It lets the delegate know what time range has
+     already been loaded.
+
+     - parameter audioPlayer: The audio player.
+     - parameter range:       The time range that the audio player loaded.
+     - parameter item:        Current item.
+     */
     func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem)
 }
 
@@ -305,6 +376,7 @@ public class AudioPlayer: NSObject {
     /// The current state of the player.
     public private(set) var state = AudioPlayerState.Stopped {
         didSet {
+            updateNowPlayingInfoCenter()
             if state != oldValue || state == .WaitingForConnection {
                 delegate?.audioPlayer(self, didChangeStateFrom: oldValue, toState: state)
             }
@@ -548,6 +620,13 @@ public class AudioPlayer: NSObject {
         }
     }
 
+    /**
+     Removes an item at a specific index in the queue.
+
+     - warning: It asserts that the index is valid for the current "enqueueItems".
+
+     - parameter index: The index of the item to remove.
+     */
     public func removeItemAtIndex(index: Int) {
         assert(enqueuedItems != nil, "cannot remove an item when queue is nil")
         assert(index >= 0, "cannot remove an item at negative index")
@@ -650,14 +729,14 @@ public class AudioPlayer: NSObject {
 
     - parameter time: The time to seek to.
     */
-    public func seekToTime(time: NSTimeInterval) {
+    public func seekToTime(time: NSTimeInterval, toleranceBefore: CMTime = kCMTimePositiveInfinity, toleranceAfter: CMTime = kCMTimePositiveInfinity) {
         let time = CMTime(seconds: time, preferredTimescale: 1000000000)
         let seekableRange = player?.currentItem?.seekableTimeRanges.last?.CMTimeRangeValue
         if let seekableStart = seekableRange?.start, let seekableEnd = seekableRange?.end {
             // check if time is in seekable range
             if time >= seekableStart && time <= seekableEnd {
                 // time is in seekable range
-                player?.seekToTime(time)
+                player?.seekToTime(time, toleranceBefore: toleranceBefore, toleranceAfter: toleranceAfter)
             }
             else if time < seekableStart {
                 // time is before seekable start, so just move to the most early position as possible
@@ -784,7 +863,7 @@ public class AudioPlayer: NSObject {
                     info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = progression
                 }
 
-                info[MPNowPlayingInfoPropertyPlaybackRate] = rate
+                info[MPNowPlayingInfoPropertyPlaybackRate] = player?.rate ?? 0
 
                 MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = info
             }
@@ -803,10 +882,17 @@ public class AudioPlayer: NSObject {
                 switch keyPath {
                 case "currentItem.duration":
                     //Duration is available
-                    updateNowPlayingInfoCenter()
+                    if let currentItem = currentItem {
+                        //Let's check for metadata too
+                        if let metadata = player.currentItem?.asset.commonMetadata where metadata.count > 0 {
+                            currentItem.parseMetadata(metadata)
+                            delegate?.audioPlayer(self, didUpdateEmptyMetadataOnItem: currentItem, withData: metadata)
+                        }
 
-                    if let currentItem = currentItem, currentItemDuration = currentItemDuration where currentItemDuration > 0 {
-                        delegate?.audioPlayer(self, didFindDuration: currentItemDuration, forItem: currentItem)
+                        if let currentItemDuration = currentItemDuration where currentItemDuration > 0 {
+                            updateNowPlayingInfoCenter()
+                            delegate?.audioPlayer(self, didFindDuration: currentItemDuration, forItem: currentItem)
+                        }
                     }
 
                 case "currentItem.playbackBufferEmpty":
@@ -973,9 +1059,9 @@ public class AudioPlayer: NSObject {
     */
     private func currentProgressionUpdated(time: CMTime) {
         if let currentItemProgression = currentItemProgression, currentItemDuration = currentItemDuration where currentItemDuration > 0 {
-            //If the current progression is updated, it means we are playing. This fixes the behavior where sometimes
-            //the `playbackLikelyToKeepUp` isn't changed even though it's playing (the first play).
-            if state != .Playing {
+            //This fixes the behavior where sometimes the `playbackLikelyToKeepUp`
+            //isn't changed even though it's playing (happens mostly at the first play though).
+            if state == .Buffering || state == .Paused {
                 if shouldResumePlaying {
                     stateBeforeBuffering = nil
                     state = .Playing
@@ -1133,7 +1219,10 @@ public class AudioPlayer: NSObject {
     private func beginBackgroundTask() {
         #if os(iOS) || os(tvOS)
             if backgroundTaskIdentifier == nil {
-                UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler { [weak self] in
+                backgroundTaskIdentifier = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler { [weak self] in
+                    if let backgroundTaskIdentifier = self?.backgroundTaskIdentifier {
+                        UIApplication.sharedApplication().endBackgroundTask(backgroundTaskIdentifier)
+                    }
                     self?.backgroundTaskIdentifier = nil
                 }
             }

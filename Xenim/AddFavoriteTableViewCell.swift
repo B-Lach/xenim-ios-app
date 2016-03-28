@@ -20,7 +20,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
             }
             setupNotifications()
             
-            if !Favorites.fetch().contains(podcast.id) {
+            if !Favorites.isFavorite(podcast.id) {
                 favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
             } else {
                 favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
@@ -35,8 +35,10 @@ class AddFavoriteTableViewCell: UITableViewCell {
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var coverartImageView: UIImageView! {
         didSet {
-            coverartImageView.layer.cornerRadius = 5.0
+            coverartImageView.layer.cornerRadius = coverartImageView.frame.size.height / 2
             coverartImageView.layer.masksToBounds = true
+            coverartImageView.layer.borderColor =  UIColor.lightGrayColor().CGColor
+            coverartImageView.layer.borderWidth = 1
         }
     }
 
@@ -55,8 +57,8 @@ class AddFavoriteTableViewCell: UITableViewCell {
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddFavoriteTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddFavoriteTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
     }
     
     deinit {

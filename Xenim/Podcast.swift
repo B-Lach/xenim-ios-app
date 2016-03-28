@@ -32,6 +32,24 @@ class Podcast : NSObject, Comparable {
     let podcastXenimWebUrl: NSURL?
     let websiteUrl: NSURL?
     let ircUrl: NSURL?
+    var ircChannel: String? {
+        get {
+            if let url = ircUrl {
+                return url.lastPathComponent
+            }
+            return nil
+        }
+    }
+    var ircServer: String? {
+        get {
+            if let url = ircUrl {
+                return url.host
+            }
+            return nil
+        }
+    }
+    
+    
     let webchatUrl: NSURL?
     
     let feedUrl: NSURL?

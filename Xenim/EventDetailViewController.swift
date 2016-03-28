@@ -10,22 +10,21 @@ import UIKit
 
 class EventDetailViewController: UIViewController {
     
-    var event: Event!
+    var podcast: Podcast!
 
+    @IBOutlet weak var dismissEffectView: UIVisualEffectView! {
+        didSet {
+            dismissEffectView.layer.cornerRadius = dismissEffectView.frame.size.height / 2
+            dismissEffectView.layer.masksToBounds = true
+        }
+    }
     @IBOutlet weak var coverartImageView: UIImageView! {
         didSet {
-            coverartImageView.layer.cornerRadius = 5.0
             coverartImageView.layer.masksToBounds = true
         }
     }
-    @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var eventDescriptionTextView: UITextView!
-    
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var playButtonHeightConstraint: NSLayoutConstraint!
     
     var dismissHandler: (() -> Void)?
     
@@ -35,37 +34,22 @@ class EventDetailViewController: UIViewController {
         setupNotifications()
         
         let placeholderImage = UIImage(named: "event_placeholder")!
-        if let imageurl = event.podcast.artwork.thumb180Url{
+        if let imageurl = podcast.artwork.originalUrl{
             coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
         } else {
             coverartImageView.image = placeholderImage
         }
         
-        podcastNameLabel.text = event.podcast.name
-        eventTitleLabel.text = event.title
-        eventDescriptionTextView.text = event.eventDescription
-        
-        // display livedate differently according to how far in the future
-        // the event is taking place
-        let formatter = NSDateFormatter();
-        formatter.locale = NSLocale.currentLocale()
-        
-        if event.isLive() {
-            dateLabel?.text = NSLocalizedString("live_now", value: "Live Now", comment: "live now string")
-        } else if event.isUpcomingToday() || event.isUpcomingTomorrow() {
-            formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            dateLabel?.text = formatter.stringFromDate(event.begin)
-        } else if event.isUpcomingThisWeek() {
-            formatter.setLocalizedDateFormatFromTemplate("EEEE HH:mm")
-            dateLabel?.text = formatter.stringFromDate(event.begin)
-        } else {
-            formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM HH:mm")
-            dateLabel?.text = formatter.stringFromDate(event.begin)
-        }
-                
+        eventDescriptionTextView.text = podcast.podcastDescription
         updateFavoriteButton()
-        updatePlayButton()
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        // ensure text view is scrolled to the top
+        eventDescriptionTextView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: false)
+        //eventDescriptionTextView.setContentOffset(CGPointZero, animated: false)
+        //eventDescriptionTextView.scrollRangeToVisible(NSMakeRange(0, 0))
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,97 +57,48 @@ class EventDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-    }
-    
     override func viewWillLayoutSubviews() {
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         // scale the popover
-        view.layer.cornerRadius = 5.0
-        view.bounds = CGRectMake(0, 0, screenSize.width * 0.9, 400)
+        view.layer.cornerRadius = 10.0
+        view.bounds = CGRectMake(0, 0, screenSize.width * 0.8, screenSize.height * 0.75)
     }
     
     func updateFavoriteButton() {
-        if Favorites.fetch().contains(event.podcast.id) {
+        if Favorites.fetch().contains(podcast.id) {
             favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
         } else {
             favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
         }
     }
     
-    func updatePlayButton() {
-        // general stuff
-        playButton.backgroundColor = Constants.Colors.tintColor
-        playButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        playButton?.layer.cornerRadius = 5
-        playButton?.layer.borderWidth = 0
-        playButton?.contentEdgeInsets = UIEdgeInsetsMake(10, 5, 10, 5)
-        
-        if !event.isLive() {
-            // hide the playbutton
-            playButtonHeightConstraint.constant = 0
-        } else {
-            let playerManager = PlayerManager.sharedInstance
-            if let playerEvent = playerManager.event {
-                if playerEvent.equals(event) {
-                    switch playerManager.player.state {
-                    case .Buffering:
-                        playButtonHeightConstraint.constant = 0
-                    case .Paused:
-                        break
-                    case .Playing:
-                        playButtonHeightConstraint.constant = 0
-                    case .Stopped:
-                        break
-                    case .WaitingForConnection:
-                        playButtonHeightConstraint.constant = 0
-                    case .Failed(_):
-                        break
-                    }
-                }
-            }
-        }
-    }
-    
     // MARK: Actions
     
     @IBAction func toggleFavorite(sender: AnyObject) {
-        Favorites.toggle(podcastId: event.podcast.id)
+        Favorites.toggle(podcastId: podcast.id)
     }
     
-    @IBAction func playEvent(sender: AnyObject) {
-        PlayerManager.sharedInstance.togglePlayPause(event)
+    @IBAction func dismiss(sender: AnyObject) {
         if dismissHandler != nil {
             dismissHandler!()
         }
     }
-    
-    @IBAction func moreActions(sender: AnyObject) {
-        // TODO
-    }
-    
     // MARK: notifications
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("playerStateChanged:"), name: "playerStateChanged", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventDetailViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventDetailViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func playerStateChanged(notification: NSNotification) {
-        updatePlayButton()
-    }
-    
     func favoriteAdded(notification: NSNotification) {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
-            if podcastId == event.podcast.id {
+            if podcastId == podcast.id {
                 favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
                 animateFavoriteButton()
             }
@@ -173,7 +108,7 @@ class EventDetailViewController: UIViewController {
     func favoriteRemoved(notification: NSNotification) {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
-            if podcastId == event.podcast.id {
+            if podcastId == podcast.id {
                 favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
                 animateFavoriteButton()
             }
@@ -192,4 +127,23 @@ class EventDetailViewController: UIViewController {
             }, completion: nil)
     }
 
+    // MARK: - static global
+    
+    // if the info button in the player for a specific event is pressed
+    // this table view controller should segue to the event detail view
+    static func showEventInfo(event event: Event) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // configure event detail view controller as popup content
+        let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("EventDetail") as! EventDetailViewController
+        eventDetailVC.podcast = event.podcast
+        
+        let window = UIApplication.sharedApplication().delegate?.window!
+        let modal = PathDynamicModal.show(modalView: eventDetailVC, inView: window!)
+        
+        eventDetailVC.dismissHandler = {[weak modal] in
+            modal?.closeWithStraight()
+            return
+        }
+    }
 }

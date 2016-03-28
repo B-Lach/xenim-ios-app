@@ -21,8 +21,8 @@ class FavoritesTableViewController: UITableViewController{
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteAdded:"), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("favoriteRemoved:"), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
         
         // add background view to display error message if no data is available to display
         if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
@@ -33,15 +33,17 @@ class FavoritesTableViewController: UITableViewController{
         
         // increase content inset for audio player
         tableView?.contentInset.bottom = tableView!.contentInset.bottom + 40
-        refresh()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        // refresh every time this view appears if the stored favorites count does not match the displayed favorites count
+        if Favorites.fetch().count != favorites.count {
+            refresh()
+        }
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -146,15 +148,8 @@ class FavoritesTableViewController: UITableViewController{
     }
     
     func showFavoriteDetailViewForIndexPath(indexPath: NSIndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        // configure event detail view controller as popup content
-        let favoriteDetailVC = storyboard.instantiateViewControllerWithIdentifier("FavoriteDetail") as! FavoriteDetailViewController
-        favoriteDetailVC.podcast = favorites[indexPath.row]
-        
-        let window = UIApplication.sharedApplication().delegate?.window!
-        PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
-        
+        let podcast = favorites[indexPath.row]
+        PodcastDetailViewController.showPodcastInfo(podcast: podcast)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
@@ -162,7 +157,7 @@ class FavoritesTableViewController: UITableViewController{
         
         let removeFavoriteAction = UITableViewRowAction(style: .Default, title:  NSLocalizedString("remove_favorite", value: "Remove", comment: "remove a favorite by swiping left to edit")) { (action, indexPath) -> Void in
             let podcast = self.favorites[indexPath.row]
-            Favorites.remove(podcastId: podcast.id)
+            Favorites.toggle(podcastId: podcast.id)
         }
         removeFavoriteAction.backgroundColor = Constants.Colors.tintColor
 

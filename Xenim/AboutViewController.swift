@@ -21,10 +21,6 @@ class AboutViewController: UIViewController {
             versionLabel?.text = "Undefined Version"
         }
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

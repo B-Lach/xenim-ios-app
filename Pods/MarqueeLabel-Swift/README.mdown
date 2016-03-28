@@ -5,7 +5,7 @@ MarqueeLabel is a UILabel subclass adds a scrolling marquee effect when the text
 
 ## Work in Progress!
 
-This is a branch of [MarqueeLabel](https://github.com/cbpowell/MarqueeLabel) in [Swift](https://developer.apple.com/library/prerelease/mac/documentation/Swift/Conceptual/Swift_Programming_Language/index.html), currently equivalent to the [v2.3.4 release](https://github.com/cbpowell/MarqueeLabel/releases/tag/2.3.4). I created this mostly as a learn-by-doing exercise to get familiar with the Swift language.
+This is a branch of [MarqueeLabel](https://github.com/cbpowell/MarqueeLabel) in [Swift](https://developer.apple.com/library/prerelease/mac/documentation/Swift/Conceptual/Swift_Programming_Language/index.html), currently equivalent to the [v2.5.0 release](https://github.com/cbpowell/MarqueeLabel/releases/tag/2.5.0). I created this mostly as a learn-by-doing exercise to get familiar with the Swift language.
 
 The demo project builds without warnings, and most things seem to work, but I make no guarantee there aren't any bugs. Some functionality is implemented a little differently in order to try out some of Swift's features, and some variable names have changed.
 
@@ -26,7 +26,7 @@ The demo project builds without warnings, and most things seem to work, but I ma
 
 MarqueeLabel v2.0.0 makes some important changes! Check out the [release notes for v2.0.0](https://github.com/cbpowell/MarqueeLabel/releases/tag/2.0.0) to understand what this means for your app!
 
-### Installation with Cocoapods
+### Installation with CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries in your projects.
 

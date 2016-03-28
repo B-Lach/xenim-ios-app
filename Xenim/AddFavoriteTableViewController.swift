@@ -62,10 +62,6 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-    }
-    
     deinit {
         // fixes https://github.com/funkenstrahlen/Listen/issues/36
         resultSearchController.view.removeFromSuperview()
@@ -153,16 +149,10 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        // configure event detail view controller as popup content
-        let favoriteDetailVC = storyboard.instantiateViewControllerWithIdentifier("FavoriteDetail") as! FavoriteDetailViewController
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AddFavoriteTableViewCell
-        favoriteDetailVC.podcast = cell.podcast
-        
-        let window = UIApplication.sharedApplication().delegate?.window!
-        PathDynamicModal.show(modalView: favoriteDetailVC, inView: window!)
-        
+        let podcast = cell.podcast
+        PodcastDetailViewController.showPodcastInfo(podcast: podcast)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
