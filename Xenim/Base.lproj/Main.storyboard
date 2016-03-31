@@ -64,7 +64,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Support us" id="c2j-9c-ZsQ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="XKP-uY-s9v" detailTextLabel="qmq-nI-hBc" imageView="ZCT-qE-6ra" style="IBUITableViewCellStyleValue1" id="yOG-pQ-STP" userLabel="Donation Cell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="XKP-uY-s9v" detailTextLabel="qmq-nI-hBc" imageView="ZCT-qE-6ra" style="IBUITableViewCellStyleSubtitle" id="yOG-pQ-STP" userLabel="Donation Cell">
                                         <rect key="frame" x="0.0" y="253" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yOG-pQ-STP" id="1Zx-uV-NRI">
@@ -72,7 +72,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Support App Development" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XKP-uY-s9v">
-                                                    <rect key="frame" x="49" y="12" width="193" height="20"/>
+                                                    <rect key="frame" x="49" y="5" width="193" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -82,11 +82,11 @@
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Buy me a coffee ☕️" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qmq-nI-hBc">
-                                                    <rect key="frame" x="422" y="12" width="143" height="20"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Buy me a coffee ☕️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qmq-nI-hBc">
+                                                    <rect key="frame" x="49" y="25" width="103" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -141,7 +141,6 @@
                     <connections>
                         <outlet property="contactCell" destination="qLw-T5-iOl" id="UgN-A3-ogd"/>
                         <outlet property="donationCell" destination="yOG-pQ-STP" id="RUp-1o-TjM"/>
-                        <outlet property="paypalCell" destination="yOG-pQ-STP" id="Vg1-1i-Iln"/>
                         <outlet property="reportBugCell" destination="eBi-9V-vnw" id="6e4-i5-Vla"/>
                     </connections>
                 </tableViewController>
