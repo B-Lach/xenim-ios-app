@@ -36,6 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             config.localDatastoreEnabled = true
         }))
         
+        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupporter") { (transaction:SKPaymentTransaction) in
+            print("thanks for supporting")
+        }
+        
         return true
     }
     
