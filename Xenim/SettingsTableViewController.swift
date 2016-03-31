@@ -41,6 +41,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
                     alertVC.addAction(dismissAction)
                     self.presentViewController(alertVC, animated: true, completion: nil)
                 }
+                self.donationCell.setSelected(false, animated: true)
             })
         }
     }
