@@ -38,6 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupporter") { (transaction:SKPaymentTransaction) in
             print("thanks for supporting")
+            let alertVC = UIAlertController(title: "Thanks", message: "Thank you for supporting! Have a great day!", preferredStyle: .Alert)
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
+            alertVC.addAction(dismissAction)
+            self.window?.rootViewController?.presentViewController(alertVC, animated: true, completion: nil)
         }
         
         return true
