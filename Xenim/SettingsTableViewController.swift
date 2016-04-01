@@ -33,7 +33,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         } else if selectedCell == reportBugCell {
             openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
         } else if selectedCell == donationCell {
-            PFPurchase.buyProduct("com.stefantrauth.XenimSupporter", block: { (error: NSError?) in
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupport", block: { (error: NSError?) in
                 if error != nil {
                     print(error?.localizedDescription)
                     let alertVC = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .Alert)
