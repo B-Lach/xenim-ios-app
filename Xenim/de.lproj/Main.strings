@@ -40,8 +40,11 @@
 /* Class = "UITextView"; text = "Podcast Description"; ObjectID = "UGG-At-oAm"; */
 "UGG-At-oAm.text" = "d";
 
-/* Class = "UILabel"; text = "Donate with Paypal"; ObjectID = "XKP-uY-s9v"; */
-"XKP-uY-s9v.text" = "Mit Paypal spenden";
+/* Class = "UILabel"; text = "App Entwicklung unterstützen"; ObjectID = "XKP-uY-s9v"; */
+"XKP-uY-s9v.text" = "App Entwicklung unterstützen";
+
+/* Class = "UILabel"; text = "Zahle einen Kaffee ☕️"; ObjectID = "qmq-nI-hBc"; */
+"qmq-nI-hBc.text" = "Zahle einen Kaffee ☕️";
 
 /* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "Xwt-Mx-qxe"; */
 "Xwt-Mx-qxe.title" = "Favoriten";
