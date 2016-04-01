@@ -36,6 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             config.localDatastoreEnabled = true
         }))
         
+        // register IAP handler. will be called when the item has been purchased.
+        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupport") { (transaction:SKPaymentTransaction) in
+            print("purchase was successful.")
+        }
+        
         return true
     }
     

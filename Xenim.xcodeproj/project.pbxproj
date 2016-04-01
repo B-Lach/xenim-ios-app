@@ -37,6 +37,7 @@
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
 		22D515CC1C4CE99700BE8D21 /* PathDynamicModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */; };
 		22DCD9581CA67E01000E602A /* UIGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCD9571CA67E01000E602A /* UIGradientView.swift */; };
+		22E040D41CADA465009896CE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E040D31CADA465009896CE /* StoreKit.framework */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
 		22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */; };
 		22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */; };
@@ -93,6 +94,7 @@
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
 		22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathDynamicModal.swift; sourceTree = "<group>"; };
 		22DCD9571CA67E01000E602A /* UIGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGradientView.swift; sourceTree = "<group>"; };
+		22E040D31CADA465009896CE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewController.swift; sourceTree = "<group>"; };
 		22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22E040D41CADA465009896CE /* StoreKit.framework in Frameworks */,
 				224B0FE91C41A69400E0EFEB /* LNPopupController.framework in Frameworks */,
 				224B0FE81C41A67900E0EFEB /* Pods_Xenim.framework in Frameworks */,
 			);
@@ -249,6 +252,7 @@
 		4CD0EF0E6BE3DB36059D8E8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22E040D31CADA465009896CE /* StoreKit.framework */,
 				224B0FE71C41A67900E0EFEB /* Pods_Xenim.framework */,
 				22BEF0FA1C1192F000496C2F /* LNPopupController.framework */,
 				3DA7EFEEBA852C8AD4EEBD0C /* Pods_Xenim.framework */,
@@ -305,6 +309,9 @@
 						DevelopmentTeam = Y85FVF2A97;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
 							com.apple.Push = {

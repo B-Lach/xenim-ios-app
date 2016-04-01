@@ -9,13 +9,13 @@
 import UIKit
 import SafariServices
 import MessageUI
+import Parse
 
 class SettingsTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var contactCell: UITableViewCell!
     @IBOutlet weak var reportBugCell: UITableViewCell!
-    @IBOutlet weak var paypalCell: UITableViewCell!
-    @IBOutlet weak var xenimDonationCell: UITableViewCell!
+    @IBOutlet weak var donationCell: UITableViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +32,18 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             sendMail()
         } else if selectedCell == reportBugCell {
             openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
-        } else if selectedCell == paypalCell {
-            openWebsite("https://paypal.me/stefantrauth")
-        } else if selectedCell == xenimDonationCell {
-            openWebsite("http://streams.xenim.de/about/#donate")
+        } else if selectedCell == donationCell {
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupport", block: { (error: NSError?) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                    let alertVC = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .Alert)
+                    let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
+                    let dismissAction = UIAlertAction(title: dismiss, style: .Default, handler: nil)
+                    alertVC.addAction(dismissAction)
+                    self.presentViewController(alertVC, animated: true, completion: nil)
+                }
+                self.donationCell.setSelected(false, animated: true)
+            })
         }
     }
     
