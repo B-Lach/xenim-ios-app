@@ -37,7 +37,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
                 if error != nil {
                     print(error?.localizedDescription)
                     let alertVC = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .Alert)
-                    let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
+                    let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
+                    let dismissAction = UIAlertAction(title: dismiss, style: .Default, handler: nil)
                     alertVC.addAction(dismissAction)
                     self.presentViewController(alertVC, animated: true, completion: nil)
                 }
