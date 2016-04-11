@@ -426,7 +426,7 @@
         <!--Podcast Detail-->
         <scene sceneID="zzG-QK-Kck">
             <objects>
-                <tableViewController id="WlL-v8-hc7" sceneMemberID="viewController">
+                <tableViewController id="WlL-v8-hc7" customClass="PodcastDetailTableViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cxS-Lr-qTN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -473,7 +473,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dY-To-te5">
                                                     <rect key="frame" x="16" y="8" width="584" height="102"/>
-                                                    <mutableString key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
+                                                    <string key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
 eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
 montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
 eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
@@ -481,7 +481,7 @@ fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
 imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
 Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate
 eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,
-enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</mutableString>
+enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
