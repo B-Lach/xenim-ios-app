@@ -21,6 +21,10 @@ class PodcastDetailTableViewController: UITableViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+    }
+    
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         
         if let navController = self.navigationController {
