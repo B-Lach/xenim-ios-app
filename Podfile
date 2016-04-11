@@ -9,7 +9,6 @@ target 'Xenim' do
   pod 'Parse', '~> 1.10'
   pod 'KDEAudioPlayer', '~> 0.4'
   pod 'GCDKit'
-  pod 'LTNavigationBar'
   pod 'UIImageColors', :git => 'https://github.com/jathu/UIImageColors.git', :branch => 'master'
 end
 
