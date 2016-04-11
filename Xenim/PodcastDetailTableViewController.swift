@@ -32,7 +32,7 @@ class PodcastDetailTableViewController: UITableViewController {
             let bounds = navController.navigationBar.bounds
             gradient.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + UIApplication.sharedApplication().statusBarFrame.size.height)
             
-            let navbarChangePoint: CGFloat = coverartImageView.frame.height - 2 * gradient.frame.height
+            let navbarChangePoint: CGFloat = coverartImageView.frame.height - 3 * gradient.frame.height
             
             let offsetY = scrollView.contentOffset.y
             if offsetY > navbarChangePoint {
