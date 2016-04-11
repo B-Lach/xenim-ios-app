@@ -284,8 +284,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
-        EventDetailViewController.showEventInfo(event: cell.event)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.performSegueWithIdentifier("podcastDetail", sender: cell)
     }
     
 }
