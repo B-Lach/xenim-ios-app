@@ -13,14 +13,29 @@ class PodcastDetailTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor.clearColor())
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.lt_reset()
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        let navbarChangePoint: CGFloat = 50
+        
+        let offsetY = scrollView.contentOffset.y
+        if offsetY > navbarChangePoint {
+            let alpha = min(1, 1 - ((navbarChangePoint + 64 - offsetY) / 64))
+            self.navigationController?.navigationBar.lt_setBackgroundColor(Constants.Colors.tintColor.colorWithAlphaComponent(alpha))
+        } else {
+            self.navigationController?.navigationBar.lt_setBackgroundColor(Constants.Colors.tintColor.colorWithAlphaComponent(0))
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,16 +44,16 @@ class PodcastDetailTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
+//
+//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
