@@ -5,6 +5,7 @@ PODS:
   - Bolts/Tasks (1.6.0)
   - GCDKit (1.2.2)
   - KDEAudioPlayer (0.7.0)
+  - LTNavigationBar (2.1.2)
   - MarqueeLabel-Swift (2.6.5)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - AlamofireImage (~> 2.1)
   - GCDKit
   - KDEAudioPlayer (~> 0.4)
+  - LTNavigationBar
   - MarqueeLabel-Swift (~> 2.3)
   - Parse (~> 1.10)
   - SwiftyJSON (~> 2.3)
@@ -37,6 +39,7 @@ SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   GCDKit: 15e3d514cbf5d56699b2716b798031f778fb48c2
   KDEAudioPlayer: f2b1bf59884b8c2cc737c6c36dd7d7630026787d
+  LTNavigationBar: bfc5fc06a83463009b9d99675f2a32dcbb631b00
   MarqueeLabel-Swift: 6fbc43d0bdd41fbd7107a4ca84e167933df42671
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>LTNavigationBar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MarqueeLabel-Swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,7 +67,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1667E67ABA5398123C5430D0E75692F9</key>
+		<key>229A035A77B9E77F7460361FFF558453</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +82,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<key>6B752284F0300A9790FF066CB8292085</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A2FDD8942F55A7F6F3FCE1589EEF6A56</key>
+		<key>6FF24ECEE76D1F3CEFDCE3962DC5F3B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7EF676605AB028DCD4E0526EEA280C7</key>
+		<key>CFF858055EBBB40A023415F0A0168820</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CFF858055EBBB40A023415F0A0168820</key>
+		<key>FABEFE59C2CD9C196FD2B92D8E5BC90E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
