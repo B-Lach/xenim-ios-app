@@ -24,6 +24,11 @@ class PodcastDetailTableViewController: UITableViewController {
             coverartImageView.image = placeholderImage
         }
         title = podcast.name
+        
+        let width = tableView.frame.width
+        tableView.tableHeaderView?.frame = CGRectMake(0, 0, width, width)
+        
+        tableView.contentInset.bottom = tabBarController!.tabBar.bounds.height
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -57,8 +62,8 @@ class PodcastDetailTableViewController: UITableViewController {
         if let navbar = self.navigationController?.navigationBar, let gradient = gradient {
             
             let transitionArea: CGFloat = 64
-            let navbarChangePoint: CGFloat = coverartImageView.frame.height - transitionArea - 2 * gradient.frame.height
-            let offsetY = scrollView.contentOffset.y
+            let navbarChangePoint: CGFloat = coverartImageView.frame.height - transitionArea - gradient.frame.height
+            let offsetY = tableView.contentOffset.y
             if offsetY > navbarChangePoint {
                 let alpha = min(1, 1 - ((navbarChangePoint + transitionArea - offsetY) / transitionArea)) // will become 1
                 let inverseAlpha = 1 - alpha // will become 0
