@@ -25,19 +25,25 @@ class PodcastDetailTableViewController: UITableViewController {
         }
         title = podcast.name
         
+        // resize table header view to 1:1 aspect ratio
+        // this is not possible with autolayout contraints
+        // disable adjust scrollview insets to make this work as expected
         let width = tableView.frame.width
         tableView.tableHeaderView?.frame = CGRectMake(0, 0, width, width)
         
+        // adjust bottom insets as auto adjust scrollview insets is disabled
         tableView.contentInset.bottom = tabBarController!.tabBar.bounds.height
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if let navbar = self.navigationController?.navigationBar {
-            navbar.shadowImage = UIImage()
-            navbar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+            navbar.shadowImage = UIImage() // removes tiny gray line at the bottom of the navigation bar
+            navbar.setBackgroundImage(UIImage(), forBarMetrics: .Default) // clear background
+            
             let statusbarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
             let navbarHeight = navbar.bounds.height + 2 * statusbarHeight
+            // configure gradient view
             gradient = UIGradientView(frame: CGRect(x: 0, y: -statusbarHeight, width: navbar.bounds.width, height: navbarHeight))
             gradient!.userInteractionEnabled = false
             navbar.insertSubview(gradient!, atIndex: 0)
@@ -61,21 +67,29 @@ class PodcastDetailTableViewController: UITableViewController {
     func updateNavbar() {
         if let navbar = self.navigationController?.navigationBar, let gradient = gradient {
             
+            // y pixel count defining how long the clear->color transition is
             let transitionArea: CGFloat = 64
+            // where should the transition start
             let navbarChangePoint: CGFloat = coverartImageView.frame.height - transitionArea - gradient.frame.height
+            
+            // current scrollview y offset
             let offsetY = tableView.contentOffset.y
             if offsetY > navbarChangePoint {
+                // transition state + full colored state
+                
                 let alpha = min(1, 1 - ((navbarChangePoint + transitionArea - offsetY) / transitionArea)) // will become 1
                 let inverseAlpha = 1 - alpha // will become 0
+                
+                // update gradient colors
                 gradient.bottomColor = Constants.Colors.tintColor.colorWithAlphaComponent(alpha)
                 gradient.topColor = UIColor(red: 0.98 - inverseAlpha, green: 0.19 - inverseAlpha, blue: 0.31 - inverseAlpha, alpha: 1.00)
             } else {
+                // transparent state
                 gradient.topColor = UIColor.blackColor()
                 gradient.bottomColor = UIColor.clearColor()
             }
             
-            navbar.setNeedsDisplay()
-            
+            gradient.setNeedsDisplay()
         }
     }
     

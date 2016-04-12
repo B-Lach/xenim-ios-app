@@ -16,14 +16,14 @@ import UIKit
     /// Top color of the gradient layer
     var topColor: UIColor = UIColor(red:0.16, green:0.17, blue:0.20, alpha:0.8) {
         didSet {
-            updateUI()
+            gradientLayer.colors = [topColor.CGColor, bottomColor.CGColor]
         }
     }
     
     /// Bottom color of the gradient layer
     var bottomColor: UIColor = UIColor.clearColor() {
         didSet {
-            updateUI()
+            gradientLayer.colors = [topColor.CGColor, bottomColor.CGColor]
         }
     }
     
@@ -31,13 +31,7 @@ import UIKit
     var bottomYPoint: CGFloat = 1 {
         didSet {
             gradientLayer.endPoint = CGPoint(x: 0, y: bottomYPoint)
-            updateUI()
         }
-    }
-    
-    func updateUI() {
-        gradientLayer.colors = [topColor.CGColor, bottomColor.CGColor]
-        setNeedsDisplay()
     }
     
     /**
