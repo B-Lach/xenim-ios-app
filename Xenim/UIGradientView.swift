@@ -28,13 +28,15 @@ import UIKit
     }
     
     /// At which vertical point the layer should end
-    var bottomYPoint: CGFloat = 0.8 {
+    var bottomYPoint: CGFloat = 1 {
         didSet {
+            gradientLayer.endPoint = CGPoint(x: 0, y: bottomYPoint)
             updateUI()
         }
     }
     
     func updateUI() {
+        gradientLayer.colors = [topColor.CGColor, bottomColor.CGColor]
         setNeedsDisplay()
     }
     

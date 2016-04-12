@@ -24,7 +24,8 @@ class PodcastDetailTableViewController: UITableViewController {
             navbar.shadowImage = UIImage()
             navbar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             let statusbarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
-            gradient = UIGradientView(frame: CGRect(x: 0, y: -statusbarHeight, width: navbar.bounds.width, height: 2 * (navbar.bounds.height + statusbarHeight)))
+            let navbarHeight = navbar.bounds.height + 2 * statusbarHeight
+            gradient = UIGradientView(frame: CGRect(x: 0, y: -statusbarHeight, width: navbar.bounds.width, height: navbarHeight))
             gradient!.userInteractionEnabled = false
             navbar.insertSubview(gradient!, atIndex: 0)
         }
@@ -32,30 +33,28 @@ class PodcastDetailTableViewController: UITableViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-//        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        gradient?.removeFromSuperview()
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        if let navController = self.navigationController {
-//            let gradient = CAGradientLayer()
-//            let bounds = navController.navigationBar.bounds
-//            gradient.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + UIApplication.sharedApplication().statusBarFrame.size.height)
-//            
-//            let navbarChangePoint: CGFloat = coverartImageView.frame.height - 3 * gradient.frame.height
-//            
-//            let offsetY = scrollView.contentOffset.y
-//            if offsetY > navbarChangePoint {
-//                let alpha = min(1, 1 - ((navbarChangePoint + 64 - offsetY) / 64)) // will become 1
-//                let inverseAlpha = 1 - alpha // will become 0
-//                let bottom = Constants.Colors.tintColor.colorWithAlphaComponent(alpha)
-//                let top = UIColor(red: 0.98 - inverseAlpha, green: 0.19 - inverseAlpha, blue: 0.31 - inverseAlpha, alpha: 1.00)
-//                gradient.colors = [top.CGColor, bottom.CGColor]
-//            } else {
-//                gradient.colors = [UIColor.blackColor().CGColor, UIColor.clearColor().CGColor]
-//            }
-//            
-//            navController.navigationBar.setBackgroundImage(imageFromLayer(gradient), forBarMetrics: UIBarMetrics.Default)
+        if let navbar = self.navigationController?.navigationBar, let gradient = gradient {
+
+            let transitionArea: CGFloat = 64
+            let navbarChangePoint: CGFloat = coverartImageView.frame.height - transitionArea - 2 * gradient.frame.height
+            let offsetY = scrollView.contentOffset.y
+            if offsetY > navbarChangePoint {
+                let alpha = min(1, 1 - ((navbarChangePoint + transitionArea - offsetY) / transitionArea)) // will become 1
+                let inverseAlpha = 1 - alpha // will become 0
+                gradient.bottomColor = Constants.Colors.tintColor.colorWithAlphaComponent(alpha)
+                gradient.topColor = UIColor(red: 0.98 - inverseAlpha, green: 0.19 - inverseAlpha, blue: 0.31 - inverseAlpha, alpha: 1.00)
+            } else {
+                gradient.topColor = UIColor.blackColor()
+                gradient.bottomColor = UIColor.clearColor()
+            }
+
+            navbar.setNeedsDisplay()
+            
         }
 
     }
