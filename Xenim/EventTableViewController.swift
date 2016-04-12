@@ -285,6 +285,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
         self.performSegueWithIdentifier("podcastDetail", sender: cell)
+        cell.setSelected(false, animated: true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
