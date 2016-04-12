@@ -40,14 +40,22 @@ class PodcastDetailTableViewController: UITableViewController {
 
     }
     
+    override func viewDidAppear(animated: Bool) {
+        updateNavbar()
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
         gradient?.removeFromSuperview()
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
+        updateNavbar()
+    }
+    
+    func updateNavbar() {
         if let navbar = self.navigationController?.navigationBar, let gradient = gradient {
-
+            
             let transitionArea: CGFloat = 64
             let navbarChangePoint: CGFloat = coverartImageView.frame.height - transitionArea - 2 * gradient.frame.height
             let offsetY = scrollView.contentOffset.y
@@ -60,11 +68,10 @@ class PodcastDetailTableViewController: UITableViewController {
                 gradient.topColor = UIColor.blackColor()
                 gradient.bottomColor = UIColor.clearColor()
             }
-
+            
             navbar.setNeedsDisplay()
             
         }
-
     }
     
     // MARK: - Table view data source
