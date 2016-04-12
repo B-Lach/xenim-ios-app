@@ -12,55 +12,52 @@ class PodcastDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var coverartImageView: UIImageView!
     
+    var gradient: UIGradientView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        if let navbar = self.navigationController?.navigationBar {
+            navbar.shadowImage = UIImage()
+            navbar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+            let statusbarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
+            gradient = UIGradientView(frame: CGRect(x: 0, y: -statusbarHeight, width: navbar.bounds.width, height: 2 * (navbar.bounds.height + statusbarHeight)))
+            gradient!.userInteractionEnabled = false
+            navbar.insertSubview(gradient!, atIndex: 0)
+        }
+
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+//        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         
         if let navController = self.navigationController {
-            let gradient = CAGradientLayer()
-            let bounds = navController.navigationBar.bounds
-            gradient.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + UIApplication.sharedApplication().statusBarFrame.size.height)
-            
-            let navbarChangePoint: CGFloat = coverartImageView.frame.height - 3 * gradient.frame.height
-            
-            let offsetY = scrollView.contentOffset.y
-            if offsetY > navbarChangePoint {
-                let alpha = min(1, 1 - ((navbarChangePoint + 40 - offsetY) / 40)) // will become 1
-                let inverseAlpha = 1 - alpha // will become 0
-                let bottom = Constants.Colors.tintColor.colorWithAlphaComponent(alpha)
-                let top = UIColor(red: 0.98 - inverseAlpha, green: 0.19 - inverseAlpha, blue: 0.31 - inverseAlpha, alpha: 1.00)
-                gradient.colors = [top.CGColor, bottom.CGColor]
-            } else {
-                gradient.colors = [UIColor.blackColor().CGColor, UIColor.clearColor().CGColor]
-            }
-            
-            navController.navigationBar.setBackgroundImage(imageFromLayer(gradient), forBarMetrics: UIBarMetrics.Default)
+//            let gradient = CAGradientLayer()
+//            let bounds = navController.navigationBar.bounds
+//            gradient.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + UIApplication.sharedApplication().statusBarFrame.size.height)
+//            
+//            let navbarChangePoint: CGFloat = coverartImageView.frame.height - 3 * gradient.frame.height
+//            
+//            let offsetY = scrollView.contentOffset.y
+//            if offsetY > navbarChangePoint {
+//                let alpha = min(1, 1 - ((navbarChangePoint + 64 - offsetY) / 64)) // will become 1
+//                let inverseAlpha = 1 - alpha // will become 0
+//                let bottom = Constants.Colors.tintColor.colorWithAlphaComponent(alpha)
+//                let top = UIColor(red: 0.98 - inverseAlpha, green: 0.19 - inverseAlpha, blue: 0.31 - inverseAlpha, alpha: 1.00)
+//                gradient.colors = [top.CGColor, bottom.CGColor]
+//            } else {
+//                gradient.colors = [UIColor.blackColor().CGColor, UIColor.clearColor().CGColor]
+//            }
+//            
+//            navController.navigationBar.setBackgroundImage(imageFromLayer(gradient), forBarMetrics: UIBarMetrics.Default)
         }
 
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func imageFromLayer(layer: CALayer) -> UIImage {
-        UIGraphicsBeginImageContext(layer.frame.size)
-        layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let outputImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return outputImage
     }
     
     // MARK: - Table view data source
