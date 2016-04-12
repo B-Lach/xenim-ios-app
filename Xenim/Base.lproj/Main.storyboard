@@ -427,10 +427,10 @@
         <scene sceneID="zzG-QK-Kck">
             <objects>
                 <tableViewController id="WlL-v8-hc7" customClass="PodcastDetailTableViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cxS-Lr-qTN">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cxS-Lr-qTN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="tzV-QH-fxb">
                             <rect key="frame" x="0.0" y="64" width="600" height="250"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -614,7 +614,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Podcast Detail" id="cL7-5b-Rce">
-                        <barButtonItem key="rightBarButtonItem" title="Favorite" id="pG8-Xk-VwU">
+                        <barButtonItem key="rightBarButtonItem" image="star-outline" id="pG8-Xk-VwU">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
@@ -1658,6 +1658,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <image name="scarlet-44-info-circle" width="33" height="33"/>
         <image name="scarlet-44-star" width="33" height="33"/>
         <image name="scarlet-44-star-o" width="33" height="33"/>
+        <image name="star-outline" width="27" height="25"/>
         <image name="white-25-calendar" width="19" height="19"/>
         <image name="white-25-calendar-o" width="19" height="19"/>
         <image name="white-25-star" width="19" height="19"/>

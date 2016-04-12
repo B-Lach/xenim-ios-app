@@ -11,11 +11,19 @@ import UIKit
 class PodcastDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var coverartImageView: UIImageView!
+    var podcast: Podcast!
     
     var gradient: UIGradientView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let placeholderImage = UIImage(named: "event_placeholder")!
+        if let imageurl = podcast.artwork.originalUrl {
+            coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+        } else {
+            coverartImageView.image = placeholderImage
+        }
+        title = podcast.name
     }
     
     override func viewWillAppear(animated: Bool) {

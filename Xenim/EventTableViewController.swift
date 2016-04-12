@@ -287,4 +287,12 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         self.performSegueWithIdentifier("podcastDetail", sender: cell)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController as? PodcastDetailTableViewController {
+            if let cell = sender as? EventTableViewCell {
+                destVC.podcast = cell.event.podcast
+            }
+        }
+    }
+    
 }
