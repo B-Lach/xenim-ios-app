@@ -149,12 +149,18 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AddFavoriteTableViewCell
         let podcast = cell.podcast
-        PodcastDetailViewController.showPodcastInfo(podcast: podcast)
+        self.performSegueWithIdentifier("podcastDetail", sender: podcast)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController as? PodcastDetailTableViewController {
+            if let podcast = sender as? Podcast {
+                destVC.podcast = podcast
+            }
+        }
+    }
 
 }

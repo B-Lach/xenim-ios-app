@@ -43,7 +43,9 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         tableView.tableHeaderView?.frame = CGRectMake(0, 0, width, width)
         
         // adjust bottom insets as auto adjust scrollview insets is disabled
-        tableView.contentInset.bottom = tabBarController!.tabBar.bounds.height
+        if let bottomInset = tabBarController?.tabBar.bounds.height {
+            tableView.contentInset.bottom = bottomInset
+        }
         
         // auto cell height
         tableView.rowHeight = UITableViewAutomaticDimension

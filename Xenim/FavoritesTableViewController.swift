@@ -18,7 +18,7 @@ class FavoritesTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
@@ -144,13 +144,17 @@ class FavoritesTableViewController: UITableViewController{
     @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {}
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        showFavoriteDetailViewForIndexPath(indexPath)
+        let podcast = favorites[indexPath.row]
+        self.performSegueWithIdentifier("podcastDetail", sender: podcast)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    func showFavoriteDetailViewForIndexPath(indexPath: NSIndexPath) {
-        let podcast = favorites[indexPath.row]
-        PodcastDetailViewController.showPodcastInfo(podcast: podcast)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController as? PodcastDetailTableViewController {
+            if let podcast = sender as? Podcast {
+                destVC.podcast = podcast
+            }
+        }
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
