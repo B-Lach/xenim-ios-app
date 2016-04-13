@@ -19,6 +19,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     @IBOutlet weak var twitterCell: UITableViewCell!
     @IBOutlet weak var websiteCell: UITableViewCell!
     
+    @IBOutlet weak var favoriteBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var coverartImageView: UIImageView!
     var podcast: Podcast!
     
@@ -63,6 +64,14 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         
         if podcast.feedUrl == nil {
             disableCell(subscribeCell)
+        }
+        
+        setupNotifications()
+        
+        if !Favorites.isFavorite(podcast.id) {
+            favoriteBarButtonItem.image = UIImage(named: "star-outline")
+        } else {
+            favoriteBarButtonItem.image = UIImage(named: "star")
         }
 
     }
@@ -224,9 +233,9 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-//    @IBAction func toggleFavorite(sender: AnyObject) {
-//        Favorites.toggle(podcastId: podcast.id)
-//    }
+    @IBAction func toggleFavorite(sender: AnyObject) {
+        Favorites.toggle(podcastId: podcast.id)
+    }
     
     // MARK: - delegate
     
@@ -246,6 +255,36 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             break
         }
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: notifications
+    
+    func setupNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PodcastDetailTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PodcastDetailTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func favoriteAdded(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // check if this affects this cell
+            if podcastId == podcast.id {
+                favoriteBarButtonItem.image = UIImage(named: "star")
+            }
+        }
+    }
+    
+    func favoriteRemoved(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+            // check if this affects this cell
+            if podcastId == podcast.id {
+                favoriteBarButtonItem.image = UIImage(named: "star-outline")
+            }
+        }
     }
     
 

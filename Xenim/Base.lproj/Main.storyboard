@@ -622,6 +622,9 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                     <navigationItem key="navigationItem" title="Podcast Detail" id="cL7-5b-Rce">
                         <barButtonItem key="rightBarButtonItem" image="star-outline" id="pG8-Xk-VwU">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="toggleFavorite:" destination="WlL-v8-hc7" id="NkC-5F-mo0"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -629,6 +632,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                     <connections>
                         <outlet property="coverartImageView" destination="9c8-Rp-Bin" id="stI-fl-glG"/>
                         <outlet property="descriptionLabel" destination="7dY-To-te5" id="vmo-Pg-vvo"/>
+                        <outlet property="favoriteBarButtonItem" destination="pG8-Xk-VwU" id="zkZ-Pb-HDV"/>
                         <outlet property="sendMailCell" destination="iw5-Yb-5QH" id="BD9-R8-Eui"/>
                         <outlet property="subscribeCell" destination="CfD-9j-okq" id="NbT-5a-xWD"/>
                         <outlet property="twitterCell" destination="2q9-7X-KQL" id="6uk-c1-zQM"/>
