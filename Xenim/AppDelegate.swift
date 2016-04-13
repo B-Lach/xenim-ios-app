@@ -37,7 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }))
         
         // register IAP handler. will be called when the item has been purchased.
-        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupport") { (transaction:SKPaymentTransaction) in
+        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportSmall") { (transaction:SKPaymentTransaction) in
+            print("purchase was successful.")
+        }
+        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportMiddle") { (transaction:SKPaymentTransaction) in
+            print("purchase was successful.")
+        }
+        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportBig") { (transaction:SKPaymentTransaction) in
             print("purchase was successful.")
         }
         

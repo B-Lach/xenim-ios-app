@@ -11,19 +11,66 @@ import SafariServices
 import MessageUI
 import Parse
 
-class SettingsTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
+class SettingsTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate, SKProductsRequestDelegate {
 
+    @IBOutlet weak var xenimCell: UITableViewCell!
     @IBOutlet weak var contactCell: UITableViewCell!
     @IBOutlet weak var reportBugCell: UITableViewCell!
-    @IBOutlet weak var donationCell: UITableViewCell!
+    @IBOutlet weak var smallDonationCell: UITableViewCell!
+    @IBOutlet weak var middleDonationCell: UITableViewCell!
+    @IBOutlet weak var bigDonationCell: UITableViewCell!
+
+    @IBOutlet weak var middleDonationPriceLabel: UILabel!
+    @IBOutlet weak var smallDonationPriceLabel: UILabel!
+    @IBOutlet weak var bigDonationPriceLabel: UILabel!
+    
+    @IBOutlet weak var versionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // auto cell height
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
+        
+        if let appVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String {
+            versionLabel?.text = "Version \(appVersionString)"
+        } else {
+            versionLabel?.text = "Undefined Version"
+        }
+        
+        fetchIAPPrices()
     }
+    
+    private func fetchIAPPrices() {
+        let request = SKProductsRequest(productIdentifiers: ["com.stefantrauth.XenimSupportSmall", "com.stefantrauth.XenimSupportMiddle", "com.stefantrauth.XenimSupportBig"])
+        request.delegate = self
+        request.start()
+    }
+    
+    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
+        for product in response.products {
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+            let formatter = NSNumberFormatter()
+            formatter.formatterBehavior = NSNumberFormatterBehavior.Behavior10_4
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            formatter.locale = product.priceLocale
+            
+            switch product.productIdentifier {
+            case "com.stefantrauth.XenimSupportSmall":
+                smallDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+            case "com.stefantrauth.XenimSupportMiddle":
+                middleDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+            case "com.stefantrauth.XenimSupportBig":
+                bigDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+            default:
+                break
+            }
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -32,19 +79,37 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             sendMail()
         } else if selectedCell == reportBugCell {
             openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
-        } else if selectedCell == donationCell {
-            PFPurchase.buyProduct("com.stefantrauth.XenimSupport", block: { (error: NSError?) in
+        } else if selectedCell == xenimCell {
+            openWebsite("https://xenim.de")
+        } else if selectedCell == smallDonationCell {
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupportSmall", block: { (error: NSError?) in
                 if error != nil {
-                    print(error?.localizedDescription)
-                    let alertVC = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .Alert)
-                    let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
-                    let dismissAction = UIAlertAction(title: dismiss, style: .Default, handler: nil)
-                    alertVC.addAction(dismissAction)
-                    self.presentViewController(alertVC, animated: true, completion: nil)
+                    self.showError(error!)
                 }
-                self.donationCell.setSelected(false, animated: true)
+            })
+        } else if selectedCell == middleDonationCell {
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupportMiddle", block: { (error: NSError?) in
+                if error != nil {
+                    self.showError(error!)
+                }
+            })
+        } else if selectedCell == bigDonationCell {
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupportBig", block: { (error: NSError?) in
+                if error != nil {
+                    self.showError(error!)
+                }
             })
         }
+        selectedCell?.setSelected(false, animated: true)
+    }
+    
+    private func showError(error: NSError) {
+        print(error.localizedDescription)
+        let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
+        let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
+        let dismissAction = UIAlertAction(title: dismiss, style: .Default, handler: nil)
+        alertVC.addAction(dismissAction)
+        self.presentViewController(alertVC, animated: true, completion: nil)
     }
     
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
