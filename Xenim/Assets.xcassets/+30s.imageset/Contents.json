@@ -2,22 +2,23 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "NowPlayingCollapseChevronMask.png",
+      "filename" : "+30s.pdf",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "NowPlayingCollapseChevronMask@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "NowPlayingCollapseChevronMask@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }

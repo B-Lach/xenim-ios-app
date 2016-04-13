@@ -39,6 +39,12 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var favoriteButton: UIButton!
     
+    @IBOutlet weak var airplayView: MPVolumeView! {
+        didSet {
+            airplayView.showsVolumeSlider = false
+        }
+    }
+    
     var timer : NSTimer? // timer to update view periodically
     let updateInterval: NSTimeInterval = 60 // seconds
     
@@ -65,6 +71,8 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         setupNotifications()
         updateUI()
+        
+        
 	}
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,8 +92,8 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         self.popupItem.leftBarButtonItems = [popupItem]
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     // MARK: - Update UI
