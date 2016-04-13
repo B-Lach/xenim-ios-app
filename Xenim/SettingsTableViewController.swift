@@ -13,17 +13,35 @@ import Parse
 
 class SettingsTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet weak var xenimCell: UITableViewCell!
     @IBOutlet weak var contactCell: UITableViewCell!
     @IBOutlet weak var reportBugCell: UITableViewCell!
-    @IBOutlet weak var donationCell: UITableViewCell!
+    @IBOutlet weak var smallDonationCell: UITableViewCell!
+    @IBOutlet weak var middleDonationCell: UITableViewCell!
+    @IBOutlet weak var bigDonationCell: UITableViewCell!
+
+    @IBOutlet weak var middleDonationPriceLabel: UILabel!
+    @IBOutlet weak var smallDonationPriceLabel: UILabel!
+    @IBOutlet weak var bigDonationPriceLabel: UILabel!
+    
+    @IBOutlet weak var versionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // auto cell height
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
+        
+        if let appVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String {
+            versionLabel?.text = "Version \(appVersionString)"
+        } else {
+            versionLabel?.text = "Undefined Version"
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -32,7 +50,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             sendMail()
         } else if selectedCell == reportBugCell {
             openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
-        } else if selectedCell == donationCell {
+        } else if selectedCell == smallDonationCell {
             PFPurchase.buyProduct("com.stefantrauth.XenimSupport", block: { (error: NSError?) in
                 if error != nil {
                     print(error?.localizedDescription)
@@ -42,7 +60,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
                     alertVC.addAction(dismissAction)
                     self.presentViewController(alertVC, animated: true, completion: nil)
                 }
-                self.donationCell.setSelected(false, animated: true)
+                self.smallDonationCell.setSelected(false, animated: true)
             })
         }
     }
