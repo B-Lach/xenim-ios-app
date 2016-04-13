@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (config) -> Void in
             config.applicationId = applicationId
             config.clientKey = clientKey
-            config.server = "https://push.xenim.de/parse"
+            config.server = "https://dev.push.xenim.de/parse"
             config.localDatastoreEnabled = true
         }))
         

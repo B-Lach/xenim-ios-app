@@ -9,19 +9,18 @@
 /* Begin PBXBuildFile section */
 		220A323C1C510911005A00A0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 220A323E1C510911005A00A0 /* Localizable.strings */; };
 		220A32411C510912005A00A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 220A32431C510912005A00A0 /* InfoPlist.strings */; };
-		2215EEC01C5B78FA00FF1475 /* PodcastDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215EEBF1C5B78FA00FF1475 /* PodcastDetailViewController.swift */; };
 		22170D5F1C3136A30077AEC1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22170D5E1C3136A30077AEC1 /* AboutViewController.swift */; };
 		2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECB51BD52E470040100F /* AppDelegate.swift */; };
 		2222ECBB1BD52E480040100F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECB91BD52E480040100F /* Main.storyboard */; };
 		2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBC1BD52E480040100F /* Assets.xcassets */; };
 		2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */; };
 		2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECC71BD52EEA0040100F /* EventTableViewController.swift */; };
+		2224C5051CBC1F75004A49BA /* PodcastDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224C5041CBC1F75004A49BA /* PodcastDetailTableViewController.swift */; };
 		222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222913CC1C032221005C74BB /* SettingsTableViewController.swift */; };
 		222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222FB9FC1BF0E90A0007257A /* PlayerManager.swift */; };
 		224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224180071BFA21AA004D1B5D /* MessageViewController.swift */; };
 		224B0FE81C41A67900E0EFEB /* Pods_Xenim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224B0FE71C41A67900E0EFEB /* Pods_Xenim.framework */; };
 		224B0FE91C41A69400E0EFEB /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22BEF0FA1C1192F000496C2F /* LNPopupController.framework */; };
-		224EB6D21C492F1500CDE9B0 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224EB6D11C492F1500CDE9B0 /* EventDetailViewController.swift */; };
 		2257A6661C1F2BB300CDE2F2 /* ListenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257A6651C1F2BB300CDE2F2 /* ListenAPI.swift */; };
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
 		2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291D8A21BDFB1D600CB6536 /* Favorites.swift */; };
@@ -35,7 +34,6 @@
 		22B066891C5D3A3600870BF5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B066881C5D3A3600870BF5 /* SpinnerView.swift */; };
 		22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
-		22D515CC1C4CE99700BE8D21 /* PathDynamicModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */; };
 		22DCD9581CA67E01000E602A /* UIGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCD9571CA67E01000E602A /* UIGradientView.swift */; };
 		22E040D41CADA465009896CE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E040D31CADA465009896CE /* StoreKit.framework */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
@@ -64,7 +62,6 @@
 		220A323D1C510911005A00A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		220A32421C510912005A00A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		221109551BD5336F0095F25D /* Xenim-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Xenim-Bridging-Header.h"; sourceTree = "<group>"; };
-		2215EEBF1C5B78FA00FF1475 /* PodcastDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastDetailViewController.swift; sourceTree = "<group>"; };
 		22170D5E1C3136A30077AEC1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2222ECB21BD52E470040100F /* Xenim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xenim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2222ECB51BD52E470040100F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,11 +70,11 @@
 		2222ECBF1BD52E480040100F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2222ECC11BD52E480040100F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2222ECC71BD52EEA0040100F /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
+		2224C5041CBC1F75004A49BA /* PodcastDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastDetailTableViewController.swift; sourceTree = "<group>"; };
 		222913CC1C032221005C74BB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		222FB9FC1BF0E90A0007257A /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		224180071BFA21AA004D1B5D /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		224B0FE71C41A67900E0EFEB /* Pods_Xenim.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Xenim.framework; path = "Pods/../build/Debug-iphoneos/Pods_Xenim.framework"; sourceTree = "<group>"; };
-		224EB6D11C492F1500CDE9B0 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		2257A6651C1F2BB300CDE2F2 /* ListenAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenAPI.swift; sourceTree = "<group>"; };
 		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2291D8A21BDFB1D600CB6536 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
@@ -92,7 +89,6 @@
 		22BEF0FA1C1192F000496C2F /* LNPopupController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LNPopupController.framework; path = Carthage/Build/iOS/LNPopupController.framework; sourceTree = "<group>"; };
 		22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = LNPopupController.framework.dSYM; path = Carthage/Build/iOS/LNPopupController.framework.dSYM; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
-		22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathDynamicModal.swift; sourceTree = "<group>"; };
 		22DCD9571CA67E01000E602A /* UIGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGradientView.swift; sourceTree = "<group>"; };
 		22E040D31CADA465009896CE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewController.swift; sourceTree = "<group>"; };
@@ -143,8 +139,8 @@
 				2222ECB91BD52E480040100F /* Main.storyboard */,
 				22E6DD9E1C314B7500E427C8 /* Settings */,
 				22D515CA1C4BFE2700BE8D21 /* AddFavorite */,
-				2215EEBF1C5B78FA00FF1475 /* PodcastDetailViewController.swift */,
 				229B3C461C1F08D100187BA0 /* Favorites */,
+				2224C5041CBC1F75004A49BA /* PodcastDetailTableViewController.swift */,
 				229B3C481C1F090100187BA0 /* Events */,
 				22BC05A91C12F995005356C8 /* Popup */,
 				2232FE5F1BDE235A00BE368E /* Model */,
@@ -194,7 +190,6 @@
 			children = (
 				22B066881C5D3A3600870BF5 /* SpinnerView.swift */,
 				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
-				22D515CB1C4CE99700BE8D21 /* PathDynamicModal.swift */,
 				22C31DF61BECB64E006F2999 /* HelperExtensions.swift */,
 				22DCD9571CA67E01000E602A /* UIGradientView.swift */,
 			);
@@ -215,7 +210,6 @@
 			children = (
 				2222ECC71BD52EEA0040100F /* EventTableViewController.swift */,
 				229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */,
-				224EB6D11C492F1500CDE9B0 /* EventDetailViewController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -428,12 +422,10 @@
 				228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */,
 				22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */,
 				22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */,
-				22D515CC1C4CE99700BE8D21 /* PathDynamicModal.swift in Sources */,
 				229B7D501BD564DC00F1CF6B /* XenimAPI.swift in Sources */,
 				22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */,
 				22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */,
 				2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */,
-				224EB6D21C492F1500CDE9B0 /* EventDetailViewController.swift in Sources */,
 				229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */,
 				2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */,
 				224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */,
@@ -442,9 +434,9 @@
 				229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */,
 				222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */,
 				222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */,
-				2215EEC01C5B78FA00FF1475 /* PodcastDetailViewController.swift in Sources */,
 				2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */,
 				22920B291C623E92009C4CC8 /* PopupViewController.swift in Sources */,
+				2224C5051CBC1F75004A49BA /* PodcastDetailTableViewController.swift in Sources */,
 				22DCD9581CA67E01000E602A /* UIGradientView.swift in Sources */,
 				22920B2F1C628B1C009C4CC8 /* PodcastInfoViewController.swift in Sources */,
 			);
