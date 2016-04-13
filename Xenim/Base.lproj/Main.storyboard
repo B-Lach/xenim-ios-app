@@ -1215,7 +1215,10 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHc-cn-0tN">
                                                                     <rect key="frame" x="245" y="0.0" width="114" height="40"/>
                                                                     <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                                    <state key="normal" title="20min" image="sleep"/>
+                                                                    <state key="normal" image="sleep"/>
+                                                                    <connections>
+                                                                        <action selector="sleepTimerPressed:" destination="Pke-AM-PdW" eventType="touchUpInside" id="oun-ju-wGw"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -1433,6 +1436,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                         <outlet property="playPauseButton" destination="kIy-6V-23T" id="g37-id-2IZ"/>
                         <outlet property="podcastNameLabel" destination="uzN-m1-SqS" id="NVi-Vp-weR"/>
                         <outlet property="progressView" destination="1UZ-KQ-YVn" id="lEq-Ea-ZIK"/>
+                        <outlet property="sleepTimerButton" destination="HHc-cn-0tN" id="MQT-as-aSb"/>
                         <outlet property="subtitleLabel" destination="MMC-P0-b9z" id="b2r-cH-nvT"/>
                     </connections>
                 </viewController>

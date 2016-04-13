@@ -37,6 +37,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var coverartView: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
     
+    @IBOutlet weak var sleepTimerButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     
     @IBOutlet weak var airplayView: MPVolumeView! {
@@ -46,6 +47,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     var timer : NSTimer? // timer to update view periodically
+
     let updateInterval: NSTimeInterval = 60 // seconds
     
     override func viewDidLoad() {
@@ -71,8 +73,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         setupNotifications()
         updateUI()
-        
-        
 	}
     
     required init?(coder aDecoder: NSCoder) {
@@ -196,6 +196,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         timer?.invalidate()
+        sleepTimer?.invalidate()
     }
     
     func favoriteAdded(notification: NSNotification) {
@@ -271,6 +272,70 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         let cancel = NSLocalizedString("cancel", value: "Cancel", comment: "Cancel")
         alert.addAction(UIAlertAction(title: cancel, style: UIAlertActionStyle.Cancel, handler: nil))
         baseViewController!.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - sleeptimer
+    
+    var sleepTimerTicksLeft: Int?
+    var sleepTimer: NSTimer?
+    
+    @IBAction func sleepTimerPressed(sender: AnyObject) {
+        if sleepTimer != nil {
+            disableSleepTimer()
+        } else {
+            // show action sheet to select time
+            // 10, 20, 30, 60 minutes
+            
+            let optionMenu = UIAlertController(title: "Sleep Timer", message: "When do you want the player to stop playing?", preferredStyle: .ActionSheet)
+            optionMenu.view.tintColor = Constants.Colors.tintColor
+            
+            for minutes in [1, 10, 20, 30, 60] {
+                let action = UIAlertAction(title: "\(minutes)min", style: .Default, handler: { (alert: UIAlertAction!) -> Void in
+                    self.enableSleepTimer(minutes: minutes)
+                })
+                optionMenu.addAction(action)
+            }
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
+                (alert: UIAlertAction!) -> Void in
+            })
+            optionMenu.addAction(cancelAction)
+            
+            self.presentViewController(optionMenu, animated: true, completion: nil)
+        }
+    }
+    
+    private func enableSleepTimer(minutes minutes: Int) {
+        let oneMinute: NSTimeInterval = 60
+        sleepTimer = NSTimer(timeInterval: oneMinute, target: self, selector: #selector(PlayerViewController.sleepTimerTriggered), userInfo: nil, repeats: true)
+        sleepTimerTicksLeft = minutes
+        updateSleepTimerDisplay()
+    }
+    
+    private func disableSleepTimer() {
+        sleepTimerTicksLeft = nil
+        sleepTimer?.invalidate()
+        sleepTimer = nil
+        updateSleepTimerDisplay()
+    }
+
+    @objc func sleepTimerTriggered() {
+        sleepTimerTicksLeft = sleepTimerTicksLeft! - 1
+        if sleepTimerTicksLeft == 0 {
+            disableSleepTimer()
+            PlayerManager.sharedInstance.stop()
+        }
+        updateSleepTimerDisplay()
+    }
+    
+    private func updateSleepTimerDisplay() {
+        if let minutesLeft = sleepTimerTicksLeft {
+            sleepTimerButton.setTitle("\(minutesLeft)min", forState: .Normal)
+        } else {
+            sleepTimerButton.setTitle("", forState: .Normal)
+        }
+        
     }
     
 }
