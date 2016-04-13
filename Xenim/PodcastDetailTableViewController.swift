@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import SafariServices
+import MessageUI
 
-class PodcastDetailTableViewController: UITableViewController {
+class PodcastDetailTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var descriptionLabel: UILabel!
 
@@ -135,71 +137,116 @@ class PodcastDetailTableViewController: UITableViewController {
         return UITableViewAutomaticDimension
     }
     
-    // MARK: - Table view data source
-//
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
+    
+    // MARK: - Actions
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if cell == websiteCell {
+            openWebsite()
+        } else if cell == twitterCell {
+            openTwitter()
+        } else if cell == sendMailCell {
+            sendMail()
+        } else if cell == subscribeCell {
+            subscribe()
+        }
+        cell?.setSelected(false, animated: true)
+    }
+    
+    func openWebsite() {
+        let svc = SFSafariViewController(URL: podcast.websiteUrl!)
+        svc.delegate = self
+        self.presentViewController(svc, animated: true, completion: nil)
+    }
+    
+    func openTwitter() {
+        let svc = SFSafariViewController(URL: podcast.twitterURL!)
+        svc.delegate = self
+        self.presentViewController(svc, animated: true, completion: nil)
+        
+    }
+    
+    func subscribe() {
+        let subscribeClients = podcast.subscribeURLSchemesDictionary!
+        let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
+        optionMenu.view.tintColor = Constants.Colors.tintColor
+        
+        // create one option for each podcast client
+        for client in subscribeClients {
+            let clientName = client.0
+            let subscribeURL = client.1
+            
+            // only show the option if the podcast client is installed which reacts to this URL
+            if UIApplication.sharedApplication().canOpenURL(subscribeURL) {
+                let action = UIAlertAction(title: clientName, style: .Default, handler: { (alert: UIAlertAction!) -> Void in
+                    UIApplication.sharedApplication().openURL(subscribeURL)
+                })
+                optionMenu.addAction(action)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+        
+    }
+    
+    func sendMail() {
+        if MFMailComposeViewController.canSendMail() {
+            let emailTitle = NSLocalizedString("podcast_detailview_feedback_mail_title", value: "Feedback", comment: "the user can send a feedback mail to the podcast. this is the preset mail title.")
+            let messageBody = NSLocalizedString("podcast_detailview_feedback_mail_body", value: "Hello,\n", comment: "mail body for a new feedback mail message")
+            let toRecipents = [podcast.email!]
+            
+            let mc: MFMailComposeViewController = MFMailComposeViewController()
+            mc.mailComposeDelegate = self
+            mc.setSubject(emailTitle)
+            mc.setMessageBody(messageBody, isHTML: false)
+            mc.setToRecipients(toRecipents)
+            
+            self.presentViewController(mc, animated: true, completion: nil)
+        } else {
+            // show error message if device is not configured to send mail
+            let message = NSLocalizedString("podcast_detailview_mail_not_supported_message", value: "Your device is not setup to send email.", comment: "the message shown to the user in an alert view if his device is not setup to send email")
+            showInfoMessage("Info", message: message)
+        }
+        
+    }
+    
+    func showInfoMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.view.tintColor = Constants.Colors.tintColor
+        let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
+        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+//    @IBAction func toggleFavorite(sender: AnyObject) {
+//        Favorites.toggle(podcastId: podcast.id)
 //    }
-//
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    // MARK: - delegate
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError?) {
+        switch result.rawValue {
+        case MFMailComposeResultCancelled.rawValue: break
+        case MFMailComposeResultSaved.rawValue: break
+        case MFMailComposeResultSent.rawValue: break
+        case MFMailComposeResultFailed.rawValue:
+            let mailFailureTitle = NSLocalizedString("info_message_mail_sent_failure_message", value: "Mail sent failure", comment: "If the user tried to sent an email and it could not be sent an alert view does show the error message. this is the title of the alert view popup")
+            showInfoMessage(mailFailureTitle, message: (error?.localizedDescription)!)
+        default:
+            break
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
