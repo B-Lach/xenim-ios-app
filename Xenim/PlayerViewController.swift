@@ -13,19 +13,18 @@ import AlamofireImage
 import KDEAudioPlayer
 import UIImageColors
 
-class PlayerViewController: UIViewController {
+class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var backgroundCoverartImageView: UIImageView!
     
-    weak var statusBarStyleDelegate: StatusBarDelegate!
-    weak var pageViewDelegate: PageViewDelegate!
-    weak var popupDelegate: PopupDelegate!
-        
+    weak var presenter: UITabBarController!
     var event: Event! {
         didSet {
             updateUI()
         }
     }
+    
+    var miniCoverartImageView: UIImageView!
 
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenersIconImageView: UIImageView!
@@ -64,12 +63,35 @@ class PlayerViewController: UIViewController {
         
         self.listenersCountLabel.text = "\(event.listeners!)"
         
+        popupItem.title = event.podcast.name
+        popupItem.subtitle = event.title
+        if let imageurl = event.podcast.artwork.thumb150Url {
+            miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+        }
+        
         setupNotifications()
         updateUI()
 	}
     
-    override func viewDidAppear(animated: Bool) {
-        updateStatusBarColor()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        // use this to add more controls on ipad interface
+        //if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
+        
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerViewController.togglePlayPause(_:)))]
+        
+        miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
+        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
+        miniCoverartImageView.layer.cornerRadius = 5.0
+        miniCoverartImageView.layer.masksToBounds = true
+        
+        let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
+        self.popupItem.leftBarButtonItems = [popupItem]
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     // MARK: - Update UI
@@ -91,20 +113,10 @@ class PlayerViewController: UIViewController {
         updateFavoritesButton()
     }
     
-    func updateStatusBarColor() {
-        statusBarStyleDelegate.updateStatusBarStyle(.LightContent)
-    }
-    
     func updateToolbar() {
         let spaceItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
         var items = [UIBarButtonItem]()
-        
-        if event.podcast.webchatUrl != nil {
-            let chatItem = UIBarButtonItem(image: UIImage(named: "chat"), style: .Plain, target: self, action: #selector(PlayerViewController.openChat(_:)))
-            items.append(spaceItem)
-            items.append(chatItem)
-        }
         
         favoriteItem = UIBarButtonItem(image: UIImage(named: "star-outline"), style: .Plain, target: self, action: #selector(PlayerViewController.favorite(_:)))
         items.append(spaceItem)
@@ -113,10 +125,6 @@ class PlayerViewController: UIViewController {
         let shareItem = UIBarButtonItem(image: UIImage(named: "share"), style: .Plain, target: self, action: #selector(PlayerViewController.share(_:)))
         items.append(spaceItem)
         items.append(shareItem)
-        
-        let infoItem = UIBarButtonItem(image: UIImage(named: "info-outline"), style: .Plain, target: self, action: #selector(PlayerViewController.showEventInfo(_:)))
-        items.append(spaceItem)
-        items.append(infoItem)
         
         items.append(spaceItem)
         toolbar?.setItems(items, animated: true)
@@ -176,21 +184,8 @@ class PlayerViewController: UIViewController {
         }
     }
     
-    func showEventInfo(sender: AnyObject) {
-        pageViewDelegate.showPage(1)
-    }
-    
     @IBAction func togglePlayPause(sender: AnyObject) {
         PlayerManager.sharedInstance.togglePlayPause(event)
-    }
-    
-    func openChat(sender: AnyObject) {
-        if let webchatUrl = event.podcast.webchatUrl {
-            UIApplication.sharedApplication().openURL(webchatUrl)
-        } else {
-            let message = NSLocalizedString("player_view_no_chat_url", value: "There is no chat for this podcast", comment: "alert message presented to the user if chat button is pressed but there is no chat url for this podcast.")
-            showInfoMessage("Info", message: message)
-        }
     }
     
     @IBAction func backwardPressed(sender: AnyObject) {
@@ -202,7 +197,7 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func dismissPopup(sender: AnyObject) {
-        popupDelegate.minify()
+        presenter.closePopupAnimated(true, completion: nil)
     }
     
     // MARK: notifications
@@ -249,22 +244,49 @@ class PlayerViewController: UIViewController {
         case .Buffering:
             playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = false
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Paused:
             playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Playing:
             playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Stopped:
             playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .WaitingForConnection:
             playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = false
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Failed(_):
             playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         }
+    }
+
+    // MARK: - delegate
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    func handleLongPress(recognizer: UILongPressGestureRecognizer) {
+        let baseViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        alert.view.tintColor = Constants.Colors.tintColor
+        let endPlayback = NSLocalizedString("player_manager_actionsheet_end_playback", value: "End Playback", comment: "long pressing in the player view shows an action sheet to end playback. this is the action message to end playback.")
+        alert.addAction(UIAlertAction(title: endPlayback, style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
+            // dissmiss the action sheet
+            baseViewController!.dismissViewControllerAnimated(true, completion: nil)
+            PlayerManager.sharedInstance.stop()
+        }))
+        let cancel = NSLocalizedString("cancel", value: "Cancel", comment: "Cancel")
+        alert.addAction(UIAlertAction(title: cancel, style: UIAlertActionStyle.Cancel, handler: nil))
+        baseViewController!.presentViewController(alert, animated: true, completion: nil)
     }
     
 }
