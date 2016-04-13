@@ -38,6 +38,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         } else {
             versionLabel?.text = "Undefined Version"
         }
+        
+        fetchIAPPrices()
     }
     
     private func fetchIAPPrices() {
