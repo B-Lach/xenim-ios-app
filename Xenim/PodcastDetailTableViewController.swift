@@ -9,7 +9,14 @@
 import UIKit
 
 class PodcastDetailTableViewController: UITableViewController {
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
 
+    @IBOutlet weak var subscribeCell: UITableViewCell!
+    @IBOutlet weak var sendMailCell: UITableViewCell!
+    @IBOutlet weak var twitterCell: UITableViewCell!
+    @IBOutlet weak var websiteCell: UITableViewCell!
+    
     @IBOutlet weak var coverartImageView: UIImageView!
     var podcast: Podcast!
     
@@ -24,6 +31,7 @@ class PodcastDetailTableViewController: UITableViewController {
             coverartImageView.image = placeholderImage
         }
         title = podcast.name
+        descriptionLabel.text = podcast.podcastDescription
         
         // resize table header view to 1:1 aspect ratio
         // this is not possible with autolayout contraints
@@ -37,6 +45,32 @@ class PodcastDetailTableViewController: UITableViewController {
         // auto cell height
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
+        
+        // disable cells if they have not enough data provided to work
+        if podcast.websiteUrl == nil {
+            disableCell(websiteCell)
+        }
+        
+        if podcast.twitterURL == nil {
+            disableCell(twitterCell)
+        }
+        
+        if podcast.email == nil {
+            disableCell(sendMailCell)
+        }
+        
+        if podcast.feedUrl == nil {
+            disableCell(subscribeCell)
+        }
+
+    }
+    
+    private func disableCell(cell: UITableViewCell) {
+        cell.userInteractionEnabled = false
+        cell.textLabel?.enabled = false
+        cell.detailTextLabel?.enabled = false
+        cell.tintColor = UIColor.lightGrayColor()
+        cell.accessoryType = UITableViewCellAccessoryType.None
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -69,7 +103,7 @@ class PodcastDetailTableViewController: UITableViewController {
     }
     
     func updateNavbar() {
-        if let navbar = self.navigationController?.navigationBar, let gradient = gradient {
+        if let gradient = gradient {
             
             // y pixel count defining how long the clear->color transition is
             let transitionArea: CGFloat = 64

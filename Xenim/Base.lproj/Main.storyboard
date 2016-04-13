@@ -539,6 +539,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="by7-au-h5q" imageView="MX1-eN-lCl" style="IBUITableViewCellStyleDefault" id="2q9-7X-KQL">
                                         <rect key="frame" x="0.0" y="514" width="600" height="44"/>
@@ -560,6 +561,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="zGf-Am-hr9" imageView="8Hg-49-KU0" style="IBUITableViewCellStyleDefault" id="iw5-Yb-5QH">
                                         <rect key="frame" x="0.0" y="558" width="600" height="44"/>
@@ -581,6 +583,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -606,6 +609,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -624,6 +628,11 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                     <size key="freeformSize" width="600" height="1200"/>
                     <connections>
                         <outlet property="coverartImageView" destination="9c8-Rp-Bin" id="stI-fl-glG"/>
+                        <outlet property="descriptionLabel" destination="7dY-To-te5" id="vmo-Pg-vvo"/>
+                        <outlet property="sendMailCell" destination="iw5-Yb-5QH" id="BD9-R8-Eui"/>
+                        <outlet property="subscribeCell" destination="CfD-9j-okq" id="NbT-5a-xWD"/>
+                        <outlet property="twitterCell" destination="2q9-7X-KQL" id="6uk-c1-zQM"/>
+                        <outlet property="websiteCell" destination="fqL-gX-I1I" id="LK1-Kn-J6l"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eiY-kQ-0j7" userLabel="First Responder" sceneMemberID="firstResponder"/>
