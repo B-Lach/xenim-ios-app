@@ -33,6 +33,10 @@ class PodcastDetailTableViewController: UITableViewController {
         
         // adjust bottom insets as auto adjust scrollview insets is disabled
         tableView.contentInset.bottom = tabBarController!.tabBar.bounds.height
+        
+        // auto cell height
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -91,6 +95,10 @@ class PodcastDetailTableViewController: UITableViewController {
             
             gradient.setNeedsDisplay()
         }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     // MARK: - Table view data source
