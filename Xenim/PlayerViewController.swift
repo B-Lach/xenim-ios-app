@@ -36,8 +36,8 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	@IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var coverartView: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var toolbar: UIToolbar!
-    var favoriteItem: UIBarButtonItem?
+    
+    @IBOutlet weak var favoriteButton: UIButton!
     
     var timer : NSTimer? // timer to update view periodically
     let updateInterval: NSTimeInterval = 60 // seconds
@@ -54,12 +54,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         // this will cause a memory cycle
         timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: #selector(PlayerViewController.timerTicked), userInfo: nil, repeats: true)
         timerTicked()
-        
-        toolbar.setBackgroundImage(UIImage(),
-            forToolbarPosition: UIBarPosition.Any,
-            barMetrics: UIBarMetrics.Default)
-        toolbar.setShadowImage(UIImage(),
-            forToolbarPosition: UIBarPosition.Any)
         
         self.listenersCountLabel.text = "\(event.listeners!)"
         
@@ -109,25 +103,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         updateProgressBar()
-        updateToolbar()
         updateFavoritesButton()
-    }
-    
-    func updateToolbar() {
-        let spaceItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        
-        var items = [UIBarButtonItem]()
-        
-        favoriteItem = UIBarButtonItem(image: UIImage(named: "star-outline"), style: .Plain, target: self, action: #selector(PlayerViewController.favorite(_:)))
-        items.append(spaceItem)
-        items.append(favoriteItem!)
-        
-        let shareItem = UIBarButtonItem(image: UIImage(named: "share"), style: .Plain, target: self, action: #selector(PlayerViewController.share(_:)))
-        items.append(spaceItem)
-        items.append(shareItem)
-        
-        items.append(spaceItem)
-        toolbar?.setItems(items, animated: true)
     }
     
     func updateProgressBar() {
@@ -149,9 +125,9 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     func updateFavoritesButton() {
         if let event = event {
             if !Favorites.isFavorite(event.podcast.id) {
-                favoriteItem?.image = UIImage(named: "star-outline")
+                favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
             } else {
-                favoriteItem?.image = UIImage(named: "star")
+                favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
             }
         }
     }
@@ -166,13 +142,13 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - Actions
     
-    func favorite(sender: AnyObject) {
+    @IBAction func toggleFavorite(sender: AnyObject) {
         if let event = event {
             Favorites.toggle(podcastId: event.podcast.id)
         }
     }
     
-    func share(sender: AnyObject) {
+    @IBAction func share(sender: AnyObject) {
         if let url = event?.eventXenimWebUrl {
             let objectsToShare = [url]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
@@ -218,7 +194,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == event.podcast.id {
-                favoriteItem?.image = UIImage(named: "star")
+                favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
             }
         }
     }
@@ -227,7 +203,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == event.podcast.id {
-                favoriteItem?.image = UIImage(named: "star-outline")
+                favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
             }
         }
     }
