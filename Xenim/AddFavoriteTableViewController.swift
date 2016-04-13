@@ -37,7 +37,7 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         resultSearchController.dimsBackgroundDuringPresentation = false
         resultSearchController.searchBar.sizeToFit()
         resultSearchController.searchBar.tintColor = Constants.Colors.tintColor
-        resultSearchController.searchBar.setValue("Done", forKey:"_cancelButtonText")
+        resultSearchController.hidesNavigationBarDuringPresentation = false
         tableView.tableHeaderView = resultSearchController.searchBar
         
         // dynamic row height
@@ -151,6 +151,9 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AddFavoriteTableViewCell
         let podcast = cell.podcast
+        if resultSearchController.active {
+            resultSearchController.active = false
+        }
         self.performSegueWithIdentifier("podcastDetail", sender: podcast)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
