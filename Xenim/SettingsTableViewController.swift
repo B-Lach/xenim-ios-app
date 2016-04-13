@@ -11,7 +11,7 @@ import SafariServices
 import MessageUI
 import Parse
 
-class SettingsTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
+class SettingsTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate, SKProductsRequestDelegate {
 
     @IBOutlet weak var xenimCell: UITableViewCell!
     @IBOutlet weak var contactCell: UITableViewCell!
@@ -40,6 +40,33 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         }
     }
     
+    private func fetchIAPPrices() {
+        let request = SKProductsRequest(productIdentifiers: ["com.stefantrauth.XenimSupportSmall", "com.stefantrauth.XenimSupportMiddle", "com.stefantrauth.XenimSupportBig"])
+        request.delegate = self
+        request.start()
+    }
+    
+    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
+        for product in response.products {
+
+            let formatter = NSNumberFormatter()
+            formatter.formatterBehavior = NSNumberFormatterBehavior.Behavior10_4
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            formatter.locale = product.priceLocale
+            
+            switch product.productIdentifier {
+            case "com.stefantrauth.XenimSupportSmall":
+                smallDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+            case "com.stefantrauth.XenimSupportMiddle":
+                middleDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+            case "com.stefantrauth.XenimSupportBig":
+                bigDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+            default:
+                break
+            }
+        }
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -50,19 +77,37 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             sendMail()
         } else if selectedCell == reportBugCell {
             openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
+        } else if selectedCell == xenimCell {
+            openWebsite("https://xenim.de")
         } else if selectedCell == smallDonationCell {
-            PFPurchase.buyProduct("com.stefantrauth.XenimSupport", block: { (error: NSError?) in
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupportSmall", block: { (error: NSError?) in
                 if error != nil {
-                    print(error?.localizedDescription)
-                    let alertVC = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .Alert)
-                    let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
-                    let dismissAction = UIAlertAction(title: dismiss, style: .Default, handler: nil)
-                    alertVC.addAction(dismissAction)
-                    self.presentViewController(alertVC, animated: true, completion: nil)
+                    self.showError(error!)
                 }
-                self.smallDonationCell.setSelected(false, animated: true)
+            })
+        } else if selectedCell == middleDonationCell {
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupportMiddle", block: { (error: NSError?) in
+                if error != nil {
+                    self.showError(error!)
+                }
+            })
+        } else if selectedCell == bigDonationCell {
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupportBig", block: { (error: NSError?) in
+                if error != nil {
+                    self.showError(error!)
+                }
             })
         }
+        selectedCell?.setSelected(false, animated: true)
+    }
+    
+    private func showError(error: NSError) {
+        print(error.localizedDescription)
+        let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
+        let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
+        let dismissAction = UIAlertAction(title: dismiss, style: .Default, handler: nil)
+        alertVC.addAction(dismissAction)
+        self.presentViewController(alertVC, animated: true, completion: nil)
     }
     
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
