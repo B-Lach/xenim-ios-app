@@ -80,7 +80,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         } else if selectedCell == reportBugCell {
             openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
         } else if selectedCell == xenimCell {
-            openWebsite("https://xenim.de")
+            openWebsite("http://streams.xenim.de")
         } else if selectedCell == smallDonationCell {
             PFPurchase.buyProduct("com.stefantrauth.XenimSupportSmall", block: { (error: NSError?) in
                 if error != nil {
