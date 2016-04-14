@@ -295,7 +295,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             let optionMenu = UIAlertController(title: "Sleep Timer", message: "When do you want the player to stop playing?", preferredStyle: .ActionSheet)
             optionMenu.view.tintColor = Constants.Colors.tintColor
             
-            for minutes in [1, 10, 20, 30, 60] {
+            for minutes in [10, 20, 30, 60] {
                 let action = UIAlertAction(title: "\(minutes)min", style: .Default, handler: { (alert: UIAlertAction!) -> Void in
                     self.enableSleepTimer(minutes: minutes)
                 })
