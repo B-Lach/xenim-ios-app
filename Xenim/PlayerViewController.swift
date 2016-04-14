@@ -60,7 +60,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
-        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: #selector(PlayerViewController.timerTicked), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: #selector(timerTicked), userInfo: nil, repeats: true)
         timerTicked()
         
         self.listenersCountLabel.text = "\(event.listeners!)"
