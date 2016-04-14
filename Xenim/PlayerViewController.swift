@@ -13,20 +13,21 @@ import AlamofireImage
 import KDEAudioPlayer
 import UIImageColors
 
-class PlayerViewController: UIViewController {
+class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var backgroundCoverartImageView: UIImageView!
     
-    weak var statusBarStyleDelegate: StatusBarDelegate!
-    weak var pageViewDelegate: PageViewDelegate!
-    weak var popupDelegate: PopupDelegate!
-        
+    weak var presenter: UITabBarController!
     var event: Event! {
         didSet {
             updateUI()
         }
     }
+    
+    var miniCoverartImageView: UIImageView!
 
+    @IBOutlet weak var timeLeftLabel: UILabel!
+    @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenersIconImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
@@ -37,10 +38,18 @@ class PlayerViewController: UIViewController {
 	@IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var coverartView: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var toolbar: UIToolbar!
-    var favoriteItem: UIBarButtonItem?
+    
+    @IBOutlet weak var sleepTimerButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    
+    @IBOutlet weak var airplayView: MPVolumeView! {
+        didSet {
+            airplayView.showsVolumeSlider = false
+        }
+    }
     
     var timer : NSTimer? // timer to update view periodically
+
     let updateInterval: NSTimeInterval = 60 // seconds
     
     override func viewDidLoad() {
@@ -53,23 +62,43 @@ class PlayerViewController: UIViewController {
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
-        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: #selector(PlayerViewController.timerTicked), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: #selector(timerTicked), userInfo: nil, repeats: true)
         timerTicked()
-        
-        toolbar.setBackgroundImage(UIImage(),
-            forToolbarPosition: UIBarPosition.Any,
-            barMetrics: UIBarMetrics.Default)
-        toolbar.setShadowImage(UIImage(),
-            forToolbarPosition: UIBarPosition.Any)
         
         self.listenersCountLabel.text = "\(event.listeners!)"
         
+        popupItem.title = event.podcast.name
+        popupItem.subtitle = event.title
+        if let imageurl = event.podcast.artwork.thumb150Url {
+            miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
+        }
+        
         setupNotifications()
         updateUI()
+        
+        currentTimeLabel.hidden = true
+        timeLeftLabel.hidden = true
 	}
     
-    override func viewDidAppear(animated: Bool) {
-        updateStatusBarColor()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        // use this to add more controls on ipad interface
+        //if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
+        
+        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerViewController.togglePlayPause(_:)))]
+        
+        miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
+        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
+        miniCoverartImageView.layer.cornerRadius = 5.0
+        miniCoverartImageView.layer.masksToBounds = true
+        
+        let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
+        self.popupItem.leftBarButtonItems = [popupItem]
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     // MARK: - Update UI
@@ -87,39 +116,7 @@ class PlayerViewController: UIViewController {
         }
         
         updateProgressBar()
-        updateToolbar()
         updateFavoritesButton()
-    }
-    
-    func updateStatusBarColor() {
-        statusBarStyleDelegate.updateStatusBarStyle(.LightContent)
-    }
-    
-    func updateToolbar() {
-        let spaceItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        
-        var items = [UIBarButtonItem]()
-        
-        if event.podcast.webchatUrl != nil {
-            let chatItem = UIBarButtonItem(image: UIImage(named: "chat"), style: .Plain, target: self, action: #selector(PlayerViewController.openChat(_:)))
-            items.append(spaceItem)
-            items.append(chatItem)
-        }
-        
-        favoriteItem = UIBarButtonItem(image: UIImage(named: "star-outline"), style: .Plain, target: self, action: #selector(PlayerViewController.favorite(_:)))
-        items.append(spaceItem)
-        items.append(favoriteItem!)
-        
-        let shareItem = UIBarButtonItem(image: UIImage(named: "share"), style: .Plain, target: self, action: #selector(PlayerViewController.share(_:)))
-        items.append(spaceItem)
-        items.append(shareItem)
-        
-        let infoItem = UIBarButtonItem(image: UIImage(named: "info-outline"), style: .Plain, target: self, action: #selector(PlayerViewController.showEventInfo(_:)))
-        items.append(spaceItem)
-        items.append(infoItem)
-        
-        items.append(spaceItem)
-        toolbar?.setItems(items, animated: true)
     }
     
     func updateProgressBar() {
@@ -141,9 +138,9 @@ class PlayerViewController: UIViewController {
     func updateFavoritesButton() {
         if let event = event {
             if !Favorites.isFavorite(event.podcast.id) {
-                favoriteItem?.image = UIImage(named: "star-outline")
+                favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
             } else {
-                favoriteItem?.image = UIImage(named: "star")
+                favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
             }
         }
     }
@@ -158,13 +155,13 @@ class PlayerViewController: UIViewController {
     
     // MARK: - Actions
     
-    func favorite(sender: AnyObject) {
+    @IBAction func toggleFavorite(sender: AnyObject) {
         if let event = event {
             Favorites.toggle(podcastId: event.podcast.id)
         }
     }
     
-    func share(sender: AnyObject) {
+    @IBAction func share(sender: AnyObject) {
         if let url = event?.eventXenimWebUrl {
             let objectsToShare = [url]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
@@ -176,21 +173,8 @@ class PlayerViewController: UIViewController {
         }
     }
     
-    func showEventInfo(sender: AnyObject) {
-        pageViewDelegate.showPage(1)
-    }
-    
     @IBAction func togglePlayPause(sender: AnyObject) {
         PlayerManager.sharedInstance.togglePlayPause(event)
-    }
-    
-    func openChat(sender: AnyObject) {
-        if let webchatUrl = event.podcast.webchatUrl {
-            UIApplication.sharedApplication().openURL(webchatUrl)
-        } else {
-            let message = NSLocalizedString("player_view_no_chat_url", value: "There is no chat for this podcast", comment: "alert message presented to the user if chat button is pressed but there is no chat url for this podcast.")
-            showInfoMessage("Info", message: message)
-        }
     }
     
     @IBAction func backwardPressed(sender: AnyObject) {
@@ -202,7 +186,7 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func dismissPopup(sender: AnyObject) {
-        popupDelegate.minify()
+        presenter.closePopupAnimated(true, completion: nil)
     }
     
     // MARK: notifications
@@ -217,13 +201,14 @@ class PlayerViewController: UIViewController {
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         timer?.invalidate()
+        sleepTimer?.invalidate()
     }
     
     func favoriteAdded(notification: NSNotification) {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == event.podcast.id {
-                favoriteItem?.image = UIImage(named: "star")
+                favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
             }
         }
     }
@@ -232,7 +217,7 @@ class PlayerViewController: UIViewController {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == event.podcast.id {
-                favoriteItem?.image = UIImage(named: "star-outline")
+                favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
             }
         }
     }
@@ -249,22 +234,113 @@ class PlayerViewController: UIViewController {
         case .Buffering:
             playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = false
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Paused:
             playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Playing:
             playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Stopped:
             playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .WaitingForConnection:
             playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = false
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Failed(_):
             playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
             loadingSpinnerView.hidden = true
+            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         }
+    }
+
+    // MARK: - delegate
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    func handleLongPress(recognizer: UILongPressGestureRecognizer) {
+        let baseViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        alert.view.tintColor = Constants.Colors.tintColor
+        let endPlayback = NSLocalizedString("player_manager_actionsheet_end_playback", value: "End Playback", comment: "long pressing in the player view shows an action sheet to end playback. this is the action message to end playback.")
+        alert.addAction(UIAlertAction(title: endPlayback, style: UIAlertActionStyle.Destructive, handler: { (_) -> Void in
+            // dissmiss the action sheet
+            baseViewController!.dismissViewControllerAnimated(true, completion: nil)
+            PlayerManager.sharedInstance.stop()
+        }))
+        let cancel = NSLocalizedString("cancel", value: "Cancel", comment: "Cancel")
+        alert.addAction(UIAlertAction(title: cancel, style: UIAlertActionStyle.Cancel, handler: nil))
+        baseViewController!.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - sleeptimer
+    
+    var sleepTimerTicksLeft: Int?
+    var sleepTimer: NSTimer?
+    
+    @IBAction func sleepTimerPressed(sender: AnyObject) {
+        if sleepTimer != nil {
+            disableSleepTimer()
+        } else {
+            // show action sheet to select time
+            // 10, 20, 30, 60 minutes
+            
+            let optionMenu = UIAlertController(title: "Sleep Timer", message: "When do you want the player to stop playing?", preferredStyle: .ActionSheet)
+            optionMenu.view.tintColor = Constants.Colors.tintColor
+            
+            for minutes in [1, 10, 20, 30, 60] {
+                let action = UIAlertAction(title: "\(minutes)min", style: .Default, handler: { (alert: UIAlertAction!) -> Void in
+                    self.enableSleepTimer(minutes: minutes)
+                })
+                optionMenu.addAction(action)
+            }
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
+                (alert: UIAlertAction!) -> Void in
+            })
+            optionMenu.addAction(cancelAction)
+            
+            self.presentViewController(optionMenu, animated: true, completion: nil)
+        }
+    }
+    
+    private func enableSleepTimer(minutes minutes: Int) {
+        let oneMinute: NSTimeInterval = 60
+        sleepTimer = NSTimer.scheduledTimerWithTimeInterval(oneMinute, target: self, selector: #selector(sleepTimerTriggered), userInfo: nil, repeats: true)
+        sleepTimerTicksLeft = minutes
+        updateSleepTimerDisplay()
+    }
+    
+    private func disableSleepTimer() {
+        sleepTimerTicksLeft = nil
+        sleepTimer?.invalidate()
+        sleepTimer = nil
+        updateSleepTimerDisplay()
+    }
+
+    @objc func sleepTimerTriggered() {
+        sleepTimerTicksLeft = sleepTimerTicksLeft! - 1
+        if sleepTimerTicksLeft == 0 {
+            disableSleepTimer()
+            PlayerManager.sharedInstance.stop()
+        }
+        updateSleepTimerDisplay()
+    }
+    
+    private func updateSleepTimerDisplay() {
+        if let minutesLeft = sleepTimerTicksLeft {
+            sleepTimerButton.setTitle("\(minutesLeft)min", forState: .Normal)
+        } else {
+            sleepTimerButton.setTitle("", forState: .Normal)
+        }
+        
     }
     
 }
