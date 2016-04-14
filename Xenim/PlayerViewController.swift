@@ -308,7 +308,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private func enableSleepTimer(minutes minutes: Int) {
         let oneMinute: NSTimeInterval = 60
-        sleepTimer = NSTimer(timeInterval: oneMinute, target: self, selector: #selector(PlayerViewController.sleepTimerTriggered), userInfo: nil, repeats: true)
+        sleepTimer = NSTimer.scheduledTimerWithTimeInterval(oneMinute, target: self, selector: #selector(sleepTimerTriggered), userInfo: nil, repeats: true)
         sleepTimerTicksLeft = minutes
         updateSleepTimerDisplay()
     }
