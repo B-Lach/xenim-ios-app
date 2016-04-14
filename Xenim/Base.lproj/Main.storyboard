@@ -12,7 +12,7 @@
             <objects>
                 <tableViewController id="Qdq-dh-2Wc" customClass="SettingsTableViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="T7I-aW-sPn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -238,7 +238,7 @@
                                                     <rect key="frame" x="49" y="0.0" width="536" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-info" id="0IU-qS-FRE">
@@ -288,7 +288,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="800"/>
+                    <size key="freeformSize" width="600" height="1000"/>
                     <connections>
                         <outlet property="bigDonationCell" destination="GAo-bj-efQ" id="gbf-p5-d27"/>
                         <outlet property="bigDonationPriceLabel" destination="73B-vi-gRS" id="nZd-rl-UXv"/>
@@ -305,7 +305,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7Y-xA-LGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ceS-sI-dl5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2705" y="-1184"/>
+            <point key="canvasLocation" x="2716" y="-1046"/>
         </scene>
         <!--Template Scrollview Controller-->
         <scene sceneID="FLN-dr-bGd">
@@ -374,7 +374,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lsx-GQ-0ao" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2837" y="-2655"/>
+            <point key="canvasLocation" x="2373" y="-1937"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="0Gj-Fs-SiI">
@@ -799,7 +799,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eiY-kQ-0j7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2805" y="682"/>
+            <point key="canvasLocation" x="3355" y="642"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="kgs-cb-QZq">
@@ -1463,7 +1463,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-463.5" y="2470.5"/>
+            <point key="canvasLocation" x="2072.5" y="1917.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8wy-hc-DV4">
