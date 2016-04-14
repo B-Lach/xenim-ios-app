@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		220A323C1C510911005A00A0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 220A323E1C510911005A00A0 /* Localizable.strings */; };
-		220A32411C510912005A00A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 220A32431C510912005A00A0 /* InfoPlist.strings */; };
 		2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECB51BD52E470040100F /* AppDelegate.swift */; };
 		2222ECBB1BD52E480040100F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECB91BD52E480040100F /* Main.storyboard */; };
 		2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBC1BD52E480040100F /* Assets.xcassets */; };
@@ -54,10 +52,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		220A32381C510127005A00A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		220A32391C510127005A00A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		220A323D1C510911005A00A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		220A32421C510912005A00A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		221109551BD5336F0095F25D /* Xenim-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Xenim-Bridging-Header.h"; sourceTree = "<group>"; };
 		2222ECB21BD52E470040100F /* Xenim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xenim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2222ECB51BD52E470040100F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -152,8 +146,6 @@
 		2232FE5E1BDE234D00BE368E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				220A32431C510912005A00A0 /* InfoPlist.strings */,
-				220A323E1C510911005A00A0 /* Localizable.strings */,
 				2222ECBC1BD52E480040100F /* Assets.xcassets */,
 				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
 			);
@@ -329,8 +321,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				220A323C1C510911005A00A0 /* Localizable.strings in Resources */,
-				220A32411C510912005A00A0 /* InfoPlist.strings in Resources */,
 				2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */,
 				229421FB1C1989DA00033AAB /* Keys.plist in Resources */,
 				2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */,
@@ -433,27 +423,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		220A323E1C510911005A00A0 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				220A323D1C510911005A00A0 /* de */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		220A32431C510912005A00A0 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				220A32421C510912005A00A0 /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		2222ECB91BD52E480040100F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBA1BD52E480040100F /* Base */,
-				220A32381C510127005A00A0 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -462,7 +435,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBF1BD52E480040100F /* Base */,
-				220A32391C510127005A00A0 /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
