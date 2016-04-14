@@ -292,7 +292,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             // show action sheet to select time
             // 10, 20, 30, 60 minutes
             
-            let optionMenu = UIAlertController(title: "Sleep Timer", message: "When do you want the player to stop playing?", preferredStyle: .ActionSheet)
+            let optionMenu = UIAlertController(title: "", message: "", preferredStyle: .ActionSheet)
             optionMenu.view.tintColor = Constants.Colors.tintColor
             
             for minutes in [10, 20, 30, 60] {
