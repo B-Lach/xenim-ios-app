@@ -92,7 +92,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Xenim/MarqueeLabel_Swift.framework"
   install_framework "Pods-Xenim/Parse.framework"
   install_framework "Pods-Xenim/SwiftyJSON.framework"
-  install_framework "Pods-Xenim/UIImageColors.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Xenim/Alamofire.framework"
@@ -103,5 +102,4 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Xenim/MarqueeLabel_Swift.framework"
   install_framework "Pods-Xenim/Parse.framework"
   install_framework "Pods-Xenim/SwiftyJSON.framework"
-  install_framework "Pods-Xenim/UIImageColors.framework"
 fi

@@ -1,15 +1,14 @@
 PODS:
-  - Alamofire (3.3.0)
-  - AlamofireImage (2.3.1):
-    - Alamofire (~> 3.2)
-  - Bolts/Tasks (1.6.0)
+  - Alamofire (3.3.1)
+  - AlamofireImage (2.4.0):
+    - Alamofire (~> 3.3)
+  - Bolts/Tasks (1.7.0)
   - GCDKit (1.2.2)
-  - KDEAudioPlayer (0.7.0)
-  - MarqueeLabel-Swift (2.6.5)
+  - KDEAudioPlayer (0.8.2)
+  - MarqueeLabel-Swift (2.6.6)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
   - SwiftyJSON (2.3.2)
-  - UIImageColors (1.0.3)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
@@ -19,27 +18,15 @@ DEPENDENCIES:
   - MarqueeLabel-Swift (~> 2.3)
   - Parse (~> 1.10)
   - SwiftyJSON (~> 2.3)
-  - UIImageColors (from `https://github.com/jathu/UIImageColors.git`, branch `master`)
-
-EXTERNAL SOURCES:
-  UIImageColors:
-    :branch: master
-    :git: https://github.com/jathu/UIImageColors.git
-
-CHECKOUT OPTIONS:
-  UIImageColors:
-    :commit: 243d79e70b20ca5d6a73691d75d99ff22dab8a1a
-    :git: https://github.com/jathu/UIImageColors.git
 
 SPEC CHECKSUMS:
-  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
-  AlamofireImage: e52336282757bbe1644f075d6cb85f19c891f939
-  Bolts: f52a250053bb517ca874523c3913776359ab3def
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   GCDKit: 15e3d514cbf5d56699b2716b798031f778fb48c2
-  KDEAudioPlayer: f2b1bf59884b8c2cc737c6c36dd7d7630026787d
-  MarqueeLabel-Swift: 6fbc43d0bdd41fbd7107a4ca84e167933df42671
+  KDEAudioPlayer: a6f43e73d16fbfba3db7a4629e29903113225724
+  MarqueeLabel-Swift: debdfb306f9398b3921a43d7c1a7fed3b8a29694
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  UIImageColors: 3c3b04ecd5786d3235f7f783316c6ef0f631216d
 
 COCOAPODS: 0.39.0
