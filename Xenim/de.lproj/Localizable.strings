@@ -2,7 +2,7 @@
 "Today" = "Heute";
 
 /* this message gets displayed if add favorites table view controller does not have any item to display */
-"add_favorites_tableview_no_data_message" = "Es konnten keine Daten geladen werden";
+"add_favorites_tableview_no_data_message" = "Keine Ergebnisse";
 
 /* Cancel
    cancel string */
@@ -51,16 +51,13 @@
 "live_now" = "Jetzt live";
 
 /* If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message. */
-"player_failed_state_alertview_message" = "Dieser Stream kann nicht abgespielt werden.";
+"player_failed_state_alertview_message" = "Dieser Stream kann nicht abgespielt werden";
 
 /* If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title. */
 "player_failed_state_alertview_title" = "Streaming Fehler";
 
 /* long pressing in the player view shows an action sheet to end playback. this is the action message to end playback. */
 "player_manager_actionsheet_end_playback" = "Player beenden";
-
-/* alert message presented to the user if chat button is pressed but there is no chat url for this podcast. */
-"player_view_no_chat_url" = "Dieser Podcast hat keinen Chat";
 
 /* mail body for a new feedback mail message */
 "podcast_detailview_feedback_mail_body" = "Hallo,";
@@ -75,7 +72,7 @@
 "podcast_detailview_subscribe_alert_message" = "Wähle deinen Podcast Client";
 
 /* remove a favorite by swiping left to edit */
-"remove_favorite" = "Löschen";
+"remove_favorite" = "Entfernen";
 
 /* mail body for a new support mail message */
 "settings_view_mail_body" = "Bitte versuche dein Problem so genau wie möglich zu beschreiben, damit wir möglichst schell eine Lösung dafür finden können.  Installierte Version: %@";
