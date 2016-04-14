@@ -11,7 +11,6 @@ import MediaPlayer
 import Alamofire
 import AlamofireImage
 import KDEAudioPlayer
-import UIImageColors
 
 class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
