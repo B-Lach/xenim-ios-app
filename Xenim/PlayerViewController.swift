@@ -26,6 +26,8 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var miniCoverartImageView: UIImageView!
 
+    @IBOutlet weak var timeLeftLabel: UILabel!
+    @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenersIconImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
@@ -73,6 +75,9 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         setupNotifications()
         updateUI()
+        
+        currentTimeLabel.hidden = true
+        timeLeftLabel.hidden = true
 	}
     
     required init?(coder aDecoder: NSCoder) {
