@@ -41,7 +41,14 @@ class Event : NSObject {
     let eventDescription: String?
     let shownotes: String?
     var streams = [Stream]()
-    var listeners: Int?
+    var listeners: Int? {
+        didSet {
+            // only allow listeners count >= 0
+            if listeners != nil && listeners! < 0 {
+                listeners = 0
+            }
+        }
+    }
     // returns a supported streamUrl or nil
     var streamUrl: NSURL? {
         get {
