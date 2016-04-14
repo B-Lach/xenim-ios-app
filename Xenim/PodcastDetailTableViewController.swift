@@ -44,7 +44,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         
         // adjust bottom insets as auto adjust scrollview insets is disabled
         if let bottomInset = tabBarController?.tabBar.bounds.height {
-            tableView.contentInset.bottom = bottomInset
+            tableView.contentInset.bottom = bottomInset + 44 // 44 are for the player popup above the tabbar
         }
         
         // auto cell height
