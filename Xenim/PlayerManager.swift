@@ -91,15 +91,15 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             
             self.event = event
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let popupViewController = storyboard.instantiateViewControllerWithIdentifier("PopupViewController") as? PopupViewController
-            popupViewController!.presenter = baseViewController
+            let playerViewController = storyboard.instantiateViewControllerWithIdentifier("PlayerViewController") as? PlayerViewController
+            playerViewController!.presenter = baseViewController
             
-            let longpressRecognizer = UILongPressGestureRecognizer(target: popupViewController, action: #selector(popupViewController?.handleLongPress(_:)))
-            longpressRecognizer.delegate = popupViewController
+            let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: #selector(playerViewController?.handleLongPress(_:)))
+            longpressRecognizer.delegate = playerViewController
             
-            popupViewController!.event = event
+            playerViewController!.event = event
             
-            baseViewController?.presentPopupBarWithContentViewController(popupViewController!, openPopup: true, animated: true, completion: nil)
+            baseViewController?.presentPopupBarWithContentViewController(playerViewController!, openPopup: true, animated: true, completion: nil)
             baseViewController?.popupBar!.addGestureRecognizer(longpressRecognizer)
             baseViewController?.popupContentView.popupCloseButton!.hidden = true
             

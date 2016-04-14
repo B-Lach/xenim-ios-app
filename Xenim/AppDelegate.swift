@@ -32,9 +32,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (config) -> Void in
             config.applicationId = applicationId
             config.clientKey = clientKey
+            // "https://dev.push.xenim.de/parse"
             config.server = "https://push.xenim.de/parse"
             config.localDatastoreEnabled = true
         }))
+        
+        // register IAP handler. will be called when the item has been purchased.
+        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportSmall") { (transaction:SKPaymentTransaction) in
+            print("purchase was successful.")
+        }
+        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportMiddle") { (transaction:SKPaymentTransaction) in
+            print("purchase was successful.")
+        }
+        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportBig") { (transaction:SKPaymentTransaction) in
+            print("purchase was successful.")
+        }
         
         return true
     }

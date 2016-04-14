@@ -15,8 +15,8 @@ class EventTableViewCell: UITableViewCell {
         didSet {
             eventCoverartImage.layer.cornerRadius = eventCoverartImage.frame.width / 2
             eventCoverartImage.layer.masksToBounds = true
-            eventCoverartImage.layer.borderColor =  UIColor.lightGrayColor().CGColor
-            eventCoverartImage.layer.borderWidth = 1
+            eventCoverartImage.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
+            eventCoverartImage.layer.borderWidth = 0.5
         }
     }
     @IBOutlet weak var podcastNameLabel: UILabel!
