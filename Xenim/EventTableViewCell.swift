@@ -66,6 +66,8 @@ class EventTableViewCell: UITableViewCell {
             let formatter = NSDateFormatter();
             formatter.locale = NSLocale.currentLocale()
             
+            // http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
+            
             formatter.setLocalizedDateFormatFromTemplate("HH:mm")
             let time = formatter.stringFromDate(event.begin)
             dateBottomLabel.text = time
