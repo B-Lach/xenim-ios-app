@@ -41,7 +41,7 @@ class EventTableViewCell: UITableViewCell {
     func updateUI() {
         if let event = event {
             podcastNameLabel?.text = event.podcast.name
-            eventTitleLabel?.text = event.title
+            eventTitleLabel?.text = "FS127"
 
             updateCoverart()
             updateLivedate()
@@ -66,25 +66,21 @@ class EventTableViewCell: UITableViewCell {
             let formatter = NSDateFormatter();
             formatter.locale = NSLocale.currentLocale()
             
-//            formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-//            let time = formatter.stringFromDate(event.begin)
-//            dateLabel.textColor = UIColor.lightGrayColor()
-//            
-//            if event.isLive() {
-//                dateLabel?.text = NSLocalizedString("live_now", value: "Live Now", comment: "live now string")
-//                dateLabel.textColor = Constants.Colors.tintColor
-//            }
-//            else if event.isUpcomingToday() || event.isUpcomingTomorrow() {
-//                dateLabel?.text = time
-//            } else if event.isUpcomingThisWeek() {
-//                formatter.setLocalizedDateFormatFromTemplate("EEEE")
-//                let date = formatter.stringFromDate(event.begin)
-//                dateLabel?.text = "\(date) \(time)"
-//            } else {
-//                formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM")
-//                let date = formatter.stringFromDate(event.begin)
-//                dateLabel?.text = "\(date) \(time)"
-//            }
+            formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+            let time = formatter.stringFromDate(event.begin)
+            dateBottomLabel.text = time
+            
+            if event.isUpcomingThisWeek() {
+                formatter.setLocalizedDateFormatFromTemplate("cccccc")
+                var day = formatter.stringFromDate(event.begin)
+                day = day.stringByReplacingOccurrencesOfString(".", withString: "")
+                day = day.uppercaseString
+                dateTopLabel.text = day
+            } else {
+                formatter.setLocalizedDateFormatFromTemplate("d.M")
+                let date = formatter.stringFromDate(event.begin)
+                dateTopLabel.text = date
+            }
         }
     }
     
