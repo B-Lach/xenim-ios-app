@@ -19,12 +19,15 @@ class EventTableViewCell: UITableViewCell {
             eventCoverartImage.layer.borderWidth = 0.5
         }
     }
+
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var favoriteImageView: UIImageView!
     @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var playButtonWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var dateStackView: UIStackView!
+    @IBOutlet weak var dateTopLabel: UILabel!
+    @IBOutlet weak var dateBottomLabel: UILabel!
     
     var event: Event! {
         didSet {
@@ -63,25 +66,25 @@ class EventTableViewCell: UITableViewCell {
             let formatter = NSDateFormatter();
             formatter.locale = NSLocale.currentLocale()
             
-            formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            let time = formatter.stringFromDate(event.begin)
-            dateLabel.textColor = UIColor.lightGrayColor()
-            
-            if event.isLive() {
-                dateLabel?.text = NSLocalizedString("live_now", value: "Live Now", comment: "live now string")
-                dateLabel.textColor = Constants.Colors.tintColor
-            }
-            else if event.isUpcomingToday() || event.isUpcomingTomorrow() {
-                dateLabel?.text = time
-            } else if event.isUpcomingThisWeek() {
-                formatter.setLocalizedDateFormatFromTemplate("EEEE")
-                let date = formatter.stringFromDate(event.begin)
-                dateLabel?.text = "\(date) \(time)"
-            } else {
-                formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM")
-                let date = formatter.stringFromDate(event.begin)
-                dateLabel?.text = "\(date) \(time)"
-            }
+//            formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+//            let time = formatter.stringFromDate(event.begin)
+//            dateLabel.textColor = UIColor.lightGrayColor()
+//            
+//            if event.isLive() {
+//                dateLabel?.text = NSLocalizedString("live_now", value: "Live Now", comment: "live now string")
+//                dateLabel.textColor = Constants.Colors.tintColor
+//            }
+//            else if event.isUpcomingToday() || event.isUpcomingTomorrow() {
+//                dateLabel?.text = time
+//            } else if event.isUpcomingThisWeek() {
+//                formatter.setLocalizedDateFormatFromTemplate("EEEE")
+//                let date = formatter.stringFromDate(event.begin)
+//                dateLabel?.text = "\(date) \(time)"
+//            } else {
+//                formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM")
+//                let date = formatter.stringFromDate(event.begin)
+//                dateLabel?.text = "\(date) \(time)"
+//            }
         }
     }
     
@@ -117,12 +120,12 @@ class EventTableViewCell: UITableViewCell {
     }
     
     private func hidePlayButton() {
-        playButtonWidthConstraint.constant = 0
+        dateStackView.hidden = false
         playButton.hidden = true
     }
     
     private func showPlayButton() {
-        playButtonWidthConstraint.constant = 55
+        dateStackView.hidden = true
         playButton.hidden = false
     }
     
