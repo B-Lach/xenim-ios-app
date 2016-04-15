@@ -40,15 +40,13 @@ class FavoritesTableViewController: UITableViewController{
         if Favorites.fetch().count != favorites.count {
             refresh()
         }
+        
+        // refresh next show date label in all cells
+        NSNotificationCenter.defaultCenter().postNotificationName("updateNextDate", object: nil, userInfo: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 

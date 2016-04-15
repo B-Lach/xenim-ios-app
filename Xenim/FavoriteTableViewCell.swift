@@ -18,15 +18,17 @@ class FavoriteTableViewCell: UITableViewCell {
             } else {
                 coverartImageView.image = placeholderImage
             }
-            
             podcastNameLabel.text = podcast.name
-            
-            nextDateLabel.text = NSLocalizedString("favorite_tableview_loading_next_event", value: "Loading...", comment: "Loading message while loading next event date")
-            podcast.daysUntilNextEventString { (string) -> Void in
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.nextDateLabel.text = string
-                })
-            }
+            updateNextDate()
+        }
+    }
+    
+    @objc func updateNextDate() {
+        nextDateLabel.text = NSLocalizedString("favorite_tableview_loading_next_event", value: "Loading...", comment: "Loading message while loading next event date")
+        podcast.daysUntilNextEventString { (string) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.nextDateLabel.text = string
+            })
         }
     }
 
@@ -43,7 +45,12 @@ class FavoriteTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateNextDate), name: "updateNextDate", object: nil)
         self.tintColor = Constants.Colors.tintColor
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
