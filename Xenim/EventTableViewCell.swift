@@ -65,7 +65,7 @@ class EventTableViewCell: UITableViewCell {
             
             formatter.setLocalizedDateFormatFromTemplate("HH:mm")
             let time = formatter.stringFromDate(event.begin)
-            dateLabel.textColor = UIColor.grayColor()
+            dateLabel.textColor = UIColor.lightGrayColor()
             
             if event.isLive() {
                 dateLabel?.text = NSLocalizedString("live_now", value: "Live Now", comment: "live now string")
