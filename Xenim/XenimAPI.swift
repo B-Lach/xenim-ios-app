@@ -96,7 +96,7 @@ class XenimAPI {
     // MARK: - Helpers
     
     
-    static func handleMultipleEventsResponse(response: Response<AnyObject, NSError>, onComplete: (events: [Event]) -> Void) {
+    private static func handleMultipleEventsResponse(response: Response<AnyObject, NSError>, onComplete: (events: [Event]) -> Void) {
         var events = [Event]()
         if let responseData = response.data {
             let json = JSON(data: responseData)
@@ -141,7 +141,7 @@ class XenimAPI {
         }
     }
     
-    static func podcastFromJSON(podcastJSON: JSON) -> Podcast? {
+    private static func podcastFromJSON(podcastJSON: JSON) -> Podcast? {
         let id = podcastJSON["id"].stringValue
         let name = podcastJSON["name"].stringValue
         let podcastDescription = podcastJSON["description"].stringValue
@@ -165,7 +165,7 @@ class XenimAPI {
         }
     }
     
-    static func eventFromJSON(eventJSON: JSON, onComplete: (event: Event?) -> Void) {
+    private static func eventFromJSON(eventJSON: JSON, onComplete: (event: Event?) -> Void) {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
