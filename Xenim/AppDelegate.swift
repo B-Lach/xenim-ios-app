@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             config.applicationId = applicationId
             config.clientKey = clientKey
             // "https://dev.push.xenim.de/parse"
-            config.server = "https://push.xenim.de/parse"
+            config.server = "https://dev.push.xenim.de/parse"
             config.localDatastoreEnabled = true
         }))
         

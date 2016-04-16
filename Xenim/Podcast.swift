@@ -115,44 +115,6 @@ class Podcast : NSObject, Comparable {
         super.init()
     }
     
-    /*
-        returns days until next event
-        returns -1 if there is no event scheduled in the future
-    */
-    func getDaysUntilNextEvent(onComplete: (days: Int) -> Void) {
-        // fetch upcoming events
-        XenimAPI.fetchPodcastUpcomingEvents(self.id, maxCount: 1) { (events) -> Void in
-            if events.first != nil && events.first!.isUpcoming() {
-                // calculate in how many days this event takes place
-                let cal = NSCalendar.currentCalendar()
-                let today = cal.startOfDayForDate(NSDate())
-                let diff = cal.components(NSCalendarUnit.Day,
-                    fromDate: today,
-                    toDate: events.first!.begin,
-                    options: NSCalendarOptions.WrapComponents )
-                onComplete(days: diff.day)
-            } else {
-                onComplete(days: -1)
-            }
-        }
-    }
-    
-    func daysUntilNextEventString(onComplete: (string: String) -> Void) {
-        getDaysUntilNextEvent { (days) -> Void in
-            if days < 0 {
-                // no event scheduled
-                let noEventString = String(format: NSLocalizedString("favorite_tableviewcell_no_event_scheduled", value: "Nothing scheduled", comment: "Tells the user that there is no event scheduled in the future"))
-                onComplete(string: noEventString)
-            } else if days == 0 {
-                // the event is today
-                onComplete(string: NSLocalizedString("Today", value: "Today", comment: "Today").lowercaseString)
-            } else {
-                // the event is in the future
-                let diffDaysString = String(format: NSLocalizedString("favorite_tableviewcell_diff_date_string", value: "in %d days", comment: "Tells the user in how many dates the event takes place. It is a formatted string like 'in %d days'."), days)
-                onComplete(string: diffDaysString)
-            }
-        }
-    }
 }
 
 

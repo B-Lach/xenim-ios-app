@@ -10,15 +10,16 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class XenimAPI : ListenAPI {
+class XenimAPI {
     
     // "http://feeds.streams.demo.xenim.de/api/v1/"
-    static let apiBaseURL = "http://feeds.streams.xenim.de/api/v1/"
+    static let apiBaseURL = "http://feeds.streams.demo.xenim.de/api/v1/"
     
-    static func fetchUpcomingEvents(maxCount maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
+    static func fetchEvents(status status: String, orderBy: String, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
         let parameters = [
-            "status": "UPCOMING",
+            "status": "\(status)",
+            "order_by": "\(orderBy)",
             "limit": "\(maxCount!)"
         ]
         Alamofire.request(.GET, url, parameters: parameters)
@@ -27,21 +28,11 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func fetchLiveEvents(onComplete: (events: [Event]) -> Void){
-        let url = apiBaseURL + "episode/"
-        let parameters = [
-            "status": "RUNNING"
-        ]
-        Alamofire.request(.GET, url, parameters: parameters)
-            .responseJSON { response in
-                handleMultipleEventsResponse(response, onComplete: onComplete)
-        }
-    }
-    
-    static func fetchPodcastUpcomingEvents(podcastId: String, maxCount: Int? = 1, onComplete: (events: [Event]) -> Void){
+    static func fetchEvents(podcastId podcastId: String, status: String, orderBy: String, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         let parameters = [
-            "status": "UPCOMING",
+            "status": "\(status)",
+            "order_by": "\(orderBy)",
             "limit": "\(maxCount!)"
         ]
         Alamofire.request(.GET, url, parameters: parameters)
@@ -50,7 +41,7 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func fetchEventById(eventId: String, onComplete: (event: Event?) -> Void){
+    static func fetchEvent(eventId eventId: String, onComplete: (event: Event?) -> Void){
         let url = apiBaseURL + "episode/\(eventId)/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -65,7 +56,7 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func fetchPodcastById(podcastId: String, onComplete: (podcast: Podcast?) -> Void){
+    static func fetchPodcast(podcastId podcastId: String, onComplete: (podcast: Podcast?) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -211,7 +202,7 @@ class XenimAPI : ListenAPI {
 
         
         if podcastId != nil {
-            fetchPodcastById(podcastId!) { (podcast) -> Void in
+            fetchPodcast(podcastId: podcastId!) { (podcast) -> Void in
                 // only add this event to the list if it has a minimum number
                 // of attributes set
                 if id != "" && begin != nil && status != nil && podcast != nil {

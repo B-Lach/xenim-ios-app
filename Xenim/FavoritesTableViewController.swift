@@ -69,7 +69,7 @@ class FavoritesTableViewController: UITableViewController{
     func favoriteAdded(notification: NSNotification) {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // fetch podcast info
-            XenimAPI.fetchPodcastById(podcastId, onComplete: { (newPodcast) -> Void in
+            XenimAPI.fetchPodcast(podcastId: podcastId, onComplete: { (newPodcast) -> Void in
                 // find the right place to insert it
                 if let newPodcast = newPodcast {
                     

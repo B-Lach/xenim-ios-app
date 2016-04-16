@@ -89,7 +89,7 @@ class Favorites {
         // start one api requirest for each podcast
         for podcastId in podcastIds {
             dispatch_group_enter(serviceGroup)
-            XenimAPI.fetchPodcastById(podcastId, onComplete: { (podcast) -> Void in
+            XenimAPI.fetchPodcast(podcastId: podcastId, onComplete: { (podcast) -> Void in
                 dispatch_barrier_async(blocksDispatchQueue) {
                     if podcast != nil {
                         // this has to be thread safe
