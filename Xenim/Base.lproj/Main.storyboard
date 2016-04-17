@@ -897,11 +897,11 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="111" id="ahl-HS-Ukt" customClass="FavoriteTableViewCell" customModule="Xenim" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="111" id="ahl-HS-Ukt" customClass="FavoriteTableViewCell" customModule="Xenim" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="111"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ahl-HS-Ukt" id="ItQ-PR-HjU">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="110"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="110"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tuh-X7-b6l">
@@ -911,26 +911,45 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                 <constraint firstAttribute="width" secondItem="Tuh-X7-b6l" secondAttribute="height" multiplier="1:1" id="dM6-ZU-bZx"/>
                                             </constraints>
                                         </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="E5G-UP-CvH">
-                                            <rect key="frame" x="76" y="36" width="483" height="41"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="E5G-UP-CvH">
+                                            <rect key="frame" x="76" y="44" width="464" height="22"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3h-bQ-DFo">
-                                                    <rect key="frame" x="0.0" y="0.0" width="483" height="22"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="464" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nextup Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onN-H0-80u">
-                                                    <rect key="frame" x="0.0" y="26" width="483" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="e3Q-SH-OW6">
+                                            <rect key="frame" x="548" y="35" width="44" height="41"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="SO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5a1-3J-VJb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="20:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5Q-eV-EmK">
+                                                    <rect key="frame" x="0.0" y="21" width="44" height="20"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="55" id="4dv-SE-K7y"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="4dv-SE-K7y"/>
+                                                </mask>
+                                            </variation>
                                         </stackView>
                                     </subviews>
                                     <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="e3Q-SH-OW6" secondAttribute="trailing" id="13f-nF-fmg"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Tuh-X7-b6l" secondAttribute="bottom" constant="3" id="Dbg-XI-6te"/>
                                         <constraint firstItem="Tuh-X7-b6l" firstAttribute="top" secondItem="ItQ-PR-HjU" secondAttribute="topMargin" constant="3" id="Iup-jV-SR3"/>
                                         <constraint firstAttribute="topMargin" secondItem="Tuh-X7-b6l" secondAttribute="top" constant="5" id="KsC-v3-CuK"/>
@@ -939,6 +958,8 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                         <constraint firstAttribute="trailingMargin" secondItem="E5G-UP-CvH" secondAttribute="trailing" id="Qi4-B3-7ui"/>
                                         <constraint firstItem="Tuh-X7-b6l" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ItQ-PR-HjU" secondAttribute="topMargin" constant="3" id="UcE-11-eQo"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Tuh-X7-b6l" secondAttribute="bottom" constant="3" id="Uml-G3-X0V"/>
+                                        <constraint firstItem="e3Q-SH-OW6" firstAttribute="leading" secondItem="E5G-UP-CvH" secondAttribute="trailing" constant="8" id="WRg-VY-7vp"/>
+                                        <constraint firstItem="E5G-UP-CvH" firstAttribute="centerY" secondItem="e3Q-SH-OW6" secondAttribute="centerY" id="YD3-w6-NHg"/>
                                         <constraint firstItem="E5G-UP-CvH" firstAttribute="centerY" secondItem="Tuh-X7-b6l" secondAttribute="centerY" id="Yhc-Qx-PVJ"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Tuh-X7-b6l" secondAttribute="bottom" constant="5" id="dG5-g6-vna"/>
                                         <constraint firstItem="Tuh-X7-b6l" firstAttribute="top" secondItem="ItQ-PR-HjU" secondAttribute="topMargin" constant="5" id="dJr-Eb-YGn"/>
@@ -957,12 +978,15 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                             <exclude reference="dG5-g6-vna"/>
                                             <exclude reference="dJr-Eb-YGn"/>
                                             <exclude reference="nBc-m5-Reo"/>
+                                            <exclude reference="Qi4-B3-7ui"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="coverartImageView" destination="Tuh-X7-b6l" id="aGw-1L-u5L"/>
-                                    <outlet property="nextDateLabel" destination="onN-H0-80u" id="xeh-GB-Apt"/>
+                                    <outlet property="nextDateBottomLabel" destination="P5Q-eV-EmK" id="PjV-5F-xzq"/>
+                                    <outlet property="nextDateStackView" destination="e3Q-SH-OW6" id="0oq-ry-Mr6"/>
+                                    <outlet property="nextDateTopLabel" destination="5a1-3J-VJb" id="BLc-WQ-kZA"/>
                                     <outlet property="podcastNameLabel" destination="u3h-bQ-DFo" id="Qo2-M8-pmM"/>
                                 </connections>
                             </tableViewCell>
@@ -1634,6 +1658,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <image name="white-25-user" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GqG-Qe-AVA"/>
+        <segue reference="Mn2-PI-Ldr"/>
     </inferredMetricsTieBreakers>
 </document>
