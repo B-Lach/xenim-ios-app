@@ -26,7 +26,7 @@ class FavoriteTableViewCell: UITableViewCell {
     @objc func updateNextDate() {
         nextDateLabel.text = NSLocalizedString("favorite_tableview_loading_next_event", value: "Loading...", comment: "Loading message while loading next event date")
     
-        XenimAPI.fetchEvents(podcastId: podcast.id, status: ["RUNNING", "UPCOMING"], orderBy: "begin", maxCount: 1) { (events) in
+        XenimAPI.fetchEvents(podcastId: podcast.id, status: ["RUNNING", "UPCOMING"], maxCount: 1) { (events) in
 
             if let event = events.first {
                 let dateLabelString: String

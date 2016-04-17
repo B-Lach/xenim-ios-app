@@ -96,7 +96,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         refreshControl!.beginRefreshing()
         var newEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
         
-        XenimAPI.fetchEvents(status: ["RUNNING", "UPCOMING"], orderBy: "begin", maxCount: 50) { (events) in
+        XenimAPI.fetchEvents(status: ["RUNNING", "UPCOMING"], maxCount: 50) { (events) in
             for event in events {
                 if event.isLive() {
                     newEvents[0].append(event)

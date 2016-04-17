@@ -15,17 +15,15 @@ class XenimAPI {
     // "http://feeds.streams.demo.xenim.de/api/v1/"
     static let apiBaseURL = Constants.API.xenimApiUrl
     
-    static func fetchEvents(status status: [String]?, orderBy: String?, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
+    static func fetchEvents(status status: [String]?, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
         var parameters = [
-            "limit": "\(maxCount!)"
+            "limit": "\(maxCount!)",
+            "order_by": "begin"
         ]
         if let status = status {
             let stringRepresentation = status.joinWithSeparator(",")
             parameters["status__in"] = stringRepresentation
-        }
-        if let orderBy = orderBy {
-            parameters["orderBy"] = orderBy
         }
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
@@ -33,17 +31,15 @@ class XenimAPI {
         }
     }
     
-    static func fetchEvents(podcastId podcastId: String, status: [String]?, orderBy: String?, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
+    static func fetchEvents(podcastId podcastId: String, status: [String]?, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         var parameters = [
-            "limit": "\(maxCount!)"
+            "limit": "\(maxCount!)",
+             "order_by": "begin"
         ]
         if let status = status {
             let stringRepresentation = status.joinWithSeparator(",")
             parameters["status__in"] = stringRepresentation
-        }
-        if let orderBy = orderBy {
-            parameters["orderBy"] = orderBy
         }
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
@@ -135,6 +131,7 @@ class XenimAPI {
                 }
                 
                 dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+                    
                     // sort events by time as async processing appends them unordered
                     let sortedEvents = events.sort({ (event1, event2) -> Bool in
                         event1.begin.compare(event2.begin) == .OrderedAscending
