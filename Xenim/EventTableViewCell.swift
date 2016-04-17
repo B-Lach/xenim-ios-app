@@ -29,6 +29,20 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var dateTopLabel: UILabel!
     @IBOutlet weak var dateBottomLabel: UILabel!
     
+    private var liveDateShowsDate = true
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedDateView(_:)))
+        tap.delegate = self
+        dateStackView.addGestureRecognizer(tap)
+    }
+    
+    func tappedDateView(sender: UITapGestureRecognizer?) {
+        liveDateShowsDate = !liveDateShowsDate
+        NSNotificationCenter.defaultCenter().postNotificationName("toggleDateView", object: nil, userInfo: ["liveDateShowsDate": liveDateShowsDate])
+    }
+    
     var event: Event! {
         didSet {
             // notifications have to be updated every time a new event is set to this cell
@@ -61,27 +75,38 @@ class EventTableViewCell: UITableViewCell {
     
     func updateLivedate() {
         if let event = event {
-            // display livedate differently according to how far in the future
-            // the event is taking place
-            let formatter = NSDateFormatter();
-            formatter.locale = NSLocale.currentLocale()
-            
-            // http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
-            
-            formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            let time = formatter.stringFromDate(event.begin)
-            dateBottomLabel.text = time
-            
-            if event.isUpcomingThisWeek() {
-                formatter.setLocalizedDateFormatFromTemplate("cccccc")
-                var day = formatter.stringFromDate(event.begin)
-                day = day.stringByReplacingOccurrencesOfString(".", withString: "")
-                day = day.uppercaseString
-                dateTopLabel.text = day
+            if liveDateShowsDate {
+                let formatter = NSDateFormatter();
+                formatter.locale = NSLocale.currentLocale()
+                
+                // http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
+                
+                formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+                let time = formatter.stringFromDate(event.begin)
+                dateBottomLabel.text = time
+                
+                if event.isUpcomingThisWeek() {
+                    formatter.setLocalizedDateFormatFromTemplate("cccccc")
+                    var day = formatter.stringFromDate(event.begin)
+                    day = day.stringByReplacingOccurrencesOfString(".", withString: "")
+                    day = day.uppercaseString
+                    dateTopLabel.text = day
+                } else {
+                    formatter.setLocalizedDateFormatFromTemplate("d.M")
+                    let date = formatter.stringFromDate(event.begin)
+                    dateTopLabel.text = date
+                }
             } else {
-                formatter.setLocalizedDateFormatFromTemplate("d.M")
-                let date = formatter.stringFromDate(event.begin)
-                dateTopLabel.text = date
+                // calculate in how many days this event takes place
+                let cal = NSCalendar.currentCalendar()
+                let today = cal.startOfDayForDate(NSDate())
+                let diff = cal.components(NSCalendarUnit.Day,
+                                          fromDate: today,
+                                          toDate: event.begin,
+                                          options: NSCalendarOptions.WrapComponents )
+                let days = diff.day
+                dateTopLabel.text = "\(days)"
+                dateBottomLabel.text = "days" // i18n!
             }
         }
     }
@@ -154,10 +179,20 @@ class EventTableViewCell: UITableViewCell {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.playerStateChanged(_:)), name: "playerStateChanged", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.toggleDateView(_:)), name: "toggleDateView", object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func toggleDateView(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let state = userInfo["liveDateShowsDate"] as? Bool {
+                liveDateShowsDate = state
+                updateLivedate()
+            }
+        }
     }
     
     func playerStateChanged(notification: NSNotification) {
