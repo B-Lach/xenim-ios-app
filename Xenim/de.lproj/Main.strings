@@ -1,7 +1,7 @@
 /* Class = "UINavigationItem"; title = "Add Favorites"; ObjectID = "1rl-9j-OAR"; */
 "1rl-9j-OAR.title" = "Favoriten finden";
 
-/* Class = "UITableViewSection"; headerTitle = "Subscribe"; ObjectID = "3Rg-aQ-w1e"; */
+/* Class = "UITableViewSection"; headerTitle = "Recordings"; ObjectID = "3Rg-aQ-w1e"; */
 "3Rg-aQ-w1e.headerTitle" = "Aufzeichnungen";
 
 /* Class = "UITableViewSection"; headerTitle = "about"; ObjectID = "3yl-bj-r35"; */
@@ -45,11 +45,20 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 /* Class = "UILabel"; text = "-"; ObjectID = "Bqy-W6-Cbn"; */
 "Bqy-W6-Cbn.text" = "-";
 
+/* Class = "UILabel"; text = "20:00"; ObjectID = "Cme-fL-gtI"; */
+"Cme-fL-gtI.text" = "20:00";
+
 /* Class = "UILabel"; text = "12:10"; ObjectID = "Cyl-eM-QwI"; */
 "Cyl-eM-QwI.text" = "12:10";
 
+/* Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts does a live show."; ObjectID = "DWx-RP-Bf0"; */
+"DWx-RP-Bf0.text" = "Du erhältst eine Push Benachrichtigung, sobald einer deiner Favoriten eine Livesendung startet.";
+
 /* Class = "UILabel"; text = "1337"; ObjectID = "FSw-84-18Y"; */
 "FSw-84-18Y.text" = "1337";
+
+/* Class = "UILabel"; text = "FAQ"; ObjectID = "Ifs-4c-Bk8"; */
+"Ifs-4c-Bk8.text" = "FAQ";
 
 /* Class = "UILabel"; text = "Podcast Description"; ObjectID = "JaA-7x-at3"; */
 "JaA-7x-at3.text" = "Podcast Description";
@@ -123,7 +132,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 /* Class = "UILabel"; text = "Label"; ObjectID = "rBC-zr-6KO"; */
 "rBC-zr-6KO.text" = "Label";
 
-/* Class = "UILabel"; text = "Date"; ObjectID = "sRm-H4-jze"; */
+/* Class = "UILabel"; text = "SO"; ObjectID = "sRm-H4-jze"; */
 "sRm-H4-jze.text" = "Date";
 
 /* Class = "UILabel"; text = "Podcast Name"; ObjectID = "u3h-bQ-DFo"; */
@@ -150,6 +159,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 /* Class = "UILabel"; text = "Loading"; ObjectID = "ze7-Qo-4W6"; */
 "ze7-Qo-4W6.text" = "Lade";
 
-/* Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts does a live show."; ObjectID = "zkh-v8-yay"; */
+/* (No Commment) */
 "zkh-v8-yay.text" = "Du erhältst eine Push Benachrichtigung sobald einer deiner Favoriten einen Livestream startet.";
 
