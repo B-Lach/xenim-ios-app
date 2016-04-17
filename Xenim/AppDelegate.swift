@@ -13,6 +13,11 @@ struct Constants {
     struct Colors {
         static let tintColor = UIColor(red:0.98, green:0.18, blue:0.25, alpha:1)
     }
+    struct API {
+        static let parseServer = "https://dev.push.xenim.de/parse"
+        // "http://feeds.streams.demo.xenim.de/api/v1/"
+        static let xenimApiUrl = "http://feeds.streams.demo.xenim.de/api/v1/"
+    }
 }
 
 @UIApplicationMain
@@ -33,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             config.applicationId = applicationId
             config.clientKey = clientKey
             // "https://dev.push.xenim.de/parse"
-            config.server = "https://dev.push.xenim.de/parse"
+            config.server = Constants.API.parseServer
             config.localDatastoreEnabled = true
         }))
         
