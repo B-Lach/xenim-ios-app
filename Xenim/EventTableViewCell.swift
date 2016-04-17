@@ -106,7 +106,13 @@ class EventTableViewCell: UITableViewCell {
                                           options: NSCalendarOptions.WrapComponents )
                 let days = diff.day
                 dateTopLabel.text = "\(days)"
-                dateBottomLabel.text = "days" // i18n!
+                let daysStringSingle = NSLocalizedString("day", value: "day", comment: "day")
+                let daysStringMultiple = NSLocalizedString("days", value: "days", comment: "days")
+                if days == 1 {
+                    dateBottomLabel.text = daysStringSingle
+                } else {
+                    dateBottomLabel.text = daysStringMultiple
+                }
             }
         }
     }
