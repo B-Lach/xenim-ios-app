@@ -19,6 +19,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     @IBOutlet weak var smallDonationCell: UITableViewCell!
     @IBOutlet weak var middleDonationCell: UITableViewCell!
     @IBOutlet weak var bigDonationCell: UITableViewCell!
+    @IBOutlet weak var faqCell: UITableViewCell!
 
     @IBOutlet weak var middleDonationPriceLabel: UILabel!
     @IBOutlet weak var smallDonationPriceLabel: UILabel!
@@ -79,6 +80,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             sendMail()
         } else if selectedCell == reportBugCell {
             openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
+        } else if selectedCell == faqCell {
+            openWebsite("https://xenimapp.stefantrauth.de/support/")
         } else if selectedCell == xenimCell {
             openWebsite("http://streams.xenim.de")
         } else if selectedCell == smallDonationCell {
