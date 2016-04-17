@@ -75,6 +75,17 @@ class EventTableViewCell: UITableViewCell {
     
     func updateLivedate() {
         if let event = event {
+            
+            // calculate in how many days this event takes place
+            let cal = NSCalendar.currentCalendar()
+            let today = cal.startOfDayForDate(NSDate())
+            let diff = cal.components(NSCalendarUnit.Day,
+                                      fromDate: today,
+                                      toDate: event.begin,
+                                      options: NSCalendarOptions.WrapComponents )
+            let days = diff.day
+            
+            
             if liveDateShowsDate {
                 let formatter = NSDateFormatter();
                 formatter.locale = NSLocale.currentLocale()
@@ -85,7 +96,7 @@ class EventTableViewCell: UITableViewCell {
                 let time = formatter.stringFromDate(event.begin)
                 dateBottomLabel.text = time
                 
-                if event.isUpcomingThisWeek() {
+                if days < 7 {
                     formatter.setLocalizedDateFormatFromTemplate("cccccc")
                     var day = formatter.stringFromDate(event.begin)
                     day = day.stringByReplacingOccurrencesOfString(".", withString: "")
@@ -97,14 +108,6 @@ class EventTableViewCell: UITableViewCell {
                     dateTopLabel.text = date
                 }
             } else {
-                // calculate in how many days this event takes place
-                let cal = NSCalendar.currentCalendar()
-                let today = cal.startOfDayForDate(NSDate())
-                let diff = cal.components(NSCalendarUnit.Day,
-                                          fromDate: today,
-                                          toDate: event.begin,
-                                          options: NSCalendarOptions.WrapComponents )
-                let days = diff.day
                 dateTopLabel.text = "\(days)"
                 let daysStringSingle = NSLocalizedString("day", value: "day", comment: "day")
                 let daysStringMultiple = NSLocalizedString("days", value: "days", comment: "days")
