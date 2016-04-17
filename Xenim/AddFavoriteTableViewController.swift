@@ -69,10 +69,6 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         resultSearchController.view.removeFromSuperview()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func updateBackground() {
         if state == .LOADING {
