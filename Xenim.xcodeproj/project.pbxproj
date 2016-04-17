@@ -66,8 +66,6 @@
 		224180071BFA21AA004D1B5D /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		2244C3821CBF89DC00481DB3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2244C3831CBF89DC00481DB3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		2244C3841CBF8A3100481DB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		2244C3851CBF8A3100481DB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		224B0FE71C41A67900E0EFEB /* Pods_Xenim.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Xenim.framework; path = "Pods/../build/Debug-iphoneos/Pods_Xenim.framework"; sourceTree = "<group>"; };
 		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2291D8A21BDFB1D600CB6536 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
@@ -431,7 +429,6 @@
 			children = (
 				2222ECBA1BD52E480040100F /* Base */,
 				2244C3821CBF89DC00481DB3 /* de */,
-				2244C3841CBF8A3100481DB3 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -441,7 +438,6 @@
 			children = (
 				2222ECBF1BD52E480040100F /* Base */,
 				2244C3831CBF89DC00481DB3 /* de */,
-				2244C3851CBF8A3100481DB3 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
