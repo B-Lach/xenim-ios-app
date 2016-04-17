@@ -35,7 +35,7 @@ class XenimAPI {
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         var parameters = [
             "limit": "\(maxCount!)",
-             "order_by": "begin"
+            "order_by": "begin"
         ]
         if let status = status {
             let stringRepresentation = status.joinWithSeparator(",")
