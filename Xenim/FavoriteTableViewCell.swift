@@ -33,7 +33,7 @@ class FavoriteTableViewCell: UITableViewCell {
                 coverartImageView.image = placeholderImage
             }
             podcastNameLabel.text = podcast.name
-            nextDateTopLabel.text = "-"
+            nextDateTopLabel.text = ""
             nextDateBottomLabel.text = ""
             nextEvent = nil
             updateNextDate()
@@ -114,7 +114,7 @@ class FavoriteTableViewCell: UITableViewCell {
             }
         } else {
             // no upcoming event
-            nextDateTopLabel.text = "-"
+            nextDateTopLabel.text = ""
             nextDateBottomLabel.text = ""
         }
     }
