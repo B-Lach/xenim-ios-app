@@ -60,11 +60,14 @@ class FavoriteTableViewCell: UITableViewCell {
     @objc func updateNextDate() {
         XenimAPI.fetchEvents(podcastId: podcast.id, status: ["RUNNING", "UPCOMING"], maxCount: 1) { (events) in
             if let event = events.first {
-                self.nextEvent = event
+                dispatch_async(dispatch_get_main_queue(), {
+                    // make sure this is still the correct cell
+                    if event.podcast.id == self.podcast.id {
+                        self.nextEvent = event
+                    }
+                    self.updateNextDateLabel()
+                })
             }
-            dispatch_async(dispatch_get_main_queue(), { 
-                self.updateNextDateLabel()
-            })
         }
     }
     
