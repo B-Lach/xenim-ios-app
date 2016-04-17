@@ -134,7 +134,7 @@
 				229B3C461C1F08D100187BA0 /* Favorites */,
 				2224C5041CBC1F75004A49BA /* PodcastDetailTableViewController.swift */,
 				229B3C481C1F090100187BA0 /* Events */,
-				22BC05A91C12F995005356C8 /* Popup */,
+				22BC05A91C12F995005356C8 /* Player */,
 				2232FE5F1BDE235A00BE368E /* Model */,
 				229B3C441C1F084C00187BA0 /* API */,
 				229B3C451C1F087400187BA0 /* Helpers */,
@@ -204,13 +204,13 @@
 			name = Events;
 			sourceTree = "<group>";
 		};
-		22BC05A91C12F995005356C8 /* Popup */ = {
+		22BC05A91C12F995005356C8 /* Player */ = {
 			isa = PBXGroup;
 			children = (
 				222FB9FC1BF0E90A0007257A /* PlayerManager.swift */,
 				228052A31BDA53A2007512A2 /* PlayerViewController.swift */,
 			);
-			name = Popup;
+			name = Player;
 			sourceTree = "<group>";
 		};
 		22D515CA1C4BFE2700BE8D21 /* AddFavorite */ = {
