@@ -813,7 +813,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Subscribe" id="3Rg-aQ-w1e">
+                            <tableViewSection headerTitle="Recordings" id="3Rg-aQ-w1e">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="A67-66-l8h" imageView="u5J-Bj-qAW" style="IBUITableViewCellStyleDefault" id="CfD-9j-okq">
                                         <rect key="frame" x="0.0" y="653" width="600" height="44"/>
