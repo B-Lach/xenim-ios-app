@@ -19,18 +19,16 @@ class FavoriteTableViewCell: UITableViewCell {
                 coverartImageView.image = placeholderImage
             }
             podcastNameLabel.text = podcast.name
+            nextDateLabel.text = NSLocalizedString("favorite_tableview_loading_next_event", value: "Loading...", comment: "Loading message while loading next event date")
             updateNextDate()
         }
     }
     
     @objc func updateNextDate() {
-        nextDateLabel.text = NSLocalizedString("favorite_tableview_loading_next_event", value: "Loading...", comment: "Loading message while loading next event date")
-    
         XenimAPI.fetchEvents(podcastId: podcast.id, status: ["RUNNING", "UPCOMING"], maxCount: 1) { (events) in
-
+            var dateLabelString = String(format: NSLocalizedString("favorite_tableviewcell_no_event_scheduled", value: "Nothing scheduled", comment: "Tells the user that there is no event scheduled in the future"))
+            
             if let event = events.first {
-                let dateLabelString: String
-                
                 if event.isLive() {
                     dateLabelString = NSLocalizedString("live_now", value: "Live Now", comment: "Live Now")
                 } else if event.isUpcoming() {
@@ -49,15 +47,12 @@ class FavoriteTableViewCell: UITableViewCell {
                         // the event is in the future
                         dateLabelString = String(format: NSLocalizedString("favorite_tableviewcell_diff_date_string", value: "In %d days", comment: "Tells the user in how many dates the event takes place. It is a formatted string like 'in %d days'."), days)
                     }
-                } else {
-                    // no upcoming events
-                    dateLabelString = String(format: NSLocalizedString("favorite_tableviewcell_no_event_scheduled", value: "Nothing scheduled", comment: "Tells the user that there is no event scheduled in the future"))
                 }
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.nextDateLabel.text = dateLabelString
-                })
             }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.nextDateLabel.text = dateLabelString
+            })
             
         }
         
