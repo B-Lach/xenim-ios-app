@@ -493,8 +493,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hrZ-EI-DDL">
-                                            <rect key="frame" x="76" y="31" width="451" height="41"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hrZ-EI-DDL">
+                                            <rect key="frame" x="76" y="30" width="451" height="41"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5d-ya-iW5">
                                                     <rect key="frame" x="0.0" y="0.0" width="451" height="22"/>
@@ -538,8 +538,8 @@
                                                 <constraint firstAttribute="width" constant="22" id="gFk-Un-ico"/>
                                             </constraints>
                                         </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Hbz-e6-Oxd">
-                                            <rect key="frame" x="527" y="28" width="65" height="41"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Hbz-e6-Oxd">
+                                            <rect key="frame" x="527" y="30" width="65" height="41"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="SO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRm-H4-jze">
                                                     <rect key="frame" x="0.0" y="0.0" width="65" height="21"/>
@@ -1060,8 +1060,8 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="82"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="pIv-b8-mqC">
-                                            <rect key="frame" x="76" y="22" width="470" height="41"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="pIv-b8-mqC">
+                                            <rect key="frame" x="76" y="21" width="470" height="41"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Podcast Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXd-1h-OnC">
                                                     <rect key="frame" x="0.0" y="0.0" width="470" height="22"/>
@@ -1660,6 +1660,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <image name="white-25-user" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mn2-PI-Ldr"/>
+        <segue reference="7xH-hr-438"/>
     </inferredMetricsTieBreakers>
 </document>
