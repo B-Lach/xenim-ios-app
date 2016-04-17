@@ -35,6 +35,7 @@ class FavoriteTableViewCell: UITableViewCell {
             podcastNameLabel.text = podcast.name
             nextDateTopLabel.text = "-"
             nextDateBottomLabel.text = ""
+            nextEvent = nil
             updateNextDate()
         }
     }
