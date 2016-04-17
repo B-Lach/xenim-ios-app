@@ -15,26 +15,36 @@ class XenimAPI {
     // "http://feeds.streams.demo.xenim.de/api/v1/"
     static let apiBaseURL = "http://feeds.streams.demo.xenim.de/api/v1/"
     
-    static func fetchEvents(status status: String, orderBy: String, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
+    static func fetchEvents(status status: [String]?, orderBy: String?, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
-        let parameters = [
-            "status": "\(status)",
-            "order_by": "\(orderBy)",
+        var parameters = [
             "limit": "\(maxCount!)"
         ]
+        if let status = status {
+            let stringRepresentation = status.joinWithSeparator(",")
+            parameters["status__in"] = stringRepresentation
+        }
+        if let orderBy = orderBy {
+            parameters["orderBy"] = orderBy
+        }
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
                 handleMultipleEventsResponse(response, onComplete: onComplete)
         }
     }
     
-    static func fetchEvents(podcastId podcastId: String, status: String, orderBy: String, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
+    static func fetchEvents(podcastId podcastId: String, status: [String]?, orderBy: String?, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
-        let parameters = [
-            "status": "\(status)",
-            "order_by": "\(orderBy)",
+        var parameters = [
             "limit": "\(maxCount!)"
         ]
+        if let status = status {
+            let stringRepresentation = status.joinWithSeparator(",")
+            parameters["status__in"] = stringRepresentation
+        }
+        if let orderBy = orderBy {
+            parameters["orderBy"] = orderBy
+        }
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
                 handleMultipleEventsResponse(response, onComplete: onComplete)
