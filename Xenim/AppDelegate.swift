@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // alamofire requests show network indicator
         NetworkActivityIndicatorManager.sharedManager.isEnabled = true
-//        NetworkActivityIndicatorManager.sharedManager.startDelay = 1.0
+        NetworkActivityIndicatorManager.sharedManager.startDelay = 0.3
         
         // fetch parse keys from Keys.plist
         // this is force unwrapped intentionally. I want it to crash if this file is not working.

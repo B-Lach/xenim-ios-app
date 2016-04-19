@@ -39,9 +39,9 @@ class XenimUITests: XCTestCase {
         
         snapshot("01Events")
         
-        app.tables.staticTexts["Einschlafen Podcast"].tap()
+        app.tables.staticTexts["Lage der Nation"].tap()
         snapshot("02PodcastDetail")
-        app.navigationBars["Einschlafen Podcast"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
+        app.navigationBars["Lage der Nation"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
         
         // TODOplayer
         
