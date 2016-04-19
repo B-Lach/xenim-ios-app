@@ -18,6 +18,8 @@
 		224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224180071BFA21AA004D1B5D /* MessageViewController.swift */; };
 		224B0FE81C41A67900E0EFEB /* Pods_Xenim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224B0FE71C41A67900E0EFEB /* Pods_Xenim.framework */; };
 		224B0FE91C41A69400E0EFEB /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22BEF0FA1C1192F000496C2F /* LNPopupController.framework */; };
+		226B3B2C1CC67F120099F69C /* XenimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B3B2B1CC67F120099F69C /* XenimUITests.swift */; };
+		226B3B341CC67F760099F69C /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B3B331CC67F760099F69C /* SnapshotHelper.swift */; };
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
 		2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291D8A21BDFB1D600CB6536 /* Favorites.swift */; };
 		229421FB1C1989DA00033AAB /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229421FA1C1989DA00033AAB /* Keys.plist */; };
@@ -36,6 +38,16 @@
 		22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */; };
 		22F1B3D51C4A5A43005B03F7 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D41C4A5A43005B03F7 /* FavoriteTableViewCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		226B3B2E1CC67F120099F69C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2222ECAA1BD52E470040100F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2222ECB11BD52E470040100F;
+			remoteInfo = Xenim;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		22BEF0FD1C1193B400496C2F /* Copy Files */ = {
@@ -67,6 +79,10 @@
 		2244C3821CBF89DC00481DB3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2244C3831CBF89DC00481DB3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		224B0FE71C41A67900E0EFEB /* Pods_Xenim.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Xenim.framework; path = "Pods/../build/Debug-iphoneos/Pods_Xenim.framework"; sourceTree = "<group>"; };
+		226B3B291CC67F120099F69C /* XenimUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XenimUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		226B3B2B1CC67F120099F69C /* XenimUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XenimUITests.swift; sourceTree = "<group>"; };
+		226B3B2D1CC67F120099F69C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		226B3B331CC67F760099F69C /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2291D8A21BDFB1D600CB6536 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		229421FA1C1989DA00033AAB /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
@@ -101,6 +117,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		226B3B261CC67F120099F69C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -109,6 +132,7 @@
 			children = (
 				22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */,
 				2222ECB41BD52E470040100F /* Xenim */,
+				226B3B2A1CC67F120099F69C /* XenimUITests */,
 				2222ECB31BD52E470040100F /* Products */,
 				4CD0EF0E6BE3DB36059D8E8C /* Frameworks */,
 				78ABA8D45059D97B21664594 /* Pods */,
@@ -119,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				2222ECB21BD52E470040100F /* Xenim.app */,
+				226B3B291CC67F120099F69C /* XenimUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +188,16 @@
 				2291D8A21BDFB1D600CB6536 /* Favorites.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		226B3B2A1CC67F120099F69C /* XenimUITests */ = {
+			isa = PBXGroup;
+			children = (
+				226B3B331CC67F760099F69C /* SnapshotHelper.swift */,
+				226B3B2B1CC67F120099F69C /* XenimUITests.swift */,
+				226B3B2D1CC67F120099F69C /* Info.plist */,
+			);
+			path = XenimUITests;
 			sourceTree = "<group>";
 		};
 		229B3C441C1F084C00187BA0 /* API */ = {
@@ -273,13 +308,31 @@
 			productReference = 2222ECB21BD52E470040100F /* Xenim.app */;
 			productType = "com.apple.product-type.application";
 		};
+		226B3B281CC67F120099F69C /* XenimUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 226B3B321CC67F120099F69C /* Build configuration list for PBXNativeTarget "XenimUITests" */;
+			buildPhases = (
+				226B3B251CC67F120099F69C /* Sources */,
+				226B3B261CC67F120099F69C /* Frameworks */,
+				226B3B271CC67F120099F69C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				226B3B2F1CC67F120099F69C /* PBXTargetDependency */,
+			);
+			name = XenimUITests;
+			productName = XenimUITests;
+			productReference = 226B3B291CC67F120099F69C /* XenimUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2222ECAA1BD52E470040100F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Stefan Trauth";
 				TargetAttributes = {
@@ -298,6 +351,10 @@
 							};
 						};
 					};
+					226B3B281CC67F120099F69C = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 2222ECB11BD52E470040100F;
+					};
 				};
 			};
 			buildConfigurationList = 2222ECAD1BD52E470040100F /* Build configuration list for PBXProject "Xenim" */;
@@ -313,6 +370,7 @@
 			projectRoot = "";
 			targets = (
 				2222ECB11BD52E470040100F /* Xenim */,
+				226B3B281CC67F120099F69C /* XenimUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -327,6 +385,13 @@
 				229421FB1C1989DA00033AAB /* Keys.plist in Resources */,
 				2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */,
 				2222ECBB1BD52E480040100F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		226B3B271CC67F120099F69C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +486,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		226B3B251CC67F120099F69C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				226B3B2C1CC67F120099F69C /* XenimUITests.swift in Sources */,
+				226B3B341CC67F760099F69C /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		226B3B2F1CC67F120099F69C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2222ECB11BD52E470040100F /* Xenim */;
+			targetProxy = 226B3B2E1CC67F120099F69C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2222ECB91BD52E480040100F /* Main.storyboard */ = {
@@ -545,6 +627,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
+				CURRENT_PROJECT_VERSION = 2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LNPopupController/build/Debug-iphoneos",
@@ -558,6 +641,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Xenim/Xenim-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -568,6 +652,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Stefan Trauth (Y85FVF2A97)";
+				CURRENT_PROJECT_VERSION = 2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LNPopupController/build/Debug-iphoneos",
@@ -580,6 +665,33 @@
 				PRODUCT_NAME = Xenim;
 				SWIFT_OBJC_BRIDGING_HEADER = "Xenim/Xenim-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		226B3B301CC67F120099F69C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = XenimUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.XenimUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Xenim;
+			};
+			name = Debug;
+		};
+		226B3B311CC67F120099F69C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = XenimUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.XenimUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Xenim;
 			};
 			name = Release;
 		};
@@ -603,6 +715,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		226B3B321CC67F120099F69C /* Build configuration list for PBXNativeTarget "XenimUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				226B3B301CC67F120099F69C /* Debug */,
+				226B3B311CC67F120099F69C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
