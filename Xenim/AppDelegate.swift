@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import AlamofireNetworkActivityIndicator
 
 struct Constants {
     struct Colors {
@@ -26,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // alamofire requests show network indicator
+        NetworkActivityIndicatorManager.sharedManager.isEnabled = true
+//        NetworkActivityIndicatorManager.sharedManager.startDelay = 1.0
         
         // fetch parse keys from Keys.plist
         // this is force unwrapped intentionally. I want it to crash if this file is not working.

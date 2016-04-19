@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Xenim/Alamofire.framework"
   install_framework "Pods-Xenim/AlamofireImage.framework"
+  install_framework "Pods-Xenim/AlamofireNetworkActivityIndicator.framework"
   install_framework "Pods-Xenim/Bolts.framework"
   install_framework "Pods-Xenim/GCDKit.framework"
   install_framework "Pods-Xenim/KDEAudioPlayer.framework"
@@ -96,6 +97,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Xenim/Alamofire.framework"
   install_framework "Pods-Xenim/AlamofireImage.framework"
+  install_framework "Pods-Xenim/AlamofireNetworkActivityIndicator.framework"
   install_framework "Pods-Xenim/Bolts.framework"
   install_framework "Pods-Xenim/GCDKit.framework"
   install_framework "Pods-Xenim/KDEAudioPlayer.framework"

@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AlamofireNetworkActivityIndicator.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,6 +62,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>228FFC4E78F899B58C33C57F31513A8E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2C8AA1BAF35413BDB954A1DF93576ED1</key>
 		<dict>
 			<key>primary</key>
@@ -67,17 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6FA395EBC435EAF3D0C4D72B8F3CAD67</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80CA41DCBF0E7E9F466E75639C0642B1</key>
+		<key>8199FCE64FEF225525471415BB5DDDDF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>938223B82CAB5467A9B96629B80B2CE5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

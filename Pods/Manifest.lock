@@ -2,6 +2,8 @@ PODS:
   - Alamofire (3.3.1)
   - AlamofireImage (2.4.0):
     - Alamofire (~> 3.3)
+  - AlamofireNetworkActivityIndicator (1.0.1):
+    - Alamofire (~> 3.3)
   - Bolts/Tasks (1.7.0)
   - GCDKit (1.2.2)
   - KDEAudioPlayer (0.8.2)
@@ -13,6 +15,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - AlamofireImage (~> 2.1)
+  - AlamofireNetworkActivityIndicator (~> 1.0)
   - GCDKit
   - KDEAudioPlayer (~> 0.4)
   - MarqueeLabel-Swift (~> 2.3)
@@ -22,6 +25,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  AlamofireNetworkActivityIndicator: 49a6e39afb947136f7b1872bae2d684957c26697
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   GCDKit: 15e3d514cbf5d56699b2716b798031f778fb48c2
   KDEAudioPlayer: a6f43e73d16fbfba3db7a4629e29903113225724
