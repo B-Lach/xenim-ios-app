@@ -10,6 +10,10 @@ import UIKit
 import Parse
 import AlamofireNetworkActivityIndicator
 
+#if SCREENSHOTS
+import SimulatorStatusMagic
+#endif
+
 struct Constants {
     struct Colors {
         static let tintColor = UIColor(red:0.98, green:0.18, blue:0.25, alpha:1)
@@ -28,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        #if SCREENSHOTS
+        SDStatusBarManager.sharedInstance().enableOverrides()
+        #endif
+
         // alamofire requests show network indicator
         NetworkActivityIndicatorManager.sharedManager.isEnabled = true
         NetworkActivityIndicatorManager.sharedManager.startDelay = 0.3

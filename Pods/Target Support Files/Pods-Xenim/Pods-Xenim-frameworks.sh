@@ -92,6 +92,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Xenim/KDEAudioPlayer.framework"
   install_framework "Pods-Xenim/MarqueeLabel_Swift.framework"
   install_framework "Pods-Xenim/Parse.framework"
+  install_framework "Pods-Xenim/SimulatorStatusMagic.framework"
   install_framework "Pods-Xenim/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -103,5 +104,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Xenim/KDEAudioPlayer.framework"
   install_framework "Pods-Xenim/MarqueeLabel_Swift.framework"
   install_framework "Pods-Xenim/Parse.framework"
+  install_framework "Pods-Xenim/SimulatorStatusMagic.framework"
   install_framework "Pods-Xenim/SwiftyJSON.framework"
 fi
