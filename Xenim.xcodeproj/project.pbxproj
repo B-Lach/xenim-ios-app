@@ -77,7 +77,6 @@
 		222FB9FC1BF0E90A0007257A /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		224180071BFA21AA004D1B5D /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		2244C3821CBF89DC00481DB3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		2244C3831CBF89DC00481DB3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		224B0FE71C41A67900E0EFEB /* Pods_Xenim.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Xenim.framework; path = "Pods/../build/Debug-iphoneos/Pods_Xenim.framework"; sourceTree = "<group>"; };
 		226B3B291CC67F120099F69C /* XenimUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XenimUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		226B3B2B1CC67F120099F69C /* XenimUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XenimUITests.swift; sourceTree = "<group>"; };
@@ -151,6 +150,7 @@
 		2222ECB41BD52E470040100F /* Xenim */ = {
 			isa = PBXGroup;
 			children = (
+				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
 				2222ECB91BD52E480040100F /* Main.storyboard */,
 				22E6DD9E1C314B7500E427C8 /* Settings */,
 				22D515CA1C4BFE2700BE8D21 /* AddFavorite */,
@@ -175,7 +175,6 @@
 			children = (
 				2222ECBC1BD52E480040100F /* Assets.xcassets */,
 				22B81CE91CBF916A003FFEF2 /* Localizable.strings */,
-				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -519,7 +518,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBF1BD52E480040100F /* Base */,
-				2244C3831CBF89DC00481DB3 /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -723,6 +721,7 @@
 				226B3B311CC67F120099F69C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

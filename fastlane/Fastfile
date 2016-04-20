@@ -56,7 +56,9 @@ platform :ios do
     increment_build_number
     # https://developer.apple.com/library/ios/qa/qa1827/_index.html
     gym(scheme: "Xenim") # Build your app - more options available
-    pilot(skip_submission: true)
+
+    #changelog = File.read("changelog.txt")
+    pilot(skip_submission: true, changelog: "Test Changelog", distribute_external: false)
   end
 
   desc "Deploy a new version to the App Store"
@@ -74,7 +76,7 @@ platform :ios do
     match(type: "appstore")
     increment_build_number
     gym(scheme: "Xenim") # Build your app - more options available
-    deliver(force: true)
+    deliver(submit_for_review: false, automatic_release: false)
   end
 
   # You can define as many lanes as you want
