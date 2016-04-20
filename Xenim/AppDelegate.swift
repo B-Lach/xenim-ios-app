@@ -17,7 +17,7 @@ struct Constants {
     struct API {
         static let parseServer = "https://dev.push.xenim.de/parse"
         // "http://feeds.streams.demo.xenim.de/api/v1/"
-        static let xenimApiUrl = "http://feeds.streams.xenim.de/api/v1/"
+        static let xenimApiUrl = "http://feeds.streams.demo.xenim.de/api/v1/"
     }
 }
 
