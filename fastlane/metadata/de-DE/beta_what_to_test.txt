@@ -1,0 +1,14 @@
+# v0.7
+
+BITTE TESTEN:
+
+- Stabilität
+- Spielt der Player den Livestream wieder korrekt ab, nachdem er für einige Zeit pausiert war?
+- Seit ihr in der Lage den Player zu stoppen (nicht pausieren)? Ich habe das Gefühl, das ist bisher sehr schwer zu entdecken. Habt ihr eine Idee, wie ich das verbessern/lösen könnte?
+
+CHANGELOG:
+
+- einheitliches Design für alle Views
+- neue Anzeige für das Datum eines Events. Lässt sich tappen, um zwischen verschiedenen Modi umzuschalten
+- FAQ Link in den Settings hinzugefügt
+- einige Verbesserungen unter der Haube und Bugfixes
