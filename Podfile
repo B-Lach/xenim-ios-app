@@ -9,7 +9,7 @@ target 'Xenim' do
   pod 'MarqueeLabel-Swift', '~> 2.3'
   pod 'Parse', '~> 1.10'
   pod 'KDEAudioPlayer', '~> 0.8.4'
-  pod 'GCDKit, '~> 1.2'
+  pod 'GCDKit', '~> 1.2'
   #pod 'UIImageColors', :git => 'https://github.com/jathu/UIImageColors.git', :branch => 'master'
 end
 
