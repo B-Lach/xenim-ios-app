@@ -34,11 +34,17 @@ platform :ios do
     # start a fakestream
     # schedule some example events. favorites should all have an event scheduled
     snapshot
+
+    # currently frameit not required
+    # frameit
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
+
+    # ensure version number is set correctly
+    # create git flow release
 
     ensure_git_status_clean
 
@@ -55,6 +61,10 @@ platform :ios do
 
   desc "Deploy a new version to the App Store"
   lane :appstore do
+
+    # ensure version number is set correctly
+    # create git flow release
+    # ensure screenshots are up to date
 
     ensure_git_status_clean
 
