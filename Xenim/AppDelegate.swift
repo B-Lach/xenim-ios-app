@@ -10,8 +10,8 @@ import UIKit
 import Parse
 import AlamofireNetworkActivityIndicator
 
-#ifdef SCREENSHOTS
-import SDStatusBarManager
+#if SCREENSHOTS
+import SimulatorStatusMagic
 #endif
 
 struct Constants {
@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        #ifdef SCREENSHOTS
+        #if SCREENSHOTS
         SDStatusBarManager.sharedInstance().enableOverrides()
         #endif
 
