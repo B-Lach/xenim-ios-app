@@ -11,5 +11,6 @@ target 'Xenim' do
   pod 'KDEAudioPlayer', '~> 0.8.4'
   pod 'GCDKit', '~> 1.2'
   #pod 'UIImageColors', :git => 'https://github.com/jathu/UIImageColors.git', :branch => 'master'
+  pod 'SimulatorStatusMagic'
 end
 

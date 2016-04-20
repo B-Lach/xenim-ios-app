@@ -49,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SimulatorStatusMagic.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -56,57 +61,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>05094CC4A047119F7ADC14EE74C4881C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>228FFC4E78F899B58C33C57F31513A8E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2C8AA1BAF35413BDB954A1DF93576ED1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>541E9AD8F0209976F59A780F49A3F069</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8199FCE64FEF225525471415BB5DDDDF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>938223B82CAB5467A9B96629B80B2CE5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B272B33F162D6E5C3510BA50ECF2684B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C7A33AD034AA6FA7EAEA728B74E50BB8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CFF858055EBBB40A023415F0A0168820</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>
