@@ -33,7 +33,7 @@ platform :ios do
     # check favorites are set correctly in each simulator: Freakshow, Lage der Nation, Wrint, NSFW
     # start a fakestream
     # schedule some example events. favorites should all have an event scheduled
-    snapshot
+    snapshot(configuration: "Debug")
 
     # currently frameit not required
     # frameit
@@ -46,7 +46,7 @@ platform :ios do
     # ensure version number is set correctly
     # create git flow release
 
-    ensure_git_status_clean
+    #ensure_git_status_clean
 
     cocoapods
     carthage

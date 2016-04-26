@@ -3,7 +3,6 @@
 WHAT TO TEST:
 
 - Stability
-- Does the player recover correctly when hitting play after it has been paused for some time?
 - Are you able to stop (not pause) the player? I think it is currently hard to discover. Any ideas how to improve that?
 
 CHANGELOG:

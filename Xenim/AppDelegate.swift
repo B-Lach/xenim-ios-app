@@ -19,9 +19,9 @@ struct Constants {
         static let tintColor = UIColor(red:0.98, green:0.18, blue:0.25, alpha:1)
     }
     struct API {
-        static let parseServer = "https://dev.push.xenim.de/parse"
+        static let parseServer = "https://push.xenim.de/parse"
         // "http://feeds.streams.demo.xenim.de/api/v1/"
-        static let xenimApiUrl = "http://feeds.streams.demo.xenim.de/api/v1/"
+        static let xenimApiUrl = "http://feeds.streams.xenim.de/api/v1/"
     }
 }
 
