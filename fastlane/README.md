@@ -11,6 +11,11 @@ sudo gem install fastlane
 fastlane ios test
 ```
 Runs all the tests
+### ios screenshots
+```
+fastlane ios screenshots
+```
+Generate screenshots for all supported devices
 ### ios beta
 ```
 fastlane ios beta

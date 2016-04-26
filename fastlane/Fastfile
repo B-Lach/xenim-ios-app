@@ -46,7 +46,7 @@ platform :ios do
     # ensure version number is set correctly
     # create git flow release
 
-    ensure_git_status_clean
+    #ensure_git_status_clean
 
     cocoapods
     carthage
