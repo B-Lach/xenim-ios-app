@@ -8,10 +8,20 @@
 
 import UIKit
 import Parse
+import AlamofireNetworkActivityIndicator
+
+#if SCREENSHOTS
+import SimulatorStatusMagic
+#endif
 
 struct Constants {
     struct Colors {
         static let tintColor = UIColor(red:0.98, green:0.18, blue:0.25, alpha:1)
+    }
+    struct API {
+        static let parseServer = "https://push.xenim.de/parse"
+        // "http://feeds.streams.demo.xenim.de/api/v1/"
+        static let xenimApiUrl = "http://feeds.streams.xenim.de/api/v1/"
     }
 }
 
@@ -21,6 +31,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // the statusbar is hidden on launch, because it should not be visible on launchscreen
+        // reenable it here
+        application.statusBarHidden = false
+        
+        #if SCREENSHOTS
+        SDStatusBarManager.sharedInstance().enableOverrides()
+        #endif
+
+        // alamofire requests show network indicator
+        NetworkActivityIndicatorManager.sharedManager.isEnabled = true
+        NetworkActivityIndicatorManager.sharedManager.startDelay = 0.3
         
         // fetch parse keys from Keys.plist
         // this is force unwrapped intentionally. I want it to crash if this file is not working.
@@ -33,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             config.applicationId = applicationId
             config.clientKey = clientKey
             // "https://dev.push.xenim.de/parse"
-            config.server = "https://push.xenim.de/parse"
+            config.server = Constants.API.parseServer
             config.localDatastoreEnabled = true
         }))
         

@@ -1,0 +1,105 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/docs
+# All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "1.81.0"
+
+default_platform :ios
+
+platform :ios do
+  before_all do
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    scan
+  end
+
+  desc "Generate screenshots for all supported devices"
+  lane :screenshots do 
+    # there is some manual work to do before this can be run
+    # check API is set to dev
+    # check favorites are set correctly in each simulator: Freakshow, Lage der Nation, Wrint, NSFW
+    # start a fakestream
+    # schedule some example events. favorites should all have an event scheduled
+    snapshot(configuration: "Debug")
+
+    # currently frameit not required
+    # frameit
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
+
+    # ensure version number is set correctly
+    # create git flow release
+
+    #ensure_git_status_clean
+
+    cocoapods
+    carthage
+    
+    match(type: "appstore") # more information: https://codesigning.guide
+
+    increment_build_number
+    # https://developer.apple.com/library/ios/qa/qa1827/_index.html
+    gym(scheme: "Xenim") # Build your app - more options available
+
+    #changelog = File.read("changelog.txt")
+    pilot(skip_submission: true, changelog: "Test Changelog", distribute_external: false)
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :appstore do
+
+    # ensure version number is set correctly
+    # create git flow release
+    # ensure screenshots are up to date
+
+    ensure_git_status_clean
+
+    cocoapods
+    carthage
+
+    match(type: "appstore")
+    increment_build_number
+    gym(scheme: "Xenim") # Build your app - more options available
+    deliver(submit_for_review: false, automatic_release: false)
+  end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+end
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/docs/Platforms.md
+# All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+
+# fastlane reports which actions are used
+# No personal data is recorded. Learn more at https://github.com/fastlane/enhancer

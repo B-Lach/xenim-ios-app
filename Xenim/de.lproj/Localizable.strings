@@ -8,6 +8,12 @@
    cancel string */
 "cancel" = "Abbrechen";
 
+/* day */
+"day" = "Tag";
+
+/* days */
+"days" = "Tage";
+
 /* Dismiss */
 "dismiss" = "Schließen";
 
@@ -47,7 +53,7 @@
 /* If the user tried to sent an email and it could not be sent an alert view does show the error message. this is the title of the alert view popup */
 "info_message_mail_sent_failure_message" = "Fehler beim Mailversand";
 
-/* live now string */
+/* Live Now */
 "live_now" = "Jetzt live";
 
 /* If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message. */

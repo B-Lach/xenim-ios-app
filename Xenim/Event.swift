@@ -97,7 +97,7 @@ class Event : NSObject {
     }
     
     func fetchCurrentListeners(onComplete: (listeners: Int?) -> Void) {
-        XenimAPI.fetchEventById(id) { (event) -> Void in
+        XenimAPI.fetchEvent(eventId: id) { (event) -> Void in
             if let event = event {
                 onComplete(listeners: event.listeners)
                 self.listeners = event.listeners

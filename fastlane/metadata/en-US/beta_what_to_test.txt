@@ -1,0 +1,13 @@
+# v0.7
+
+WHAT TO TEST:
+
+- Stability
+- Are you able to stop (not pause) the player? I think it is currently hard to discover. Any ideas how to improve that?
+
+CHANGELOG:
+
+- unified design of all views
+- updated event date view. tap to toggle between modes
+- added FAQ link to support in settings
+- lots of under the hood improvements and bug fixes

@@ -19,12 +19,29 @@ class EventTableViewCell: UITableViewCell {
             eventCoverartImage.layer.borderWidth = 0.5
         }
     }
+
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var favoriteImageView: UIImageView!
     @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var playButtonWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var dateStackView: UIStackView!
+    @IBOutlet weak var dateTopLabel: UILabel!
+    @IBOutlet weak var dateBottomLabel: UILabel!
+    
+    private var liveDateShowsDate = true
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedDateView(_:)))
+        tap.delegate = self
+        dateStackView.addGestureRecognizer(tap)
+    }
+    
+    func tappedDateView(sender: UITapGestureRecognizer?) {
+        liveDateShowsDate = !liveDateShowsDate
+        NSNotificationCenter.defaultCenter().postNotificationName("toggleDateView", object: nil, userInfo: ["liveDateShowsDate": liveDateShowsDate])
+    }
     
     var event: Event! {
         didSet {
@@ -58,29 +75,47 @@ class EventTableViewCell: UITableViewCell {
     
     func updateLivedate() {
         if let event = event {
-            // display livedate differently according to how far in the future
-            // the event is taking place
-            let formatter = NSDateFormatter();
-            formatter.locale = NSLocale.currentLocale()
             
-            formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            let time = formatter.stringFromDate(event.begin)
-            dateLabel.textColor = UIColor.grayColor()
+            // calculate in how many days this event takes place
+            let cal = NSCalendar.currentCalendar()
+            let today = cal.startOfDayForDate(NSDate())
+            let diff = cal.components(NSCalendarUnit.Day,
+                                      fromDate: today,
+                                      toDate: event.begin,
+                                      options: NSCalendarOptions.WrapComponents )
+            let days = diff.day
             
-            if event.isLive() {
-                dateLabel?.text = NSLocalizedString("live_now", value: "Live Now", comment: "live now string")
-                dateLabel.textColor = Constants.Colors.tintColor
-            }
-            else if event.isUpcomingToday() || event.isUpcomingTomorrow() {
-                dateLabel?.text = time
-            } else if event.isUpcomingThisWeek() {
-                formatter.setLocalizedDateFormatFromTemplate("EEEE")
-                let date = formatter.stringFromDate(event.begin)
-                dateLabel?.text = "\(date) \(time)"
+            
+            if liveDateShowsDate {
+                let formatter = NSDateFormatter();
+                formatter.locale = NSLocale.currentLocale()
+                
+                // http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
+                
+                formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+                let time = formatter.stringFromDate(event.begin)
+                dateBottomLabel.text = time
+                
+                if days < 7 {
+                    formatter.setLocalizedDateFormatFromTemplate("cccccc")
+                    var day = formatter.stringFromDate(event.begin)
+                    day = day.stringByReplacingOccurrencesOfString(".", withString: "")
+                    day = day.uppercaseString
+                    dateTopLabel.text = day
+                } else {
+                    formatter.setLocalizedDateFormatFromTemplate("d.M")
+                    let date = formatter.stringFromDate(event.begin)
+                    dateTopLabel.text = date
+                }
             } else {
-                formatter.setLocalizedDateFormatFromTemplate("EEE dd.MM")
-                let date = formatter.stringFromDate(event.begin)
-                dateLabel?.text = "\(date) \(time)"
+                dateTopLabel.text = "\(days)"
+                let daysStringSingle = NSLocalizedString("day", value: "day", comment: "day")
+                let daysStringMultiple = NSLocalizedString("days", value: "days", comment: "days")
+                if days == 1 {
+                    dateBottomLabel.text = daysStringSingle
+                } else {
+                    dateBottomLabel.text = daysStringMultiple
+                }
             }
         }
     }
@@ -117,12 +152,12 @@ class EventTableViewCell: UITableViewCell {
     }
     
     private func hidePlayButton() {
-        playButtonWidthConstraint.constant = 0
+        dateStackView.hidden = false
         playButton.hidden = true
     }
     
     private func showPlayButton() {
-        playButtonWidthConstraint.constant = 55
+        dateStackView.hidden = true
         playButton.hidden = false
     }
     
@@ -153,10 +188,20 @@ class EventTableViewCell: UITableViewCell {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.playerStateChanged(_:)), name: "playerStateChanged", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.toggleDateView(_:)), name: "toggleDateView", object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func toggleDateView(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let state = userInfo["liveDateShowsDate"] as? Bool {
+                liveDateShowsDate = state
+                updateLivedate()
+            }
+        }
     }
     
     func playerStateChanged(notification: NSNotification) {

@@ -86,20 +86,23 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Xenim/Alamofire.framework"
   install_framework "Pods-Xenim/AlamofireImage.framework"
+  install_framework "Pods-Xenim/AlamofireNetworkActivityIndicator.framework"
   install_framework "Pods-Xenim/Bolts.framework"
   install_framework "Pods-Xenim/GCDKit.framework"
   install_framework "Pods-Xenim/KDEAudioPlayer.framework"
-  install_framework "Pods-Xenim/MarqueeLabel_Swift.framework"
+  install_framework "Pods-Xenim/MarqueeLabel.framework"
   install_framework "Pods-Xenim/Parse.framework"
+  install_framework "Pods-Xenim/SimulatorStatusMagic.framework"
   install_framework "Pods-Xenim/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Xenim/Alamofire.framework"
   install_framework "Pods-Xenim/AlamofireImage.framework"
+  install_framework "Pods-Xenim/AlamofireNetworkActivityIndicator.framework"
   install_framework "Pods-Xenim/Bolts.framework"
   install_framework "Pods-Xenim/GCDKit.framework"
   install_framework "Pods-Xenim/KDEAudioPlayer.framework"
-  install_framework "Pods-Xenim/MarqueeLabel_Swift.framework"
+  install_framework "Pods-Xenim/MarqueeLabel.framework"
   install_framework "Pods-Xenim/Parse.framework"
   install_framework "Pods-Xenim/SwiftyJSON.framework"
 fi

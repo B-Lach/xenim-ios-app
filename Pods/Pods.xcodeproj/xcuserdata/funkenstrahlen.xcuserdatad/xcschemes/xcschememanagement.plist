@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AlamofireNetworkActivityIndicator.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,7 +34,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MarqueeLabel-Swift.xcscheme</key>
+		<key>MarqueeLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -44,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SimulatorStatusMagic.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -51,52 +61,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>05094CC4A047119F7ADC14EE74C4881C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2C8AA1BAF35413BDB954A1DF93576ED1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>541E9AD8F0209976F59A780F49A3F069</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6FA395EBC435EAF3D0C4D72B8F3CAD67</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>80CA41DCBF0E7E9F466E75639C0642B1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B272B33F162D6E5C3510BA50ECF2684B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C7A33AD034AA6FA7EAEA728B74E50BB8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CFF858055EBBB40A023415F0A0168820</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

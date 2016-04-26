@@ -10,47 +10,44 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class XenimAPI : ListenAPI {
+class XenimAPI {
     
     // "http://feeds.streams.demo.xenim.de/api/v1/"
-    static let apiBaseURL = "http://feeds.streams.xenim.de/api/v1/"
+    static let apiBaseURL = Constants.API.xenimApiUrl
     
-    static func fetchUpcomingEvents(maxCount maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
+    static func fetchEvents(status status: [String]?, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
-        let parameters = [
-            "status": "UPCOMING",
-            "limit": "\(maxCount!)"
+        var parameters = [
+            "limit": "\(maxCount!)",
+            "order_by": "begin"
         ]
+        if let status = status {
+            let stringRepresentation = status.joinWithSeparator(",")
+            parameters["status__in"] = stringRepresentation
+        }
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
                 handleMultipleEventsResponse(response, onComplete: onComplete)
         }
     }
     
-    static func fetchLiveEvents(onComplete: (events: [Event]) -> Void){
-        let url = apiBaseURL + "episode/"
-        let parameters = [
-            "status": "RUNNING"
-        ]
-        Alamofire.request(.GET, url, parameters: parameters)
-            .responseJSON { response in
-                handleMultipleEventsResponse(response, onComplete: onComplete)
-        }
-    }
-    
-    static func fetchPodcastUpcomingEvents(podcastId: String, maxCount: Int? = 1, onComplete: (events: [Event]) -> Void){
+    static func fetchEvents(podcastId podcastId: String, status: [String]?, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
-        let parameters = [
-            "status": "UPCOMING",
-            "limit": "\(maxCount!)"
+        var parameters = [
+            "limit": "\(maxCount!)",
+            "order_by": "begin"
         ]
+        if let status = status {
+            let stringRepresentation = status.joinWithSeparator(",")
+            parameters["status__in"] = stringRepresentation
+        }
         Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
                 handleMultipleEventsResponse(response, onComplete: onComplete)
         }
     }
     
-    static func fetchEventById(eventId: String, onComplete: (event: Event?) -> Void){
+    static func fetchEvent(eventId eventId: String, onComplete: (event: Event?) -> Void){
         let url = apiBaseURL + "episode/\(eventId)/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -65,7 +62,7 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func fetchPodcastById(podcastId: String, onComplete: (podcast: Podcast?) -> Void){
+    static func fetchPodcast(podcastId podcastId: String, onComplete: (podcast: Podcast?) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -105,7 +102,7 @@ class XenimAPI : ListenAPI {
     // MARK: - Helpers
     
     
-    static func handleMultipleEventsResponse(response: Response<AnyObject, NSError>, onComplete: (events: [Event]) -> Void) {
+    private static func handleMultipleEventsResponse(response: Response<AnyObject, NSError>, onComplete: (events: [Event]) -> Void) {
         var events = [Event]()
         if let responseData = response.data {
             let json = JSON(data: responseData)
@@ -134,6 +131,7 @@ class XenimAPI : ListenAPI {
                 }
                 
                 dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+                    
                     // sort events by time as async processing appends them unordered
                     let sortedEvents = events.sort({ (event1, event2) -> Bool in
                         event1.begin.compare(event2.begin) == .OrderedAscending
@@ -150,7 +148,7 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func podcastFromJSON(podcastJSON: JSON) -> Podcast? {
+    private static func podcastFromJSON(podcastJSON: JSON) -> Podcast? {
         let id = podcastJSON["id"].stringValue
         let name = podcastJSON["name"].stringValue
         let podcastDescription = podcastJSON["description"].stringValue
@@ -174,7 +172,7 @@ class XenimAPI : ListenAPI {
         }
     }
     
-    static func eventFromJSON(eventJSON: JSON, onComplete: (event: Event?) -> Void) {
+    private static func eventFromJSON(eventJSON: JSON, onComplete: (event: Event?) -> Void) {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
@@ -211,7 +209,7 @@ class XenimAPI : ListenAPI {
 
         
         if podcastId != nil {
-            fetchPodcastById(podcastId!) { (podcast) -> Void in
+            fetchPodcast(podcastId: podcastId!) { (podcast) -> Void in
                 // only add this event to the list if it has a minimum number
                 // of attributes set
                 if id != "" && begin != nil && status != nil && podcast != nil {

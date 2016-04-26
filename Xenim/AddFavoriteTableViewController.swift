@@ -30,7 +30,7 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // add search bar
         resultSearchController = UISearchController(searchResultsController: nil)
         resultSearchController.searchResultsUpdater = self
@@ -38,7 +38,6 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         resultSearchController.searchBar.sizeToFit()
         resultSearchController.searchBar.tintColor = Constants.Colors.tintColor
         resultSearchController.hidesNavigationBarDuringPresentation = false
-        tableView.tableHeaderView = resultSearchController.searchBar
         
         // dynamic row height
         tableView.estimatedRowHeight = tableView.rowHeight
@@ -57,6 +56,9 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.state = .SHOW
                 self.updateBackground()
+
+                self.tableView.tableHeaderView = self.resultSearchController.searchBar
+                
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
             })
         }
@@ -67,10 +69,6 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         resultSearchController.view.removeFromSuperview()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func updateBackground() {
         if state == .LOADING {

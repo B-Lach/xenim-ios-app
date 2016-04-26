@@ -44,8 +44,6 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.separatorColor = UIColor.clearColor()
-        
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         // increase content inset for audio player
@@ -96,52 +94,32 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         refreshControl!.beginRefreshing()
         var newEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
         
-        let blocksDispatchQueue = dispatch_queue_create("com.domain.blocksArray.sync", DISPATCH_QUEUE_CONCURRENT)
-        
-        // create a dispatch group to have multiple async tasks and be notified when all of them finished
-        let serviceGroup = dispatch_group_create()
-        
-        dispatch_group_enter(serviceGroup)
-        XenimAPI.fetchUpcomingEvents(maxCount: 50) { (events) -> Void in
-            dispatch_barrier_async(blocksDispatchQueue) {
-                for event in events {
-                    if event.isUpcomingToday() {
-                        newEvents[1].append(event)
-                    } else if event.isUpcomingTomorrow() {
-                        newEvents[2].append(event)
-                    } else if event.isUpcomingThisWeek() {
-                        newEvents[3].append(event)
-                    } else if event.isUpcoming() {
-                        newEvents[4].append(event)
-                    }
-                }
-                dispatch_group_leave(serviceGroup)
-            }
-
-        }
-        dispatch_group_enter(serviceGroup)
-        XenimAPI.fetchLiveEvents { (events) -> Void in
-            dispatch_barrier_async(blocksDispatchQueue) {
-                for event in events {
+        XenimAPI.fetchEvents(status: ["RUNNING", "UPCOMING"], maxCount: 50) { (events) in
+            for event in events {
+                if event.isLive() {
                     newEvents[0].append(event)
+                } else if event.isUpcomingToday() {
+                    newEvents[1].append(event)
+                } else if event.isUpcomingTomorrow() {
+                    newEvents[2].append(event)
+                } else if event.isUpcomingThisWeek() {
+                    newEvents[3].append(event)
+                } else if event.isUpcoming() {
+                    newEvents[4].append(event)
                 }
-                dispatch_group_leave(serviceGroup)
             }
-
-        }
-        
-        // this will only be executed if all threads of the dispatch_group have finished their work
-        // this will also automatically dispatch to main queue
-        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) { () -> Void in
-            self.events = newEvents
-            self.refreshControl!.endRefreshing()
-            if self.showFavoritesOnly {
-                self.filterFavorites()
-            }
-            self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+            
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.events = newEvents
+                self.refreshControl!.endRefreshing()
+                if self.showFavoritesOnly {
+                    self.filterFavorites()
+                }
+                self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+            })
         }
     }
-    
+
     @IBAction func segmentChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             showFavoritesOnly = false

@@ -31,3 +31,13 @@ extension String {
         return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
 }
+
+extension UIApplication {
+    func appVersion() -> String? {
+        if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String,
+           let build = NSBundle.mainBundle().infoDictionary?[kCFBundleVersionKey as String] as? String {
+            return "Version \(version) (\(build))"
+        }
+        return nil
+    }
+}
