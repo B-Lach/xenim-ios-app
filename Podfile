@@ -6,7 +6,7 @@ target 'Xenim' do
   pod 'Alamofire', '~> 3.0'
   pod 'AlamofireImage', '~> 2.1'
   pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
-  pod 'MarqueeLabel-Swift', '~> 2.3'
+  pod 'MarqueeLabel/Swift', '~> 2.3'
   pod 'Parse', '~> 1.10'
   pod 'KDEAudioPlayer', '~> 0.8.4'
   pod 'GCDKit', '~> 1.2'

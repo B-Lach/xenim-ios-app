@@ -8,6 +8,7 @@
 import UIKit
 import QuartzCore
 
+@IBDesignable
 
 public class MarqueeLabel: UILabel {
     
@@ -210,35 +211,29 @@ public class MarqueeLabel: UILabel {
         }
     }
     
-    // @available attribute seems to cause SourceKit to crash right now
-    // @available(*, deprecated = 2.6, message = "Use speed property instead")
-    @IBInspectable public var scrollDuration: CGFloat? {
+    @available(*, deprecated = 2.6, message = "Use speed property instead")
+    @IBInspectable public var scrollDuration: CGFloat {
         get {
             switch speed {
             case .Duration(let duration): return duration
-            case .Rate(_): return nil
+            case .Rate(_): return 0.0
             }
         }
         set {
-            if let duration = newValue {
-                speed = .Duration(duration)
-            }
+            speed = .Duration(newValue)
         }
     }
     
-    // @available attribute seems to cause SourceKit to crash right now
-    // @available(*, deprecated = 2.6, message = "Use speed property instead")
-    @IBInspectable public var scrollRate: CGFloat? {
+    @available(*, deprecated = 2.6, message = "Use speed property instead")
+    @IBInspectable public var scrollRate: CGFloat {
         get {
             switch speed {
-            case .Duration(_): return nil
+            case .Duration(_): return 0.0
             case .Rate(let rate): return rate
             }
         }
         set {
-            if let rate = newValue {
-                speed = .Rate(rate)
-            }
+            speed = .Rate(newValue)
         }
     }
     
@@ -468,6 +463,11 @@ public class MarqueeLabel: UILabel {
         forwardPropertiesToSublabel()
     }
     
+    public override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        forwardPropertiesToSublabel()
+    }
+    
     private func forwardPropertiesToSublabel() {
         /*
         Note that this method is currently ONLY called from awakeFromNib, i.e. when
@@ -676,7 +676,8 @@ public class MarqueeLabel: UILabel {
         
         // Check if the label string fits
         let labelTooLarge = (sublabelSize().width + leadingBuffer) > self.bounds.size.width
-        return (!labelize && labelTooLarge)
+        let animationHasDuration = speed.value > 0.0
+        return (!labelize && labelTooLarge && animationHasDuration)
     }
     
     private func labelReadyForScroll() -> Bool {
@@ -1532,7 +1533,7 @@ public class MarqueeLabel: UILabel {
         
         set {
             // By the nature of MarqueeLabel, this is false
-            self.adjustsFontSizeToFitWidth = false
+            super.adjustsFontSizeToFitWidth = false
         }
     }
     
@@ -1542,7 +1543,7 @@ public class MarqueeLabel: UILabel {
         }
         
         set {
-            self.minimumScaleFactor = 0.0
+            super.minimumScaleFactor = 0.0
         }
     }
     

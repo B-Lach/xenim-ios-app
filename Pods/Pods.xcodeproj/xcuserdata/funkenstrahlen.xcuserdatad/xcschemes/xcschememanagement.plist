@@ -34,7 +34,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MarqueeLabel-Swift.xcscheme</key>
+		<key>MarqueeLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,7 +67,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0CE9E0D2E804693B83D2671BB9C89C3D</key>
+		<key>0E7D1EFF1D51CC9945FC56699E2019A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51316CEFD904662F34A4E678EF511870</key>
+		<key>4565FA594BA517755143E3AC120CF027</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,12 +92,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<key>75EF8CA8BE2AEC766E01295261F37737</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8F4FCA85E39A07E8AD96845B0230AA88</key>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CFF858055EBBB40A023415F0A0168820</key>
+		<key>CD2B8934EABA22DBB51654FC23146121</key>
 		<dict>
 			<key>primary</key>
 			<true/>
