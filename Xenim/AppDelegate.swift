@@ -32,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // the statusbar is hidden on launch, because it should not be visible on launchscreen
+        // reenable it here
+        application.statusBarHidden = false
+        
         #if SCREENSHOTS
         SDStatusBarManager.sharedInstance().enableOverrides()
         #endif
