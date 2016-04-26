@@ -3,7 +3,6 @@
 BITTE TESTEN:
 
 - Stabilität
-- Spielt der Player den Livestream wieder korrekt ab, nachdem er für einige Zeit pausiert war?
 - Seit ihr in der Lage den Player zu stoppen (nicht pausieren)? Ich habe das Gefühl, das ist bisher sehr schwer zu entdecken. Habt ihr eine Idee, wie ich das verbessern/lösen könnte?
 
 CHANGELOG:
