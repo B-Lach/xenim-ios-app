@@ -14,6 +14,8 @@ app_review_information(
   notes: ""
 )
 
+ipa "fastlane/ipa/Xenim.ipa"
+
 app_icon 'fastlane/appicon/rendered/iTunesArtwork@2x.png'
 
 # https://github.com/fastlane/fastlane/blob/master/spaceship/lib/spaceship/tunes/app_submission.rb#L18-L69
