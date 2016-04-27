@@ -7,7 +7,7 @@ price_tier 0
 app_review_information(
   first_name: "Stefan",
   last_name: "Trauth",
-  phone_number: "07245/83255",
+  phone_number: "+49 7245 83255",
   email_address: "apple@stefantrauth.de",
   demo_user: "",
   demo_password: "",
