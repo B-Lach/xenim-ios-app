@@ -73,9 +73,9 @@ platform :ios do
 
     #ensure_git_status_clean
 
-    # build
+    build
 
-    deliver(  skip_binary_upload: true,
+    deliver(  skip_binary_upload: false,
               skip_metadata: false,
               skip_screenshots: true,
               submit_for_review: false,
