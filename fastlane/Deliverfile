@@ -21,22 +21,3 @@ app_icon 'fastlane/appicon/rendered/iTunesArtwork@2x.png'
 #   add_id_info_serves_ads: true,
 #   ...
 # })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-###################### Automatically generated ######################
-# Feel free to remove the following line if you use fastlane (which you should)
-
-# app_identifier "com.stefantrauth.Xenim" # The bundle identifier of your app
-# username "apple@stefantrauth.de" # your Apple ID user
