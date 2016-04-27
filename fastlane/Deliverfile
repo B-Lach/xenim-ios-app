@@ -2,9 +2,24 @@
 # If you want to have even more control, check out the documentation
 # https://github.com/fastlane/fastlane/blob/master/deliver/Deliverfile.md
 
+price_tier 0
 
-###################### Automatically generated ######################
-# Feel free to remove the following line if you use fastlane (which you should)
+app_review_information(
+  first_name: "Stefan",
+  last_name: "Trauth",
+  phone_number: "+49 7245 83255",
+  email_address: "apple@stefantrauth.de",
+  demo_user: "",
+  demo_password: "",
+  notes: ""
+)
 
-app_identifier "com.stefantrauth.Xenim" # The bundle identifier of your app
-username "apple@stefantrauth.de" # your Apple ID user
+ipa "fastlane/ipa/Xenim.ipa"
+
+app_icon 'fastlane/appicon/rendered/iTunesArtwork@2x.png'
+
+# https://github.com/fastlane/fastlane/blob/master/spaceship/lib/spaceship/tunes/app_submission.rb#L18-L69
+# submission_information({
+#   add_id_info_serves_ads: true,
+#   ...
+# })

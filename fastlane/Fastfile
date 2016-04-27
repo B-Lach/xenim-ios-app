@@ -15,10 +15,20 @@ fastlane_version "1.81.0"
 
 default_platform :ios
 
+def build
+  cocoapods
+  carthage
+
+  match(type: "appstore")
+  increment_build_number # https://developer.apple.com/library/ios/qa/qa1827/_index.html
+  gym(scheme: "Xenim", output_directory: "fastlane/ipa/") # Build your app - more options available
+end
+
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    
+    # Make sure fastlane is up to date
+    update_fastlane
   end
 
   desc "Runs all the tests"
@@ -48,14 +58,7 @@ platform :ios do
 
     #ensure_git_status_clean
 
-    cocoapods
-    carthage
-    
-    match(type: "appstore") # more information: https://codesigning.guide
-
-    increment_build_number
-    # https://developer.apple.com/library/ios/qa/qa1827/_index.html
-    gym(scheme: "Xenim") # Build your app - more options available
+    build
 
     #changelog = File.read("changelog.txt")
     pilot(skip_submission: true, changelog: "Test Changelog", distribute_external: false)
@@ -68,15 +71,17 @@ platform :ios do
     # create git flow release
     # ensure screenshots are up to date
 
-    ensure_git_status_clean
+    #ensure_git_status_clean
 
-    cocoapods
-    carthage
+    build
 
-    match(type: "appstore")
-    increment_build_number
-    gym(scheme: "Xenim") # Build your app - more options available
-    deliver(submit_for_review: false, automatic_release: false)
+    deliver(  skip_binary_upload: false,
+              skip_metadata: false,
+              skip_screenshots: true,
+              submit_for_review: false,
+              automatic_release: false,
+              force: false # can be used to disable html preview
+            )
   end
 
   # You can define as many lanes as you want
