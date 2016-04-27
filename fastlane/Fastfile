@@ -21,7 +21,7 @@ def build
 
   match(type: "appstore")
   increment_build_number # https://developer.apple.com/library/ios/qa/qa1827/_index.html
-  gym(scheme: "Xenim", output_directory: "fastlane/ipa") # Build your app - more options available
+  gym(scheme: "Xenim", output_directory: "fastlane/ipa/") # Build your app - more options available
 end
 
 platform :ios do
@@ -73,9 +73,9 @@ platform :ios do
 
     #ensure_git_status_clean
 
-    # build
+    build
 
-    deliver(  skip_binary_upload: true,
+    deliver(  skip_binary_upload: false,
               skip_metadata: false,
               skip_screenshots: true,
               submit_for_review: false,

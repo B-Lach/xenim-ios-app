@@ -3,22 +3,47 @@
   <testsuite name="fastlane.lanes">
     
       
-      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.000638">
+      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.000625">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000468">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000296">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: update_fastlane" time="10.590537">
+      <testcase classname="fastlane.lanes" name="2: update_fastlane" time="9.524069">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: deliver" time="29.974835">
+      <testcase classname="fastlane.lanes" name="3: cocoapods" time="20.660066">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: carthage" time="21.571616">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: match" time="9.721269">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: increment_build_number" time="1.710712">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="7: gym" time="259.379984">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="8: deliver" time="855.677782">
         
       </testcase>
     
