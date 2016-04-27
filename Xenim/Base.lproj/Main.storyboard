@@ -1428,24 +1428,12 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                             <constraint firstAttribute="width" secondItem="9Z2-mv-QWo" secondAttribute="height" multiplier="1:1" priority="900" id="HrR-rg-ofm"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t78-oR-vcF" customClass="UIGradientView" customModule="Xenim" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4U-6f-il8" customClass="UIGradientView" customModule="Xenim" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="w8g-ld-4E2"/>
+                                            <constraint firstAttribute="height" constant="60" id="GAB-u0-Ce1"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="bottomYPoint">
-                                                <real key="value" value="0.80000000000000004"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                <color key="value" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="0.7001885775862069" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-KQ-YVn">
                                         <rect key="frame" x="0.0" y="375" width="375" height="2"/>
@@ -1517,20 +1505,19 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                     <constraint firstItem="mbj-o8-EdW" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="9lL-Ze-shi"/>
                                     <constraint firstItem="SP2-FZ-tH0" firstAttribute="top" secondItem="9Z2-mv-QWo" secondAttribute="bottom" constant="8" id="BR8-MY-I02"/>
                                     <constraint firstItem="XlB-rz-KHx" firstAttribute="centerY" secondItem="lRY-Ry-mU9" secondAttribute="centerY" id="DHS-DE-Kq8"/>
-                                    <constraint firstItem="t78-oR-vcF" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="Q8Q-vA-suJ"/>
+                                    <constraint firstItem="H4U-6f-il8" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="EQc-76-LYp"/>
+                                    <constraint firstAttribute="trailing" secondItem="H4U-6f-il8" secondAttribute="trailing" id="QIb-sn-QYs"/>
                                     <constraint firstItem="9Z2-mv-QWo" firstAttribute="top" secondItem="KdT-pi-g6m" secondAttribute="top" id="S2q-SN-R18"/>
                                     <constraint firstAttribute="trailing" secondItem="1UZ-KQ-YVn" secondAttribute="trailing" id="W22-fH-5bn"/>
-                                    <constraint firstItem="t78-oR-vcF" firstAttribute="top" secondItem="KdT-pi-g6m" secondAttribute="top" id="YBl-UA-OqC"/>
-                                    <constraint firstItem="t78-oR-vcF" firstAttribute="width" secondItem="KdT-pi-g6m" secondAttribute="width" id="a4l-PD-uTr"/>
                                     <constraint firstItem="lRY-Ry-mU9" firstAttribute="centerY" secondItem="hqi-bX-AVg" secondAttribute="centerY" id="aSQ-nv-rOG"/>
                                     <constraint firstItem="hqi-bX-AVg" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" constant="8" id="bcy-iy-TGp"/>
+                                    <constraint firstItem="H4U-6f-il8" firstAttribute="top" secondItem="KdT-pi-g6m" secondAttribute="top" id="dvF-hj-435"/>
                                     <constraint firstItem="mbj-o8-EdW" firstAttribute="top" secondItem="1UZ-KQ-YVn" secondAttribute="bottom" id="gE2-97-a3w"/>
                                     <constraint firstItem="9Z2-mv-QWo" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="j4D-YE-vPr"/>
                                     <constraint firstItem="hqi-bX-AVg" firstAttribute="top" secondItem="KdT-pi-g6m" secondAttribute="top" constant="10" id="j7b-ov-TpW"/>
                                     <constraint firstItem="1UZ-KQ-YVn" firstAttribute="leading" secondItem="KdT-pi-g6m" secondAttribute="leading" id="jb3-mD-ize"/>
                                     <constraint firstAttribute="trailing" secondItem="lRY-Ry-mU9" secondAttribute="trailing" constant="14" id="jgI-5h-FXQ"/>
                                     <constraint firstItem="kET-Mm-N6n" firstAttribute="top" secondItem="Cyl-eM-QwI" secondAttribute="bottom" constant="8" id="nGk-HY-ITy"/>
-                                    <constraint firstAttribute="trailing" secondItem="t78-oR-vcF" secondAttribute="trailing" id="nem-jL-1Lz"/>
                                     <constraint firstAttribute="trailing" secondItem="SP2-FZ-tH0" secondAttribute="trailing" constant="8" id="pry-yd-Y7j"/>
                                     <constraint firstAttribute="trailing" secondItem="9Z2-mv-QWo" secondAttribute="trailing" id="raA-Vc-xkU"/>
                                     <constraint firstAttribute="trailing" secondItem="XlB-rz-KHx" secondAttribute="trailing" constant="218" id="s4L-wD-FJ1"/>

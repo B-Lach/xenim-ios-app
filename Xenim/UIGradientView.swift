@@ -14,7 +14,7 @@ import UIKit
     var gradientLayer: CAGradientLayer!
     
     /// Top color of the gradient layer
-    var topColor: UIColor = UIColor(red:0.16, green:0.17, blue:0.20, alpha:0.8) {
+    var topColor: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.9) {
         didSet {
             gradientLayer.colors = [topColor.CGColor, bottomColor.CGColor]
         }
