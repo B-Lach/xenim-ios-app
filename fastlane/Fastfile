@@ -21,7 +21,7 @@ def build
 
   match(type: "appstore")
   increment_build_number # https://developer.apple.com/library/ios/qa/qa1827/_index.html
-  gym(scheme: "Xenim", output_directory: "fastlane/ipa") # Build your app - more options available
+  gym(scheme: "Xenim", output_directory: "fastlane/ipa/") # Build your app - more options available
 end
 
 platform :ios do
