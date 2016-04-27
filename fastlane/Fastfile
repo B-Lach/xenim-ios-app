@@ -79,7 +79,8 @@ platform :ios do
               skip_metadata: false,
               skip_screenshots: true,
               submit_for_review: false,
-              automatic_release: false
+              automatic_release: false,
+              force: false # can be used to disable html preview
             )
   end
 
