@@ -53,10 +53,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        let effect = UIBlurEffect(style: .Dark)
-//        let vibrancy = UIVibrancyEffect(forBlurEffect: effect)
-//        blurView.effect = vibrancy
         
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
