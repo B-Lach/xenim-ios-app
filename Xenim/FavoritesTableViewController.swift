@@ -15,8 +15,15 @@ class FavoritesTableViewController: UITableViewController{
     var messageVC: MessageViewController?
     var loadingVC: UIViewController?
 
+    @IBOutlet weak var addFavoriteBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var settingsBarButtonItem: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addFavoriteBarButtonItem.accessibilityLabel = "Add"
+        addFavoriteBarButtonItem.accessibilityHint = "Double Tap to search through all podcasts and add favorites"
+        settingsBarButtonItem.accessibilityLabel = "Settings"
         
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension

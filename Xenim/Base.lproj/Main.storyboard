@@ -1013,6 +1013,8 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addFavoriteBarButtonItem" destination="UHf-4P-vuM" id="sJ2-9I-aBD"/>
+                        <outlet property="settingsBarButtonItem" destination="y2w-Lf-4fk" id="zvI-X2-cPG"/>
                         <segue destination="WlL-v8-hc7" kind="show" identifier="podcastDetail" id="Mn2-PI-Ldr"/>
                     </connections>
                 </tableViewController>
@@ -1647,6 +1649,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <image name="white-25-user" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7xH-hr-438"/>
+        <segue reference="Mn2-PI-Ldr"/>
     </inferredMetricsTieBreakers>
 </document>

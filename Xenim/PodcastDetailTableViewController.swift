@@ -27,6 +27,9 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        coverartImageView.accessibilityLabel = "Coverart image"
+        
         let placeholderImage = UIImage(named: "event_placeholder")!
         if let imageurl = podcast.artwork.originalUrl {
             coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
@@ -70,10 +73,14 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         
         setupNotifications()
         
+        favoriteBarButtonItem.accessibilityLabel = " "
+        favoriteBarButtonItem.accessibilityHint = "Tap to toggle favorite"
         if !Favorites.isFavorite(podcast.id) {
             favoriteBarButtonItem.image = UIImage(named: "star-outline")
+            favoriteBarButtonItem.accessibilityValue = "is no favorite"
         } else {
             favoriteBarButtonItem.image = UIImage(named: "star")
+            favoriteBarButtonItem.accessibilityValue = "is favorite"
         }
 
     }
@@ -276,6 +283,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             // check if this affects this cell
             if podcastId == podcast.id {
                 favoriteBarButtonItem.image = UIImage(named: "star")
+                favoriteBarButtonItem.accessibilityValue = "is favorite"
             }
         }
     }
@@ -285,6 +293,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             // check if this affects this cell
             if podcastId == podcast.id {
                 favoriteBarButtonItem.image = UIImage(named: "star-outline")
+                favoriteBarButtonItem.accessibilityValue = "is no favorite"
             }
         }
     }

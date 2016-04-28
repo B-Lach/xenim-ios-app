@@ -20,11 +20,18 @@ class AddFavoriteTableViewCell: UITableViewCell {
             }
             setupNotifications()
             
+            favoriteButton.accessibilityLabel = " "
+            favoriteButton.accessibilityHint = "Double Tap to toggle favorite"
+            
             if !Favorites.isFavorite(podcast.id) {
                 favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
+                favoriteButton.accessibilityValue = "is no favorite"
             } else {
                 favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
+                favoriteButton.accessibilityValue = "is favorite"
             }
+            
+            self.accessibilityTraits = UIAccessibilityTraitButton
             
             descriptionLabel?.text = podcast?.podcastDescription
             podcastNameLabel?.text = podcast.name
@@ -71,6 +78,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
             if podcastId == podcast.id {
                 favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
                 animateFavoriteButton()
+                favoriteButton.accessibilityValue = "is favorite"
             }
         }
     }
@@ -81,6 +89,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
             if podcastId == podcast.id {
                 favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
                 animateFavoriteButton()
+                favoriteButton.accessibilityValue = "is no favorite"
             }
         }
     }
