@@ -37,9 +37,14 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	@IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var coverartView: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var skipForwardButton: UIButton!
+    @IBOutlet weak var skipBackwardButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     
     @IBOutlet weak var sleepTimerButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
+    
+    weak var miniplayerPlayPauseBarButtonItem: UIBarButtonItem!
     
     @IBOutlet weak var airplayView: MPVolumeView! {
         didSet {
@@ -54,6 +59,22 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // use this to add more controls on ipad interface
+        //if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
+        
+        let playPauseItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(togglePlayPause(_:)))
+        miniplayerPlayPauseBarButtonItem = playPauseItem
+        self.popupItem.rightBarButtonItems = [miniplayerPlayPauseBarButtonItem]
+        
+        miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
+        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
+        miniCoverartImageView.layer.cornerRadius = 5.0
+        miniCoverartImageView.layer.masksToBounds = true
+        
+        let coverartBarButtonItem = UIBarButtonItem(customView: miniCoverartImageView)
+        self.popupItem.leftBarButtonItems = [coverartBarButtonItem]
+        
+        
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
@@ -64,6 +85,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         popupItem.title = event.podcast.name
         popupItem.subtitle = event.title
+        
         if let imageurl = event.podcast.artwork.thumb150Url {
             miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
         }
@@ -73,23 +95,41 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         currentTimeLabel.hidden = true
         timeLeftLabel.hidden = true
+        
+        setupVoidOver()
 	}
+    
+    private func setupVoidOver() {
+        listenersCountLabel.accessibilityLabel = "Listeners"
+        dismissButton.accessibilityLabel = "Minify"
+        
+        favoriteButton.accessibilityLabel = " "
+        favoriteButton.accessibilityHint = "Double tap to toggle favorite"
+        shareButton.accessibilityLabel = "Share"
+        
+        playPauseButton.accessibilityLabel = "Play Button"
+        
+        skipForwardButton.accessibilityLabel = "forward"
+        skipForwardButton.accessibilityHint = "double tap to skip 30 seconds forward"
+        skipBackwardButton.accessibilityLabel = "backward"
+        skipBackwardButton.accessibilityHint = "double tap to skip 30 seconds backward"
+        
+        sleepTimerButton.accessibilityLabel = "Sleep Timer"
+        sleepTimerButton.accessibilityValue = "disabled"
+        sleepTimerButton.accessibilityHint = "Double Tap to configure a sleep timer"
+        
+        // disable these labels from accessibility as they do not have any function yet
+        currentTimeLabel.isAccessibilityElement = false
+        timeLeftLabel.isAccessibilityElement = false
+        progressView.isAccessibilityElement = false
+        
+        
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        // use this to add more controls on ipad interface
-        //if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
-        
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerViewController.togglePlayPause(_:)))]
-        
-        miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
-        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
-        miniCoverartImageView.layer.cornerRadius = 5.0
-        miniCoverartImageView.layer.masksToBounds = true
-        
-        let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
-        self.popupItem.leftBarButtonItems = [popupItem]
+
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -125,6 +165,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             if let listeners = listeners {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.listenersCountLabel.text = "\(listeners)"
+                    self.listenersCountLabel.accessibilityValue = "\(listeners)"
                 })
             }
         }
@@ -134,8 +175,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         if let event = event {
             if !Favorites.isFavorite(event.podcast.id) {
                 favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
+                favoriteButton?.accessibilityValue = "is no favorite"
             } else {
                 favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
+                favoriteButton?.accessibilityValue = "is favorite"
             }
         }
     }
@@ -227,30 +270,46 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         switch player.state {
         case .Buffering:
-            playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
+            showPlaybuttonPlaying()
             loadingSpinnerView.hidden = false
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Paused:
-            playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
+            showPlaybuttonPaused()
             loadingSpinnerView.hidden = true
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Playing:
-            playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
+            showPlaybuttonPlaying()
             loadingSpinnerView.hidden = true
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Stopped:
-            playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
+            showPlaybuttonPaused()
             loadingSpinnerView.hidden = true
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .WaitingForConnection:
-            playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
+            showPlaybuttonPlaying()
             loadingSpinnerView.hidden = false
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         case .Failed(_):
-            playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
+            showPlaybuttonPaused()
             loadingSpinnerView.hidden = true
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
         }
+    }
+    
+    private func showPlaybuttonPlaying() {
+        playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
+        miniplayerPlayPauseBarButtonItem.image = UIImage(named: "scarlet-25-pause")
+        miniplayerPlayPauseBarButtonItem.accessibilityLabel = "Play Button"
+        miniplayerPlayPauseBarButtonItem.accessibilityValue = "playing"
+        miniplayerPlayPauseBarButtonItem.accessibilityHint = "Double tap to pause"
+        
+        playPauseButton.accessibilityValue = "playing"
+        playPauseButton.accessibilityHint = "Double tap to pause"
+    }
+    
+    private func showPlaybuttonPaused() {
+        playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
+        miniplayerPlayPauseBarButtonItem.image = UIImage(named: "scarlet-25-play")
+        miniplayerPlayPauseBarButtonItem.accessibilityLabel = "Play Button"
+        miniplayerPlayPauseBarButtonItem.accessibilityValue = "paused"
+        miniplayerPlayPauseBarButtonItem.accessibilityHint = "Double tap to play"
+        
+        playPauseButton.accessibilityValue = "paused"
+        playPauseButton.accessibilityHint = "Double tap to play"
     }
 
     // MARK: - delegate
@@ -332,8 +391,12 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     private func updateSleepTimerDisplay() {
         if let minutesLeft = sleepTimerTicksLeft {
             sleepTimerButton.setTitle("\(minutesLeft)min", forState: .Normal)
+            sleepTimerButton.accessibilityValue = "\(minutesLeft) minutes left"
+            sleepTimerButton.accessibilityHint = "Double Tap to disable the sleep timer"
         } else {
             sleepTimerButton.setTitle("", forState: .Normal)
+            sleepTimerButton.accessibilityValue = "disabled"
+            sleepTimerButton.accessibilityHint = "Double Tap to configure a sleep timer"
         }
         
     }
