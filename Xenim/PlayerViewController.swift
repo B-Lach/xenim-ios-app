@@ -100,36 +100,32 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	}
     
     private func setupVoidOver() {
-        listenersCountLabel.accessibilityLabel = "Listeners"
-        dismissButton.accessibilityLabel = "Minify"
+        listenersCountLabel.accessibilityLabel = NSLocalizedString("voiceover_listeners_count_label", value: "listeners", comment: "")
+        dismissButton.accessibilityLabel = NSLocalizedString("voiceover_dismiss_button_label", value: "dismiss", comment: "")
         
         favoriteButton.accessibilityLabel = " "
-        favoriteButton.accessibilityHint = "Double tap to toggle favorite"
-        shareButton.accessibilityLabel = "Share"
+        favoriteButton.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", comment: "")
+        shareButton.accessibilityLabel = NSLocalizedString("voiceover_share_button_label", value: "share", comment: "")
         
-        playPauseButton.accessibilityLabel = "Play Button"
+        playPauseButton.accessibilityLabel = NSLocalizedString("voiceover_play_button_label", comment: "")
         
-        skipForwardButton.accessibilityLabel = "forward"
-        skipForwardButton.accessibilityHint = "double tap to skip 30 seconds forward"
-        skipBackwardButton.accessibilityLabel = "backward"
-        skipBackwardButton.accessibilityHint = "double tap to skip 30 seconds backward"
+        skipForwardButton.accessibilityLabel = NSLocalizedString("voiceover_forward_button_label", value: "forward", comment: "")
+        skipForwardButton.accessibilityHint = NSLocalizedString("voiceover_forward_button_hint", value: "double tap to skip 30 seconds forward", comment: "")
+        skipBackwardButton.accessibilityLabel = NSLocalizedString("voiceover_backward_button_label", value: "backward", comment: "")
+        skipBackwardButton.accessibilityHint = NSLocalizedString("voiceover_backward_button_hint", value: "double tap to skip 30 seconds backward", comment: "")
         
-        sleepTimerButton.accessibilityLabel = "Sleep Timer"
-        sleepTimerButton.accessibilityValue = "disabled"
-        sleepTimerButton.accessibilityHint = "Double Tap to configure a sleep timer"
+        sleepTimerButton.accessibilityLabel = NSLocalizedString("voiceover_sleep_button_label", value: "sleep timer", comment: "")
+        sleepTimerButton.accessibilityValue = NSLocalizedString("voiceover_sleep_button_value_disabled", value: "disabled", comment: "")
+        sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", value: "Double Tap to configure a sleep timer", comment: "")
         
         // disable these labels from accessibility as they do not have any function yet
         currentTimeLabel.isAccessibilityElement = false
         timeLeftLabel.isAccessibilityElement = false
         progressView.isAccessibilityElement = false
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -175,10 +171,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         if let event = event {
             if !Favorites.isFavorite(event.podcast.id) {
                 favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
-                favoriteButton?.accessibilityValue = "is no favorite"
+                favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", comment: "")
             } else {
                 favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
-                favoriteButton?.accessibilityValue = "is favorite"
+                favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", comment: "")
             }
         }
     }
@@ -247,6 +243,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             // check if this affects this cell
             if podcastId == event.podcast.id {
                 favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
+                favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", comment: "")
             }
         }
     }
@@ -256,6 +253,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             // check if this affects this cell
             if podcastId == event.podcast.id {
                 favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
+                favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", comment: "")
             }
         }
     }
@@ -293,23 +291,23 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     private func showPlaybuttonPlaying() {
         playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
         miniplayerPlayPauseBarButtonItem.image = UIImage(named: "scarlet-25-pause")
-        miniplayerPlayPauseBarButtonItem.accessibilityLabel = "Play Button"
-        miniplayerPlayPauseBarButtonItem.accessibilityValue = "playing"
-        miniplayerPlayPauseBarButtonItem.accessibilityHint = "Double tap to pause"
+        miniplayerPlayPauseBarButtonItem.accessibilityLabel = NSLocalizedString("voiceover_play_button_label", comment: "")
+        miniplayerPlayPauseBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", comment: "")
+        miniplayerPlayPauseBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", comment: "")
         
-        playPauseButton.accessibilityValue = "playing"
-        playPauseButton.accessibilityHint = "Double tap to pause"
+        playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", comment: "")
+        playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", comment: "")
     }
     
     private func showPlaybuttonPaused() {
         playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
         miniplayerPlayPauseBarButtonItem.image = UIImage(named: "scarlet-25-play")
         miniplayerPlayPauseBarButtonItem.accessibilityLabel = "Play Button"
-        miniplayerPlayPauseBarButtonItem.accessibilityValue = "paused"
-        miniplayerPlayPauseBarButtonItem.accessibilityHint = "Double tap to play"
+        miniplayerPlayPauseBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", comment: "")
+        miniplayerPlayPauseBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", comment: "")
         
-        playPauseButton.accessibilityValue = "paused"
-        playPauseButton.accessibilityHint = "Double tap to play"
+        playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", comment: "")
+        playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", comment: "")
     }
 
     // MARK: - delegate
@@ -391,12 +389,13 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     private func updateSleepTimerDisplay() {
         if let minutesLeft = sleepTimerTicksLeft {
             sleepTimerButton.setTitle("\(minutesLeft)min", forState: .Normal)
-            sleepTimerButton.accessibilityValue = "\(minutesLeft) minutes left"
-            sleepTimerButton.accessibilityHint = "Double Tap to disable the sleep timer"
+            
+            sleepTimerButton.accessibilityValue = String.localizedStringWithFormat(NSLocalizedString("voiceover_sleep_button_value", value: "%@ minutes left", comment: ""), "\(minutesLeft)")
+            sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_disable", value: "Double Tap to disable the sleep timer", comment: "")
         } else {
             sleepTimerButton.setTitle("", forState: .Normal)
-            sleepTimerButton.accessibilityValue = "disabled"
-            sleepTimerButton.accessibilityHint = "Double Tap to configure a sleep timer"
+            sleepTimerButton.accessibilityValue = NSLocalizedString("voiceover_sleep_button_value_disabled", comment: "")
+            sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", comment: "")
         }
         
     }

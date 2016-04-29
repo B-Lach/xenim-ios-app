@@ -53,8 +53,8 @@ class FavoriteTableViewCell: UITableViewCell {
         
         nextDateStackView.isAccessibilityElement = true
         nextDateStackView.accessibilityTraits = UIAccessibilityTraitButton
-        nextDateStackView.accessibilityHint = "Double Tap to toggle date display or days left display."
-        nextDateStackView.accessibilityLabel = "Next event date"
+        nextDateStackView.accessibilityHint = NSLocalizedString("voiceover_nextDateStackView_hint", value: "Double Tap to toggle date display or days left display.", comment: "")
+        nextDateStackView.accessibilityLabel = NSLocalizedString("voiceover_nextDateStackView_label", value: "next event date", comment: "")
         nextDateTopLabel.isAccessibilityElement = false
         nextDateBottomLabel.isAccessibilityElement = false
         
@@ -135,7 +135,7 @@ class FavoriteTableViewCell: UITableViewCell {
             // no upcoming event
             nextDateTopLabel.text = ""
             nextDateBottomLabel.text = ""
-            nextDateStackView.accessibilityValue = "nothing scheduled"
+            nextDateStackView.accessibilityValue = NSLocalizedString("voiceover_nextDateStackView_value_nothing_scheduled", value: "nothing scheduled", comment: "")
         }
     }
     

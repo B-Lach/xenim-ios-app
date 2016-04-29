@@ -58,15 +58,12 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         if podcast.websiteUrl == nil {
             disableCell(websiteCell)
         }
-        
         if podcast.twitterURL == nil {
             disableCell(twitterCell)
         }
-        
         if podcast.email == nil {
             disableCell(sendMailCell)
         }
-        
         if podcast.feedUrl == nil {
             disableCell(subscribeCell)
         }
@@ -74,13 +71,13 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         setupNotifications()
         
         favoriteBarButtonItem.accessibilityLabel = " "
-        favoriteBarButtonItem.accessibilityHint = "Tap to toggle favorite"
+        favoriteBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", value: "double tap to toggle favorite", comment: "") 
         if !Favorites.isFavorite(podcast.id) {
             favoriteBarButtonItem.image = UIImage(named: "star-outline")
-            favoriteBarButtonItem.accessibilityValue = "is no favorite"
+            favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", comment: "")
         } else {
             favoriteBarButtonItem.image = UIImage(named: "star")
-            favoriteBarButtonItem.accessibilityValue = "is favorite"
+            favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", comment: "")
         }
 
     }
@@ -283,7 +280,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             // check if this affects this cell
             if podcastId == podcast.id {
                 favoriteBarButtonItem.image = UIImage(named: "star")
-                favoriteBarButtonItem.accessibilityValue = "is favorite"
+                favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", comment: "")
             }
         }
     }
@@ -293,7 +290,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             // check if this affects this cell
             if podcastId == podcast.id {
                 favoriteBarButtonItem.image = UIImage(named: "star-outline")
-                favoriteBarButtonItem.accessibilityValue = "is no favorite"
+                favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", comment: "")
             }
         }
     }

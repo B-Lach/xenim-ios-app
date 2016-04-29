@@ -39,12 +39,12 @@ class EventTableViewCell: UITableViewCell {
         
         dateStackView.isAccessibilityElement = true
         dateStackView.accessibilityTraits = UIAccessibilityTraitButton
-        dateStackView.accessibilityHint = "Double Tap to toggle date display or days left display."
-        dateStackView.accessibilityLabel = "event date"
+        dateStackView.accessibilityHint = NSLocalizedString("voiceover_dateStackView_hint", value: "Double Tap to toggle date display or days left display.", comment: "")
+        dateStackView.accessibilityLabel = NSLocalizedString("voiceover_dateStackView_label", value: "event date", comment: "")
         dateBottomLabel.isAccessibilityElement = false
         dateTopLabel.isAccessibilityElement = false
         
-        playButton.accessibilityLabel = "Play Button"
+        playButton.accessibilityLabel = NSLocalizedString("voiceover_play_button_label", value: "play button", comment: "")
         
         self.accessibilityTraits = UIAccessibilityTraitButton
     }
@@ -173,19 +173,19 @@ class EventTableViewCell: UITableViewCell {
     
     private func showPauseButton() {
         playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
-        playButton.accessibilityValue = "playing"
-        playButton.accessibilityHint = "Double Tap to pause"
+        playButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", value: "playing", comment: "")
+        playButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", value: "double tap to pause", comment: "")
     }
     
     private func showPlayButton() {
         playButton.setImage(UIImage(named: "Play"), forState: .Normal)
-        playButton.accessibilityValue = "not playing"
-        playButton.accessibilityHint = "Double Tap to play"
+        playButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", value: "not playing", comment: "")
+        playButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", value: "double tap to play", comment: "") 
     }
     
     func updateFavoriteButton() {
         favoriteImageView.hidden = !Favorites.isFavorite(event.podcast.id)
-        self.accessibilityValue = Favorites.isFavorite(event.podcast.id) ? "is favorite" : ""
+        self.accessibilityValue = Favorites.isFavorite(event.podcast.id) ? NSLocalizedString("voiceover_favorite_button_value_is_favorite", comment: "") : ""
     }
     
     
