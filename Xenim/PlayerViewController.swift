@@ -281,8 +281,8 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - sleeptimer
     
-    var sleepTimerTicksLeft: Int?
-    var sleepTimer: NSTimer?
+    private var sleepTimerTicksLeft: Int?
+    private weak var sleepTimer: NSTimer?
     
     @IBAction func sleepTimerPressed(sender: AnyObject) {
         if sleepTimer != nil {
