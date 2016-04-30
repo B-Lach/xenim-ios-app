@@ -317,7 +317,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</target>
             <trans-unit id="cancel">
                 <source>Cancel</source>
                 <note>Cancel
-   cancel string</note>
+   Cancel</note>
                 <target>Abbrechen</target>
             </trans-unit>
             <trans-unit id="day">
@@ -564,7 +564,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</target>
                 <target>teilen</target>
             </trans-unit>
             <trans-unit id="voiceover_sleep_button_hint_configure">
-                <source>Double Tap to configure a sleep timer</source>
+                <source>double tap to configure a sleep timer</source>
                 <note>No comment provided by engineer.</note>
                 <target>doppel tap um einen sleep timer einzurichten</target>
             </trans-unit>

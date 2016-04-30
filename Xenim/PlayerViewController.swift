@@ -116,7 +116,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         sleepTimerButton.accessibilityLabel = NSLocalizedString("voiceover_sleep_button_label", value: "sleep timer", comment: "")
         sleepTimerButton.accessibilityValue = NSLocalizedString("voiceover_sleep_button_value_disabled", value: "disabled", comment: "")
-        sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", value: "Double Tap to configure a sleep timer", comment: "")
+        sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", value: "double tap to configure a sleep timer", comment: "")
         
         // disable these labels from accessibility as they do not have any function yet
         currentTimeLabel.isAccessibilityElement = false
@@ -362,7 +362,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
                 optionMenu.addAction(action)
             }
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "Cancel"), style: .Cancel, handler: {
                 (alert: UIAlertAction!) -> Void in
             })
             optionMenu.addAction(cancelAction)

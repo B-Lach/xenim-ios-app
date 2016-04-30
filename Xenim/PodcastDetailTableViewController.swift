@@ -201,7 +201,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             }
         }
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "Cancel"), style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
         optionMenu.addAction(cancelAction)
