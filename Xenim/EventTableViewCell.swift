@@ -185,7 +185,7 @@ class EventTableViewCell: UITableViewCell {
     
     func updateFavoriteButton() {
         favoriteImageView.hidden = !Favorites.isFavorite(event.podcast.id)
-        self.accessibilityValue = Favorites.isFavorite(event.podcast.id) ? NSLocalizedString("voiceover_favorite_button_value_is_favorite", comment: "") : ""
+        self.accessibilityValue = Favorites.isFavorite(event.podcast.id) ? NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "") : ""
     }
     
     
