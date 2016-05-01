@@ -100,8 +100,11 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	}
     
     private func setupVoidOver() {
+        popupItem.accessibilityHint = NSLocalizedString("voiceover_playerbar_hint", value: "double tap to max the player", comment: "")
+        
         listenersCountLabel.accessibilityLabel = NSLocalizedString("voiceover_listeners_count_label", value: "listeners", comment: "")
-        dismissButton.accessibilityLabel = NSLocalizedString("voiceover_dismiss_button_label", value: "dismiss", comment: "")
+        dismissButton.accessibilityLabel = NSLocalizedString("voiceover_dismiss_button_label", value: "minify", comment: "")
+        dismissButton.accessibilityHint = NSLocalizedString("voiceover_dismiss_button_hint", value: "double tap minify the player", comment: "")
         
         favoriteButton.accessibilityLabel = " "
         favoriteButton.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", value: "double tap to toggle favorite", comment: "")
