@@ -588,6 +588,16 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</target>
                 <note>No comment provided by engineer.</note>
                 <target>deaktiviert</target>
             </trans-unit>
+            <trans-unit id="voiceover_playerbar_hint">
+                <source>double tap to max the player</source>
+                <note>No comment provided by engineer.</note>
+                <target>doppel tap um den player zu maximieren</target>
+            </trans-unit>
+            <trans-unit id="voiceover_dismiss_button_hint">
+                <source>double tap minify the player</source>
+                <note>No comment provided by engineer.</note>
+                <target>doppel tap um den player zu minimieren</target>
+            </trans-unit>
         </body>
     </file>
     <file original="XenimUITests/Info.plist" source-language="en" datatype="plaintext" target-language="de">
