@@ -469,9 +469,9 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</target>
                 <target>event datum</target>
             </trans-unit>
             <trans-unit id="voiceover_dismiss_button_label">
-                <source>dismiss</source>
+                <source>minify</source>
                 <note>No comment provided by engineer.</note>
-                <target>schließen</target>
+                <target>minimieren</target>
             </trans-unit>
             <trans-unit id="voiceover_favorite_button_hint">
                 <source>double tap to toggle favorite</source>
