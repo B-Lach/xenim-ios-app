@@ -19,7 +19,7 @@ connection.request('POST', '/parse/push', json.dumps({
        },
        "data": {
          "alert": message,
-         "badge": "1",
+         "badge": 1,
          "sound": "ios_defaultsound.caf"
        }
      }), {
