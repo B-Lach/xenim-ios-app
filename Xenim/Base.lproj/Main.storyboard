@@ -653,7 +653,7 @@
                     <navigationItem key="navigationItem" id="Z1Y-08-P79">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ca9-40-SUQ">
-                            <rect key="frame" x="188" y="7" width="225" height="31"/>
+                            <rect key="frame" x="188" y="7" width="225" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="All Events"/>
@@ -1051,11 +1051,11 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
             </objects>
             <point key="canvasLocation" x="1965" y="1086"/>
         </scene>
-        <!--Events-->
+        <!--Calendar-->
         <scene sceneID="uLN-cE-2UG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EEx-ap-ZIj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Events" image="white-25-calendar-o" selectedImage="white-25-calendar" id="KKU-KO-aCN"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="white-25-calendar-o" selectedImage="white-25-calendar" id="KKU-KO-aCN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Vs3-Mg-kYO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1678,6 +1678,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <image name="white-25-user" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7xH-hr-438"/>
+        <segue reference="GqG-Qe-AVA"/>
     </inferredMetricsTieBreakers>
 </document>
