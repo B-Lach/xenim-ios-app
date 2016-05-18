@@ -25,8 +25,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var miniCoverartImageView: UIImageView!
 
-    @IBOutlet weak var timeLeftLabel: UILabel!
-    @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenersIconImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
@@ -93,9 +91,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         setupNotifications()
         updateUI()
         
-        currentTimeLabel.hidden = true
-        timeLeftLabel.hidden = true
-        
         setupVoidOver()
 	}
     
@@ -122,8 +117,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", value: "double tap to configure a sleep timer", comment: "")
         
         // disable these labels from accessibility as they do not have any function yet
-        currentTimeLabel.isAccessibilityElement = false
-        timeLeftLabel.isAccessibilityElement = false
         progressView.isAccessibilityElement = false
     }
     
