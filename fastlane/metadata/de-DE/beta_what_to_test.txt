@@ -1,13 +1,9 @@
-# v0.7
-
-BITTE TESTEN:
-
-- Stabilität
-- Seit ihr in der Lage den Player zu stoppen (nicht pausieren)? Ich habe das Gefühl, das ist bisher sehr schwer zu entdecken. Habt ihr eine Idee, wie ich das verbessern/lösen könnte?
-
-CHANGELOG:
-
-- einheitliches Design für alle Views
-- neue Anzeige für das Datum eines Events. Lässt sich tappen, um zwischen verschiedenen Modi umzuschalten
-- FAQ Link in den Settings hinzugefügt
-- einige Verbesserungen unter der Haube und Bugfixes
+- Der Farbverlauf in der Podcast Detailansicht wurde verbessert. Er ist jetzt nicht mehr so dunkel.
+- Das Design des Liveplayers wurde komplett überarbeitet.
+- Die App ist nun optimiert für VoiceOver Nutzer
+- Bugfix: Die Datumsanzeige für ein Event behält nun auch beim Scrollen den richtigen Zustand
+- Die Datumsanzeige zeigt nun nicht nur verbleibende Tage bis zur Sendung, sonder auch Stunden und Minuten, wenn das Event näher rückt
+- Der Events Tab heißt nun Kalender. Das ist klarer verständlich.
+- Events werden nicht mehr in "Heute" und "Morgen" etc. eingeteilt.
+- Wer die App häufig nutzt bekommt ein einziges Mal einen Hinweis angezeigt, dass man die Entwicklung der App unterstützen kann
+- In den Settings gibt es nun einen Button, um die App im Appstore zu bewerten. Es würde mich freuen, wenn ihr das macht.
