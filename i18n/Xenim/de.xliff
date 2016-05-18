@@ -94,11 +94,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <target>20:00</target>
                 <note>Class = "UILabel"; text = "20:00"; ObjectID = "Cme-fL-gtI";</note>
             </trans-unit>
-            <trans-unit id="Cyl-eM-QwI.text">
-                <source>12:10</source>
-                <target>12:10</target>
-                <note>Class = "UILabel"; text = "12:10"; ObjectID = "Cyl-eM-QwI";</note>
-            </trans-unit>
             <trans-unit id="DWx-RP-Bf0.text">
                 <source>You will receive push notifications if any of your favorite podcasts does a live show.</source>
                 <target>Du erhältst eine Push Benachrichtigung, sobald einer deiner Favoriten eine Livesendung startet.</target>
@@ -120,7 +115,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <note>Class = "UILabel"; text = "Podcast Description"; ObjectID = "JaA-7x-at3";</note>
             </trans-unit>
             <trans-unit id="KKU-KO-aCN.title">
-                <source>Events</source>
+                <source>Calendar</source>
                 <target>Kalender</target>
                 <note>Class = "UITabBarItem"; title = "Calendar"; ObjectID = "KKU-KO-aCN";</note>
             </trans-unit>
@@ -154,11 +149,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <target>Zahle mir ein großes Burger Menü und unterstütze so die weitere Entwicklung der App. Cheeseburger esse ich am liebsten.</target>
                 <note>Class = "UILabel"; text = "Buy me a burger menu to support the future development of the app. I prefer Ketchup with my fries."; ObjectID = "SOX-Wq-9A4";</note>
             </trans-unit>
-            <trans-unit id="SP2-FZ-tH0.text">
-                <source>12:10</source>
-                <target>12:10</target>
-                <note>Class = "UILabel"; text = "12:10"; ObjectID = "SP2-FZ-tH0";</note>
-            </trans-unit>
             <trans-unit id="Ur9-F1-3Q9.text">
                 <source>Website</source>
                 <target>Webseite</target>
@@ -173,11 +163,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <source>Settings</source>
                 <target>Einstellungen</target>
                 <note>Class = "UINavigationItem"; title = "Settings"; ObjectID = "YFG-BN-gTI";</note>
-            </trans-unit>
-            <trans-unit id="ZDd-88-y9e.text">
-                <source>Report a bug on Github</source>
-                <target>Melde einen Bug auf Github</target>
-                <note>Class = "UILabel"; text = "Report a bug on Github"; ObjectID = "ZDd-88-y9e";</note>
             </trans-unit>
             <trans-unit id="agz-Hb-bth.headerTitle">
                 <source>Social</source>
@@ -256,8 +241,8 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
             </trans-unit>
             <trans-unit id="xru-0G-dnV.text">
                 <source>This helps more people discover the app.</source>
-                <note>Class = "UILabel"; text = "This helps more people discover the app."; ObjectID = "xru-0G-dnV";</note>
                 <target>So hilfst du anderen die App zu entdecken.</target>
+                <note>Class = "UILabel"; text = "This helps more people discover the app."; ObjectID = "xru-0G-dnV";</note>
             </trans-unit>
             <trans-unit id="yMm-PT-597.headerTitle">
                 <source>Get Support</source>
@@ -266,8 +251,8 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
             </trans-unit>
             <trans-unit id="yaT-yH-8sd.text">
                 <source>Leave a review on the Appstore</source>
-                <note>Class = "UILabel"; text = "Leave a review on the Appstore"; ObjectID = "yaT-yH-8sd";</note>
                 <target>Bewerte die App im Appstore</target>
+                <note>Class = "UILabel"; text = "Leave a review on the Appstore"; ObjectID = "yaT-yH-8sd";</note>
             </trans-unit>
             <trans-unit id="yuQ-X1-J2J.text">
                 <source>Xenim</source>
@@ -297,11 +282,11 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
         </header>
         <body>
             <trans-unit id="CFBundleName">
-                <source>$(PRODUCT_NAME)</source>
+                <source></source>
                 <target></target>
             </trans-unit>
             <trans-unit id="CFBundleShortVersionString">
-                <source>1.1</source>
+                <source></source>
                 <target></target>
             </trans-unit>
         </body>
@@ -334,13 +319,13 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
             <trans-unit id="dismiss">
                 <source>Dismiss</source>
                 <target>Schließen</target>
-                <note>Dismiss
-   dismiss</note>
+                <note>dismiss
+   Dismiss</note>
             </trans-unit>
             <trans-unit id="donate">
                 <source>Donate</source>
-                <note>donate</note>
                 <target>Spenden</target>
+                <note>donate</note>
             </trans-unit>
             <trans-unit id="event_tableview_empty_favorites_only_message">
                 <source>This is a filtered event list. You only see events of your favorite shows here. Currently there are no events of your favorite podcasts scheduled.</source>
@@ -357,10 +342,25 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <target>Markiere Podcasts als deine Favoriten, um sie hier zu sehen.</target>
                 <note>this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.</note>
             </trans-unit>
+            <trans-unit id="hour">
+                <source>hour</source>
+                <note>hour</note>
+                <target>Stunde</target>
+            </trans-unit>
+            <trans-unit id="hours">
+                <source>hours</source>
+                <note>hours</note>
+                <target>Stunden</target>
+            </trans-unit>
             <trans-unit id="info_message_mail_sent_failure_message">
                 <source>Mail sent failure</source>
                 <target>Fehler beim Mailversand</target>
                 <note>If the user tried to sent an email and it could not be sent an alert view does show the error message. this is the title of the alert view popup</note>
+            </trans-unit>
+            <trans-unit id="minute">
+                <source>min</source>
+                <note>min</note>
+                <target>min</target>
             </trans-unit>
             <trans-unit id="player_failed_state_alertview_message">
                 <source>The selected stream can not be played.</source>
@@ -424,13 +424,13 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <source>Do you like the app? Please consider supporting me with a small donation. If you do not want to donate now, you can always find the possibility in the settings.
 
 You only see this message this one time and I will never bother you again.</source>
-                <note>No comment provided by engineer.</note>
                 <target>Gefällt dir die App? Wenn du mich unterstützen magst, würde ich mich über eine kleine Spende freuen. Falls du jetzt nicht spenden möchtest, kannst du das jederzeit in den Einstellungen tun.  Diese Nachricht wird nur ein einziges Mal angezeigt. Ich möchte dir damit nicht auf die Nerven gehen.</target>
+                <note>No comment provided by engineer.</note>
             </trans-unit>
             <trans-unit id="support_alert_title">
                 <source>Please Support the Development</source>
-                <note>No comment provided by engineer.</note>
                 <target>Unterstütze die Entwicklung der App</target>
+                <note>No comment provided by engineer.</note>
             </trans-unit>
             <trans-unit id="voiceover_add_favorite_button_hint">
                 <source>Double Tap to search through all podcasts and add favorites</source>

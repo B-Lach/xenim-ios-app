@@ -43,9 +43,6 @@
 /* Class = "UILabel"; text = "20:00"; ObjectID = "Cme-fL-gtI"; */
 "Cme-fL-gtI.text" = "20:00";
 
-/* Class = "UILabel"; text = "12:10"; ObjectID = "Cyl-eM-QwI"; */
-"Cyl-eM-QwI.text" = "12:10";
-
 /* Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts does a live show."; ObjectID = "DWx-RP-Bf0"; */
 "DWx-RP-Bf0.text" = "Du erhältst eine Push Benachrichtigung, sobald einer deiner Favoriten eine Livesendung startet.";
 
@@ -79,9 +76,6 @@
 /* Class = "UILabel"; text = "Buy me a burger menu to support the future development of the app. I prefer Ketchup with my fries."; ObjectID = "SOX-Wq-9A4"; */
 "SOX-Wq-9A4.text" = "Zahle mir ein großes Burger Menü und unterstütze so die weitere Entwicklung der App. Cheeseburger esse ich am liebsten.";
 
-/* Class = "UILabel"; text = "12:10"; ObjectID = "SP2-FZ-tH0"; */
-"SP2-FZ-tH0.text" = "12:10";
-
 /* Class = "UILabel"; text = "Website"; ObjectID = "Ur9-F1-3Q9"; */
 "Ur9-F1-3Q9.text" = "Webseite";
 
@@ -90,9 +84,6 @@
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "YFG-BN-gTI"; */
 "YFG-BN-gTI.title" = "Einstellungen";
-
-/* Class = "UILabel"; text = "Report a bug on Github"; ObjectID = "ZDd-88-y9e"; */
-"ZDd-88-y9e.text" = "Melde einen Bug auf Github";
 
 /* Class = "UITableViewSection"; headerTitle = "Social"; ObjectID = "agz-Hb-bth"; */
 "agz-Hb-bth.headerTitle" = "Social";

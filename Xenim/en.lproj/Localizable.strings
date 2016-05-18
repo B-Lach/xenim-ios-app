@@ -10,8 +10,8 @@
 /* days */
 "days" = "Tage";
 
-/* dismiss
-   Dismiss */
+/* Dismiss
+   dismiss */
 "dismiss" = "Schließen";
 
 /* donate */
@@ -26,17 +26,8 @@
 /* this message is displayed if no podcast has been added as a favorite and the favorites table view is empty. */
 "favorites_tableview_empty_message" = "Markiere Podcasts als deine Favoriten, um sie hier zu sehen.";
 
-/* hour */
-"hour" = "Stunde";
-
-/* hours */
-"hours" = "Stunden";
-
 /* If the user tried to sent an email and it could not be sent an alert view does show the error message. this is the title of the alert view popup */
 "info_message_mail_sent_failure_message" = "Fehler beim Mailversand";
-
-/* min */
-"minute" = "min";
 
 /* If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message. */
 "player_failed_state_alertview_message" = "Dieser Livestream kann nicht abgespielt werden.";
