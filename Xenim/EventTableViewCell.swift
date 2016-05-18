@@ -9,6 +9,15 @@
 import UIKit
 import KDEAudioPlayer
 
+class EventCellStatus {
+    static let sharedInstance = EventCellStatus()
+    var showsDate = true {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName("toggleDateView", object: nil, userInfo: nil)
+        }
+    }
+}
+
 class EventTableViewCell: UITableViewCell {
     
     @IBOutlet weak var eventCoverartImage: UIImageView! {
@@ -29,8 +38,6 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var dateTopLabel: UILabel!
     @IBOutlet weak var dateBottomLabel: UILabel!
     
-    private var liveDateShowsDate = true
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tappedDateView(_:)))
@@ -50,8 +57,7 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func tappedDateView(sender: UITapGestureRecognizer?) {
-        liveDateShowsDate = !liveDateShowsDate
-        NSNotificationCenter.defaultCenter().postNotificationName("toggleDateView", object: nil, userInfo: ["liveDateShowsDate": liveDateShowsDate])
+        EventCellStatus.sharedInstance.showsDate = !EventCellStatus.sharedInstance.showsDate
     }
     
     var event: Event! {
@@ -89,7 +95,7 @@ class EventTableViewCell: UITableViewCell {
             let bottomLabelString: String
             let topLabelString: String
             let accessibilityValue: String
-            (topLabelString, bottomLabelString, accessibilityValue) = DateViewGenerator.generateLabelsFromDate(event.begin, showsDate: liveDateShowsDate)
+            (topLabelString, bottomLabelString, accessibilityValue) = DateViewGenerator.generateLabelsFromDate(event.begin, showsDate: EventCellStatus.sharedInstance.showsDate)
             
             dateTopLabel.text = topLabelString
             dateBottomLabel.text = bottomLabelString
@@ -179,12 +185,7 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func toggleDateView(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let state = userInfo["liveDateShowsDate"] as? Bool {
-                liveDateShowsDate = state
-                updateLivedate()
-            }
-        }
+        updateLivedate()
     }
     
     func playerStateChanged(notification: NSNotification) {

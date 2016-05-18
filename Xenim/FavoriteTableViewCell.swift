@@ -8,6 +8,15 @@
 
 import UIKit
 
+class FavoriteCellStatus {
+    static let sharedInstance = FavoriteCellStatus()
+    var showsDate = false {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName("toggleNextDateView", object: nil, userInfo: nil)
+        }
+    }
+}
+
 class FavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var coverartImageView: UIImageView! {
@@ -41,8 +50,6 @@ class FavoriteTableViewCell: UITableViewCell {
     }
     var nextEvent: Event?
     
-    var nextDateShowsDate = false;
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.tintColor = Constants.Colors.tintColor
@@ -63,8 +70,7 @@ class FavoriteTableViewCell: UITableViewCell {
     }
     
     func tappedDateView(sender: UITapGestureRecognizer?) {
-        nextDateShowsDate = !nextDateShowsDate
-        NSNotificationCenter.defaultCenter().postNotificationName("toggleNextDateView", object: nil, userInfo: ["nextDateShowsDate": nextDateShowsDate])
+        FavoriteCellStatus.sharedInstance.showsDate = !FavoriteCellStatus.sharedInstance.showsDate
     }
     
     @objc func updateNextDate() {
@@ -86,7 +92,7 @@ class FavoriteTableViewCell: UITableViewCell {
             let bottomLabelString: String
             let topLabelString: String
             let accessibilityValue: String
-            (topLabelString, bottomLabelString, accessibilityValue) = DateViewGenerator.generateLabelsFromDate(event.begin, showsDate: nextDateShowsDate)
+            (topLabelString, bottomLabelString, accessibilityValue) = DateViewGenerator.generateLabelsFromDate(event.begin, showsDate: FavoriteCellStatus.sharedInstance.showsDate)
                 
             nextDateTopLabel.text = topLabelString
             nextDateBottomLabel.text = bottomLabelString
@@ -112,12 +118,7 @@ class FavoriteTableViewCell: UITableViewCell {
     }
     
     func toggleDateView(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let state = userInfo["nextDateShowsDate"] as? Bool {
-                nextDateShowsDate = state
-                updateNextDateLabel()
-            }
-        }
+        updateNextDateLabel()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
