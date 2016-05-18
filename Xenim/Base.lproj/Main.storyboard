@@ -1603,7 +1603,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <!--Navigation Controller-->
         <scene sceneID="8wy-hc-DV4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rFQ-ny-7OW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Settings" automaticallyAdjustsScrollViewInsets="NO" id="rFQ-ny-7OW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="TGd-yb-eDB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
