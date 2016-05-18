@@ -239,6 +239,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             // check if this affects this cell
             if podcastId == event.podcast.id {
                 favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
+                favoriteButton?.tintColor = UIColor.whiteColor().colorWithAlphaComponent(1)
                 favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
         }
@@ -249,6 +250,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             // check if this affects this cell
             if podcastId == event.podcast.id {
                 favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
+                favoriteButton?.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.7)
                 favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             }
         }

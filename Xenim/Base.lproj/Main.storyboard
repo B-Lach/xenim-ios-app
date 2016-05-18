@@ -1258,15 +1258,17 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                 <constraint firstAttribute="height" constant="30" id="IA6-Kc-hXl"/>
                                                 <constraint firstAttribute="width" constant="50" id="M7n-Qs-7GE"/>
                                             </constraints>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <state key="normal" image="expand-more"/>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.7039601293103448" colorSpace="calibratedRGB"/>
+                                            <state key="normal" image="expand-more">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="dismissPopup:" destination="Pke-AM-PdW" eventType="touchUpInside" id="ENe-cf-9n3"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvG-nU-cy6">
                                             <rect key="frame" x="332" y="21" width="27" height="25"/>
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.69989224137931016" colorSpace="calibratedRGB"/>
                                             <state key="normal" image="star-outline"/>
                                             <connections>
                                                 <action selector="toggleFavorite:" destination="Pke-AM-PdW" eventType="touchUpInside" id="XLW-0j-VIA"/>
@@ -1313,7 +1315,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                                 <constraint firstAttribute="height" constant="25" id="cYE-P8-lo1"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                                            <color key="tintColor" white="1" alpha="0.7984105603448276" colorSpace="calibratedWhite"/>
+                                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.70444504310344824" colorSpace="calibratedRGB"/>
                                                             <state key="normal" image="-30s"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
@@ -1355,7 +1357,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                                 <constraint firstAttribute="width" constant="33" id="Jw5-IA-MTh"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                            <color key="tintColor" white="1" alpha="0.79507004310344831" colorSpace="calibratedWhite"/>
+                                                            <color key="tintColor" white="1" alpha="0.69722521551724137" colorSpace="calibratedWhite"/>
                                                             <state key="normal" image="+30s"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
@@ -1413,17 +1415,20 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="XlB-rz-KHx">
                                             <rect key="frame" x="159" y="24" width="57" height="19"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white-25-user" translatesAutoresizingMaskIntoConstraints="NO" id="ShY-ub-31T">
+                                                <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white-25-user" translatesAutoresizingMaskIntoConstraints="NO" id="ShY-ub-31T">
                                                     <rect key="frame" x="0.0" y="0.0" width="19" height="19"/>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="0.69964978448275861" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1337" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSw-84-18Y">
                                                     <rect key="frame" x="22" y="0.0" width="35" height="19"/>
+                                                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.70061961206896561" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                             </subviews>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.69552801724137936" colorSpace="calibratedRGB"/>
                                         </stackView>
                                     </subviews>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
