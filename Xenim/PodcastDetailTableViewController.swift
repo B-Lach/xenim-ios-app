@@ -27,6 +27,9 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        coverartImageView.accessibilityLabel = "Coverart image"
+        
         let placeholderImage = UIImage(named: "event_placeholder")!
         if let imageurl = podcast.artwork.originalUrl {
             coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
@@ -55,25 +58,26 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         if podcast.websiteUrl == nil {
             disableCell(websiteCell)
         }
-        
         if podcast.twitterURL == nil {
             disableCell(twitterCell)
         }
-        
         if podcast.email == nil {
             disableCell(sendMailCell)
         }
-        
         if podcast.feedUrl == nil {
             disableCell(subscribeCell)
         }
         
         setupNotifications()
         
+        favoriteBarButtonItem.accessibilityLabel = " "
+        favoriteBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", value: "double tap to toggle favorite", comment: "") 
         if !Favorites.isFavorite(podcast.id) {
             favoriteBarButtonItem.image = UIImage(named: "star-outline")
+            favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
         } else {
             favoriteBarButtonItem.image = UIImage(named: "star")
+            favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
         }
 
     }
@@ -197,7 +201,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             }
         }
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "Cancel"), style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
         optionMenu.addAction(cancelAction)
@@ -276,6 +280,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             // check if this affects this cell
             if podcastId == podcast.id {
                 favoriteBarButtonItem.image = UIImage(named: "star")
+                favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
         }
     }
@@ -285,6 +290,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             // check if this affects this cell
             if podcastId == podcast.id {
                 favoriteBarButtonItem.image = UIImage(named: "star-outline")
+                favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             }
         }
     }

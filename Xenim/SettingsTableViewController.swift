@@ -37,6 +37,10 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         
         versionLabel?.text = UIApplication.sharedApplication().appVersion()
         
+        smallDonationCell.accessibilityTraits = UIAccessibilityTraitButton
+        middleDonationCell.accessibilityTraits = UIAccessibilityTraitButton
+        bigDonationCell.accessibilityTraits = UIAccessibilityTraitButton
+        
         fetchIAPPrices()
     }
     

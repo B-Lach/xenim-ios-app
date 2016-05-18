@@ -50,6 +50,16 @@ class FavoriteTableViewCell: UITableViewCell {
         tap.delegate = self
         nextDateStackView.addGestureRecognizer(tap)
         setupNotifications()
+        
+        nextDateStackView.isAccessibilityElement = true
+        nextDateStackView.accessibilityTraits = UIAccessibilityTraitButton
+        nextDateStackView.accessibilityHint = NSLocalizedString("voiceover_nextDateStackView_hint", value: "Double Tap to toggle date display or days left display.", comment: "")
+        nextDateStackView.accessibilityLabel = NSLocalizedString("voiceover_nextDateStackView_label", value: "next event date", comment: "")
+        nextDateTopLabel.isAccessibilityElement = false
+        nextDateBottomLabel.isAccessibilityElement = false
+        
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        
     }
     
     func tappedDateView(sender: UITapGestureRecognizer?) {
@@ -88,6 +98,10 @@ class FavoriteTableViewCell: UITableViewCell {
                 let formatter = NSDateFormatter();
                 formatter.locale = NSLocale.currentLocale()
                 
+                formatter.dateStyle = .LongStyle
+                formatter.timeStyle = .MediumStyle
+                nextDateStackView.accessibilityValue = formatter.stringFromDate(event.begin)
+                
                 // http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
                 
                 formatter.setLocalizedDateFormatFromTemplate("HH:mm")
@@ -111,14 +125,17 @@ class FavoriteTableViewCell: UITableViewCell {
                 let daysStringMultiple = NSLocalizedString("days", value: "days", comment: "days")
                 if days == 1 {
                     nextDateBottomLabel.text = daysStringSingle
+                    nextDateStackView.accessibilityValue = "\(days) \(daysStringSingle) left"
                 } else {
                     nextDateBottomLabel.text = daysStringMultiple
+                    nextDateStackView.accessibilityValue = "\(days) \(daysStringMultiple) left"
                 }
             }
         } else {
             // no upcoming event
             nextDateTopLabel.text = ""
             nextDateBottomLabel.text = ""
+            nextDateStackView.accessibilityValue = NSLocalizedString("voiceover_nextDateStackView_value_nothing_scheduled", value: "nothing scheduled", comment: "")
         }
     }
     

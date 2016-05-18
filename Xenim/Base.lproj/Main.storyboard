@@ -1044,6 +1044,8 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addFavoriteBarButtonItem" destination="UHf-4P-vuM" id="sJ2-9I-aBD"/>
+                        <outlet property="settingsBarButtonItem" destination="y2w-Lf-4fk" id="zvI-X2-cPG"/>
                         <segue destination="WlL-v8-hc7" kind="show" identifier="podcastDetail" id="Mn2-PI-Ldr"/>
                     </connections>
                 </tableViewController>
@@ -1586,6 +1588,9 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                         <outlet property="playPauseButton" destination="kIy-6V-23T" id="g37-id-2IZ"/>
                         <outlet property="podcastNameLabel" destination="uzN-m1-SqS" id="NVi-Vp-weR"/>
                         <outlet property="progressView" destination="1UZ-KQ-YVn" id="lEq-Ea-ZIK"/>
+                        <outlet property="shareButton" destination="WuG-2p-tax" id="dH0-14-2OZ"/>
+                        <outlet property="skipBackwardButton" destination="iAQ-yS-bch" id="mKY-aM-7RN"/>
+                        <outlet property="skipForwardButton" destination="aqK-BQ-ZHn" id="khg-T4-sY1"/>
                         <outlet property="sleepTimerButton" destination="HHc-cn-0tN" id="MQT-as-aSb"/>
                         <outlet property="subtitleLabel" destination="MMC-P0-b9z" id="b2r-cH-nvT"/>
                         <outlet property="timeLeftLabel" destination="SP2-FZ-tH0" id="ITy-F8-bHX"/>
