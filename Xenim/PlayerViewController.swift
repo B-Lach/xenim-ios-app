@@ -11,6 +11,7 @@ import MediaPlayer
 import Alamofire
 import AlamofireImage
 import KDEAudioPlayer
+import UIImageColors
 
 class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -25,8 +26,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var miniCoverartImageView: UIImageView!
 
-    @IBOutlet weak var timeLeftLabel: UILabel!
-    @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenersIconImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
@@ -35,7 +34,17 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
 	@IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var coverartView: UIImageView!
+    @IBOutlet weak var coverartView: UIImageView! {
+        didSet {
+            if let image = coverartView.image {
+                image.getColors({ (colors) in
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        self.progressView.progressTintColor = colors.backgroundColor
+                    })
+                })
+            }
+        }
+    }
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var skipForwardButton: UIButton!
     @IBOutlet weak var skipBackwardButton: UIButton!
@@ -93,9 +102,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         setupNotifications()
         updateUI()
         
-        currentTimeLabel.hidden = true
-        timeLeftLabel.hidden = true
-        
         setupVoidOver()
 	}
     
@@ -122,8 +128,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", value: "double tap to configure a sleep timer", comment: "")
         
         // disable these labels from accessibility as they do not have any function yet
-        currentTimeLabel.isAccessibilityElement = false
-        timeLeftLabel.isAccessibilityElement = false
         progressView.isAccessibilityElement = false
     }
     
@@ -246,6 +250,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             // check if this affects this cell
             if podcastId == event.podcast.id {
                 favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
+                favoriteButton?.tintColor = UIColor.whiteColor().colorWithAlphaComponent(1)
                 favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
         }
@@ -256,6 +261,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             // check if this affects this cell
             if podcastId == event.podcast.id {
                 favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
+                favoriteButton?.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.7)
                 favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             }
         }
