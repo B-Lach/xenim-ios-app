@@ -20,6 +20,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     @IBOutlet weak var middleDonationCell: UITableViewCell!
     @IBOutlet weak var bigDonationCell: UITableViewCell!
     @IBOutlet weak var faqCell: UITableViewCell!
+    @IBOutlet weak var reviewCell: UITableViewCell!
 
     @IBOutlet weak var middleDonationPriceLabel: UILabel!
     @IBOutlet weak var smallDonationPriceLabel: UILabel!
@@ -80,6 +81,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             openWebsite("https://xenimapp.stefantrauth.de/support/")
         } else if selectedCell == xenimCell {
             openWebsite("http://streams.xenim.de")
+        } else if selectedCell == reviewCell {
+            UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/app/id1073103750")!)
         } else if selectedCell == smallDonationCell {
             PFPurchase.buyProduct("com.stefantrauth.XenimSupportSmall", block: { (error: NSError?) in
                 if error != nil {
