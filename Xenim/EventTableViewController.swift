@@ -9,20 +9,11 @@
 import UIKit
 
 class EventTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-    
-    // possible sections
-    enum Section {
-        case Live
-        case Today
-        case Tomorrow
-        case ThisWeek
-        case Later
-    }
 
     // events sorted into sections (see above) and sorted by time
-    var events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+    var events = [Event]()
     // same as events, but filtered by current favorites
-    var favoriteEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+    var favoriteEvents = [Event]()
     
     // toggle to show favorites only
     var showFavoritesOnly = false
@@ -74,17 +65,24 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     func updateBackground() {
         let messageLabel = messageVC?.messageLabel
-        if numberOfRows() == 0 {
-            if showFavoritesOnly {
-                messageLabel?.text = NSLocalizedString("event_tableview_empty_favorites_only_message", value: "This is a filtered event list. You only see events of your favorite shows here. Currently there are no events of your favorite podcasts scheduled.", comment: "this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display.")
+        if showFavoritesOnly {
+            messageLabel?.text = NSLocalizedString("event_tableview_empty_favorites_only_message", value: "This is a filtered event list. You only see events of your favorite shows here. Currently there are no events of your favorite podcasts scheduled.", comment: "this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display.")
+            if favoriteEvents.count == 0 {
+                tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+                tableView.backgroundView?.hidden = false
             } else {
-                messageLabel?.text = NSLocalizedString("event_tableview_empty_message", value: "Did not receive any upcoming events. Pull to refresh to try again.", comment: "this message gets displayed if no events could be displayed / fetched from the API")
+                tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+                tableView.backgroundView?.hidden = true
             }
-            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-            tableView.backgroundView?.hidden = false
         } else {
-            tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-            tableView.backgroundView?.hidden = true
+            messageLabel?.text = NSLocalizedString("event_tableview_empty_message", value: "Did not receive any upcoming events. Pull to refresh to try again.", comment: "this message gets displayed if no events could be displayed / fetched from the API")
+            if events.count == 0 {
+                tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+                tableView.backgroundView?.hidden = false
+            } else {
+                tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+                tableView.backgroundView?.hidden = true
+            }
         }
     }
     
@@ -92,30 +90,13 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     @IBAction func refresh(spinner: UIRefreshControl) {
         refreshControl!.beginRefreshing()
-        var newEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
-        
         XenimAPI.fetchEvents(status: ["RUNNING", "UPCOMING"], maxCount: 50) { (events) in
-            for event in events {
-                if event.isLive() {
-                    newEvents[0].append(event)
-                } else if event.isUpcomingToday() {
-                    newEvents[1].append(event)
-                } else if event.isUpcomingTomorrow() {
-                    newEvents[2].append(event)
-                } else if event.isUpcomingThisWeek() {
-                    newEvents[3].append(event)
-                } else if event.isUpcoming() {
-                    newEvents[4].append(event)
-                }
-            }
-            
             dispatch_async(dispatch_get_main_queue(), { 
-                self.events = newEvents
+                self.events = events
                 self.refreshControl!.endRefreshing()
-                if self.showFavoritesOnly {
-                    self.filterFavorites()
-                }
-                self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+                self.filterFavorites()
+                
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
             })
         }
     }
@@ -128,10 +109,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         }
         
         userDefaults.setObject(showFavoritesOnly, forKey: userDefaultsFavoritesSettingKey)
-        if showFavoritesOnly {
-            filterFavorites()
-        }
-        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
     }
     
     // MARK: - Notifications
@@ -147,16 +125,16 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     }
     
     func favoriteAdded(notification: NSNotification) {
+        filterFavorites()
         if showFavoritesOnly {
-            filterFavorites()
-            self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }
     
     func favoriteRemoved(notification: NSNotification) {
+        filterFavorites()
         if showFavoritesOnly {
-            filterFavorites()
-            self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }
 
@@ -164,63 +142,25 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         updateBackground()
+        return 1
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if showFavoritesOnly {
             return favoriteEvents.count
         }
         return events.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRowsInSection(section)
-    }
-    
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if numberOfRowsInSection(section) == 0 {
-            // hide the section header for sections with no content
-            return nil
-        }
-        switch section {
-        case 0: return NSLocalizedString("event_tableview_sectionheader_live", value: "Live now", comment: "section header in event table view for the live now section")
-        case 1: return NSLocalizedString("event_tableview_sectionheader_today", value: "Upcoming Today", comment: "section header in event table view for the upcoming today section")
-        case 2: return NSLocalizedString("event_tableview_sectionheader_tomorrow", value: "Tomorrow", comment: "section header in event table view for the tomorrow section")
-        case 3: return NSLocalizedString("event_tableview_sectionheader_thisweek", value: "Later this Week", comment: "section header in event table view for the later this week section")
-        case 4: return NSLocalizedString("event_tableview_sectionheader_later", value: "Next week and later", comment: "section header in event table view for the later than next week section")
-        default: return "Unknown"
-        }
-    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventTableViewCell
         if showFavoritesOnly {
-            cell.event = favoriteEvents[indexPath.section][indexPath.row]
+            cell.event = favoriteEvents[indexPath.row]
         } else {
-            cell.event = events[indexPath.section][indexPath.row]
+            cell.event = events[indexPath.row]
         }
         return cell
-    }
-    
-    // helper method because calling tableView.numberOfRowsInSection(section) crashes the app
-    private func numberOfRowsInSection(section: Int) -> Int {
-        if showFavoritesOnly {
-            return favoriteEvents[section].count
-        }
-        return events[section].count
-    }
-    
-    private func numberOfRows() -> Int {
-        if showFavoritesOnly {
-            var count = 0
-            for section in favoriteEvents {
-                count += section.count
-            }
-            return count
-        } else {
-            var count = 0
-            for section in events {
-                count += section.count
-            }
-            return count
-        }
     }
     
     
@@ -230,12 +170,9 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         favoriteEvents = events
         let favorites = Favorites.fetch()
         
-        for i in 0 ..< favoriteEvents.count {
-            let section = favoriteEvents[i]
-            favoriteEvents[i] = section.filter({ (event) -> Bool in
-                return favorites.contains(event.podcast.id)
-            })
-        }
+        favoriteEvents = events.filter({ (event) -> Bool in
+            return favorites.contains(event.podcast.id)
+        })
     }
     
     // MARK: Actions
@@ -254,11 +191,6 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
 
     
     // MARK: - Navigation
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        // this is required to prevent the popover to be shown as a modal view on iPhone
-        return UIModalPresentationStyle.None
-    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
