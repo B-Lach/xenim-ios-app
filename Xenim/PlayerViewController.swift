@@ -11,6 +11,7 @@ import MediaPlayer
 import Alamofire
 import AlamofireImage
 import KDEAudioPlayer
+import UIImageColors
 
 class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -33,7 +34,17 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
 	@IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var coverartView: UIImageView!
+    @IBOutlet weak var coverartView: UIImageView! {
+        didSet {
+            if let image = coverartView.image {
+                image.getColors({ (colors) in
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        self.progressView.progressTintColor = colors.backgroundColor
+                    })
+                })
+            }
+        }
+    }
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var skipForwardButton: UIButton!
     @IBOutlet weak var skipBackwardButton: UIButton!
