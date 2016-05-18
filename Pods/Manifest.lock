@@ -12,6 +12,7 @@ PODS:
     - Bolts/Tasks (~> 1.6)
   - SimulatorStatusMagic (1.8)
   - SwiftyJSON (2.3.2)
+  - UIImageColors (1.0.3)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
@@ -23,6 +24,17 @@ DEPENDENCIES:
   - Parse (~> 1.10)
   - SimulatorStatusMagic
   - SwiftyJSON (~> 2.3)
+  - UIImageColors (from `https://github.com/jathu/UIImageColors.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  UIImageColors:
+    :branch: master
+    :git: https://github.com/jathu/UIImageColors.git
+
+CHECKOUT OPTIONS:
+  UIImageColors:
+    :commit: 73e83efcfbcf717f04aa6849d8ff3f344b71531c
+    :git: https://github.com/jathu/UIImageColors.git
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
@@ -35,5 +47,8 @@ SPEC CHECKSUMS:
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   SimulatorStatusMagic: 4dbf0faa0208e9ac0d56cea06eaa5f7a5f3d02fb
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  UIImageColors: 3c3b04ecd5786d3235f7f783316c6ef0f631216d
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 411493347a1d022a8aad14d7c0bc3a42c8643ab0
+
+COCOAPODS: 1.0.0
