@@ -15,7 +15,6 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
 
     @IBOutlet weak var xenimCell: UITableViewCell!
     @IBOutlet weak var contactCell: UITableViewCell!
-    @IBOutlet weak var reportBugCell: UITableViewCell!
     @IBOutlet weak var smallDonationCell: UITableViewCell!
     @IBOutlet weak var middleDonationCell: UITableViewCell!
     @IBOutlet weak var bigDonationCell: UITableViewCell!
@@ -79,8 +78,6 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
         if selectedCell == contactCell {
             sendMail()
-        } else if selectedCell == reportBugCell {
-            openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
         } else if selectedCell == faqCell {
             openWebsite("https://xenimapp.stefantrauth.de/support/")
         } else if selectedCell == xenimCell {
