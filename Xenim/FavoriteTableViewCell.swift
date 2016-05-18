@@ -83,54 +83,14 @@ class FavoriteTableViewCell: UITableViewCell {
     
     func updateNextDateLabel() {
         if let event = nextEvent {
-            
-            // calculate in how many days this event takes place
-            let cal = NSCalendar.currentCalendar()
-            let today = cal.startOfDayForDate(NSDate())
-            let diff = cal.components(NSCalendarUnit.Day,
-                                      fromDate: today,
-                                      toDate: event.begin,
-                                      options: NSCalendarOptions.WrapComponents )
-            let days = diff.day
-            
-            
-            if nextDateShowsDate {
-                let formatter = NSDateFormatter();
-                formatter.locale = NSLocale.currentLocale()
+            let bottomLabelString: String
+            let topLabelString: String
+            let accessibilityValue: String
+            (topLabelString, bottomLabelString, accessibilityValue) = DateViewGenerator.generateLabelsFromDate(event.begin, showsDate: nextDateShowsDate)
                 
-                formatter.dateStyle = .LongStyle
-                formatter.timeStyle = .MediumStyle
-                nextDateStackView.accessibilityValue = formatter.stringFromDate(event.begin)
-                
-                // http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
-                
-                formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-                let time = formatter.stringFromDate(event.begin)
-                nextDateBottomLabel.text = time
-                
-                if days < 7 {
-                    formatter.setLocalizedDateFormatFromTemplate("cccccc")
-                    var day = formatter.stringFromDate(event.begin)
-                    day = day.stringByReplacingOccurrencesOfString(".", withString: "")
-                    day = day.uppercaseString
-                    nextDateTopLabel.text = day
-                } else {
-                    formatter.setLocalizedDateFormatFromTemplate("d.M")
-                    let date = formatter.stringFromDate(event.begin)
-                    nextDateTopLabel.text = date
-                }
-            } else {
-                nextDateTopLabel.text = "\(days)"
-                let daysStringSingle = NSLocalizedString("day", value: "day", comment: "day")
-                let daysStringMultiple = NSLocalizedString("days", value: "days", comment: "days")
-                if days == 1 {
-                    nextDateBottomLabel.text = daysStringSingle
-                    nextDateStackView.accessibilityValue = "\(days) \(daysStringSingle) left"
-                } else {
-                    nextDateBottomLabel.text = daysStringMultiple
-                    nextDateStackView.accessibilityValue = "\(days) \(daysStringMultiple) left"
-                }
-            }
+            nextDateTopLabel.text = topLabelString
+            nextDateBottomLabel.text = bottomLabelString
+            nextDateStackView.accessibilityValue = accessibilityValue
         } else {
             // no upcoming event
             nextDateTopLabel.text = ""
