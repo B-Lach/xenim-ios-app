@@ -136,7 +136,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
                 gradient.topColor = UIColor(red: 0.98 - inverseAlpha, green: 0.19 - inverseAlpha, blue: 0.31 - inverseAlpha, alpha: 1.00)
             } else {
                 // transparent state
-                gradient.topColor = UIColor.blackColor()
+                gradient.topColor = UIColor.blackColor().colorWithAlphaComponent(0.75)
                 gradient.bottomColor = UIColor.clearColor()
             }
             
