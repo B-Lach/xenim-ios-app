@@ -34,9 +34,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+
         // increase content inset for audio player
         tableView.contentInset.bottom = tableView.contentInset.bottom + 40
         

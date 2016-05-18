@@ -38,10 +38,6 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         resultSearchController.searchBar.sizeToFit()
         resultSearchController.searchBar.tintColor = Constants.Colors.tintColor
         resultSearchController.hidesNavigationBarDuringPresentation = false
-        
-        // dynamic row height
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
 
         // fetch podcast list from API
         loadingVC = storyboard?.instantiateViewControllerWithIdentifier("LoadingViewController")
