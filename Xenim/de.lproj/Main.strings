@@ -58,8 +58,8 @@
 /* Class = "UILabel"; text = "Podcast Description"; ObjectID = "JaA-7x-at3"; */
 "JaA-7x-at3.text" = "Podcast Description";
 
-/* Class = "UITabBarItem"; title = "Events"; ObjectID = "KKU-KO-aCN"; */
-"KKU-KO-aCN.title" = "Events";
+/* Class = "UITabBarItem"; title = "Calendar"; ObjectID = "KKU-KO-aCN"; */
+"KKU-KO-aCN.title" = "Kalender";
 
 /* Class = "UILabel"; text = "Small Tip"; ObjectID = "LMm-js-7Pe"; */
 "LMm-js-7Pe.text" = "Kleine Unterstützung";
@@ -139,8 +139,14 @@
 /* Class = "UILabel"; text = "Elementarfragen Podcast"; ObjectID = "uzN-m1-SqS"; */
 "uzN-m1-SqS.text" = "Elementarfragen Podcast";
 
+/* Class = "UILabel"; text = "This helps more people discover the app."; ObjectID = "xru-0G-dnV"; */
+"xru-0G-dnV.text" = "So hilfst du anderen die App zu entdecken.";
+
 /* Class = "UITableViewSection"; headerTitle = "Get Support"; ObjectID = "yMm-PT-597"; */
 "yMm-PT-597.headerTitle" = "Support";
+
+/* Class = "UILabel"; text = "Leave a review on the Appstore"; ObjectID = "yaT-yH-8sd"; */
+"yaT-yH-8sd.text" = "Bewerte die App im Appstore";
 
 /* Class = "UILabel"; text = "Xenim"; ObjectID = "yuQ-X1-J2J"; */
 "yuQ-X1-J2J.text" = "Xenim";

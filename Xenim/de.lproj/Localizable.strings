@@ -10,29 +10,18 @@
 /* days */
 "days" = "Tage";
 
-/* Dismiss */
+/* Dismiss
+   dismiss */
 "dismiss" = "Schließen";
+
+/* donate */
+"donate" = "Spenden";
 
 /* this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display. */
 "event_tableview_empty_favorites_only_message" = "Das ist eine gefilterte Event Liste. Hier sind nur Events deiner Favoriten zu sehen. Momentan ist kein Event eines deiner Favoriten geplant.";
 
 /* this message gets displayed if no events could be displayed / fetched from the API */
 "event_tableview_empty_message" = "Es konnten keine Events geladen werden. Pull to refresh, um neu zu laden.";
-
-/* section header in event table view for the later than next week section */
-"event_tableview_sectionheader_later" = "Nächste Woche und später";
-
-/* section header in event table view for the live now section */
-"event_tableview_sectionheader_live" = "Jetzt live";
-
-/* section header in event table view for the later this week section */
-"event_tableview_sectionheader_thisweek" = "Diese Woche";
-
-/* section header in event table view for the upcoming today section */
-"event_tableview_sectionheader_today" = "Heute";
-
-/* section header in event table view for the tomorrow section */
-"event_tableview_sectionheader_tomorrow" = "Morgen";
 
 /* this message is displayed if no podcast has been added as a favorite and the favorites table view is empty. */
 "favorites_tableview_empty_message" = "Markiere Podcasts als deine Favoriten, um sie hier zu sehen.";
@@ -72,6 +61,12 @@
 
 /* mail title for a new support mail message */
 "settings_view_mail_title" = "Xenim Support";
+
+/* No comment provided by engineer. */
+"support_alert_message" = "Gefällt dir die App? Wenn du mich unterstützen magst, würde ich mich über eine kleine Spende freuen. Falls du jetzt nicht spenden möchtest, kannst du das jederzeit in den Einstellungen tun.  Diese Nachricht wird nur ein einziges Mal angezeigt. Ich möchte dir damit nicht auf die Nerven gehen.";
+
+/* No comment provided by engineer. */
+"support_alert_title" = "Unterstütze die Entwicklung der App";
 
 /* No comment provided by engineer. */
 "voiceover_add_favorite_button_hint" = "doppel tap um alle podcasts zu durchsuchen und als favorit zu markieren";

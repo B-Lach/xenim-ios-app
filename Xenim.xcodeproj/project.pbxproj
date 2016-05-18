@@ -90,8 +90,6 @@
 		229B7D4D1BD5623500F1CF6B /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		229B7D4F1BD564DC00F1CF6B /* XenimAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XenimAPI.swift; sourceTree = "<group>"; };
 		229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
-		229DA8A01CEC7AD40072D9A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		229DA8A11CEC7AD40072D9A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		229DA8A51CEC7B2C0072D9A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		229DA8A71CEC7B2C0072D9A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		229DA8AD1CEC7B670072D9A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -520,7 +518,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBA1BD52E480040100F /* Base */,
-				229DA8A11CEC7AD40072D9A0 /* en */,
 				229DA8B41CEC7B690072D9A0 /* de */,
 			);
 			name = Main.storyboard;
@@ -530,7 +527,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBF1BD52E480040100F /* Base */,
-				229DA8A01CEC7AD40072D9A0 /* en */,
 				229DA8A71CEC7B2C0072D9A0 /* de */,
 			);
 			name = LaunchScreen.storyboard;
