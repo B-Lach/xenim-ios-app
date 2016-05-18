@@ -491,7 +491,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event" rowHeight="80" id="hiw-wf-THJ" customClass="EventTableViewCell" customModule="Xenim" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="80"/>
@@ -1331,11 +1330,13 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIy-6V-23T" userLabel="Play">
-                                                            <rect key="frame" x="122" y="33" width="115" height="61"/>
+                                                            <rect key="frame" x="122" y="6" width="115" height="115"/>
                                                             <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="kIy-6V-23T" secondAttribute="height" multiplier="115:61" id="Ank-dM-Tni"/>
                                                                 <constraint firstAttribute="height" constant="60" id="c6b-Zo-BKz"/>
+                                                                <constraint firstAttribute="width" secondItem="kIy-6V-23T" secondAttribute="height" multiplier="1:1" id="lzv-o5-2EM"/>
+                                                                <constraint firstAttribute="width" secondItem="kIy-6V-23T" secondAttribute="height" multiplier="1:1" id="rn4-qR-TFU"/>
                                                             </constraints>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <state key="normal" image="large-play"/>
@@ -1343,6 +1344,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                                 <mask key="constraints">
                                                                     <exclude reference="Ank-dM-Tni"/>
                                                                     <exclude reference="c6b-Zo-BKz"/>
+                                                                    <exclude reference="lzv-o5-2EM"/>
                                                                 </mask>
                                                             </variation>
                                                             <connections>
@@ -1597,6 +1599,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <image name="white-25-user" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7xH-hr-438"/>
+        <segue reference="GqG-Qe-AVA"/>
     </inferredMetricsTieBreakers>
 </document>
