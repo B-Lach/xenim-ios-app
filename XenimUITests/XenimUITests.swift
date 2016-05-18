@@ -43,24 +43,23 @@ class XenimUITests: XCTestCase {
         snapshot("02PodcastDetail")
         
         app.navigationBars["Lage der Nation"].childrenMatchingType(.Button).matchingIdentifier("Zurück").elementBoundByIndex(0).tap()
-        tablesQuery.buttons["Play"].tap()
+        tablesQuery.buttons["play button"].tap()
         sleep(2)
         snapshot("03Player")
         
-        app.buttons["expand more"].tap()
-        app.toolbars.staticTexts["Testsendung"].pressForDuration(1.9);
-        let endPlaybackButton = app.sheets.collectionViews.buttons["Player beenden"]
-        endPlaybackButton.tap()
+        app.buttons["minimieren"].tap()
+        app.toolbars.buttons["Funkenstrahlen\nTestsendung"].pressForDuration(2.0);
+        app.sheets.collectionViews.buttons["Player schließen"].tap()
 
         app.tabBars.buttons["Favoriten"].tap()
         snapshot("04Favorites")
         
         let favoritenNavigationBar = app.navigationBars["Favoriten"]
-        favoritenNavigationBar.buttons["brandeis blue 25 plus"].tap()
+        favoritenNavigationBar.buttons["Hinzufügen"].tap()
         snapshot("05AddFavorites")
         
         app.navigationBars["Favoriten finden"].buttons["Fertig"].tap()
-        favoritenNavigationBar.buttons["brandeis blue 25 gear"].tap()
+        favoritenNavigationBar.buttons["Einstellungen"].tap()
         snapshot("06Settings")
     }
     
@@ -81,25 +80,25 @@ class XenimUITests: XCTestCase {
         app.navigationBars["Lage der Nation"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
         
         
-        tablesQuery.buttons["Play"].tap()
+        app.tables.buttons["play button"].tap()
         sleep(2)
         snapshot("03Player")
         // close player
-        app.buttons["expand more"].tap()
-        app.toolbars.staticTexts["Testsendung"].pressForDuration(1.9);
-        let endPlaybackButton = app.sheets.collectionViews.buttons["End Playback"]
-        endPlaybackButton.tap()
+        app.buttons["minify"].tap()
+        app.toolbars.buttons["Funkenstrahlen\nTestsendung"].pressForDuration(2);
+        app.sheets.collectionViews.buttons["End Playback"].tap()
         
         app.tabBars.buttons["Favorites"].tap()
         snapshot("04Favorites")
         
         let favoritesNavigationBar = app.navigationBars["Favorites"]
-        favoritesNavigationBar.buttons["brandeis blue 25 plus"].tap()
+        favoritesNavigationBar.buttons["Add"].tap()
         snapshot("05AddFavorites")
         app.navigationBars["Add Favorites"].buttons["Done"].tap()
         
-        favoritesNavigationBar.buttons["brandeis blue 25 gear"].tap()
+        favoritesNavigationBar.buttons["Settings"].tap()
         snapshot("06Settings")
+    
     }
     
     //    func setupFavorites() {
