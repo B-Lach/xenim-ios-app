@@ -78,6 +78,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupPushNotifications()
         NSNotificationCenter.defaultCenter().postNotificationName("refreshEvents", object: nil, userInfo: nil)
         resetApplicationBadge(application)
+        
+        // show donation hint if the app was used for quite some time
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        var launchCount = userDefaults.integerForKey("launchCount") // returns 0 if key does not exist yet
+        launchCount = launchCount + 1
+        userDefaults.setInteger(launchCount, forKey: "launchCount")
+        userDefaults.synchronize()
+        
+        // only show the alert ONE time after quite some app launches
+        if launchCount == 50 {
+            
+            let dismissString = NSLocalizedString("dismiss", value: "Dismiss", comment: "dismiss")
+            let donateString = NSLocalizedString("donate", value: "Donate", comment: "donate")
+            let supportAlertTitle = NSLocalizedString("support_alert_title", value: "Please Support the Development", comment: "")
+            let supportAlertMessage = NSLocalizedString("support_alert_message", value: "Do you like the app? Please consider supporting me with a small donation. If you do not want to donate now, you can always find the possibility in the settings.\n\nYou only see this message this one time and I will never bother you again.", comment: "")
+            
+            let alert = UIAlertController(title: supportAlertTitle, message: supportAlertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: donateString, style: .Default, handler: { (action: UIAlertAction) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    if let settingsViewController = storyboard.instantiateViewControllerWithIdentifier("Settings") as? UINavigationController {
+                        self.window?.rootViewController?.presentViewController(settingsViewController, animated: true, completion: nil)
+                    }
+                })
+            }))
+            alert.addAction(UIAlertAction(title: dismissString, style: .Cancel, handler: nil))
+                
+            dispatch_async(dispatch_get_main_queue(), {
+                self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+            })
+        }
     }
     
     func resetApplicationBadge(application: UIApplication) {
