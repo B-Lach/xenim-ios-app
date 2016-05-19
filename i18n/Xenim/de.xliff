@@ -337,6 +337,21 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <target>Es konnten keine Events geladen werden. Pull to refresh, um neu zu laden.</target>
                 <note>this message gets displayed if no events could be displayed / fetched from the API</note>
             </trans-unit>
+            <trans-unit id="event_tableview_sectionheader_later">
+                <source>Later</source>
+                <note>section header in event table view for the later than next week section</note>
+                <target>Später</target>
+            </trans-unit>
+            <trans-unit id="event_tableview_sectionheader_live">
+                <source>Today</source>
+                <note>section header in event table view for the live now section</note>
+                <target>Heute</target>
+            </trans-unit>
+            <trans-unit id="event_tableview_sectionheader_thisweek">
+                <source>This Week</source>
+                <note>section header in event table view for the later this week section</note>
+                <target>Diese Woche</target>
+            </trans-unit>
             <trans-unit id="favorites_tableview_empty_message">
                 <source>Add podcast shows as your favorite to see them here.</source>
                 <target>Markiere Podcasts als deine Favoriten, um sie hier zu sehen.</target>
@@ -344,13 +359,13 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
             </trans-unit>
             <trans-unit id="hour">
                 <source>hour</source>
-                <note>hour</note>
                 <target>Stunde</target>
+                <note>hour</note>
             </trans-unit>
             <trans-unit id="hours">
                 <source>hours</source>
-                <note>hours</note>
                 <target>Stunden</target>
+                <note>hours</note>
             </trans-unit>
             <trans-unit id="info_message_mail_sent_failure_message">
                 <source>Mail sent failure</source>
@@ -359,8 +374,8 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
             </trans-unit>
             <trans-unit id="minute">
                 <source>min</source>
-                <note>min</note>
                 <target>min</target>
+                <note>min</note>
             </trans-unit>
             <trans-unit id="player_failed_state_alertview_message">
                 <source>The selected stream can not be played.</source>
