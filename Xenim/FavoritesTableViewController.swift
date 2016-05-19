@@ -15,11 +15,15 @@ class FavoritesTableViewController: UITableViewController{
     var messageVC: MessageViewController?
     var loadingVC: UIViewController?
 
+    @IBOutlet weak var addFavoriteBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var settingsBarButtonItem: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 200
-        tableView.rowHeight = UITableViewAutomaticDimension
+        addFavoriteBarButtonItem.accessibilityLabel = NSLocalizedString("voiceover_add_favorite_button_label", value: "Add", comment: "")
+        addFavoriteBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_add_favorite_button_hint", value: "Double Tap to search through all podcasts and add favorites", comment: "")
+        settingsBarButtonItem.accessibilityLabel = NSLocalizedString("voiceover_settings_button_label", value: "Settings", comment: "")
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)

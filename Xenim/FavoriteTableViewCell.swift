@@ -8,6 +8,15 @@
 
 import UIKit
 
+class FavoriteCellStatus {
+    static let sharedInstance = FavoriteCellStatus()
+    var showsDate = false {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName("toggleNextDateView", object: nil, userInfo: nil)
+        }
+    }
+}
+
 class FavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var coverartImageView: UIImageView! {
@@ -41,8 +50,6 @@ class FavoriteTableViewCell: UITableViewCell {
     }
     var nextEvent: Event?
     
-    var nextDateShowsDate = false;
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.tintColor = Constants.Colors.tintColor
@@ -50,11 +57,20 @@ class FavoriteTableViewCell: UITableViewCell {
         tap.delegate = self
         nextDateStackView.addGestureRecognizer(tap)
         setupNotifications()
+        
+        nextDateStackView.isAccessibilityElement = true
+        nextDateStackView.accessibilityTraits = UIAccessibilityTraitButton
+        nextDateStackView.accessibilityHint = NSLocalizedString("voiceover_nextDateStackView_hint", value: "Double Tap to toggle date display or days left display.", comment: "")
+        nextDateStackView.accessibilityLabel = NSLocalizedString("voiceover_nextDateStackView_label", value: "next event date", comment: "")
+        nextDateTopLabel.isAccessibilityElement = false
+        nextDateBottomLabel.isAccessibilityElement = false
+        
+        self.accessibilityTraits = UIAccessibilityTraitButton
+        
     }
     
     func tappedDateView(sender: UITapGestureRecognizer?) {
-        nextDateShowsDate = !nextDateShowsDate
-        NSNotificationCenter.defaultCenter().postNotificationName("toggleNextDateView", object: nil, userInfo: ["nextDateShowsDate": nextDateShowsDate])
+        FavoriteCellStatus.sharedInstance.showsDate = !FavoriteCellStatus.sharedInstance.showsDate
     }
     
     @objc func updateNextDate() {
@@ -73,52 +89,19 @@ class FavoriteTableViewCell: UITableViewCell {
     
     func updateNextDateLabel() {
         if let event = nextEvent {
-            
-            // calculate in how many days this event takes place
-            let cal = NSCalendar.currentCalendar()
-            let today = cal.startOfDayForDate(NSDate())
-            let diff = cal.components(NSCalendarUnit.Day,
-                                      fromDate: today,
-                                      toDate: event.begin,
-                                      options: NSCalendarOptions.WrapComponents )
-            let days = diff.day
-            
-            
-            if nextDateShowsDate {
-                let formatter = NSDateFormatter();
-                formatter.locale = NSLocale.currentLocale()
+            let bottomLabelString: String
+            let topLabelString: String
+            let accessibilityValue: String
+            (topLabelString, bottomLabelString, accessibilityValue) = DateViewGenerator.generateLabelsFromDate(event.begin, showsDate: FavoriteCellStatus.sharedInstance.showsDate)
                 
-                // http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
-                
-                formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-                let time = formatter.stringFromDate(event.begin)
-                nextDateBottomLabel.text = time
-                
-                if days < 7 {
-                    formatter.setLocalizedDateFormatFromTemplate("cccccc")
-                    var day = formatter.stringFromDate(event.begin)
-                    day = day.stringByReplacingOccurrencesOfString(".", withString: "")
-                    day = day.uppercaseString
-                    nextDateTopLabel.text = day
-                } else {
-                    formatter.setLocalizedDateFormatFromTemplate("d.M")
-                    let date = formatter.stringFromDate(event.begin)
-                    nextDateTopLabel.text = date
-                }
-            } else {
-                nextDateTopLabel.text = "\(days)"
-                let daysStringSingle = NSLocalizedString("day", value: "day", comment: "day")
-                let daysStringMultiple = NSLocalizedString("days", value: "days", comment: "days")
-                if days == 1 {
-                    nextDateBottomLabel.text = daysStringSingle
-                } else {
-                    nextDateBottomLabel.text = daysStringMultiple
-                }
-            }
+            nextDateTopLabel.text = topLabelString
+            nextDateBottomLabel.text = bottomLabelString
+            nextDateStackView.accessibilityValue = accessibilityValue
         } else {
             // no upcoming event
             nextDateTopLabel.text = ""
             nextDateBottomLabel.text = ""
+            nextDateStackView.accessibilityValue = NSLocalizedString("voiceover_nextDateStackView_value_nothing_scheduled", value: "nothing scheduled", comment: "")
         }
     }
     
@@ -135,12 +118,7 @@ class FavoriteTableViewCell: UITableViewCell {
     }
     
     func toggleDateView(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let state = userInfo["nextDateShowsDate"] as? Bool {
-                nextDateShowsDate = state
-                updateNextDateLabel()
-            }
-        }
+        updateNextDateLabel()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

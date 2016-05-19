@@ -15,11 +15,11 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
 
     @IBOutlet weak var xenimCell: UITableViewCell!
     @IBOutlet weak var contactCell: UITableViewCell!
-    @IBOutlet weak var reportBugCell: UITableViewCell!
     @IBOutlet weak var smallDonationCell: UITableViewCell!
     @IBOutlet weak var middleDonationCell: UITableViewCell!
     @IBOutlet weak var bigDonationCell: UITableViewCell!
     @IBOutlet weak var faqCell: UITableViewCell!
+    @IBOutlet weak var reviewCell: UITableViewCell!
 
     @IBOutlet weak var middleDonationPriceLabel: UILabel!
     @IBOutlet weak var smallDonationPriceLabel: UILabel!
@@ -35,6 +35,10 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
         
         versionLabel?.text = UIApplication.sharedApplication().appVersion()
+        
+        smallDonationCell.accessibilityTraits = UIAccessibilityTraitButton
+        middleDonationCell.accessibilityTraits = UIAccessibilityTraitButton
+        bigDonationCell.accessibilityTraits = UIAccessibilityTraitButton
         
         fetchIAPPrices()
     }
@@ -74,12 +78,12 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
         if selectedCell == contactCell {
             sendMail()
-        } else if selectedCell == reportBugCell {
-            openWebsite("https://github.com/funkenstrahlen/xenim-ios-app/issues/new")
         } else if selectedCell == faqCell {
             openWebsite("https://xenimapp.stefantrauth.de/support/")
         } else if selectedCell == xenimCell {
             openWebsite("http://streams.xenim.de")
+        } else if selectedCell == reviewCell {
+            UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/app/id1073103750")!)
         } else if selectedCell == smallDonationCell {
             PFPurchase.buyProduct("com.stefantrauth.XenimSupportSmall", block: { (error: NSError?) in
                 if error != nil {

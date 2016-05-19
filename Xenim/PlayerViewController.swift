@@ -11,6 +11,7 @@ import MediaPlayer
 import Alamofire
 import AlamofireImage
 import KDEAudioPlayer
+import UIImageColors
 
 class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -25,8 +26,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var miniCoverartImageView: UIImageView!
 
-    @IBOutlet weak var timeLeftLabel: UILabel!
-    @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenersIconImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
@@ -35,11 +34,26 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 	@IBOutlet weak var podcastNameLabel: UILabel!
 	@IBOutlet weak var subtitleLabel: UILabel!
 	@IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var coverartView: UIImageView!
+    @IBOutlet weak var coverartView: UIImageView! {
+        didSet {
+            if let image = coverartView.image {
+                image.getColors({ (colors) in
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        self.progressView.progressTintColor = colors.backgroundColor
+                    })
+                })
+            }
+        }
+    }
     @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var skipForwardButton: UIButton!
+    @IBOutlet weak var skipBackwardButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     
     @IBOutlet weak var sleepTimerButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
+    
+    weak var miniplayerPlayPauseBarButtonItem: UIBarButtonItem!
     
     @IBOutlet weak var airplayView: MPVolumeView! {
         didSet {
@@ -53,10 +67,22 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        let effect = UIBlurEffect(style: .Dark)
-//        let vibrancy = UIVibrancyEffect(forBlurEffect: effect)
-//        blurView.effect = vibrancy
+        
+        // use this to add more controls on ipad interface
+        //if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
+        
+        let playPauseItem = UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(togglePlayPause(_:)))
+        miniplayerPlayPauseBarButtonItem = playPauseItem
+        self.popupItem.rightBarButtonItems = [miniplayerPlayPauseBarButtonItem]
+        
+        miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
+        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
+        miniCoverartImageView.layer.cornerRadius = 5.0
+        miniCoverartImageView.layer.masksToBounds = true
+        
+        let coverartBarButtonItem = UIBarButtonItem(customView: miniCoverartImageView)
+        self.popupItem.leftBarButtonItems = [coverartBarButtonItem]
+        
         
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
@@ -68,6 +94,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         popupItem.title = event.podcast.name
         popupItem.subtitle = event.title
+        
         if let imageurl = event.podcast.artwork.thumb150Url {
             miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
         }
@@ -75,25 +102,37 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         setupNotifications()
         updateUI()
         
-        currentTimeLabel.hidden = true
-        timeLeftLabel.hidden = true
+        setupVoidOver()
 	}
+    
+    private func setupVoidOver() {
+        popupItem.accessibilityHint = NSLocalizedString("voiceover_playerbar_hint", value: "double tap to max the player", comment: "")
+        
+        listenersCountLabel.accessibilityLabel = NSLocalizedString("voiceover_listeners_count_label", value: "listeners", comment: "")
+        dismissButton.accessibilityLabel = NSLocalizedString("voiceover_dismiss_button_label", value: "minify", comment: "")
+        dismissButton.accessibilityHint = NSLocalizedString("voiceover_dismiss_button_hint", value: "double tap minify the player", comment: "")
+        
+        favoriteButton.accessibilityLabel = " "
+        favoriteButton.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", value: "double tap to toggle favorite", comment: "")
+        shareButton.accessibilityLabel = NSLocalizedString("voiceover_share_button_label", value: "share", comment: "")
+        
+        playPauseButton.accessibilityLabel = NSLocalizedString("voiceover_play_button_label", value: "play button", comment: "")
+        
+        skipForwardButton.accessibilityLabel = NSLocalizedString("voiceover_forward_button_label", value: "forward", comment: "")
+        skipForwardButton.accessibilityHint = NSLocalizedString("voiceover_forward_button_hint", value: "double tap to skip 30 seconds forward", comment: "")
+        skipBackwardButton.accessibilityLabel = NSLocalizedString("voiceover_backward_button_label", value: "backward", comment: "")
+        skipBackwardButton.accessibilityHint = NSLocalizedString("voiceover_backward_button_hint", value: "double tap to skip 30 seconds backward", comment: "")
+        
+        sleepTimerButton.accessibilityLabel = NSLocalizedString("voiceover_sleep_button_label", value: "sleep timer", comment: "")
+        sleepTimerButton.accessibilityValue = NSLocalizedString("voiceover_sleep_button_value_disabled", value: "disabled", comment: "")
+        sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", value: "double tap to configure a sleep timer", comment: "")
+        
+        // disable these labels from accessibility as they do not have any function yet
+        progressView.isAccessibilityElement = false
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        // use this to add more controls on ipad interface
-        //if UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad {
-        
-        self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerViewController.togglePlayPause(_:)))]
-        
-        miniCoverartImageView = UIImageView(image: UIImage(named: "event_placeholder"))
-        miniCoverartImageView.frame = CGRectMake(0, 0, 30, 30)
-        miniCoverartImageView.layer.cornerRadius = 5.0
-        miniCoverartImageView.layer.masksToBounds = true
-        
-        let popupItem = UIBarButtonItem(customView: miniCoverartImageView)
-        self.popupItem.leftBarButtonItems = [popupItem]
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -129,6 +168,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             if let listeners = listeners {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.listenersCountLabel.text = "\(listeners)"
+                    self.listenersCountLabel.accessibilityValue = "\(listeners)"
                 })
             }
         }
@@ -138,8 +178,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         if let event = event {
             if !Favorites.isFavorite(event.podcast.id) {
                 favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
+                favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             } else {
                 favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
+                favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
         }
     }
@@ -208,6 +250,8 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             // check if this affects this cell
             if podcastId == event.podcast.id {
                 favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
+                favoriteButton?.tintColor = UIColor.whiteColor().colorWithAlphaComponent(1)
+                favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
         }
     }
@@ -217,6 +261,8 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
             // check if this affects this cell
             if podcastId == event.podcast.id {
                 favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
+                favoriteButton?.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.7)
+                favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             }
         }
     }
@@ -231,30 +277,54 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         switch player.state {
         case .Buffering:
-            playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
-            loadingSpinnerView.hidden = false
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
+            showPlaybuttonBuffering()
         case .Paused:
-            playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
-            loadingSpinnerView.hidden = true
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
+            showPlaybuttonPaused()
         case .Playing:
-            playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
-            loadingSpinnerView.hidden = true
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
+            showPlaybuttonPlaying()
         case .Stopped:
-            playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
-            loadingSpinnerView.hidden = true
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
+            showPlaybuttonPaused()
         case .WaitingForConnection:
-            playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
-            loadingSpinnerView.hidden = false
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-pause"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
+            showPlaybuttonBuffering()
         case .Failed(_):
-            playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
-            loadingSpinnerView.hidden = true
-            self.popupItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "scarlet-25-play"), style: .Plain, target: self, action: #selector(PlayerManager.togglePlayPause(_:)))]
+            showPlaybuttonPaused()
         }
+    }
+    
+    private func showPlaybuttonPlaying() {
+        loadingSpinnerView.hidden = true
+        playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
+        miniplayerPlayPauseBarButtonItem.image = UIImage(named: "scarlet-25-pause")
+        miniplayerPlayPauseBarButtonItem.accessibilityLabel = NSLocalizedString("voiceover_play_button_label", value: "play button", comment: "")
+        miniplayerPlayPauseBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", value: "playing", comment: "")
+        miniplayerPlayPauseBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", value: "double tap to pause", comment: "")
+        
+        playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", value: "playing", comment: "")
+        playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", value: "double tap to pause", comment: "")
+    }
+    
+    private func showPlaybuttonPaused() {
+        loadingSpinnerView.hidden = true
+        playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
+        miniplayerPlayPauseBarButtonItem.image = UIImage(named: "scarlet-25-play")
+        miniplayerPlayPauseBarButtonItem.accessibilityLabel = "Play Button"
+        miniplayerPlayPauseBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", value: "not playing", comment: "")
+        miniplayerPlayPauseBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", value: "double tap to play", comment: "")
+        
+        playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", value: "not playing", comment: "")
+        playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", value: "double tap to play", comment: "")
+    }
+    
+    private func showPlaybuttonBuffering() {
+        loadingSpinnerView.hidden = false
+        playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
+        miniplayerPlayPauseBarButtonItem.image = UIImage(named: "scarlet-25-pause")
+        miniplayerPlayPauseBarButtonItem.accessibilityLabel = NSLocalizedString("voiceover_play_button_label", value: "play button", comment: "")
+        miniplayerPlayPauseBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_buffering", value: "buffering", comment: "")
+        miniplayerPlayPauseBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_buffering", value: "double tap to pause", comment: "")
+        
+        playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_buffering", value: "buffering", comment: "")
+        playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_buffering", value: "double tap to pause", comment: "")
     }
 
     // MARK: - delegate
@@ -281,8 +351,8 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - sleeptimer
     
-    var sleepTimerTicksLeft: Int?
-    var sleepTimer: NSTimer?
+    private var sleepTimerTicksLeft: Int?
+    private weak var sleepTimer: NSTimer?
     
     @IBAction func sleepTimerPressed(sender: AnyObject) {
         if sleepTimer != nil {
@@ -301,7 +371,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
                 optionMenu.addAction(action)
             }
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "cancel string"), style: .Cancel, handler: {
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "Cancel"), style: .Cancel, handler: {
                 (alert: UIAlertAction!) -> Void in
             })
             optionMenu.addAction(cancelAction)
@@ -336,8 +406,13 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     private func updateSleepTimerDisplay() {
         if let minutesLeft = sleepTimerTicksLeft {
             sleepTimerButton.setTitle("\(minutesLeft)min", forState: .Normal)
+            
+            sleepTimerButton.accessibilityValue = String.localizedStringWithFormat(NSLocalizedString("voiceover_sleep_button_value", value: "%@ minutes left", comment: ""), "\(minutesLeft)")
+            sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_disable", value: "Double Tap to disable the sleep timer", comment: "")
         } else {
             sleepTimerButton.setTitle("", forState: .Normal)
+            sleepTimerButton.accessibilityValue = NSLocalizedString("voiceover_sleep_button_value_disabled", value: "disabled", comment: "")
+            sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", value: "double tap to configure a sleep timer", comment: "")
         }
         
     }

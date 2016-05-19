@@ -12,17 +12,15 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     // possible sections
     enum Section {
-        case Live
         case Today
-        case Tomorrow
         case ThisWeek
         case Later
     }
 
     // events sorted into sections (see above) and sorted by time
-    var events = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+    var events = [[Event](),[Event](),[Event]()]
     // same as events, but filtered by current favorites
-    var favoriteEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+    var favoriteEvents = [[Event](),[Event](),[Event]()]
     
     // toggle to show favorites only
     var showFavoritesOnly = false
@@ -43,9 +41,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+
         // increase content inset for audio player
         tableView.contentInset.bottom = tableView.contentInset.bottom + 40
         
@@ -92,20 +88,16 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     @IBAction func refresh(spinner: UIRefreshControl) {
         refreshControl!.beginRefreshing()
-        var newEvents = [[Event](),[Event](),[Event](),[Event](),[Event]()]
+        var newEvents = [[Event](),[Event](),[Event]()]
         
         XenimAPI.fetchEvents(status: ["RUNNING", "UPCOMING"], maxCount: 50) { (events) in
             for event in events {
-                if event.isLive() {
+                if event.isLive() || event.isUpcomingToday() {
                     newEvents[0].append(event)
-                } else if event.isUpcomingToday() {
-                    newEvents[1].append(event)
-                } else if event.isUpcomingTomorrow() {
-                    newEvents[2].append(event)
                 } else if event.isUpcomingThisWeek() {
-                    newEvents[3].append(event)
+                    newEvents[1].append(event)
                 } else if event.isUpcoming() {
-                    newEvents[4].append(event)
+                    newEvents[2].append(event)
                 }
             }
             
@@ -180,11 +172,9 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
             return nil
         }
         switch section {
-        case 0: return NSLocalizedString("event_tableview_sectionheader_live", value: "Live now", comment: "section header in event table view for the live now section")
-        case 1: return NSLocalizedString("event_tableview_sectionheader_today", value: "Upcoming Today", comment: "section header in event table view for the upcoming today section")
-        case 2: return NSLocalizedString("event_tableview_sectionheader_tomorrow", value: "Tomorrow", comment: "section header in event table view for the tomorrow section")
-        case 3: return NSLocalizedString("event_tableview_sectionheader_thisweek", value: "Later this Week", comment: "section header in event table view for the later this week section")
-        case 4: return NSLocalizedString("event_tableview_sectionheader_later", value: "Next week and later", comment: "section header in event table view for the later than next week section")
+        case 0: return NSLocalizedString("event_tableview_sectionheader_live", value: "Today", comment: "section header in event table view for the live now section")
+        case 1: return NSLocalizedString("event_tableview_sectionheader_thisweek", value: "This Week", comment: "section header in event table view for the later this week section")
+        case 2: return NSLocalizedString("event_tableview_sectionheader_later", value: "Later", comment: "section header in event table view for the later than next week section")
         default: return "Unknown"
         }
     }
@@ -254,11 +244,6 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
 
     
     // MARK: - Navigation
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        // this is required to prevent the popover to be shown as a modal view on iPhone
-        return UIModalPresentationStyle.None
-    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell

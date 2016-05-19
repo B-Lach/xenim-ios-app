@@ -9,6 +9,15 @@
 import UIKit
 import KDEAudioPlayer
 
+class EventCellStatus {
+    static let sharedInstance = EventCellStatus()
+    var showsDate = true {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName("toggleDateView", object: nil, userInfo: nil)
+        }
+    }
+}
+
 class EventTableViewCell: UITableViewCell {
     
     @IBOutlet weak var eventCoverartImage: UIImageView! {
@@ -29,18 +38,26 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var dateTopLabel: UILabel!
     @IBOutlet weak var dateBottomLabel: UILabel!
     
-    private var liveDateShowsDate = true
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tappedDateView(_:)))
         tap.delegate = self
         dateStackView.addGestureRecognizer(tap)
+        
+        dateStackView.isAccessibilityElement = true
+        dateStackView.accessibilityTraits = UIAccessibilityTraitButton
+        dateStackView.accessibilityHint = NSLocalizedString("voiceover_dateStackView_hint", value: "Double Tap to toggle date display or days left display.", comment: "")
+        dateStackView.accessibilityLabel = NSLocalizedString("voiceover_dateStackView_label", value: "event date", comment: "")
+        dateBottomLabel.isAccessibilityElement = false
+        dateTopLabel.isAccessibilityElement = false
+        
+        playButton.accessibilityLabel = NSLocalizedString("voiceover_play_button_label", value: "play button", comment: "")
+        
+        self.accessibilityTraits = UIAccessibilityTraitButton
     }
     
     func tappedDateView(sender: UITapGestureRecognizer?) {
-        liveDateShowsDate = !liveDateShowsDate
-        NSNotificationCenter.defaultCenter().postNotificationName("toggleDateView", object: nil, userInfo: ["liveDateShowsDate": liveDateShowsDate])
+        EventCellStatus.sharedInstance.showsDate = !EventCellStatus.sharedInstance.showsDate
     }
     
     var event: Event! {
@@ -75,94 +92,66 @@ class EventTableViewCell: UITableViewCell {
     
     func updateLivedate() {
         if let event = event {
+            let bottomLabelString: String
+            let topLabelString: String
+            let accessibilityValue: String
+            (topLabelString, bottomLabelString, accessibilityValue) = DateViewGenerator.generateLabelsFromDate(event.begin, showsDate: EventCellStatus.sharedInstance.showsDate)
             
-            // calculate in how many days this event takes place
-            let cal = NSCalendar.currentCalendar()
-            let today = cal.startOfDayForDate(NSDate())
-            let diff = cal.components(NSCalendarUnit.Day,
-                                      fromDate: today,
-                                      toDate: event.begin,
-                                      options: NSCalendarOptions.WrapComponents )
-            let days = diff.day
-            
-            
-            if liveDateShowsDate {
-                let formatter = NSDateFormatter();
-                formatter.locale = NSLocale.currentLocale()
-                
-                // http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
-                
-                formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-                let time = formatter.stringFromDate(event.begin)
-                dateBottomLabel.text = time
-                
-                if days < 7 {
-                    formatter.setLocalizedDateFormatFromTemplate("cccccc")
-                    var day = formatter.stringFromDate(event.begin)
-                    day = day.stringByReplacingOccurrencesOfString(".", withString: "")
-                    day = day.uppercaseString
-                    dateTopLabel.text = day
-                } else {
-                    formatter.setLocalizedDateFormatFromTemplate("d.M")
-                    let date = formatter.stringFromDate(event.begin)
-                    dateTopLabel.text = date
-                }
-            } else {
-                dateTopLabel.text = "\(days)"
-                let daysStringSingle = NSLocalizedString("day", value: "day", comment: "day")
-                let daysStringMultiple = NSLocalizedString("days", value: "days", comment: "days")
-                if days == 1 {
-                    dateBottomLabel.text = daysStringSingle
-                } else {
-                    dateBottomLabel.text = daysStringMultiple
-                }
-            }
+            dateTopLabel.text = topLabelString
+            dateBottomLabel.text = bottomLabelString
+            dateStackView.accessibilityValue = accessibilityValue
         }
     }
     
     func updatePlayButton() {
         if !event.isLive() {
-            hidePlayButton()
+            dateStackView.hidden = false
+            playButton.hidden = true
         } else {
-            showPlayButton()
+            dateStackView.hidden = true
+            playButton.hidden = false
+            
             let playerManager = PlayerManager.sharedInstance
             if let playerEvent = playerManager.event {
                 if playerEvent.equals(event) {
                     switch playerManager.player.state {
                     case .Buffering:
-                        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
+                        showPauseButton()
                     case .Paused:
-                        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
+                        showPlayButton()
                     case .Playing:
-                        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
+                        showPauseButton()
                     case .Stopped:
-                        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
+                        showPlayButton()
                     case .WaitingForConnection:
-                        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
+                        showPauseButton()
                     case .Failed(_):
-                        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
+                        showPlayButton()
                     }
                 } else {
-                    playButton.setImage(UIImage(named: "Play"), forState: .Normal)
+                    showPlayButton()
                 }
             } else {
-                playButton.setImage(UIImage(named: "Play"), forState: .Normal)
+                showPlayButton()
             }
         }
     }
     
-    private func hidePlayButton() {
-        dateStackView.hidden = false
-        playButton.hidden = true
+    private func showPauseButton() {
+        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
+        playButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", value: "playing", comment: "")
+        playButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", value: "double tap to pause", comment: "")
     }
     
     private func showPlayButton() {
-        dateStackView.hidden = true
-        playButton.hidden = false
+        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
+        playButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", value: "not playing", comment: "")
+        playButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", value: "double tap to play", comment: "") 
     }
     
     func updateFavoriteButton() {
         favoriteImageView.hidden = !Favorites.isFavorite(event.podcast.id)
+        self.accessibilityValue = Favorites.isFavorite(event.podcast.id) ? NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "") : ""
     }
     
     
@@ -196,12 +185,7 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func toggleDateView(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let state = userInfo["liveDateShowsDate"] as? Bool {
-                liveDateShowsDate = state
-                updateLivedate()
-            }
-        }
+        updateLivedate()
     }
     
     func playerStateChanged(notification: NSNotification) {

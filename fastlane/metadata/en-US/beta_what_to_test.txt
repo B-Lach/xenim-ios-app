@@ -1,13 +1,8 @@
-# v0.7
-
-WHAT TO TEST:
-
-- Stability
-- Are you able to stop (not pause) the player? I think it is currently hard to discover. Any ideas how to improve that?
-
-CHANGELOG:
-
-- unified design of all views
-- updated event date view. tap to toggle between modes
-- added FAQ link to support in settings
-- lots of under the hood improvements and bug fixes
+- The color gradient in the podcast detail view has been improved. It is not that dark any more.
+- The live player design was completly redone from scratch
+- I massively improved the VoiceOver support
+- Bugfix: The event date view now keeps its state when the user scrolls to a longer list
+- The event date view got updated to not only show the days left until the event takes place but also hourse and minutes if the event gets closer
+- The event tab got renamed to Calendar as it fits better
+- User who use the app a lot will see a popup one single time which tells them how to support the development of the app
+- A button has been added to settings which makes it very easy to rate the app in the Appstore.

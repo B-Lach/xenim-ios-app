@@ -5,7 +5,10 @@
 "3Rg-aQ-w1e.headerTitle" = "Aufzeichnungen";
 
 /* Class = "UITableViewSection"; headerTitle = "about"; ObjectID = "3yl-bj-r35"; */
-"3yl-bj-r35.headerTitle" = "About";
+"3yl-bj-r35.headerTitle" = "about";
+
+/* Class = "UILabel"; text = "SO"; ObjectID = "5a1-3J-VJb"; */
+"5a1-3J-VJb.text" = "SO";
 
 /* Class = "UILabel"; text = "Hey, I am Stefan. I work on this app in my free time. If you like the app please consider supporting me so I can afford working on it in the future."; ObjectID = "5tC-JT-HAB"; */
 "5tC-JT-HAB.text" = "Hey, Ich bin Stefan. Ich arbeite in meiner Freizeit an dieser App. Wenn dir die App gefällt, würde ich mich über deine Unterstützung freuen, damit ich es mir leisten kann weiter an der App zu arbeiten.";
@@ -14,15 +17,7 @@
 "5uN-NM-aDd.text" = "lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing";
 
 /* Class = "UILabel"; text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula\neget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient\nmontes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque\neu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,\nfringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,\nimperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.\nInteger tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate\neleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,\nenim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a"; ObjectID = "7dY-To-te5"; */
-"7dY-To-te5.text" = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
-eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
-fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate
-eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,
-enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
+"7dY-To-te5.text" = "lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing";
 
 /* Class = "UILabel"; text = "Buy me a big icecream to support the future development of the app. I like stracciatella and strawberry."; ObjectID = "7e4-bN-pFt"; */
 "7e4-bN-pFt.text" = "Zahle mir einen großen Eisbecher und unterstütze so die weitere Entwicklung der App. Ich mag Stracciatella und Erbeere besonders gerne.";
@@ -48,9 +43,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 /* Class = "UILabel"; text = "20:00"; ObjectID = "Cme-fL-gtI"; */
 "Cme-fL-gtI.text" = "20:00";
 
-/* Class = "UILabel"; text = "12:10"; ObjectID = "Cyl-eM-QwI"; */
-"Cyl-eM-QwI.text" = "12:10";
-
 /* Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts does a live show."; ObjectID = "DWx-RP-Bf0"; */
 "DWx-RP-Bf0.text" = "Du erhältst eine Push Benachrichtigung, sobald einer deiner Favoriten eine Livesendung startet.";
 
@@ -63,8 +55,8 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 /* Class = "UILabel"; text = "Podcast Description"; ObjectID = "JaA-7x-at3"; */
 "JaA-7x-at3.text" = "Podcast Description";
 
-/* Class = "UITabBarItem"; title = "Events"; ObjectID = "KKU-KO-aCN"; */
-"KKU-KO-aCN.title" = "Events";
+/* Class = "UITabBarItem"; title = "Calendar"; ObjectID = "KKU-KO-aCN"; */
+"KKU-KO-aCN.title" = "Kalender";
 
 /* Class = "UILabel"; text = "Small Tip"; ObjectID = "LMm-js-7Pe"; */
 "LMm-js-7Pe.text" = "Kleine Unterstützung";
@@ -75,14 +67,14 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 /* Class = "UITableViewSection"; headerTitle = "About"; ObjectID = "Nb1-Lj-6W7"; */
 "Nb1-Lj-6W7.headerTitle" = "About";
 
+/* Class = "UILabel"; text = "20:00"; ObjectID = "P5Q-eV-EmK"; */
+"P5Q-eV-EmK.text" = "20:00";
+
 /* Class = "UILabel"; text = "-"; ObjectID = "RU5-8T-HUb"; */
 "RU5-8T-HUb.text" = "-";
 
 /* Class = "UILabel"; text = "Buy me a burger menu to support the future development of the app. I prefer Ketchup with my fries."; ObjectID = "SOX-Wq-9A4"; */
 "SOX-Wq-9A4.text" = "Zahle mir ein großes Burger Menü und unterstütze so die weitere Entwicklung der App. Cheeseburger esse ich am liebsten.";
-
-/* Class = "UILabel"; text = "12:10"; ObjectID = "SP2-FZ-tH0"; */
-"SP2-FZ-tH0.text" = "12:10";
 
 /* Class = "UILabel"; text = "Website"; ObjectID = "Ur9-F1-3Q9"; */
 "Ur9-F1-3Q9.text" = "Webseite";
@@ -92,9 +84,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "YFG-BN-gTI"; */
 "YFG-BN-gTI.title" = "Einstellungen";
-
-/* Class = "UILabel"; text = "Report a bug on Github"; ObjectID = "ZDd-88-y9e"; */
-"ZDd-88-y9e.text" = "Melde einen Bug auf Github";
 
 /* Class = "UITableViewSection"; headerTitle = "Social"; ObjectID = "agz-Hb-bth"; */
 "agz-Hb-bth.headerTitle" = "Social";
@@ -123,9 +112,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 /* Class = "UILabel"; text = "Podcast Name"; ObjectID = "l5d-ya-iW5"; */
 "l5d-ya-iW5.text" = "Podcast Name";
 
-/* Class = "UILabel"; text = "Nextup Date"; ObjectID = "onN-H0-80u"; */
-"onN-H0-80u.text" = "Nextup Date";
-
 /* Class = "UILabel"; text = "Generous Tip"; ObjectID = "r1Y-b7-5WQ"; */
 "r1Y-b7-5WQ.text" = "Großzügige Unterstützung";
 
@@ -133,7 +119,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 "rBC-zr-6KO.text" = "Label";
 
 /* Class = "UILabel"; text = "SO"; ObjectID = "sRm-H4-jze"; */
-"sRm-H4-jze.text" = "Date";
+"sRm-H4-jze.text" = "SO";
 
 /* Class = "UILabel"; text = "Podcast Name"; ObjectID = "u3h-bQ-DFo"; */
 "u3h-bQ-DFo.text" = "Podcast Name";
@@ -144,8 +130,14 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 /* Class = "UILabel"; text = "Elementarfragen Podcast"; ObjectID = "uzN-m1-SqS"; */
 "uzN-m1-SqS.text" = "Elementarfragen Podcast";
 
+/* Class = "UILabel"; text = "This helps more people discover the app."; ObjectID = "xru-0G-dnV"; */
+"xru-0G-dnV.text" = "So hilfst du anderen die App zu entdecken.";
+
 /* Class = "UITableViewSection"; headerTitle = "Get Support"; ObjectID = "yMm-PT-597"; */
 "yMm-PT-597.headerTitle" = "Support";
+
+/* Class = "UILabel"; text = "Leave a review on the Appstore"; ObjectID = "yaT-yH-8sd"; */
+"yaT-yH-8sd.text" = "Bewerte die App im Appstore";
 
 /* Class = "UILabel"; text = "Xenim"; ObjectID = "yuQ-X1-J2J"; */
 "yuQ-X1-J2J.text" = "Xenim";
@@ -158,7 +150,4 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a";
 
 /* Class = "UILabel"; text = "Loading"; ObjectID = "ze7-Qo-4W6"; */
 "ze7-Qo-4W6.text" = "Lade";
-
-/* (No Commment) */
-"zkh-v8-yay.text" = "Du erhältst eine Push Benachrichtigung sobald einer deiner Favoriten einen Livestream startet.";
 

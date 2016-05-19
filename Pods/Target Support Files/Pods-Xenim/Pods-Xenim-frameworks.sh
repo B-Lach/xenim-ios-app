@@ -16,7 +16,7 @@ install_framework()
     local source="$1"
   fi
 
-  local destination="${CONFIGURATION_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+  local destination="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
 
   if [ -L "${source}" ]; then
       echo "Symlinked..."
@@ -59,8 +59,8 @@ code_sign_if_enabled() {
   if [ -n "${EXPANDED_CODE_SIGN_IDENTITY}" -a "${CODE_SIGNING_REQUIRED}" != "NO" -a "${CODE_SIGNING_ALLOWED}" != "NO" ]; then
     # Use the current code_sign_identitiy
     echo "Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}"
-    echo "/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements \"$1\""
-    /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements "$1"
+    echo "/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements \"$1\""
+    /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements "$1"
   fi
 }
 
@@ -84,25 +84,27 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-Xenim/Alamofire.framework"
-  install_framework "Pods-Xenim/AlamofireImage.framework"
-  install_framework "Pods-Xenim/AlamofireNetworkActivityIndicator.framework"
-  install_framework "Pods-Xenim/Bolts.framework"
-  install_framework "Pods-Xenim/GCDKit.framework"
-  install_framework "Pods-Xenim/KDEAudioPlayer.framework"
-  install_framework "Pods-Xenim/MarqueeLabel.framework"
-  install_framework "Pods-Xenim/Parse.framework"
-  install_framework "Pods-Xenim/SimulatorStatusMagic.framework"
-  install_framework "Pods-Xenim/SwiftyJSON.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireImage/AlamofireImage.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Bolts/Bolts.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/GCDKit/GCDKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/KDEAudioPlayer/KDEAudioPlayer.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MarqueeLabel/MarqueeLabel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Parse/Parse.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SimulatorStatusMagic/SimulatorStatusMagic.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIImageColors/UIImageColors.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-Xenim/Alamofire.framework"
-  install_framework "Pods-Xenim/AlamofireImage.framework"
-  install_framework "Pods-Xenim/AlamofireNetworkActivityIndicator.framework"
-  install_framework "Pods-Xenim/Bolts.framework"
-  install_framework "Pods-Xenim/GCDKit.framework"
-  install_framework "Pods-Xenim/KDEAudioPlayer.framework"
-  install_framework "Pods-Xenim/MarqueeLabel.framework"
-  install_framework "Pods-Xenim/Parse.framework"
-  install_framework "Pods-Xenim/SwiftyJSON.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireImage/AlamofireImage.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Bolts/Bolts.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/GCDKit/GCDKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/KDEAudioPlayer/KDEAudioPlayer.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MarqueeLabel/MarqueeLabel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Parse/Parse.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIImageColors/UIImageColors.framework"
 fi
