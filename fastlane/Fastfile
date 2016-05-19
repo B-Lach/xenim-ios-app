@@ -60,8 +60,7 @@ platform :ios do
 
     build
 
-    #changelog = File.read("changelog.txt")
-    pilot(skip_submission: true, changelog: "Test Changelog", distribute_external: false)
+    pilot(skip_submission: true, distribute_external: false)
   end
 
   desc "Deploy a new version to the App Store"
@@ -77,8 +76,8 @@ platform :ios do
 
     deliver(  skip_binary_upload: false,
               skip_metadata: false,
-              skip_screenshots: true,
-              submit_for_review: false,
+              skip_screenshots: false,
+              submit_for_review: true,
               automatic_release: false,
               force: false # can be used to disable html preview
             )

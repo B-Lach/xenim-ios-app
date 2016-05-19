@@ -23,6 +23,15 @@
 /* this message gets displayed if no events could be displayed / fetched from the API */
 "event_tableview_empty_message" = "Es konnten keine Events geladen werden. Pull to refresh, um neu zu laden.";
 
+/* section header in event table view for the later than next week section */
+"event_tableview_sectionheader_later" = "Später";
+
+/* section header in event table view for the live now section */
+"event_tableview_sectionheader_live" = "Heute";
+
+/* section header in event table view for the later this week section */
+"event_tableview_sectionheader_thisweek" = "Diese Woche";
+
 /* this message is displayed if no podcast has been added as a favorite and the favorites table view is empty. */
 "favorites_tableview_empty_message" = "Markiere Podcasts als deine Favoriten, um sie hier zu sehen.";
 

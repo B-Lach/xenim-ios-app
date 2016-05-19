@@ -491,7 +491,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event" rowHeight="80" id="hiw-wf-THJ" customClass="EventTableViewCell" customModule="Xenim" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="80"/>
@@ -1252,22 +1251,8 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="progressTintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </progressView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqi-bX-AVg">
-                                            <rect key="frame" x="8" y="18" width="50" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="IA6-Kc-hXl"/>
-                                                <constraint firstAttribute="width" constant="50" id="M7n-Qs-7GE"/>
-                                            </constraints>
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.7039601293103448" colorSpace="calibratedRGB"/>
-                                            <state key="normal" image="expand-more">
-                                                <color key="titleColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="dismissPopup:" destination="Pke-AM-PdW" eventType="touchUpInside" id="ENe-cf-9n3"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvG-nU-cy6">
-                                            <rect key="frame" x="332" y="21" width="27" height="25"/>
+                                            <rect key="frame" x="332" y="19" width="27" height="25"/>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="0.69989224137931016" colorSpace="calibratedRGB"/>
                                             <state key="normal" image="star-outline"/>
                                             <connections>
@@ -1275,22 +1260,22 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="9Z2-mv-QWo">
-                                            <rect key="frame" x="20" y="63" width="335" height="335"/>
+                                            <rect key="frame" x="20" y="54" width="335" height="335"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="9Z2-mv-QWo" secondAttribute="height" multiplier="1:1" id="xdr-qQ-Gvc"/>
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kET-Mm-N6n">
-                                            <rect key="frame" x="8" y="418" width="359" height="189"/>
+                                            <rect key="frame" x="8" y="404" width="359" height="213"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elementarfragen Podcast" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzN-m1-SqS">
-                                                    <rect key="frame" x="40" y="0.0" width="280" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <rect key="frame" x="52" y="0.0" width="255" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="This is a probably very long subtitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMC-P0-b9z" customClass="__MarqueeLabel">
-                                                    <rect key="frame" x="72" y="38" width="215" height="16"/>
+                                                    <rect key="frame" x="72" y="35" width="215" height="16"/>
                                                     <color key="tintColor" white="1" alpha="0.7984105603448276" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1303,10 +1288,10 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cos-55-CwJ">
-                                                    <rect key="frame" x="0.0" y="62" width="359" height="127"/>
+                                                    <rect key="frame" x="0.0" y="59" width="359" height="154"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAQ-yS-bch" userLabel="Prev">
-                                                            <rect key="frame" x="0.0" y="49" width="114" height="29"/>
+                                                            <rect key="frame" x="0.0" y="63" width="114" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="9yS-Rf-Iit"/>
                                                                 <constraint firstAttribute="width" constant="33" id="D3x-z8-lWH"/>
@@ -1331,11 +1316,13 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIy-6V-23T" userLabel="Play">
-                                                            <rect key="frame" x="122" y="33" width="115" height="61"/>
+                                                            <rect key="frame" x="122" y="20" width="115" height="114"/>
                                                             <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="kIy-6V-23T" secondAttribute="height" multiplier="115:61" id="Ank-dM-Tni"/>
                                                                 <constraint firstAttribute="height" constant="60" id="c6b-Zo-BKz"/>
+                                                                <constraint firstAttribute="width" secondItem="kIy-6V-23T" secondAttribute="height" multiplier="1:1" id="lzv-o5-2EM"/>
+                                                                <constraint firstAttribute="width" secondItem="kIy-6V-23T" secondAttribute="height" multiplier="1:1" id="rn4-qR-TFU"/>
                                                             </constraints>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <state key="normal" image="large-play"/>
@@ -1343,6 +1330,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                                 <mask key="constraints">
                                                                     <exclude reference="Ank-dM-Tni"/>
                                                                     <exclude reference="c6b-Zo-BKz"/>
+                                                                    <exclude reference="lzv-o5-2EM"/>
                                                                 </mask>
                                                             </variation>
                                                             <connections>
@@ -1350,7 +1338,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-BQ-ZHn" userLabel="Next">
-                                                            <rect key="frame" x="245" y="49" width="114" height="29"/>
+                                                            <rect key="frame" x="245" y="63" width="114" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="aqK-BQ-ZHn" secondAttribute="height" multiplier="33:25" id="8Bm-cn-vDS"/>
                                                                 <constraint firstAttribute="height" constant="25" id="BXR-lL-BtO"/>
@@ -1378,7 +1366,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yp-8w-90s" customClass="SpinnerView" customModule="Xenim" customModuleProvider="target">
-                                            <rect key="frame" x="158" y="514" width="60" height="60"/>
+                                            <rect key="frame" x="158" y="510" width="60" height="60"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="9yp-8w-90s" secondAttribute="height" multiplier="1:1" id="ba0-D5-BZM"/>
@@ -1413,7 +1401,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                             </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="XlB-rz-KHx">
-                                            <rect key="frame" x="159" y="24" width="57" height="19"/>
+                                            <rect key="frame" x="159" y="22" width="57" height="19"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white-25-user" translatesAutoresizingMaskIntoConstraints="NO" id="ShY-ub-31T">
                                                     <rect key="frame" x="0.0" y="0.0" width="19" height="19"/>
@@ -1430,6 +1418,20 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                             </subviews>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="0.69552801724137936" colorSpace="calibratedRGB"/>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqi-bX-AVg">
+                                            <rect key="frame" x="8" y="16" width="50" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="IA6-Kc-hXl"/>
+                                                <constraint firstAttribute="width" constant="50" id="M7n-Qs-7GE"/>
+                                            </constraints>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.7039601293103448" colorSpace="calibratedRGB"/>
+                                            <state key="normal" image="expand-more">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="dismissPopup:" destination="Pke-AM-PdW" eventType="touchUpInside" id="ENe-cf-9n3"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -1443,10 +1445,10 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                         <constraint firstItem="9Z2-mv-QWo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XlB-rz-KHx" secondAttribute="trailing" id="ROW-QT-T2N"/>
                                         <constraint firstItem="kET-Mm-N6n" firstAttribute="leading" secondItem="7WC-WS-Rhe" secondAttribute="leadingMargin" id="RT2-uq-x7c"/>
                                         <constraint firstItem="1UZ-KQ-YVn" firstAttribute="width" secondItem="7WC-WS-Rhe" secondAttribute="width" id="VJP-hr-DOj"/>
-                                        <constraint firstItem="jiD-1r-f31" firstAttribute="top" secondItem="kET-Mm-N6n" secondAttribute="bottom" constant="10" id="W5d-9V-xsB"/>
+                                        <constraint firstItem="jiD-1r-f31" firstAttribute="top" secondItem="kET-Mm-N6n" secondAttribute="bottom" id="W5d-9V-xsB"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="kET-Mm-N6n" secondAttribute="trailing" id="Yv0-uw-hI0"/>
-                                        <constraint firstItem="kET-Mm-N6n" firstAttribute="top" secondItem="9Z2-mv-QWo" secondAttribute="bottom" constant="20" id="Z5c-JO-Kp2"/>
-                                        <constraint firstItem="9Z2-mv-QWo" firstAttribute="top" secondItem="XlB-rz-KHx" secondAttribute="bottom" constant="20" id="a6g-TO-bFa"/>
+                                        <constraint firstItem="kET-Mm-N6n" firstAttribute="top" secondItem="9Z2-mv-QWo" secondAttribute="bottom" constant="15" id="Z5c-JO-Kp2"/>
+                                        <constraint firstItem="9Z2-mv-QWo" firstAttribute="top" secondItem="XlB-rz-KHx" secondAttribute="bottom" constant="15" id="a6g-TO-bFa"/>
                                         <constraint firstItem="xvG-nU-cy6" firstAttribute="top" secondItem="7WC-WS-Rhe" secondAttribute="topMargin" constant="25" id="aLM-xF-Zre"/>
                                         <constraint firstAttribute="trailing" secondItem="jiD-1r-f31" secondAttribute="trailing" id="bgb-Eu-sYC"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="xvG-nU-cy6" secondAttribute="trailing" constant="8" id="cDk-Ah-gfQ"/>
@@ -1459,13 +1461,15 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                         <constraint firstItem="9yp-8w-90s" firstAttribute="centerX" secondItem="kIy-6V-23T" secondAttribute="centerX" id="nEe-gj-opg"/>
                                         <constraint firstItem="XlB-rz-KHx" firstAttribute="centerY" secondItem="hqi-bX-AVg" secondAttribute="centerY" id="pYJ-S6-f9e"/>
                                         <constraint firstItem="1UZ-KQ-YVn" firstAttribute="top" secondItem="7WC-WS-Rhe" secondAttribute="top" id="r4q-9r-C9J"/>
-                                        <constraint firstItem="hqi-bX-AVg" firstAttribute="top" secondItem="7WC-WS-Rhe" secondAttribute="topMargin" constant="10" id="wgB-gl-78S"/>
+                                        <constraint firstItem="9Z2-mv-QWo" firstAttribute="top" secondItem="hqi-bX-AVg" secondAttribute="bottom" constant="8" id="stk-Ie-2Tg"/>
+                                        <constraint firstItem="hqi-bX-AVg" firstAttribute="top" secondItem="7WC-WS-Rhe" secondAttribute="topMargin" constant="8" id="wgB-gl-78S"/>
                                         <constraint firstItem="xvG-nU-cy6" firstAttribute="centerY" secondItem="hqi-bX-AVg" secondAttribute="centerY" id="xlm-aL-lse"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="VJP-hr-DOj"/>
                                             <exclude reference="ROW-QT-T2N"/>
+                                            <exclude reference="a6g-TO-bFa"/>
                                             <exclude reference="aLM-xF-Zre"/>
                                             <exclude reference="Qif-7M-w9T"/>
                                             <exclude reference="d1u-mE-IuR"/>
@@ -1597,6 +1601,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <image name="white-25-user" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7xH-hr-438"/>
+        <segue reference="GqG-Qe-AVA"/>
     </inferredMetricsTieBreakers>
 </document>
