@@ -4,6 +4,5 @@
 - Bugfix: Die Datumsanzeige für ein Event behält nun auch beim Scrollen den richtigen Zustand
 - Die Datumsanzeige zeigt nun nicht nur verbleibende Tage bis zur Sendung, sonder auch Stunden und Minuten, wenn das Event näher rückt
 - Der Events Tab heißt nun Kalender. Das ist klarer verständlich.
-- Events werden nicht mehr in "Heute" und "Morgen" etc. eingeteilt.
 - Wer die App häufig nutzt bekommt ein einziges Mal einen Hinweis angezeigt, dass man die Entwicklung der App unterstützen kann
 - In den Settings gibt es nun einen Button, um die App im Appstore zu bewerten. Es würde mich freuen, wenn ihr das macht.
