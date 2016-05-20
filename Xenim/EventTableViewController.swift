@@ -104,9 +104,8 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
             dispatch_async(dispatch_get_main_queue(), { 
                 self.events = newEvents
                 self.refreshControl!.endRefreshing()
-                if self.showFavoritesOnly {
-                    self.filterFavorites()
-                }
+                self.filterFavorites()
+                
                 self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
             })
         }
@@ -118,11 +117,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         } else {
             showFavoritesOnly = true
         }
-        
         userDefaults.setObject(showFavoritesOnly, forKey: userDefaultsFavoritesSettingKey)
-        if showFavoritesOnly {
-            filterFavorites()
-        }
         self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
     }
     
@@ -139,15 +134,15 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     }
     
     func favoriteAdded(notification: NSNotification) {
+        filterFavorites()
         if showFavoritesOnly {
-            filterFavorites()
             self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }
     
     func favoriteRemoved(notification: NSNotification) {
+        filterFavorites()
         if showFavoritesOnly {
-            filterFavorites()
             self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }
