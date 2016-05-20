@@ -60,7 +60,7 @@ platform :ios do
 
     build
 
-    pilot(skip_submission: true, distribute_external: false, ipa: "fastlane/ipa/Xenim.ipa")
+    #pilot(skip_submission: true, distribute_external: false, ipa: "fastlane/ipa/Xenim.ipa")
   end
 
   desc "Deploy a new version to the App Store"
@@ -76,7 +76,7 @@ platform :ios do
 
     deliver(  skip_binary_upload: true,
               skip_metadata: false,
-              skip_screenshots: false,
+              skip_screenshots: true,
               submit_for_review: false,
               automatic_release: false,
               force: true, # can be used to disable html preview,
