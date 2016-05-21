@@ -1368,10 +1368,10 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YuP-NQ-VO9">
                                             <rect key="frame" x="8" y="412" width="359" height="205"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cos-55-CwJ">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cos-55-CwJ">
                                                     <rect key="frame" x="0.0" y="45" width="359" height="115"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAQ-yS-bch" userLabel="Prev">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAQ-yS-bch" userLabel="Prev">
                                                             <rect key="frame" x="0.0" y="43" width="114" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="9yS-Rf-Iit"/>
@@ -1396,7 +1396,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                                 <action selector="backwardPressed:" destination="Pke-AM-PdW" eventType="touchUpInside" id="Ezv-ok-LPW"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIy-6V-23T" userLabel="Play">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIy-6V-23T" userLabel="Play">
                                                             <rect key="frame" x="122" y="0.0" width="115" height="115"/>
                                                             <gestureRecognizers/>
                                                             <constraints>
@@ -1418,7 +1418,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                                 <action selector="togglePlayPause:" destination="Pke-AM-PdW" eventType="touchUpInside" id="0Bl-7b-3JE"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-BQ-ZHn" userLabel="Next">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-BQ-ZHn" userLabel="Next">
                                                             <rect key="frame" x="245" y="43" width="114" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="aqK-BQ-ZHn" secondAttribute="height" multiplier="33:25" id="8Bm-cn-vDS"/>

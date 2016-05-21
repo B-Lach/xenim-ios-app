@@ -54,7 +54,7 @@ class DateViewGenerator: NSObject {
         let cal = NSCalendar.currentCalendar()
         let now = NSDate()
         var diff = cal.components(NSCalendarUnit.Day,
-                                  fromDate: now,
+                                  fromDate: cal.startOfDayForDate(now),
                                   toDate: eventDate,
                                   options: NSCalendarOptions.WrapComponents )
         let daysLeft = diff.day
