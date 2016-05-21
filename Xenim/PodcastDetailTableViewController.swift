@@ -73,10 +73,10 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         favoriteBarButtonItem.accessibilityLabel = " "
         favoriteBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", value: "double tap to toggle favorite", comment: "") 
         if !Favorites.isFavorite(podcast.id) {
-            favoriteBarButtonItem.image = UIImage(named: "star-outline")
+            favoriteBarButtonItem.image = UIImage(named: "star_o_25")
             favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
         } else {
-            favoriteBarButtonItem.image = UIImage(named: "star")
+            favoriteBarButtonItem.image = UIImage(named: "star_25")
             favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
         }
 
@@ -279,7 +279,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == podcast.id {
-                favoriteBarButtonItem.image = UIImage(named: "star")
+                favoriteBarButtonItem.image = UIImage(named: "star_25")
                 favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
         }
@@ -289,7 +289,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == podcast.id {
-                favoriteBarButtonItem.image = UIImage(named: "star-outline")
+                favoriteBarButtonItem.image = UIImage(named: "star_o_25")
                 favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             }
         }

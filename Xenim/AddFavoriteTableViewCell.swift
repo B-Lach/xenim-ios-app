@@ -24,10 +24,10 @@ class AddFavoriteTableViewCell: UITableViewCell {
             favoriteButton.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", value: "double tap to toggle favorite", comment: "") 
             
             if !Favorites.isFavorite(podcast.id) {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_o_44"), forState: .Normal)
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             } else {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_44"), forState: .Normal)
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
             
@@ -76,7 +76,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == podcast.id {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_44"), forState: .Normal)
                 animateFavoriteButton()
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
@@ -87,7 +87,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == podcast.id {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_o_44"), forState: .Normal)
                 animateFavoriteButton()
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             }

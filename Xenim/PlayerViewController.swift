@@ -177,10 +177,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     func updateFavoritesButton() {
         if let event = event {
             if !Favorites.isFavorite(event.podcast.id) {
-                favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_o_25"), forState: .Normal)
                 favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             } else {
-                favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_25"), forState: .Normal)
                 favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
         }
@@ -249,7 +249,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == event.podcast.id {
-                favoriteButton?.setImage(UIImage(named: "star"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_25"), forState: .Normal)
                 favoriteButton?.tintColor = UIColor.whiteColor().colorWithAlphaComponent(1)
                 favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
@@ -260,7 +260,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == event.podcast.id {
-                favoriteButton?.setImage(UIImage(named: "star-outline"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_o_25"), forState: .Normal)
                 favoriteButton?.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.7)
                 favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             }

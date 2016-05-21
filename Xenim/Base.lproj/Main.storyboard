@@ -33,7 +33,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-question" id="WLG-wu-bjX">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="questionmark_25" id="WLG-wu-bjX">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -55,7 +55,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-envelope" id="I8S-iN-pa2">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="envelope_25" id="I8S-iN-pa2">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -272,7 +272,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-info" id="0IU-qS-FRE">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="info_25" id="0IU-qS-FRE">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -294,7 +294,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="black-25-safari" id="fSi-wP-oKx">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="safari_25" id="fSi-wP-oKx">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -462,17 +462,19 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scarlet-44-info-circle" translatesAutoresizingMaskIntoConstraints="NO" id="KXK-1h-7Gr">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISE-Qs-9bf">
                                 <rect key="frame" x="284" y="249" width="33" height="33"/>
-                            </imageView>
+                                <state key="normal" image="info_circle_44"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="KXK-1h-7Gr" firstAttribute="centerX" secondItem="rBC-zr-6KO" secondAttribute="centerX" id="6zf-bY-oE2"/>
+                            <constraint firstItem="ISE-Qs-9bf" firstAttribute="centerX" secondItem="rBC-zr-6KO" secondAttribute="centerX" id="SGX-Zk-kqk"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="rBC-zr-6KO" secondAttribute="trailing" constant="8" id="YR4-V2-YUK"/>
-                            <constraint firstItem="rBC-zr-6KO" firstAttribute="top" secondItem="KXK-1h-7Gr" secondAttribute="bottom" constant="8" id="bWZ-Ly-uwi"/>
                             <constraint firstItem="rBC-zr-6KO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jVZ-q4-52m" secondAttribute="leadingMargin" constant="8" id="fow-YB-ZIG"/>
                             <constraint firstItem="rBC-zr-6KO" firstAttribute="centerX" secondItem="jVZ-q4-52m" secondAttribute="centerX" id="jDg-r2-AcN"/>
+                            <constraint firstItem="rBC-zr-6KO" firstAttribute="top" secondItem="ISE-Qs-9bf" secondAttribute="bottom" constant="8" id="jSv-0l-vFD"/>
                             <constraint firstItem="rBC-zr-6KO" firstAttribute="centerY" secondItem="jVZ-q4-52m" secondAttribute="centerY" id="pGp-Tl-wTc"/>
                         </constraints>
                     </view>
@@ -530,6 +532,7 @@
                                                 <constraint firstAttribute="width" constant="70" id="hp6-id-7W8"/>
                                                 <constraint firstAttribute="width" secondItem="6Yc-GY-wIz" secondAttribute="height" multiplier="1:1" id="r7R-4L-rAt"/>
                                             </constraints>
+                                            <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                             <state key="normal" image="Play">
                                                 <color key="titleColor" red="0.0" green="0.084724564651545098" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -538,8 +541,9 @@
                                                 <action selector="play:" destination="hiw-wf-THJ" eventType="touchUpInside" id="vkO-kR-4W9"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="scarlet-25-star" translatesAutoresizingMaskIntoConstraints="NO" id="TKx-qU-JoM">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="star_red_25" translatesAutoresizingMaskIntoConstraints="NO" id="TKx-qU-JoM">
                                             <rect key="frame" x="51" y="3" width="22" height="22"/>
+                                            <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="TKx-qU-JoM" secondAttribute="height" multiplier="1:1" id="Skq-Ff-r4t"/>
                                                 <constraint firstAttribute="width" constant="22" id="gFk-Un-ico"/>
@@ -769,7 +773,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="scarlet-25-safari" id="nks-2Y-PCJ">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="safari_25" id="nks-2Y-PCJ">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -791,7 +795,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="scarlet-25-twitter-square" id="MX1-eN-lCl">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="twitter_25" id="MX1-eN-lCl">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -813,7 +817,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="scarlet-25-envelope" id="8Hg-49-KU0">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="envelope_25" id="8Hg-49-KU0">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -839,7 +843,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="scarlet-25-rss-square" id="u5J-Bj-qAW">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="rss_square_25" id="u5J-Bj-qAW">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -856,7 +860,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Podcast Detail" id="cL7-5b-Rce">
-                        <barButtonItem key="rightBarButtonItem" image="star-outline" id="pG8-Xk-VwU">
+                        <barButtonItem key="rightBarButtonItem" image="star_25" id="pG8-Xk-VwU">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="toggleFavorite:" destination="WlL-v8-hc7" id="NkC-5F-mo0"/>
@@ -1010,13 +1014,13 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorites" id="Xwt-Mx-qxe">
-                        <barButtonItem key="leftBarButtonItem" image="brandeis-blue-25-gear" id="y2w-Lf-4fk">
+                        <barButtonItem key="leftBarButtonItem" image="gear_25" id="y2w-Lf-4fk">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="rFQ-ny-7OW" kind="presentation" identifier="settings" id="c3s-Lw-oBf"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="brandeis-blue-25-plus" id="UHf-4P-vuM">
+                        <barButtonItem key="rightBarButtonItem" image="plus_25" id="UHf-4P-vuM">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="esV-ik-5s6" kind="presentation" identifier="addFavorite" id="4lH-Hg-5Yo"/>
@@ -1037,7 +1041,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <scene sceneID="uLN-cE-2UG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EEx-ap-ZIj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calendar" image="white-25-calendar-o" selectedImage="white-25-calendar" id="KKU-KO-aCN"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar_o_25" selectedImage="calendar_25" id="KKU-KO-aCN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Vs3-Mg-kYO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1097,8 +1101,9 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                 <constraint firstAttribute="width" secondItem="tw8-jD-evh" secondAttribute="height" multiplier="1:1" id="xFq-LI-rqZ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" image="scarlet-44-star">
+                                            <state key="normal" image="star_44">
                                                 <color key="titleColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -1206,7 +1211,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <scene sceneID="tw0-tu-Kco">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FUF-oZ-1Ao" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="white-25-star-o" selectedImage="white-25-star" id="uy0-hV-u60"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="star_o_25" selectedImage="star_25" id="uy0-hV-u60"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="hBA-vo-dTy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1253,9 +1258,13 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                             <color key="progressTintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </progressView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvG-nU-cy6">
-                                            <rect key="frame" x="332" y="19" width="27" height="25"/>
+                                            <rect key="frame" x="329" y="16" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="EO3-qB-B7y"/>
+                                                <constraint firstAttribute="width" secondItem="xvG-nU-cy6" secondAttribute="height" multiplier="1:1" id="yHT-Ue-ktw"/>
+                                            </constraints>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="0.69989224137931016" colorSpace="calibratedRGB"/>
-                                            <state key="normal" image="star-outline"/>
+                                            <state key="normal" image="star_25"/>
                                             <connections>
                                                 <action selector="toggleFavorite:" destination="Pke-AM-PdW" eventType="touchUpInside" id="XLW-0j-VIA"/>
                                             </connections>
@@ -1298,8 +1307,8 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                 </mask>
                                             </variation>
                                         </stackView>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9yp-8w-90s" customClass="SpinnerView" customModule="Xenim" customModuleProvider="target">
-                                            <rect key="frame" x="158" y="486" width="60" height="60"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yp-8w-90s" customClass="SpinnerView" customModule="Xenim" customModuleProvider="target">
+                                            <rect key="frame" x="158" y="485" width="60" height="60"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="9yp-8w-90s" secondAttribute="height" multiplier="1:1" id="ba0-D5-BZM"/>
@@ -1333,15 +1342,15 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                 <constraint firstAttribute="height" constant="50" id="oWH-F3-9ES"/>
                                             </constraints>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="XlB-rz-KHx">
-                                            <rect key="frame" x="159" y="22" width="57" height="19"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="XlB-rz-KHx">
+                                            <rect key="frame" x="159" y="22" width="57" height="22"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white-25-user" translatesAutoresizingMaskIntoConstraints="NO" id="ShY-ub-31T">
-                                                    <rect key="frame" x="0.0" y="0.0" width="19" height="19"/>
-                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="0.69964978448275861" colorSpace="calibratedRGB"/>
-                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vly-QT-L7j">
+                                                    <rect key="frame" x="0.0" y="0.0" width="19" height="22"/>
+                                                    <state key="normal" image="user_25"/>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1337" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSw-84-18Y">
-                                                    <rect key="frame" x="22" y="0.0" width="35" height="19"/>
+                                                    <rect key="frame" x="22" y="0.0" width="35" height="22"/>
                                                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.70061961206896561" colorSpace="calibratedRGB"/>
@@ -1358,7 +1367,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                 <constraint firstAttribute="width" constant="50" id="M7n-Qs-7GE"/>
                                             </constraints>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="0.7039601293103448" colorSpace="calibratedRGB"/>
-                                            <state key="normal" image="expand-more">
+                                            <state key="normal" image="dismiss">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -1529,7 +1538,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                         <outlet property="dismissButton" destination="hqi-bX-AVg" id="ak0-LW-Z5z"/>
                         <outlet property="favoriteButton" destination="xvG-nU-cy6" id="res-nD-kO9"/>
                         <outlet property="listenersCountLabel" destination="FSw-84-18Y" id="bfS-D7-vRr"/>
-                        <outlet property="listenersIconImageView" destination="ShY-ub-31T" id="LfE-1I-W5c"/>
                         <outlet property="loadingSpinnerView" destination="9yp-8w-90s" id="2fq-SW-5Kg"/>
                         <outlet property="playPauseButton" destination="kIy-6V-23T" id="g37-id-2IZ"/>
                         <outlet property="podcastNameLabel" destination="uzN-m1-SqS" id="NVi-Vp-weR"/>
@@ -1601,30 +1609,28 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <image name="+30s" width="52" height="29"/>
         <image name="-30s" width="53" height="29"/>
         <image name="Play" width="35" height="35"/>
-        <image name="black-25-envelope" width="19" height="19"/>
-        <image name="black-25-info" width="19" height="19"/>
-        <image name="black-25-question" width="19" height="19"/>
-        <image name="black-25-safari" width="19" height="19"/>
-        <image name="brandeis-blue-25-gear" width="19" height="19"/>
-        <image name="brandeis-blue-25-plus" width="19" height="19"/>
+        <image name="calendar_25" width="19" height="19"/>
+        <image name="calendar_o_25" width="19" height="19"/>
+        <image name="dismiss" width="25" height="16"/>
+        <image name="envelope_25" width="19" height="19"/>
         <image name="event_placeholder" width="420" height="420"/>
-        <image name="expand-more" width="25" height="16"/>
+        <image name="gear_25" width="19" height="19"/>
+        <image name="info_25" width="19" height="19"/>
+        <image name="info_circle_44" width="33" height="33"/>
         <image name="large-play" width="60" height="61"/>
-        <image name="scarlet-25-envelope" width="19" height="19"/>
-        <image name="scarlet-25-rss-square" width="19" height="19"/>
-        <image name="scarlet-25-safari" width="19" height="19"/>
+        <image name="plus_25" width="19" height="19"/>
+        <image name="questionmark_25" width="19" height="19"/>
+        <image name="rss_square_25" width="19" height="19"/>
+        <image name="safari_25" width="19" height="19"/>
         <image name="scarlet-25-star" width="19" height="19"/>
-        <image name="scarlet-25-twitter-square" width="19" height="19"/>
-        <image name="scarlet-44-info-circle" width="33" height="33"/>
-        <image name="scarlet-44-star" width="33" height="33"/>
         <image name="share" width="19" height="25"/>
         <image name="sleep" width="25" height="26"/>
-        <image name="star-outline" width="27" height="25"/>
-        <image name="white-25-calendar" width="19" height="19"/>
-        <image name="white-25-calendar-o" width="19" height="19"/>
-        <image name="white-25-star" width="19" height="19"/>
-        <image name="white-25-star-o" width="19" height="19"/>
-        <image name="white-25-user" width="19" height="19"/>
+        <image name="star_25" width="19" height="19"/>
+        <image name="star_44" width="33" height="33"/>
+        <image name="star_o_25" width="19" height="19"/>
+        <image name="star_red_25" width="19" height="19"/>
+        <image name="twitter_25" width="19" height="19"/>
+        <image name="user_25" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GqG-Qe-AVA"/>
