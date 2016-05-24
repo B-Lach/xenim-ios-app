@@ -95,7 +95,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         popupItem.title = event.podcast.name
         popupItem.subtitle = event.title
         
-        if let imageurl = event.podcast.artwork.thumb150Url {
+        if let imageurl = event.podcast.artwork.thumb180Url {
             miniCoverartImageView.af_setImageWithURL(imageurl, placeholderImage: UIImage(named: "event_placeholder"), imageTransition: .CrossDissolve(0.2))
         }
         
@@ -146,11 +146,13 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         subtitleLabel?.text = event.title
 
         let placeholderImage = UIImage(named: "event_placeholder")!
-        if let imageurl = event.podcast.artwork.originalUrl {
-            coverartView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
-            backgroundCoverartImageView?.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+        let screenScale = UIScreen.mainScreen().scale
+        if event.podcast.artwork.thumb800Url != nil && screenScale <= 2 {
+            coverartView.af_setImageWithURL(event.podcast.artwork.thumb800Url!, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+        } else if event.podcast.artwork.thumb1300Url != nil && screenScale > 2 {
+            coverartView.af_setImageWithURL(event.podcast.artwork.thumb1300Url!, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
         } else {
-            coverartView?.image = placeholderImage
+            coverartView.image = placeholderImage
         }
         
         updateProgressBar()
