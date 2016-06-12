@@ -27,7 +27,6 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     var miniCoverartImageView: UIImageView!
 
     @IBOutlet weak var listenersCountLabel: UILabel!
-    @IBOutlet weak var listenersIconImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var loadingSpinnerView: SpinnerView!
     @IBOutlet weak var blurView: UIVisualEffectView!

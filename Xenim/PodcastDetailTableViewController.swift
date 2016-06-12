@@ -12,6 +12,10 @@ import MessageUI
 
 class PodcastDetailTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
     
+    private weak var headerView: UIView!
+    @IBOutlet weak var coverartImageView: UIImageView!
+    private var headerHeight: CGFloat!
+
     @IBOutlet weak var descriptionLabel: UILabel!
 
     @IBOutlet weak var subscribeCell: UITableViewCell!
@@ -20,7 +24,6 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     @IBOutlet weak var websiteCell: UITableViewCell!
     
     @IBOutlet weak var favoriteBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var coverartImageView: UIImageView!
     var podcast: Podcast!
     
     var gradient: UIGradientView?
@@ -42,8 +45,13 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         // resize table header view to 1:1 aspect ratio
         // this is not possible with autolayout contraints
         // disable adjust scrollview insets to make this work as expected
-        let width = tableView.frame.width
-        tableView.tableHeaderView?.frame = CGRectMake(0, 0, width, width)
+        headerView = tableView.tableHeaderView
+        headerHeight = tableView.frame.width
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
+        tableView.contentInset = UIEdgeInsets(top: headerHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -headerHeight)
+        updateHeaderView()
         
         // adjust bottom insets as auto adjust scrollview insets is disabled
         if let bottomInset = tabBarController?.tabBar.bounds.height {
@@ -82,6 +90,16 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
 
     }
     
+    func updateHeaderView() {
+        var headerRect = CGRect(x: 0, y: -headerHeight, width: tableView.bounds.width, height: headerHeight)
+        if tableView.contentOffset.y < -headerHeight {
+            headerRect.origin.y = tableView.contentOffset.y
+            headerRect.size.height = -tableView.contentOffset.y
+        }
+        
+        headerView.frame = headerRect
+    }
+    
     private func disableCell(cell: UITableViewCell) {
         cell.userInteractionEnabled = false
         cell.textLabel?.enabled = false
@@ -117,6 +135,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         updateNavbar()
+        updateHeaderView()
     }
     
     func updateNavbar() {
@@ -128,7 +147,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             let navbarChangePoint: CGFloat = coverartImageView.frame.height - transitionArea - gradient.frame.height
             
             // current scrollview y offset
-            let offsetY = tableView.contentOffset.y
+            let offsetY = tableView.contentOffset.y + headerHeight
             if offsetY > navbarChangePoint {
                 // transition state + full colored state
                 
