@@ -30,6 +30,8 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.splitViewController?.preferredDisplayMode = .AllVisible
 
         // add search bar
         resultSearchController = UISearchController(searchResultsController: nil)
@@ -153,9 +155,16 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destVC = segue.destinationViewController as? PodcastDetailTableViewController {
+        if segue.identifier == "podcastDetail" {
+            var detail: PodcastDetailTableViewController
+            if let navigationController = segue.destinationViewController as? UINavigationController {
+                detail = navigationController.topViewController as! PodcastDetailTableViewController
+            } else {
+                detail = segue.destinationViewController as! PodcastDetailTableViewController
+            }
+            
             if let podcast = sender as? Podcast {
-                destVC.podcast = podcast
+                detail.podcast = podcast
             }
         }
     }

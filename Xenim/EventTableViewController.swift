@@ -42,6 +42,8 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.splitViewController?.preferredDisplayMode = .AllVisible
+        
         // increase content inset for audio player
         tableView.contentInset.bottom = tableView.contentInset.bottom + 40
         
@@ -247,9 +249,17 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destVC = segue.destinationViewController as? PodcastDetailTableViewController {
+        
+        if segue.identifier == "podcastDetail" {
+            var detail: PodcastDetailTableViewController
+            if let navigationController = segue.destinationViewController as? UINavigationController {
+                detail = navigationController.topViewController as! PodcastDetailTableViewController
+            } else {
+                detail = segue.destinationViewController as! PodcastDetailTableViewController
+            }
+            
             if let cell = sender as? EventTableViewCell {
-                destVC.podcast = cell.event.podcast
+                detail.podcast = cell.event.podcast
             }
         }
     }
