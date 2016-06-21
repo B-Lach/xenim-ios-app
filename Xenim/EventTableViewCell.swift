@@ -20,6 +20,8 @@ class EventCellStatus {
 
 class EventTableViewCell: UITableViewCell {
     
+    var playerDelegate: PlayerDelegate?
+    
     @IBOutlet weak var eventCoverartImage: UIImageView! {
         didSet {
             eventCoverartImage.layer.cornerRadius = eventCoverartImage.frame.width / 2
@@ -76,8 +78,10 @@ class EventTableViewCell: UITableViewCell {
 
             updateCoverart()
             updateLivedate()
-            updatePlayButton()
             updateFavoriteButton()
+            
+            playButton.hidden = !event.isLive()
+            dateStackView.hidden = event.isLive()
         }
     }
     
@@ -103,52 +107,6 @@ class EventTableViewCell: UITableViewCell {
         }
     }
     
-    func updatePlayButton() {
-        if !event.isLive() {
-            dateStackView.hidden = false
-            playButton.hidden = true
-        } else {
-            dateStackView.hidden = true
-            playButton.hidden = false
-            
-            let playerManager = PlayerManager.sharedInstance
-            if let playerEvent = playerManager.event {
-                if playerEvent.equals(event) {
-                    switch playerManager.player.state {
-                    case .Buffering:
-                        showPauseButton()
-                    case .Paused:
-                        showPlayButton()
-                    case .Playing:
-                        showPauseButton()
-                    case .Stopped:
-                        showPlayButton()
-                    case .WaitingForConnection:
-                        showPauseButton()
-                    case .Failed(_):
-                        showPlayButton()
-                    }
-                } else {
-                    showPlayButton()
-                }
-            } else {
-                showPlayButton()
-            }
-        }
-    }
-    
-    private func showPauseButton() {
-        playButton.setImage(UIImage(named: "Pause"), forState: .Normal)
-        playButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", value: "playing", comment: "")
-        playButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", value: "double tap to pause", comment: "")
-    }
-    
-    private func showPlayButton() {
-        playButton.setImage(UIImage(named: "Play"), forState: .Normal)
-        playButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", value: "not playing", comment: "")
-        playButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", value: "double tap to play", comment: "") 
-    }
-    
     func updateFavoriteButton() {
         favoriteImageView.hidden = !Favorites.isFavorite(event.podcast.id)
         self.accessibilityValue = Favorites.isFavorite(event.podcast.id) ? NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "") : ""
@@ -167,14 +125,13 @@ class EventTableViewCell: UITableViewCell {
             animations: {
                 self.playButton.transform = CGAffineTransformIdentity
             }, completion: nil)
-        PlayerManager.sharedInstance.togglePlayPause(event)
+        playerDelegate?.play(event)
     }
     
     // MARK: notifications
     
     func setupNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.playerStateChanged(_:)), name: "playerStateChanged", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.toggleDateView(_:)), name: "toggleDateView", object: nil)
@@ -186,10 +143,6 @@ class EventTableViewCell: UITableViewCell {
     
     func toggleDateView(notification: NSNotification) {
         updateLivedate()
-    }
-    
-    func playerStateChanged(notification: NSNotification) {
-        updatePlayButton()
     }
     
     func favoriteAdded(notification: NSNotification) {

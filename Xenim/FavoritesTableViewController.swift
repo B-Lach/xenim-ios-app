@@ -16,14 +16,14 @@ class FavoritesTableViewController: UITableViewController{
     var loadingVC: UIViewController?
 
     @IBOutlet weak var addFavoriteBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var settingsBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.splitViewController?.preferredDisplayMode = .AllVisible
+        
         addFavoriteBarButtonItem.accessibilityLabel = NSLocalizedString("voiceover_add_favorite_button_label", value: "Add", comment: "")
         addFavoriteBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_add_favorite_button_hint", value: "Double Tap to search through all podcasts and add favorites", comment: "")
-        settingsBarButtonItem.accessibilityLabel = NSLocalizedString("voiceover_settings_button_label", value: "Settings", comment: "")
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
@@ -34,9 +34,6 @@ class FavoritesTableViewController: UITableViewController{
             self.messageVC?.message = NSLocalizedString("favorites_tableview_empty_message", value: "Add podcast shows as your favorite to see them here.", comment: "this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.")
         }
         loadingVC = storyboard?.instantiateViewControllerWithIdentifier("LoadingViewController")
-        
-        // increase content inset for audio player
-        tableView?.contentInset.bottom = tableView!.contentInset.bottom + 40
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -142,19 +139,24 @@ class FavoritesTableViewController: UITableViewController{
     // MARK: - Navigation
     
     // rewind segues
-    @IBAction func dismissSettings(segue:UIStoryboardSegue) {}
     @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {}
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let podcast = favorites[indexPath.row]
         self.performSegueWithIdentifier("podcastDetail", sender: podcast)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destVC = segue.destinationViewController as? PodcastDetailTableViewController {
+        if segue.identifier == "podcastDetail" {
+            var detail: PodcastDetailTableViewController
+            if let navigationController = segue.destinationViewController as? UINavigationController {
+                detail = navigationController.topViewController as! PodcastDetailTableViewController
+            } else {
+                detail = segue.destinationViewController as! PodcastDetailTableViewController
+            }
+            
             if let podcast = sender as? Podcast {
-                destVC.podcast = podcast
+                detail.podcast = podcast
             }
         }
     }

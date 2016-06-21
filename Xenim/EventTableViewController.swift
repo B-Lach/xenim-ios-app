@@ -8,7 +8,11 @@
 
 import UIKit
 
-class EventTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+protocol PlayerDelegate {
+    func play(event: Event)
+}
+
+class EventTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, PlayerDelegate {
     
     // possible sections
     enum Section {
@@ -42,8 +46,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // increase content inset for audio player
-        tableView.contentInset.bottom = tableView.contentInset.bottom + 40
+        self.splitViewController?.preferredDisplayMode = .AllVisible
         
         // check if filter was enabled when the app was use the last time
         // fetch it from user defaults
@@ -181,6 +184,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         } else {
             cell.event = events[indexPath.section][indexPath.row]
         }
+        cell.playerDelegate = self
         return cell
     }
     
@@ -240,16 +244,40 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     // MARK: - Navigation
     
+    @IBAction func dismissPlayer(segue:UIStoryboardSegue) {}
+    
+    func play(event: Event) {
+        self.performSegueWithIdentifier("play", sender: event)
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
         self.performSegueWithIdentifier("podcastDetail", sender: cell)
-        cell.setSelected(false, animated: true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destVC = segue.destinationViewController as? PodcastDetailTableViewController {
+        
+        if segue.identifier == "play" {
+            if let navigationController = segue.destinationViewController as? UINavigationController {
+                if let playerVC = navigationController.topViewController as? PlayerViewController {
+                    if let event = sender as? Event {
+                        playerVC.event = event
+                    }
+                }
+            }
+
+        }
+        
+        if segue.identifier == "podcastDetail" {
+            var detail: PodcastDetailTableViewController
+            if let navigationController = segue.destinationViewController as? UINavigationController {
+                detail = navigationController.topViewController as! PodcastDetailTableViewController
+            } else {
+                detail = segue.destinationViewController as! PodcastDetailTableViewController
+            }
+            
             if let cell = sender as? EventTableViewCell {
-                destVC.podcast = cell.event.podcast
+                detail.podcast = cell.event.podcast
             }
         }
     }
