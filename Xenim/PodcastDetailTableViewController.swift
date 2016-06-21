@@ -12,9 +12,7 @@ import MessageUI
 
 class PodcastDetailTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
     
-    private weak var headerView: UIView!
     @IBOutlet weak var coverartImageView: UIImageView!
-    private var headerHeight: CGFloat?
 
     @IBOutlet weak var descriptionLabel: UILabel!
 
@@ -25,8 +23,6 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     
     @IBOutlet weak var favoriteBarButtonItem: UIBarButtonItem!
     var podcast: Podcast?
-    
-    var gradient: UIGradientView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +35,6 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         if let bottomInset = tabBarController?.tabBar.bounds.height {
             tableView.contentInset.bottom = bottomInset + 44 // 44 are for the player popup above the tabbar
         }
-        
-        headerView = tableView.tableHeaderView
-        tableView.tableHeaderView = nil
-        tableView.addSubview(headerView)
         
         if let podcast = podcast {
             coverartImageView.accessibilityLabel = "Coverart image"
@@ -84,30 +76,6 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        // resize table header view to 1:1 aspect ratio
-        // this is not possible with autolayout contraints
-        // disable adjust scrollview insets to make this work as expected
-        headerHeight = tableView.frame.width
-        if let headerHeight = headerHeight {
-            tableView.contentInset = UIEdgeInsets(top: headerHeight, left: 0, bottom: 0, right: 0)
-            tableView.contentOffset = CGPoint(x: 0, y: -headerHeight)
-            updateHeaderView()
-        }
-    }
-    
-    func updateHeaderView() {
-        if let headerHeight = headerHeight {
-            var headerRect = CGRect(x: 0, y: -headerHeight, width: tableView.bounds.width, height: headerHeight)
-            if tableView.contentOffset.y < -headerHeight {
-                headerRect.origin.y = tableView.contentOffset.y
-                headerRect.size.height = -tableView.contentOffset.y
-            }
-            
-            headerView.frame = headerRect
-        }
-    }
-    
     private func disableCell(cell: UITableViewCell) {
         cell.userInteractionEnabled = false
         cell.textLabel?.enabled = false
@@ -116,69 +84,9 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         cell.accessoryType = UITableViewCellAccessoryType.None
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if let navbar = self.navigationController?.navigationBar {
-            navbar.shadowImage = UIImage() // removes tiny gray line at the bottom of the navigation bar
-            navbar.setBackgroundImage(UIImage(), forBarMetrics: .Default) // clear background
-            
-            let statusbarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
-            let navbarHeight = navbar.bounds.height + 2 * statusbarHeight
-            // configure gradient view
-            gradient = UIGradientView(frame: CGRect(x: 0, y: -statusbarHeight, width: navbar.bounds.width, height: navbarHeight))
-            gradient!.userInteractionEnabled = false
-            navbar.insertSubview(gradient!, atIndex: 0)
-        }
-
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        updateNavbar()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
-        gradient?.removeFromSuperview()
-    }
-    
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        updateNavbar()
-        updateHeaderView()
-    }
-    
-    func updateNavbar() {
-        if let gradient = gradient, let headerHeight = headerHeight {
-            
-            // y pixel count defining how long the clear->color transition is
-            let transitionArea: CGFloat = 64
-            // where should the transition start
-            let navbarChangePoint: CGFloat = coverartImageView.frame.height - transitionArea - gradient.frame.height
-            
-            // current scrollview y offset
-            let offsetY = tableView.contentOffset.y + headerHeight
-            if offsetY > navbarChangePoint {
-                // transition state + full colored state
-                
-                let alpha = min(1, 1 - ((navbarChangePoint + transitionArea - offsetY) / transitionArea)) // will become 1
-                let inverseAlpha = 1 - alpha // will become 0
-                
-                // update gradient colors
-                gradient.bottomColor = Constants.Colors.tintColor.colorWithAlphaComponent(alpha)
-                gradient.topColor = UIColor(red: 0.98 - inverseAlpha, green: 0.19 - inverseAlpha, blue: 0.31 - inverseAlpha, alpha: 1.00)
-            } else {
-                // transparent state
-                gradient.topColor = UIColor.blackColor().colorWithAlphaComponent(0.75)
-                gradient.bottomColor = UIColor.clearColor()
-            }
-            
-            gradient.setNeedsDisplay()
-        }
-    }
-    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    
     
     // MARK: - Actions
     

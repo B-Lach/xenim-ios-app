@@ -591,60 +591,52 @@
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="WlL-v8-hc7" customClass="PodcastDetailTableViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cxS-Lr-qTN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="1136"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="tzV-QH-fxb">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="9c8-Rp-Bin">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="9c8-Rp-Bin" secondAttribute="height" multiplier="1:1" id="w5k-jR-8VM"/>
-                                    </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="w5k-jR-8VM"/>
-                                        </mask>
-                                    </variation>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" red="1" green="0.14272231539999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstItem="9c8-Rp-Bin" firstAttribute="centerX" secondItem="tzV-QH-fxb" secondAttribute="centerX" id="8Ug-yD-tqx"/>
-                                <constraint firstItem="9c8-Rp-Bin" firstAttribute="centerY" secondItem="tzV-QH-fxb" secondAttribute="centerY" id="FBI-kO-WCM"/>
-                                <constraint firstAttribute="bottom" secondItem="9c8-Rp-Bin" secondAttribute="bottom" id="GrU-xf-5O5"/>
-                                <constraint firstAttribute="bottom" secondItem="9c8-Rp-Bin" secondAttribute="bottom" id="JhX-a1-MhC"/>
-                                <constraint firstItem="9c8-Rp-Bin" firstAttribute="leading" secondItem="tzV-QH-fxb" secondAttribute="leading" id="UDb-LI-6yu"/>
-                                <constraint firstAttribute="trailing" secondItem="9c8-Rp-Bin" secondAttribute="trailing" id="URU-iD-9Wu"/>
-                                <constraint firstItem="9c8-Rp-Bin" firstAttribute="height" secondItem="tzV-QH-fxb" secondAttribute="height" id="aAB-6p-XRS"/>
-                                <constraint firstAttribute="trailing" secondItem="9c8-Rp-Bin" secondAttribute="trailing" id="gb4-im-laU"/>
-                                <constraint firstItem="9c8-Rp-Bin" firstAttribute="leading" secondItem="tzV-QH-fxb" secondAttribute="leading" id="gbn-Iv-ySL"/>
-                                <constraint firstItem="9c8-Rp-Bin" firstAttribute="top" secondItem="tzV-QH-fxb" secondAttribute="top" id="kSV-NY-8iY"/>
-                                <constraint firstItem="9c8-Rp-Bin" firstAttribute="width" secondItem="tzV-QH-fxb" secondAttribute="width" id="pCQ-ih-jk0"/>
-                                <constraint firstAttribute="bottom" secondItem="9c8-Rp-Bin" secondAttribute="bottom" id="u54-Yk-83v"/>
-                                <constraint firstItem="9c8-Rp-Bin" firstAttribute="top" secondItem="tzV-QH-fxb" secondAttribute="top" constant="-64" id="usN-3e-Oht"/>
-                            </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="8Ug-yD-tqx"/>
-                                    <exclude reference="FBI-kO-WCM"/>
-                                    <exclude reference="GrU-xf-5O5"/>
-                                    <exclude reference="URU-iD-9Wu"/>
-                                    <exclude reference="aAB-6p-XRS"/>
-                                    <exclude reference="gbn-Iv-ySL"/>
-                                    <exclude reference="pCQ-ih-jk0"/>
-                                    <exclude reference="u54-Yk-83v"/>
-                                    <exclude reference="usN-3e-Oht"/>
-                                </mask>
-                            </variation>
-                        </view>
                         <sections>
+                            <tableViewSection id="U5i-W7-FaT">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="636" id="09P-4Z-rqa">
+                                        <rect key="frame" x="0.0" y="35" width="600" height="636"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09P-4Z-rqa" id="0i8-G8-gv7">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="635"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QvL-hb-cYK">
+                                                    <rect key="frame" x="0.0" y="8" width="600" height="600"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="QvL-hb-cYK" secondAttribute="height" multiplier="1:1" id="Zrl-a8-8Sz"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QvL-hb-cYK" firstAttribute="leading" secondItem="0i8-G8-gv7" secondAttribute="leadingMargin" id="1Rn-zv-dWf"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="QvL-hb-cYK" secondAttribute="bottom" id="4aM-Q3-udk"/>
+                                                <constraint firstItem="QvL-hb-cYK" firstAttribute="width" secondItem="0i8-G8-gv7" secondAttribute="width" id="QRS-q7-eQm"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="QvL-hb-cYK" secondAttribute="trailing" id="SEg-Ae-tio"/>
+                                                <constraint firstItem="QvL-hb-cYK" firstAttribute="centerX" secondItem="0i8-G8-gv7" secondAttribute="centerX" id="USh-GX-nQV"/>
+                                                <constraint firstItem="QvL-hb-cYK" firstAttribute="top" secondItem="0i8-G8-gv7" secondAttribute="topMargin" id="rzN-iC-K27"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="1Rn-zv-dWf"/>
+                                                    <exclude reference="SEg-Ae-tio"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="QvL-hb-cYK" firstAttribute="width" secondItem="09P-4Z-rqa" secondAttribute="width" id="skM-eq-AfK"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="about" id="3yl-bj-r35">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="119" id="zSE-oa-d4A">
-                                        <rect key="frame" x="0.0" y="650" width="600" height="119"/>
+                                        <rect key="frame" x="0.0" y="722" width="600" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zSE-oa-d4A" id="red-Ac-WwZ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="118"/>
@@ -691,7 +683,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                             <tableViewSection headerTitle="Social" id="agz-Hb-bth">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Ur9-F1-3Q9" imageView="nks-2Y-PCJ" style="IBUITableViewCellStyleDefault" id="fqL-gX-I1I">
-                                        <rect key="frame" x="0.0" y="820" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="892" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fqL-gX-I1I" id="hAP-pG-97P">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -713,7 +705,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                         <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="by7-au-h5q" imageView="MX1-eN-lCl" style="IBUITableViewCellStyleDefault" id="2q9-7X-KQL">
-                                        <rect key="frame" x="0.0" y="864" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="936" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2q9-7X-KQL" id="XEl-Vk-Q8h">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -735,7 +727,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                         <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="zGf-Am-hr9" imageView="8Hg-49-KU0" style="IBUITableViewCellStyleDefault" id="iw5-Yb-5QH">
-                                        <rect key="frame" x="0.0" y="908" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="980" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iw5-Yb-5QH" id="DMH-4E-GE8">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -761,7 +753,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                             <tableViewSection headerTitle="Recordings" id="3Rg-aQ-w1e">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="A67-66-l8h" imageView="u5J-Bj-qAW" style="IBUITableViewCellStyleDefault" id="CfD-9j-okq">
-                                        <rect key="frame" x="0.0" y="1003" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="1075" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CfD-9j-okq" id="uYj-EY-mWA">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -790,6 +782,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                             <outlet property="delegate" destination="WlL-v8-hc7" id="yvn-I6-ynQ"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Podcast Detail" id="cL7-5b-Rce">
                         <barButtonItem key="rightBarButtonItem" image="star_25" id="pG8-Xk-VwU">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -801,7 +794,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1200"/>
                     <connections>
-                        <outlet property="coverartImageView" destination="9c8-Rp-Bin" id="stI-fl-glG"/>
+                        <outlet property="coverartImageView" destination="QvL-hb-cYK" id="1HD-x8-Xdx"/>
                         <outlet property="descriptionLabel" destination="7dY-To-te5" id="vmo-Pg-vvo"/>
                         <outlet property="favoriteBarButtonItem" destination="pG8-Xk-VwU" id="zkZ-Pb-HDV"/>
                         <outlet property="sendMailCell" destination="iw5-Yb-5QH" id="BD9-R8-Eui"/>
@@ -1619,6 +1612,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <image name="user_25" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9p7-iD-iFK"/>
+        <segue reference="rSm-aR-dfa"/>
     </inferredMetricsTieBreakers>
 </document>
