@@ -36,6 +36,8 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             tableView.contentInset.bottom = bottomInset + 44 // 44 are for the player popup above the tabbar
         }
         
+        tableView.contentInset.top = tableView.contentInset.top - 44
+        
         if let podcast = podcast {
             coverartImageView.accessibilityLabel = "Coverart image"
             
