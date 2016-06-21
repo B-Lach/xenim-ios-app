@@ -1220,10 +1220,10 @@
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="Hew-Eg-nIG"/>
-                                                        <exclude reference="ynj-wi-NDI"/>
                                                         <exclude reference="Yit-OG-hYV"/>
-                                                        <exclude reference="sSN-Rh-8cc"/>
                                                         <exclude reference="hY8-Ru-eIK"/>
+                                                        <exclude reference="sSN-Rh-8cc"/>
+                                                        <exclude reference="ynj-wi-NDI"/>
                                                     </mask>
                                                 </variation>
                                                 <connections>
@@ -1245,9 +1245,9 @@
                                                 </state>
                                                 <variation key="default">
                                                     <mask key="constraints">
+                                                        <exclude reference="Tvw-ki-Czj"/>
                                                         <exclude reference="azv-jc-qRe"/>
                                                         <exclude reference="oyb-yt-axo"/>
-                                                        <exclude reference="Tvw-ki-Czj"/>
                                                     </mask>
                                                 </variation>
                                                 <connections>
@@ -1268,8 +1268,8 @@
                                                 </state>
                                                 <variation key="default">
                                                     <mask key="constraints">
-                                                        <exclude reference="DlF-tk-qzJ"/>
                                                         <exclude reference="D60-4t-Gnb"/>
+                                                        <exclude reference="DlF-tk-qzJ"/>
                                                         <exclude reference="fF8-nS-GzX"/>
                                                     </mask>
                                                 </variation>
