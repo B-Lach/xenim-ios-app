@@ -839,15 +839,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tuh-X7-b6l">
-                                            <rect key="frame" x="8" y="2" width="60" height="60"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tuh-X7-b6l">
+                                            <rect key="frame" x="8" y="10" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="6KF-nC-Dnc"/>
                                                 <constraint firstAttribute="width" secondItem="Tuh-X7-b6l" secondAttribute="height" multiplier="1:1" id="dM6-ZU-bZx"/>
                                             </constraints>
                                         </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="E5G-UP-CvH">
-                                            <rect key="frame" x="76" y="21" width="446" height="22"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="E5G-UP-CvH">
+                                            <rect key="frame" x="76" y="29" width="446" height="22"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3h-bQ-DFo">
                                                     <rect key="frame" x="0.0" y="0.0" width="446" height="22"/>
@@ -857,8 +857,8 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="e3Q-SH-OW6">
-                                            <rect key="frame" x="522" y="12" width="70" height="41"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="e3Q-SH-OW6">
+                                            <rect key="frame" x="522" y="20" width="70" height="41"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="SO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5a1-3J-VJb">
                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="21"/>
@@ -1192,6 +1192,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="qjr-fZ-rjL">
                                 <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qjr-fZ-rjL" secondAttribute="height" multiplier="1:1" id="cro-DQ-ph5"/>
                                 </constraints>
@@ -1485,6 +1486,6 @@
         <image name="twitter_25" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QSb-iJ-xwY"/>
+        <segue reference="Mn2-PI-Ldr"/>
     </inferredMetricsTieBreakers>
 </document>
