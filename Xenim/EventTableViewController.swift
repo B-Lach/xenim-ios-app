@@ -258,7 +258,14 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "play" {
-            //TODO
+            if let navigationController = segue.destinationViewController as? UINavigationController {
+                if let playerVC = navigationController.topViewController as? PlayerViewController {
+                    if let event = sender as? Event {
+                        playerVC.event = event
+                    }
+                }
+            }
+
         }
         
         if segue.identifier == "podcastDetail" {

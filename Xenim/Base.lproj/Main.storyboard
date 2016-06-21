@@ -1178,10 +1178,10 @@
             </objects>
             <point key="canvasLocation" x="-407" y="2830"/>
         </scene>
-        <!--Funkenstrahlen-->
+        <!--Title-->
         <scene sceneID="dLZ-gx-b4P">
             <objects>
-                <viewController id="pfT-oS-S5n" sceneMemberID="viewController">
+                <viewController id="pfT-oS-S5n" customClass="PlayerViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ddh-2W-brZ"/>
                         <viewControllerLayoutGuide type="bottom" id="ATw-j0-vVV"/>
@@ -1197,10 +1197,10 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1e1-Rg-dl8">
-                                <rect key="frame" x="0.0" y="485" width="375" height="124"/>
+                                <rect key="frame" x="0.0" y="447" width="375" height="162"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Jic-xk-I2I">
-                                        <rect key="frame" x="0.0" y="2" width="375" height="120"/>
+                                        <rect key="frame" x="0.0" y="21" width="375" height="120"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mci-8T-mCM" userLabel="Prev">
                                                 <rect key="frame" x="0.0" y="46" width="120" height="29"/>
@@ -1225,6 +1225,9 @@
                                                         <exclude reference="hY8-Ru-eIK"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="backwardPressed:" destination="pfT-oS-S5n" eventType="touchUpInside" id="drA-aI-hoA"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdF-Y1-aDP" userLabel="Play">
                                                 <rect key="frame" x="128" y="0.0" width="119" height="120"/>
@@ -1246,6 +1249,9 @@
                                                         <exclude reference="Tvw-ki-Czj"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="togglePlayPause:" destination="pfT-oS-S5n" eventType="touchUpInside" id="lzY-iD-njA"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHj-1H-c5C" userLabel="Next">
                                                 <rect key="frame" x="255" y="46" width="120" height="29"/>
@@ -1266,6 +1272,9 @@
                                                         <exclude reference="fF8-nS-GzX"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="forwardPressed:" destination="pfT-oS-S5n" eventType="touchUpInside" id="DnM-Xb-wa2"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1287,6 +1296,9 @@
                                         <state key="normal" image="share">
                                             <color key="titleColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="share:" destination="pfT-oS-S5n" eventType="touchUpInside" id="rMR-E6-pPw"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pac-wz-Jrg" customClass="MPVolumeView">
                                         <rect key="frame" x="128" y="0.0" width="119" height="50"/>
@@ -1298,6 +1310,9 @@
                                         <state key="normal" image="sleep">
                                             <color key="titleColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sleepTimerPressed:" destination="pfT-oS-S5n" eventType="touchUpInside" id="a04-Yp-ect"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1305,23 +1320,27 @@
                                     <constraint firstAttribute="height" constant="50" id="eIF-Dt-e1u"/>
                                 </constraints>
                             </stackView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ahJ-KR-fHE">
-                                <rect key="frame" x="14" y="447" width="347" height="31"/>
-                                <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </slider>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZs-KN-0fo" customClass="SpinnerView" customModule="Xenim" customModuleProvider="target">
+                                <rect key="frame" x="158" y="498" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rZs-KN-0fo" secondAttribute="height" multiplier="1:1" id="nRb-EF-V2Z"/>
+                                    <constraint firstAttribute="width" constant="60" id="rMn-mo-ccF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1e1-Rg-dl8" firstAttribute="top" secondItem="ahJ-KR-fHE" secondAttribute="bottom" constant="8" id="Beu-6g-atY"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="ahJ-KR-fHE" secondAttribute="leading" id="Bsd-xq-s9u"/>
                             <constraint firstItem="1e1-Rg-dl8" firstAttribute="top" secondItem="qjr-fZ-rjL" secondAttribute="bottom" constant="8" id="E8I-S0-K7w"/>
                             <constraint firstAttribute="trailing" secondItem="83I-ys-LpP" secondAttribute="trailing" id="IX3-uS-G7G"/>
                             <constraint firstItem="1e1-Rg-dl8" firstAttribute="leading" secondItem="FyS-HK-NnR" secondAttribute="leading" id="RfJ-3M-BFr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ahJ-KR-fHE" secondAttribute="trailing" id="d7R-7n-N7C"/>
-                            <constraint firstItem="ahJ-KR-fHE" firstAttribute="top" secondItem="qjr-fZ-rjL" secondAttribute="bottom" constant="8" id="eLp-pw-tuD"/>
+                            <constraint firstItem="rZs-KN-0fo" firstAttribute="centerY" secondItem="sdF-Y1-aDP" secondAttribute="centerY" id="WEV-SD-uc1"/>
+                            <constraint firstItem="rZs-KN-0fo" firstAttribute="centerX" secondItem="sdF-Y1-aDP" secondAttribute="centerX" id="c2x-dR-0js"/>
                             <constraint firstItem="83I-ys-LpP" firstAttribute="top" secondItem="1e1-Rg-dl8" secondAttribute="bottom" constant="8" id="fHN-e9-ItL"/>
                             <constraint firstAttribute="trailing" secondItem="1e1-Rg-dl8" secondAttribute="trailing" id="h2u-vf-TmR"/>
                             <constraint firstItem="qjr-fZ-rjL" firstAttribute="leading" secondItem="FyS-HK-NnR" secondAttribute="leading" id="oeA-gW-zuh"/>
+                            <constraint firstItem="1e1-Rg-dl8" firstAttribute="top" secondItem="qjr-fZ-rjL" secondAttribute="bottom" constant="8" id="rpX-wW-CEK"/>
                             <constraint firstItem="83I-ys-LpP" firstAttribute="leading" secondItem="FyS-HK-NnR" secondAttribute="leading" id="s7V-53-y4P"/>
                             <constraint firstItem="qjr-fZ-rjL" firstAttribute="top" secondItem="Ddh-2W-brZ" secondAttribute="bottom" id="wC6-YX-VDM"/>
                             <constraint firstAttribute="trailing" secondItem="qjr-fZ-rjL" secondAttribute="trailing" id="wn2-ex-H5y"/>
@@ -1333,7 +1352,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Funkenstrahlen" id="Fa2-bV-ZfN">
+                    <navigationItem key="navigationItem" title="Title" id="Fa2-bV-ZfN">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="qMB-5h-eTF">
                             <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -1342,14 +1361,28 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="star_25" id="PyC-8K-Kft">
                             <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="toggleFavorite:" destination="pfT-oS-S5n" id="Os0-0X-zdU"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="airplayView" destination="Pac-wz-Jrg" id="YZz-dp-unM"/>
+                        <outlet property="coverartView" destination="qjr-fZ-rjL" id="Lo8-Gq-cnT"/>
+                        <outlet property="favoriteButton" destination="PyC-8K-Kft" id="7Ie-CV-SSq"/>
+                        <outlet property="loadingSpinnerView" destination="rZs-KN-0fo" id="uWw-03-m4W"/>
+                        <outlet property="playPauseButton" destination="sdF-Y1-aDP" id="9JH-9X-SER"/>
+                        <outlet property="shareButton" destination="4td-Q0-iyc" id="MK6-zs-cKY"/>
+                        <outlet property="skipBackwardButton" destination="Mci-8T-mCM" id="wkA-98-NTw"/>
+                        <outlet property="skipForwardButton" destination="sHj-1H-c5C" id="A8Y-Yx-doU"/>
+                        <outlet property="sleepTimerButton" destination="bR0-MN-SUo" id="mNq-QF-vM5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MmV-3H-3sr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6MJ-wB-ycF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2642.5" y="507.5"/>
+            <point key="canvasLocation" x="2122.5" y="537.5"/>
         </scene>
         <!--Settings-->
         <scene sceneID="8wy-hc-DV4">
