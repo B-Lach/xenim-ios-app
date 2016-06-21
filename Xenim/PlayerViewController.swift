@@ -101,10 +101,10 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
         setupNotifications()
         updateUI()
         
-        setupVoidOver()
+        setupVoiceOver()
 	}
     
-    private func setupVoidOver() {
+    private func setupVoiceOver() {
         popupItem.accessibilityHint = NSLocalizedString("voiceover_playerbar_hint", value: "double tap to max the player", comment: "")
         
         listenersCountLabel.accessibilityLabel = NSLocalizedString("voiceover_listeners_count_label", value: "listeners", comment: "")
