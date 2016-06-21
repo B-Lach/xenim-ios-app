@@ -125,6 +125,12 @@ class FavoritesTableViewController: UITableViewController{
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
                 self.tableView.backgroundView = self.messageVC!.view
                 self.updateBackground()
+                
+                if self.favorites.count > 0 {
+                    let firstItem = NSIndexPath(forRow: 0, inSection: 0)
+                    self.tableView.selectRowAtIndexPath(firstItem, animated: true, scrollPosition: .Top)
+                    self.tableView.delegate?.tableView!(self.tableView, didSelectRowAtIndexPath: firstItem)
+                }
             })
         })
     }
@@ -147,7 +153,6 @@ class FavoritesTableViewController: UITableViewController{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let podcast = favorites[indexPath.row]
         self.performSegueWithIdentifier("podcastDetail", sender: podcast)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

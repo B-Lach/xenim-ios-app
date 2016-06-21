@@ -245,7 +245,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="scarlet-25-star" id="vwc-OO-qFS">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="star_25" id="vwc-OO-qFS">
                                                     <rect key="frame" x="15" y="12" width="19" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -589,16 +589,16 @@
         <!--Podcast Detail-->
         <scene sceneID="zzG-QK-Kck">
             <objects>
-                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="WlL-v8-hc7" customClass="PodcastDetailTableViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="WlL-v8-hc7" customClass="PodcastDetailTableViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cxS-Lr-qTN">
-                        <rect key="frame" x="0.0" y="64" width="600" height="1136"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="U5i-W7-FaT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="636" id="09P-4Z-rqa">
-                                        <rect key="frame" x="0.0" y="35" width="600" height="636"/>
+                                        <rect key="frame" x="0.0" y="99" width="600" height="636"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09P-4Z-rqa" id="0i8-G8-gv7">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="635"/>
@@ -637,23 +637,14 @@
                             <tableViewSection headerTitle="about" id="3yl-bj-r35">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="119" id="zSE-oa-d4A">
-                                        <rect key="frame" x="0.0" y="722" width="600" height="119"/>
+                                        <rect key="frame" x="0.0" y="786" width="600" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zSE-oa-d4A" id="red-Ac-WwZ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="118"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dY-To-te5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dY-To-te5">
                                                     <rect key="frame" x="16" y="8" width="568" height="102"/>
-                                                    <string key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
-eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
-fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate
-eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,
-enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -684,7 +675,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                             <tableViewSection headerTitle="Social" id="agz-Hb-bth">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Ur9-F1-3Q9" imageView="nks-2Y-PCJ" style="IBUITableViewCellStyleDefault" id="fqL-gX-I1I">
-                                        <rect key="frame" x="0.0" y="892" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="956" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fqL-gX-I1I" id="hAP-pG-97P">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -706,7 +697,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                         <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="by7-au-h5q" imageView="MX1-eN-lCl" style="IBUITableViewCellStyleDefault" id="2q9-7X-KQL">
-                                        <rect key="frame" x="0.0" y="936" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="1000" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2q9-7X-KQL" id="XEl-Vk-Q8h">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -728,7 +719,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                                         <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="zGf-Am-hr9" imageView="8Hg-49-KU0" style="IBUITableViewCellStyleDefault" id="iw5-Yb-5QH">
-                                        <rect key="frame" x="0.0" y="980" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="1044" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iw5-Yb-5QH" id="DMH-4E-GE8">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -754,7 +745,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                             <tableViewSection headerTitle="Recordings" id="3Rg-aQ-w1e">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="A67-66-l8h" imageView="u5J-Bj-qAW" style="IBUITableViewCellStyleDefault" id="CfD-9j-okq">
-                                        <rect key="frame" x="0.0" y="1075" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="1139" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CfD-9j-okq" id="uYj-EY-mWA">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -783,7 +774,6 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                             <outlet property="delegate" destination="WlL-v8-hc7" id="yvn-I6-ynQ"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Podcast Detail" id="cL7-5b-Rce">
                         <barButtonItem key="rightBarButtonItem" image="star_25" id="pG8-Xk-VwU">
                             <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -955,19 +945,15 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
             </objects>
             <point key="canvasLocation" x="374" y="2822"/>
         </scene>
-        <!--Calendar-->
+        <!--Navigation Controller-->
         <scene sceneID="uLN-cE-2UG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EEx-ap-ZIj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar_o_25" selectedImage="calendar_25" id="KKU-KO-aCN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vs3-Mg-kYO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -987,7 +973,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="80" id="zUc-fG-eS6" customClass="AddFavoriteTableViewCell" customModule="Xenim" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="80" id="zUc-fG-eS6" customClass="AddFavoriteTableViewCell" customModule="Xenim" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zUc-fG-eS6" id="BZb-It-dTh">
@@ -1138,11 +1124,11 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
             </objects>
             <point key="canvasLocation" x="-2086" y="1208"/>
         </scene>
-        <!--Item-->
+        <!--Calendar-->
         <scene sceneID="Fua-Mn-53a">
             <objects>
                 <splitViewController id="ngc-Qx-mi1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="jgt-ys-ylT"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar_o_25" selectedImage="calendar_25" id="jgt-ys-ylT"/>
                     <connections>
                         <segue destination="EEx-ap-ZIj" kind="relationship" relationship="masterViewController" id="SBU-xb-A8Y"/>
                         <segue destination="Ciw-6B-Eu4" kind="relationship" relationship="detailViewController" id="rSm-aR-dfa"/>
@@ -1152,11 +1138,11 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
             </objects>
             <point key="canvasLocation" x="-1216" y="1208"/>
         </scene>
-        <!--Item-->
+        <!--Favorites-->
         <scene sceneID="jec-B9-ako">
             <objects>
                 <splitViewController id="3DS-Cl-98T" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="7pW-gm-Mgc"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="star_o_25" selectedImage="star_25" id="7pW-gm-Mgc"/>
                     <connections>
                         <segue destination="FUF-oZ-1Ao" kind="relationship" relationship="masterViewController" id="dLy-rI-X9M"/>
                         <segue destination="Ciw-6B-Eu4" kind="relationship" relationship="detailViewController" id="xoN-Ig-TCs"/>
@@ -1513,11 +1499,11 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
             </objects>
             <point key="canvasLocation" x="734.5" y="-1104.5"/>
         </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="8wy-hc-DV4">
             <objects>
                 <navigationController storyboardIdentifier="Settings" automaticallyAdjustsScrollViewInsets="NO" id="rFQ-ny-7OW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="QQH-sd-rVb"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear_25" id="QQH-sd-rVb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TGd-yb-eDB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1569,7 +1555,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqB-xu-och" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="343" y="1798"/>
+            <point key="canvasLocation" x="437" y="1723"/>
         </scene>
     </scenes>
     <resources>
@@ -1581,13 +1567,13 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</string>
         <image name="dismiss" width="25" height="16"/>
         <image name="envelope_25" width="19" height="19"/>
         <image name="event_placeholder" width="420" height="420"/>
+        <image name="gear_25" width="19" height="19"/>
         <image name="info_25" width="19" height="19"/>
         <image name="info_circle_44" width="33" height="33"/>
         <image name="large-play" width="60" height="61"/>
         <image name="questionmark_25" width="19" height="19"/>
         <image name="rss_square_25" width="19" height="19"/>
         <image name="safari_25" width="19" height="19"/>
-        <image name="scarlet-25-star" width="19" height="19"/>
         <image name="share" width="19" height="25"/>
         <image name="sleep" width="25" height="26"/>
         <image name="star_25" width="19" height="19"/>

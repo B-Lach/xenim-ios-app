@@ -58,6 +58,12 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
                 self.tableView.tableHeaderView = self.resultSearchController.searchBar
                 
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+                
+                if self.podcasts.count > 0 {
+                    let firstItem = NSIndexPath(forRow: 0, inSection: 0)
+                    self.tableView.selectRowAtIndexPath(firstItem, animated: true, scrollPosition: .Top)
+                    self.tableView.delegate?.tableView!(self.tableView, didSelectRowAtIndexPath: firstItem)
+                }
             })
         }
     }
@@ -151,7 +157,6 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
             resultSearchController.active = false
         }
         self.performSegueWithIdentifier("podcastDetail", sender: podcast)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

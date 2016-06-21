@@ -38,6 +38,20 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         
         tableView.contentInset.top = tableView.contentInset.top - 44
         
+        // disable cells if they have not enough data provided to work
+        if podcast?.websiteUrl == nil {
+            disableCell(websiteCell)
+        }
+        if podcast?.twitterURL == nil {
+            disableCell(twitterCell)
+        }
+        if podcast?.email == nil {
+            disableCell(sendMailCell)
+        }
+        if podcast?.feedUrl == nil {
+            disableCell(subscribeCell)
+        }
+        
         if let podcast = podcast {
             coverartImageView.accessibilityLabel = "Coverart image"
             
@@ -49,20 +63,6 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             }
             title = podcast.name
             descriptionLabel.text = podcast.podcastDescription
-            
-            // disable cells if they have not enough data provided to work
-            if podcast.websiteUrl == nil {
-                disableCell(websiteCell)
-            }
-            if podcast.twitterURL == nil {
-                disableCell(twitterCell)
-            }
-            if podcast.email == nil {
-                disableCell(sendMailCell)
-            }
-            if podcast.feedUrl == nil {
-                disableCell(subscribeCell)
-            }
             
             setupNotifications()
             

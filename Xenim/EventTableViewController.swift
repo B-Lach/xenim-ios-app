@@ -109,6 +109,12 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
                 self.filterFavorites()
                 
                 self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+                
+                if events.count > 0 {
+                    let firstItem = NSIndexPath(forRow: 0, inSection: 0)
+                    self.tableView.selectRowAtIndexPath(firstItem, animated: true, scrollPosition: .Top)
+                    self.tableView.delegate?.tableView!(self.tableView, didSelectRowAtIndexPath: firstItem)
+                }
             })
         }
     }
@@ -245,7 +251,6 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
         self.performSegueWithIdentifier("podcastDetail", sender: cell)
-        cell.setSelected(false, animated: true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
