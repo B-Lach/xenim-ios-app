@@ -28,6 +28,12 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var airplayView: MPVolumeView! {
         didSet {
             airplayView.showsVolumeSlider = false
+            for view in airplayView.subviews {
+                if view.isKindOfClass(UIButton) {
+                    let buttonOnVolumeView : UIButton = view as! UIButton
+                    airplayView.setRouteButtonImage(buttonOnVolumeView.currentImage?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+                }
+            }
         }
     }
     

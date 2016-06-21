@@ -1301,9 +1301,10 @@
                                             <action selector="share:" destination="pfT-oS-S5n" eventType="touchUpInside" id="rMR-E6-pPw"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pac-wz-Jrg" customClass="MPVolumeView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCs-pw-rMW" customClass="MPVolumeView">
                                         <rect key="frame" x="128" y="0.0" width="119" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bR0-MN-SUo">
                                         <rect key="frame" x="255" y="0.0" width="120" height="50"/>
@@ -1332,6 +1333,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.95686274510000002" green="0.066666666669999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="1e1-Rg-dl8" firstAttribute="top" secondItem="qjr-fZ-rjL" secondAttribute="bottom" constant="8" id="E8I-S0-K7w"/>
                             <constraint firstAttribute="trailing" secondItem="83I-ys-LpP" secondAttribute="trailing" id="IX3-uS-G7G"/>
@@ -1369,7 +1371,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="airplayView" destination="Pac-wz-Jrg" id="YZz-dp-unM"/>
+                        <outlet property="airplayView" destination="QCs-pw-rMW" id="eVZ-QR-MPT"/>
                         <outlet property="coverartView" destination="qjr-fZ-rjL" id="Lo8-Gq-cnT"/>
                         <outlet property="favoriteButton" destination="PyC-8K-Kft" id="7Ie-CV-SSq"/>
                         <outlet property="loadingSpinnerView" destination="rZs-KN-0fo" id="uWw-03-m4W"/>
