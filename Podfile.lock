@@ -5,6 +5,7 @@ PODS:
   - AlamofireNetworkActivityIndicator (1.0.1):
     - Alamofire (~> 3.3)
   - Bolts/Tasks (1.7.0)
+  - KDEAudioPlayer (0.8.4)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
   - SimulatorStatusMagic (1.8)
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.0)
   - AlamofireImage (~> 2.1)
   - AlamofireNetworkActivityIndicator (~> 1.0)
+  - KDEAudioPlayer (~> 0.8.4)
   - Parse (~> 1.10)
   - SimulatorStatusMagic
   - SwiftyJSON (~> 2.3)
@@ -23,10 +25,11 @@ SPEC CHECKSUMS:
   AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
   AlamofireNetworkActivityIndicator: 49a6e39afb947136f7b1872bae2d684957c26697
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  KDEAudioPlayer: d21120cfd9659db372633c99738747d8ab72f155
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   SimulatorStatusMagic: 4dbf0faa0208e9ac0d56cea06eaa5f7a5f3d02fb
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 8314bf9fb86f83532314da880cec70a1cd59ca75
+PODFILE CHECKSUM: 59522b04c27f01e91dfb8f405bbdeaedcba5f34f
 
 COCOAPODS: 1.0.1

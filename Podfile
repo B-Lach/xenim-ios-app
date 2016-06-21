@@ -7,6 +7,7 @@ target 'Xenim' do
   pod 'AlamofireImage', '~> 2.1'
   pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
   pod 'Parse', '~> 1.10'
+  pod 'KDEAudioPlayer', '~> 0.8.4'
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
 end
 
