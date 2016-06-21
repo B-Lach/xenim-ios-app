@@ -34,9 +34,6 @@ class FavoritesTableViewController: UITableViewController{
             self.messageVC?.message = NSLocalizedString("favorites_tableview_empty_message", value: "Add podcast shows as your favorite to see them here.", comment: "this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.")
         }
         loadingVC = storyboard?.instantiateViewControllerWithIdentifier("LoadingViewController")
-        
-        // increase content inset for audio player
-        tableView?.contentInset.bottom = tableView!.contentInset.bottom + 40
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -125,12 +122,6 @@ class FavoritesTableViewController: UITableViewController{
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
                 self.tableView.backgroundView = self.messageVC!.view
                 self.updateBackground()
-                
-                if self.favorites.count > 0 {
-                    let firstItem = NSIndexPath(forRow: 0, inSection: 0)
-                    self.tableView.selectRowAtIndexPath(firstItem, animated: true, scrollPosition: .Top)
-                    self.tableView.delegate?.tableView!(self.tableView, didSelectRowAtIndexPath: firstItem)
-                }
             })
         })
     }

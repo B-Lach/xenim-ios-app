@@ -20,6 +20,8 @@ class EventCellStatus {
 
 class EventTableViewCell: UITableViewCell {
     
+    var playerDelegate: PlayerDelegate?
+    
     @IBOutlet weak var eventCoverartImage: UIImageView! {
         didSet {
             eventCoverartImage.layer.cornerRadius = eventCoverartImage.frame.width / 2
@@ -167,7 +169,7 @@ class EventTableViewCell: UITableViewCell {
             animations: {
                 self.playButton.transform = CGAffineTransformIdentity
             }, completion: nil)
-        PlayerManager.sharedInstance.togglePlayPause(event)
+        playerDelegate?.play(event)
     }
     
     // MARK: notifications

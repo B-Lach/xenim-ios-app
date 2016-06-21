@@ -8,7 +8,11 @@
 
 import UIKit
 
-class EventTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+protocol PlayerDelegate {
+    func play(event: Event)
+}
+
+class EventTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, PlayerDelegate {
     
     // possible sections
     enum Section {
@@ -43,9 +47,6 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         super.viewDidLoad()
 
         self.splitViewController?.preferredDisplayMode = .AllVisible
-        
-        // increase content inset for audio player
-        tableView.contentInset.bottom = tableView.contentInset.bottom + 40
         
         // check if filter was enabled when the app was use the last time
         // fetch it from user defaults
@@ -109,12 +110,6 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
                 self.filterFavorites()
                 
                 self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
-                
-                if events.count > 0 {
-                    let firstItem = NSIndexPath(forRow: 0, inSection: 0)
-                    self.tableView.selectRowAtIndexPath(firstItem, animated: true, scrollPosition: .Top)
-                    self.tableView.delegate?.tableView!(self.tableView, didSelectRowAtIndexPath: firstItem)
-                }
             })
         }
     }
@@ -189,6 +184,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         } else {
             cell.event = events[indexPath.section][indexPath.row]
         }
+        cell.playerDelegate = self
         return cell
     }
     
@@ -248,12 +244,22 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     // MARK: - Navigation
     
+    @IBAction func dismissPlayer(segue:UIStoryboardSegue) {}
+    
+    func play(event: Event) {
+        self.performSegueWithIdentifier("play", sender: event)
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
         self.performSegueWithIdentifier("podcastDetail", sender: cell)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "play" {
+            //TODO
+        }
         
         if segue.identifier == "podcastDetail" {
             var detail: PodcastDetailTableViewController
