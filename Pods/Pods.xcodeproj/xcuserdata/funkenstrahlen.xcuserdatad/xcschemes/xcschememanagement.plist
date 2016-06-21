@@ -24,21 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>GCDKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>KDEAudioPlayer.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>MarqueeLabel.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -59,20 +44,10 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>UIImageColors.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>05094CC4A047119F7ADC14EE74C4881C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0E7D1EFF1D51CC9945FC56699E2019A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,17 +62,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>357A722A0C305ABEC20394CC7C0A2F76</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>541E9AD8F0209976F59A780F49A3F069</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>76B5E08008E4A1E7FF0A9A441E08EE59</key>
+		<key>4EC1215F92F6ADDBE8E302A64BA14B48</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,7 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B082D7DE7005F44F54C9CDFEE6BBCBB2</key>
+		<key>79C75BDBBACBEEC6895A8316E3304BB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,12 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7A33AD034AA6FA7EAEA728B74E50BB8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E09829281B3F54EB34F2E61AC0118A67</key>
+		<key>E698DD18B716EAEE959136D9989BD968</key>
 		<dict>
 			<key>primary</key>
 			<true/>
