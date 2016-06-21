@@ -94,6 +94,7 @@ class PlayerViewController: UIViewController {
         if let url = event?.eventXenimWebUrl {
             let objectsToShare = [url]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            activityVC.popoverPresentationController?.sourceView = shareButton
                 
             // Excluded Activities
             //      activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
@@ -214,6 +215,7 @@ class PlayerViewController: UIViewController {
             // 10, 20, 30, 60 minutes
             
             let optionMenu = UIAlertController(title: "", message: "", preferredStyle: .ActionSheet)
+            
             optionMenu.view.tintColor = Constants.Colors.tintColor
             
             for minutes in [10, 20, 30, 60] {
@@ -227,6 +229,7 @@ class PlayerViewController: UIViewController {
                 (alert: UIAlertAction!) -> Void in
             })
             optionMenu.addAction(cancelAction)
+            optionMenu.popoverPresentationController?.sourceView = sleepTimerButton
             
             self.presentViewController(optionMenu, animated: true, completion: nil)
         }
