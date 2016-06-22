@@ -210,6 +210,7 @@
 		229B3C451C1F087400187BA0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				22F4D7D41D19749100DCBA17 /* GlobalSplitViewController.swift */,
 				22B066881C5D3A3600870BF5 /* SpinnerView.swift */,
 				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
 				22C31DF61BECB64E006F2999 /* HelperExtensions.swift */,
@@ -230,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				2222ECC71BD52EEA0040100F /* EventTableViewController.swift */,
-				22F4D7D41D19749100DCBA17 /* GlobalSplitViewController.swift */,
 				229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */,
 			);
 			name = Events;
