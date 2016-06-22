@@ -12,12 +12,12 @@ class AddFavoriteTableViewCell: UITableViewCell {
 
     var podcast: Podcast! {
         didSet {
-            let placeholderImage = UIImage(named: "event_placeholder")
             if let imageurl = podcast.artwork.thumb180Url {
-                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
             } else {
-                coverartImageView.image = placeholderImage
+                coverartImageView.image = nil
             }
+            
             setupNotifications()
             
             favoriteButton.accessibilityLabel = " "
