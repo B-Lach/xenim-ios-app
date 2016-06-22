@@ -66,7 +66,7 @@ class PlayerViewController: UIViewController {
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
-        updateListenersTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(updateListenersLabel), userInfo: nil, repeats: true)
+        updateListenersTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateListenersLabel), userInfo: nil, repeats: true)
         updateListenersLabel()
 	}
     
