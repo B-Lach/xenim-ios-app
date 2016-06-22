@@ -16,7 +16,6 @@
 		222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222913CC1C032221005C74BB /* SettingsTableViewController.swift */; };
 		222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222FB9FC1BF0E90A0007257A /* PlayerManager.swift */; };
 		224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224180071BFA21AA004D1B5D /* MessageViewController.swift */; };
-		224B0FE91C41A69400E0EFEB /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22BEF0FA1C1192F000496C2F /* LNPopupController.framework */; };
 		226B3B2C1CC67F120099F69C /* XenimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B3B2B1CC67F120099F69C /* XenimUITests.swift */; };
 		226B3B341CC67F760099F69C /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B3B331CC67F760099F69C /* SnapshotHelper.swift */; };
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
@@ -30,14 +29,13 @@
 		229DA8AC1CEC7B670072D9A0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 229DA8AE1CEC7B670072D9A0 /* Localizable.strings */; };
 		229DA8B11CEC7B680072D9A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 229DA8B31CEC7B680072D9A0 /* InfoPlist.strings */; };
 		22B066891C5D3A3600870BF5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B066881C5D3A3600870BF5 /* SpinnerView.swift */; };
-		22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
-		22DCD9581CA67E01000E602A /* UIGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCD9571CA67E01000E602A /* UIGradientView.swift */; };
 		22E040D41CADA465009896CE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E040D31CADA465009896CE /* StoreKit.framework */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
 		22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */; };
 		22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */; };
 		22F1B3D51C4A5A43005B03F7 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D41C4A5A43005B03F7 /* FavoriteTableViewCell.swift */; };
+		22F4D7D51D19749200DCBA17 /* GlobalSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4D7D41D19749100DCBA17 /* GlobalSplitViewController.swift */; };
 		AA0DD6CDD51CF5439A6A4398 /* Pods_Xenim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEA0DEF23104216FE920048 /* Pods_Xenim.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +56,6 @@
 			dstPath = Xenim/Frameworks;
 			dstSubfolderSpec = 16;
 			files = (
-				22BEF0FF1C1193E800496C2F /* LNPopupController.framework.dSYM in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,14 +94,13 @@
 		229DA8B41CEC7B690072D9A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		22B066881C5D3A3600870BF5 /* SpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		22BEF0FA1C1192F000496C2F /* LNPopupController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LNPopupController.framework; path = Carthage/Build/iOS/LNPopupController.framework; sourceTree = "<group>"; };
-		22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = LNPopupController.framework.dSYM; path = Carthage/Build/iOS/LNPopupController.framework.dSYM; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
-		22DCD9571CA67E01000E602A /* UIGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGradientView.swift; sourceTree = "<group>"; };
 		22E040D31CADA465009896CE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewController.swift; sourceTree = "<group>"; };
 		22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		22F1B3D41C4A5A43005B03F7 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		22F4D7D41D19749100DCBA17 /* GlobalSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalSplitViewController.swift; sourceTree = "<group>"; };
 		80A2740F931C8892F43A96FA /* Pods-Xenim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Xenim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Xenim/Pods-Xenim.debug.xcconfig"; sourceTree = "<group>"; };
 		B0BCD2E086A7C9BA965D48CE /* Pods-Xenim.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Xenim.release.xcconfig"; path = "Pods/Target Support Files/Pods-Xenim/Pods-Xenim.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,7 +111,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				22E040D41CADA465009896CE /* StoreKit.framework in Frameworks */,
-				224B0FE91C41A69400E0EFEB /* LNPopupController.framework in Frameworks */,
 				AA0DD6CDD51CF5439A6A4398 /* Pods_Xenim.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,7 +128,6 @@
 		2222ECA91BD52E470040100F = {
 			isa = PBXGroup;
 			children = (
-				22BEF0FE1C1193E800496C2F /* LNPopupController.framework.dSYM */,
 				2222ECB41BD52E470040100F /* Xenim */,
 				226B3B2A1CC67F120099F69C /* XenimUITests */,
 				2222ECB31BD52E470040100F /* Products */,
@@ -216,10 +210,10 @@
 		229B3C451C1F087400187BA0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				22F4D7D41D19749100DCBA17 /* GlobalSplitViewController.swift */,
 				22B066881C5D3A3600870BF5 /* SpinnerView.swift */,
 				224180071BFA21AA004D1B5D /* MessageViewController.swift */,
 				22C31DF61BECB64E006F2999 /* HelperExtensions.swift */,
-				22DCD9571CA67E01000E602A /* UIGradientView.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -294,14 +288,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2222ECC41BD52E480040100F /* Build configuration list for PBXNativeTarget "Xenim" */;
 			buildPhases = (
-				F0BB648629DFD5A569E578D4 /* 📦 Check Pods Manifest.lock */,
+				F0BB648629DFD5A569E578D4 /* [CP] Check Pods Manifest.lock */,
 				2222ECAE1BD52E470040100F /* Sources */,
 				2222ECAF1BD52E470040100F /* Frameworks */,
 				2222ECB01BD52E470040100F /* Resources */,
-				22BEF0FC1C11933B00496C2F /* ShellScript */,
 				22BEF0FD1C1193B400496C2F /* Copy Files */,
-				F9347824C964817809EDD910 /* 📦 Embed Pods Frameworks */,
-				1B18182CAC11A56F1979CE62 /* 📦 Copy Pods Resources */,
+				F9347824C964817809EDD910 /* [CP] Embed Pods Frameworks */,
+				1B18182CAC11A56F1979CE62 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -404,14 +397,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B18182CAC11A56F1979CE62 /* 📦 Copy Pods Resources */ = {
+		1B18182CAC11A56F1979CE62 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,28 +412,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Xenim/Pods-Xenim-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		22BEF0FC1C11933B00496C2F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/LNPopupController.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		F0BB648629DFD5A569E578D4 /* 📦 Check Pods Manifest.lock */ = {
+		F0BB648629DFD5A569E578D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,14 +427,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F9347824C964817809EDD910 /* 📦 Embed Pods Frameworks */ = {
+		F9347824C964817809EDD910 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,6 +457,7 @@
 				229B7D501BD564DC00F1CF6B /* XenimAPI.swift in Sources */,
 				22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */,
 				22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */,
+				22F4D7D51D19749200DCBA17 /* GlobalSplitViewController.swift in Sources */,
 				2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */,
 				229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */,
 				2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */,
@@ -488,7 +468,6 @@
 				222FB9FD1BF0E90A0007257A /* PlayerManager.swift in Sources */,
 				2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */,
 				2224C5051CBC1F75004A49BA /* PodcastDetailTableViewController.swift in Sources */,
-				22DCD9581CA67E01000E602A /* UIGradientView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,7 +641,7 @@
 				PRODUCT_NAME = Xenim;
 				SWIFT_OBJC_BRIDGING_HEADER = "Xenim/Xenim-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -686,7 +665,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Xenim;
 				PRODUCT_NAME = Xenim;
 				SWIFT_OBJC_BRIDGING_HEADER = "Xenim/Xenim-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

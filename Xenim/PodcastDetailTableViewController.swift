@@ -12,6 +12,8 @@ import MessageUI
 
 class PodcastDetailTableViewController: UITableViewController, SFSafariViewControllerDelegate, MFMailComposeViewControllerDelegate {
     
+    @IBOutlet weak var coverartImageView: UIImageView!
+
     @IBOutlet weak var descriptionLabel: UILabel!
 
     @IBOutlet weak var subscribeCell: UITableViewCell!
@@ -20,69 +22,55 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     @IBOutlet weak var websiteCell: UITableViewCell!
     
     @IBOutlet weak var favoriteBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var coverartImageView: UIImageView!
-    var podcast: Podcast!
-    
-    var gradient: UIGradientView?
+    var podcast: Podcast?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        coverartImageView.accessibilityLabel = "Coverart image"
-        
-        let placeholderImage = UIImage(named: "event_placeholder")!
-        let screenScale = UIScreen.mainScreen().scale
-        if podcast.artwork.thumb800Url != nil && screenScale <= 2 {
-            coverartImageView.af_setImageWithURL(podcast.artwork.thumb800Url!, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
-        } else if podcast.artwork.thumb1300Url != nil && screenScale > 2 {
-            coverartImageView.af_setImageWithURL(podcast.artwork.thumb1300Url!, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
-        } else {
-            coverartImageView.image = placeholderImage
-        }
-        title = podcast.name
-        descriptionLabel.text = podcast.podcastDescription
-        
-        // resize table header view to 1:1 aspect ratio
-        // this is not possible with autolayout contraints
-        // disable adjust scrollview insets to make this work as expected
-        let width = tableView.frame.width
-        tableView.tableHeaderView?.frame = CGRectMake(0, 0, width, width)
-        
-        // adjust bottom insets as auto adjust scrollview insets is disabled
-        if let bottomInset = tabBarController?.tabBar.bounds.height {
-            tableView.contentInset.bottom = bottomInset + 44 // 44 are for the player popup above the tabbar
-        }
         
         // auto cell height
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
         
+        tableView.contentInset.top = tableView.contentInset.top - 44
+        
         // disable cells if they have not enough data provided to work
-        if podcast.websiteUrl == nil {
+        if podcast?.websiteUrl == nil {
             disableCell(websiteCell)
         }
-        if podcast.twitterURL == nil {
+        if podcast?.twitterURL == nil {
             disableCell(twitterCell)
         }
-        if podcast.email == nil {
+        if podcast?.email == nil {
             disableCell(sendMailCell)
         }
-        if podcast.feedUrl == nil {
+        if podcast?.feedUrl == nil {
             disableCell(subscribeCell)
         }
         
-        setupNotifications()
-        
-        favoriteBarButtonItem.accessibilityLabel = " "
-        favoriteBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", value: "double tap to toggle favorite", comment: "") 
-        if !Favorites.isFavorite(podcast.id) {
-            favoriteBarButtonItem.image = UIImage(named: "star_o_25")
-            favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
-        } else {
-            favoriteBarButtonItem.image = UIImage(named: "star_25")
-            favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
+        if let podcast = podcast {
+            coverartImageView.accessibilityLabel = "Coverart image"
+            
+            let placeholderImage = UIImage(named: "event_placeholder")!
+            if let imageurl = podcast.artwork.originalUrl {
+                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            } else {
+                coverartImageView.image = placeholderImage
+            }
+            title = podcast.name
+            descriptionLabel.text = podcast.podcastDescription
+            
+            setupNotifications()
+            
+            favoriteBarButtonItem.accessibilityLabel = " "
+            favoriteBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", value: "double tap to toggle favorite", comment: "")
+            if !Favorites.isFavorite(podcast.id) {
+                favoriteBarButtonItem.image = UIImage(named: "star_o_25")
+                favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
+            } else {
+                favoriteBarButtonItem.image = UIImage(named: "star_25")
+                favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
+            }
         }
-
     }
     
     private func disableCell(cell: UITableViewCell) {
@@ -93,68 +81,9 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         cell.accessoryType = UITableViewCellAccessoryType.None
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if let navbar = self.navigationController?.navigationBar {
-            navbar.shadowImage = UIImage() // removes tiny gray line at the bottom of the navigation bar
-            navbar.setBackgroundImage(UIImage(), forBarMetrics: .Default) // clear background
-            
-            let statusbarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
-            let navbarHeight = navbar.bounds.height + 2 * statusbarHeight
-            // configure gradient view
-            gradient = UIGradientView(frame: CGRect(x: 0, y: -statusbarHeight, width: navbar.bounds.width, height: navbarHeight))
-            gradient!.userInteractionEnabled = false
-            navbar.insertSubview(gradient!, atIndex: 0)
-        }
-
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        updateNavbar()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
-        gradient?.removeFromSuperview()
-    }
-    
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        updateNavbar()
-    }
-    
-    func updateNavbar() {
-        if let gradient = gradient {
-            
-            // y pixel count defining how long the clear->color transition is
-            let transitionArea: CGFloat = 64
-            // where should the transition start
-            let navbarChangePoint: CGFloat = coverartImageView.frame.height - transitionArea - gradient.frame.height
-            
-            // current scrollview y offset
-            let offsetY = tableView.contentOffset.y
-            if offsetY > navbarChangePoint {
-                // transition state + full colored state
-                
-                let alpha = min(1, 1 - ((navbarChangePoint + transitionArea - offsetY) / transitionArea)) // will become 1
-                let inverseAlpha = 1 - alpha // will become 0
-                
-                // update gradient colors
-                gradient.bottomColor = Constants.Colors.tintColor.colorWithAlphaComponent(alpha)
-                gradient.topColor = UIColor(red: 0.98 - inverseAlpha, green: 0.19 - inverseAlpha, blue: 0.31 - inverseAlpha, alpha: 1.00)
-            } else {
-                // transparent state
-                gradient.topColor = UIColor.blackColor().colorWithAlphaComponent(0.75)
-                gradient.bottomColor = UIColor.clearColor()
-            }
-            
-            gradient.setNeedsDisplay()
-        }
-    }
-    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    
     
     // MARK: - Actions
     
@@ -173,65 +102,70 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     }
     
     func openWebsite() {
-        let svc = SFSafariViewController(URL: podcast.websiteUrl!)
-        svc.delegate = self
-        self.presentViewController(svc, animated: true, completion: nil)
+        if let podcast = podcast {
+            let svc = SFSafariViewController(URL: podcast.websiteUrl!)
+            svc.delegate = self
+            self.presentViewController(svc, animated: true, completion: nil)
+        }
     }
     
     func openTwitter() {
-        let svc = SFSafariViewController(URL: podcast.twitterURL!)
-        svc.delegate = self
-        self.presentViewController(svc, animated: true, completion: nil)
-        
+        if let podcast = podcast {
+            let svc = SFSafariViewController(URL: podcast.twitterURL!)
+            svc.delegate = self
+            self.presentViewController(svc, animated: true, completion: nil)
+        }
     }
     
     func subscribe() {
-        let subscribeClients = podcast.subscribeURLSchemesDictionary!
-        let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
-        optionMenu.view.tintColor = Constants.Colors.tintColor
-        
-        // create one option for each podcast client
-        for client in subscribeClients {
-            let clientName = client.0
-            let subscribeURL = client.1
+        if let podcast = podcast {
+            let subscribeClients = podcast.subscribeURLSchemesDictionary!
+            let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
+            optionMenu.view.tintColor = Constants.Colors.tintColor
             
-            // only show the option if the podcast client is installed which reacts to this URL
-            if UIApplication.sharedApplication().canOpenURL(subscribeURL) {
-                let action = UIAlertAction(title: clientName, style: .Default, handler: { (alert: UIAlertAction!) -> Void in
-                    UIApplication.sharedApplication().openURL(subscribeURL)
-                })
-                optionMenu.addAction(action)
+            // create one option for each podcast client
+            for client in subscribeClients {
+                let clientName = client.0
+                let subscribeURL = client.1
+                
+                // only show the option if the podcast client is installed which reacts to this URL
+                if UIApplication.sharedApplication().canOpenURL(subscribeURL) {
+                    let action = UIAlertAction(title: clientName, style: .Default, handler: { (alert: UIAlertAction!) -> Void in
+                        UIApplication.sharedApplication().openURL(subscribeURL)
+                    })
+                    optionMenu.addAction(action)
+                }
             }
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "Cancel"), style: .Cancel, handler: {
+                (alert: UIAlertAction!) -> Void in
+            })
+            optionMenu.addAction(cancelAction)
+            
+            self.presentViewController(optionMenu, animated: true, completion: nil)
         }
-        
-        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "Cancel"), style: .Cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
-        })
-        optionMenu.addAction(cancelAction)
-        
-        self.presentViewController(optionMenu, animated: true, completion: nil)
-        
     }
     
     func sendMail() {
-        if MFMailComposeViewController.canSendMail() {
-            let emailTitle = NSLocalizedString("podcast_detailview_feedback_mail_title", value: "Feedback", comment: "the user can send a feedback mail to the podcast. this is the preset mail title.")
-            let messageBody = NSLocalizedString("podcast_detailview_feedback_mail_body", value: "Hello,\n", comment: "mail body for a new feedback mail message")
-            let toRecipents = [podcast.email!]
-            
-            let mc: MFMailComposeViewController = MFMailComposeViewController()
-            mc.mailComposeDelegate = self
-            mc.setSubject(emailTitle)
-            mc.setMessageBody(messageBody, isHTML: false)
-            mc.setToRecipients(toRecipents)
-            
-            self.presentViewController(mc, animated: true, completion: nil)
-        } else {
-            // show error message if device is not configured to send mail
-            let message = NSLocalizedString("podcast_detailview_mail_not_supported_message", value: "Your device is not setup to send email.", comment: "the message shown to the user in an alert view if his device is not setup to send email")
-            showInfoMessage("Info", message: message)
+        if let podcast = podcast {
+            if MFMailComposeViewController.canSendMail() {
+                let emailTitle = NSLocalizedString("podcast_detailview_feedback_mail_title", value: "Feedback", comment: "the user can send a feedback mail to the podcast. this is the preset mail title.")
+                let messageBody = NSLocalizedString("podcast_detailview_feedback_mail_body", value: "Hello,\n", comment: "mail body for a new feedback mail message")
+                let toRecipents = [podcast.email!]
+                
+                let mc: MFMailComposeViewController = MFMailComposeViewController()
+                mc.mailComposeDelegate = self
+                mc.setSubject(emailTitle)
+                mc.setMessageBody(messageBody, isHTML: false)
+                mc.setToRecipients(toRecipents)
+                
+                self.presentViewController(mc, animated: true, completion: nil)
+            } else {
+                // show error message if device is not configured to send mail
+                let message = NSLocalizedString("podcast_detailview_mail_not_supported_message", value: "Your device is not setup to send email.", comment: "the message shown to the user in an alert view if his device is not setup to send email")
+                showInfoMessage("Info", message: message)
+            }
         }
-        
     }
     
     func showInfoMessage(title: String, message: String) {
@@ -243,7 +177,9 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     }
     
     @IBAction func toggleFavorite(sender: AnyObject) {
-        Favorites.toggle(podcastId: podcast.id)
+        if let podcast = podcast {
+            Favorites.toggle(podcastId: podcast.id)
+        }
     }
     
     // MARK: - delegate
@@ -281,7 +217,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     func favoriteAdded(notification: NSNotification) {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
-            if podcastId == podcast.id {
+            if podcastId == podcast?.id {
                 favoriteBarButtonItem.image = UIImage(named: "star_25")
                 favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
@@ -291,7 +227,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     func favoriteRemoved(notification: NSNotification) {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
-            if podcastId == podcast.id {
+            if podcastId == podcast?.id {
                 favoriteBarButtonItem.image = UIImage(named: "star_o_25")
                 favoriteBarButtonItem.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             }

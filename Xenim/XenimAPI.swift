@@ -156,17 +156,13 @@ class XenimAPI {
         let artworkJSON = podcastJSON["artwork"]
         let artwork = Artwork(thumb180Url: artworkJSON["180"].URL, thumb800Url: artworkJSON["800"].URL, thumb1300Url: artworkJSON["1300"].URL)
         let subtitle: String? = podcastJSON["subtitle"].stringValue != "" ? podcastJSON["subtitle"].stringValue : nil
-        let podcastXenimWebUrl: NSURL? = podcastJSON["absolute_url"].stringValue != "" ? podcastJSON["absolute_url"].URL : nil
         let websiteUrl: NSURL? = podcastJSON["website_url"].stringValue != "" ? podcastJSON["website_url"].URL : nil
-        let ircUrl: NSURL? = podcastJSON["irc_url"].stringValue != "" ? podcastJSON["irc_url"].URL : nil
-        let webchatUrl: NSURL? = podcastJSON["webchat_url"].stringValue != "" ? podcastJSON["webchat_url"].URL : nil
         let feedUrl: NSURL? = podcastJSON["feed_url"].stringValue != "" ? podcastJSON["feed_url"].URL : nil
         let twitterUsername: String? = podcastJSON["twitter_handle"].stringValue != "" ? podcastJSON["twitter_handle"].stringValue : nil
-        let flattrId: String? = nil
         let email: String? =  podcastJSON["email"].stringValue != "" ? podcastJSON["email"].stringValue : nil
         
         if id != "" && name != "" {
-            return Podcast(id: id, name: name, description: podcastDescription, artwork: artwork, subtitle: subtitle, podcastXenimWebUrl: podcastXenimWebUrl, websiteUrl: websiteUrl, ircUrl: ircUrl, webchatUrl: webchatUrl, feedUrl: feedUrl, email: email, twitterUsername: twitterUsername, flattrId: flattrId)
+            return Podcast(id: id, name: name, description: podcastDescription, artwork: artwork, subtitle: subtitle, websiteUrl: websiteUrl, feedUrl: feedUrl, email: email, twitterUsername: twitterUsername)
         } else {
             return nil
         }
