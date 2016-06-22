@@ -31,11 +31,6 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
         
-        // adjust bottom insets as auto adjust scrollview insets is disabled
-        if let bottomInset = tabBarController?.tabBar.bounds.height {
-            tableView.contentInset.bottom = bottomInset + 44 // 44 are for the player popup above the tabbar
-        }
-        
         tableView.contentInset.top = tableView.contentInset.top - 44
         
         // disable cells if they have not enough data provided to work

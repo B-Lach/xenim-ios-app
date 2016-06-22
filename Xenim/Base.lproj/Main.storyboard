@@ -602,7 +602,7 @@
             <objects>
                 <tableViewController id="WlL-v8-hc7" customClass="PodcastDetailTableViewController" customModule="Xenim" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cxS-Lr-qTN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -798,7 +798,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="1200"/>
+                    <size key="freeformSize" width="600" height="1400"/>
                     <connections>
                         <outlet property="coverartImageView" destination="QvL-hb-cYK" id="1HD-x8-Xdx"/>
                         <outlet property="descriptionLabel" destination="7dY-To-te5" id="vmo-Pg-vvo"/>
