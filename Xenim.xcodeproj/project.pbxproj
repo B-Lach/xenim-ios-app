@@ -292,7 +292,6 @@
 				2222ECAE1BD52E470040100F /* Sources */,
 				2222ECAF1BD52E470040100F /* Frameworks */,
 				2222ECB01BD52E470040100F /* Resources */,
-				22BEF0FC1C11933B00496C2F /* ShellScript */,
 				22BEF0FD1C1193B400496C2F /* Copy Files */,
 				F9347824C964817809EDD910 /* [CP] Embed Pods Frameworks */,
 				1B18182CAC11A56F1979CE62 /* [CP] Copy Pods Resources */,
@@ -412,20 +411,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Xenim/Pods-Xenim-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		22BEF0FC1C11933B00496C2F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/LNPopupController.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		F0BB648629DFD5A569E578D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
