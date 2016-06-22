@@ -146,6 +146,8 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             })
             optionMenu.addAction(cancelAction)
             
+            optionMenu.popoverPresentationController?.sourceView = subscribeCell
+            
             self.presentViewController(optionMenu, animated: true, completion: nil)
         }
     }

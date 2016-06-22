@@ -184,9 +184,16 @@ class PlayerViewController: UIViewController {
             showPlaybuttonPaused()
         case .WaitingForConnection:
             showPlaybuttonBuffering()
-        case .Failed(_):
+        case .Failed:
             showPlaybuttonPaused()
+            showStreamErrorMessage()
         }
+    }
+    
+    private func showStreamErrorMessage() {
+        let errorTitle = NSLocalizedString("player_failed_state_alertview_title", value: "Playback Error", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.")
+        let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
+        showInfoMessage(errorTitle, message: errorMessage)
     }
     
     private func showPlaybuttonPlaying() {

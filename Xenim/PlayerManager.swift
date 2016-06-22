@@ -80,8 +80,8 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             
 
         } else {
-//            showStreamErrorMessage()
-            // TODO
+            stop()
+            NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self.player])
         }
     }
     
@@ -107,22 +107,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     
     func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         //        print("\(from) -> \(to)")
-        NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self])
-        
-        switch player.state {
-        case .Buffering: break
-        case .Paused: break
-        case .Playing: break
-        case .Stopped:
-            // TODO
-            break
-        case .WaitingForConnection: break
-        case .Failed(_): break
-//            showStreamErrorMessage()
-            // TODO
-            // .Stopped will be the next state automatically
-            // this will dismiss the player
-        }
+        NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": audioPlayer])
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {}

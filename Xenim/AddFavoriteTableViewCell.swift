@@ -40,14 +40,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var coverartImageView: UIImageView! {
-        didSet {
-            coverartImageView.layer.cornerRadius = coverartImageView.frame.size.height / 2
-            coverartImageView.layer.masksToBounds = true
-            coverartImageView.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
-            coverartImageView.layer.borderWidth = 0.5
-        }
-    }
+    @IBOutlet weak var coverartImageView: UIImageView!
 
     @IBOutlet weak var descriptionLabel: UILabel!
     
@@ -57,7 +50,11 @@ class AddFavoriteTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        coverartImageView.layer.cornerRadius = coverartImageView.frame.size.height / 2
+        coverartImageView.layer.masksToBounds = true
+        coverartImageView.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
+        coverartImageView.layer.borderWidth = 0.5
     }
     
     // MARK: notifications
