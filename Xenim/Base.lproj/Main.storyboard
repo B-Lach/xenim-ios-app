@@ -615,8 +615,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="472"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QvL-hb-cYK">
-                                                    <rect key="frame" x="72" y="8" width="456" height="456"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QvL-hb-cYK">
+                                                    <rect key="frame" x="90" y="8" width="420" height="420"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="QvL-hb-cYK" secondAttribute="height" multiplier="1:1" id="JEz-Zx-LCh"/>

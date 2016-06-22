@@ -47,11 +47,16 @@ class PlayerViewController: UIViewController {
         
         setupVoiceOver()
         
-        let screenScale = UIScreen.mainScreen().scale
-        if event.podcast.artwork.thumb800Url != nil && screenScale <= 2 {
-            coverartView.af_setImageWithURL(event.podcast.artwork.thumb800Url!, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
-        } else if event.podcast.artwork.thumb1300Url != nil && screenScale > 2 {
-            coverartView.af_setImageWithURL(event.podcast.artwork.thumb1300Url!, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+        switch UIDevice.currentDevice().userInterfaceIdiom {
+        case .Phone:
+            if let imageurl = event.podcast.artwork.thumb800Url {
+                coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+            }
+        case .Pad:
+            if let imageurl = event.podcast.artwork.thumb3000Url {
+                coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+            }
+        default: break
         }
         
         updateFavoritesButton()

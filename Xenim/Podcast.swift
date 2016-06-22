@@ -11,13 +11,9 @@ import UIKit
 
 struct Artwork {
     let thumb180Url: NSURL?
-    let thumb1300Url: NSURL?
     let thumb800Url: NSURL?
-    init(thumb180Url: NSURL?, thumb800Url: NSURL?, thumb1300Url: NSURL?) {
-        self.thumb180Url = thumb180Url
-        self.thumb800Url = thumb800Url
-        self.thumb1300Url = thumb1300Url
-    }
+    let thumb1600Url: NSURL?
+    let thumb3000Url: NSURL?
 }
 
 class Podcast : NSObject, Comparable {

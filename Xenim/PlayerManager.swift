@@ -61,23 +61,27 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             player.playItem(currentItem!) // save as this can not be nil
             
             // fetch coverart from image cache and set it as lockscreen artwork
-            let screenScale = UIScreen.mainScreen().scale
-            if event.podcast.artwork.thumb800Url != nil && screenScale <= 2 {
-                Alamofire.request(.GET, event.podcast.artwork.thumb800Url!)
-                    .responseImage { response in
-                        if let image = response.result.value {
-                            self.currentItem?.artworkImage = image
-                        }
+            switch UIDevice.currentDevice().userInterfaceIdiom {
+            case .Phone:
+                if let imageurl = event.podcast.artwork.thumb800Url {
+                    Alamofire.request(.GET, imageurl)
+                        .responseImage { response in
+                            if let image = response.result.value {
+                                self.currentItem?.artworkImage = image
+                            }
+                    }
                 }
-            } else if event.podcast.artwork.thumb1300Url != nil && screenScale > 2 {
-                Alamofire.request(.GET, event.podcast.artwork.thumb1300Url!)
-                    .responseImage { response in
-                        if let image = response.result.value {
-                            self.currentItem?.artworkImage = image
-                        }
+            case .Pad:
+                if let imageurl = event.podcast.artwork.thumb3000Url {
+                    Alamofire.request(.GET, imageurl)
+                        .responseImage { response in
+                            if let image = response.result.value {
+                                self.currentItem?.artworkImage = image
+                            }
+                    }
                 }
+            default: break
             }
-            
 
         } else {
             stop()
