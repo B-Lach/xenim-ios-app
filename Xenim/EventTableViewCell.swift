@@ -22,14 +22,7 @@ class EventTableViewCell: UITableViewCell {
     
     var playerDelegate: PlayerDelegate?
     
-    @IBOutlet weak var eventCoverartImage: UIImageView! {
-        didSet {
-            eventCoverartImage.layer.cornerRadius = eventCoverartImage.frame.width / 2
-            eventCoverartImage.layer.masksToBounds = true
-            eventCoverartImage.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
-            eventCoverartImage.layer.borderWidth = 0.5
-        }
-    }
+    @IBOutlet weak var eventCoverartImage: UIImageView!
 
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
@@ -63,6 +56,11 @@ class EventTableViewCell: UITableViewCell {
         playButton.accessibilityLabel = NSLocalizedString("voiceover_play_button_label", value: "play button", comment: "")
         
         self.accessibilityTraits = UIAccessibilityTraitButton
+        
+        eventCoverartImage.layer.cornerRadius = eventCoverartImage.frame.width / 2
+        eventCoverartImage.layer.masksToBounds = true
+        eventCoverartImage.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
+        eventCoverartImage.layer.borderWidth = 0.5
     }
     
     func tappedDateView(sender: UITapGestureRecognizer?) {
@@ -93,11 +91,10 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func updateCoverart() {
-        let placeholderImage = UIImage(named: "event_placeholder")!
-        if let imageurl = event.podcast.artwork.thumb180Url{
-            eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+        if let imageurl = event.podcast.artwork.thumb180Url {
+            eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
         } else {
-            eventCoverartImage.image = placeholderImage
+            eventCoverartImage.image = nil
         }
     }
     

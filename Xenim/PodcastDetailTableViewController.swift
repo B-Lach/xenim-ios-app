@@ -50,12 +50,18 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         if let podcast = podcast {
             coverartImageView.accessibilityLabel = "Coverart image"
             
-            let placeholderImage = UIImage(named: "event_placeholder")!
-            if let imageurl = podcast.artwork.originalUrl {
-                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
-            } else {
-                coverartImageView.image = placeholderImage
+            switch UIDevice.currentDevice().userInterfaceIdiom {
+            case .Phone:
+                if let imageurl = podcast.artwork.thumb800Url {
+                    coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+                }
+            case .Pad:
+                if let imageurl = podcast.artwork.thumb1600Url {
+                    coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+                }
+            default: break
             }
+
             title = podcast.name
             descriptionLabel.text = podcast.podcastDescription
             
