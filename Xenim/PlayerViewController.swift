@@ -234,7 +234,7 @@ class PlayerViewController: UIViewController {
         event.fetchCurrentListeners { (listeners) -> Void in
             if let listeners = listeners {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.listenersCountButton.titleLabel?.text = "\(listeners)"
+                    self.listenersCountButton.setTitle("\(listeners)", forState: .Normal)
                 })
             }
         }
