@@ -37,6 +37,8 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    var updateListenersTimer: NSTimer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         PlayerManager.sharedInstance.play(event)
@@ -60,6 +62,12 @@ class PlayerViewController: UIViewController {
         }
         
         updateFavoritesButton()
+        
+        // setup timer to update every minute
+        // remember to invalidate timer as soon this view gets cleared otherwise
+        // this will cause a memory cycle
+        updateListenersTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(updateListenersLabel), userInfo: nil, repeats: true)
+        updateListenersLabel()
 	}
     
     override func viewWillDisappear(animated: Bool) {
@@ -138,6 +146,7 @@ class PlayerViewController: UIViewController {
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         sleepTimer?.invalidate()
+        updateListenersTimer?.invalidate()
     }
     
     func updateFavoritesButton() {
@@ -219,6 +228,17 @@ class PlayerViewController: UIViewController {
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_buffering", value: "double tap to pause", comment: "")
     }
     
+    // MARK: - update listeners timer
+    
+    @objc func updateListenersLabel() {
+        event.fetchCurrentListeners { (listeners) -> Void in
+            if let listeners = listeners {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.listenersCountButton.titleLabel?.text = "\(listeners)"
+                })
+            }
+        }
+    }
     
     // MARK: - sleeptimer
     
