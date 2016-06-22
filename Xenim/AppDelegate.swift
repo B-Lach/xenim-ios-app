@@ -16,7 +16,7 @@ import SimulatorStatusMagic
 
 struct Constants {
     struct Colors {
-        static let tintColor = UIColor(red:0.98, green:0.18, blue:0.25, alpha:1)
+        static let tintColor = UIColor(red:1.00, green:0.45, blue:0.39, alpha:1.00)
     }
     struct API {
         // "https://dev.push.xenim.de/parse"
