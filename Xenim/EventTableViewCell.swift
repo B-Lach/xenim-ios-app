@@ -33,7 +33,14 @@ class EventTableViewCell: UITableViewCell {
 
     @IBOutlet weak var podcastNameLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var favoriteImageView: UIImageView!
+    @IBOutlet weak var favoriteImageView: UIImageView! {
+        didSet {
+            // bugfix workaround. without this the image does not render as template
+            let tint = favoriteImageView.tintColor
+            favoriteImageView.tintColor = nil
+            favoriteImageView.tintColor = tint
+        }
+    }
     @IBOutlet weak var eventTitleLabel: UILabel!
     
     @IBOutlet weak var dateStackView: UIStackView!
