@@ -21,8 +21,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var skipForwardButton: UIButton!
     @IBOutlet weak var skipBackwardButton: UIButton!
-    @IBOutlet weak var shareButton: UIButton!
-    
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var listenersCountButton: UIButton!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var sleepTimerButton: UIButton!
     @IBOutlet weak var airplayView: MPVolumeView! {
@@ -105,7 +105,7 @@ class PlayerViewController: UIViewController {
         if let url = event?.eventXenimWebUrl {
             let objectsToShare = [url]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            activityVC.popoverPresentationController?.sourceView = shareButton
+            activityVC.popoverPresentationController?.barButtonItem = shareButton
                 
             // Excluded Activities
             //      activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
