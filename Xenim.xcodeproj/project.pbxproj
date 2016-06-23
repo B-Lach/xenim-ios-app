@@ -27,6 +27,9 @@
 		229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */; };
 		22B066891C5D3A3600870BF5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B066881C5D3A3600870BF5 /* SpinnerView.swift */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
+		22CCF0651D1BC7CE006B8390 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22CCF0671D1BC7CE006B8390 /* InfoPlist.strings */; };
+		22CCF06A1D1BC7CE006B8390 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22CCF06C1D1BC7CE006B8390 /* Localizable.strings */; };
+		22CCF06F1D1BC7CF006B8390 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22CCF0711D1BC7CF006B8390 /* InfoPlist.strings */; };
 		22E040D41CADA465009896CE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E040D31CADA465009896CE /* StoreKit.framework */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
 		22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */; };
@@ -90,6 +93,9 @@
 		22CCF0601D1BC0DE006B8390 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		22CCF0611D1BC0E5006B8390 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		22CCF0621D1BC0E5006B8390 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		22CCF0661D1BC7CE006B8390 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		22CCF06B1D1BC7CE006B8390 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		22CCF0701D1BC7CF006B8390 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		22E040D31CADA465009896CE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewController.swift; sourceTree = "<group>"; };
 		22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 		2222ECB41BD52E470040100F /* Xenim */ = {
 			isa = PBXGroup;
 			children = (
+				22CCF0711D1BC7CF006B8390 /* InfoPlist.strings */,
+				22CCF06C1D1BC7CE006B8390 /* Localizable.strings */,
 				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
 				2222ECB91BD52E480040100F /* Main.storyboard */,
 				22E6DD9E1C314B7500E427C8 /* Settings */,
@@ -184,6 +192,7 @@
 		226B3B2A1CC67F120099F69C /* XenimUITests */ = {
 			isa = PBXGroup;
 			children = (
+				22CCF0671D1BC7CE006B8390 /* InfoPlist.strings */,
 				226B3B331CC67F760099F69C /* SnapshotHelper.swift */,
 				226B3B2B1CC67F120099F69C /* XenimUITests.swift */,
 				226B3B2D1CC67F120099F69C /* Info.plist */,
@@ -368,6 +377,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22CCF06A1D1BC7CE006B8390 /* Localizable.strings in Resources */,
+				22CCF06F1D1BC7CF006B8390 /* InfoPlist.strings in Resources */,
 				2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */,
 				229421FB1C1989DA00033AAB /* Keys.plist in Resources */,
 				2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */,
@@ -379,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22CCF0651D1BC7CE006B8390 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +509,30 @@
 				22CCF0611D1BC0E5006B8390 /* de */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		22CCF0671D1BC7CE006B8390 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22CCF0661D1BC7CE006B8390 /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		22CCF06C1D1BC7CE006B8390 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22CCF06B1D1BC7CE006B8390 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		22CCF0711D1BC7CF006B8390 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22CCF0701D1BC7CF006B8390 /* de */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
