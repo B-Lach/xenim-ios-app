@@ -25,9 +25,6 @@
 		229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4D1BD5623500F1CF6B /* Podcast.swift */; };
 		229B7D501BD564DC00F1CF6B /* XenimAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4F1BD564DC00F1CF6B /* XenimAPI.swift */; };
 		229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */; };
-		229DA8A41CEC7B2C0072D9A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 229DA8A61CEC7B2C0072D9A0 /* InfoPlist.strings */; };
-		229DA8AC1CEC7B670072D9A0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 229DA8AE1CEC7B670072D9A0 /* Localizable.strings */; };
-		229DA8B11CEC7B680072D9A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 229DA8B31CEC7B680072D9A0 /* InfoPlist.strings */; };
 		22B066891C5D3A3600870BF5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B066881C5D3A3600870BF5 /* SpinnerView.swift */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
 		22E040D41CADA465009896CE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E040D31CADA465009896CE /* StoreKit.framework */; };
@@ -87,11 +84,6 @@
 		229B7D4D1BD5623500F1CF6B /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		229B7D4F1BD564DC00F1CF6B /* XenimAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XenimAPI.swift; sourceTree = "<group>"; };
 		229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
-		229DA8A51CEC7B2C0072D9A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		229DA8A71CEC7B2C0072D9A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		229DA8AD1CEC7B670072D9A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		229DA8B21CEC7B680072D9A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		229DA8B41CEC7B690072D9A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		22B066881C5D3A3600870BF5 /* SpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
 		22E040D31CADA465009896CE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -147,8 +139,6 @@
 		2222ECB41BD52E470040100F /* Xenim */ = {
 			isa = PBXGroup;
 			children = (
-				229DA8B31CEC7B680072D9A0 /* InfoPlist.strings */,
-				229DA8AE1CEC7B670072D9A0 /* Localizable.strings */,
 				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
 				2222ECB91BD52E480040100F /* Main.storyboard */,
 				22E6DD9E1C314B7500E427C8 /* Settings */,
@@ -190,7 +180,6 @@
 		226B3B2A1CC67F120099F69C /* XenimUITests */ = {
 			isa = PBXGroup;
 			children = (
-				229DA8A61CEC7B2C0072D9A0 /* InfoPlist.strings */,
 				226B3B331CC67F760099F69C /* SnapshotHelper.swift */,
 				226B3B2B1CC67F120099F69C /* XenimUITests.swift */,
 				226B3B2D1CC67F120099F69C /* Info.plist */,
@@ -375,8 +364,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				229DA8B11CEC7B680072D9A0 /* InfoPlist.strings in Resources */,
-				229DA8AC1CEC7B670072D9A0 /* Localizable.strings in Resources */,
 				2222ECC01BD52E480040100F /* LaunchScreen.storyboard in Resources */,
 				229421FB1C1989DA00033AAB /* Keys.plist in Resources */,
 				2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */,
@@ -388,7 +375,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				229DA8A41CEC7B2C0072D9A0 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +479,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBA1BD52E480040100F /* Base */,
-				229DA8B41CEC7B690072D9A0 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -502,33 +487,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				2222ECBF1BD52E480040100F /* Base */,
-				229DA8A71CEC7B2C0072D9A0 /* de */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		229DA8A61CEC7B2C0072D9A0 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				229DA8A51CEC7B2C0072D9A0 /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		229DA8AE1CEC7B670072D9A0 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				229DA8AD1CEC7B670072D9A0 /* de */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		229DA8B31CEC7B680072D9A0 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				229DA8B21CEC7B680072D9A0 /* de */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -627,9 +587,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
 				CURRENT_PROJECT_VERSION = 14;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)"
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Xenim/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Xenim;
