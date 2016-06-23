@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-XenimUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SimulatorStatusMagic.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -53,11 +58,6 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>05094CC4A047119F7ADC14EE74C4881C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1D3879A0CBCA9D99E5AF019F3CACC590</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<key>5E05BC5740755E3677726DEB28C8C5FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8DCB5A392BD6457D8F22801102D8CA62</key>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E720CDDF35AC53BCCA412D5BD872896A</key>
+		<key>C2195DB52D03EF3C58A059D3CD33484A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DDFA778A085876F23DDBF64D70AB507D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4F4E38A47746DCEE67BE4C327E55C3D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

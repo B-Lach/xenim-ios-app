@@ -6,8 +6,8 @@ devices([
   "iPhone 6s Plus",
   "iPhone 5s",
   "iPhone 4s"
-  # "iPad Retina",
-  # "iPad Pro"
+  "iPad Retina",
+  "iPad Pro"
 ])
 
 languages([

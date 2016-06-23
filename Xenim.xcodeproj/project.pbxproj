@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AD1118281B8640DBE17E31F /* Pods_XenimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D553F30338CE8A77292D0B82 /* Pods_XenimUITests.framework */; };
 		2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222ECB51BD52E470040100F /* AppDelegate.swift */; };
 		2222ECBB1BD52E480040100F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECB91BD52E480040100F /* Main.storyboard */; };
 		2222ECBD1BD52E480040100F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBC1BD52E480040100F /* Assets.xcassets */; };
@@ -102,8 +103,11 @@
 		22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		22F1B3D41C4A5A43005B03F7 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		22F4D7D41D19749100DCBA17 /* GlobalSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalSplitViewController.swift; sourceTree = "<group>"; };
+		3164312E818BF50839075313 /* Pods-XenimUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XenimUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XenimUITests/Pods-XenimUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		80A2740F931C8892F43A96FA /* Pods-Xenim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Xenim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Xenim/Pods-Xenim.debug.xcconfig"; sourceTree = "<group>"; };
+		92A8173B39FFF118F4D269A7 /* Pods-XenimUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XenimUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-XenimUITests/Pods-XenimUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B0BCD2E086A7C9BA965D48CE /* Pods-Xenim.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Xenim.release.xcconfig"; path = "Pods/Target Support Files/Pods-Xenim/Pods-Xenim.release.xcconfig"; sourceTree = "<group>"; };
+		D553F30338CE8A77292D0B82 /* Pods_XenimUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XenimUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AD1118281B8640DBE17E31F /* Pods_XenimUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +273,7 @@
 			children = (
 				22E040D31CADA465009896CE /* StoreKit.framework */,
 				0AEA0DEF23104216FE920048 /* Pods_Xenim.framework */,
+				D553F30338CE8A77292D0B82 /* Pods_XenimUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -277,6 +283,8 @@
 			children = (
 				80A2740F931C8892F43A96FA /* Pods-Xenim.debug.xcconfig */,
 				B0BCD2E086A7C9BA965D48CE /* Pods-Xenim.release.xcconfig */,
+				3164312E818BF50839075313 /* Pods-XenimUITests.debug.xcconfig */,
+				92A8173B39FFF118F4D269A7 /* Pods-XenimUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -309,9 +317,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 226B3B321CC67F120099F69C /* Build configuration list for PBXNativeTarget "XenimUITests" */;
 			buildPhases = (
+				CC835A41747E4B87F8BCFA24 /* [CP] Check Pods Manifest.lock */,
 				226B3B251CC67F120099F69C /* Sources */,
 				226B3B261CC67F120099F69C /* Frameworks */,
 				226B3B271CC67F120099F69C /* Resources */,
+				5B0704F61FD62A0DF0DA0601 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -410,6 +420,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Xenim/Pods-Xenim-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B0704F61FD62A0DF0DA0601 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XenimUITests/Pods-XenimUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC835A41747E4B87F8BCFA24 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F0BB648629DFD5A569E578D4 /* [CP] Check Pods Manifest.lock */ = {
@@ -667,6 +707,7 @@
 		};
 		226B3B301CC67F120099F69C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3164312E818BF50839075313 /* Pods-XenimUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -680,6 +721,7 @@
 		};
 		226B3B311CC67F120099F69C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92A8173B39FFF118F4D269A7 /* Pods-XenimUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
