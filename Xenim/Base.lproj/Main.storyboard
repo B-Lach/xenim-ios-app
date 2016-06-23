@@ -1338,6 +1338,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bR0-MN-SUo">
                                         <rect key="frame" x="255" y="0.0" width="120" height="50"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <color key="tintColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="sleep_22">
