@@ -23,8 +23,13 @@
             </trans-unit>
             <trans-unit id="3yl-bj-r35.headerTitle">
                 <source>about</source>
-                <target>about</target>
+                <target>About</target>
                 <note>Class = "UITableViewSection"; headerTitle = "about"; ObjectID = "3yl-bj-r35";</note>
+            </trans-unit>
+            <trans-unit id="4td-Q0-iyc.normalTitle">
+                <source>0</source>
+                <target>0</target>
+                <note>Class = "UIButton"; normalTitle = "0"; ObjectID = "4td-Q0-iyc";</note>
             </trans-unit>
             <trans-unit id="5a1-3J-VJb.text">
                 <source>SO</source>
@@ -33,31 +38,18 @@
             </trans-unit>
             <trans-unit id="5tC-JT-HAB.text">
                 <source>Hey, I am Stefan. I work on this app in my free time. If you like the app please consider supporting me so I can afford working on it in the future.</source>
-                <target>Hey, Ich bin Stefan. Ich arbeite in meiner Freizeit an dieser App. Wenn dir die App gefällt, würde ich mich über deine Unterstützung freuen, damit ich es mir leisten kann weiter an der App zu arbeiten.</target>
+                <target>Hey, Ich bin Stefan. Ich stecke viel Zeit in die Entwicklung dieser App. Wenn dir die App gefällt, würde ich mich freuen wenn du meine Arbeit unterstützt. Nur so kann ich es mir leisten weiter Zeit in die Entwicklung zu investieren.</target>
                 <note>Class = "UILabel"; text = "Hey, I am Stefan. I work on this app in my free time. If you like the app please consider supporting me so I can afford working on it in the future."; ObjectID = "5tC-JT-HAB";</note>
-            </trans-unit>
-            <trans-unit id="5uN-NM-aDd.text">
-                <source>lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing</source>
-                <target>lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing</target>
-                <note>Class = "UILabel"; text = "lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing"; ObjectID = "5uN-NM-aDd";</note>
-            </trans-unit>
-            <trans-unit id="7dY-To-te5.text">
-                <source>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
-eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
-fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate
-eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,
-enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
-                <target>lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit amet consectetuer adipiscing</target>
-                <note>Class = "UILabel"; text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula\neget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient\nmontes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque\neu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,\nfringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,\nimperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.\nInteger tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate\neleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,\nenim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a"; ObjectID = "7dY-To-te5";</note>
             </trans-unit>
             <trans-unit id="7e4-bN-pFt.text">
                 <source>Buy me a big icecream to support the future development of the app. I like stracciatella and strawberry.</source>
                 <target>Zahle mir einen großen Eisbecher und unterstütze so die weitere Entwicklung der App. Ich mag Stracciatella und Erbeere besonders gerne.</target>
                 <note>Class = "UILabel"; text = "Buy me a big icecream to support the future development of the app. I like stracciatella and strawberry."; ObjectID = "7e4-bN-pFt";</note>
+            </trans-unit>
+            <trans-unit id="7pW-gm-Mgc.title">
+                <source>Favorites</source>
+                <target>Favoriten</target>
+                <note>Class = "UITabBarItem"; title = "Favorites"; ObjectID = "7pW-gm-Mgc";</note>
             </trans-unit>
             <trans-unit id="68p-p3-Ups.text">
                 <source>Buy me a coffe to support the future development of the app. I prefer a cappuccino by the way.</source>
@@ -99,10 +91,10 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <target>Du erhältst eine Push Benachrichtigung, sobald einer deiner Favoriten eine Livesendung startet.</target>
                 <note>Class = "UILabel"; text = "You will receive push notifications if any of your favorite podcasts does a live show."; ObjectID = "DWx-RP-Bf0";</note>
             </trans-unit>
-            <trans-unit id="FSw-84-18Y.text">
-                <source>1337</source>
-                <target>1337</target>
-                <note>Class = "UILabel"; text = "1337"; ObjectID = "FSw-84-18Y";</note>
+            <trans-unit id="Fa2-bV-ZfN.title">
+                <source>Title</source>
+                <target>Title</target>
+                <note>Class = "UINavigationItem"; title = "Title"; ObjectID = "Fa2-bV-ZfN";</note>
             </trans-unit>
             <trans-unit id="Ifs-4c-Bk8.text">
                 <source>FAQ</source>
@@ -114,20 +106,10 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <target>Podcast Description</target>
                 <note>Class = "UILabel"; text = "Podcast Description"; ObjectID = "JaA-7x-at3";</note>
             </trans-unit>
-            <trans-unit id="KKU-KO-aCN.title">
-                <source>Calendar</source>
-                <target>Kalender</target>
-                <note>Class = "UITabBarItem"; title = "Calendar"; ObjectID = "KKU-KO-aCN";</note>
-            </trans-unit>
             <trans-unit id="LMm-js-7Pe.text">
                 <source>Small Tip</source>
                 <target>Kleine Unterstützung</target>
                 <note>Class = "UILabel"; text = "Small Tip"; ObjectID = "LMm-js-7Pe";</note>
-            </trans-unit>
-            <trans-unit id="MMC-P0-b9z.text">
-                <source>This is a probably very long subtitle</source>
-                <target>This is a probably very long subtitle</target>
-                <note>Class = "UILabel"; text = "This is a probably very long subtitle"; ObjectID = "MMC-P0-b9z";</note>
             </trans-unit>
             <trans-unit id="Nb1-Lj-6W7.headerTitle">
                 <source>About</source>
@@ -138,6 +120,11 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <source>20:00</source>
                 <target>20:00</target>
                 <note>Class = "UILabel"; text = "20:00"; ObjectID = "P5Q-eV-EmK";</note>
+            </trans-unit>
+            <trans-unit id="QQH-sd-rVb.title">
+                <source>Settings</source>
+                <target>Einstellungen</target>
+                <note>Class = "UITabBarItem"; title = "Settings"; ObjectID = "QQH-sd-rVb";</note>
             </trans-unit>
             <trans-unit id="RU5-8T-HUb.text">
                 <source>-</source>
@@ -199,6 +186,11 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <target>Podcast Name</target>
                 <note>Class = "UILabel"; text = "Podcast Name"; ObjectID = "jXd-1h-OnC";</note>
             </trans-unit>
+            <trans-unit id="jgt-ys-ylT.title">
+                <source>Calendar</source>
+                <target>Kalender</target>
+                <note>Class = "UITabBarItem"; title = "Calendar"; ObjectID = "jgt-ys-ylT";</note>
+            </trans-unit>
             <trans-unit id="kPg-fd-jjx.text">
                 <source>Massive Tip</source>
                 <target>Riesige Unterstützung</target>
@@ -234,14 +226,9 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
                 <target>Favoriten</target>
                 <note>Class = "UITabBarItem"; title = "Favorites"; ObjectID = "uy0-hV-u60";</note>
             </trans-unit>
-            <trans-unit id="uzN-m1-SqS.text">
-                <source>Elementarfragen Podcast</source>
-                <target>Elementarfragen Podcast</target>
-                <note>Class = "UILabel"; text = "Elementarfragen Podcast"; ObjectID = "uzN-m1-SqS";</note>
-            </trans-unit>
             <trans-unit id="xru-0G-dnV.text">
                 <source>This helps more people discover the app.</source>
-                <target>So hilfst du anderen die App zu entdecken.</target>
+                <target>So hilfst du Anderen die App zu entdecken.</target>
                 <note>Class = "UILabel"; text = "This helps more people discover the app."; ObjectID = "xru-0G-dnV";</note>
             </trans-unit>
             <trans-unit id="yMm-PT-597.headerTitle">
@@ -251,7 +238,7 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
             </trans-unit>
             <trans-unit id="yaT-yH-8sd.text">
                 <source>Leave a review on the Appstore</source>
-                <target>Bewerte die App im Appstore</target>
+                <target>Bewerte die App im App Store</target>
                 <note>Class = "UILabel"; text = "Leave a review on the Appstore"; ObjectID = "yaT-yH-8sd";</note>
             </trans-unit>
             <trans-unit id="yuQ-X1-J2J.text">
@@ -282,12 +269,11 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
         </header>
         <body>
             <trans-unit id="CFBundleName">
-                <source></source>
-                <target></target>
+                <source>$(PRODUCT_NAME)</source>
+                <target>Xenim</target>
             </trans-unit>
             <trans-unit id="CFBundleShortVersionString">
-                <source></source>
-                <target></target>
+                <source>2.0</source>
             </trans-unit>
         </body>
     </file>
@@ -298,44 +284,38 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
         <body>
             <trans-unit id="add_favorites_tableview_no_data_message">
                 <source>Could not find something</source>
-                <target>Es konnte nichts gefunden werden</target>
                 <note>this message gets displayed if add favorites table view controller does not have any item to display</note>
+                <target>Es konnte nichts gefunden werden</target>
             </trans-unit>
             <trans-unit id="cancel">
                 <source>Cancel</source>
-                <target>Abbrechen</target>
                 <note>Cancel</note>
+                <target>Abbrechen</target>
             </trans-unit>
             <trans-unit id="day">
                 <source>day</source>
-                <target>Tag</target>
                 <note>day</note>
+                <target>Tag</target>
             </trans-unit>
             <trans-unit id="days">
                 <source>days</source>
-                <target>Tage</target>
                 <note>days</note>
+                <target>Tage</target>
             </trans-unit>
             <trans-unit id="dismiss">
                 <source>Dismiss</source>
+                <note>Dismiss</note>
                 <target>Schließen</target>
-                <note>dismiss
-   Dismiss</note>
-            </trans-unit>
-            <trans-unit id="donate">
-                <source>Donate</source>
-                <target>Spenden</target>
-                <note>donate</note>
             </trans-unit>
             <trans-unit id="event_tableview_empty_favorites_only_message">
                 <source>This is a filtered event list. You only see events of your favorite shows here. Currently there are no events of your favorite podcasts scheduled.</source>
-                <target>Das ist eine gefilterte Event Liste. Hier sind nur Events deiner Favoriten zu sehen. Momentan ist kein Event eines deiner Favoriten geplant.</target>
                 <note>this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display.</note>
+                <target>Das ist eine gefilterte Event Liste. Hier sind nur Events deiner Favoriten zu sehen. Momentan ist kein Event eines deiner Favoriten geplant.</target>
             </trans-unit>
             <trans-unit id="event_tableview_empty_message">
                 <source>Did not receive any upcoming events. Pull to refresh to try again.</source>
-                <target>Es konnten keine Events geladen werden. Pull to refresh, um neu zu laden.</target>
                 <note>this message gets displayed if no events could be displayed / fetched from the API</note>
+                <target>Es konnten keine Events geladen werden. Pull to refresh, um neu zu laden.</target>
             </trans-unit>
             <trans-unit id="event_tableview_sectionheader_later">
                 <source>Later</source>
@@ -354,258 +334,217 @@ enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</source>
             </trans-unit>
             <trans-unit id="favorites_tableview_empty_message">
                 <source>Add podcast shows as your favorite to see them here.</source>
-                <target>Markiere Podcasts als deine Favoriten, um sie hier zu sehen.</target>
                 <note>this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.</note>
+                <target>Markiere Podcasts als deine Favoriten, um sie hier zu sehen.</target>
             </trans-unit>
             <trans-unit id="hour">
                 <source>hour</source>
-                <target>Stunde</target>
                 <note>hour</note>
+                <target>Stunde</target>
             </trans-unit>
             <trans-unit id="hours">
                 <source>hours</source>
-                <target>Stunden</target>
                 <note>hours</note>
+                <target>Stunden</target>
             </trans-unit>
             <trans-unit id="info_message_mail_sent_failure_message">
                 <source>Mail sent failure</source>
-                <target>Fehler beim Mailversand</target>
                 <note>If the user tried to sent an email and it could not be sent an alert view does show the error message. this is the title of the alert view popup</note>
+                <target>Fehler beim Mailversand</target>
             </trans-unit>
             <trans-unit id="minute">
                 <source>min</source>
-                <target>min</target>
                 <note>min</note>
+                <target>min</target>
             </trans-unit>
             <trans-unit id="player_failed_state_alertview_message">
                 <source>The selected stream can not be played.</source>
-                <target>Dieser Livestream kann nicht abgespielt werden.</target>
                 <note>If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.</note>
+                <target>Dieser Livestream kann nicht abgespielt werden.</target>
             </trans-unit>
             <trans-unit id="player_failed_state_alertview_title">
                 <source>Playback Error</source>
-                <target>Livestream Fehler</target>
                 <note>If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.</note>
-            </trans-unit>
-            <trans-unit id="player_manager_actionsheet_end_playback">
-                <source>End Playback</source>
-                <target>Player schließen</target>
-                <note>long pressing in the player view shows an action sheet to end playback. this is the action message to end playback.</note>
+                <target>Streaming Fehler</target>
             </trans-unit>
             <trans-unit id="podcast_detailview_feedback_mail_body">
                 <source>Hello,
 </source>
-                <target>Hallo,</target>
                 <note>mail body for a new feedback mail message</note>
+                <target>Hallo,
+</target>
             </trans-unit>
             <trans-unit id="podcast_detailview_feedback_mail_title">
                 <source>Feedback</source>
-                <target>Feedback</target>
                 <note>the user can send a feedback mail to the podcast. this is the preset mail title.</note>
+                <target>Feedback</target>
             </trans-unit>
             <trans-unit id="podcast_detailview_mail_not_supported_message">
                 <source>Your device is not setup to send email.</source>
-                <target>Mailversand ist nicht eingerichtet.</target>
                 <note>the message shown to the user in an alert view if his device is not setup to send email</note>
+                <target>Mailversand ist nicht eingerichtet.</target>
             </trans-unit>
             <trans-unit id="podcast_detailview_subscribe_alert_message">
                 <source>Choose Podcast Client</source>
-                <target>Wähle deinen Podcast Client</target>
                 <note>when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view.</note>
+                <target>Wähle deinen Podcast Client</target>
             </trans-unit>
             <trans-unit id="remove_favorite">
                 <source>Remove</source>
-                <target>Entfernen</target>
                 <note>remove a favorite by swiping left to edit</note>
+                <target>Entfernen</target>
             </trans-unit>
             <trans-unit id="settings_view_mail_body">
                 <source>Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.
 
 %@</source>
-                <target>Bitte versuche dein Problem so genau wie möglich zu beschreiben, damit wir schnell eine Lösung dafür finden können.  %@</target>
                 <note>mail body for a new support mail message</note>
+                <target>Bitte versuche dein Problem so genau wie möglich zu beschreiben, damit wir schnell eine Lösung dafür finden können.  %@</target>
             </trans-unit>
             <trans-unit id="settings_view_mail_not_supported_message">
                 <source>Your device is not setup to send email.</source>
-                <target>Mailversand nicht eingerichtet.</target>
                 <note>the message shown to the user in an alert view if his device is not setup to send email</note>
+                <target>Mailversand nicht eingerichtet</target>
             </trans-unit>
             <trans-unit id="settings_view_mail_title">
                 <source>Xenim Support</source>
-                <target>Xenim Support</target>
                 <note>mail title for a new support mail message</note>
-            </trans-unit>
-            <trans-unit id="support_alert_message">
-                <source>Do you like the app? Please consider supporting me with a small donation. If you do not want to donate now, you can always find the possibility in the settings.
-
-You only see this message this one time and I will never bother you again.</source>
-                <target>Gefällt dir die App? Wenn du mich unterstützen magst, würde ich mich über eine kleine Spende freuen. Falls du jetzt nicht spenden möchtest, kannst du das jederzeit in den Einstellungen tun.  Diese Nachricht wird nur ein einziges Mal angezeigt. Ich möchte dir damit nicht auf die Nerven gehen.</target>
-                <note>No comment provided by engineer.</note>
-            </trans-unit>
-            <trans-unit id="support_alert_title">
-                <source>Please Support the Development</source>
-                <target>Unterstütze die Entwicklung der App</target>
-                <note>No comment provided by engineer.</note>
+                <target>Xenim Support</target>
             </trans-unit>
             <trans-unit id="voiceover_add_favorite_button_hint">
                 <source>Double Tap to search through all podcasts and add favorites</source>
-                <target>doppel tap um alle podcasts zu durchsuchen und als favorit zu markieren</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um alle podcasts zu durchsuchen und als favorit zu markieren</target>
             </trans-unit>
             <trans-unit id="voiceover_add_favorite_button_label">
                 <source>Add</source>
-                <target>Hinzufügen</target>
                 <note>No comment provided by engineer.</note>
+                <target>Hinzufügen</target>
             </trans-unit>
             <trans-unit id="voiceover_backward_button_hint">
                 <source>double tap to skip 30 seconds backward</source>
-                <target>doppel tap um 30 sekunden zurück zu springen</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um 30 sekunden zurück zu springen</target>
             </trans-unit>
             <trans-unit id="voiceover_backward_button_label">
                 <source>backward</source>
-                <target>zurückspulen</target>
                 <note>No comment provided by engineer.</note>
+                <target>zurückspulen</target>
             </trans-unit>
             <trans-unit id="voiceover_dateStackView_hint">
                 <source>Double Tap to toggle date display or days left display.</source>
-                <target>doppel tap um zwischen datum und countdown zu wechseln</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um zwischen datum und countdown zu wechseln</target>
             </trans-unit>
             <trans-unit id="voiceover_dateStackView_label">
                 <source>event date</source>
+                <note>No comment provided by engineer.</note>
                 <target>event datum</target>
-                <note>No comment provided by engineer.</note>
-            </trans-unit>
-            <trans-unit id="voiceover_dismiss_button_hint">
-                <source>double tap minify the player</source>
-                <target>doppel tap um den player zu minimieren</target>
-                <note>No comment provided by engineer.</note>
-            </trans-unit>
-            <trans-unit id="voiceover_dismiss_button_label">
-                <source>minify</source>
-                <target>minimieren</target>
-                <note>No comment provided by engineer.</note>
             </trans-unit>
             <trans-unit id="voiceover_favorite_button_hint">
                 <source>double tap to toggle favorite</source>
-                <target>doppel tap um zu toggeln</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um zu toggeln</target>
             </trans-unit>
             <trans-unit id="voiceover_favorite_button_value_is_favorite">
                 <source>is favorite</source>
-                <target>ist ein favorit</target>
                 <note>No comment provided by engineer.</note>
+                <target>ist ein favorit</target>
             </trans-unit>
             <trans-unit id="voiceover_favorite_button_value_no_favorite">
                 <source>is no favorite</source>
-                <target>ist kein favorit</target>
                 <note>No comment provided by engineer.</note>
+                <target>ist kein favorit</target>
             </trans-unit>
             <trans-unit id="voiceover_forward_button_hint">
                 <source>double tap to skip 30 seconds forward</source>
-                <target>doppel tap um 30 sekunden vorzuspulen</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um 30 sekunden vorzuspulen</target>
             </trans-unit>
             <trans-unit id="voiceover_forward_button_label">
                 <source>forward</source>
+                <note>No comment provided by engineer.</note>
                 <target>vorspulen</target>
-                <note>No comment provided by engineer.</note>
-            </trans-unit>
-            <trans-unit id="voiceover_listeners_count_label">
-                <source>listeners</source>
-                <target>Hörer</target>
-                <note>No comment provided by engineer.</note>
             </trans-unit>
             <trans-unit id="voiceover_nextDateStackView_hint">
                 <source>Double Tap to toggle date display or days left display.</source>
-                <target>doppel tap um zwischen datum und countdown zu wechseln</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um zwischen datum und countdown zu wechseln</target>
             </trans-unit>
             <trans-unit id="voiceover_nextDateStackView_label">
                 <source>next event date</source>
-                <target>nächstes event</target>
                 <note>No comment provided by engineer.</note>
+                <target>nächstes event</target>
             </trans-unit>
             <trans-unit id="voiceover_nextDateStackView_value_nothing_scheduled">
                 <source>nothing scheduled</source>
-                <target>nichts geplant</target>
                 <note>No comment provided by engineer.</note>
+                <target>nichts geplant</target>
             </trans-unit>
             <trans-unit id="voiceover_play_button_label">
                 <source>play button</source>
-                <target>play button</target>
                 <note>No comment provided by engineer.</note>
+                <target>play button</target>
             </trans-unit>
             <trans-unit id="voiceover_playbutton_hint_buffering">
                 <source>double tap to pause</source>
-                <target>doppel tap um zu pausieren</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um zu pausieren</target>
             </trans-unit>
             <trans-unit id="voiceover_playbutton_hint_not_playing">
                 <source>double tap to play</source>
-                <target>doppel tap um zu starten</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um zu starten</target>
             </trans-unit>
             <trans-unit id="voiceover_playbutton_hint_playing">
                 <source>double tap to pause</source>
-                <target>doppel tap um zu pausieren</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um zu pausieren</target>
             </trans-unit>
             <trans-unit id="voiceover_playbutton_value_buffering">
                 <source>buffering</source>
-                <target>puffern</target>
                 <note>No comment provided by engineer.</note>
+                <target>puffern</target>
             </trans-unit>
             <trans-unit id="voiceover_playbutton_value_not_playing">
                 <source>not playing</source>
-                <target>spielt nicht</target>
                 <note>No comment provided by engineer.</note>
+                <target>spielt nicht</target>
             </trans-unit>
             <trans-unit id="voiceover_playbutton_value_playing">
                 <source>playing</source>
+                <note>No comment provided by engineer.</note>
                 <target>spielt</target>
-                <note>No comment provided by engineer.</note>
-            </trans-unit>
-            <trans-unit id="voiceover_playerbar_hint">
-                <source>double tap to max the player</source>
-                <target>doppel tap um den player zu maximieren</target>
-                <note>No comment provided by engineer.</note>
-            </trans-unit>
-            <trans-unit id="voiceover_settings_button_label">
-                <source>Settings</source>
-                <target>Einstellungen</target>
-                <note>No comment provided by engineer.</note>
             </trans-unit>
             <trans-unit id="voiceover_share_button_label">
                 <source>share</source>
-                <target>teilen</target>
                 <note>No comment provided by engineer.</note>
+                <target>teilen</target>
             </trans-unit>
             <trans-unit id="voiceover_sleep_button_hint_configure">
                 <source>double tap to configure a sleep timer</source>
-                <target>doppel tap um einen sleep timer einzurichten</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um einen sleep timer einzurichten</target>
             </trans-unit>
             <trans-unit id="voiceover_sleep_button_hint_disable">
                 <source>Double Tap to disable the sleep timer</source>
-                <target>doppel tap um den sleep timer zu deaktivieren</target>
                 <note>No comment provided by engineer.</note>
+                <target>doppel tap um den sleep timer zu deaktivieren</target>
             </trans-unit>
             <trans-unit id="voiceover_sleep_button_label">
                 <source>sleep timer</source>
-                <target>sleep timer</target>
                 <note>No comment provided by engineer.</note>
+                <target>sleep timer</target>
             </trans-unit>
             <trans-unit id="voiceover_sleep_button_value">
                 <source>%@ minutes left</source>
-                <target>noch %@ minuten</target>
                 <note>No comment provided by engineer.</note>
+                <target>noch %@ minuten</target>
             </trans-unit>
             <trans-unit id="voiceover_sleep_button_value_disabled">
                 <source>disabled</source>
-                <target>deaktiviert</target>
                 <note>No comment provided by engineer.</note>
+                <target>deaktiviert</target>
             </trans-unit>
         </body>
     </file>
@@ -616,6 +555,7 @@ You only see this message this one time and I will never bother you again.</sour
         <body>
             <trans-unit id="CFBundleName">
                 <source>$(PRODUCT_NAME)</source>
+                <target>Xenim</target>
             </trans-unit>
             <trans-unit id="CFBundleShortVersionString">
                 <source>1.0</source>
