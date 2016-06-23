@@ -389,8 +389,8 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISE-Qs-9bf">
-                                <rect key="frame" x="290" y="254" width="22" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISE-Qs-9bf">
+                                <rect key="frame" x="290" y="260" width="22" height="22"/>
                                 <color key="tintColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             </button>
                         </subviews>
@@ -615,8 +615,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="472"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nil" translatesAutoresizingMaskIntoConstraints="NO" id="QvL-hb-cYK">
-                                                    <rect key="frame" x="90" y="8" width="420" height="420"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nil" translatesAutoresizingMaskIntoConstraints="NO" id="QvL-hb-cYK">
+                                                    <rect key="frame" x="291" y="8" width="19" height="19"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="QvL-hb-cYK" secondAttribute="height" multiplier="1:1" id="JEz-Zx-LCh"/>
