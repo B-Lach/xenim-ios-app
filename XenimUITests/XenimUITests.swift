@@ -101,19 +101,4 @@ class XenimUITests: XCTestCase {
     
     }
     
-    //    func setupFavorites() {
-    //        let tabBarsQuery = app.tabBars
-    //        tabBarsQuery.buttons["Favorites"].tap()
-    //        app.navigationBars["Favorites"].buttons["brandeis blue 25 plus"].tap()
-    //
-    //        var tablesQuery = app.tables
-    //        tablesQuery.cells.containingType(.StaticText, identifier:"Freakshow").buttons["scarlet 44 star o"].tap()
-    //        tablesQuery.cells.containingType(.StaticText, identifier:"Lage der Nation").buttons["scarlet 44 star o"].tap()
-    //        tablesQuery.cells.containingType(.StaticText, identifier:"Not Safe For Work").buttons["scarlet 44 star o"].tap()
-    //        tablesQuery.staticTexts["Nerdemissionen"].swipeUp()
-    //        tablesQuery.cells.containingType(.StaticText, identifier:"Wrint").buttons["scarlet 44 star o"].tap()
-    //        app.navigationBars["Add Favorites"].buttons["Done"].tap()
-    //        tabBarsQuery.buttons["Events"].tap()
-    //    }
-    
 }
