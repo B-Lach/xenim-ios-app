@@ -1,8 +1,5 @@
-• Der Farbverlauf in der Podcast Detailansicht wurde verbessert. Er ist jetzt nicht mehr so dunkel.
-• Das Design des Liveplayers wurde komplett überarbeitet.
-• Die App ist nun optimiert für VoiceOver Nutzer
-• Bugfix: Die Datumsanzeige für ein Event behält nun auch beim Scrollen den richtigen Zustand
-• Die Datumsanzeige zeigt nun nicht nur verbleibende Tage bis zur Sendung, sonder auch Stunden und Minuten, wenn das Event näher rückt
-• Der Events Tab heißt nun Kalender. Das ist klarer verständlich.
-• Wer die App häufig nutzt bekommt ein einziges Mal einen Hinweis angezeigt, dass man die Entwicklung der App unterstützen kann
-• In den Settings gibt es nun einen Button, um die App im Appstore zu bewerten. Es würde mich freuen, wenn ihr das macht.
+• iPad Support (Landscape Modus noch eingeschränkt, aktuell noch kein Syncing der Favoriten)
+• Bugfixes
+• Verbessertes Design
+• Coverarts nun in hoher Auflösung
+• Die App braucht weniger Speicherplatz
