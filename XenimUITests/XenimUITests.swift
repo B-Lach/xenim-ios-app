@@ -47,9 +47,9 @@ class XenimUITests: XCTestCase {
         sleep(2)
         snapshot("03Player")
         
-        app.buttons["minimieren"].tap()
-        app.toolbars.buttons["Funkenstrahlen\nTestsendung"].pressForDuration(2.0);
-        app.sheets.collectionViews.buttons["Player schließen"].tap()
+        // close player
+        app.navigationBars["Funkenstrahlen"].buttons["Stopp"].tap()
+        
 
         app.tabBars.buttons["Favoriten"].tap()
         snapshot("04Favorites")
@@ -57,16 +57,9 @@ class XenimUITests: XCTestCase {
         let favoritenNavigationBar = app.navigationBars["Favoriten"]
         favoritenNavigationBar.buttons["Hinzufügen"].tap()
         snapshot("05AddFavorites")
-        
-        app.navigationBars["Favoriten finden"].buttons["Fertig"].tap()
-        favoritenNavigationBar.buttons["Einstellungen"].tap()
-        snapshot("06Settings")
     }
     
     func testSnapshotsEN() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
         if deviceLanguage != "en-US" {
             return
         }
@@ -84,9 +77,7 @@ class XenimUITests: XCTestCase {
         sleep(2)
         snapshot("03Player")
         // close player
-        app.buttons["minify"].tap()
-        app.toolbars.buttons["Funkenstrahlen\nTestsendung"].pressForDuration(2);
-        app.sheets.collectionViews.buttons["End Playback"].tap()
+        app.navigationBars["Funkenstrahlen"].buttons["Stopp"].tap()
         
         app.tabBars.buttons["Favorites"].tap()
         snapshot("04Favorites")
@@ -94,11 +85,6 @@ class XenimUITests: XCTestCase {
         let favoritesNavigationBar = app.navigationBars["Favorites"]
         favoritesNavigationBar.buttons["Add"].tap()
         snapshot("05AddFavorites")
-        app.navigationBars["Add Favorites"].buttons["Done"].tap()
-        
-        favoritesNavigationBar.buttons["Settings"].tap()
-        snapshot("06Settings")
-    
     }
     
 }

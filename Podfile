@@ -16,7 +16,6 @@ target 'Xenim' do
   target 'XenimUITests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'SimulatorStatusMagic', :configurations => ['Debug']
   end
 
 end
