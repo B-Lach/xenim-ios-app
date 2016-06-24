@@ -139,8 +139,8 @@
 /* Class = "UILabel"; text = "Xenim"; ObjectID = "yuQ-X1-J2J"; */
 "yuQ-X1-J2J.text" = "Xenim";
 
-/* Class = "UILabel"; text = "Version 0.52"; ObjectID = "z7V-Vc-Jj0"; */
-"z7V-Vc-Jj0.text" = "Version 0.52";
+/* Class = "UILabel"; text = "Version"; ObjectID = "z7V-Vc-Jj0"; */
+"z7V-Vc-Jj0.text" = "Version";
 
 /* Class = "UILabel"; text = "Send a Mail"; ObjectID = "zGf-Am-hr9"; */
 "zGf-Am-hr9.text" = "Schreibe eine Mail";
