@@ -1,5 +1,12 @@
-• iPad Support (Landscape Modus noch eingeschränkt, aktuell noch kein Syncing der Favoriten)
+• iPad Support (Landscape Modus noch eingeschränkt, aktuell noch kein Sync der Favoriten)
 • Bugfixes
 • Verbessertes Design
 • Coverarts nun in hoher Auflösung
 • Die App braucht weniger Speicherplatz
+• Push Token wird in den Settings angezeigt
+
+Ich stecke viel Zeit in die Entwicklung der App und versuche sie jeden Tag besser zu machen. Wenn dir die App gefällt, würde ich mich über deine Unterstützung freuen. Nur so kann ich es mir leisten in der Zukunft weiter an der App zu arbeiten. In den Settings der App kannst du mir ein wenig Geld zukommen lassen.
+
+Wenn du Zeit hast, hilft auch eine Bewertung der App im Appstore. So hilfst du Anderen die App zu entdecken.
+
+Feedback: xenimapp@stefantrauth.de

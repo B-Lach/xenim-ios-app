@@ -3,3 +3,10 @@
 • improved design
 • high resolution coverarts
 • reduced app file size
+• push token is displayed in settings. copy to clipboard by tapping on it.
+
+I spend a lot of time working on the app and making it better every day. If you like the app please consider supporting me, so I can afford working on the app in the future. You can use the donation options in the settings to do that.
+
+If you have some time you can rate the app on the Appstore. This helps other people discover the app.
+
+Feedback: xenimapp@stefantrauth.de
