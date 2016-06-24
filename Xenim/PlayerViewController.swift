@@ -291,7 +291,7 @@ class PlayerViewController: UIViewController {
         sleepTimerTicksLeft = sleepTimerTicksLeft! - 1
         if sleepTimerTicksLeft == 0 {
             disableSleepTimer()
-            PlayerManager.sharedInstance.stop()
+            PlayerManager.sharedInstance.pause()
         }
         updateSleepTimerDisplay()
     }
