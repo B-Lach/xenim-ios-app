@@ -59,9 +59,9 @@ class FavoriteTableViewCell: UITableViewCell {
         
         self.accessibilityTraits = UIAccessibilityTraitButton
         
-        coverartImageView.layer.cornerRadius = coverartImageView.frame.size.height / 2
+        coverartImageView.layer.cornerRadius = 4
         coverartImageView.layer.masksToBounds = true
-        coverartImageView.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
+        coverartImageView.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
         coverartImageView.layer.borderWidth = 0.5
         
     }
