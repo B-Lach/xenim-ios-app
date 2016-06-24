@@ -60,7 +60,7 @@ platform :ios do
 
     build
 
-    #pilot(skip_submission: true, distribute_external: false, ipa: "fastlane/ipa/Xenim.ipa")
+    pilot(skip_submission: true, distribute_external: false, ipa: "fastlane/ipa/Xenim.ipa")
   end
 
   desc "Deploy a new version to the App Store"
