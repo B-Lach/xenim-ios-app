@@ -37,11 +37,7 @@ class FavoritesTableViewController: UITableViewController{
     }
     
     override func viewDidAppear(animated: Bool) {
-        // refresh every time this view appears if the stored favorites count does not match the displayed favorites count
-        if Favorites.fetch().count != favorites.count {
-            refresh()
-        }
-        
+        refresh()
         // refresh next show date label in all cells
         NSNotificationCenter.defaultCenter().postNotificationName("updateNextDate", object: nil, userInfo: nil)
     }
