@@ -89,7 +89,7 @@ class XenimUITests: XCTestCase {
         sleep(2)
         snapshot("03Player")
         // close player
-        app.navigationBars["Funkenstrahlen"].buttons["Stopp"].tap()
+        app.navigationBars["Funkenstrahlen"].buttons["Stop"].tap()
         
         app.tabBars.buttons["Favorites"].tap()
         snapshot("04Favorites")
