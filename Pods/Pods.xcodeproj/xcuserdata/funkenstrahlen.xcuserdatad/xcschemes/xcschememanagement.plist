@@ -44,11 +44,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SimulatorStatusMagic.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,7 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5E05BC5740755E3677726DEB28C8C5FF</key>
+		<key>558C9858632F022A50DDB08B3E1303CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,11 +88,6 @@
 			<true/>
 		</dict>
 		<key>C2195DB52D03EF3C58A059D3CD33484A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DDFA778A085876F23DDBF64D70AB507D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

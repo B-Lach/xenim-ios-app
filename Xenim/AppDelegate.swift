@@ -10,10 +10,6 @@ import UIKit
 import Parse
 import AlamofireNetworkActivityIndicator
 
-#if SCREENSHOTS
-import SimulatorStatusMagic
-#endif
-
 struct Constants {
     struct Colors {
         static let tintColor = UIColor(red:1.00, green:0.45, blue:0.39, alpha:1.00)
@@ -22,7 +18,7 @@ struct Constants {
         // "https://dev.push.xenim.de/parse"
         static let parseServer = "https://dev.push.xenim.de/parse"
         // "http://feeds.streams.demo.xenim.de/api/v1/"
-        static let xenimApiUrl = "http://feeds.streams.demo.xenim.de/api/v1/"
+        static let xenimApiUrl = "http://feeds.streams.demo.xenim.de/api/v2/"
     }
 }
 
@@ -36,10 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // the statusbar is hidden on launch, because it should not be visible on launchscreen
         // reenable it here
         application.statusBarHidden = false
-        
-        #if SCREENSHOTS
-        SDStatusBarManager.sharedInstance().enableOverrides()
-        #endif
 
         // alamofire requests show network indicator
         NetworkActivityIndicatorManager.sharedManager.isEnabled = true

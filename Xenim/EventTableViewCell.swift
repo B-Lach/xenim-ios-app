@@ -57,9 +57,9 @@ class EventTableViewCell: UITableViewCell {
         
         self.accessibilityTraits = UIAccessibilityTraitButton
         
-        eventCoverartImage.layer.cornerRadius = eventCoverartImage.frame.width / 2
+        eventCoverartImage.layer.cornerRadius = 4
         eventCoverartImage.layer.masksToBounds = true
-        eventCoverartImage.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
+        eventCoverartImage.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
         eventCoverartImage.layer.borderWidth = 0.5
     }
     

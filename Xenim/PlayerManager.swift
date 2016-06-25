@@ -51,6 +51,10 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         }
     }
     
+    func pause() {
+        player.pause()
+    }
+    
     func play(event: Event) {
         if let audioItem = AudioItem(mediumQualitySoundURL: event.streamUrl) {
             UIApplication.sharedApplication().beginReceivingRemoteControlEvents()

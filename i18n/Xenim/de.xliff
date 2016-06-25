@@ -247,9 +247,9 @@
                 <note>Class = "UILabel"; text = "Xenim"; ObjectID = "yuQ-X1-J2J";</note>
             </trans-unit>
             <trans-unit id="z7V-Vc-Jj0.text">
-                <source>Version 0.52</source>
-                <target>Version 0.52</target>
-                <note>Class = "UILabel"; text = "Version 0.52"; ObjectID = "z7V-Vc-Jj0";</note>
+                <source>Version</source>
+                <target>Version</target>
+                <note>Class = "UILabel"; text = "Version"; ObjectID = "z7V-Vc-Jj0";</note>
             </trans-unit>
             <trans-unit id="zGf-Am-hr9.text">
                 <source>Send a Mail</source>
