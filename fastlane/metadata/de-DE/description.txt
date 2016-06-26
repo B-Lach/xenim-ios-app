@@ -1,7 +1,9 @@
-Höre alle Podcast Livestreams des Xenim Streaming Netzwerks ganz bequem auf deinem Smartphone.
+Höre alle Podcast Livestreams des Xenim Streaming Netzwerks!
 
 - Kalender mit allen Livestreams
 - Podcasts als Favorit markieren
 - Kalender nach Favoriten filtern
 - Push Notifications sobald ein Lieblingspodcast einen Livestream startet
 - Metadaten zu allen Podcasts
+- Sleep Timer
+- Live Anzeige der Höhrerzahl
