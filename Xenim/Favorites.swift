@@ -19,7 +19,7 @@ class Favorites {
 //                do {
 //                    try installation.fetch()
 //                } catch {
-//                    // TODO
+//                    
 //                }
         if installation.channels == nil {
             installation.channels = [String]()
@@ -42,7 +42,7 @@ class Favorites {
         //        do {
         //            try installation.fetch()
         //        } catch {
-        //            // TODO
+        //
         //        }
         
         if let channels = installation.channels {
@@ -59,7 +59,7 @@ class Favorites {
         //        do {
         //            try installation.fetch()
         //        } catch {
-        //            // TODO
+        //
         //        }
         
         if let channels = installation.channels {
