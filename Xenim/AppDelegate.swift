@@ -44,22 +44,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let applicationId = keys!["parseApplicationID"] as! String
         let clientKey = keys!["parseClientKey"] as! String
         
-        Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (config) -> Void in
+        Parse.initialize(with: ParseClientConfiguration(block: { (config) -> Void in
             config.applicationId = applicationId
             config.clientKey = clientKey
             // "https://dev.push.xenim.de/parse"
             config.server = Constants.API.parseServer
-            config.localDatastoreEnabled = true
+            config.isLocalDatastoreEnabled = true
         }))
         
         // register IAP handler. will be called when the item has been purchased.
-        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportSmall") { (transaction:SKPaymentTransaction) in
+        PFPurchase.addObserver(forProduct: "com.stefantrauth.XenimSupportSmall") { (transaction:SKPaymentTransaction) in
             print("purchase was successful.")
         }
-        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportMiddle") { (transaction:SKPaymentTransaction) in
+        PFPurchase.addObserver(forProduct: "com.stefantrauth.XenimSupportMiddle") { (transaction:SKPaymentTransaction) in
             print("purchase was successful.")
         }
-        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportBig") { (transaction:SKPaymentTransaction) in
+        PFPurchase.addObserver(forProduct: "com.stefantrauth.XenimSupportBig") { (transaction:SKPaymentTransaction) in
             print("purchase was successful.")
         }
         
@@ -77,8 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let installation = PFInstallation.currentInstallation()
-        installation.setDeviceTokenFromData(deviceToken)
+        let installation = PFInstallation.current()
+        installation.setDeviceTokenFrom(deviceToken)
         installation.saveEventually()
     }
     
@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
+        PFPush.handle(userInfo)
         NotificationCenter.default().post(name: Notification.Name(rawValue: "refreshEvents"), object: nil, userInfo: nil)
         resetApplicationBadge(application)
     }
