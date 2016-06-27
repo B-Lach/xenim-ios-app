@@ -11,11 +11,11 @@ import UIKit
 class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpdating {
     
     enum State {
-        case LOADING
-        case SHOW
+        case loading
+        case show
     }
     
-    var state: State = .LOADING
+    var state: State = .loading
 
     // contains all podcasts with slug:title
     var podcasts = [Podcast]()
@@ -31,7 +31,7 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.splitViewController?.preferredDisplayMode = .AllVisible
+        self.splitViewController?.preferredDisplayMode = .allVisible
 
         // add search bar
         resultSearchController = UISearchController(searchResultsController: nil)
@@ -42,22 +42,22 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
         resultSearchController.hidesNavigationBarDuringPresentation = false
 
         // fetch podcast list from API
-        loadingVC = storyboard?.instantiateViewControllerWithIdentifier("LoadingViewController")
-        messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
+        loadingVC = storyboard?.instantiateViewController(withIdentifier: "LoadingViewController")
+        messageVC = storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as? MessageViewController
         messageVC?.message = NSLocalizedString("add_favorites_tableview_no_data_message", value: "Could not find something", comment: "this message gets displayed if add favorites table view controller does not have any item to display")
         
         updateBackground()
         
         XenimAPI.fetchAllPodcasts { (podcasts) -> Void in
             self.podcasts = podcasts
-            self.orderedPodcasts = podcasts.sort()
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.state = .SHOW
+            self.orderedPodcasts = podcasts.sorted()
+            DispatchQueue.main.async(execute: { () -> Void in
+                self.state = .show
                 self.updateBackground()
 
                 self.tableView.tableHeaderView = self.resultSearchController.searchBar
                 
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+                self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.fade)
             })
         }
     }
@@ -69,65 +69,65 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     
     
     func updateBackground() {
-        if state == .LOADING {
+        if state == .loading {
             tableView.backgroundView = loadingVC?.view
-            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        } else if state == .SHOW {
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        } else if state == .show {
             var elementCount = 0
-            if resultSearchController.active {
+            if resultSearchController.isActive {
                 elementCount = filteredPodcasts.count
             } else {
                 elementCount = orderedPodcasts.count
             }
             
             if elementCount == 0 {
-                tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+                tableView.separatorStyle = UITableViewCellSeparatorStyle.none
                 tableView.backgroundView = messageVC?.view
             } else {
                 tableView.backgroundView = nil
-                tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+                tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
             }
         }
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if resultSearchController.active {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if resultSearchController.isActive {
             return filteredPodcasts.count
         }
         return orderedPodcasts.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // set the datasource depending on the current state
         // if the user is searching use the filtered array
         let dataSource: [Podcast]
-        if resultSearchController.active {
+        if resultSearchController.isActive {
             dataSource = filteredPodcasts
         } else {
             dataSource = orderedPodcasts
         }
         
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCell", forIndexPath: indexPath) as! AddFavoriteTableViewCell
-        cell.podcast = dataSource[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCell", for: indexPath) as! AddFavoriteTableViewCell
+        cell.podcast = dataSource[(indexPath as NSIndexPath).row]
         return cell
     }
     
     // MARK: search
     
-    func filterContentForSearchText(searchText: String) {
+    func filterContentForSearchText(_ searchText: String) {
         // Filter the array using the filter method
         self.filteredPodcasts = self.orderedPodcasts.filter({ (podcast) -> Bool in
-            let podcastName = podcast.name.lowercaseString
-            let stringMatch = podcastName.rangeOfString(searchText.lowercaseString)
+            let podcastName = podcast.name.lowercased()
+            let stringMatch = podcastName.range(of: searchText.lowercased())
             return stringMatch != nil
         })
     }
@@ -135,7 +135,7 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
     /**
         This is called every time the text field content of the search controller changes.
     */
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filterContentForSearchText(searchText)
             self.tableView.reloadData()
@@ -144,16 +144,16 @@ class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpda
 
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AddFavoriteTableViewCell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! AddFavoriteTableViewCell
         let podcast = cell.podcast
-        if resultSearchController.active {
-            resultSearchController.active = false
+        if resultSearchController.isActive {
+            resultSearchController.isActive = false
         }
-        self.performSegueWithIdentifier("podcastDetail", sender: podcast)
+        self.performSegue(withIdentifier: "podcastDetail", sender: podcast)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "podcastDetail" {
             var detail: PodcastDetailTableViewController
             if let navigationController = segue.destinationViewController as? UINavigationController {

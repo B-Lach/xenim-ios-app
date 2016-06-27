@@ -9,16 +9,16 @@
 import UIKit
 
 protocol PlayerDelegate {
-    func play(event: Event)
+    func play(_ event: Event)
 }
 
 class EventTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, PlayerDelegate {
     
     // possible sections
     enum Section {
-        case Today
-        case ThisWeek
-        case Later
+        case today
+        case thisWeek
+        case later
     }
 
     // events sorted into sections (see above) and sorted by time
@@ -33,7 +33,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     @IBOutlet weak var spinner: UIRefreshControl!
     
     // user defaults to store favorites filter enabled status
-    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let userDefaults = UserDefaults.standard()
     let userDefaultsFavoritesSettingKey = "showFavoritesOnly"
     
     // background view for message when no data is available
@@ -46,18 +46,18 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.splitViewController?.preferredDisplayMode = .AllVisible
+        self.splitViewController?.preferredDisplayMode = .allVisible
         
         // check if filter was enabled when the app was use the last time
         // fetch it from user defaults
-        if let favoritesFilterSetting = userDefaults.objectForKey(userDefaultsFavoritesSettingKey) as? Bool {
+        if let favoritesFilterSetting = userDefaults.object(forKey: userDefaultsFavoritesSettingKey) as? Bool {
             showFavoritesOnly = favoritesFilterSetting
             segmentControl.selectedSegmentIndex = showFavoritesOnly ? 1 : 0
             
         }
         
         // add background view to display error message if no data is available to display
-        if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
+        if let messageVC = storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as? MessageViewController {
             self.messageVC = messageVC
             tableView.backgroundView = messageVC.view
             tableView.backgroundView?.layer.zPosition -= 1
@@ -79,17 +79,17 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
             } else {
                 messageLabel?.text = NSLocalizedString("event_tableview_empty_message", value: "Did not receive any upcoming events. Pull to refresh to try again.", comment: "this message gets displayed if no events could be displayed / fetched from the API")
             }
-            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-            tableView.backgroundView?.hidden = false
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+            tableView.backgroundView?.isHidden = false
         } else {
-            tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-            tableView.backgroundView?.hidden = true
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+            tableView.backgroundView?.isHidden = true
         }
     }
     
     // MARK: Actions
     
-    @IBAction func refresh(spinner: UIRefreshControl) {
+    @IBAction func refresh(_ spinner: UIRefreshControl) {
         refreshControl!.beginRefreshing()
         var newEvents = [[Event](),[Event](),[Event]()]
         
@@ -104,55 +104,55 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
                 }
             }
             
-            dispatch_async(dispatch_get_main_queue(), { 
+            DispatchQueue.main.async(execute: { 
                 self.events = newEvents
                 self.refreshControl!.endRefreshing()
                 self.filterFavorites()
                 
-                self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+                self.tableView.reloadSections(IndexSet(integersIn: NSMakeRange(0, self.events.count).toRange()!), with: UITableViewRowAnimation.fade)
             })
         }
     }
 
-    @IBAction func segmentChanged(sender: UISegmentedControl) {
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             showFavoritesOnly = false
         } else {
             showFavoritesOnly = true
         }
-        userDefaults.setObject(showFavoritesOnly, forKey: userDefaultsFavoritesSettingKey)
-        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+        userDefaults.set(showFavoritesOnly, forKey: userDefaultsFavoritesSettingKey)
+        self.tableView.reloadSections(IndexSet(integersIn: NSMakeRange(0, self.events.count).toRange()!), with: UITableViewRowAnimation.fade)
     }
     
     // MARK: - Notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewController.refresh(_:)), name: "refreshEvents", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewController.refresh(_:)), name: "refreshEvents", object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
     }
     
-    func favoriteAdded(notification: NSNotification) {
+    func favoriteAdded(_ notification: Notification) {
         filterFavorites()
         if showFavoritesOnly {
-            self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+            self.tableView.reloadSections(IndexSet(integersIn: NSMakeRange(0, self.events.count).toRange()!), with: UITableViewRowAnimation.fade)
         }
     }
     
-    func favoriteRemoved(notification: NSNotification) {
+    func favoriteRemoved(_ notification: Notification) {
         filterFavorites()
         if showFavoritesOnly {
-            self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.events.count)), withRowAnimation: UITableViewRowAnimation.Fade)
+            self.tableView.reloadSections(IndexSet(integersIn: NSMakeRange(0, self.events.count).toRange()!), with: UITableViewRowAnimation.fade)
         }
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         updateBackground()
         if showFavoritesOnly {
             return favoriteEvents.count
@@ -160,11 +160,11 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         return events.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numberOfRowsInSection(section)
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if numberOfRowsInSection(section) == 0 {
             // hide the section header for sections with no content
             return nil
@@ -177,19 +177,19 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Event", for: indexPath) as! EventTableViewCell
         if showFavoritesOnly {
-            cell.event = favoriteEvents[indexPath.section][indexPath.row]
+            cell.event = favoriteEvents[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
         } else {
-            cell.event = events[indexPath.section][indexPath.row]
+            cell.event = events[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
         }
         cell.playerDelegate = self
         return cell
     }
     
     // helper method because calling tableView.numberOfRowsInSection(section) crashes the app
-    private func numberOfRowsInSection(section: Int) -> Int {
+    private func numberOfRowsInSection(_ section: Int) -> Int {
         if showFavoritesOnly {
             return favoriteEvents[section].count
         }
@@ -229,12 +229,12 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     // MARK: Actions
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let toggleFavoriteAction = UITableViewRowAction(style: .Default, title: "★") { (action, indexPath) -> Void in
-            let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
+        let toggleFavoriteAction = UITableViewRowAction(style: .default, title: "★") { (action, indexPath) -> Void in
+            let cell = self.tableView.cellForRow(at: indexPath) as! EventTableViewCell
             Favorites.toggle(podcastId: cell.event.podcast.id)
-            self.tableView.editing = false
+            self.tableView.isEditing = false
         }
         toggleFavoriteAction.backgroundColor = Constants.Colors.tintColor
         
@@ -244,18 +244,18 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     
     // MARK: - Navigation
     
-    @IBAction func dismissPlayer(segue:UIStoryboardSegue) {}
+    @IBAction func dismissPlayer(_ segue:UIStoryboardSegue) {}
     
-    func play(event: Event) {
-        self.performSegueWithIdentifier("play", sender: event)
+    func play(_ event: Event) {
+        self.performSegue(withIdentifier: "play", sender: event)
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! EventTableViewCell
-        self.performSegueWithIdentifier("podcastDetail", sender: cell)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! EventTableViewCell
+        self.performSegue(withIdentifier: "podcastDetail", sender: cell)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "play" {
             if let navigationController = segue.destinationViewController as? UINavigationController {

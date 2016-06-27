@@ -10,7 +10,6 @@ import UIKit
 import MediaPlayer
 import Alamofire
 import AlamofireImage
-import KDEAudioPlayer
 
 class PlayerViewController: UIViewController {
     
@@ -29,15 +28,15 @@ class PlayerViewController: UIViewController {
         didSet {
             airplayView.showsVolumeSlider = false
             for view in airplayView.subviews {
-                if view.isKindOfClass(UIButton) {
+                if view.isKind(UIButton) {
                     let buttonOnVolumeView : UIButton = view as! UIButton
-                    airplayView.setRouteButtonImage(buttonOnVolumeView.currentImage?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+                    airplayView.setRouteButtonImage(buttonOnVolumeView.currentImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
                 }
             }
         }
     }
     
-    var updateListenersTimer: NSTimer?
+    var updateListenersTimer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +48,12 @@ class PlayerViewController: UIViewController {
         
         setupVoiceOver()
         
-        switch UIDevice.currentDevice().userInterfaceIdiom {
-        case .Phone:
+        switch UIDevice.current().userInterfaceIdiom {
+        case .phone:
             if let imageurl = event.podcast.artwork.thumb800Url {
                 coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
             }
-        case .Pad:
+        case .pad:
             if let imageurl = event.podcast.artwork.thumb3000Url {
                 coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
             }
@@ -66,11 +65,11 @@ class PlayerViewController: UIViewController {
         // setup timer to update every minute
         // remember to invalidate timer as soon this view gets cleared otherwise
         // this will cause a memory cycle
-        updateListenersTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateListenersLabel), userInfo: nil, repeats: true)
+        updateListenersTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateListenersLabel), userInfo: nil, repeats: true)
         updateListenersLabel()
 	}
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         PlayerManager.sharedInstance.stop()
     }
     
@@ -93,23 +92,23 @@ class PlayerViewController: UIViewController {
     
     // MARK: - Update UI
     
-    func showInfoMessage(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    func showInfoMessage(_ title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.view.tintColor = Constants.Colors.tintColor
         let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
-        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Actions
     
-    @IBAction func toggleFavorite(sender: AnyObject) {
+    @IBAction func toggleFavorite(_ sender: AnyObject) {
         if let event = event {
             Favorites.toggle(podcastId: event.podcast.id)
         }
     }
     
-    @IBAction func share(sender: AnyObject) {
+    @IBAction func share(_ sender: AnyObject) {
         if let url = event?.eventXenimWebUrl {
             let objectsToShare = [url]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
@@ -118,33 +117,33 @@ class PlayerViewController: UIViewController {
             // Excluded Activities
             //      activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
             
-            self.presentViewController(activityVC, animated: true, completion: nil)
+            self.present(activityVC, animated: true, completion: nil)
         }
     }
     
-    @IBAction func togglePlayPause(sender: AnyObject) {
+    @IBAction func togglePlayPause(_ sender: AnyObject) {
         PlayerManager.sharedInstance.togglePlayPause()
     }
     
-    @IBAction func backwardPressed(sender: AnyObject) {
+    @IBAction func backwardPressed(_ sender: AnyObject) {
         PlayerManager.sharedInstance.minus30seconds()
     }
     
-    @IBAction func forwardPressed(sender: AnyObject) {
+    @IBAction func forwardPressed(_ sender: AnyObject) {
         PlayerManager.sharedInstance.plus30seconds()
     }
     
     // MARK: notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerViewController.playerStateChanged(_:)), name: "playerStateChanged", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.playerStateChanged(_:)), name: "playerStateChanged", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
     }
     
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
         sleepTimer?.invalidate()
         updateListenersTimer?.invalidate()
     }
@@ -155,7 +154,7 @@ class PlayerViewController: UIViewController {
         }
     }
     
-    private func updateFavoritesButton(isFavorite: Bool) {
+    private func updateFavoritesButton(_ isFavorite: Bool) {
         if isFavorite {
             favoriteButton.image = UIImage(named: "star_25")
             favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
@@ -165,23 +164,23 @@ class PlayerViewController: UIViewController {
         }
     }
     
-    func favoriteAdded(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+    func favoriteAdded(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
             if podcastId == event.podcast.id {
                 updateFavoritesButton(true)
             }
         }
     }
     
-    func favoriteRemoved(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+    func favoriteRemoved(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
             if podcastId == event.podcast.id {
                 updateFavoritesButton(false)
             }
         }
     }
     
-    func playerStateChanged(notification: NSNotification) {
+    func playerStateChanged(_ notification: Notification) {
         let player = PlayerManager.sharedInstance.player
         
         switch player.state {
@@ -208,22 +207,22 @@ class PlayerViewController: UIViewController {
     }
     
     private func showPlaybuttonPlaying() {
-        loadingSpinnerView.hidden = true
-        playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
+        loadingSpinnerView.isHidden = true
+        playPauseButton?.setImage(UIImage(named: "large-pause"), for: UIControlState())
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", value: "playing", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", value: "double tap to pause", comment: "")
     }
     
     private func showPlaybuttonPaused() {
-        loadingSpinnerView.hidden = true
-        playPauseButton?.setImage(UIImage(named: "large-play"), forState: UIControlState.Normal)
+        loadingSpinnerView.isHidden = true
+        playPauseButton?.setImage(UIImage(named: "large-play"), for: UIControlState())
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", value: "not playing", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", value: "double tap to play", comment: "")
     }
     
     private func showPlaybuttonBuffering() {
-        loadingSpinnerView.hidden = false
-        playPauseButton?.setImage(UIImage(named: "large-pause"), forState: UIControlState.Normal)
+        loadingSpinnerView.isHidden = false
+        playPauseButton?.setImage(UIImage(named: "large-pause"), for: UIControlState())
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_buffering", value: "buffering", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_buffering", value: "double tap to pause", comment: "")
     }
@@ -233,8 +232,8 @@ class PlayerViewController: UIViewController {
     @objc func updateListenersLabel() {
         event.fetchCurrentListeners { (listeners) -> Void in
             if let listeners = listeners {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.listenersCountButton.setTitle("\(listeners)", forState: .Normal)
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.listenersCountButton.setTitle("\(listeners)", for: UIControlState())
                 })
             }
         }
@@ -243,39 +242,39 @@ class PlayerViewController: UIViewController {
     // MARK: - sleeptimer
     
     private var sleepTimerTicksLeft: Int?
-    private weak var sleepTimer: NSTimer?
+    private weak var sleepTimer: Timer?
     
-    @IBAction func sleepTimerPressed(sender: AnyObject) {
+    @IBAction func sleepTimerPressed(_ sender: AnyObject) {
         if sleepTimer != nil {
             disableSleepTimer()
         } else {
             // show action sheet to select time
             // 10, 20, 30, 60 minutes
             
-            let optionMenu = UIAlertController(title: "", message: "", preferredStyle: .ActionSheet)
+            let optionMenu = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
             
             optionMenu.view.tintColor = Constants.Colors.tintColor
             
             for minutes in [10, 20, 30, 60] {
-                let action = UIAlertAction(title: "\(minutes)min", style: .Default, handler: { (alert: UIAlertAction!) -> Void in
+                let action = UIAlertAction(title: "\(minutes)min", style: .default, handler: { (alert: UIAlertAction!) -> Void in
                     self.enableSleepTimer(minutes: minutes)
                 })
                 optionMenu.addAction(action)
             }
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "Cancel"), style: .Cancel, handler: {
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "Cancel"), style: .cancel, handler: {
                 (alert: UIAlertAction!) -> Void in
             })
             optionMenu.addAction(cancelAction)
             optionMenu.popoverPresentationController?.sourceView = sleepTimerButton
             
-            self.presentViewController(optionMenu, animated: true, completion: nil)
+            self.present(optionMenu, animated: true, completion: nil)
         }
     }
     
-    private func enableSleepTimer(minutes minutes: Int) {
-        let oneMinute: NSTimeInterval = 60
-        sleepTimer = NSTimer.scheduledTimerWithTimeInterval(oneMinute, target: self, selector: #selector(sleepTimerTriggered), userInfo: nil, repeats: true)
+    private func enableSleepTimer(minutes: Int) {
+        let oneMinute: TimeInterval = 60
+        sleepTimer = Timer.scheduledTimer(timeInterval: oneMinute, target: self, selector: #selector(sleepTimerTriggered), userInfo: nil, repeats: true)
         sleepTimerTicksLeft = minutes
         updateSleepTimerDisplay()
     }
@@ -298,12 +297,12 @@ class PlayerViewController: UIViewController {
     
     private func updateSleepTimerDisplay() {
         if let minutesLeft = sleepTimerTicksLeft {
-            sleepTimerButton.setTitle("\(minutesLeft)min", forState: .Normal)
+            sleepTimerButton.setTitle("\(minutesLeft)min", for: UIControlState())
             
             sleepTimerButton.accessibilityValue = String.localizedStringWithFormat(NSLocalizedString("voiceover_sleep_button_value", value: "%@ minutes left", comment: ""), "\(minutesLeft)")
             sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_disable", value: "Double Tap to disable the sleep timer", comment: "")
         } else {
-            sleepTimerButton.setTitle("", forState: .Normal)
+            sleepTimerButton.setTitle("", for: UIControlState())
             sleepTimerButton.accessibilityValue = NSLocalizedString("voiceover_sleep_button_value_disabled", value: "disabled", comment: "")
             sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", value: "double tap to configure a sleep timer", comment: "")
         }

@@ -20,51 +20,51 @@ class FavoritesTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.splitViewController?.preferredDisplayMode = .AllVisible
+        self.splitViewController?.preferredDisplayMode = .allVisible
         
         addFavoriteBarButtonItem.accessibilityLabel = NSLocalizedString("voiceover_add_favorite_button_label", value: "Add", comment: "")
         addFavoriteBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_add_favorite_button_hint", value: "Double Tap to search through all podcasts and add favorites", comment: "")
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
         
         // add background view to display error message if no data is available to display
-        if let messageVC = storyboard?.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController {
+        if let messageVC = storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as? MessageViewController {
             self.messageVC = messageVC
             self.messageVC?.message = NSLocalizedString("favorites_tableview_empty_message", value: "Add podcast shows as your favorite to see them here.", comment: "this message is displayed if no podcast has been added as a favorite and the favorites table view is empty.")
         }
-        loadingVC = storyboard?.instantiateViewControllerWithIdentifier("LoadingViewController")
+        loadingVC = storyboard?.instantiateViewController(withIdentifier: "LoadingViewController")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         refresh()
         // refresh next show date label in all cells
-        NSNotificationCenter.defaultCenter().postNotificationName("updateNextDate", object: nil, userInfo: nil)
+        NotificationCenter.default().post(name: Notification.Name(rawValue: "updateNextDate"), object: nil, userInfo: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
     }
     
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favorites.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCell", forIndexPath: indexPath) as! FavoriteTableViewCell
-        cell.podcast = favorites[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCell", for: indexPath) as! FavoriteTableViewCell
+        cell.podcast = favorites[(indexPath as NSIndexPath).row]
         return cell
     }
     
-    func favoriteAdded(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+    func favoriteAdded(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
             // fetch podcast info
             XenimAPI.fetchPodcast(podcastId: podcastId, onComplete: { (newPodcast) -> Void in
                 // find the right place to insert it
@@ -72,12 +72,12 @@ class FavoritesTableViewController: UITableViewController{
                     
                     let index = self.favorites.orderedIndexOf(newPodcast, isOrderedBefore: <)
                     
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    DispatchQueue.main.async(execute: { () -> Void in
                         // add the new podcast to data source
-                        self.favorites.insert(newPodcast, atIndex: index)
+                        self.favorites.insert(newPodcast, at: index)
                         // update tableview
                         self.tableView.beginUpdates()
-                        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Left)
+                        self.tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: UITableViewRowAnimation.left)
                         self.tableView.endUpdates()
                         self.updateBackground()
                     })
@@ -87,16 +87,16 @@ class FavoritesTableViewController: UITableViewController{
         }
     }
     
-    func favoriteRemoved(notification: NSNotification) {
+    func favoriteRemoved(_ notification: Notification) {
         // extract which favorite was deleted
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
             // find the correct podcast in data source
-            for (index, podcast) in favorites.enumerate() {
+            for (index, podcast) in favorites.enumerated() {
                 if podcast.id == podcastId {
                     // remove it drom data source and tableview
-                    favorites.removeAtIndex(index)
+                    favorites.remove(at: index)
                     tableView.beginUpdates()
-                    tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Left)
+                    tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: UITableViewRowAnimation.left)
                     tableView.endUpdates()
                     break
                 }
@@ -113,9 +113,9 @@ class FavoritesTableViewController: UITableViewController{
         
         Favorites.fetchFavoritePodcasts({ (podcasts) -> Void in
             self.favorites = podcasts
-            self.favorites.sortInPlace()
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+            self.favorites.sort()
+            DispatchQueue.main.async(execute: { () -> Void in
+                self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.fade)
                 self.tableView.backgroundView = self.messageVC!.view
                 self.updateBackground()
             })
@@ -124,25 +124,25 @@ class FavoritesTableViewController: UITableViewController{
     
     func updateBackground() {
         if favorites.count == 0 {
-            tableView?.backgroundView?.hidden = false
-            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            tableView?.backgroundView?.isHidden = false
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         } else {
-            tableView?.backgroundView?.hidden = true
-            tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            tableView?.backgroundView?.isHidden = true
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         }
     }
     
     // MARK: - Navigation
     
     // rewind segues
-    @IBAction func dismissAddFavorite(segue:UIStoryboardSegue) {}
+    @IBAction func dismissAddFavorite(_ segue:UIStoryboardSegue) {}
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let podcast = favorites[indexPath.row]
-        self.performSegueWithIdentifier("podcastDetail", sender: podcast)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let podcast = favorites[(indexPath as NSIndexPath).row]
+        self.performSegue(withIdentifier: "podcastDetail", sender: podcast)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "podcastDetail" {
             var detail: PodcastDetailTableViewController
             if let navigationController = segue.destinationViewController as? UINavigationController {
@@ -157,10 +157,10 @@ class FavoritesTableViewController: UITableViewController{
         }
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let removeFavoriteAction = UITableViewRowAction(style: .Default, title:  NSLocalizedString("remove_favorite", value: "Remove", comment: "remove a favorite by swiping left to edit")) { (action, indexPath) -> Void in
-            let podcast = self.favorites[indexPath.row]
+        let removeFavoriteAction = UITableViewRowAction(style: .default, title:  NSLocalizedString("remove_favorite", value: "Remove", comment: "remove a favorite by swiping left to edit")) { (action, indexPath) -> Void in
+            let podcast = self.favorites[(indexPath as NSIndexPath).row]
             Favorites.toggle(podcastId: podcast.id)
         }
         removeFavoriteAction.backgroundColor = Constants.Colors.tintColor

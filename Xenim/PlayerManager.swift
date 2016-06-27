@@ -55,9 +55,9 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         player.pause()
     }
     
-    func play(event: Event) {
+    func play(_ event: Event) {
         if let audioItem = AudioItem(mediumQualitySoundURL: event.streamUrl) {
-            UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+            UIApplication.shared().beginReceivingRemoteControlEvents()
             
             currentItem = audioItem
             currentItem?.artist = event.podcast.name
@@ -65,8 +65,8 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             player.playItem(currentItem!) // save as this can not be nil
             
             // fetch coverart from image cache and set it as lockscreen artwork
-            switch UIDevice.currentDevice().userInterfaceIdiom {
-            case .Phone:
+            switch UIDevice.current().userInterfaceIdiom {
+            case .phone:
                 if let imageurl = event.podcast.artwork.thumb800Url {
                     Alamofire.request(.GET, imageurl)
                         .responseImage { response in
@@ -75,7 +75,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
                             }
                     }
                 }
-            case .Pad:
+            case .pad:
                 if let imageurl = event.podcast.artwork.thumb3000Url {
                     Alamofire.request(.GET, imageurl)
                         .responseImage { response in
@@ -89,7 +89,7 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
 
         } else {
             stop()
-            NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self.player])
+            NotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self.player])
         }
     }
     
@@ -113,43 +113,43 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     
     // MARK: - Notifications
     
-    func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
+    func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         //        print("\(from) -> \(to)")
-        NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": audioPlayer])
+        NotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": audioPlayer])
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {}
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {}
-    func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {}
-    func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem) {}
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {}
+    func audioPlayer(_ audioPlayer: AudioPlayer, didFindDuration duration: TimeInterval, forItem item: AudioItem) {}
+    func audioPlayer(_ audioPlayer: AudioPlayer, didUpdateProgressionToTime time: TimeInterval, percentageRead: Float) {}
+    func audioPlayer(_ audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {}
+    func audioPlayer(_ audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem) {}
+    func audioPlayer(_ audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {}
     
     /**
      remote control event is received in app delegate and passed for processing here
     */
-    func remoteControlReceivedWithEvent(event: UIEvent) {
-        if event.type == .RemoteControl {
+    func remoteControlReceivedWithEvent(_ event: UIEvent) {
+        if event.type == .remoteControl {
             //ControlCenter Or Lock screen
             switch event.subtype {
-            case .RemoteControlBeginSeekingBackward:
+            case .remoteControlBeginSeekingBackward:
                 break
-            case .RemoteControlBeginSeekingForward:
+            case .remoteControlBeginSeekingForward:
                 break
-            case .RemoteControlEndSeekingBackward:
+            case .remoteControlEndSeekingBackward:
                 break
-            case .RemoteControlEndSeekingForward:
+            case .remoteControlEndSeekingForward:
                 break
-            case .RemoteControlNextTrack:
+            case .remoteControlNextTrack:
                 plus30seconds()
-            case .RemoteControlPause:
+            case .remoteControlPause:
                 player.pause()
-            case .RemoteControlPlay:
+            case .remoteControlPlay:
                 player.resume()
-            case .RemoteControlPreviousTrack:
+            case .remoteControlPreviousTrack:
                 minus30seconds()
-            case .RemoteControlStop:
+            case .remoteControlStop:
                 stop()
-            case .RemoteControlTogglePlayPause:
+            case .remoteControlTogglePlayPause:
                 togglePlayPause()
             default:
                 break

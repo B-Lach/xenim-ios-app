@@ -346,6 +346,7 @@
 					2222ECB11BD52E470040100F = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = Y85FVF2A97;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -360,6 +361,7 @@
 					};
 					226B3B281CC67F120099F69C = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 2222ECB11BD52E470040100F;
 					};
 				};
@@ -678,6 +680,7 @@
 				PRODUCT_NAME = Xenim;
 				SWIFT_OBJC_BRIDGING_HEADER = "Xenim/Xenim-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -700,6 +703,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stefantrauth.Xenim;
 				PRODUCT_NAME = Xenim;
 				SWIFT_OBJC_BRIDGING_HEADER = "Xenim/Xenim-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -715,6 +719,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.XenimUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Xenim;
 			};
 			name = Debug;
@@ -729,6 +734,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.XenimUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Xenim;
 			};
 			name = Release;

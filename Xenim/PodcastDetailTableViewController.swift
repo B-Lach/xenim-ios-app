@@ -50,12 +50,12 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         if let podcast = podcast {
             coverartImageView.accessibilityLabel = "Coverart image"
             
-            switch UIDevice.currentDevice().userInterfaceIdiom {
-            case .Phone:
+            switch UIDevice.current().userInterfaceIdiom {
+            case .phone:
                 if let imageurl = podcast.artwork.thumb800Url {
                     coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
                 }
-            case .Pad:
+            case .pad:
                 if let imageurl = podcast.artwork.thumb1600Url {
                     coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
                 }
@@ -79,22 +79,22 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         }
     }
     
-    private func disableCell(cell: UITableViewCell) {
-        cell.userInteractionEnabled = false
-        cell.textLabel?.enabled = false
-        cell.detailTextLabel?.enabled = false
-        cell.tintColor = UIColor.lightGrayColor()
-        cell.accessoryType = UITableViewCellAccessoryType.None
+    private func disableCell(_ cell: UITableViewCell) {
+        cell.isUserInteractionEnabled = false
+        cell.textLabel?.isEnabled = false
+        cell.detailTextLabel?.isEnabled = false
+        cell.tintColor = UIColor.lightGray()
+        cell.accessoryType = UITableViewCellAccessoryType.none
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
     // MARK: - Actions
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
         if cell == websiteCell {
             openWebsite()
         } else if cell == twitterCell {
@@ -109,24 +109,24 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     
     func openWebsite() {
         if let podcast = podcast {
-            let svc = SFSafariViewController(URL: podcast.websiteUrl!)
+            let svc = SFSafariViewController(url: podcast.websiteUrl! as URL)
             svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
+            self.present(svc, animated: true, completion: nil)
         }
     }
     
     func openTwitter() {
         if let podcast = podcast {
-            let svc = SFSafariViewController(URL: podcast.twitterURL!)
+            let svc = SFSafariViewController(url: podcast.twitterURL! as URL)
             svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
+            self.present(svc, animated: true, completion: nil)
         }
     }
     
     func subscribe() {
         if let podcast = podcast {
             let subscribeClients = podcast.subscribeURLSchemesDictionary!
-            let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .ActionSheet)
+            let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("podcast_detailview_subscribe_alert_message", value: "Choose Podcast Client", comment: "when the user clicks on the podcast subscribe button an alert view opens to choose a podcast client. this is the message of the alert view."), preferredStyle: .actionSheet)
             optionMenu.view.tintColor = Constants.Colors.tintColor
             
             // create one option for each podcast client
@@ -135,22 +135,22 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
                 let subscribeURL = client.1
                 
                 // only show the option if the podcast client is installed which reacts to this URL
-                if UIApplication.sharedApplication().canOpenURL(subscribeURL) {
-                    let action = UIAlertAction(title: clientName, style: .Default, handler: { (alert: UIAlertAction!) -> Void in
-                        UIApplication.sharedApplication().openURL(subscribeURL)
+                if UIApplication.shared().canOpenURL(subscribeURL as URL) {
+                    let action = UIAlertAction(title: clientName, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+                        UIApplication.shared().openURL(subscribeURL as URL)
                     })
                     optionMenu.addAction(action)
                 }
             }
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "Cancel"), style: .Cancel, handler: {
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: "Cancel"), style: .cancel, handler: {
                 (alert: UIAlertAction!) -> Void in
             })
             optionMenu.addAction(cancelAction)
             
             optionMenu.popoverPresentationController?.sourceView = subscribeCell
             
-            self.presentViewController(optionMenu, animated: true, completion: nil)
+            self.present(optionMenu, animated: true, completion: nil)
         }
     }
     
@@ -167,7 +167,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
                 mc.setMessageBody(messageBody, isHTML: false)
                 mc.setToRecipients(toRecipents)
                 
-                self.presentViewController(mc, animated: true, completion: nil)
+                self.present(mc, animated: true, completion: nil)
             } else {
                 // show error message if device is not configured to send mail
                 let message = NSLocalizedString("podcast_detailview_mail_not_supported_message", value: "Your device is not setup to send email.", comment: "the message shown to the user in an alert view if his device is not setup to send email")
@@ -176,15 +176,15 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         }
     }
     
-    func showInfoMessage(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    func showInfoMessage(_ title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.view.tintColor = Constants.Colors.tintColor
         let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
-        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func toggleFavorite(sender: AnyObject) {
+    @IBAction func toggleFavorite(_ sender: AnyObject) {
         if let podcast = podcast {
             Favorites.toggle(podcastId: podcast.id)
         }
@@ -192,38 +192,38 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     
     // MARK: - delegate
     
-    func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
-    func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError?) {
+    func mailComposeController(_ controller:MFMailComposeViewController, didFinishWith result:MFMailComposeResult, error:NSError?) {
         switch result.rawValue {
-        case MFMailComposeResultCancelled.rawValue: break
-        case MFMailComposeResultSaved.rawValue: break
-        case MFMailComposeResultSent.rawValue: break
-        case MFMailComposeResultFailed.rawValue:
+        case MFMailComposeResult.cancelled.rawValue: break
+        case MFMailComposeResult.saved.rawValue: break
+        case MFMailComposeResult.sent.rawValue: break
+        case MFMailComposeResult.failed.rawValue:
             let mailFailureTitle = NSLocalizedString("info_message_mail_sent_failure_message", value: "Mail sent failure", comment: "If the user tried to sent an email and it could not be sent an alert view does show the error message. this is the title of the alert view popup")
             showInfoMessage(mailFailureTitle, message: (error?.localizedDescription)!)
         default:
             break
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PodcastDetailTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PodcastDetailTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default().addObserver(self, selector: #selector(PodcastDetailTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PodcastDetailTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
     }
     
-    func favoriteAdded(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+    func favoriteAdded(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == podcast?.id {
                 favoriteBarButtonItem.image = UIImage(named: "star_25")
@@ -232,8 +232,8 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         }
     }
     
-    func favoriteRemoved(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+    func favoriteRemoved(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == podcast?.id {
                 favoriteBarButtonItem.image = UIImage(named: "star_o_25")

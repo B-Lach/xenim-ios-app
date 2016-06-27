@@ -15,14 +15,14 @@ class XenimAPI {
     // "http://feeds.streams.demo.xenim.de/api/v1/"
     static let apiBaseURL = Constants.API.xenimApiUrl
     
-    static func fetchEvents(status status: [String]?, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
+    static func fetchEvents(status: [String]?, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
         var parameters = [
             "limit": "\(maxCount!)",
             "order_by": "begin"
         ]
         if let status = status {
-            let stringRepresentation = status.joinWithSeparator(",")
+            let stringRepresentation = status.joined(separator: ",")
             parameters["status__in"] = stringRepresentation
         }
         Alamofire.request(.GET, url, parameters: parameters)
@@ -31,14 +31,14 @@ class XenimAPI {
         }
     }
     
-    static func fetchEvents(podcastId podcastId: String, status: [String]?, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
+    static func fetchEvents(podcastId: String, status: [String]?, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         var parameters = [
             "limit": "\(maxCount!)",
             "order_by": "begin"
         ]
         if let status = status {
-            let stringRepresentation = status.joinWithSeparator(",")
+            let stringRepresentation = status.joined(separator: ",")
             parameters["status__in"] = stringRepresentation
         }
         Alamofire.request(.GET, url, parameters: parameters)
@@ -47,7 +47,7 @@ class XenimAPI {
         }
     }
     
-    static func fetchEvent(eventId eventId: String, onComplete: (event: Event?) -> Void){
+    static func fetchEvent(eventId: String, onComplete: (event: Event?) -> Void){
         let url = apiBaseURL + "episode/\(eventId)/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -62,7 +62,7 @@ class XenimAPI {
         }
     }
     
-    static func fetchPodcast(podcastId podcastId: String, onComplete: (podcast: Podcast?) -> Void){
+    static func fetchPodcast(podcastId: String, onComplete: (podcast: Podcast?) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -80,7 +80,7 @@ class XenimAPI {
         }
     }
 
-    static func fetchAllPodcasts(onComplete: (podcasts: [Podcast]) -> Void){
+    static func fetchAllPodcasts(_ onComplete: (podcasts: [Podcast]) -> Void){
         let url = apiBaseURL + "podcast/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -102,7 +102,7 @@ class XenimAPI {
     // MARK: - Helpers
     
     
-    private static func handleMultipleEventsResponse(response: Response<AnyObject, NSError>, onComplete: (events: [Event]) -> Void) {
+    private static func handleMultipleEventsResponse(_ response: Response<AnyObject, NSError>, onComplete: (events: [Event]) -> Void) {
         var events = [Event]()
         if let responseData = response.data {
             let json = JSON(data: responseData)
@@ -114,8 +114,8 @@ class XenimAPI {
                     return
                 }
                 
-                let blocksDispatchQueue = dispatch_queue_create("com.domain.blocksArray.sync", DISPATCH_QUEUE_CONCURRENT)
-                let serviceGroup = dispatch_group_create()
+                let blocksDispatchQueue = DispatchQueue(label: "com.domain.blocksArray.sync", attributes: DispatchQueueAttributes.concurrent)
+                let serviceGroup = DispatchGroup()
                 
                 for eventJSON in objects {
                     dispatch_group_enter(serviceGroup)
@@ -130,11 +130,11 @@ class XenimAPI {
                     })
                 }
                 
-                dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+                serviceGroup.notify(queue: DispatchQueue.global(Int(UInt64(DispatchQueueAttributes.qosUserInitiated.rawValue)), 0), execute: { () -> Void in
                     
                     // sort events by time as async processing appends them unordered
-                    let sortedEvents = events.sort({ (event1, event2) -> Bool in
-                        event1.begin.compare(event2.begin) == .OrderedAscending
+                    let sortedEvents = events.sorted(isOrderedBefore: { (event1, event2) -> Bool in
+                        event1.begin.compare(event2.begin as Date) == .orderedAscending
                     })
                     onComplete(events: sortedEvents)
                 })
@@ -148,7 +148,7 @@ class XenimAPI {
         }
     }
     
-    private static func podcastFromJSON(podcastJSON: JSON) -> Podcast? {
+    private static func podcastFromJSON(_ podcastJSON: JSON) -> Podcast? {
         let id = podcastJSON["id"].stringValue
         let name = podcastJSON["name"].stringValue
         let podcastDescription = podcastJSON["description"].stringValue
@@ -156,8 +156,8 @@ class XenimAPI {
         let artworkJSON = podcastJSON["artwork"]
         let artwork = Artwork(thumb180Url: artworkJSON["180"].URL, thumb800Url: artworkJSON["800"].URL, thumb1600Url: artworkJSON["1600"].URL, thumb3000Url: artworkJSON["3000"].URL)
         let subtitle: String? = podcastJSON["subtitle"].stringValue != "" ? podcastJSON["subtitle"].stringValue : nil
-        let websiteUrl: NSURL? = podcastJSON["website_url"].stringValue != "" ? podcastJSON["website_url"].URL : nil
-        let feedUrl: NSURL? = podcastJSON["feed_url"].stringValue != "" ? podcastJSON["feed_url"].URL : nil
+        let websiteUrl: URL? = podcastJSON["website_url"].stringValue != "" ? podcastJSON["website_url"].URL : nil
+        let feedUrl: URL? = podcastJSON["feed_url"].stringValue != "" ? podcastJSON["feed_url"].URL : nil
         let twitterUsername: String? = podcastJSON["twitter_handle"].stringValue != "" ? podcastJSON["twitter_handle"].stringValue : nil
         let email: String? =  podcastJSON["email"].stringValue != "" ? podcastJSON["email"].stringValue : nil
         
@@ -168,14 +168,14 @@ class XenimAPI {
         }
     }
     
-    private static func eventFromJSON(eventJSON: JSON, onComplete: (event: Event?) -> Void) {
-        let formatter = NSDateFormatter()
+    private static func eventFromJSON(_ eventJSON: JSON, onComplete: (event: Event?) -> Void) {
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
         let id = eventJSON["id"].stringValue
         let podcastId = eventJSON["podcast"].stringValue.characters.split{$0 == "/"}.map(String.init).last
         
-        let absoluteUrl: NSURL? = eventJSON["absolute_url"].stringValue != "" ? eventJSON["absolute_url"].URL : nil
+        let absoluteUrl: URL? = eventJSON["absolute_url"].stringValue != "" ? eventJSON["absolute_url"].URL : nil
         let begin = formatter.dateFromString(eventJSON["begin"].stringValue)
         let description: String? = eventJSON["description"].stringValue.trim() != "" ? eventJSON["description"].stringValue.trim() : nil
         let end = formatter.dateFromString(eventJSON["end"].stringValue)
@@ -185,10 +185,10 @@ class XenimAPI {
         
         var status: Status? = nil
         switch eventJSON["status"].stringValue {
-            case "RUNNING": status = .RUNNING
-            case "UPCOMING": status = .UPCOMING
-            case "ARCHIVED": status = .ARCHIVED
-            case "EXPIRED": status = .EXPIRED
+            case "RUNNING": status = .running
+            case "UPCOMING": status = .upcoming
+            case "ARCHIVED": status = .archived
+            case "EXPIRED": status = .expired
             default: break
         }
         
