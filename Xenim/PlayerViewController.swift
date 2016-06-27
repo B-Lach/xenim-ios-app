@@ -14,6 +14,7 @@ import AlamofireImage
 class PlayerViewController: UIViewController {
     
     var event: Event!
+    var player: AVPlayer!
     
     @IBOutlet weak var loadingSpinnerView: SpinnerView!
     @IBOutlet weak var coverartView: UIImageView!
@@ -38,11 +39,26 @@ class PlayerViewController: UIViewController {
     }
     
     var updateListenersTimer: Timer?
+    private var observerContext = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        PlayerManager.sharedInstance.play(event)
         
+        if let streamURL = event.streams.first?.url {
+            player = AVPlayer()
+            
+            player.addObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), options: [.new], context: &observerContext)
+            player.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.new], context: &observerContext)
+//            player.addPeriodicTimeObserver(forInterval: <#T##CMTime#>, queue: <#T##DispatchQueue?#>, using: <#T##(CMTime) -> Void#>)
+            
+            let asset = AVAsset(url: streamURL)
+            let playerItem = AVPlayerItem(asset: asset)
+            player.play()
+            player.replaceCurrentItem(with: playerItem)
+        } else {
+            showStreamErrorMessage()
+        }
+
         title = event.podcast.name
         
         setupNotifications()
@@ -70,8 +86,13 @@ class PlayerViewController: UIViewController {
         updateListenersLabel()
 	}
     
-    override func viewWillDisappear(_ animated: Bool) {
-//        PlayerManager.sharedInstance.stop()
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default().removeObserver(self)
+        player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), context: &observerContext)
+        player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.status), context: &observerContext)
+        player = nil
+        sleepTimer?.invalidate()
+        updateListenersTimer?.invalidate()
     }
     
     private func setupVoiceOver() {
@@ -123,7 +144,13 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func togglePlayPause(_ sender: AnyObject) {
-//        PlayerManager.sharedInstance.togglePlayPause()
+        if player.status != .failed {
+            switch player.timeControlStatus {
+            case .paused: player.play()
+            case .playing: player.pause()
+            case .waitingToPlayAtSpecifiedRate: break
+            }
+        }
     }
     
     @IBAction func backwardPressed(_ sender: AnyObject) {
@@ -137,16 +164,8 @@ class PlayerViewController: UIViewController {
     // MARK: notifications
     
     func setupNotifications() {
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.playerStateChanged(_:)), name: "playerStateChanged", object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
-    }
-    
-    
-    deinit {
-        NotificationCenter.default().removeObserver(self)
-        sleepTimer?.invalidate()
-        updateListenersTimer?.invalidate()
     }
     
     func updateFavoritesButton() {
@@ -181,30 +200,40 @@ class PlayerViewController: UIViewController {
         }
     }
     
-    func playerStateChanged(_ notification: Notification) {
-//        let player = PlayerManager.sharedInstance.player
-//        
-//        switch player.state {
-//        case .Buffering:
-//            showPlaybuttonBuffering()
-//        case .Paused:
-//            showPlaybuttonPaused()
-//        case .Playing:
-//            showPlaybuttonPlaying()
-//        case .Stopped:
-//            showPlaybuttonPaused()
-//        case .WaitingForConnection:
-//            showPlaybuttonBuffering()
-//        case .Failed:
-//            showPlaybuttonPaused()
-//            showStreamErrorMessage()
-//        }
+    // MARK: KVO
+    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+        guard context == &observerContext else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+            return
+        }
+        
+        if keyPath == #keyPath(AVPlayer.timeControlStatus) {
+            switch player.timeControlStatus {
+            case .paused: showPlaybuttonPaused()
+            case .playing: showPlaybuttonPlaying()
+            case .waitingToPlayAtSpecifiedRate: showPlaybuttonBuffering()
+            }
+        } else if keyPath == #keyPath(AVPlayer.status) {
+            switch player.status {
+            case .failed:
+                showPlaybuttonPaused()
+                showStreamErrorMessage()
+            default: break
+            }
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
     }
     
     private func showStreamErrorMessage() {
         let errorTitle = NSLocalizedString("player_failed_state_alertview_title", value: "Playback Error", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.")
         let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
-        showInfoMessage(errorTitle, message: errorMessage)
+        if let error = player.error?.localizedDescription {
+            showInfoMessage(errorTitle, message: error)
+        } else {
+            showInfoMessage(errorTitle, message: errorMessage)
+        }
+        
     }
     
     private func showPlaybuttonPlaying() {
@@ -291,7 +320,7 @@ class PlayerViewController: UIViewController {
         sleepTimerTicksLeft = sleepTimerTicksLeft! - 1
         if sleepTimerTicksLeft == 0 {
             disableSleepTimer()
-//            PlayerManager.sharedInstance.pause()
+            player.pause()
         }
         updateSleepTimerDisplay()
     }
