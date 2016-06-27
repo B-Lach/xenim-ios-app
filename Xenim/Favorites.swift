@@ -101,7 +101,7 @@ class Favorites {
         }
         
         // notified as soon as ALL requests are finished
-        serviceGroup.notify(queue: blocksDispatchQueue) { 
+        serviceGroup.notify(queue: DispatchQueue.global()) { 
             onComplete(podcasts: podcasts)
         }
     }

@@ -130,7 +130,7 @@ class XenimAPI {
                     })
                 }
                 
-                serviceGroup.notify(queue: blocksDispatchQueue, execute: { 
+                serviceGroup.notify(queue: DispatchQueue.global(), execute: { 
                     // sort events by time as async processing appends them unordered
                     let sortedEvents = events.sorted(isOrderedBefore: { (event1, event2) -> Bool in
                         event1.begin.compare(event2.begin as Date) == .orderedAscending
