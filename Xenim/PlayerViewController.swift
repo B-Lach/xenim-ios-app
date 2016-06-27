@@ -16,6 +16,9 @@ class PlayerViewController: UIViewController {
     var event: Event!
     var player: AVPlayer!
     
+    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var timeLeftLabel: UILabel!
+    @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var loadingSpinnerView: SpinnerView!
     @IBOutlet weak var coverartView: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
