@@ -7,6 +7,21 @@
 //
 
 import UIKit
+import MediaPlayer
+
+extension CMTime {
+    func humanReadable() -> (minutes: Int, seconds: Int) {
+        guard !self.isIndefinite else {
+            return (0,0)
+        }
+        let totalSeconds = CMTimeGetSeconds(self)
+        let minutes = Int(floor(totalSeconds.truncatingRemainder(dividingBy: 3600) / 60))
+        let seconds = Int(floor(totalSeconds.truncatingRemainder(dividingBy: 3600).truncatingRemainder(dividingBy: 60)))
+        return (minutes, seconds)
+    }
+}
+
+
 
 extension Array {
     func orderedIndexOf(_ elem: Element, isOrderedBefore: (Element, Element) -> Bool) -> Int {

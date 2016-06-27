@@ -14,7 +14,7 @@ import AlamofireImage
 class PlayerViewController: UIViewController {
     
     var event: Event!
-    var player: AVPlayer!
+    private var player: AVPlayer!
     
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var timeLeftLabel: UILabel!
@@ -43,30 +43,18 @@ class PlayerViewController: UIViewController {
     
     var updateListenersTimer: Timer?
     private var observerContext = 0
+    private var timeObserver: AnyObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let streamURL = event.streams.first?.url {
-            player = AVPlayer()
-            
-            player.addObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), options: [.new], context: &observerContext)
-            player.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.new], context: &observerContext)
-//            player.addPeriodicTimeObserver(forInterval: <#T##CMTime#>, queue: <#T##DispatchQueue?#>, using: <#T##(CMTime) -> Void#>)
-            
-            let asset = AVAsset(url: streamURL)
-            let playerItem = AVPlayerItem(asset: asset)
-            player.play()
-            player.replaceCurrentItem(with: playerItem)
-        } else {
-            showStreamErrorMessage()
-        }
-
         title = event.podcast.name
         
-        setupNotifications()
-        
+        setupAudioSession()
+        setupPlayerAndPlay()
         setupVoiceOver()
+        
+        listenersCountButton.isUserInteractionEnabled = false
         
         switch UIDevice.current().userInterfaceIdiom {
         case .phone:
@@ -90,9 +78,7 @@ class PlayerViewController: UIViewController {
 	}
     
     override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default().removeObserver(self)
-        player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), context: &observerContext)
-        player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.status), context: &observerContext)
+        cleanupObservers()
         player = nil
         sleepTimer?.invalidate()
         updateListenersTimer?.invalidate()
@@ -157,18 +143,13 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func backwardPressed(_ sender: AnyObject) {
-//        PlayerManager.sharedInstance.minus30seconds()
+        let timeBack = CMTimeMakeWithSeconds(30,1)
+        player.seek(to: CMTimeSubtract(player.currentTime(), timeBack))
     }
     
     @IBAction func forwardPressed(_ sender: AnyObject) {
-//        PlayerManager.sharedInstance.plus30seconds()
-    }
-    
-    // MARK: notifications
-    
-    func setupNotifications() {
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        let timeBack = CMTimeMakeWithSeconds(30,1)
+        player.seek(to: CMTimeAdd(player.currentTime(), timeBack))
     }
     
     func updateFavoritesButton() {
@@ -184,47 +165,6 @@ class PlayerViewController: UIViewController {
         } else {
             favoriteButton.image = UIImage(named: "star_o_25")
             favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
-        }
-    }
-    
-    func favoriteAdded(_ notification: Notification) {
-        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
-            if podcastId == event.podcast.id {
-                updateFavoritesButton(true)
-            }
-        }
-    }
-    
-    func favoriteRemoved(_ notification: Notification) {
-        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
-            if podcastId == event.podcast.id {
-                updateFavoritesButton(false)
-            }
-        }
-    }
-    
-    // MARK: KVO
-    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
-        guard context == &observerContext else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-            return
-        }
-        
-        if keyPath == #keyPath(AVPlayer.timeControlStatus) {
-            switch player.timeControlStatus {
-            case .paused: showPlaybuttonPaused()
-            case .playing: showPlaybuttonPlaying()
-            case .waitingToPlayAtSpecifiedRate: showPlaybuttonBuffering()
-            }
-        } else if keyPath == #keyPath(AVPlayer.status) {
-            switch player.status {
-            case .failed:
-                showPlaybuttonPaused()
-                showStreamErrorMessage()
-            default: break
-            }
-        } else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     
@@ -258,6 +198,28 @@ class PlayerViewController: UIViewController {
         playPauseButton?.setImage(UIImage(named: "large-pause"), for: UIControlState())
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_buffering", value: "buffering", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_buffering", value: "double tap to pause", comment: "")
+    }
+    
+    private func setupAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        } catch { }
+    }
+    
+    private func setupPlayerAndPlay() {
+        if let streamURL = event.streams.first?.url {
+            player = AVPlayer()
+            
+            setupObservers()
+            
+            let asset = AVAsset(url: streamURL)
+            let playerItem = AVPlayerItem(asset: asset)
+            player.play()
+            player.replaceCurrentItem(with: playerItem)
+        } else {
+            showStreamErrorMessage()
+        }
     }
     
     // MARK: - update listeners timer
@@ -340,6 +302,129 @@ class PlayerViewController: UIViewController {
             sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", value: "double tap to configure a sleep timer", comment: "")
         }
         
+    }
+    
+    // MARK: audio session
+    
+    private var pausedForInterruption = false
+    
+    /**
+     Audio session got interrupted by the system (call, Siri, ...). If interruption begins,
+     we should ensure the audio pauses and if it ends, we should restart playing if state was
+     `.Playing` before.
+     - parameter note: The notification information.
+     */
+    @objc private func audioSessionGotInterrupted(note: NSNotification) {
+        if let typeInt = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt, type = AVAudioSessionInterruptionType(rawValue: typeInt) {
+            if type == .began && player.timeControlStatus != .paused {
+                //We pause the player when an interruption is detected
+                pausedForInterruption = true
+                player.pause()
+            }
+            else {
+                //We resume the player when the interruption is ended and we paused it in this interruption
+                if let optionInt = note.userInfo?[AVAudioSessionInterruptionOptionKey] as? UInt {
+                    let options = AVAudioSessionInterruptionOptions(rawValue: optionInt)
+                    if options.contains(AVAudioSessionInterruptionOptions.shouldResume) && pausedForInterruption {
+                        setupAudioSession()
+                        player.play()
+                        pausedForInterruption = false
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     Audio session route changed (ex: earbuds plugged in/out). This can change the player
+     state, so we just adapt it.
+     - parameter note: The notification information.
+     */
+    @objc private func audioSessionRouteChanged(note: NSNotification) {
+        
+    }
+    
+    /**
+     Audio session got messed up (media services lost or reset). We gotta reactive the
+     audio session and reset player.
+     - parameter note: The notification information.
+     */
+    @objc private func audioSessionMessedUp(note: NSNotification) {
+        cleanupObservers()
+        player = nil
+        setupAudioSession()
+        setupPlayerAndPlay()
+    }
+    
+    // MARK: - observers
+    
+    private func setupObservers() {
+        player.addObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), options: [.new], context: &observerContext)
+        player.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.new], context: &observerContext)
+        timeObserver = player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main, using: { (time: CMTime) in
+            let (currentTimeMinutes, currentTimeSeconds) = self.player.currentTime().humanReadable()
+            self.currentTimeLabel.text = "\(currentTimeMinutes):\(currentTimeSeconds)"
+            if let item = self.player.currentItem {
+                let (durationMinutes, durationSeconds) = item.duration.humanReadable()
+                self.timeLeftLabel.text = "\(durationMinutes):\(durationSeconds)"
+            }
+        })
+        
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionGotInterrupted(note:)), name: "AVAudioSessionInterruptionNotification", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionRouteChanged(note:)), name: "AVAudioSessionRouteChangeNotification", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionMessedUp(note:)), name: "AVAudioSessionMediaServicesWereLostNotification", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionMessedUp(note:)), name: "AVAudioSessionMediaServicesWereResetNotification", object: nil)
+    }
+    
+    private func cleanupObservers() {
+        NotificationCenter.default().removeObserver(self)
+        player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), context: &observerContext)
+        player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.status), context: &observerContext)
+        if let timeObserver = timeObserver {
+            player.removeTimeObserver(timeObserver)
+        }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+        guard context == &observerContext else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+            return
+        }
+        
+        if keyPath == #keyPath(AVPlayer.timeControlStatus) {
+            switch player.timeControlStatus {
+            case .paused: showPlaybuttonPaused()
+            case .playing: showPlaybuttonPlaying()
+            case .waitingToPlayAtSpecifiedRate: showPlaybuttonBuffering()
+            }
+        } else if keyPath == #keyPath(AVPlayer.status) {
+            switch player.status {
+            case .failed:
+                showPlaybuttonPaused()
+                showStreamErrorMessage()
+            default: break
+            }
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
+    }
+    
+    func favoriteAdded(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
+            if podcastId == event.podcast.id {
+                updateFavoritesButton(true)
+            }
+        }
+    }
+    
+    func favoriteRemoved(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
+            if podcastId == event.podcast.id {
+                updateFavoritesButton(false)
+            }
+        }
     }
     
 }
