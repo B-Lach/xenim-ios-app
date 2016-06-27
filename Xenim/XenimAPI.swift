@@ -118,20 +118,19 @@ class XenimAPI {
                 let serviceGroup = DispatchGroup()
                 
                 for eventJSON in objects {
-                    dispatch_group_enter(serviceGroup)
+                    serviceGroup.enter()
                     eventFromJSON(eventJSON, onComplete: { (event) -> Void in
-                        dispatch_barrier_async(blocksDispatchQueue) {
+                        blocksDispatchQueue.async(execute: { 
                             if event != nil {
                                 // this has to be thread safe
                                 events.append(event!)
                             }
-                            dispatch_group_leave(serviceGroup)
-                        }
+                            serviceGroup.leave()
+                        })
                     })
                 }
                 
-                serviceGroup.notify(queue: DispatchQueue.global(Int(UInt64(DispatchQueueAttributes.qosUserInitiated.rawValue)), 0), execute: { () -> Void in
-                    
+                serviceGroup.notify(queue: blocksDispatchQueue, execute: { 
                     // sort events by time as async processing appends them unordered
                     let sortedEvents = events.sorted(isOrderedBefore: { (event1, event2) -> Bool in
                         event1.begin.compare(event2.begin as Date) == .orderedAscending
@@ -176,9 +175,9 @@ class XenimAPI {
         let podcastId = eventJSON["podcast"].stringValue.characters.split{$0 == "/"}.map(String.init).last
         
         let absoluteUrl: URL? = eventJSON["absolute_url"].stringValue != "" ? eventJSON["absolute_url"].URL : nil
-        let begin = formatter.dateFromString(eventJSON["begin"].stringValue)
+        let begin = formatter.date(from: eventJSON["begin"].stringValue)
         let description: String? = eventJSON["description"].stringValue.trim() != "" ? eventJSON["description"].stringValue.trim() : nil
-        let end = formatter.dateFromString(eventJSON["end"].stringValue)
+        let end = formatter.date(from: eventJSON["end"].stringValue)
         let shownotes: String? = eventJSON["shownotes"].stringValue.trim() != "" ? eventJSON["shownotes"].stringValue.trim() : nil
         let title: String? = eventJSON["title"].stringValue.trim() != "" ? eventJSON["title"].stringValue.trim() : nil
         let listeners: Int? = eventJSON["listeners"].stringValue != "" ? eventJSON["listeners"].int : nil

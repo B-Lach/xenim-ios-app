@@ -13,7 +13,7 @@ class Favorites {
     
     static func toggle(podcastId: String) {
         let channel = "podcast_\(podcastId)"
-        let installation = PFInstallation.currentInstallation()
+        let installation = PFInstallation.current()
         
          //fetching will only be required if channels can be modified in the cloud!
 //                do {
@@ -28,7 +28,7 @@ class Favorites {
             installation.addUniqueObject(channel, forKey: "channels")
             notifyFavoriteAdded(podcastId)
         } else {
-            installation.removeObject(channel, forKey: "channels")
+            installation.remove(channel, forKey: "channels")
             notifyFavoriteRemoved(podcastId)
         }
         installation.saveEventually()
@@ -36,7 +36,7 @@ class Favorites {
     
     static func isFavorite(_ podcastId: String) -> Bool {
         let channel = "podcast_\(podcastId)"
-        let installation = PFInstallation.currentInstallation()
+        let installation = PFInstallation.current()
         
         // fetching will only be required if channels can be modified in the cloud!
         //        do {
@@ -53,7 +53,7 @@ class Favorites {
     }
     
     static func fetch() -> [String] {
-        let installation = PFInstallation.currentInstallation()
+        let installation = PFInstallation.current()
         
         // fetching will only be required if channels can be modified in the cloud!
         //        do {
@@ -65,7 +65,7 @@ class Favorites {
         if let channels = installation.channels {
             // remove the prefix string 'podcast_' from the channels
             let podcastIds = channels.map { (channel: String) -> String in
-                channel.stringByReplacingOccurrencesOfString("podcast_", withString: "")
+                channel.replacingOccurrences(of: "podcast_", with: "")
             }
             return podcastIds
         } else {
@@ -101,7 +101,7 @@ class Favorites {
         }
         
         // notified as soon as ALL requests are finished
-        serviceGroup.notify(queue: DispatchQueue.global(Int(UInt64(DispatchQueueAttributes.qosUserInitiated.rawValue)), 0)) { () -> Void in
+        serviceGroup.notify(queue: blocksDispatchQueue) { 
             onComplete(podcasts: podcasts)
         }
     }

@@ -29,7 +29,7 @@ class FavoriteTableViewCell: UITableViewCell {
     var podcast: Podcast! {
         didSet {
             if let imageurl = podcast.artwork.thumb180Url {
-                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
             } else {
                 coverartImageView.image = nil
             }

@@ -116,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     override func remoteControlReceived(with event: UIEvent?) {
         if let event = event {
-            PlayerManager.sharedInstance.remoteControlReceivedWithEvent(event)
+//            PlayerManager.sharedInstance.remoteControlReceivedWithEvent(event)
         }
     }
     

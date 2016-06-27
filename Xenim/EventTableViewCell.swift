@@ -91,7 +91,7 @@ class EventTableViewCell: UITableViewCell {
     
     func updateCoverart() {
         if let imageurl = event.podcast.artwork.thumb180Url {
-            eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+            eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
         } else {
             eventCoverartImage.image = nil
         }

@@ -34,7 +34,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
         versionCell.detailTextLabel?.text = UIApplication.shared().appVersion()
-        pushTokenCell.detailTextLabel?.text = PFInstallation.currentInstallation().deviceToken
+        pushTokenCell.detailTextLabel?.text = PFInstallation.current().deviceToken
 
         smallDonationCell.accessibilityTraits = UIAccessibilityTraitButton
         middleDonationCell.accessibilityTraits = UIAccessibilityTraitButton
@@ -50,21 +50,21 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         request.start()
     }
     
-    func productsRequest(_ request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         for product in response.products {
 
-            let formatter = NSNumberFormatter()
-            formatter.formatterBehavior = NSNumberFormatterBehavior.Behavior10_4
-            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            let formatter = NumberFormatter()
+            formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4 // TODO
+            formatter.numberStyle = NumberFormatter.Style.currency
             formatter.locale = product.priceLocale
             
             switch product.productIdentifier {
             case "com.stefantrauth.XenimSupportSmall":
-                smallDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+                smallDonationPriceLabel.text = formatter.string(from: product.price)
             case "com.stefantrauth.XenimSupportMiddle":
-                middleDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+                middleDonationPriceLabel.text = formatter.string(from: product.price)
             case "com.stefantrauth.XenimSupportBig":
-                bigDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+                bigDonationPriceLabel.text = formatter.string(from: product.price)
             default:
                 break
             }
@@ -84,7 +84,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         } else if selectedCell == xenimCell {
             openWebsite("http://streams.xenim.de")
         } else if selectedCell == reviewCell {
-            UIApplication.shared().openURL(URL(string: "itms-apps://itunes.apple.com/app/id1073103750")!)
+            // TODO
+            UIApplication.shared().open(URL(string: "itms-apps://itunes.apple.com/app/id1073103750")!, options: ["": ""], completionHandler: nil)
         } else if selectedCell == smallDonationCell {
             PFPurchase.buyProduct("com.stefantrauth.XenimSupportSmall", block: { (error: NSError?) in
                 if error != nil {

@@ -26,13 +26,14 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var sleepTimerButton: UIButton!
     @IBOutlet weak var airplayView: MPVolumeView! {
         didSet {
-            airplayView.showsVolumeSlider = false
-            for view in airplayView.subviews {
-                if view.isKind(UIButton) {
-                    let buttonOnVolumeView : UIButton = view as! UIButton
-                    airplayView.setRouteButtonImage(buttonOnVolumeView.currentImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-                }
-            }
+            // TODO
+//            airplayView.showsVolumeSlider = false
+//            for view in airplayView.subviews {
+//                if view.isKind(of: UIButton) {
+//                    let buttonOnVolumeView : UIButton = view as! UIButton
+//                    self.airplayView.setRouteButtonImage(buttonOnVolumeView.currentImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+//                }
+//            }
         }
     }
     
@@ -40,7 +41,7 @@ class PlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        PlayerManager.sharedInstance.play(event)
+//        PlayerManager.sharedInstance.play(event)
         
         title = event.podcast.name
         
@@ -51,11 +52,11 @@ class PlayerViewController: UIViewController {
         switch UIDevice.current().userInterfaceIdiom {
         case .phone:
             if let imageurl = event.podcast.artwork.thumb800Url {
-                coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+                coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
             }
         case .pad:
             if let imageurl = event.podcast.artwork.thumb3000Url {
-                coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+                coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
             }
         default: break
         }
@@ -70,7 +71,7 @@ class PlayerViewController: UIViewController {
 	}
     
     override func viewWillDisappear(_ animated: Bool) {
-        PlayerManager.sharedInstance.stop()
+//        PlayerManager.sharedInstance.stop()
     }
     
     private func setupVoiceOver() {
@@ -122,15 +123,15 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func togglePlayPause(_ sender: AnyObject) {
-        PlayerManager.sharedInstance.togglePlayPause()
+//        PlayerManager.sharedInstance.togglePlayPause()
     }
     
     @IBAction func backwardPressed(_ sender: AnyObject) {
-        PlayerManager.sharedInstance.minus30seconds()
+//        PlayerManager.sharedInstance.minus30seconds()
     }
     
     @IBAction func forwardPressed(_ sender: AnyObject) {
-        PlayerManager.sharedInstance.plus30seconds()
+//        PlayerManager.sharedInstance.plus30seconds()
     }
     
     // MARK: notifications
@@ -181,23 +182,23 @@ class PlayerViewController: UIViewController {
     }
     
     func playerStateChanged(_ notification: Notification) {
-        let player = PlayerManager.sharedInstance.player
-        
-        switch player.state {
-        case .Buffering:
-            showPlaybuttonBuffering()
-        case .Paused:
-            showPlaybuttonPaused()
-        case .Playing:
-            showPlaybuttonPlaying()
-        case .Stopped:
-            showPlaybuttonPaused()
-        case .WaitingForConnection:
-            showPlaybuttonBuffering()
-        case .Failed:
-            showPlaybuttonPaused()
-            showStreamErrorMessage()
-        }
+//        let player = PlayerManager.sharedInstance.player
+//        
+//        switch player.state {
+//        case .Buffering:
+//            showPlaybuttonBuffering()
+//        case .Paused:
+//            showPlaybuttonPaused()
+//        case .Playing:
+//            showPlaybuttonPlaying()
+//        case .Stopped:
+//            showPlaybuttonPaused()
+//        case .WaitingForConnection:
+//            showPlaybuttonBuffering()
+//        case .Failed:
+//            showPlaybuttonPaused()
+//            showStreamErrorMessage()
+//        }
     }
     
     private func showStreamErrorMessage() {
@@ -290,7 +291,7 @@ class PlayerViewController: UIViewController {
         sleepTimerTicksLeft = sleepTimerTicksLeft! - 1
         if sleepTimerTicksLeft == 0 {
             disableSleepTimer()
-            PlayerManager.sharedInstance.pause()
+//            PlayerManager.sharedInstance.pause()
         }
         updateSleepTimerDisplay()
     }
