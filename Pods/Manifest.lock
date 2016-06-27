@@ -2,31 +2,46 @@ PODS:
   - Alamofire (3.4.1)
   - AlamofireImage (2.4.0):
     - Alamofire (~> 3.3)
-  - AlamofireNetworkActivityIndicator (1.0.1):
-    - Alamofire (~> 3.3)
   - Bolts/Tasks (1.7.0)
-  - KDEAudioPlayer (0.8.4)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.0)
-  - AlamofireImage (~> 2.1)
-  - AlamofireNetworkActivityIndicator (~> 1.0)
-  - KDEAudioPlayer (~> 0.8.4)
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift3`)
+  - AlamofireImage (from `https://github.com/Alamofire/AlamofireImage.git`, branch `swift3`)
   - Parse (~> 1.10)
-  - SwiftyJSON (~> 2.3)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `swift3`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift3
+    :git: https://github.com/Alamofire/Alamofire.git
+  AlamofireImage:
+    :branch: swift3
+    :git: https://github.com/Alamofire/AlamofireImage.git
+  SwiftyJSON:
+    :branch: swift3
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: e891699312a5215ad0da9f8322c5da949f90db35
+    :git: https://github.com/Alamofire/Alamofire.git
+  AlamofireImage:
+    :commit: 455c673a4569e8abc4c4d77ac5522797d9abe667
+    :git: https://github.com/Alamofire/AlamofireImage.git
+  SwiftyJSON:
+    :commit: 1a9755949a652967dc2986cd7f4653496e556715
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
-  AlamofireNetworkActivityIndicator: 49a6e39afb947136f7b1872bae2d684957c26697
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  KDEAudioPlayer: d21120cfd9659db372633c99738747d8ab72f155
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: c69804c7a558914b8e0cadb7f3991a82b946f5b6
+PODFILE CHECKSUM: fdffe2a3b701cf3d54b640fee9a8dd39c41a560f
 
 COCOAPODS: 1.0.1

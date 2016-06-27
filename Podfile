@@ -6,12 +6,11 @@ target 'Xenim' do
   use_frameworks!
 
   # Pods for Xenim
-  pod 'SwiftyJSON', '~> 2.3'
-  pod 'Alamofire', '~> 3.0'
-  pod 'AlamofireImage', '~> 2.1'
-  pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
+  pod 'SwiftyJSON', git: 'https://github.com/SwiftyJSON/SwiftyJSON.git', branch: 'swift3'
+  pod 'Alamofire', git: 'https://github.com/Alamofire/Alamofire.git', branch: 'swift3'
+  pod 'AlamofireImage', git: 'https://github.com/Alamofire/AlamofireImage.git', branch: 'swift3'
+  # pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
   pod 'Parse', '~> 1.10'
-  pod 'KDEAudioPlayer', '~> 0.8.4'
 
   target 'XenimUITests' do
     inherit! :search_paths
