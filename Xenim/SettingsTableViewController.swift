@@ -54,7 +54,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         for product in response.products {
 
             let formatter = NumberFormatter()
-            formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4 // TODO
+//            formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4 // TODO
             formatter.numberStyle = NumberFormatter.Style.currency
             formatter.locale = product.priceLocale
             
