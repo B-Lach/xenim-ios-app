@@ -188,6 +188,7 @@ class PlayerViewController: UIViewController {
         playPauseButton?.setImage(UIImage(named: "large-pause"), for: UIControlState())
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", value: "playing", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", value: "double tap to pause", comment: "")
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
     }
     
     private func showPlaybuttonPaused() {
@@ -195,6 +196,7 @@ class PlayerViewController: UIViewController {
         playPauseButton?.setImage(UIImage(named: "large-play"), for: UIControlState())
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", value: "not playing", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", value: "double tap to play", comment: "")
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
     }
     
     private func showPlaybuttonBuffering() {
@@ -202,6 +204,7 @@ class PlayerViewController: UIViewController {
         playPauseButton?.setImage(UIImage(named: "large-pause"), for: UIControlState())
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_buffering", value: "buffering", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_buffering", value: "double tap to pause", comment: "")
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
     }
     
     private func setupAudioSession() {
@@ -233,12 +236,11 @@ class PlayerViewController: UIViewController {
     private func setupControlCenter() {
         var info = [String: AnyObject]()
         info[MPMediaItemPropertyTitle] = event.title
-        info[MPMediaItemPropertyArtist] = event.podcast.name
-//        info[MPMediaItemPropertyAlbumTitle] = album
+        info[MPMediaItemPropertyArtist] = "artist"
+        info[MPMediaItemPropertyAlbumTitle] = "album"
 
 //        info[MPMediaItemPropertyPlaybackDuration] = duration
 //        info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = progression
-//        info[MPNowPlayingInfoPropertyPlaybackRate] = player.rate ?? 0
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = info
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 200, height: 200), requestHandler: { (size) -> UIImage in
@@ -253,8 +255,24 @@ class PlayerViewController: UIViewController {
     private func setupRemoteTransportControls() {
         let commandCenter = MPRemoteCommandCenter.shared()
         
-        commandCenter.seekBackwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-            return .success
+        commandCenter.skipForwardCommand.preferredIntervals = [30]
+        commandCenter.skipForwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            if self.player.timeControlStatus == .playing {
+                self.forwardPressed(self)
+                return .success
+            } else {
+                return .commandFailed
+            }
+        }
+        
+        commandCenter.skipBackwardCommand.preferredIntervals = [30]
+        commandCenter.skipBackwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            if self.player.timeControlStatus == .playing {
+                self.backwardPressed(self)
+                return .success
+            } else {
+                return .commandFailed
+            }
         }
         
         commandCenter.playCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
@@ -418,8 +436,6 @@ class PlayerViewController: UIViewController {
     override func canResignFirstResponder() -> Bool { return true }
     
     private func setupObservers() {
-        UIApplication.shared().beginReceivingRemoteControlEvents()
-        self.becomeFirstResponder()
         player.addObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), options: [.new], context: &observerContext)
         player.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.new], context: &observerContext)
         timeObserver = player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main, using: { (time: CMTime) in
@@ -440,8 +456,6 @@ class PlayerViewController: UIViewController {
     }
     
     private func cleanupObservers() {
-        UIApplication.shared().endReceivingRemoteControlEvents()
-        self.resignFirstResponder()
         NotificationCenter.default().removeObserver(self)
         player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), context: &observerContext)
         player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.status), context: &observerContext)
