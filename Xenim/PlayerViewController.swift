@@ -75,6 +75,11 @@ class PlayerViewController: UIViewController {
         // this will cause a memory cycle
         updateListenersTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateListenersLabel), userInfo: nil, repeats: true)
         updateListenersLabel()
+        
+        // hide these elements as long as HLS is not supported
+        currentTimeLabel.isHidden = true
+        timeLeftLabel.isHidden = true
+        slider.isHidden = true
 	}
     
     override func viewDidDisappear(_ animated: Bool) {
