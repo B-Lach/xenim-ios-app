@@ -222,9 +222,31 @@ class PlayerViewController: UIViewController {
             let playerItem = AVPlayerItem(asset: asset)
             player.play()
             player.replaceCurrentItem(with: playerItem)
+            
+            setupControlCenter()
         } else {
             showStreamErrorMessage()
         }
+    }
+    
+    private func setupControlCenter() {
+        var info = [String: AnyObject]()
+        info[MPMediaItemPropertyTitle] = event.title
+        info[MPMediaItemPropertyArtist] = event.podcast.name
+//        info[MPMediaItemPropertyAlbumTitle] = album
+
+//        info[MPMediaItemPropertyPlaybackDuration] = duration
+//        info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = progression
+//        info[MPNowPlayingInfoPropertyPlaybackRate] = player.rate ?? 0
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = info
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 200, height: 200), requestHandler: { (size) -> UIImage in
+            if let coverart = self.coverartView.image {
+                return coverart
+            } else {
+                return UIImage()
+            }
+        })
     }
     
     // MARK: - update listeners timer
@@ -361,9 +383,40 @@ class PlayerViewController: UIViewController {
         setupPlayerAndPlay()
     }
     
+    // MARK: remote control
+    
+    /**
+     Handle events received from Control Center/Lock screen/Other in UIApplicationDelegate.
+     - parameter event: The event received.
+     */
+//    override func remoteControlReceived(with event: UIEvent?) {
+//        if event?.type == .remoteControl {
+//            //ControlCenter Or Lock screen
+//            switch event?.subtype {
+//            case .remoteControlBeginSeekingBackward: break
+//            case .remoteControlBeginSeekingForward: break
+//            case .remoteControlEndSeekingBackward: break
+//            case .remoteControlEndSeekingForward: break
+//            case .remoteControlNextTrack: forwardPressed(self)
+//            case .remoteControlPause: player.pause()
+//            case .remoteControlPlay: player.play()
+//            case .remoteControlPreviousTrack: backwardPressed(self)
+//            case .remoteControlStop: player.pause()
+//            case .remoteControlTogglePlayPause: togglePlayPause(self)
+//            default: break
+//            }
+//        }
+//    }
+    
     // MARK: - observers
     
+    override func canBecomeFirstResponder() -> Bool { return true }
+    override func canResignFirstResponder() -> Bool { return true }
+    
     private func setupObservers() {
+        UIApplication.shared().beginReceivingRemoteControlEvents()
+        self.becomeFirstResponder()
+        
         player.addObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), options: [.new], context: &observerContext)
         player.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.new], context: &observerContext)
         timeObserver = player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main, using: { (time: CMTime) in
@@ -384,6 +437,8 @@ class PlayerViewController: UIViewController {
     }
     
     private func cleanupObservers() {
+        UIApplication.shared().endReceivingRemoteControlEvents()
+        self.resignFirstResponder()
         NotificationCenter.default().removeObserver(self)
         player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), context: &observerContext)
         player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.status), context: &observerContext)
