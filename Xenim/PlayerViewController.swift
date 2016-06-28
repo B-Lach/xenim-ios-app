@@ -50,7 +50,6 @@ class PlayerViewController: UIViewController {
         
         title = event.podcast.name
         
-        setupAudioSession()
         setupPlayerAndPlay()
         setupVoiceOver()
         
@@ -217,6 +216,7 @@ class PlayerViewController: UIViewController {
             player = AVPlayer()
             
             setupObservers()
+            setupAudioSession()
             
             let asset = AVAsset(url: streamURL)
             let playerItem = AVPlayerItem(asset: asset)
@@ -224,6 +224,7 @@ class PlayerViewController: UIViewController {
             player.replaceCurrentItem(with: playerItem)
             
             setupControlCenter()
+            setupRemoteTransportControls()
         } else {
             showStreamErrorMessage()
         }
@@ -247,6 +248,31 @@ class PlayerViewController: UIViewController {
                 return UIImage()
             }
         })
+    }
+    
+    private func setupRemoteTransportControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.seekBackwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            return .success
+        }
+        
+        commandCenter.playCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            self.player.play()
+            return .success
+//            return .commandFailed
+        }
+        
+        commandCenter.pauseCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            self.player.pause()
+            return .success
+        }
+        
+        commandCenter.togglePlayPauseCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            self.togglePlayPause(self)
+            return .success
+        }
+        
     }
     
     // MARK: - update listeners timer
@@ -333,8 +359,6 @@ class PlayerViewController: UIViewController {
     
     // MARK: audio session
     
-    private var pausedForInterruption = false
-    
     /**
      Audio session got interrupted by the system (call, Siri, ...). If interruption begins,
      we should ensure the audio pauses and if it ends, we should restart playing if state was
@@ -342,21 +366,26 @@ class PlayerViewController: UIViewController {
      - parameter note: The notification information.
      */
     @objc private func audioSessionGotInterrupted(note: NSNotification) {
-        if let typeInt = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt, type = AVAudioSessionInterruptionType(rawValue: typeInt) {
-            if type == .began && player.timeControlStatus != .paused {
-                //We pause the player when an interruption is detected
-                pausedForInterruption = true
-                player.pause()
-            }
-            else {
-                //We resume the player when the interruption is ended and we paused it in this interruption
-                if let optionInt = note.userInfo?[AVAudioSessionInterruptionOptionKey] as? UInt {
-                    let options = AVAudioSessionInterruptionOptions(rawValue: optionInt)
-                    if options.contains(AVAudioSessionInterruptionOptions.shouldResume) && pausedForInterruption {
-                        setupAudioSession()
-                        player.play()
-                        pausedForInterruption = false
-                    }
+
+        guard let userInfo = note.userInfo,
+            let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type = AVAudioSessionInterruptionType(rawValue: typeValue) else {
+                return
+        }
+        
+        if type == .began {
+            // Interruption began, take appropriate actions
+            player.pause()
+        }
+        else if type == .ended {
+            if let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt {
+                let options = AVAudioSessionInterruptionOptions(rawValue: optionsValue)
+                if options == .shouldResume {
+                    // Interruption Ended - playback should resume
+                    setupAudioSession()
+                    player.play()
+                } else {
+                    // Interruption Ended - playback should NOT resume
                 }
             }
         }
@@ -379,34 +408,9 @@ class PlayerViewController: UIViewController {
     @objc private func audioSessionMessedUp(note: NSNotification) {
         cleanupObservers()
         player = nil
-        setupAudioSession()
         setupPlayerAndPlay()
     }
     
-    // MARK: remote control
-    
-    /**
-     Handle events received from Control Center/Lock screen/Other in UIApplicationDelegate.
-     - parameter event: The event received.
-     */
-//    override func remoteControlReceived(with event: UIEvent?) {
-//        if event?.type == .remoteControl {
-//            //ControlCenter Or Lock screen
-//            switch event?.subtype {
-//            case .remoteControlBeginSeekingBackward: break
-//            case .remoteControlBeginSeekingForward: break
-//            case .remoteControlEndSeekingBackward: break
-//            case .remoteControlEndSeekingForward: break
-//            case .remoteControlNextTrack: forwardPressed(self)
-//            case .remoteControlPause: player.pause()
-//            case .remoteControlPlay: player.play()
-//            case .remoteControlPreviousTrack: backwardPressed(self)
-//            case .remoteControlStop: player.pause()
-//            case .remoteControlTogglePlayPause: togglePlayPause(self)
-//            default: break
-//            }
-//        }
-//    }
     
     // MARK: - observers
     
@@ -416,7 +420,6 @@ class PlayerViewController: UIViewController {
     private func setupObservers() {
         UIApplication.shared().beginReceivingRemoteControlEvents()
         self.becomeFirstResponder()
-        
         player.addObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), options: [.new], context: &observerContext)
         player.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.new], context: &observerContext)
         timeObserver = player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main, using: { (time: CMTime) in
