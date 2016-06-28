@@ -74,6 +74,7 @@
 		2222ECC71BD52EEA0040100F /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		2224C5041CBC1F75004A49BA /* PodcastDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastDetailTableViewController.swift; sourceTree = "<group>"; };
 		222913CC1C032221005C74BB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		223604FE1D22F27300D1D727 /* Xenim.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Xenim.entitlements; sourceTree = "<group>"; };
 		224180071BFA21AA004D1B5D /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		226B3B291CC67F120099F69C /* XenimUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XenimUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		226B3B2B1CC67F120099F69C /* XenimUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XenimUITests.swift; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 		2222ECB41BD52E470040100F /* Xenim */ = {
 			isa = PBXGroup;
 			children = (
+				223604FE1D22F27300D1D727 /* Xenim.entitlements */,
 				22CCF0711D1BC7CF006B8390 /* InfoPlist.strings */,
 				22CCF06C1D1BC7CE006B8390 /* Localizable.strings */,
 				2222ECBE1BD52E480040100F /* LaunchScreen.storyboard */,
@@ -671,6 +673,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Xenim/Xenim.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 14;
@@ -694,6 +697,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Xenim/Xenim.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Stefan Trauth (Y85FVF2A97)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 14;
