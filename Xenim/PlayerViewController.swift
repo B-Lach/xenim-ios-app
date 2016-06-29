@@ -13,7 +13,13 @@ import AlamofireImage
 
 class PlayerViewController: UIViewController {
     
-    var event: Event!
+    var event: Event! {
+        didSet {
+            if event.title == nil {
+                event.title = "Livestream"
+            }
+        }
+    }
     private var player: AVPlayer!
     
     @IBOutlet weak var slider: UISlider!
