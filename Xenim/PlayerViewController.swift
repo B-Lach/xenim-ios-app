@@ -238,9 +238,6 @@ class PlayerViewController: UIViewController {
         info[MPMediaItemPropertyTitle] = event.title
         info[MPMediaItemPropertyArtist] = "artist"
         info[MPMediaItemPropertyAlbumTitle] = "album"
-
-//        info[MPMediaItemPropertyPlaybackDuration] = duration
-//        info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = progression
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = info
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 200, height: 200), requestHandler: { (size) -> UIImage in
@@ -441,9 +438,12 @@ class PlayerViewController: UIViewController {
         timeObserver = player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main, using: { (time: CMTime) in
             let (currentTimeMinutes, currentTimeSeconds) = self.player.currentTime().humanReadable()
             self.currentTimeLabel.text = "\(currentTimeMinutes):\(currentTimeSeconds)"
+            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(self.player.currentTime())
             if let item = self.player.currentItem {
                 let (durationMinutes, durationSeconds) = item.duration.humanReadable()
                 self.timeLeftLabel.text = "\(durationMinutes):\(durationSeconds)"
+                
+                MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = CMTimeGetSeconds(item.duration)
             }
         })
         
