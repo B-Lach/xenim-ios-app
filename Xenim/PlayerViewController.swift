@@ -223,7 +223,7 @@ class PlayerViewController: UIViewController {
             
             let asset = AVAsset(url: streamURL)
             let playerItem = AVPlayerItem(asset: asset)
-            player.play()
+            player.play() // call play before setting the item is best practise from Apple
             player.replaceCurrentItem(with: playerItem)
             
             setupControlCenter()
@@ -233,6 +233,10 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    /**
+     * adding basic info to the control center
+     * @return {[type]} [description]
+     */
     private func setupControlCenter() {
         var info = [String: AnyObject]()
         info[MPMediaItemPropertyTitle] = event.title
@@ -240,6 +244,8 @@ class PlayerViewController: UIViewController {
         info[MPMediaItemPropertyAlbumTitle] = "album"
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = info
+
+        // TODO: I do not really know how this works yet
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 200, height: 200), requestHandler: { (size) -> UIImage in
             if let coverart = self.coverartView.image {
                 return coverart
@@ -287,6 +293,14 @@ class PlayerViewController: UIViewController {
             self.togglePlayPause(self)
             return .success
         }
+        
+//        commandCenter.likeCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+//            <#code#>
+//        }
+//        
+//        commandCenter.dislikeCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+//            <#code#>
+//        }
         
     }
     
@@ -401,6 +415,7 @@ class PlayerViewController: UIViewController {
                     player.play()
                 } else {
                     // Interruption Ended - playback should NOT resume
+                    // just keep the player paused
                 }
             }
         }
@@ -433,8 +448,11 @@ class PlayerViewController: UIViewController {
     override func canResignFirstResponder() -> Bool { return true }
     
     private func setupObservers() {
+        // timeControlStatus tells me if the player is currently playing or not
         player.addObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), options: [.new], context: &observerContext)
+        // status tells me if the playback failed completly for some reason
         player.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.new], context: &observerContext)
+        // use a time observer for timing based status like current playback time
         timeObserver = player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main, using: { (time: CMTime) in
             let (currentTimeMinutes, currentTimeSeconds) = self.player.currentTime().humanReadable()
             self.currentTimeLabel.text = "\(currentTimeMinutes):\(currentTimeSeconds)"
@@ -445,10 +463,13 @@ class PlayerViewController: UIViewController {
                 
                 MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = CMTimeGetSeconds(item.duration)
             }
+
         })
         
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+
+        // be notified if the audio session is interrupted or crashed
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionGotInterrupted(note:)), name: "AVAudioSessionInterruptionNotification", object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionRouteChanged(note:)), name: "AVAudioSessionRouteChangeNotification", object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionMessedUp(note:)), name: "AVAudioSessionMediaServicesWereLostNotification", object: nil)
@@ -464,12 +485,15 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    // this is called on any KVO update
     override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+        // check if it is my context
         guard context == &observerContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
         }
         
+        // check for the different KVO changes I am interested in
         if keyPath == #keyPath(AVPlayer.timeControlStatus) {
             switch player.timeControlStatus {
             case .paused: showPlaybuttonPaused()
