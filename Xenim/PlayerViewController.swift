@@ -195,6 +195,7 @@ class PlayerViewController: UIViewController {
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", value: "playing", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", value: "double tap to pause", comment: "")
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyTitle] = event.title
     }
     
     private func showPlaybuttonPaused() {
@@ -203,6 +204,7 @@ class PlayerViewController: UIViewController {
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", value: "not playing", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", value: "double tap to play", comment: "")
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyTitle] = event.title
     }
     
     private func showPlaybuttonBuffering() {
@@ -211,6 +213,7 @@ class PlayerViewController: UIViewController {
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_buffering", value: "buffering", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_buffering", value: "double tap to pause", comment: "")
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyTitle] = "buffering"
     }
     
     private func setupAudioSession() {
@@ -246,8 +249,8 @@ class PlayerViewController: UIViewController {
     private func setupControlCenter() {
         var info = [String: AnyObject]()
         info[MPMediaItemPropertyTitle] = event.title
-        info[MPMediaItemPropertyArtist] = "artist"
-        info[MPMediaItemPropertyAlbumTitle] = "album"
+        info[MPMediaItemPropertyArtist] = event.podcast.name
+//        info[MPMediaItemPropertyAlbumTitle] = "album"
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = info
 
