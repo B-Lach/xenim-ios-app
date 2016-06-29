@@ -474,6 +474,12 @@ class PlayerViewController: UIViewController {
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionRouteChanged(note:)), name: "AVAudioSessionRouteChangeNotification", object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionMessedUp(note:)), name: "AVAudioSessionMediaServicesWereLostNotification", object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionMessedUp(note:)), name: "AVAudioSessionMediaServicesWereResetNotification", object: nil)
+        
+        // player item notifications
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.itemDidPlayToEndTime(note:)), name: "AVPlayerItemDidPlayToEndTimeNotification", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.itemFailedToPlayToEndTime(note:)), name: "AVPlayerItemFailedToPlayToEndTimeNotification", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.itemPlaybackStalled(note:)), name: "AVPlayerItemPlaybackStalledNotification", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.itemNewErrorLogEntry(note:)), name: "AVPlayerItemNewErrorLogEntryNotification", object: nil)
     }
     
     private func cleanupObservers() {
@@ -529,6 +535,22 @@ class PlayerViewController: UIViewController {
                 updateFavoritesButton(false)
             }
         }
+    }
+    
+    @objc private func itemDidPlayToEndTime(note: Notification) {
+        showInfoMessage("info", message: "itemDidPlayToEndTime")
+    }
+    
+    @objc private func itemFailedToPlayToEndTime(note: Notification) {
+        showInfoMessage("info", message: "itemFailedToPlayToEndTime")
+    }
+    
+    @objc private func itemPlaybackStalled(note: Notification) {
+        showInfoMessage("info", message: "itemPlaybackStalled")
+    }
+    
+    @objc private func itemNewErrorLogEntry(note: Notification) {
+        showInfoMessage("info", message: "itemNewErrorLogEntry")
     }
     
 }
