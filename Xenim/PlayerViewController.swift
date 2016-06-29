@@ -253,15 +253,10 @@ class PlayerViewController: UIViewController {
 //        info[MPMediaItemPropertyAlbumTitle] = "album"
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = info
-
-        // TODO: I do not really know how this works yet
-        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 200, height: 200), requestHandler: { (size) -> UIImage in
-            if let coverart = self.coverartView.image {
-                return coverart
-            } else {
-                return UIImage()
-            }
-        })
+        
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: <#T##UIImage#>)
+        
     }
     
     private func setupRemoteTransportControls() {
