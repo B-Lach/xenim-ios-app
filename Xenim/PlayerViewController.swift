@@ -301,11 +301,11 @@ class PlayerViewController: UIViewController {
         }
         
 //        commandCenter.likeCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-//            <#code#>
+//
 //        }
 //        
 //        commandCenter.dislikeCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-//            <#code#>
+//            
 //        }
         
     }
