@@ -505,7 +505,10 @@ class PlayerViewController: UIViewController {
             case .failed:
                 showPlaybuttonPaused()
                 showStreamErrorMessage()
-            default: break
+            case .unknown:
+                showPlaybuttonPaused()
+                showStreamErrorMessage()
+            case .readyToPlay: break
             }
         } else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
