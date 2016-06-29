@@ -194,8 +194,6 @@ class PlayerViewController: UIViewController {
         playPauseButton?.setImage(UIImage(named: "large-pause"), for: UIControlState())
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_playing", value: "playing", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_playing", value: "double tap to pause", comment: "")
-        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
-        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyTitle] = event.title
     }
     
     private func showPlaybuttonPaused() {
@@ -203,8 +201,6 @@ class PlayerViewController: UIViewController {
         playPauseButton?.setImage(UIImage(named: "large-play"), for: UIControlState())
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_not_playing", value: "not playing", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_not_playing", value: "double tap to play", comment: "")
-        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
-        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyTitle] = event.title
     }
     
     private func showPlaybuttonBuffering() {
@@ -212,8 +208,6 @@ class PlayerViewController: UIViewController {
         playPauseButton?.setImage(UIImage(named: "large-pause"), for: UIControlState())
         playPauseButton.accessibilityValue = NSLocalizedString("voiceover_playbutton_value_buffering", value: "buffering", comment: "")
         playPauseButton.accessibilityHint = NSLocalizedString("voiceover_playbutton_hint_buffering", value: "double tap to pause", comment: "")
-        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
-        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyTitle] = "buffering"
     }
     
     private func setupAudioSession() {
@@ -235,28 +229,49 @@ class PlayerViewController: UIViewController {
             player.play() // call play before setting the item is best practise from Apple
             player.replaceCurrentItem(with: playerItem)
             
-            setupControlCenter()
             setupRemoteTransportControls()
         } else {
             showStreamErrorMessage()
         }
     }
     
+    
     /**
      * adding basic info to the control center
      * @return {[type]} [description]
      */
-    private func setupControlCenter() {
+    private func updateNowPlayingInfo() {
         var info = [String: AnyObject]()
-        info[MPMediaItemPropertyTitle] = event.title
+        
+        // show failed or buffering as the audio title to communicate the
+        // player state to the lockscreen. if the audio is playing show the correct
+        // item title
+        var statusString = event.title
+        if player.status == .failed {
+            statusString = "failed"
+        } else if player.timeControlStatus == .waitingToPlayAtSpecifiedRate {
+            statusString = "buffering"
+        }
+        info[MPMediaItemPropertyTitle] = statusString
+        
         info[MPMediaItemPropertyArtist] = event.podcast.name
-//        info[MPMediaItemPropertyAlbumTitle] = "album"
+        info[MPNowPlayingInfoPropertyPlaybackRate] = player.timeControlStatus == .playing ? 1 : 0
+        if let image = coverartView.image {
+            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
+        } else {
+            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: UIImage(named: "iTunesArtwork")!)
+        }
+        // there is no realtime update of elapsed time required. only if playback position jumps.
+        // the current time is automatically interpolated by the system according to the playback rate
+        // so it only needs to be updated at the start and after seeking
+        info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(self.player.currentTime())
+        if let item = player.currentItem {
+            // if item duration can not be calculated as this is not HLS stream the info center will no show
+            // the timeline as it does not make any sense
+            info[MPMediaItemPropertyPlaybackDuration] = CMTimeGetSeconds(item.duration)
+        }
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = info
-        
-        
-        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: <#T##UIImage#>)
-        
     }
     
     private func setupRemoteTransportControls() {
@@ -460,14 +475,10 @@ class PlayerViewController: UIViewController {
         timeObserver = player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main, using: { (time: CMTime) in
             let (currentTimeMinutes, currentTimeSeconds) = self.player.currentTime().humanReadable()
             self.currentTimeLabel.text = "\(currentTimeMinutes):\(currentTimeSeconds)"
-            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(self.player.currentTime())
             if let item = self.player.currentItem {
                 let (durationMinutes, durationSeconds) = item.duration.humanReadable()
                 self.timeLeftLabel.text = "\(durationMinutes):\(durationSeconds)"
-                
-                MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = CMTimeGetSeconds(item.duration)
             }
-
         })
         
         NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
@@ -502,6 +513,8 @@ class PlayerViewController: UIViewController {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
         }
+        
+        updateNowPlayingInfo()
         
         // check for the different KVO changes I am interested in
         if keyPath == #keyPath(AVPlayer.timeControlStatus) {
