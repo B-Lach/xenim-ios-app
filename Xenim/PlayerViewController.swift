@@ -81,7 +81,7 @@ class PlayerViewController: UIViewController {
         slider.isHidden = true
 	}
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         cleanupObservers()
         player = nil
         sleepTimer?.invalidate()
