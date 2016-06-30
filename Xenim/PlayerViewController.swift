@@ -111,16 +111,6 @@ class PlayerViewController: UIViewController {
         sleepTimerButton.accessibilityHint = NSLocalizedString("voiceover_sleep_button_hint_configure", value: "double tap to configure a sleep timer", comment: "")
     }
     
-    // MARK: - Update UI
-    
-    func showInfoMessage(_ title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.view.tintColor = Constants.Colors.tintColor
-        let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
-        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     // MARK: - Actions
     
     @IBAction func toggleFavorite(_ sender: AnyObject) {
@@ -176,15 +166,30 @@ class PlayerViewController: UIViewController {
             favoriteButton.image = UIImage(named: "star_o_25")
             favoriteButton?.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
         }
+        
+        // update command center like button state
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.likeCommand.isActive = isFavorite
+        commandCenter.dislikeCommand.isActive = !isFavorite
     }
     
-    private func showStreamErrorMessage() {
+    func showInfoMessage(_ title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.view.tintColor = Constants.Colors.tintColor
+        let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
+        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func showStreamErrorMessage(_ errorMessage: String? = nil) {
         let errorTitle = NSLocalizedString("player_failed_state_alertview_title", value: "Playback Error", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.")
-        let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
+        let defaultErrorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
         if let error = player.error?.localizedDescription {
             showInfoMessage(errorTitle, message: error)
+        } else if let message = errorMessage {
+            showInfoMessage(errorTitle, message: message)
         } else {
-            showInfoMessage(errorTitle, message: errorMessage)
+            showInfoMessage(errorTitle, message: defaultErrorMessage)
         }
         
     }
@@ -313,13 +318,25 @@ class PlayerViewController: UIViewController {
             return .success
         }
         
-//        commandCenter.likeCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-//
-//        }
-//        
-//        commandCenter.dislikeCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-//            
-//        }
+        
+        // setup like and dislike command
+        // problem: if I use this, seeking backwards is not displayed any more
+        commandCenter.likeCommand.localizedTitle = "Favorite"
+        commandCenter.likeCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            self.toggleFavorite(self)
+            return .success
+        }
+        
+        commandCenter.dislikeCommand.localizedTitle = "No Favorite"
+        commandCenter.dislikeCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            self.toggleFavorite(self)
+            return .success
+        }
+        // set the like status to the current state of the podcast
+        commandCenter.likeCommand.isActive = Favorites.isFavorite(event.podcast.id)
+        commandCenter.dislikeCommand.isActive = !Favorites.isFavorite(event.podcast.id)
+        
+        // there is some command center code for liking in the update favorites button code
         
     }
     
@@ -555,19 +572,20 @@ class PlayerViewController: UIViewController {
     }
     
     @objc private func itemDidPlayToEndTime(note: Notification) {
-        showInfoMessage("info", message: "itemDidPlayToEndTime")
+        // stream ended, so we close the player
+        self.performSegue(withIdentifier: "dismissPlayer", sender: self)
     }
     
     @objc private func itemFailedToPlayToEndTime(note: Notification) {
-        showInfoMessage("info", message: "itemFailedToPlayToEndTime")
+        showStreamErrorMessage()
     }
     
     @objc private func itemPlaybackStalled(note: Notification) {
-        showInfoMessage("info", message: "itemPlaybackStalled")
+        showStreamErrorMessage("Did not receive enough data. Trying to recover.")
     }
     
     @objc private func itemNewErrorLogEntry(note: Notification) {
-        showInfoMessage("info", message: "itemNewErrorLogEntry")
+        
     }
     
 }
