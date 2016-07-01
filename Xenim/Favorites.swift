@@ -86,7 +86,7 @@ class Favorites {
         let blocksDispatchQueue = DispatchQueue(label: "com.domain.blocksArray.sync", attributes: DispatchQueueAttributes.concurrent)
         let serviceGroup = DispatchGroup()
         
-        // start one api requirest for each podcast
+        // start one api request for each podcast
         for podcastId in podcastIds {
             serviceGroup.enter()
             XenimAPI.fetchPodcast(podcastId: podcastId, onComplete: { (podcast) -> Void in
