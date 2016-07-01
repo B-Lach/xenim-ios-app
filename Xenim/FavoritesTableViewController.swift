@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import UserNotifications
+import Parse
 
 class FavoritesTableViewController: UITableViewController{
     
@@ -15,6 +17,7 @@ class FavoritesTableViewController: UITableViewController{
     var messageVC: MessageViewController?
     var loadingVC: UIViewController?
 
+    @IBOutlet weak var pushNotificationsStatusLabel: UILabel!
     @IBOutlet weak var addFavoriteBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -37,6 +40,17 @@ class FavoritesTableViewController: UITableViewController{
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        // update the push notifications status label, so the user knows if he will receive push notifications
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            DispatchQueue.main.async(execute: { 
+                if settings.authorizationStatus == .authorized && PFInstallation.current().deviceToken != nil {
+                    self.pushNotificationsStatusLabel.text = NSLocalizedString("notifications_enabled", comment: "label in favorites table view which tells the user that his notifications are setup correctly")
+                } else {
+                    self.pushNotificationsStatusLabel.text = NSLocalizedString("notifications_disabled", comment: "label in favorites table view which tells the user that he can not receive notifications because they are not setup correctly")
+                }
+            })
+        }
+        
         refresh()
         // refresh next show date label in all cells
         NotificationCenter.default().post(name: Notification.Name(rawValue: "updateNextDate"), object: nil, userInfo: nil)
