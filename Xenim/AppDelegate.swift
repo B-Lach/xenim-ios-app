@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import UserNotifications
 //import AlamofireNetworkActivityIndicator
 
 struct Constants {
@@ -23,7 +24,7 @@ struct Constants {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -91,9 +92,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handle(userInfo)
+        // this is called when the user receives a notification an the app is currently active
+        // it is also called when the user taps on a notification and the app is launched
         NotificationCenter.default().post(name: Notification.Name(rawValue: "refreshEvents"), object: nil, userInfo: nil)
         resetApplicationBadge(application)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+        // if the app receives a notification while it is active, show the notification
+        // do not play a sound or increment the badge
+        completionHandler([.alert])
+        
+        // TODO: how does this react so silent notifications without any content? Do I even need background notifications enabled for this app?
+        // do not call refresh events here as didReceiveRemoteNotifications is called anyway
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -115,11 +126,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setupPushNotifications() {
-        let application = UIApplication.shared()
-        let userNotificationTypes: UIUserNotificationType = [.alert, .badge, .sound]
-        let settings = UIUserNotificationSettings(types: userNotificationTypes, categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                // push settings are not setup yet, so request authorization
+                UNUserNotificationCenter.current().requestAuthorization([.alert, .sound, .badge]) { (granted, error) in
+                    if granted {
+                        UIApplication.shared().registerForRemoteNotifications()
+                    }
+                }
+            case .authorized:
+                // the user might have authorized notifications in the settings app while this app was closed
+                UIApplication.shared().registerForRemoteNotifications()
+            case .denied:
+                // the user denied notifications. if they were allowed before we do keep the push token on the server
+                // so push immediately starts working again if the user allows push notifications in the settings for
+                // this app again
+                break
+            }
+        }
     }
 
 
