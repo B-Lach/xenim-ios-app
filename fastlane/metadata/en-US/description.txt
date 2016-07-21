@@ -1,7 +1,9 @@
-Listen to all podcast livestreams of the Xenim Streaming Network on your iPhone.
+Listen to all podcast livestreams of the Xenim Streaming Network!
 
 - Calendar with all upcoming livestreams
 - Mark podcasts as your favorite
 - Filter the calendar by your favorites
 - Receive push notifications when one of your favorite podcast shows does a live show
 - Metadata for every podcast
+- Sleep timer
+- Current listeners count for each live show

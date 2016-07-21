@@ -16,8 +16,8 @@ fastlane_version "1.81.0"
 default_platform :ios
 
 def build
-  cocoapods
-  carthage
+  #cocoapods
+  #carthage
 
   match(type: "appstore")
   increment_build_number # https://developer.apple.com/library/ios/qa/qa1827/_index.html
@@ -43,7 +43,7 @@ platform :ios do
     # check favorites are set correctly in each simulator: Freakshow, Lage der Nation, Wrint, NSFW
     # start a fakestream
     # schedule some example events. favorites should all have an event scheduled
-    snapshot(configuration: "Debug")
+    snapshot
 
     # currently frameit not required
     # frameit
@@ -58,9 +58,9 @@ platform :ios do
 
     #ensure_git_status_clean
 
-    build
+    #build
 
-    #pilot(skip_submission: true, distribute_external: false, ipa: "fastlane/ipa/Xenim.ipa")
+    pilot(skip_submission: false, distribute_external: false, ipa: "fastlane/ipa/Xenim.ipa")
   end
 
   desc "Deploy a new version to the App Store"
@@ -72,9 +72,9 @@ platform :ios do
 
     #ensure_git_status_clean
 
-    #build
+    build
 
-    deliver(  skip_binary_upload: true,
+    deliver(  skip_binary_upload: false,
               skip_metadata: false,
               skip_screenshots: true,
               submit_for_review: false,

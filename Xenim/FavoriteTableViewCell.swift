@@ -19,14 +19,7 @@ class FavoriteCellStatus {
 
 class FavoriteTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var coverartImageView: UIImageView! {
-        didSet {
-            coverartImageView.layer.cornerRadius = coverartImageView.frame.size.height / 2
-            coverartImageView.layer.masksToBounds = true
-            coverartImageView.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
-            coverartImageView.layer.borderWidth = 0.5
-        }
-    }
+    @IBOutlet weak var coverartImageView: UIImageView!
     @IBOutlet weak var podcastNameLabel: UILabel!
 
     @IBOutlet weak var nextDateStackView: UIStackView!
@@ -35,11 +28,10 @@ class FavoriteTableViewCell: UITableViewCell {
     
     var podcast: Podcast! {
         didSet {
-            let placeholderImage = UIImage(named: "event_placeholder")!
-            if let imageurl = podcast.artwork.thumb180Url{
-                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+            if let imageurl = podcast.artwork.thumb180Url {
+                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
             } else {
-                coverartImageView.image = placeholderImage
+                coverartImageView.image = nil
             }
             podcastNameLabel.text = podcast.name
             nextDateTopLabel.text = ""
@@ -66,6 +58,11 @@ class FavoriteTableViewCell: UITableViewCell {
         nextDateBottomLabel.isAccessibilityElement = false
         
         self.accessibilityTraits = UIAccessibilityTraitButton
+        
+        coverartImageView.layer.cornerRadius = 4
+        coverartImageView.layer.masksToBounds = true
+        coverartImageView.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        coverartImageView.layer.borderWidth = 0.5
         
     }
     

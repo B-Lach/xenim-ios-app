@@ -12,22 +12,22 @@ class AddFavoriteTableViewCell: UITableViewCell {
 
     var podcast: Podcast! {
         didSet {
-            let placeholderImage = UIImage(named: "event_placeholder")
             if let imageurl = podcast.artwork.thumb180Url {
-                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
             } else {
-                coverartImageView.image = placeholderImage
+                coverartImageView.image = nil
             }
+            
             setupNotifications()
             
             favoriteButton.accessibilityLabel = " "
             favoriteButton.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", value: "double tap to toggle favorite", comment: "") 
             
             if !Favorites.isFavorite(podcast.id) {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_o_35"), forState: .Normal)
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             } else {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_35"), forState: .Normal)
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
             
@@ -40,14 +40,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var podcastNameLabel: UILabel!
-    @IBOutlet weak var coverartImageView: UIImageView! {
-        didSet {
-            coverartImageView.layer.cornerRadius = coverartImageView.frame.size.height / 2
-            coverartImageView.layer.masksToBounds = true
-            coverartImageView.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
-            coverartImageView.layer.borderWidth = 0.5
-        }
-    }
+    @IBOutlet weak var coverartImageView: UIImageView!
 
     @IBOutlet weak var descriptionLabel: UILabel!
     
@@ -57,7 +50,11 @@ class AddFavoriteTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        coverartImageView.layer.cornerRadius = 4
+        coverartImageView.layer.masksToBounds = true
+        coverartImageView.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        coverartImageView.layer.borderWidth = 0.5
     }
     
     // MARK: notifications
@@ -76,7 +73,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == podcast.id {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_35"), forState: .Normal)
                 animateFavoriteButton()
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
@@ -87,7 +84,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
         if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == podcast.id {
-                favoriteButton?.setImage(UIImage(named: "scarlet-44-star-o"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_o_35"), forState: .Normal)
                 animateFavoriteButton()
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             }

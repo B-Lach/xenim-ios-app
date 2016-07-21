@@ -10,12 +10,8 @@
 /* days */
 "days" = "Tage";
 
-/* dismiss
-   Dismiss */
+/* Dismiss */
 "dismiss" = "Schließen";
-
-/* donate */
-"donate" = "Spenden";
 
 /* this message gets displayed if the user filters the event tableview to only show favorites, but there are not events to display. */
 "event_tableview_empty_favorites_only_message" = "Das ist eine gefilterte Event Liste. Hier sind nur Events deiner Favoriten zu sehen. Momentan ist kein Event eines deiner Favoriten geplant.";
@@ -51,13 +47,11 @@
 "player_failed_state_alertview_message" = "Dieser Livestream kann nicht abgespielt werden.";
 
 /* If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title. */
-"player_failed_state_alertview_title" = "Livestream Fehler";
-
-/* long pressing in the player view shows an action sheet to end playback. this is the action message to end playback. */
-"player_manager_actionsheet_end_playback" = "Player schließen";
+"player_failed_state_alertview_title" = "Streaming Fehler";
 
 /* mail body for a new feedback mail message */
-"podcast_detailview_feedback_mail_body" = "Hallo,";
+"podcast_detailview_feedback_mail_body" = "Hallo,
+";
 
 /* the user can send a feedback mail to the podcast. this is the preset mail title. */
 "podcast_detailview_feedback_mail_title" = "Feedback";
@@ -75,16 +69,10 @@
 "settings_view_mail_body" = "Bitte versuche dein Problem so genau wie möglich zu beschreiben, damit wir schnell eine Lösung dafür finden können.  %@";
 
 /* the message shown to the user in an alert view if his device is not setup to send email */
-"settings_view_mail_not_supported_message" = "Mailversand nicht eingerichtet.";
+"settings_view_mail_not_supported_message" = "Mailversand nicht eingerichtet";
 
 /* mail title for a new support mail message */
 "settings_view_mail_title" = "Xenim Support";
-
-/* No comment provided by engineer. */
-"support_alert_message" = "Gefällt dir die App? Wenn du mich unterstützen magst, würde ich mich über eine kleine Spende freuen. Falls du jetzt nicht spenden möchtest, kannst du das jederzeit in den Einstellungen tun.  Diese Nachricht wird nur ein einziges Mal angezeigt. Ich möchte dir damit nicht auf die Nerven gehen.";
-
-/* No comment provided by engineer. */
-"support_alert_title" = "Unterstütze die Entwicklung der App";
 
 /* No comment provided by engineer. */
 "voiceover_add_favorite_button_hint" = "doppel tap um alle podcasts zu durchsuchen und als favorit zu markieren";
@@ -105,12 +93,6 @@
 "voiceover_dateStackView_label" = "event datum";
 
 /* No comment provided by engineer. */
-"voiceover_dismiss_button_hint" = "doppel tap um den player zu minimieren";
-
-/* No comment provided by engineer. */
-"voiceover_dismiss_button_label" = "minimieren";
-
-/* No comment provided by engineer. */
 "voiceover_favorite_button_hint" = "doppel tap um zu toggeln";
 
 /* No comment provided by engineer. */
@@ -124,9 +106,6 @@
 
 /* No comment provided by engineer. */
 "voiceover_forward_button_label" = "vorspulen";
-
-/* No comment provided by engineer. */
-"voiceover_listeners_count_label" = "Hörer";
 
 /* No comment provided by engineer. */
 "voiceover_nextDateStackView_hint" = "doppel tap um zwischen datum und countdown zu wechseln";
@@ -157,12 +136,6 @@
 
 /* No comment provided by engineer. */
 "voiceover_playbutton_value_playing" = "spielt";
-
-/* No comment provided by engineer. */
-"voiceover_playerbar_hint" = "doppel tap um den player zu maximieren";
-
-/* No comment provided by engineer. */
-"voiceover_settings_button_label" = "Einstellungen";
 
 /* No comment provided by engineer. */
 "voiceover_share_button_label" = "teilen";

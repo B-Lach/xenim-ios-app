@@ -18,14 +18,11 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
     var event: Event?
     var player = AudioPlayer()
     var currentItem: AudioItem?
-    private weak var baseViewController: UITabBarController?
     
     // MARK: - init
     
     override init() {
         super.init()
-        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController! as! UITabBarController
-        baseViewController = rootViewController
         player.delegate = self
     }
     
@@ -37,15 +34,8 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         currentItem = nil
     }
     
-    func togglePlayPause(event: Event) {
-        // if it is a new event
-        if event != self.event {
-            playEvent(event)
-            // fire this notification because if a new event is being played the player state
-            // might not change (only from playing to playing) but the interface needs to update
-            // to show the correct item as playing
-            NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self])
-        } else {
+    func togglePlayPause() {
+        if currentItem != nil {
             switch player.state {
             case .Buffering: break
             case .Paused:
@@ -61,47 +51,13 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
         }
     }
     
-    func forwardPressed() {
-        plus30seconds()
+    func pause() {
+        player.pause()
     }
     
-    func backwardPressed() {
-        minus30seconds()
-    }
-    
-    // MARK: private
-    
-    private func showStreamErrorMessage() {
-        let errorTitle = NSLocalizedString("player_failed_state_alertview_title", value: "Playback Error", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the title.")
-        let errorMessage = NSLocalizedString("player_failed_state_alertview_message", value: "The selected stream can not be played.", comment: "If a stream can not be played and the player goes to failed state this error message alert view will be displayed. this is the message.")
-        showInfoMessage(errorTitle, message: errorMessage)
-    }
-    
-    private func showInfoMessage(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.view.tintColor = Constants.Colors.tintColor
-        let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
-        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
-        baseViewController?.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    private func playEvent(event: Event) {
+    func play(event: Event) {
         if let audioItem = AudioItem(mediumQualitySoundURL: event.streamUrl) {
             UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-            
-            self.event = event
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let playerViewController = storyboard.instantiateViewControllerWithIdentifier("PlayerViewController") as? PlayerViewController
-            playerViewController!.presenter = baseViewController
-            
-            let longpressRecognizer = UILongPressGestureRecognizer(target: playerViewController, action: #selector(playerViewController?.handleLongPress(_:)))
-            longpressRecognizer.delegate = playerViewController
-            
-            playerViewController!.event = event
-            
-            baseViewController?.presentPopupBarWithContentViewController(playerViewController!, openPopup: true, animated: true, completion: nil)
-            baseViewController?.popupBar!.addGestureRecognizer(longpressRecognizer)
-            baseViewController?.popupContentView.popupCloseButton!.hidden = true
             
             currentItem = audioItem
             currentItem?.artist = event.podcast.name
@@ -109,52 +65,57 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             player.playItem(currentItem!) // save as this can not be nil
             
             // fetch coverart from image cache and set it as lockscreen artwork
-            if let imageurl = event.podcast.artwork.originalUrl {
-                Alamofire.request(.GET, imageurl)
-                    .responseImage { response in
-                        if let image = response.result.value {
-                            self.currentItem?.artworkImage = image
-                        }
+            switch UIDevice.currentDevice().userInterfaceIdiom {
+            case .Phone:
+                if let imageurl = event.podcast.artwork.thumb800Url {
+                    Alamofire.request(.GET, imageurl)
+                        .responseImage { response in
+                            if let image = response.result.value {
+                                self.currentItem?.artworkImage = image
+                            }
+                    }
                 }
+            case .Pad:
+                if let imageurl = event.podcast.artwork.thumb3000Url {
+                    Alamofire.request(.GET, imageurl)
+                        .responseImage { response in
+                            if let image = response.result.value {
+                                self.currentItem?.artworkImage = image
+                            }
+                    }
+                }
+            default: break
             }
+
         } else {
-            showStreamErrorMessage()
+            stop()
+            NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self.player])
         }
     }
     
-    private func plus30seconds() {
+    
+    func plus30seconds() {
         let currentTime = player.currentItemProgression
         if let newTime = currentTime?.advancedBy(30) {
             player.seekToTime(newTime)
         }
     }
     
-    private func minus30seconds() {
+    func minus30seconds() {
         let currentTime = player.currentItemProgression
         if let newTime = currentTime?.advancedBy(-30) {
             player.seekToTime(newTime)
         }
     }
+
+    
+    // MARK: private
     
     // MARK: - Notifications
     
     func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         //        print("\(from) -> \(to)")
-        NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": self])
-        
-        switch player.state {
-        case .Buffering: break
-        case .Paused: break
-        case .Playing: break
-        case .Stopped:
-            // dismiss the player
-            baseViewController?.dismissPopupBarAnimated(true, completion: nil)
-        case .WaitingForConnection: break
-        case .Failed(_):
-            showStreamErrorMessage()
-            // .Stopped will be the next state automatically
-            // this will dismiss the player
-        }
+        NSNotificationCenter.defaultCenter().postNotificationName("playerStateChanged", object: player, userInfo: ["player": audioPlayer])
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {}
@@ -179,19 +140,17 @@ class PlayerManager : NSObject, AudioPlayerDelegate {
             case .RemoteControlEndSeekingForward:
                 break
             case .RemoteControlNextTrack:
-                forwardPressed()
+                plus30seconds()
             case .RemoteControlPause:
                 player.pause()
             case .RemoteControlPlay:
                 player.resume()
             case .RemoteControlPreviousTrack:
-                backwardPressed()
+                minus30seconds()
             case .RemoteControlStop:
                 stop()
             case .RemoteControlTogglePlayPause:
-                if let event = self.event {
-                    togglePlayPause(event)
-                }
+                togglePlayPause()
             default:
                 break
             }

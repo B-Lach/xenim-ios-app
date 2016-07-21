@@ -16,7 +16,7 @@ class SpinnerView : UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.fillColor = nil
-        layer.strokeColor = UIColor.whiteColor().CGColor
+        layer.strokeColor = tintColor.CGColor
         layer.lineWidth = 5
         setPath()
     }

@@ -20,12 +20,12 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     @IBOutlet weak var bigDonationCell: UITableViewCell!
     @IBOutlet weak var faqCell: UITableViewCell!
     @IBOutlet weak var reviewCell: UITableViewCell!
-
+    @IBOutlet weak var pushTokenCell: UITableViewCell!
+    @IBOutlet weak var versionCell: UITableViewCell!
+    
     @IBOutlet weak var middleDonationPriceLabel: UILabel!
     @IBOutlet weak var smallDonationPriceLabel: UILabel!
     @IBOutlet weak var bigDonationPriceLabel: UILabel!
-    
-    @IBOutlet weak var versionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +33,15 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         // auto cell height
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
-        
-        versionLabel?.text = UIApplication.sharedApplication().appVersion()
-        
+        versionCell.detailTextLabel?.text = UIApplication.sharedApplication().appVersion()
+        pushTokenCell.detailTextLabel?.text = PFInstallation.currentInstallation().deviceToken
+
         smallDonationCell.accessibilityTraits = UIAccessibilityTraitButton
         middleDonationCell.accessibilityTraits = UIAccessibilityTraitButton
         bigDonationCell.accessibilityTraits = UIAccessibilityTraitButton
         
         fetchIAPPrices()
+        
     }
     
     private func fetchIAPPrices() {
@@ -102,6 +103,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
                     self.showError(error!)
                 }
             })
+        } else if selectedCell == pushTokenCell {
+            UIPasteboard.generalPasteboard().string = pushTokenCell.detailTextLabel?.text
         }
         selectedCell?.setSelected(false, animated: true)
     }
@@ -132,9 +135,11 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         if MFMailComposeViewController.canSendMail() {
             
             let appVersionString = UIApplication.sharedApplication().appVersion()!
+            let pushToken = pushTokenCell.detailTextLabel?.text
+            let installationInformationString = "\(appVersionString), \(pushToken)"
             
             let emailTitle = NSLocalizedString("settings_view_mail_title", value: "Xenim Support", comment: "mail title for a new support mail message")
-            let messageBody = String(format: NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.\n\n%@", comment: "mail body for a new support mail message"), appVersionString)
+            let messageBody = String(format: NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.\n\n%@", comment: "mail body for a new support mail message"), installationInformationString)
             let toRecipents = ["xenimapp@stefantrauth.de"]
             
             // configure mail compose view controller

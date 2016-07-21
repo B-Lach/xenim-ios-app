@@ -1,8 +1,11 @@
-• Der Farbverlauf in der Podcast Detailansicht wurde verbessert. Er ist jetzt nicht mehr so dunkel.
-• Das Design des Liveplayers wurde komplett überarbeitet.
-• Die App ist nun optimiert für VoiceOver Nutzer
-• Bugfix: Die Datumsanzeige für ein Event behält nun auch beim Scrollen den richtigen Zustand
-• Die Datumsanzeige zeigt nun nicht nur verbleibende Tage bis zur Sendung, sonder auch Stunden und Minuten, wenn das Event näher rückt
-• Der Events Tab heißt nun Kalender. Das ist klarer verständlich.
-• Wer die App häufig nutzt bekommt ein einziges Mal einen Hinweis angezeigt, dass man die Entwicklung der App unterstützen kann
-• In den Settings gibt es nun einen Button, um die App im Appstore zu bewerten. Es würde mich freuen, wenn ihr das macht.
+• iPad Support (Landscape Modus noch eingeschränkt, kein Sync der Favoriten)
+• Bugfixes
+• Verbessertes Design
+• Die App braucht weniger Speicherplatz
+• Push Token wird in den Settings angezeigt
+
+Ich stecke viel Zeit in die Entwicklung der App und versuche sie jeden Tag besser zu machen. Wenn dir die App gefällt, würde ich mich über deine Unterstützung freuen. Nur so kann ich es mir leisten in der Zukunft weiter an der App zu arbeiten. In den Settings der App kannst du mir ein wenig Geld zukommen lassen.
+
+Wenn du Zeit hast, hilft auch eine Bewertung der App im Appstore. So hilfst du Anderen die App zu entdecken.
+
+Feedback: xenimapp@stefantrauth.de

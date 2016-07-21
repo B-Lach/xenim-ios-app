@@ -10,14 +10,10 @@ import Foundation
 import UIKit
 
 struct Artwork {
-    let originalUrl: NSURL?
-    let thumb150Url: NSURL?
     let thumb180Url: NSURL?
-    init(originalUrl: NSURL?, thumb150Url: NSURL?, thumb180Url: NSURL?) {
-        self.originalUrl = originalUrl
-        self.thumb150Url = thumb150Url
-        self.thumb180Url = thumb180Url
-    }
+    let thumb800Url: NSURL?
+    let thumb1600Url: NSURL?
+    let thumb3000Url: NSURL?
 }
 
 class Podcast : NSObject, Comparable {
@@ -29,28 +25,7 @@ class Podcast : NSObject, Comparable {
 
     let subtitle: String?
     let email: String?
-    let podcastXenimWebUrl: NSURL?
     let websiteUrl: NSURL?
-    let ircUrl: NSURL?
-    var ircChannel: String? {
-        get {
-            if let url = ircUrl {
-                return url.lastPathComponent
-            }
-            return nil
-        }
-    }
-    var ircServer: String? {
-        get {
-            if let url = ircUrl {
-                return url.host
-            }
-            return nil
-        }
-    }
-    
-    
-    let webchatUrl: NSURL?
     
     let feedUrl: NSURL?
     // do not forget to enable them in Info.plist
@@ -84,32 +59,17 @@ class Podcast : NSObject, Comparable {
 
         }
     }
-    let flattrId: String?
-    var flattrURL: NSURL? {
-        get {
-            if let flattrId = self.flattrId {
-                return NSURL(string: "https://flattr.com/profile/\(flattrId)")
-            } else {
-                return nil
-            }
-            
-        }
-    }
     
-    init(id: String, name: String, description: String, artwork: Artwork, subtitle: String?, podcastXenimWebUrl: NSURL?, websiteUrl: NSURL?, ircUrl: NSURL?, webchatUrl: NSURL?, feedUrl: NSURL?, email: String?, twitterUsername: String?, flattrId: String?) {
+    init(id: String, name: String, description: String, artwork: Artwork, subtitle: String?, websiteUrl: NSURL?, feedUrl: NSURL?, email: String?, twitterUsername: String?) {
         
         self.id = id
         self.name = name
         self.podcastDescription = description
         self.artwork = artwork
         self.subtitle = subtitle
-        self.podcastXenimWebUrl = podcastXenimWebUrl
         self.websiteUrl = websiteUrl
-        self.ircUrl = ircUrl
-        self.webchatUrl = webchatUrl
         self.feedUrl = feedUrl
         self.twitterUsername = twitterUsername
-        self.flattrId = flattrId
         self.email = email
         
         super.init()

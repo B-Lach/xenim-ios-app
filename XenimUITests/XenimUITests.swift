@@ -42,14 +42,20 @@ class XenimUITests: XCTestCase {
         tablesQuery.staticTexts["Lage der Nation"].tap()
         snapshot("02PodcastDetail")
         
-        app.navigationBars["Lage der Nation"].childrenMatchingType(.Button).matchingIdentifier("Zurück").elementBoundByIndex(0).tap()
+        switch UIDevice.currentDevice().userInterfaceIdiom {
+        case .Phone:
+            app.navigationBars["Lage der Nation"].childrenMatchingType(.Button).matchingIdentifier("Zurück").elementBoundByIndex(0).tap()
+        case .Pad:
+            break
+        default: break
+        }
         tablesQuery.buttons["play button"].tap()
         sleep(2)
         snapshot("03Player")
         
-        app.buttons["minimieren"].tap()
-        app.toolbars.buttons["Funkenstrahlen\nTestsendung"].pressForDuration(2.0);
-        app.sheets.collectionViews.buttons["Player schließen"].tap()
+        // close player
+        app.navigationBars["Funkenstrahlen"].buttons["Stopp"].tap()
+        
 
         app.tabBars.buttons["Favoriten"].tap()
         snapshot("04Favorites")
@@ -57,16 +63,9 @@ class XenimUITests: XCTestCase {
         let favoritenNavigationBar = app.navigationBars["Favoriten"]
         favoritenNavigationBar.buttons["Hinzufügen"].tap()
         snapshot("05AddFavorites")
-        
-        app.navigationBars["Favoriten finden"].buttons["Fertig"].tap()
-        favoritenNavigationBar.buttons["Einstellungen"].tap()
-        snapshot("06Settings")
     }
     
     func testSnapshotsEN() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
         if deviceLanguage != "en-US" {
             return
         }
@@ -77,16 +76,20 @@ class XenimUITests: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Lage der Nation"].tap()
         snapshot("02PodcastDetail")
-        app.navigationBars["Lage der Nation"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
+        switch UIDevice.currentDevice().userInterfaceIdiom {
+        case .Phone:
+            app.navigationBars["Lage der Nation"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
+        case .Pad:
+            break
+        default: break
+        }
         
         
         app.tables.buttons["play button"].tap()
         sleep(2)
         snapshot("03Player")
         // close player
-        app.buttons["minify"].tap()
-        app.toolbars.buttons["Funkenstrahlen\nTestsendung"].pressForDuration(2);
-        app.sheets.collectionViews.buttons["End Playback"].tap()
+        app.navigationBars["Funkenstrahlen"].buttons["Stop"].tap()
         
         app.tabBars.buttons["Favorites"].tap()
         snapshot("04Favorites")
@@ -94,26 +97,6 @@ class XenimUITests: XCTestCase {
         let favoritesNavigationBar = app.navigationBars["Favorites"]
         favoritesNavigationBar.buttons["Add"].tap()
         snapshot("05AddFavorites")
-        app.navigationBars["Add Favorites"].buttons["Done"].tap()
-        
-        favoritesNavigationBar.buttons["Settings"].tap()
-        snapshot("06Settings")
-    
     }
-    
-    //    func setupFavorites() {
-    //        let tabBarsQuery = app.tabBars
-    //        tabBarsQuery.buttons["Favorites"].tap()
-    //        app.navigationBars["Favorites"].buttons["brandeis blue 25 plus"].tap()
-    //
-    //        var tablesQuery = app.tables
-    //        tablesQuery.cells.containingType(.StaticText, identifier:"Freakshow").buttons["scarlet 44 star o"].tap()
-    //        tablesQuery.cells.containingType(.StaticText, identifier:"Lage der Nation").buttons["scarlet 44 star o"].tap()
-    //        tablesQuery.cells.containingType(.StaticText, identifier:"Not Safe For Work").buttons["scarlet 44 star o"].tap()
-    //        tablesQuery.staticTexts["Nerdemissionen"].swipeUp()
-    //        tablesQuery.cells.containingType(.StaticText, identifier:"Wrint").buttons["scarlet 44 star o"].tap()
-    //        app.navigationBars["Add Favorites"].buttons["Done"].tap()
-    //        tabBarsQuery.buttons["Events"].tap()
-    //    }
     
 }
