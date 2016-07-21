@@ -1,7 +1,6 @@
 • iPad support (not yet optimised for landscape mode, currently no syncing of your favorites possible)
 • bugfixes
 • improved design
-• high resolution coverarts
 • reduced app file size
 • push token is displayed in settings. copy to clipboard by tapping on it.
 
