@@ -13,7 +13,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
     var podcast: Podcast! {
         didSet {
             if let imageurl = podcast.artwork.thumb180Url {
-                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
             } else {
                 coverartImageView.image = nil
             }
@@ -24,10 +24,10 @@ class AddFavoriteTableViewCell: UITableViewCell {
             favoriteButton.accessibilityHint = NSLocalizedString("voiceover_favorite_button_hint", value: "double tap to toggle favorite", comment: "") 
             
             if !Favorites.isFavorite(podcast.id) {
-                favoriteButton?.setImage(UIImage(named: "star_o_35"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_o_35"), for: UIControlState())
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             } else {
-                favoriteButton?.setImage(UIImage(named: "star_35"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_35"), for: UIControlState())
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
             
@@ -44,7 +44,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    @IBAction func toggleFavorite(sender: AnyObject) {
+    @IBAction func toggleFavorite(_ sender: AnyObject) {
         Favorites.toggle(podcastId: podcast.id)
     }
     
@@ -53,38 +53,38 @@ class AddFavoriteTableViewCell: UITableViewCell {
         
         coverartImageView.layer.cornerRadius = 4
         coverartImageView.layer.masksToBounds = true
-        coverartImageView.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        coverartImageView.layer.borderColor =  UIColor.lightGray().withAlphaComponent(0.3).cgColor
         coverartImageView.layer.borderWidth = 0.5
     }
     
     // MARK: notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddFavoriteTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddFavoriteTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default().addObserver(self, selector: #selector(AddFavoriteTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(AddFavoriteTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
     }
     
-    func favoriteAdded(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+    func favoriteAdded(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == podcast.id {
-                favoriteButton?.setImage(UIImage(named: "star_35"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_35"), for: UIControlState())
                 animateFavoriteButton()
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "")
             }
         }
     }
     
-    func favoriteRemoved(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+    func favoriteRemoved(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == podcast.id {
-                favoriteButton?.setImage(UIImage(named: "star_o_35"), forState: .Normal)
+                favoriteButton?.setImage(UIImage(named: "star_o_35"), for: UIControlState())
                 animateFavoriteButton()
                 favoriteButton.accessibilityValue = NSLocalizedString("voiceover_favorite_button_value_no_favorite", value: "is no favorite", comment: "")
             }
@@ -92,14 +92,14 @@ class AddFavoriteTableViewCell: UITableViewCell {
     }
 
     func animateFavoriteButton() {
-        favoriteButton.transform = CGAffineTransformMakeScale(1.3, 1.3)
-        UIView.animateWithDuration(0.3,
+        favoriteButton.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        UIView.animate(withDuration: 0.3,
             delay: 0,
             usingSpringWithDamping: 2,
             initialSpringVelocity: 1.0,
-            options: [UIViewAnimationOptions.CurveEaseOut],
+            options: [UIViewAnimationOptions.curveEaseOut],
             animations: {
-                self.favoriteButton.transform = CGAffineTransformIdentity
+                self.favoriteButton.transform = CGAffineTransform.identity
             }, completion: nil)
     }
     

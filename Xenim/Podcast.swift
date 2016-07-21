@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 struct Artwork {
-    let thumb180Url: NSURL?
-    let thumb800Url: NSURL?
-    let thumb1600Url: NSURL?
-    let thumb3000Url: NSURL?
+    let thumb180Url: URL?
+    let thumb800Url: URL?
+    let thumb1600Url: URL?
+    let thumb3000Url: URL?
 }
 
 class Podcast : NSObject, Comparable {
@@ -25,19 +25,19 @@ class Podcast : NSObject, Comparable {
 
     let subtitle: String?
     let email: String?
-    let websiteUrl: NSURL?
+    let websiteUrl: URL?
     
-    let feedUrl: NSURL?
+    let feedUrl: URL?
     // do not forget to enable them in Info.plist
     static private let subscribeURLSchemes = ["Castro" : "castro://subscribe/", "Downcast" : "downcast://", "Instacast" : "instacast://", "Overcast" : "overcast://x-callback-url/add?url=", "PocketCasts" : "pktc://subscribe/", "Podcasts" : "pcast://", "Podcat" : "podcat://"]
-    var subscribeURLSchemesDictionary: [String:NSURL]? {
+    var subscribeURLSchemesDictionary: [String:URL]? {
         get {
             if let feedUrl = feedUrl {
-                var subscribeClients = [String:NSURL]()
+                var subscribeClients = [String:URL]()
                 for client in Podcast.subscribeURLSchemes {
                     let urlScheme = client.1
                     let clientName = client.0
-                    if let subscribeURL = NSURL(string: urlScheme + feedUrl.description) {
+                    if let subscribeURL = URL(string: urlScheme + feedUrl.description) {
                         subscribeClients[clientName] = subscribeURL
                     }
                 }
@@ -49,10 +49,10 @@ class Podcast : NSObject, Comparable {
     }
 
     let twitterUsername: String?
-    var twitterURL: NSURL? {
+    var twitterURL: URL? {
         get {
             if let username = twitterUsername {
-                return NSURL(string: "https://twitter.com/\(username)")
+                return URL(string: "https://twitter.com/\(username)")
             } else {
                 return nil
             }
@@ -60,7 +60,7 @@ class Podcast : NSObject, Comparable {
         }
     }
     
-    init(id: String, name: String, description: String, artwork: Artwork, subtitle: String?, websiteUrl: NSURL?, feedUrl: NSURL?, email: String?, twitterUsername: String?) {
+    init(id: String, name: String, description: String, artwork: Artwork, subtitle: String?, websiteUrl: URL?, feedUrl: URL?, email: String?, twitterUsername: String?) {
         
         self.id = id
         self.name = name

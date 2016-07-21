@@ -7,9 +7,24 @@
 //
 
 import UIKit
+import MediaPlayer
+
+extension CMTime {
+    func humanReadable() -> (minutes: Int, seconds: Int) {
+        guard !self.isIndefinite else {
+            return (0,0)
+        }
+        let totalSeconds = CMTimeGetSeconds(self)
+        let minutes = Int(floor(totalSeconds.truncatingRemainder(dividingBy: 3600) / 60))
+        let seconds = Int(floor(totalSeconds.truncatingRemainder(dividingBy: 3600).truncatingRemainder(dividingBy: 60)))
+        return (minutes, seconds)
+    }
+}
+
+
 
 extension Array {
-    func orderedIndexOf(elem: Element, isOrderedBefore: (Element, Element) -> Bool) -> Int {
+    func orderedIndexOf(_ elem: Element, isOrderedBefore: (Element, Element) -> Bool) -> Int {
         var lo = 0
         var hi = self.count - 1
         while lo <= hi {
@@ -28,14 +43,14 @@ extension Array {
 
 extension String {
     func trim() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 }
 
 extension UIApplication {
     func appVersion() -> String? {
-        if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String,
-           let build = NSBundle.mainBundle().infoDictionary?[kCFBundleVersionKey as String] as? String {
+        if let version = Bundle.main().infoDictionary?["CFBundleShortVersionString"] as? String,
+           let build = Bundle.main().infoDictionary?[kCFBundleVersionKey as String] as? String {
             return "Version \(version) (\(build))"
         }
         return nil
@@ -43,7 +58,7 @@ extension UIApplication {
 }
 
 class DateViewGenerator: NSObject {
-    static func generateLabelsFromDate(eventDate: NSDate, showsDate: Bool) -> (topLabelString: String, bottomLabelString: String, accessibilityValue: String) {
+    static func generateLabelsFromDate(_ eventDate: Date, showsDate: Bool) -> (topLabelString: String, bottomLabelString: String, accessibilityValue: String) {
         
         
         let topLabelString: String
@@ -51,38 +66,38 @@ class DateViewGenerator: NSObject {
         let accessibilityValue: String
         
         // calculate in how many days this event takes place
-        let cal = NSCalendar.currentCalendar()
-        let now = NSDate()
-        var diff = cal.components(NSCalendarUnit.Day,
-                                  fromDate: cal.startOfDayForDate(now),
-                                  toDate: eventDate,
-                                  options: NSCalendarOptions.WrapComponents )
+        let cal = Calendar.current()
+        let now = Date()
+        var diff = cal.components(Calendar.Unit.day,
+                                  from: cal.startOfDay(for: now),
+                                  to: eventDate,
+                                  options: Calendar.Options.wrapComponents )
         let daysLeft = diff.day
         
         
         if showsDate {
-            let formatter = NSDateFormatter();
-            formatter.locale = NSLocale.currentLocale()
+            let formatter = DateFormatter();
+            formatter.locale = Locale.current()
             
-            formatter.dateStyle = .LongStyle
-            formatter.timeStyle = .MediumStyle
-            accessibilityValue = formatter.stringFromDate(eventDate)
+            formatter.dateStyle = .longStyle
+            formatter.timeStyle = .mediumStyle
+            accessibilityValue = formatter.string(from: eventDate)
             
             // http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
             
             formatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            let time = formatter.stringFromDate(eventDate)
+            let time = formatter.string(from: eventDate)
             bottomLabelString = time
             
             if daysLeft < 7 {
                 formatter.setLocalizedDateFormatFromTemplate("cccccc")
-                var day = formatter.stringFromDate(eventDate)
-                day = day.stringByReplacingOccurrencesOfString(".", withString: "")
-                day = day.uppercaseString
+                var day = formatter.string(from: eventDate)
+                day = day.replacingOccurrences(of: ".", with: "")
+                day = day.uppercased()
                 topLabelString = day
             } else {
                 formatter.setLocalizedDateFormatFromTemplate("d.M")
-                let date = formatter.stringFromDate(eventDate)
+                let date = formatter.string(from: eventDate)
                 topLabelString = date
             }
             
@@ -90,16 +105,16 @@ class DateViewGenerator: NSObject {
             
         } else {
             
-            diff = cal.components(NSCalendarUnit.Hour, fromDate: now, toDate: eventDate, options: NSCalendarOptions.WrapComponents )
+            diff = cal.components(Calendar.Unit.hour, from: now, to: eventDate, options: Calendar.Options.wrapComponents )
             let hoursLeft = diff.hour
-            diff = cal.components(NSCalendarUnit.Minute, fromDate: now, toDate: eventDate, options: NSCalendarOptions.WrapComponents )
+            diff = cal.components(Calendar.Unit.minute, from: now, to: eventDate, options: Calendar.Options.wrapComponents )
             let minutesLeft = diff.minute
             
             // check if there are less than 24 hours left
             // use absolute value here to make it also work for negative values if a show is overdue
-            if abs(minutesLeft) < 1440 {
+            if abs(minutesLeft!) < 1440 {
                 // check if there are less than 1 hour left
-                if abs(minutesLeft) < 60 {
+                if abs(minutesLeft!) < 60 {
                     // show minutes left
                     // could be negative!
                     topLabelString = "\(minutesLeft)"

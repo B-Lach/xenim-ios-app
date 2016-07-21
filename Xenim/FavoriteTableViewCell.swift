@@ -12,7 +12,7 @@ class FavoriteCellStatus {
     static let sharedInstance = FavoriteCellStatus()
     var showsDate = false {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName("toggleNextDateView", object: nil, userInfo: nil)
+            NotificationCenter.default().post(name: Notification.Name(rawValue: "toggleNextDateView"), object: nil, userInfo: nil)
         }
     }
 }
@@ -29,7 +29,7 @@ class FavoriteTableViewCell: UITableViewCell {
     var podcast: Podcast! {
         didSet {
             if let imageurl = podcast.artwork.thumb180Url {
-                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+                coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
             } else {
                 coverartImageView.image = nil
             }
@@ -61,19 +61,19 @@ class FavoriteTableViewCell: UITableViewCell {
         
         coverartImageView.layer.cornerRadius = 4
         coverartImageView.layer.masksToBounds = true
-        coverartImageView.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        coverartImageView.layer.borderColor =  UIColor.lightGray().withAlphaComponent(0.3).cgColor
         coverartImageView.layer.borderWidth = 0.5
         
     }
     
-    func tappedDateView(sender: UITapGestureRecognizer?) {
+    func tappedDateView(_ sender: UITapGestureRecognizer?) {
         FavoriteCellStatus.sharedInstance.showsDate = !FavoriteCellStatus.sharedInstance.showsDate
     }
     
     @objc func updateNextDate() {
         XenimAPI.fetchEvents(podcastId: podcast.id, status: ["RUNNING", "UPCOMING"], maxCount: 1) { (events) in
             if let event = events.first {
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     // make sure this is still the correct cell
                     if event.podcast.id == self.podcast.id {
                         self.nextEvent = event
@@ -105,20 +105,20 @@ class FavoriteTableViewCell: UITableViewCell {
     // MARK: notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateNextDate), name: "updateNextDate", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(toggleDateView(_:)), name: "toggleNextDateView", object: nil)
+        NotificationCenter.default().removeObserver(self)
+                NotificationCenter.default().addObserver(self, selector: #selector(updateNextDate), name: "updateNextDate", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(toggleDateView(_:)), name: "toggleNextDateView", object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
     }
     
-    func toggleDateView(notification: NSNotification) {
+    func toggleDateView(_ notification: Notification) {
         updateNextDateLabel()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

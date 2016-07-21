@@ -33,8 +33,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         // auto cell height
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
-        versionCell.detailTextLabel?.text = UIApplication.sharedApplication().appVersion()
-        pushTokenCell.detailTextLabel?.text = PFInstallation.currentInstallation().deviceToken
+        versionCell.detailTextLabel?.text = UIApplication.shared().appVersion()
+        pushTokenCell.detailTextLabel?.text = PFInstallation.current().deviceToken
 
         smallDonationCell.accessibilityTraits = UIAccessibilityTraitButton
         middleDonationCell.accessibilityTraits = UIAccessibilityTraitButton
@@ -50,33 +50,33 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         request.start()
     }
     
-    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         for product in response.products {
 
-            let formatter = NSNumberFormatter()
-            formatter.formatterBehavior = NSNumberFormatterBehavior.Behavior10_4
-            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            let formatter = NumberFormatter()
+//            formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4 // TODO
+            formatter.numberStyle = NumberFormatter.Style.currency
             formatter.locale = product.priceLocale
             
             switch product.productIdentifier {
             case "com.stefantrauth.XenimSupportSmall":
-                smallDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+                smallDonationPriceLabel.text = formatter.string(from: product.price)
             case "com.stefantrauth.XenimSupportMiddle":
-                middleDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+                middleDonationPriceLabel.text = formatter.string(from: product.price)
             case "com.stefantrauth.XenimSupportBig":
-                bigDonationPriceLabel.text = formatter.stringFromNumber(product.price)
+                bigDonationPriceLabel.text = formatter.string(from: product.price)
             default:
                 break
             }
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath)
         if selectedCell == contactCell {
             sendMail()
         } else if selectedCell == faqCell {
@@ -84,7 +84,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         } else if selectedCell == xenimCell {
             openWebsite("http://streams.xenim.de")
         } else if selectedCell == reviewCell {
-            UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/app/id1073103750")!)
+            // TODO
+            UIApplication.shared().open(URL(string: "itms-apps://itunes.apple.com/app/id1073103750")!, options: ["": ""], completionHandler: nil)
         } else if selectedCell == smallDonationCell {
             PFPurchase.buyProduct("com.stefantrauth.XenimSupportSmall", block: { (error: NSError?) in
                 if error != nil {
@@ -104,29 +105,29 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
                 }
             })
         } else if selectedCell == pushTokenCell {
-            UIPasteboard.generalPasteboard().string = pushTokenCell.detailTextLabel?.text
+            UIPasteboard.general().string = pushTokenCell.detailTextLabel?.text
         }
         selectedCell?.setSelected(false, animated: true)
     }
     
-    private func showError(error: NSError) {
+    private func showError(_ error: NSError) {
         print(error.localizedDescription)
-        let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
+        let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
-        let dismissAction = UIAlertAction(title: dismiss, style: .Default, handler: nil)
+        let dismissAction = UIAlertAction(title: dismiss, style: .default, handler: nil)
         alertVC.addAction(dismissAction)
-        self.presentViewController(alertVC, animated: true, completion: nil)
+        self.present(alertVC, animated: true, completion: nil)
     }
     
-    func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
-    func openWebsite(urlString: String) {
-        if let url = NSURL(string: urlString) {
-            let svc = SFSafariViewController(URL: url)
+    func openWebsite(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            let svc = SFSafariViewController(url: url)
             svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
+            self.present(svc, animated: true, completion: nil)
         }
     }
     
@@ -134,7 +135,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         // check if the user is able to send mail
         if MFMailComposeViewController.canSendMail() {
             
-            let appVersionString = UIApplication.sharedApplication().appVersion()!
+            let appVersionString = UIApplication.shared().appVersion()!
             let pushToken = pushTokenCell.detailTextLabel?.text
             let installationInformationString = "\(appVersionString), \(pushToken)"
             
@@ -149,7 +150,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             mc.setMessageBody(messageBody, isHTML: false)
             mc.setToRecipients(toRecipents)
             
-            self.presentViewController(mc, animated: true, completion: nil)
+            self.present(mc, animated: true, completion: nil)
         } else {
             // show error message if device is not configured to send mail
             let message = NSLocalizedString("settings_view_mail_not_supported_message", value: "Your device is not setup to send email.", comment: "the message shown to the user in an alert view if his device is not setup to send email")
@@ -160,26 +161,26 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     /**
         Mail compose view controller delegate method to dismiss if finished and react to errors
     */
-    func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError?) {
+    func mailComposeController(_ controller:MFMailComposeViewController, didFinishWith result:MFMailComposeResult, error:NSError?) {
         switch result.rawValue {
-        case MFMailComposeResultCancelled.rawValue: break
-        case MFMailComposeResultSaved.rawValue: break
-        case MFMailComposeResultSent.rawValue: break
-        case MFMailComposeResultFailed.rawValue:
+        case MFMailComposeResult.cancelled.rawValue: break
+        case MFMailComposeResult.saved.rawValue: break
+        case MFMailComposeResult.sent.rawValue: break
+        case MFMailComposeResult.failed.rawValue:
             let mailFailureTitle = NSLocalizedString("info_message_mail_sent_failure_message", value: "Mail sent failure", comment: "If the user tried to sent an email and it could not be sent an alert view does show the error message. this is the title of the alert view popup")
             showInfoMessage(mailFailureTitle, message: (error?.localizedDescription)!)
         default:
             break
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func showInfoMessage(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    func showInfoMessage(_ title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.view.tintColor = Constants.Colors.tintColor
         let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
-        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
     /*

@@ -8,7 +8,8 @@
 
 import UIKit
 import Parse
-import AlamofireNetworkActivityIndicator
+import UserNotifications
+//import AlamofireNetworkActivityIndicator
 
 struct Constants {
     struct Colors {
@@ -23,66 +24,66 @@ struct Constants {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // the statusbar is hidden on launch, because it should not be visible on launchscreen
         // reenable it here
-        application.statusBarHidden = false
+        application.isStatusBarHidden = false
 
         // alamofire requests show network indicator
-        NetworkActivityIndicatorManager.sharedManager.isEnabled = true
-        NetworkActivityIndicatorManager.sharedManager.startDelay = 0.3
+//        NetworkActivityIndicatorManager.sharedManager.isEnabled = true
+//        NetworkActivityIndicatorManager.sharedManager.startDelay = 0.3
         
         // fetch parse keys from Keys.plist
         // this is force unwrapped intentionally. I want it to crash if this file is not working.
-        let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist")
+        let path = Bundle.main().pathForResource("Keys", ofType: "plist")
         let keys = NSDictionary(contentsOfFile: path!)
         let applicationId = keys!["parseApplicationID"] as! String
         let clientKey = keys!["parseClientKey"] as! String
         
-        Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (config) -> Void in
+        Parse.initialize(with: ParseClientConfiguration(block: { (config) -> Void in
             config.applicationId = applicationId
             config.clientKey = clientKey
             // "https://dev.push.xenim.de/parse"
             config.server = Constants.API.parseServer
-            config.localDatastoreEnabled = true
+            config.isLocalDatastoreEnabled = true
         }))
         
         // register IAP handler. will be called when the item has been purchased.
-        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportSmall") { (transaction:SKPaymentTransaction) in
+        PFPurchase.addObserver(forProduct: "com.stefantrauth.XenimSupportSmall") { (transaction:SKPaymentTransaction) in
             print("purchase was successful.")
         }
-        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportMiddle") { (transaction:SKPaymentTransaction) in
+        PFPurchase.addObserver(forProduct: "com.stefantrauth.XenimSupportMiddle") { (transaction:SKPaymentTransaction) in
             print("purchase was successful.")
         }
-        PFPurchase.addObserverForProduct("com.stefantrauth.XenimSupportBig") { (transaction:SKPaymentTransaction) in
+        PFPurchase.addObserver(forProduct: "com.stefantrauth.XenimSupportBig") { (transaction:SKPaymentTransaction) in
             print("purchase was successful.")
         }
         
         return true
     }
     
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         setupPushNotifications()
-        NSNotificationCenter.defaultCenter().postNotificationName("refreshEvents", object: nil, userInfo: nil)
+        NotificationCenter.default().post(name: Notification.Name(rawValue: "refreshEvents"), object: nil, userInfo: nil)
         resetApplicationBadge(application)
     }
     
-    func resetApplicationBadge(application: UIApplication) {
+    func resetApplicationBadge(_ application: UIApplication) {
         application.applicationIconBadgeNumber = 0
     }
     
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        let installation = PFInstallation.currentInstallation()
-        installation.setDeviceTokenFromData(deviceToken)
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let installation = PFInstallation.current()
+        installation.setDeviceTokenFrom(deviceToken)
         installation.saveEventually()
     }
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         if error.code == 3010 {
             print("Push notifications are not supported in the iOS Simulator.")
         } else {
@@ -90,42 +91,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
-        NSNotificationCenter.defaultCenter().postNotificationName("refreshEvents", object: nil, userInfo: nil)
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        // this is called when the user receives a notification an the app is currently active
+        // it is also called when the user taps on a notification and the app is launched
+        NotificationCenter.default().post(name: Notification.Name(rawValue: "refreshEvents"), object: nil, userInfo: nil)
         resetApplicationBadge(application)
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+        // if the app receives a notification while it is active, show the notification
+        // do not play a sound or increment the badge
+        completionHandler([.alert])
+        
+        // TODO: how does this react so silent notifications without any content? Do I even need background notifications enabled for this app?
+        // do not call refresh events here as didReceiveRemoteNotifications is called anyway
+    }
 
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    override func remoteControlReceivedWithEvent(event: UIEvent?) {
-        if let event = event {
-            PlayerManager.sharedInstance.remoteControlReceivedWithEvent(event)
-        }
-    }
-    
     func setupPushNotifications() {
-        let application = UIApplication.sharedApplication()
-        let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
-        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                // push settings are not setup yet, so request authorization
+                UNUserNotificationCenter.current().requestAuthorization([.alert, .sound, .badge]) { (granted, error) in
+                    if granted {
+                        UIApplication.shared().registerForRemoteNotifications()
+                    }
+                }
+            case .authorized:
+                // the user might have authorized notifications in the settings app while this app was closed
+                UIApplication.shared().registerForRemoteNotifications()
+            case .denied:
+                // the user denied notifications. if they were allowed before we do keep the push token on the server
+                // so push immediately starts working again if the user allows push notifications in the settings for
+                // this app again
+                break
+            }
+        }
     }
 
 

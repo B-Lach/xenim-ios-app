@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import KDEAudioPlayer
 
 class EventCellStatus {
     static let sharedInstance = EventCellStatus()
     var showsDate = true {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName("toggleDateView", object: nil, userInfo: nil)
+            NotificationCenter.default().post(name: Notification.Name(rawValue: "toggleDateView"), object: nil, userInfo: nil)
         }
     }
 }
@@ -59,11 +58,11 @@ class EventTableViewCell: UITableViewCell {
         
         eventCoverartImage.layer.cornerRadius = 4
         eventCoverartImage.layer.masksToBounds = true
-        eventCoverartImage.layer.borderColor =  UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        eventCoverartImage.layer.borderColor =  UIColor.lightGray().withAlphaComponent(0.3).cgColor
         eventCoverartImage.layer.borderWidth = 0.5
     }
     
-    func tappedDateView(sender: UITapGestureRecognizer?) {
+    func tappedDateView(_ sender: UITapGestureRecognizer?) {
         EventCellStatus.sharedInstance.showsDate = !EventCellStatus.sharedInstance.showsDate
     }
     
@@ -85,14 +84,14 @@ class EventTableViewCell: UITableViewCell {
             updateLivedate()
             updateFavoriteButton()
             
-            playButton.hidden = !event.isLive()
-            dateStackView.hidden = event.isLive()
+            playButton.isHidden = !event.isLive()
+            dateStackView.isHidden = event.isLive()
         }
     }
     
     func updateCoverart() {
         if let imageurl = event.podcast.artwork.thumb180Url {
-            eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .CrossDissolve(0.2))
+            eventCoverartImage.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
         } else {
             eventCoverartImage.image = nil
         }
@@ -112,22 +111,22 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func updateFavoriteButton() {
-        favoriteImageView.hidden = !Favorites.isFavorite(event.podcast.id)
+        favoriteImageView.isHidden = !Favorites.isFavorite(event.podcast.id)
         self.accessibilityValue = Favorites.isFavorite(event.podcast.id) ? NSLocalizedString("voiceover_favorite_button_value_is_favorite", value: "is favorite", comment: "") : ""
     }
     
     
     // MARK: - Actions
     
-    @IBAction func play(sender: AnyObject) {
-        playButton.transform = CGAffineTransformMakeScale(1.8, 1.8)
-        UIView.animateWithDuration(0.3,
+    @IBAction func play(_ sender: AnyObject) {
+        playButton.transform = CGAffineTransform(scaleX: 1.8, y: 1.8)
+        UIView.animate(withDuration: 0.3,
             delay: 0,
             usingSpringWithDamping: 2,
             initialSpringVelocity: 1.0,
-            options: [UIViewAnimationOptions.CurveEaseOut],
+            options: [UIViewAnimationOptions.curveEaseOut],
             animations: {
-                self.playButton.transform = CGAffineTransformIdentity
+                self.playButton.transform = CGAffineTransform.identity
             }, completion: nil)
         playerDelegate?.play(event)
     }
@@ -135,49 +134,49 @@ class EventTableViewCell: UITableViewCell {
     // MARK: notifications
     
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventTableViewCell.toggleDateView(_:)), name: "toggleDateView", object: nil)
+        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewCell.toggleDateView(_:)), name: "toggleDateView", object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
     }
     
-    func toggleDateView(notification: NSNotification) {
+    func toggleDateView(_ notification: Notification) {
         updateLivedate()
     }
     
-    func favoriteAdded(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+    func favoriteAdded(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == event.podcast.id {
-                favoriteImageView?.hidden = false
+                favoriteImageView?.isHidden = false
                 animateFavoriteButton()
             }
         }
     }
     
-    func favoriteRemoved(notification: NSNotification) {
-        if let userInfo = notification.userInfo, let podcastId = userInfo["podcastId"] as? String {
+    func favoriteRemoved(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo, let podcastId = userInfo["podcastId"] as? String {
             // check if this affects this cell
             if podcastId == event.podcast.id {
-                favoriteImageView?.hidden = true
+                favoriteImageView?.isHidden = true
                 animateFavoriteButton()
             }
         }
     }
     
     func animateFavoriteButton() {
-        favoriteImageView.transform = CGAffineTransformMakeScale(1.3, 1.3)
-        UIView.animateWithDuration(0.3,
+        favoriteImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        UIView.animate(withDuration: 0.3,
             delay: 0,
             usingSpringWithDamping: 2,
             initialSpringVelocity: 1.0,
-            options: [UIViewAnimationOptions.CurveEaseOut],
+            options: [UIViewAnimationOptions.curveEaseOut],
             animations: {
-                self.favoriteImageView.transform = CGAffineTransformIdentity
+                self.favoriteImageView.transform = CGAffineTransform.identity
             }, completion: nil)
     }
     

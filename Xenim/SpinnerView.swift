@@ -16,7 +16,7 @@ class SpinnerView : UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.fillColor = nil
-        layer.strokeColor = tintColor.CGColor
+        layer.strokeColor = tintColor.cgColor
         layer.lineWidth = 5
         setPath()
     }
@@ -26,7 +26,7 @@ class SpinnerView : UIView {
     }
     
     private func setPath() {
-        layer.path = UIBezierPath(ovalInRect: CGRectInset(bounds, layer.lineWidth / 2, layer.lineWidth / 2)).CGPath
+        layer.path = UIBezierPath(ovalIn: bounds.insetBy(dx: layer.lineWidth / 2, dy: layer.lineWidth / 2)).cgPath
     }
     
     struct Pose {
@@ -81,14 +81,14 @@ class SpinnerView : UIView {
         
     }
     
-    func animateKeyPath(keyPath: String, duration: CFTimeInterval, times: [CFTimeInterval], values: [CGFloat]) {
+    func animateKeyPath(_ keyPath: String, duration: CFTimeInterval, times: [CFTimeInterval], values: [CGFloat]) {
         let animation = CAKeyframeAnimation(keyPath: keyPath)
         animation.keyTimes = times
         animation.values = values
         animation.calculationMode = kCAAnimationLinear
         animation.duration = duration
         animation.repeatCount = Float.infinity
-        layer.addAnimation(animation, forKey: animation.keyPath)
+        layer.add(animation, forKey: animation.keyPath)
     }
     
 }

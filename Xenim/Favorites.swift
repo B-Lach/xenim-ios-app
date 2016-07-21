@@ -11,15 +11,15 @@ import Parse
 
 class Favorites {
     
-    static func toggle(podcastId podcastId: String) {
+    static func toggle(podcastId: String) {
         let channel = "podcast_\(podcastId)"
-        let installation = PFInstallation.currentInstallation()
+        let installation = PFInstallation.current()
         
          //fetching will only be required if channels can be modified in the cloud!
 //                do {
 //                    try installation.fetch()
 //                } catch {
-//                    // TODO
+//                    
 //                }
         if installation.channels == nil {
             installation.channels = [String]()
@@ -28,21 +28,21 @@ class Favorites {
             installation.addUniqueObject(channel, forKey: "channels")
             notifyFavoriteAdded(podcastId)
         } else {
-            installation.removeObject(channel, forKey: "channels")
+            installation.remove(channel, forKey: "channels")
             notifyFavoriteRemoved(podcastId)
         }
         installation.saveEventually()
     }
     
-    static func isFavorite(podcastId: String) -> Bool {
+    static func isFavorite(_ podcastId: String) -> Bool {
         let channel = "podcast_\(podcastId)"
-        let installation = PFInstallation.currentInstallation()
+        let installation = PFInstallation.current()
         
         // fetching will only be required if channels can be modified in the cloud!
         //        do {
         //            try installation.fetch()
         //        } catch {
-        //            // TODO
+        //
         //        }
         
         if let channels = installation.channels {
@@ -53,19 +53,19 @@ class Favorites {
     }
     
     static func fetch() -> [String] {
-        let installation = PFInstallation.currentInstallation()
+        let installation = PFInstallation.current()
         
         // fetching will only be required if channels can be modified in the cloud!
         //        do {
         //            try installation.fetch()
         //        } catch {
-        //            // TODO
+        //
         //        }
         
         if let channels = installation.channels {
             // remove the prefix string 'podcast_' from the channels
             let podcastIds = channels.map { (channel: String) -> String in
-                channel.stringByReplacingOccurrencesOfString("podcast_", withString: "")
+                channel.replacingOccurrences(of: "podcast_", with: "")
             }
             return podcastIds
         } else {
@@ -73,7 +73,7 @@ class Favorites {
         }
     }
     
-    static func fetchFavoritePodcasts(onComplete: (podcasts: [Podcast]) -> Void) {
+    static func fetchFavoritePodcasts(_ onComplete: (podcasts: [Podcast]) -> Void) {
         let podcastIds = fetch()
         var podcasts = [Podcast]()
         
@@ -83,35 +83,35 @@ class Favorites {
             return
         }
         
-        let blocksDispatchQueue = dispatch_queue_create("com.domain.blocksArray.sync", DISPATCH_QUEUE_CONCURRENT)
-        let serviceGroup = dispatch_group_create()
+        let blocksDispatchQueue = DispatchQueue(label: "com.domain.blocksArray.sync", attributes: DispatchQueueAttributes.concurrent)
+        let serviceGroup = DispatchGroup()
         
-        // start one api requirest for each podcast
+        // start one api request for each podcast
         for podcastId in podcastIds {
-            dispatch_group_enter(serviceGroup)
+            serviceGroup.enter()
             XenimAPI.fetchPodcast(podcastId: podcastId, onComplete: { (podcast) -> Void in
-                dispatch_barrier_async(blocksDispatchQueue) {
+                blocksDispatchQueue.async {
                     if podcast != nil {
                         // this has to be thread safe
                         podcasts.append(podcast!)
                     }
-                    dispatch_group_leave(serviceGroup)
+                    serviceGroup.leave()
                 }
             })
         }
         
         // notified as soon as ALL requests are finished
-        dispatch_group_notify(serviceGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
+        serviceGroup.notify(queue: DispatchQueue.global()) { 
             onComplete(podcasts: podcasts)
         }
     }
     
-    private static func notifyFavoriteAdded(podcastId: String) {
-        NSNotificationCenter.defaultCenter().postNotificationName("favoriteAdded", object: nil, userInfo: ["podcastId": podcastId])
+    private static func notifyFavoriteAdded(_ podcastId: String) {
+        NotificationCenter.default().post(name: Notification.Name(rawValue: "favoriteAdded"), object: nil, userInfo: ["podcastId": podcastId])
     }
     
-    private static func notifyFavoriteRemoved(podcastId: String) {
-        NSNotificationCenter.defaultCenter().postNotificationName("favoriteRemoved", object: nil, userInfo: ["podcastId": podcastId])
+    private static func notifyFavoriteRemoved(_ podcastId: String) {
+        NotificationCenter.default().post(name: Notification.Name(rawValue: "favoriteRemoved"), object: nil, userInfo: ["podcastId": podcastId])
     }
     
 }

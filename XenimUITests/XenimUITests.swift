@@ -42,10 +42,10 @@ class XenimUITests: XCTestCase {
         tablesQuery.staticTexts["Lage der Nation"].tap()
         snapshot("02PodcastDetail")
         
-        switch UIDevice.currentDevice().userInterfaceIdiom {
-        case .Phone:
-            app.navigationBars["Lage der Nation"].childrenMatchingType(.Button).matchingIdentifier("Zurück").elementBoundByIndex(0).tap()
-        case .Pad:
+        switch UIDevice.current().userInterfaceIdiom {
+        case .phone:
+            app.navigationBars["Lage der Nation"].children(matching: .button).matchingIdentifier("Zurück").elementBound(by: 0).tap()
+        case .pad:
             break
         default: break
         }
@@ -76,10 +76,10 @@ class XenimUITests: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Lage der Nation"].tap()
         snapshot("02PodcastDetail")
-        switch UIDevice.currentDevice().userInterfaceIdiom {
-        case .Phone:
-            app.navigationBars["Lage der Nation"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
-        case .Pad:
+        switch UIDevice.current().userInterfaceIdiom {
+        case .phone:
+            app.navigationBars["Lage der Nation"].children(matching: .button).matchingIdentifier("Back").elementBound(by: 0).tap()
+        case .pad:
             break
         default: break
         }
