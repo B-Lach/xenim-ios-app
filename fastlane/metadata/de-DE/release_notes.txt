@@ -1,7 +1,6 @@
-• iPad Support (Landscape Modus noch eingeschränkt, aktuell noch kein Sync der Favoriten)
+• iPad Support (Landscape Modus noch eingeschränkt, kein Sync der Favoriten)
 • Bugfixes
 • Verbessertes Design
-• Coverarts nun in hoher Auflösung
 • Die App braucht weniger Speicherplatz
 • Push Token wird in den Settings angezeigt
 

@@ -16,7 +16,7 @@ fastlane_version "1.81.0"
 default_platform :ios
 
 def build
-  cocoapods
+  #cocoapods
   #carthage
 
   match(type: "appstore")
@@ -58,9 +58,9 @@ platform :ios do
 
     #ensure_git_status_clean
 
-    build
+    #build
 
-    pilot(skip_submission: true, distribute_external: false, ipa: "fastlane/ipa/Xenim.ipa")
+    pilot(skip_submission: false, distribute_external: false, ipa: "fastlane/ipa/Xenim.ipa")
   end
 
   desc "Deploy a new version to the App Store"
@@ -72,9 +72,9 @@ platform :ios do
 
     #ensure_git_status_clean
 
-    #build
+    build
 
-    deliver(  skip_binary_upload: true,
+    deliver(  skip_binary_upload: false,
               skip_metadata: false,
               skip_screenshots: true,
               submit_for_review: false,
