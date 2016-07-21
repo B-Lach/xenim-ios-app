@@ -1,4 +1,4 @@
-• iPad Support (Landscape Modus noch eingeschränkt, aktuell noch kein Sync der Favoriten)
+• iPad Support (Landscape Modus noch eingeschränkt, kein Sync der Favoriten)
 • Bugfixes
 • Verbessertes Design
 • Die App braucht weniger Speicherplatz

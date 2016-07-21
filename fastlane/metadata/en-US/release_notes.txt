@@ -1,4 +1,4 @@
-• iPad support (not yet optimised for landscape mode, currently no syncing of your favorites possible)
+• iPad support (not yet optimised for landscape mode, no syncing of your favorites)
 • bugfixes
 • improved design
 • reduced app file size
