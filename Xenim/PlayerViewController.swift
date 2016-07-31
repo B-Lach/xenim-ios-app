@@ -36,14 +36,13 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var sleepTimerButton: UIButton!
     @IBOutlet weak var airplayView: MPVolumeView! {
         didSet {
-            // TODO
-//            airplayView.showsVolumeSlider = false
-//            for view in airplayView.subviews {
-//                if view.isKind(of: UIButton) {
-//                    let buttonOnVolumeView : UIButton = view as! UIButton
-//                    self.airplayView.setRouteButtonImage(buttonOnVolumeView.currentImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-//                }
-//            }
+            airplayView.showsVolumeSlider = false
+            for view in airplayView.subviews {
+                if view.isKind(of: UIButton.self) {
+                    let buttonOnVolumeView : UIButton = view as! UIButton
+                    self.airplayView.setRouteButtonImage(buttonOnVolumeView.currentImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+                }
+            }
         }
     }
     
