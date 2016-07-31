@@ -34,7 +34,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
         versionCell.detailTextLabel?.text = UIApplication.shared().appVersion()
-        pushTokenCell.detailTextLabel?.text = PFInstallation.current().deviceToken
+        pushTokenCell.detailTextLabel?.text = PFInstallation.current()?.deviceToken
 
         smallDonationCell.accessibilityTraits = UIAccessibilityTraitButton
         middleDonationCell.accessibilityTraits = UIAccessibilityTraitButton
@@ -104,8 +104,6 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
                     self.showError(error!)
                 }
             })
-        } else if selectedCell == pushTokenCell {
-            UIPasteboard.general().string = pushTokenCell.detailTextLabel?.text
         }
         selectedCell?.setSelected(false, animated: true)
     }
@@ -182,6 +180,27 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+//    override func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?)
+//        -> Bool {
+//            
+//            // only the push token cell can perform the copy action
+//            if let cell = tableView.cellForRow(at: indexPath) {
+//                if cell == pushTokenCell {
+//                    return action == #selector(copy(_:))
+//                }
+//            }
+//            return false
+//    }
+//    
+//    override func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+//        // check for the push token cell and check if the copy action was called
+//        if let cell = tableView.cellForRow(at: indexPath) {
+//            if cell == pushTokenCell && action == #selector(copy(_:)){
+//                UIPasteboard.general().string = pushTokenCell.detailTextLabel?.text
+//            }
+//        }
+//    }
 
     /*
     // MARK: - Navigation

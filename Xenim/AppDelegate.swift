@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // fetch parse keys from Keys.plist
         // this is force unwrapped intentionally. I want it to crash if this file is not working.
-        let path = Bundle.main().pathForResource("Keys", ofType: "plist")
+        let path = Bundle.main.pathForResource("Keys", ofType: "plist")
         let keys = NSDictionary(contentsOfFile: path!)
         let applicationId = keys!["parseApplicationID"] as! String
         let clientKey = keys!["parseClientKey"] as! String
@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         setupPushNotifications()
-        NotificationCenter.default().post(name: Notification.Name(rawValue: "refreshEvents"), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: Notification.Name("refreshEvents"), object: nil, userInfo: nil)
         resetApplicationBadge(application)
     }
     
@@ -78,9 +78,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let installation = PFInstallation.current()
-        installation.setDeviceTokenFrom(deviceToken)
-        installation.saveEventually()
+        if let installation = PFInstallation.current() {
+            installation.setDeviceTokenFrom(deviceToken)
+            installation.saveEventually()
+        }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -94,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         // this is called when the user receives a notification an the app is currently active
         // it is also called when the user taps on a notification and the app is launched
-        NotificationCenter.default().post(name: Notification.Name(rawValue: "refreshEvents"), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: EventTableViewController.refreshEventsNotification, object: nil, userInfo: nil)
         resetApplicationBadge(application)
     }
     
@@ -130,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             switch settings.authorizationStatus {
             case .notDetermined:
                 // push settings are not setup yet, so request authorization
-                UNUserNotificationCenter.current().requestAuthorization([.alert, .sound, .badge]) { (granted, error) in
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
                     if granted {
                         UIApplication.shared().registerForRemoteNotifications()
                     }

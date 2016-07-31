@@ -137,7 +137,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
                 // only show the option if the podcast client is installed which reacts to this URL
                 if UIApplication.shared().canOpenURL(subscribeURL as URL) {
                     let action = UIAlertAction(title: clientName, style: .default, handler: { (alert: UIAlertAction!) -> Void in
-                        UIApplication.shared().openURL(subscribeURL as URL)
+                        UIApplication.shared().open(subscribeURL as URL, options: [:], completionHandler: nil)
                     })
                     optionMenu.addAction(action)
                 }
@@ -213,13 +213,13 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
     // MARK: notifications
     
     func setupNotifications() {
-        NotificationCenter.default().removeObserver(self)
-        NotificationCenter.default().addObserver(self, selector: #selector(PodcastDetailTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PodcastDetailTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(PodcastDetailTableViewController.favoriteAdded(_:)), name: Favorites.favoriteAddedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PodcastDetailTableViewController.favoriteRemoved(_:)), name: Favorites.favoriteRemovedNotification, object: nil)
     }
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func favoriteAdded(_ notification: Notification) {

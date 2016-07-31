@@ -49,8 +49,8 @@ extension String {
 
 extension UIApplication {
     func appVersion() -> String? {
-        if let version = Bundle.main().infoDictionary?["CFBundleShortVersionString"] as? String,
-           let build = Bundle.main().infoDictionary?[kCFBundleVersionKey as String] as? String {
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+           let build = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String {
             return "Version \(version) (\(build))"
         }
         return nil
@@ -66,21 +66,21 @@ class DateViewGenerator: NSObject {
         let accessibilityValue: String
         
         // calculate in how many days this event takes place
-        let cal = Calendar.current()
+        let cal = Calendar.current
         let now = Date()
         var diff = cal.components(Calendar.Unit.day,
                                   from: cal.startOfDay(for: now),
                                   to: eventDate,
                                   options: Calendar.Options.wrapComponents )
-        let daysLeft = diff.day
+        let daysLeft = diff.day! // TODO this might crash?
         
         
         if showsDate {
             let formatter = DateFormatter();
-            formatter.locale = Locale.current()
+            formatter.locale = Locale.current
             
-            formatter.dateStyle = .longStyle
-            formatter.timeStyle = .mediumStyle
+            formatter.dateStyle = .long
+            formatter.timeStyle = .medium
             accessibilityValue = formatter.string(from: eventDate)
             
             // http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns

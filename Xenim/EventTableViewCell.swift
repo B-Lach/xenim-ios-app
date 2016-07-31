@@ -9,10 +9,11 @@
 import UIKit
 
 class EventCellStatus {
+    static let toggleDateViewNotification = Notification.Name("toggleDateView")
     static let sharedInstance = EventCellStatus()
     var showsDate = true {
         didSet {
-            NotificationCenter.default().post(name: Notification.Name(rawValue: "toggleDateView"), object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: EventCellStatus.toggleDateViewNotification, object: nil, userInfo: nil)
         }
     }
 }
@@ -134,14 +135,14 @@ class EventTableViewCell: UITableViewCell {
     // MARK: notifications
     
     func setupNotifications() {
-        NotificationCenter.default().removeObserver(self)
-        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewCell.toggleDateView(_:)), name: "toggleDateView", object: nil)
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(EventTableViewCell.favoriteAdded(_:)), name: Favorites.favoriteAddedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EventTableViewCell.favoriteRemoved(_:)), name: Favorites.favoriteRemovedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EventTableViewCell.toggleDateView(_:)), name: EventCellStatus.toggleDateViewNotification, object: nil)
     }
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func toggleDateView(_ notification: Notification) {

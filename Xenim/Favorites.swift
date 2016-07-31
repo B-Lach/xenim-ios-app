@@ -11,58 +11,41 @@ import Parse
 
 class Favorites {
     
+    static let favoriteAddedNotification = Notification.Name("favoriteAdded")
+    static let favoriteRemovedNotification = Notification.Name("favoriteRemoved")
+    
     static func toggle(podcastId: String) {
         let channel = "podcast_\(podcastId)"
-        let installation = PFInstallation.current()
-        
-         //fetching will only be required if channels can be modified in the cloud!
-//                do {
-//                    try installation.fetch()
-//                } catch {
-//                    
-//                }
-        if installation.channels == nil {
-            installation.channels = [String]()
+        if let installation = PFInstallation.current() {
+            
+            // initialize channels if it is nil
+            if installation.channels == nil {
+                installation.channels = [String]()
+            }
+            if let channels = installation.channels {
+                if channels.contains(channel) {
+                    installation.remove(channel, forKey: "channels")
+                    notifyFavoriteRemoved(podcastId)
+                } else {
+                    installation.addUniqueObject(channel, forKey: "channels")
+                    notifyFavoriteAdded(podcastId)
+                }
+            }
+            installation.saveEventually()
+            // channels can not be nil
         }
-        if !installation.channels!.contains(channel) {
-            installation.addUniqueObject(channel, forKey: "channels")
-            notifyFavoriteAdded(podcastId)
-        } else {
-            installation.remove(channel, forKey: "channels")
-            notifyFavoriteRemoved(podcastId)
-        }
-        installation.saveEventually()
     }
     
     static func isFavorite(_ podcastId: String) -> Bool {
         let channel = "podcast_\(podcastId)"
-        let installation = PFInstallation.current()
-        
-        // fetching will only be required if channels can be modified in the cloud!
-        //        do {
-        //            try installation.fetch()
-        //        } catch {
-        //
-        //        }
-        
-        if let channels = installation.channels {
+        if let installation = PFInstallation.current(), let channels = installation.channels {
             return channels.contains(channel)
-        } else {
-            return false
         }
+        return false
     }
     
     static func fetch() -> [String] {
-        let installation = PFInstallation.current()
-        
-        // fetching will only be required if channels can be modified in the cloud!
-        //        do {
-        //            try installation.fetch()
-        //        } catch {
-        //
-        //        }
-        
-        if let channels = installation.channels {
+        if let installation = PFInstallation.current(), let channels = installation.channels {
             // remove the prefix string 'podcast_' from the channels
             let podcastIds = channels.map { (channel: String) -> String in
                 channel.replacingOccurrences(of: "podcast_", with: "")
@@ -107,11 +90,11 @@ class Favorites {
     }
     
     private static func notifyFavoriteAdded(_ podcastId: String) {
-        NotificationCenter.default().post(name: Notification.Name(rawValue: "favoriteAdded"), object: nil, userInfo: ["podcastId": podcastId])
+        NotificationCenter.default.post(name: favoriteAddedNotification, object: nil, userInfo: ["podcastId": podcastId])
     }
     
     private static func notifyFavoriteRemoved(_ podcastId: String) {
-        NotificationCenter.default().post(name: Notification.Name(rawValue: "favoriteRemoved"), object: nil, userInfo: ["podcastId": podcastId])
+        NotificationCenter.default.post(name: favoriteRemovedNotification, object: nil, userInfo: ["podcastId": podcastId])
     }
     
 }

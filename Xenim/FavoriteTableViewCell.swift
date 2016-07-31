@@ -10,9 +10,10 @@ import UIKit
 
 class FavoriteCellStatus {
     static let sharedInstance = FavoriteCellStatus()
+    static let toggleNextDateViewNotification = Notification.Name("toggleNextDateView")
     var showsDate = false {
         didSet {
-            NotificationCenter.default().post(name: Notification.Name(rawValue: "toggleNextDateView"), object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: FavoriteCellStatus.toggleNextDateViewNotification, object: nil, userInfo: nil)
         }
     }
 }
@@ -105,13 +106,13 @@ class FavoriteTableViewCell: UITableViewCell {
     // MARK: notifications
     
     func setupNotifications() {
-        NotificationCenter.default().removeObserver(self)
-                NotificationCenter.default().addObserver(self, selector: #selector(updateNextDate), name: "updateNextDate", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(toggleDateView(_:)), name: "toggleNextDateView", object: nil)
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateNextDate), name: FavoritesTableViewController.updateNextDateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleDateView(_:)), name: FavoriteCellStatus.toggleNextDateViewNotification, object: nil)
     }
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func toggleDateView(_ notification: Notification) {

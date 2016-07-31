@@ -60,13 +60,13 @@ class AddFavoriteTableViewCell: UITableViewCell {
     // MARK: notifications
     
     func setupNotifications() {
-        NotificationCenter.default().removeObserver(self)
-        NotificationCenter.default().addObserver(self, selector: #selector(AddFavoriteTableViewCell.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(AddFavoriteTableViewCell.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddFavoriteTableViewCell.favoriteAdded(_:)), name: Favorites.favoriteAddedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddFavoriteTableViewCell.favoriteRemoved(_:)), name: Favorites.favoriteRemovedNotification, object: nil)
     }
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func favoriteAdded(_ notification: Notification) {

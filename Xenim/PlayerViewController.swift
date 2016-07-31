@@ -498,24 +498,24 @@ class PlayerViewController: UIViewController {
             }
         })
         
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerViewController.favoriteAdded(_:)), name: Favorites.favoriteAddedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerViewController.favoriteRemoved(_:)), name: Favorites.favoriteRemovedNotification, object: nil)
 
         // be notified if the audio session is interrupted or crashed
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionGotInterrupted(note:)), name: "AVAudioSessionInterruptionNotification", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionRouteChanged(note:)), name: "AVAudioSessionRouteChangeNotification", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionMessedUp(note:)), name: "AVAudioSessionMediaServicesWereLostNotification", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.audioSessionMessedUp(note:)), name: "AVAudioSessionMediaServicesWereResetNotification", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerViewController.audioSessionGotInterrupted(note:)), name: Notification.Name("AVAudioSessionInterruptionNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerViewController.audioSessionRouteChanged(note:)), name: Notification.Name("AVAudioSessionRouteChangeNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerViewController.audioSessionMessedUp(note:)), name: Notification.Name("AVAudioSessionMediaServicesWereLostNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerViewController.audioSessionMessedUp(note:)), name: Notification.Name("AVAudioSessionMediaServicesWereResetNotification"), object: nil)
         
         // player item notifications
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.itemDidPlayToEndTime(note:)), name: "AVPlayerItemDidPlayToEndTimeNotification", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.itemFailedToPlayToEndTime(note:)), name: "AVPlayerItemFailedToPlayToEndTimeNotification", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.itemPlaybackStalled(note:)), name: "AVPlayerItemPlaybackStalledNotification", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PlayerViewController.itemNewErrorLogEntry(note:)), name: "AVPlayerItemNewErrorLogEntryNotification", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerViewController.itemDidPlayToEndTime(note:)), name: Notification.Name("AVPlayerItemDidPlayToEndTimeNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerViewController.itemFailedToPlayToEndTime(note:)), name: Notification.Name("AVPlayerItemFailedToPlayToEndTimeNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerViewController.itemPlaybackStalled(note:)), name: Notification.Name("AVPlayerItemPlaybackStalledNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerViewController.itemNewErrorLogEntry(note:)), name: Notification.Name("AVPlayerItemNewErrorLogEntryNotification"), object: nil)
     }
     
     private func cleanupObservers() {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.timeControlStatus), context: &observerContext)
         player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.status), context: &observerContext)
         if let timeObserver = timeObserver {

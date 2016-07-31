@@ -14,6 +14,8 @@ protocol PlayerDelegate {
 
 class EventTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, PlayerDelegate {
     
+    static let refreshEventsNotification = Notification.Name("refreshEvents")
+    
     // possible sections
     enum Section {
         case today
@@ -33,7 +35,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     @IBOutlet weak var spinner: UIRefreshControl!
     
     // user defaults to store favorites filter enabled status
-    let userDefaults = UserDefaults.standard()
+    let userDefaults = UserDefaults.standard
     let userDefaultsFavoritesSettingKey = "showFavoritesOnly"
     
     // background view for message when no data is available
@@ -127,13 +129,13 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     // MARK: - Notifications
     
     func setupNotifications() {
-        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(EventTableViewController.refresh(_:)), name: "refreshEvents", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EventTableViewController.favoriteAdded(_:)), name: Favorites.favoriteAddedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EventTableViewController.favoriteRemoved(_:)), name: Favorites.favoriteRemovedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EventTableViewController.refresh(_:)), name: EventTableViewController.refreshEventsNotification, object: nil)
     }
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func favoriteAdded(_ notification: Notification) {

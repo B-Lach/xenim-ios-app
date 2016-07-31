@@ -12,6 +12,8 @@ import Parse
 
 class FavoritesTableViewController: UITableViewController{
     
+    static let updateNextDateNotification = Notification.Name("updateNextDate")
+    
     // contains the podcast slugs of all favorites
     var favorites = [Podcast]()
     var messageVC: MessageViewController?
@@ -28,8 +30,8 @@ class FavoritesTableViewController: UITableViewController{
         addFavoriteBarButtonItem.accessibilityLabel = NSLocalizedString("voiceover_add_favorite_button_label", value: "Add", comment: "")
         addFavoriteBarButtonItem.accessibilityHint = NSLocalizedString("voiceover_add_favorite_button_hint", value: "Double Tap to search through all podcasts and add favorites", comment: "")
         
-        NotificationCenter.default().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteAdded(_:)), name: "favoriteAdded", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(FavoritesTableViewController.favoriteRemoved(_:)), name: "favoriteRemoved", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FavoritesTableViewController.favoriteAdded(_:)), name: Favorites.favoriteAddedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FavoritesTableViewController.favoriteRemoved(_:)), name: Favorites.favoriteRemovedNotification, object: nil)
         
         // add background view to display error message if no data is available to display
         if let messageVC = storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as? MessageViewController {
@@ -43,7 +45,7 @@ class FavoritesTableViewController: UITableViewController{
         // update the push notifications status label, so the user knows if he will receive push notifications
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             DispatchQueue.main.async(execute: { 
-                if settings.authorizationStatus == .authorized && PFInstallation.current().deviceToken != nil {
+                if settings.authorizationStatus == .authorized && PFInstallation.current()?.deviceToken != nil {
                     self.pushNotificationsStatusLabel.text = NSLocalizedString("notifications_enabled", comment: "label in favorites table view which tells the user that his notifications are setup correctly")
                 } else {
                     self.pushNotificationsStatusLabel.text = NSLocalizedString("notifications_disabled", comment: "label in favorites table view which tells the user that he can not receive notifications because they are not setup correctly")
@@ -53,11 +55,11 @@ class FavoritesTableViewController: UITableViewController{
         
         refresh()
         // refresh next show date label in all cells
-        NotificationCenter.default().post(name: Notification.Name(rawValue: "updateNextDate"), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: FavoritesTableViewController.updateNextDateNotification, object: nil, userInfo: nil)
     }
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
 
