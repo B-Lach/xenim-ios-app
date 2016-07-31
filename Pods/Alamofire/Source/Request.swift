@@ -25,7 +25,7 @@
 import Foundation
 
 /**
-    Responsible for sending a request and receiving the response and associated data from the server, as well as 
+    Responsible for sending a request and receiving the response and associated data from the server, as well as
     managing its underlying `NSURLSessionTask`.
 */
 public class Request {
@@ -83,6 +83,7 @@ public class Request {
 
         - returns: The request.
     */
+    @discardableResult
     public func authenticate(
         user: String,
         password: String,
@@ -101,6 +102,7 @@ public class Request {
 
         - returns: The request.
     */
+    @discardableResult
     public func authenticate(usingCredential credential: URLCredential) -> Self {
         delegate.credential = credential
 
@@ -118,7 +120,7 @@ public class Request {
     public static func authorizationHeader(user: String, password: String) -> [String: String] {
         guard let data = "\(user):\(password)".data(using: String.Encoding.utf8) else { return [:] }
 
-        let credential = data.base64EncodedString([])
+        let credential = data.base64EncodedString(options: [])
 
         return ["Authorization": "Basic \(credential)"]
     }
@@ -126,12 +128,12 @@ public class Request {
     // MARK: - Progress
 
     /**
-        Sets a closure to be called periodically during the lifecycle of the request as data is written to or read 
+        Sets a closure to be called periodically during the lifecycle of the request as data is written to or read
         from the server.
 
-        - For uploads, the progress closure returns the bytes written, total bytes written, and total bytes expected 
+        - For uploads, the progress closure returns the bytes written, total bytes written, and total bytes expected
           to write.
-        - For downloads and data tasks, the progress closure returns the bytes read, total bytes read, and total bytes 
+        - For downloads and data tasks, the progress closure returns the bytes read, total bytes read, and total bytes
           expected to read.
 
         - parameter closure: The code to be executed periodically during the lifecycle of the request.
@@ -154,8 +156,8 @@ public class Request {
     /**
         Sets a closure to be called periodically during the lifecycle of the request as data is read from the server.
 
-        This closure returns the bytes most recently received from the server, not including data from previous calls. 
-        If this closure is set, data will only be available within this closure, and will not be saved elsewhere. It is 
+        This closure returns the bytes most recently received from the server, not including data from previous calls.
+        If this closure is set, data will only be available within this closure, and will not be saved elsewhere. It is
         also important to note that the `response` closure will be called with nil `responseData`.
 
         - parameter closure: The code to be executed periodically during the lifecycle of the request.
@@ -180,7 +182,12 @@ public class Request {
         if startTime == nil { startTime = CFAbsoluteTimeGetCurrent() }
 
         task.resume()
-        NotificationCenter.default().post(name: Notification.Name(rawValue: Notifications.Task.DidResume), object: task)
+
+        NotificationCenter.default.post(
+            name: Notification.Name.Task.DidResume,
+            object: self,
+            userInfo: [Notification.Key.Task: task]
+        )
     }
 
     /**
@@ -188,16 +195,20 @@ public class Request {
     */
     public func suspend() {
         task.suspend()
-        NotificationCenter.default().post(name: Notification.Name(rawValue: Notifications.Task.DidSuspend), object: task)
+
+        NotificationCenter.default.post(
+            name: Notification.Name.Task.DidSuspend,
+            object: self,
+            userInfo: [Notification.Key.Task: task]
+        )
     }
 
     /**
         Cancels the request.
     */
     public func cancel() {
-        if let
-            downloadDelegate = delegate as? DownloadTaskDelegate,
-            downloadTask = downloadDelegate.downloadTask
+        if let downloadDelegate = delegate as? DownloadTaskDelegate,
+           let downloadTask = downloadDelegate.downloadTask
         {
             downloadTask.cancel { data in
                 downloadDelegate.resumeData = data
@@ -206,17 +217,20 @@ public class Request {
             task.cancel()
         }
 
-        NotificationCenter.default().post(name: Notification.Name(rawValue: Notifications.Task.DidCancel), object: task)
+        NotificationCenter.default.post(
+            name: Notification.Name.Task.DidCancel,
+            object: self,
+            userInfo: [Notification.Key.Task: task]
+        )
     }
 
     // MARK: - TaskDelegate
 
     /**
-        The task delegate is responsible for handling all delegate callbacks for the underlying task as well as 
+        The task delegate is responsible for handling all delegate callbacks for the underlying task as well as
         executing all operations attached to the serial operation queue upon task completion.
     */
     public class TaskDelegate: NSObject {
-
         /// The serial operation queue used to execute all operations after the task completes.
         public let queue: OperationQueue
 
@@ -234,12 +248,10 @@ public class Request {
             self.progress = Progress(totalUnitCount: 0)
             self.queue = {
                 let operationQueue = OperationQueue()
+
                 operationQueue.maxConcurrentOperationCount = 1
                 operationQueue.isSuspended = true
-
-                if #available(OSX 10.10, *) {
-                    operationQueue.qualityOfService = QualityOfService.utility
-                }
+                operationQueue.qualityOfService = .utility
 
                 return operationQueue
             }()
@@ -294,9 +306,8 @@ public class Request {
             } else if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
                 let host = challenge.protectionSpace.host
 
-                if let
-                    serverTrustPolicy = session.serverTrustPolicyManager?.serverTrustPolicyForHost(host),
-                    serverTrust = challenge.protectionSpace.serverTrust
+                if let serverTrustPolicy = session.serverTrustPolicyManager?.serverTrustPolicyForHost(host),
+                   let serverTrust = challenge.protectionSpace.serverTrust
                 {
                     if serverTrustPolicy.evaluateServerTrust(serverTrust, isValidForHost: host) {
                         disposition = .useCredential
@@ -343,10 +354,9 @@ public class Request {
                 if let error = error {
                     self.error = error
 
-                    if let
-                        downloadDelegate = self as? DownloadTaskDelegate,
-                        userInfo = error.userInfo as? [String: AnyObject],
-                        resumeData = userInfo[NSURLSessionDownloadTaskResumeData] as? Data
+                    if let downloadDelegate = self as? DownloadTaskDelegate,
+                       let userInfo = error.userInfo as? [String: AnyObject],
+                       let resumeData = userInfo[NSURLSessionDownloadTaskResumeData] as? Data
                     {
                         downloadDelegate.resumeData = resumeData
                     }
@@ -465,7 +475,7 @@ public class Request {
 extension Request: CustomStringConvertible {
 
     /**
-        The textual representation used when written to an output stream, which includes the HTTP method and URL, as 
+        The textual representation used when written to an output stream, which includes the HTTP method and URL, as
         well as the response status code if a response has been received.
     */
     public var description: String {
@@ -493,16 +503,15 @@ extension Request: CustomDebugStringConvertible {
     func cURLRepresentation() -> String {
         var components = ["$ curl -i"]
 
-        guard let
-            request = self.request,
-            URL = request.url,
-            host = URL.host
+        guard let request = self.request,
+              let URL = request.url,
+              let host = URL.host
         else {
             return "$ curl command could not be created"
         }
 
-        if let HTTPMethod = request.httpMethod where HTTPMethod != "GET" {
-            components.append("-X \(HTTPMethod)")
+        if let httpMethod = request.httpMethod, httpMethod != "GET" {
+            components.append("-X \(httpMethod)")
         }
 
         if let credentialStorage = self.session.configuration.urlCredentialStorage {
@@ -526,9 +535,8 @@ extension Request: CustomDebugStringConvertible {
         }
 
         if session.configuration.httpShouldSetCookies {
-            if let
-                cookieStorage = session.configuration.httpCookieStorage,
-                cookies = cookieStorage.cookies(for: URL) where !cookies.isEmpty
+            if let cookieStorage = session.configuration.httpCookieStorage,
+               let cookies = cookieStorage.cookies(for: URL), !cookies.isEmpty
             {
                 let string = cookies.reduce("") { $0 + "\($1.name)=\($1.value ?? String());" }
                 components.append("-b \"\(string.substring(to: string.characters.index(before: string.endIndex)))\"")
@@ -553,11 +561,10 @@ extension Request: CustomDebugStringConvertible {
             components.append("-H \"\(field): \(value)\"")
         }
 
-        if let
-            HTTPBodyData = request.httpBody,
-            HTTPBody = String(data: HTTPBodyData, encoding: String.Encoding.utf8)
+        if let httpBodyData = request.httpBody,
+           let httpBody = String(data: httpBodyData, encoding: String.Encoding.utf8)
         {
-            var escapedBody = HTTPBody.replacingOccurrences(of: "\\\"", with: "\\\\\"")
+            var escapedBody = httpBody.replacingOccurrences(of: "\\\"", with: "\\\\\"")
             escapedBody = escapedBody.replacingOccurrences(of: "\"", with: "\\\"")
 
             components.append("-d \"\(escapedBody)\"")

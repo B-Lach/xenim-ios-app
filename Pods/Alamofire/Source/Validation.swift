@@ -38,7 +38,7 @@ extension Request {
     }
 
     /**
-        A closure used to validate a request that takes a URL request and URL response, and returns whether the 
+        A closure used to validate a request that takes a URL request and URL response, and returns whether the
         request was valid.
     */
     public typealias Validation = (Foundation.URLRequest?, HTTPURLResponse) -> ValidationResult
@@ -52,11 +52,11 @@ extension Request {
 
         - returns: The request.
     */
+    @discardableResult
     public func validate(_ validation: Validation) -> Self {
         delegate.queue.addOperation {
-            if let
-                response = self.response where self.delegate.error == nil,
-                case let .failure(error) = validation(self.request, response)
+            if let response = self.response, self.delegate.error == nil,
+               case let .failure(error) = validation(self.request, response)
             {
                 self.delegate.error = error
             }
@@ -76,6 +76,7 @@ extension Request {
 
         - returns: The request.
     */
+    @discardableResult
     public func validate<S: Sequence where S.Iterator.Element == Int>(statusCode acceptableStatusCode: S) -> Self {
         return validate { _, response in
             if acceptableStatusCode.contains(response.statusCode) {
@@ -110,9 +111,8 @@ extension Request {
                 return split.components(separatedBy: "/")
             }()
 
-            if let
-                type = components.first,
-                subtype = components.last
+            if let type = components.first,
+               let subtype = components.last
             {
                 self.type = type
                 self.subtype = subtype
@@ -121,9 +121,9 @@ extension Request {
             }
         }
 
-        func matches(_ MIME: MIMEType) -> Bool {
+        func matches(_ mime: MIMEType) -> Bool {
             switch (type, subtype) {
-            case (MIME.type, MIME.subtype), (MIME.type, "*"), ("*", MIME.subtype), ("*", "*"):
+            case (mime.type, mime.subtype), (mime.type, "*"), ("*", mime.subtype), ("*", "*"):
                 return true
             default:
                 return false
@@ -140,22 +140,22 @@ extension Request {
 
         - returns: The request.
     */
-    public func validate<S : Sequence where S.Iterator.Element == String>(contentType acceptableContentTypes: S) -> Self {
+    @discardableResult
+    public func validate<S: Sequence where S.Iterator.Element == String>(contentType acceptableContentTypes: S) -> Self {
         return validate { _, response in
-            guard let validData = self.delegate.data where validData.count > 0 else { return .success }
+            guard let validData = self.delegate.data, validData.count > 0 else { return .success }
 
-            if let
-                responseContentType = response.mimeType,
-                responseMIMEType = MIMEType(responseContentType)
+            if let responseContentType = response.mimeType,
+               let responseMIMEType = MIMEType(responseContentType)
             {
                 for contentType in acceptableContentTypes {
-                    if let acceptableMIMEType = MIMEType(contentType) where acceptableMIMEType.matches(responseMIMEType) {
+                    if let acceptableMIMEType = MIMEType(contentType), acceptableMIMEType.matches(responseMIMEType) {
                         return .success
                     }
                 }
             } else {
                 for contentType in acceptableContentTypes {
-                    if let MIMEType = MIMEType(contentType) where MIMEType.type == "*" && MIMEType.subtype == "*" {
+                    if let mimeType = MIMEType(contentType), mimeType.type == "*" && mimeType.subtype == "*" {
                         return .success
                     }
                 }
@@ -192,13 +192,14 @@ extension Request {
     // MARK: - Automatic
 
     /**
-        Validates that the response has a status code in the default acceptable range of 200...299, and that the content 
+        Validates that the response has a status code in the default acceptable range of 200...299, and that the content
         type matches any specified in the Accept HTTP header field.
 
         If validation fails, subsequent calls to response handlers will have an associated error.
 
         - returns: The request.
     */
+    @discardableResult
     public func validate() -> Self {
         let acceptableStatusCodes: CountableRange<Int> = 200..<300
         let acceptableContentTypes: [String] = {

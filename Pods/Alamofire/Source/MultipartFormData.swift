@@ -31,10 +31,10 @@ import CoreServices
 #endif
 
 /**
-    Constructs `multipart/form-data` for uploads within an HTTP or HTTPS body. There are currently two ways to encode 
-    multipart form data. The first way is to encode the data directly in memory. This is very efficient, but can lead 
-    to memory issues if the dataset is too large. The second way is designed for larger datasets and will write all the 
-    data to a single file on disk with all the proper boundary segmentation. The second approach MUST be used for 
+    Constructs `multipart/form-data` for uploads within an HTTP or HTTPS body. There are currently two ways to encode
+    multipart form data. The first way is to encode the data directly in memory. This is very efficient, but can lead
+    to memory issues if the dataset is too large. The second way is designed for larger datasets and will write all the
+    data to a single file on disk with all the proper boundary segmentation. The second approach MUST be used for
     larger datasets such as video content, otherwise your app may run out of memory when trying to encode the dataset.
 
     For more information on `multipart/form-data` in general, please refer to the RFC-2388 and RFC-2045 specs as well
@@ -118,7 +118,7 @@ public class MultipartFormData {
         self.bodyParts = []
 
         /**
-         *  The optimal read/write buffer size in bytes for input and output streams is 1024 (1KB). For more 
+         *  The optimal read/write buffer size in bytes for input and output streams is 1024 (1KB). For more
          *  information, please refer to the following article:
          *    - https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Streams/Articles/ReadingInputStreams.html
          */
@@ -211,9 +211,8 @@ public class MultipartFormData {
         - parameter name:    The name to associate with the file content in the `Content-Disposition` HTTP header.
     */
     public func appendBodyPart(fileURL: URL, name: String) {
-        if let
-            fileName = fileURL.lastPathComponent,
-            pathExtension = fileURL.pathExtension
+        if let fileName = fileURL.lastPathComponent,
+           let pathExtension = fileURL.pathExtension
         {
             let mimeType = mimeTypeForPathExtension(pathExtension)
             appendBodyPart(fileURL: fileURL, name: name, fileName: fileName, mimeType: mimeType)
@@ -255,11 +254,7 @@ public class MultipartFormData {
         //              Check 2 - is file URL reachable?
         //============================================================
 
-        var isReachable = true
-
-        if #available(OSX 10.10, *) {
-            isReachable = (fileURL as NSURL).checkPromisedItemIsReachableAndReturnError(nil)
-        }
+        let isReachable = (fileURL as NSURL).checkPromisedItemIsReachableAndReturnError(nil)
 
         guard isReachable else {
             setBodyPartError(code: NSURLErrorBadURL, failureReason: "The file URL is not reachable: \(fileURL)")
@@ -272,9 +267,9 @@ public class MultipartFormData {
 
         var isDirectory: ObjCBool = false
 
-        guard let
-            path = fileURL.path
-            where FileManager.default().fileExists(atPath: path, isDirectory: &isDirectory) && !isDirectory else
+        guard
+            let path = fileURL.path,
+            FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory) && !isDirectory else
         {
             let failureReason = "The file URL is a directory, not a file: \(fileURL)"
             setBodyPartError(code: NSURLErrorBadURL, failureReason: failureReason)
@@ -288,9 +283,9 @@ public class MultipartFormData {
         var bodyContentLength: UInt64?
 
         do {
-            if let
-                path = fileURL.path,
-                fileSize = try FileManager.default().attributesOfItem(atPath: path)[FileAttributeKey.size.rawValue] as? NSNumber
+            if
+                let path = fileURL.path,
+                let fileSize = try FileManager.default.attributesOfItem(atPath: path)[.size] as? NSNumber
             {
                 bodyContentLength = fileSize.uint64Value
             }
@@ -368,8 +363,8 @@ public class MultipartFormData {
     /**
         Encodes all the appended body parts into a single `NSData` object.
 
-        It is important to note that this method will load all the appended body parts into memory all at the same 
-        time. This method should only be used when the encoded data will have a small memory footprint. For large data 
+        It is important to note that this method will load all the appended body parts into memory all at the same
+        time. This method should only be used when the encoded data will have a small memory footprint. For large data
         cases, please use the `writeEncodedDataToDisk(fileURL:completionHandler:)` method.
 
         - throws: An `NSError` if encoding encounters an error.
@@ -409,7 +404,7 @@ public class MultipartFormData {
             throw bodyPartError
         }
 
-        if let path = fileURL.path where FileManager.default().fileExists(atPath: path) {
+        if let path = fileURL.path, FileManager.default.fileExists(atPath: path) {
             let failureReason = "A file already exists at the given file URL: \(fileURL)"
             throw Error.error(domain: NSURLErrorDomain, code: NSURLErrorBadURL, failureReason: failureReason)
         } else if !fileURL.isFileURL {
@@ -607,9 +602,8 @@ public class MultipartFormData {
     // MARK: - Private - Mime Type
 
     private func mimeTypeForPathExtension(_ pathExtension: String) -> String {
-        if let
-            id = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, nil)?.takeRetainedValue(),
-            contentType = UTTypeCopyPreferredTagWithClass(id, kUTTagClassMIMEType)?.takeRetainedValue()
+        if let id = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, nil)?.takeRetainedValue(),
+           let contentType = UTTypeCopyPreferredTagWithClass(id, kUTTagClassMIMEType)?.takeRetainedValue()
         {
             return contentType as String
         }

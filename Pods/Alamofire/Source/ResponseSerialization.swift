@@ -102,12 +102,13 @@ extension Request {
         Adds a handler to be called once the request has finished.
 
         - parameter queue:              The queue on which the completion handler is dispatched.
-        - parameter responseSerializer: The response serializer responsible for serializing the request, response, 
+        - parameter responseSerializer: The response serializer responsible for serializing the request, response,
                                         and data.
         - parameter completionHandler:  The code to be executed once the request has finished.
 
         - returns: The request.
     */
+    @discardableResult
     public func response<T: ResponseSerializerType>(
         queue: DispatchQueue? = nil,
         responseSerializer: T,
@@ -160,7 +161,7 @@ extension Request {
         return ResponseSerializer { _, response, data, error in
             guard error == nil else { return .failure(error!) }
 
-            if let response = response where response.statusCode == 204 { return .success(Data()) }
+            if let response = response, response.statusCode == 204 { return .success(Data()) }
 
             guard let validData = data else {
                 let failureReason = "Data could not be serialized. Input data was nil."
@@ -194,10 +195,10 @@ extension Request {
 extension Request {
 
     /**
-        Creates a response serializer that returns a string initialized from the response data with the specified 
+        Creates a response serializer that returns a string initialized from the response data with the specified
         string encoding.
 
-        - parameter encoding: The string encoding. If `nil`, the string encoding will be determined from the server 
+        - parameter encoding: The string encoding. If `nil`, the string encoding will be determined from the server
                               response, falling back to the default HTTP default character set, ISO-8859-1.
 
         - returns: A string response serializer.
@@ -209,17 +210,17 @@ extension Request {
         return ResponseSerializer { _, response, data, error in
             guard error == nil else { return .failure(error!) }
 
-            if let response = response where response.statusCode == 204 { return .success("") }
+            if let response = response, response.statusCode == 204 { return .success("") }
 
             guard let validData = data else {
                 let failureReason = "String could not be serialized. Input data was nil."
                 let error = Error.error(code: .stringSerializationFailed, failureReason: failureReason)
                 return .failure(error)
             }
-            
+
             var convertedEncoding = encoding
-            
-            if let encodingName = response?.textEncodingName where convertedEncoding == nil {
+
+            if let encodingName = response?.textEncodingName, convertedEncoding == nil {
                 convertedEncoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(
                     CFStringConvertIANACharSetNameToEncoding(encodingName))
                 )
@@ -240,8 +241,8 @@ extension Request {
     /**
         Adds a handler to be called once the request has finished.
 
-        - parameter encoding:          The string encoding. If `nil`, the string encoding will be determined from the 
-                                       server response, falling back to the default HTTP default character set, 
+        - parameter encoding:          The string encoding. If `nil`, the string encoding will be determined from the
+                                       server response, falling back to the default HTTP default character set,
                                        ISO-8859-1.
         - parameter completionHandler: A closure to be executed once the request has finished.
 
@@ -267,7 +268,7 @@ extension Request {
 extension Request {
 
     /**
-        Creates a response serializer that returns a JSON object constructed from the response data using 
+        Creates a response serializer that returns a JSON object constructed from the response data using
         `NSJSONSerialization` with the specified reading options.
 
         - parameter options: The JSON serialization reading options. `.AllowFragments` by default.
@@ -281,9 +282,9 @@ extension Request {
         return ResponseSerializer { _, response, data, error in
             guard error == nil else { return .failure(error!) }
 
-            if let response = response where response.statusCode == 204 { return .success(NSNull()) }
+            if let response = response, response.statusCode == 204 { return .success(NSNull()) }
 
-            guard let validData = data where validData.count > 0 else {
+            guard let validData = data, validData.count > 0 else {
                 let failureReason = "JSON could not be serialized. Input data was nil or zero length."
                 let error = Error.error(code: .jsonSerializationFailed, failureReason: failureReason)
                 return .failure(error)
@@ -326,7 +327,7 @@ extension Request {
 extension Request {
 
     /**
-        Creates a response serializer that returns an object constructed from the response data using 
+        Creates a response serializer that returns an object constructed from the response data using
         `NSPropertyListSerialization` with the specified reading options.
 
         - parameter options: The property list reading options. `NSPropertyListReadOptions()` by default.
@@ -340,9 +341,9 @@ extension Request {
         return ResponseSerializer { _, response, data, error in
             guard error == nil else { return .failure(error!) }
 
-            if let response = response where response.statusCode == 204 { return .success(NSNull()) }
+            if let response = response, response.statusCode == 204 { return .success(NSNull()) }
 
-            guard let validData = data where validData.count > 0 else {
+            guard let validData = data, validData.count > 0 else {
                 let failureReason = "Property list could not be serialized. Input data was nil or zero length."
                 let error = Error.error(code: .propertyListSerializationFailed, failureReason: failureReason)
                 return .failure(error)
@@ -362,11 +363,12 @@ extension Request {
 
         - parameter options:           The property list reading options. `0` by default.
         - parameter completionHandler: A closure to be executed once the request has finished. The closure takes 3
-                                       arguments: the URL request, the URL response, the server data and the result 
+                                       arguments: the URL request, the URL response, the server data and the result
                                        produced while creating the property list.
 
         - returns: The request.
     */
+    @discardableResult
     public func responsePropertyList(
         queue: DispatchQueue? = nil,
         options: PropertyListSerialization.ReadOptions = PropertyListSerialization.ReadOptions(),

@@ -1,10 +1,10 @@
 PODS:
   - Alamofire (3.4.1)
-  - AlamofireImage (2.4.0):
+  - AlamofireImage (2.4.1):
     - Alamofire (~> 3.3)
-  - Bolts/Tasks (1.7.0)
-  - Parse (1.13.0):
-    - Bolts/Tasks (~> 1.6)
+  - Bolts/Tasks (1.8.4)
+  - Parse (1.14.2):
+    - Bolts/Tasks (~> 1.8)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -26,10 +26,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: e891699312a5215ad0da9f8322c5da949f90db35
+    :commit: 304cb54998ab56765b8bd638c6c8bfc9a0bf6756
     :git: https://github.com/Alamofire/Alamofire.git
   AlamofireImage:
-    :commit: 455c673a4569e8abc4c4d77ac5522797d9abe667
+    :commit: 50df79ea90e46257fea09a08bd8fd1d1b398f6ab
     :git: https://github.com/Alamofire/AlamofireImage.git
   SwiftyJSON:
     :commit: 1a9755949a652967dc2986cd7f4653496e556715
@@ -37,11 +37,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
+  AlamofireImage: 3ccf3347d9ea24580dc11fb892770a0be6a29826
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 PODFILE CHECKSUM: fdffe2a3b701cf3d54b640fee9a8dd39c41a560f
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.beta.1
