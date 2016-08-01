@@ -143,7 +143,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         if MFMailComposeViewController.canSendMail() {
             
             let appVersionString = UIApplication.shared().appVersion()!
-            let pushToken = pushTokenCell.detailTextLabel?.text
+            let pushToken = PFInstallation.current()?.deviceToken
             let installationInformationString = "\(appVersionString), \(pushToken)"
             
             let emailTitle = NSLocalizedString("settings_view_mail_title", value: "Xenim Support", comment: "mail title for a new support mail message")
