@@ -30,14 +30,18 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(SettingsTableViewController.longPressPushTokenCell(gestureRecognizer:)))
-        pushTokenCell.addGestureRecognizer(longPressRecognizer)
-        
         // auto cell height
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
         versionCell.detailTextLabel?.text = UIApplication.shared().appVersion()
-        pushTokenCell.detailTextLabel?.text = PFInstallation.current()?.deviceToken
+        
+        if let deviceToken = PFInstallation.current()?.deviceToken {
+            pushTokenCell.detailTextLabel?.text = deviceToken
+
+            // only provide copy menu if there is a device token to be copied
+            let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(SettingsTableViewController.longPressPushTokenCell(gestureRecognizer:)))
+            pushTokenCell.addGestureRecognizer(longPressRecognizer)
+        }
 
         smallDonationCell.accessibilityTraits = UIAccessibilityTraitButton
         middleDonationCell.accessibilityTraits = UIAccessibilityTraitButton
@@ -108,7 +112,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
                 }
             })
         }
-//        selectedCell?.setSelected(false, animated: true)
+        selectedCell?.setSelected(false, animated: true)
     }
     
     private func showError(_ error: NSError) {
@@ -184,11 +188,6 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         self.present(alert, animated: true, completion: nil)
     }
     
-    
-    
-    
-    
-    
     override func canBecomeFirstResponder() -> Bool {
         return true
     }
@@ -202,10 +201,15 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             
             pushTokenCell.becomeFirstResponder()
         }
+        
+        // deselect cell when longpress ends
+        if gestureRecognizer.state == .ended {
+            pushTokenCell.setSelected(false, animated: true)
+        }
     }
     
     func copyPushToken() {
-        print("copy")
+        UIPasteboard.general().string = pushTokenCell.detailTextLabel?.text
     }
 
 }
