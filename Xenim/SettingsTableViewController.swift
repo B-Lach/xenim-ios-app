@@ -147,7 +147,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             let installationInformationString = "\(appVersionString), \(pushToken)"
             
             let emailTitle = NSLocalizedString("settings_view_mail_title", value: "Xenim Support", comment: "mail title for a new support mail message")
-            let messageBody = String(format: NSLocalizedString("settings_view_mail_body", value: "Please try to explain your problem as detailed as possible, so we can find the best solution for your problem faster.\n\n%@", comment: "mail body for a new support mail message"), installationInformationString)
+            let messageBody = String(format: NSLocalizedString("settings_view_mail_body", value: "%@", comment: "mail body for a new support mail message"), installationInformationString)
             let toRecipents = ["xenimapp@stefantrauth.de"]
             
             // configure mail compose view controller
