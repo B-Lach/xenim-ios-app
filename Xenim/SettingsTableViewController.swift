@@ -105,7 +105,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
                 }
             })
         }
-        selectedCell?.setSelected(false, animated: true)
+//        selectedCell?.setSelected(false, animated: true)
     }
     
     private func showError(_ error: NSError) {
@@ -180,36 +180,34 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+
+    // MARK: - Copy menu
     
-//    override func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?)
-//        -> Bool {
-//            
-//            // only the push token cell can perform the copy action
-//            if let cell = tableView.cellForRow(at: indexPath) {
-//                if cell == pushTokenCell {
-//                    return action == #selector(copy(_:))
-//                }
-//            }
-//            return false
-//    }
-//    
-//    override func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-//        // check for the push token cell and check if the copy action was called
+    override func canPerformAction(_ action: Selector, withSender sender: AnyObject?) -> Bool {
+//        return action == #selector(copy(_:))
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        // only the push token cell can perform the copy action
 //        if let cell = tableView.cellForRow(at: indexPath) {
-//            if cell == pushTokenCell && action == #selector(copy(_:)){
-//                UIPasteboard.general().string = pushTokenCell.detailTextLabel?.text
+//            if cell == pushTokenCell {
+//                return true
 //            }
 //        }
-//    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+//        
+//        return false
+        return true
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: AnyObject?) {
+        // check for the push token cell and check if the copy action was called
+        //        if let cell = tableView.cellForRow(at: indexPath) {
+        //            if cell == pushTokenCell && action == #selector(copy(_:)){
+        //                UIPasteboard.general().string = pushTokenCell.detailTextLabel?.text
+        //            }
+        //        }
+        print("working")
+    }
 
 }
