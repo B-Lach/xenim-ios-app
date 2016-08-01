@@ -41,6 +41,8 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             // only provide copy menu if there is a device token to be copied
             let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(SettingsTableViewController.longPressPushTokenCell(gestureRecognizer:)))
             pushTokenCell.addGestureRecognizer(longPressRecognizer)
+        } else {
+            pushTokenCell.detailTextLabel?.text = "-"
         }
 
         smallDonationCell.accessibilityTraits = UIAccessibilityTraitButton
