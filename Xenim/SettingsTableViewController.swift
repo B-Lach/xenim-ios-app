@@ -30,6 +30,9 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(SettingsTableViewController.longPressPushTokenCell(gestureRecognizer:)))
+        pushTokenCell.addGestureRecognizer(longPressRecognizer)
+        
         // auto cell height
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
@@ -180,34 +183,29 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         alert.addAction(UIAlertAction(title: dismiss, style: UIAlertActionStyle.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
-    // MARK: - Copy menu
     
-    override func canPerformAction(_ action: Selector, withSender sender: AnyObject?) -> Bool {
-//        return action == #selector(copy(_:))
+    
+    
+    
+    
+    
+    override func canBecomeFirstResponder() -> Bool {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        // only the push token cell can perform the copy action
-//        if let cell = tableView.cellForRow(at: indexPath) {
-//            if cell == pushTokenCell {
-//                return true
-//            }
-//        }
-//        
-//        return false
-        return true
+    func longPressPushTokenCell(gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            let menu = UIMenuController.shared()
+            menu.setTargetRect(pushTokenCell.bounds, in: pushTokenCell)
+            menu.menuItems = [UIMenuItem(title: "Copy", action: #selector(copyPushToken))]
+            menu.setMenuVisible(true, animated: true)
+            
+            pushTokenCell.becomeFirstResponder()
+        }
     }
     
-    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: AnyObject?) {
-        // check for the push token cell and check if the copy action was called
-        //        if let cell = tableView.cellForRow(at: indexPath) {
-        //            if cell == pushTokenCell && action == #selector(copy(_:)){
-        //                UIPasteboard.general().string = pushTokenCell.detailTextLabel?.text
-        //            }
-        //        }
-        print("working")
+    func copyPushToken() {
+        print("copy")
     }
 
 }
