@@ -6,7 +6,6 @@ target 'Xenim' do
   use_frameworks!
 
   # Pods for Xenim
-  pod 'SwiftyJSON', git: 'https://github.com/SwiftyJSON/SwiftyJSON.git', branch: 'swift3'
   pod 'Alamofire', git: 'https://github.com/Alamofire/Alamofire.git', branch: 'swift3'
   pod 'AlamofireImage', git: 'https://github.com/Alamofire/AlamofireImage.git', branch: 'swift3'
   # pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
@@ -17,4 +16,10 @@ target 'Xenim' do
     # Pods for testing
   end
 
+end
+
+target 'XenimAPI' do
+  use_frameworks!
+  pod 'Alamofire', git: 'https://github.com/Alamofire/Alamofire.git', branch: 'swift3'
+  pod 'SwiftyJSON', git: 'https://github.com/SwiftyJSON/SwiftyJSON.git', branch: 'swift3'
 end
