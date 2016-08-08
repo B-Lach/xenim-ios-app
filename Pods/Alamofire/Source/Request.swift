@@ -372,8 +372,6 @@ public class Request {
     class DataTaskDelegate: TaskDelegate, URLSessionDataDelegate {
         var dataTask: URLSessionDataTask? { return task as? URLSessionDataTask }
 
-        private var totalBytesReceived: Int64 = 0
-        private var mutableData: NSMutableData
         override var data: Data? {
             if dataStream != nil {
                 return nil
@@ -382,12 +380,15 @@ public class Request {
             }
         }
 
+        private var totalBytesReceived: Int64 = 0
+        private var mutableData: Data
+
         private var expectedContentLength: Int64?
         private var dataProgress: ((bytesReceived: Int64, totalBytesReceived: Int64, totalBytesExpectedToReceive: Int64) -> Void)?
         private var dataStream: ((data: Data) -> Void)?
 
         override init(task: URLSessionTask) {
-            mutableData = NSMutableData()
+            mutableData = Data()
             super.init(task: task)
         }
 
@@ -570,7 +571,7 @@ extension Request: CustomDebugStringConvertible {
             components.append("-d \"\(escapedBody)\"")
         }
 
-        components.append("\"\(URL.absoluteString!)\"")
+        components.append("\"\(URL.absoluteString)\"")
 
         return components.joined(separator: " \\\n\t")
     }
