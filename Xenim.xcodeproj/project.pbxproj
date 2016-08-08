@@ -23,7 +23,6 @@
 		229421FB1C1989DA00033AAB /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229421FA1C1989DA00033AAB /* Keys.plist */; };
 		229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4B1BD53DBD00F1CF6B /* Event.swift */; };
 		229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4D1BD5623500F1CF6B /* Podcast.swift */; };
-		229B7D501BD564DC00F1CF6B /* XenimAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4F1BD564DC00F1CF6B /* XenimAPI.swift */; };
 		229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */; };
 		22B066891C5D3A3600870BF5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B066881C5D3A3600870BF5 /* SpinnerView.swift */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
@@ -34,6 +33,11 @@
 		22D4D3671D58AC3600CFF9D9 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4D3661D58AC3600CFF9D9 /* TodayViewController.swift */; };
 		22D4D36A1D58AC3600CFF9D9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D4D3681D58AC3600CFF9D9 /* MainInterface.storyboard */; };
 		22D4D36E1D58AC3600CFF9D9 /* XenimToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 22D4D3621D58AC3600CFF9D9 /* XenimToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		22D4D3E51D58B93300CFF9D9 /* XenimAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D4D3DC1D58B93300CFF9D9 /* XenimAPI.framework */; };
+		22D4D3EC1D58B93300CFF9D9 /* XenimAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4D3EB1D58B93300CFF9D9 /* XenimAPITests.swift */; };
+		22D4D3F11D58B93300CFF9D9 /* XenimAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D4D3DC1D58B93300CFF9D9 /* XenimAPI.framework */; };
+		22D4D3F21D58B93300CFF9D9 /* XenimAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22D4D3DC1D58B93300CFF9D9 /* XenimAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		22D4D3FF1D58B9AF00CFF9D9 /* XenimAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4D3FE1D58B9AF00CFF9D9 /* XenimAPI.swift */; };
 		22E040D41CADA465009896CE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E040D31CADA465009896CE /* StoreKit.framework */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
 		22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */; };
@@ -58,6 +62,27 @@
 			remoteGlobalIDString = 22D4D3611D58AC3600CFF9D9;
 			remoteInfo = XenimToday;
 		};
+		22D4D3E61D58B93300CFF9D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2222ECAA1BD52E470040100F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22D4D3DB1D58B93300CFF9D9;
+			remoteInfo = XenimAPI;
+		};
+		22D4D3E81D58B93300CFF9D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2222ECAA1BD52E470040100F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2222ECB11BD52E470040100F;
+			remoteInfo = Xenim;
+		};
+		22D4D3EF1D58B93300CFF9D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2222ECAA1BD52E470040100F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22D4D3DB1D58B93300CFF9D9;
+			remoteInfo = XenimAPI;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +105,17 @@
 				22D4D36E1D58AC3600CFF9D9 /* XenimToday.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22D4D3F81D58B93300CFF9D9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				22D4D3F21D58B93300CFF9D9 /* XenimAPI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -107,7 +143,6 @@
 		229421FA1C1989DA00033AAB /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		229B7D4B1BD53DBD00F1CF6B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		229B7D4D1BD5623500F1CF6B /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
-		229B7D4F1BD564DC00F1CF6B /* XenimAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XenimAPI.swift; sourceTree = "<group>"; };
 		229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		22B066881C5D3A3600870BF5 /* SpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
@@ -123,6 +158,15 @@
 		22D4D3661D58AC3600CFF9D9 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		22D4D3691D58AC3600CFF9D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		22D4D36B1D58AC3600CFF9D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22D4D3DC1D58B93300CFF9D9 /* XenimAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XenimAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22D4D3DF1D58B93300CFF9D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22D4D3E41D58B93300CFF9D9 /* XenimAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XenimAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		22D4D3EB1D58B93300CFF9D9 /* XenimAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XenimAPITests.swift; sourceTree = "<group>"; };
+		22D4D3ED1D58B93300CFF9D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22D4D3FA1D58B97F00CFF9D9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Xenim-gcfvztovwnwiihdwuxgrugxvxquc/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		22D4D3FC1D58B98300CFF9D9 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/Xenim-gcfvztovwnwiihdwuxgrugxvxquc/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		22D4D3FE1D58B9AF00CFF9D9 /* XenimAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XenimAPI.swift; sourceTree = "<group>"; };
+		22D4D4001D58B9D800CFF9D9 /* Pods_Xenim.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Xenim.framework; path = "Pods/../build/Debug-iphoneos/Pods_Xenim.framework"; sourceTree = "<group>"; };
 		22E040D31CADA465009896CE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewController.swift; sourceTree = "<group>"; };
 		22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +187,7 @@
 			files = (
 				22E040D41CADA465009896CE /* StoreKit.framework in Frameworks */,
 				AA0DD6CDD51CF5439A6A4398 /* Pods_Xenim.framework in Frameworks */,
+				22D4D3F11D58B93300CFF9D9 /* XenimAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +207,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		22D4D3D81D58B93300CFF9D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22D4D3E11D58B93300CFF9D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22D4D3E51D58B93300CFF9D9 /* XenimAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -171,6 +231,8 @@
 				2222ECB41BD52E470040100F /* Xenim */,
 				226B3B2A1CC67F120099F69C /* XenimUITests */,
 				22D4D3651D58AC3600CFF9D9 /* XenimToday */,
+				22D4D3DD1D58B93300CFF9D9 /* XenimAPI */,
+				22D4D3EA1D58B93300CFF9D9 /* XenimAPITests */,
 				2222ECB31BD52E470040100F /* Products */,
 				4CD0EF0E6BE3DB36059D8E8C /* Frameworks */,
 				CAD29951AED728F4EF5CAA45 /* Pods */,
@@ -183,6 +245,8 @@
 				2222ECB21BD52E470040100F /* Xenim.app */,
 				226B3B291CC67F120099F69C /* XenimUITests.xctest */,
 				22D4D3621D58AC3600CFF9D9 /* XenimToday.appex */,
+				22D4D3DC1D58B93300CFF9D9 /* XenimAPI.framework */,
+				22D4D3E41D58B93300CFF9D9 /* XenimAPITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,7 +309,6 @@
 		229B3C441C1F084C00187BA0 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				229B7D4F1BD564DC00F1CF6B /* XenimAPI.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -297,6 +360,24 @@
 			path = XenimToday;
 			sourceTree = "<group>";
 		};
+		22D4D3DD1D58B93300CFF9D9 /* XenimAPI */ = {
+			isa = PBXGroup;
+			children = (
+				22D4D3DF1D58B93300CFF9D9 /* Info.plist */,
+				22D4D3FE1D58B9AF00CFF9D9 /* XenimAPI.swift */,
+			);
+			path = XenimAPI;
+			sourceTree = "<group>";
+		};
+		22D4D3EA1D58B93300CFF9D9 /* XenimAPITests */ = {
+			isa = PBXGroup;
+			children = (
+				22D4D3EB1D58B93300CFF9D9 /* XenimAPITests.swift */,
+				22D4D3ED1D58B93300CFF9D9 /* Info.plist */,
+			);
+			path = XenimAPITests;
+			sourceTree = "<group>";
+		};
 		22D515CA1C4BFE2700BE8D21 /* AddFavorite */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +398,9 @@
 		4CD0EF0E6BE3DB36059D8E8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22D4D4001D58B9D800CFF9D9 /* Pods_Xenim.framework */,
+				22D4D3FC1D58B98300CFF9D9 /* SwiftyJSON.framework */,
+				22D4D3FA1D58B97F00CFF9D9 /* Alamofire.framework */,
 				22E040D31CADA465009896CE /* StoreKit.framework */,
 				0AEA0DEF23104216FE920048 /* Pods_Xenim.framework */,
 				D553F30338CE8A77292D0B82 /* Pods_XenimUITests.framework */,
@@ -338,6 +422,16 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		22D4D3D91D58B93300CFF9D9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		2222ECB11BD52E470040100F /* Xenim */ = {
 			isa = PBXNativeTarget;
@@ -351,11 +445,13 @@
 				F9347824C964817809EDD910 /* [CP] Embed Pods Frameworks */,
 				1B18182CAC11A56F1979CE62 /* [CP] Copy Pods Resources */,
 				22D4D3721D58AC3600CFF9D9 /* Embed App Extensions */,
+				22D4D3F81D58B93300CFF9D9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				22D4D36D1D58AC3600CFF9D9 /* PBXTargetDependency */,
+				22D4D3F01D58B93300CFF9D9 /* PBXTargetDependency */,
 			);
 			name = Xenim;
 			productName = Xenim;
@@ -400,6 +496,43 @@
 			productReference = 22D4D3621D58AC3600CFF9D9 /* XenimToday.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		22D4D3DB1D58B93300CFF9D9 /* XenimAPI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22D4D3F71D58B93300CFF9D9 /* Build configuration list for PBXNativeTarget "XenimAPI" */;
+			buildPhases = (
+				22D4D3D71D58B93300CFF9D9 /* Sources */,
+				22D4D3D81D58B93300CFF9D9 /* Frameworks */,
+				22D4D3D91D58B93300CFF9D9 /* Headers */,
+				22D4D3DA1D58B93300CFF9D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XenimAPI;
+			productName = XenimAPI;
+			productReference = 22D4D3DC1D58B93300CFF9D9 /* XenimAPI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		22D4D3E31D58B93300CFF9D9 /* XenimAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22D4D3F91D58B93300CFF9D9 /* Build configuration list for PBXNativeTarget "XenimAPITests" */;
+			buildPhases = (
+				22D4D3E01D58B93300CFF9D9 /* Sources */,
+				22D4D3E11D58B93300CFF9D9 /* Frameworks */,
+				22D4D3E21D58B93300CFF9D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22D4D3E71D58B93300CFF9D9 /* PBXTargetDependency */,
+				22D4D3E91D58B93300CFF9D9 /* PBXTargetDependency */,
+			);
+			name = XenimAPITests;
+			productName = XenimAPITests;
+			productReference = 22D4D3E41D58B93300CFF9D9 /* XenimAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -437,6 +570,17 @@
 						DevelopmentTeam = Y85FVF2A97;
 						ProvisioningStyle = Automatic;
 					};
+					22D4D3DB1D58B93300CFF9D9 = {
+						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+					22D4D3E31D58B93300CFF9D9 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = Y85FVF2A97;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2222ECB11BD52E470040100F;
+					};
 				};
 			};
 			buildConfigurationList = 2222ECAD1BD52E470040100F /* Build configuration list for PBXProject "Xenim" */;
@@ -454,6 +598,8 @@
 				2222ECB11BD52E470040100F /* Xenim */,
 				226B3B281CC67F120099F69C /* XenimUITests */,
 				22D4D3611D58AC3600CFF9D9 /* XenimToday */,
+				22D4D3DB1D58B93300CFF9D9 /* XenimAPI */,
+				22D4D3E31D58B93300CFF9D9 /* XenimAPITests */,
 			);
 		};
 /* End PBXProject section */
@@ -485,6 +631,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D4D36A1D58AC3600CFF9D9 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22D4D3DA1D58B93300CFF9D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22D4D3E21D58B93300CFF9D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,7 +753,6 @@
 				228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */,
 				22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */,
 				22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */,
-				229B7D501BD564DC00F1CF6B /* XenimAPI.swift in Sources */,
 				22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */,
 				22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */,
 				22F4D7D51D19749200DCBA17 /* GlobalSplitViewController.swift in Sources */,
@@ -626,6 +785,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		22D4D3D71D58B93300CFF9D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22D4D3FF1D58B9AF00CFF9D9 /* XenimAPI.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22D4D3E01D58B93300CFF9D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22D4D3EC1D58B93300CFF9D9 /* XenimAPITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -638,6 +813,21 @@
 			isa = PBXTargetDependency;
 			target = 22D4D3611D58AC3600CFF9D9 /* XenimToday */;
 			targetProxy = 22D4D36C1D58AC3600CFF9D9 /* PBXContainerItemProxy */;
+		};
+		22D4D3E71D58B93300CFF9D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22D4D3DB1D58B93300CFF9D9 /* XenimAPI */;
+			targetProxy = 22D4D3E61D58B93300CFF9D9 /* PBXContainerItemProxy */;
+		};
+		22D4D3E91D58B93300CFF9D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2222ECB11BD52E470040100F /* Xenim */;
+			targetProxy = 22D4D3E81D58B93300CFF9D9 /* PBXContainerItemProxy */;
+		};
+		22D4D3F01D58B93300CFF9D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22D4D3DB1D58B93300CFF9D9 /* XenimAPI */;
+			targetProxy = 22D4D3EF1D58B93300CFF9D9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -906,6 +1096,109 @@
 			};
 			name = Release;
 		};
+		22D4D3F31D58B93300CFF9D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Trauth (N4SEV843HD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				INFOPLIST_FILE = XenimAPI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.XenimAPI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		22D4D3F41D58B93300CFF9D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Stefan Trauth (Y85FVF2A97)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				INFOPLIST_FILE = XenimAPI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.XenimAPI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		22D4D3F51D58B93300CFF9D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y85FVF2A97;
+				INFOPLIST_FILE = XenimAPITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.XenimAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Xenim.app/Xenim";
+			};
+			name = Debug;
+		};
+		22D4D3F61D58B93300CFF9D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y85FVF2A97;
+				INFOPLIST_FILE = XenimAPITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.XenimAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Xenim.app/Xenim";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -941,6 +1234,23 @@
 			buildConfigurations = (
 				22D4D36F1D58AC3600CFF9D9 /* Debug */,
 				22D4D3701D58AC3600CFF9D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22D4D3F71D58B93300CFF9D9 /* Build configuration list for PBXNativeTarget "XenimAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22D4D3F31D58B93300CFF9D9 /* Debug */,
+				22D4D3F41D58B93300CFF9D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		22D4D3F91D58B93300CFF9D9 /* Build configuration list for PBXNativeTarget "XenimAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22D4D3F51D58B93300CFF9D9 /* Debug */,
+				22D4D3F61D58B93300CFF9D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

@@ -1,11 +1,3 @@
-//
-//  HoersuppeAPI.swift
-//  Xenim
-//
-//  Created by Stefan Trauth on 19/10/15.
-//  Copyright © 2015 Stefan Trauth. All rights reserved.
-//
-
 import Foundation
 import SwiftyJSON
 import Alamofire
@@ -79,7 +71,7 @@ class XenimAPI {
                 }
         }
     }
-
+    
     static func fetchAllPodcasts(_ onComplete: (podcasts: [Podcast]) -> Void){
         let url = apiBaseURL + "podcast/"
         Alamofire.request(.GET, url, parameters: nil)
@@ -120,7 +112,7 @@ class XenimAPI {
                 for eventJSON in objects {
                     serviceGroup.enter()
                     eventFromJSON(eventJSON, onComplete: { (event) -> Void in
-                        blocksDispatchQueue.async(execute: { 
+                        blocksDispatchQueue.async(execute: {
                             if event != nil {
                                 // this has to be thread safe
                                 events.append(event!)
@@ -130,7 +122,7 @@ class XenimAPI {
                     })
                 }
                 
-                serviceGroup.notify(queue: DispatchQueue.global(), execute: { 
+                serviceGroup.notify(queue: DispatchQueue.global(), execute: {
                     // sort events by time as async processing appends them unordered
                     let sortedEvents = events.sorted(by: { (event1, event2) -> Bool in
                         event1.begin.compare(event2.begin as Date) == .orderedAscending
@@ -170,7 +162,7 @@ class XenimAPI {
     private static func eventFromJSON(_ eventJSON: JSON, onComplete: (event: Event?) -> Void) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-
+        
         let id = eventJSON["id"].stringValue
         let podcastId = eventJSON["podcast"].stringValue.characters.split{$0 == "/"}.map(String.init).last
         
@@ -184,11 +176,11 @@ class XenimAPI {
         
         var status: Status? = nil
         switch eventJSON["status"].stringValue {
-            case "RUNNING": status = .running
-            case "UPCOMING": status = .upcoming
-            case "ARCHIVED": status = .archived
-            case "EXPIRED": status = .expired
-            default: break
+        case "RUNNING": status = .running
+        case "UPCOMING": status = .upcoming
+        case "ARCHIVED": status = .archived
+        case "EXPIRED": status = .expired
+        default: break
         }
         
         var streams = [Stream]()
@@ -201,7 +193,7 @@ class XenimAPI {
                 }
             }
         }
-
+        
         
         if podcastId != nil {
             fetchPodcast(podcastId: podcastId!) { (podcast) -> Void in
@@ -217,6 +209,6 @@ class XenimAPI {
         } else {
             onComplete(event: nil)
         }
-
+        
     }
 }
