@@ -22,7 +22,7 @@ class Podcast : NSObject, Comparable {
     let name: String
     let podcastDescription: String
     let artwork: Artwork
-
+    
     let subtitle: String?
     let email: String?
     let websiteUrl: URL?
@@ -47,7 +47,7 @@ class Podcast : NSObject, Comparable {
             }
         }
     }
-
+    
     let twitterUsername: String?
     var twitterURL: URL? {
         get {
@@ -56,7 +56,7 @@ class Podcast : NSObject, Comparable {
             } else {
                 return nil
             }
-
+            
         }
     }
     

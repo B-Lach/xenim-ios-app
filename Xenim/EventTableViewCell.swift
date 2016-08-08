@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XenimAPI
 
 class EventCellStatus {
     static let toggleDateViewNotification = Notification.Name("toggleDateView")

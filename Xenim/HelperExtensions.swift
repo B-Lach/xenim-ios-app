@@ -41,12 +41,6 @@ extension Array {
     }
 }
 
-extension String {
-    func trim() -> String {
-        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-    }
-}
-
 extension UIApplication {
     func appVersion() -> String? {
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,

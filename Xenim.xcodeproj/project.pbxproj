@@ -21,8 +21,6 @@
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
 		2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291D8A21BDFB1D600CB6536 /* Favorites.swift */; };
 		229421FB1C1989DA00033AAB /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229421FA1C1989DA00033AAB /* Keys.plist */; };
-		229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4B1BD53DBD00F1CF6B /* Event.swift */; };
-		229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D4D1BD5623500F1CF6B /* Podcast.swift */; };
 		229B7D561BD64B0300F1CF6B /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */; };
 		22B066891C5D3A3600870BF5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B066881C5D3A3600870BF5 /* SpinnerView.swift */; };
 		22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C31DF61BECB64E006F2999 /* HelperExtensions.swift */; };
@@ -38,6 +36,10 @@
 		22D4D3F11D58B93300CFF9D9 /* XenimAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D4D3DC1D58B93300CFF9D9 /* XenimAPI.framework */; };
 		22D4D3F21D58B93300CFF9D9 /* XenimAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22D4D3DC1D58B93300CFF9D9 /* XenimAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22D4D3FF1D58B9AF00CFF9D9 /* XenimAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4D3FE1D58B9AF00CFF9D9 /* XenimAPI.swift */; };
+		22D4D4031D58BCB600CFF9D9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4D4021D58BCB600CFF9D9 /* Event.swift */; };
+		22D4D4051D58BCCB00CFF9D9 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4D4041D58BCCB00CFF9D9 /* Podcast.swift */; };
+		22D4D4071D58BD2500CFF9D9 /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4D4061D58BD2500CFF9D9 /* HelperExtensions.swift */; };
+		22D4D4081D58BDAF00CFF9D9 /* XenimAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D4D3DC1D58B93300CFF9D9 /* XenimAPI.framework */; };
 		22E040D41CADA465009896CE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E040D31CADA465009896CE /* StoreKit.framework */; };
 		22EB45BC1C07613000C765BA /* AddFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */; };
 		22EB45BE1C07614F00C765BA /* AddFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */; };
@@ -142,8 +144,6 @@
 		228052A31BDA53A2007512A2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2291D8A21BDFB1D600CB6536 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		229421FA1C1989DA00033AAB /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
-		229B7D4B1BD53DBD00F1CF6B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		229B7D4D1BD5623500F1CF6B /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		229B7D551BD64B0300F1CF6B /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		22B066881C5D3A3600870BF5 /* SpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		22C31DF61BECB64E006F2999 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
@@ -168,6 +168,9 @@
 		22D4D3FC1D58B98300CFF9D9 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/Xenim-gcfvztovwnwiihdwuxgrugxvxquc/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		22D4D3FE1D58B9AF00CFF9D9 /* XenimAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XenimAPI.swift; sourceTree = "<group>"; };
 		22D4D4001D58B9D800CFF9D9 /* Pods_Xenim.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Xenim.framework; path = "Pods/../build/Debug-iphoneos/Pods_Xenim.framework"; sourceTree = "<group>"; };
+		22D4D4021D58BCB600CFF9D9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		22D4D4041D58BCCB00CFF9D9 /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		22D4D4061D58BD2500CFF9D9 /* HelperExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
 		22E040D31CADA465009896CE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		22EB45BB1C07613000C765BA /* AddFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewController.swift; sourceTree = "<group>"; };
 		22EB45BD1C07614F00C765BA /* AddFavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavoriteTableViewCell.swift; sourceTree = "<group>"; };
@@ -207,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D4D4081D58BDAF00CFF9D9 /* XenimAPI.framework in Frameworks */,
 				22D4D3641D58AC3600CFF9D9 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,7 +275,6 @@
 				229B3C481C1F090100187BA0 /* Events */,
 				22BC05A91C12F995005356C8 /* Player */,
 				2232FE5F1BDE235A00BE368E /* Model */,
-				229B3C441C1F084C00187BA0 /* API */,
 				229B3C451C1F087400187BA0 /* Helpers */,
 				221109551BD5336F0095F25D /* Xenim-Bridging-Header.h */,
 				2222ECB51BD52E470040100F /* AppDelegate.swift */,
@@ -293,8 +296,6 @@
 		2232FE5F1BDE235A00BE368E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				229B7D4B1BD53DBD00F1CF6B /* Event.swift */,
-				229B7D4D1BD5623500F1CF6B /* Podcast.swift */,
 				2291D8A21BDFB1D600CB6536 /* Favorites.swift */,
 			);
 			name = Model;
@@ -309,13 +310,6 @@
 				226B3B2D1CC67F120099F69C /* Info.plist */,
 			);
 			path = XenimUITests;
-			sourceTree = "<group>";
-		};
-		229B3C441C1F084C00187BA0 /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = API;
 			sourceTree = "<group>";
 		};
 		229B3C451C1F087400187BA0 /* Helpers */ = {
@@ -370,6 +364,9 @@
 			children = (
 				22D4D3DF1D58B93300CFF9D9 /* Info.plist */,
 				22D4D3FE1D58B9AF00CFF9D9 /* XenimAPI.swift */,
+				22D4D4021D58BCB600CFF9D9 /* Event.swift */,
+				22D4D4041D58BCCB00CFF9D9 /* Podcast.swift */,
+				22D4D4061D58BD2500CFF9D9 /* HelperExtensions.swift */,
 			);
 			path = XenimAPI;
 			sourceTree = "<group>";
@@ -797,11 +794,9 @@
 				22C31DF71BECB64E006F2999 /* HelperExtensions.swift in Sources */,
 				22F4D7D51D19749200DCBA17 /* GlobalSplitViewController.swift in Sources */,
 				2222ECC81BD52EEA0040100F /* EventTableViewController.swift in Sources */,
-				229B7D4C1BD53DBD00F1CF6B /* Event.swift in Sources */,
 				2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */,
 				224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */,
 				22F1B3D51C4A5A43005B03F7 /* FavoriteTableViewCell.swift in Sources */,
-				229B7D4E1BD5623500F1CF6B /* Podcast.swift in Sources */,
 				222913CD1C032221005C74BB /* SettingsTableViewController.swift in Sources */,
 				2222ECB61BD52E470040100F /* AppDelegate.swift in Sources */,
 				2224C5051CBC1F75004A49BA /* PodcastDetailTableViewController.swift in Sources */,
@@ -829,7 +824,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D4D4031D58BCB600CFF9D9 /* Event.swift in Sources */,
+				22D4D4071D58BD2500CFF9D9 /* HelperExtensions.swift in Sources */,
 				22D4D3FF1D58B9AF00CFF9D9 /* XenimAPI.swift in Sources */,
+				22D4D4051D58BCCB00CFF9D9 /* Podcast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

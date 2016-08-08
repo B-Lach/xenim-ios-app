@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XenimAPI
 
 protocol PlayerDelegate {
     func play(_ event: Event)

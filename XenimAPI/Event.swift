@@ -63,7 +63,7 @@ class Event : NSObject {
         }
     }
     
-    // in seconds    
+    // in seconds
     var duration: TimeInterval? {
         get {
             return end?.timeIntervalSince(begin)
@@ -104,15 +104,15 @@ class Event : NSObject {
             }
         }
     }
-
+    
     func isLive() -> Bool {
         return status == Status.running
     }
     
     /*
-        An event is upcoming if it is scheduled for today or in the future.
-        It can be in the past, but only if it is still today.
-    */
+     An event is upcoming if it is scheduled for today or in the future.
+     It can be in the past, but only if it is still today.
+     */
     func isUpcoming() -> Bool {
         if status == Status.upcoming {
             let now = Date()
@@ -120,7 +120,7 @@ class Event : NSObject {
             
             // check if the begin date is in the future or today
             if now.compare(begin) == ComparisonResult.orderedAscending || calendar.isDateInToday(begin) {
-               return true
+                return true
             }
         }
         return false
