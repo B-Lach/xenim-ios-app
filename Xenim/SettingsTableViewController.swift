@@ -33,7 +33,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         // auto cell height
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240 // Something reasonable to help ios render your cells
-        versionCell.detailTextLabel?.text = UIApplication.shared().appVersion()
+        versionCell.detailTextLabel?.text = UIApplication.shared.appVersion()
         
         if let deviceToken = PFInstallation.current()?.deviceToken {
             pushTokenCell.detailTextLabel?.text = deviceToken
@@ -94,21 +94,21 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
             openWebsite("http://streams.xenim.de")
         } else if selectedCell == reviewCell {
             // TODO
-            UIApplication.shared().open(URL(string: "itms-apps://itunes.apple.com/app/id1073103750")!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(URL(string: "itms-apps://itunes.apple.com/app/id1073103750")!, options: [:], completionHandler: nil)
         } else if selectedCell == smallDonationCell {
-            PFPurchase.buyProduct("com.stefantrauth.XenimSupportSmall", block: { (error: NSError?) in
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupportSmall", block: { (error: Error?) in
                 if error != nil {
                     self.showError(error!)
                 }
             })
         } else if selectedCell == middleDonationCell {
-            PFPurchase.buyProduct("com.stefantrauth.XenimSupportMiddle", block: { (error: NSError?) in
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupportMiddle", block: { (error: Error?) in
                 if error != nil {
                     self.showError(error!)
                 }
             })
         } else if selectedCell == bigDonationCell {
-            PFPurchase.buyProduct("com.stefantrauth.XenimSupportBig", block: { (error: NSError?) in
+            PFPurchase.buyProduct("com.stefantrauth.XenimSupportBig", block: { (error: Error?) in
                 if error != nil {
                     self.showError(error!)
                 }
@@ -142,7 +142,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         // check if the user is able to send mail
         if MFMailComposeViewController.canSendMail() {
             
-            let appVersionString = UIApplication.shared().appVersion()!
+            let appVersionString = UIApplication.shared.appVersion()!
             let pushToken = PFInstallation.current()?.deviceToken
             let installationInformationString = "\(appVersionString), \(pushToken)"
             
@@ -168,7 +168,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     /**
         Mail compose view controller delegate method to dismiss if finished and react to errors
     */
-    func mailComposeController(_ controller:MFMailComposeViewController, didFinishWith result:MFMailComposeResult, error:NSError?) {
+    func mailComposeController(_ controller:MFMailComposeViewController, didFinishWith result:MFMailComposeResult, error:Error?) {
         switch result.rawValue {
         case MFMailComposeResult.cancelled.rawValue: break
         case MFMailComposeResult.saved.rawValue: break
@@ -190,13 +190,12 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         self.present(alert, animated: true, completion: nil)
     }
     
-    override func canBecomeFirstResponder() -> Bool {
-        return true
-    }
+    override var canBecomeFirstResponder: Bool { return true }
+    override var canResignFirstResponder: Bool { return true }
     
     func longPressPushTokenCell(gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .began {
-            let menu = UIMenuController.shared()
+            let menu = UIMenuController.shared
             menu.setTargetRect(pushTokenCell.bounds, in: pushTokenCell)
             menu.menuItems = [UIMenuItem(title: "Copy", action: #selector(copyPushToken))]
             menu.setMenuVisible(true, animated: true)
@@ -211,7 +210,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
     }
     
     func copyPushToken() {
-        UIPasteboard.general().string = pushTokenCell.detailTextLabel?.text
+        UIPasteboard.general.string = pushTokenCell.detailTextLabel?.text
     }
 
 }

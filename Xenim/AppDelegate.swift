@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // fetch parse keys from Keys.plist
         // this is force unwrapped intentionally. I want it to crash if this file is not working.
-        let path = Bundle.main.pathForResource("Keys", ofType: "plist")
+        let path = Bundle.main.path(forResource: "Keys", ofType: "plist")
         let keys = NSDictionary(contentsOfFile: path!)
         let applicationId = keys!["parseApplicationID"] as! String
         let clientKey = keys!["parseClientKey"] as! String
@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         if error.code == 3010 {
             print("Push notifications are not supported in the iOS Simulator.")
         } else {
@@ -133,12 +133,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 // push settings are not setup yet, so request authorization
                 UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
                     if granted {
-                        UIApplication.shared().registerForRemoteNotifications()
+                        UIApplication.shared.registerForRemoteNotifications()
                     }
                 }
             case .authorized:
                 // the user might have authorized notifications in the settings app while this app was closed
-                UIApplication.shared().registerForRemoteNotifications()
+                UIApplication.shared.registerForRemoteNotifications()
             case .denied:
                 // the user denied notifications. if they were allowed before we do keep the push token on the server
                 // so push immediately starts working again if the user allows push notifications in the settings for

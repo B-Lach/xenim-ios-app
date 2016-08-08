@@ -260,7 +260,7 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
     override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "play" {
-            if let navigationController = segue.destinationViewController as? UINavigationController {
+            if let navigationController = segue.destination as? UINavigationController {
                 if let playerVC = navigationController.topViewController as? PlayerViewController {
                     if let event = sender as? Event {
                         playerVC.event = event
@@ -272,10 +272,10 @@ class EventTableViewController: UITableViewController, UIPopoverPresentationCont
         
         if segue.identifier == "podcastDetail" {
             var detail: PodcastDetailTableViewController
-            if let navigationController = segue.destinationViewController as? UINavigationController {
+            if let navigationController = segue.destination as? UINavigationController {
                 detail = navigationController.topViewController as! PodcastDetailTableViewController
             } else {
-                detail = segue.destinationViewController as! PodcastDetailTableViewController
+                detail = segue.destination as! PodcastDetailTableViewController
             }
             
             if let cell = sender as? EventTableViewCell {

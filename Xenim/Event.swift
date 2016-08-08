@@ -139,8 +139,8 @@ class Event : NSObject {
     func isUpcomingThisWeek() -> Bool {
         let calendar = Calendar.current
         let now = Date()
-        let nowWeek = calendar.components(Calendar.Unit.weekOfYear, from: now).weekOfYear
-        let eventWeek = calendar.components(Calendar.Unit.weekOfYear, from: begin).weekOfYear
+        let nowWeek = calendar.dateComponents([.weekOfYear], from: now).weekOfYear
+        let eventWeek = calendar.dateComponents([.weekOfYear], from: begin).weekOfYear
         return nowWeek == eventWeek && isUpcoming()
     }
     

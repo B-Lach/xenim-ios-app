@@ -161,10 +161,10 @@ class FavoritesTableViewController: UITableViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "podcastDetail" {
             var detail: PodcastDetailTableViewController
-            if let navigationController = segue.destinationViewController as? UINavigationController {
+            if let navigationController = segue.destination as? UINavigationController {
                 detail = navigationController.topViewController as! PodcastDetailTableViewController
             } else {
-                detail = segue.destinationViewController as! PodcastDetailTableViewController
+                detail = segue.destination as! PodcastDetailTableViewController
             }
             
             if let podcast = sender as? Podcast {

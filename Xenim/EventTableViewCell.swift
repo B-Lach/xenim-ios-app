@@ -59,7 +59,7 @@ class EventTableViewCell: UITableViewCell {
         
         eventCoverartImage.layer.cornerRadius = 4
         eventCoverartImage.layer.masksToBounds = true
-        eventCoverartImage.layer.borderColor =  UIColor.lightGray().withAlphaComponent(0.3).cgColor
+        eventCoverartImage.layer.borderColor =  UIColor.lightGray.withAlphaComponent(0.3).cgColor
         eventCoverartImage.layer.borderWidth = 0.5
     }
     

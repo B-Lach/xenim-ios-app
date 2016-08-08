@@ -60,7 +60,7 @@ class PlayerViewController: UIViewController {
         
         listenersCountButton.isUserInteractionEnabled = false
         
-        switch UIDevice.current().userInterfaceIdiom {
+        switch UIDevice.current.userInterfaceIdiom {
         case .phone:
             if let imageurl = event.podcast.artwork.thumb800Url {
                 coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
@@ -479,8 +479,8 @@ class PlayerViewController: UIViewController {
     
     // MARK: - observers
     
-    override func canBecomeFirstResponder() -> Bool { return true }
-    override func canResignFirstResponder() -> Bool { return true }
+    override var canBecomeFirstResponder: Bool { return true }
+    override var canResignFirstResponder: Bool { return true }
     
     private func setupObservers() {
         // timeControlStatus tells me if the player is currently playing or not

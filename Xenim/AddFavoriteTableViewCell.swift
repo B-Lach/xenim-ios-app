@@ -53,7 +53,7 @@ class AddFavoriteTableViewCell: UITableViewCell {
         
         coverartImageView.layer.cornerRadius = 4
         coverartImageView.layer.masksToBounds = true
-        coverartImageView.layer.borderColor =  UIColor.lightGray().withAlphaComponent(0.3).cgColor
+        coverartImageView.layer.borderColor =  UIColor.lightGray.withAlphaComponent(0.3).cgColor
         coverartImageView.layer.borderWidth = 0.5
     }
     

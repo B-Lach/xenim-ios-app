@@ -4,12 +4,10 @@ import UIKit
 class SpinnerView : UIView {
     
     override var layer: CAShapeLayer {
-        get {
-            return super.layer as! CAShapeLayer
-        }
+        return super.layer as! CAShapeLayer
     }
     
-    override class func layerClass() -> AnyClass {
+    override class var layerClass: AnyClass {
         return CAShapeLayer.self
     }
     

@@ -50,7 +50,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         if let podcast = podcast {
             coverartImageView.accessibilityLabel = "Coverart image"
             
-            switch UIDevice.current().userInterfaceIdiom {
+            switch UIDevice.current.userInterfaceIdiom {
             case .phone:
                 if let imageurl = podcast.artwork.thumb800Url {
                     coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
@@ -83,7 +83,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         cell.isUserInteractionEnabled = false
         cell.textLabel?.isEnabled = false
         cell.detailTextLabel?.isEnabled = false
-        cell.tintColor = UIColor.lightGray()
+        cell.tintColor = UIColor.lightGray
         cell.accessoryType = UITableViewCellAccessoryType.none
     }
     
@@ -135,9 +135,9 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
                 let subscribeURL = client.1
                 
                 // only show the option if the podcast client is installed which reacts to this URL
-                if UIApplication.shared().canOpenURL(subscribeURL as URL) {
+                if UIApplication.shared.canOpenURL(subscribeURL as URL) {
                     let action = UIAlertAction(title: clientName, style: .default, handler: { (alert: UIAlertAction!) -> Void in
-                        UIApplication.shared().open(subscribeURL as URL, options: [:], completionHandler: nil)
+                        UIApplication.shared.open(subscribeURL as URL, options: [:], completionHandler: nil)
                     })
                     optionMenu.addAction(action)
                 }
@@ -196,7 +196,7 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
         controller.dismiss(animated: true, completion: nil)
     }
     
-    func mailComposeController(_ controller:MFMailComposeViewController, didFinishWith result:MFMailComposeResult, error:NSError?) {
+    func mailComposeController(_ controller:MFMailComposeViewController, didFinishWith result:MFMailComposeResult, error:Error?) {
         switch result.rawValue {
         case MFMailComposeResult.cancelled.rawValue: break
         case MFMailComposeResult.saved.rawValue: break

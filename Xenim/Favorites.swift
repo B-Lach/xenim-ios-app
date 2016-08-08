@@ -66,7 +66,7 @@ class Favorites {
             return
         }
         
-        let blocksDispatchQueue = DispatchQueue(label: "com.domain.blocksArray.sync", attributes: DispatchQueueAttributes.concurrent)
+        let blocksDispatchQueue = DispatchQueue(label: "com.domain.blocksArray.sync", attributes: DispatchQueue.Attributes.concurrent)
         let serviceGroup = DispatchGroup()
         
         // start one api request for each podcast

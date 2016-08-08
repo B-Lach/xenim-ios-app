@@ -68,10 +68,8 @@ class DateViewGenerator: NSObject {
         // calculate in how many days this event takes place
         let cal = Calendar.current
         let now = Date()
-        var diff = cal.components(Calendar.Unit.day,
-                                  from: cal.startOfDay(for: now),
-                                  to: eventDate,
-                                  options: Calendar.Options.wrapComponents )
+
+        let diff = cal.dateComponents([.day], from: cal.startOfDay(for: now), to: eventDate)
         let daysLeft = diff.day! // TODO this might crash?
         
         
@@ -105,9 +103,8 @@ class DateViewGenerator: NSObject {
             
         } else {
             
-            diff = cal.components(Calendar.Unit.hour, from: now, to: eventDate, options: Calendar.Options.wrapComponents )
+            let diff = cal.dateComponents([.hour, .minute], from: now, to: eventDate)
             let hoursLeft = diff.hour
-            diff = cal.components(Calendar.Unit.minute, from: now, to: eventDate, options: Calendar.Options.wrapComponents )
             let minutesLeft = diff.minute
             
             // check if there are less than 24 hours left

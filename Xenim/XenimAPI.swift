@@ -114,7 +114,7 @@ class XenimAPI {
                     return
                 }
                 
-                let blocksDispatchQueue = DispatchQueue(label: "com.domain.blocksArray.sync", attributes: DispatchQueueAttributes.concurrent)
+                let blocksDispatchQueue = DispatchQueue(label: "com.domain.blocksArray.sync", attributes: DispatchQueue.Attributes.concurrent)
                 let serviceGroup = DispatchGroup()
                 
                 for eventJSON in objects {
@@ -132,7 +132,7 @@ class XenimAPI {
                 
                 serviceGroup.notify(queue: DispatchQueue.global(), execute: { 
                     // sort events by time as async processing appends them unordered
-                    let sortedEvents = events.sorted(isOrderedBefore: { (event1, event2) -> Bool in
+                    let sortedEvents = events.sorted(by: { (event1, event2) -> Bool in
                         event1.begin.compare(event2.begin as Date) == .orderedAscending
                     })
                     onComplete(events: sortedEvents)
