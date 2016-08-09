@@ -9,28 +9,28 @@
 import Foundation
 import UIKit
 
-struct Artwork {
-    let thumb180Url: URL?
-    let thumb800Url: URL?
-    let thumb1600Url: URL?
-    let thumb3000Url: URL?
+public struct Artwork {
+    public let thumb180Url: URL?
+    public let thumb800Url: URL?
+    public let thumb1600Url: URL?
+    public let thumb3000Url: URL?
 }
 
-class Podcast : NSObject, Comparable {
+public class Podcast : NSObject, Comparable {
     
-    let id: String
-    let name: String
-    let podcastDescription: String
-    let artwork: Artwork
+    public let id: String
+    public let name: String
+    public let podcastDescription: String
+    public let artwork: Artwork
     
-    let subtitle: String?
-    let email: String?
-    let websiteUrl: URL?
+    public let subtitle: String?
+    public let email: String?
+    public let websiteUrl: URL?
     
-    let feedUrl: URL?
+    public let feedUrl: URL?
     // do not forget to enable them in Info.plist
     static private let subscribeURLSchemes = ["Castro" : "castro://subscribe/", "Downcast" : "downcast://", "Instacast" : "instacast://", "Overcast" : "overcast://x-callback-url/add?url=", "PocketCasts" : "pktc://subscribe/", "Podcasts" : "pcast://", "Podcat" : "podcat://"]
-    var subscribeURLSchemesDictionary: [String:URL]? {
+    public var subscribeURLSchemesDictionary: [String:URL]? {
         get {
             if let feedUrl = feedUrl {
                 var subscribeClients = [String:URL]()
@@ -48,8 +48,8 @@ class Podcast : NSObject, Comparable {
         }
     }
     
-    let twitterUsername: String?
-    var twitterURL: URL? {
+    public let twitterUsername: String?
+    public var twitterURL: URL? {
         get {
             if let username = twitterUsername {
                 return URL(string: "https://twitter.com/\(username)")
@@ -80,6 +80,6 @@ class Podcast : NSObject, Comparable {
 
 // MARK: Comparable
 
-func ==(x: Podcast, y: Podcast) -> Bool { return x.id == y.id }
-func <(x: Podcast, y: Podcast) -> Bool { return x.name < y.name }
+public func ==(x: Podcast, y: Podcast) -> Bool { return x.id == y.id }
+public func <(x: Podcast, y: Podcast) -> Bool { return x.name < y.name }
 

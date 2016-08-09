@@ -20,28 +20,28 @@ struct Stream {
     }
 }
 
-enum Status {
+public enum Status {
     case running
     case upcoming
     case archived
     case expired
 }
 
-class Event : NSObject {
+public class Event : NSObject {
     
-    let id: String
-    let status: Status
-    let begin: Date
-    let end: Date?
-    let podcast: Podcast
+    public let id: String
+    public let status: Status
+    public let begin: Date
+    public let end: Date?
+    public let podcast: Podcast
     
     // return podcast name as event title if title is not set
-    var title: String?
-    let eventXenimWebUrl: URL?
-    let eventDescription: String?
-    let shownotes: String?
+    public var title: String?
+    public let eventXenimWebUrl: URL?
+    public let eventDescription: String?
+    public let shownotes: String?
     var streams = [Stream]()
-    var listeners: Int? {
+    public var listeners: Int? {
         didSet {
             // only allow listeners count >= 0
             if listeners != nil && listeners! < 0 {
@@ -50,7 +50,7 @@ class Event : NSObject {
         }
     }
     // returns a supported streamUrl or nil
-    var streamUrl: URL? {
+    public var streamUrl: URL? {
         get {
             let supportedCodecs = ["mp3", "aac"]
             // try to find a stream that is supported by ios
@@ -64,13 +64,13 @@ class Event : NSObject {
     }
     
     // in seconds
-    var duration: TimeInterval? {
+    public var duration: TimeInterval? {
         get {
             return end?.timeIntervalSince(begin)
         }
     }
     //value between 0 and 1
-    var progress: Float {
+    public var progress: Float {
         if let duration = duration {
             let timePassed = Date().timeIntervalSince(begin)
             let factor = (Float)(timePassed/duration)
@@ -96,7 +96,7 @@ class Event : NSObject {
         super.init()
     }
     
-    func fetchCurrentListeners(_ onComplete: (listeners: Int?) -> Void) {
+    public func fetchCurrentListeners(_ onComplete: (listeners: Int?) -> Void) {
         XenimAPI.fetchEvent(eventId: id) { (event) -> Void in
             if let event = event {
                 onComplete(listeners: event.listeners)
@@ -105,7 +105,7 @@ class Event : NSObject {
         }
     }
     
-    func isLive() -> Bool {
+    public func isLive() -> Bool {
         return status == Status.running
     }
     
@@ -113,7 +113,7 @@ class Event : NSObject {
      An event is upcoming if it is scheduled for today or in the future.
      It can be in the past, but only if it is still today.
      */
-    func isUpcoming() -> Bool {
+    public func isUpcoming() -> Bool {
         if status == Status.upcoming {
             let now = Date()
             let calendar = Calendar.current
@@ -126,17 +126,17 @@ class Event : NSObject {
         return false
     }
     
-    func isUpcomingToday() -> Bool {
+    public func isUpcomingToday() -> Bool {
         let calendar = Calendar.current
         return calendar.isDateInToday(begin) && isUpcoming()
     }
     
-    func isUpcomingTomorrow() -> Bool {
+    public func isUpcomingTomorrow() -> Bool {
         let calendar = Calendar.current
         return calendar.isDateInTomorrow(begin) && isUpcoming()
     }
     
-    func isUpcomingThisWeek() -> Bool {
+    public func isUpcomingThisWeek() -> Bool {
         let calendar = Calendar.current
         let now = Date()
         let nowWeek = calendar.dateComponents([.weekOfYear], from: now).weekOfYear
@@ -144,7 +144,7 @@ class Event : NSObject {
         return nowWeek == eventWeek && isUpcoming()
     }
     
-    func equals(_ otherEvent: Event) -> Bool {
+    public func equals(_ otherEvent: Event) -> Bool {
         return id == otherEvent.id
     }
     

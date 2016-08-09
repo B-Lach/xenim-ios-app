@@ -2,12 +2,12 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class XenimAPI {
+public class XenimAPI {
     
     // "http://feeds.streams.demo.xenim.de/api/v1/"
     static let apiBaseURL = "http://feeds.streams.demo.xenim.de/api/v2/"
     
-    static func fetchEvents(status: [String]?, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
+    public static func fetchEvents(status: [String]?, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
         var parameters = [
             "limit": "\(maxCount!)",
@@ -23,7 +23,7 @@ class XenimAPI {
         }
     }
     
-    static func fetchEvents(podcastId: String, status: [String]?, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
+    public static func fetchEvents(podcastId: String, status: [String]?, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         var parameters = [
             "limit": "\(maxCount!)",
@@ -39,7 +39,7 @@ class XenimAPI {
         }
     }
     
-    static func fetchEvent(eventId: String, onComplete: (event: Event?) -> Void){
+    public static func fetchEvent(eventId: String, onComplete: (event: Event?) -> Void){
         let url = apiBaseURL + "episode/\(eventId)/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -54,7 +54,7 @@ class XenimAPI {
         }
     }
     
-    static func fetchPodcast(podcastId: String, onComplete: (podcast: Podcast?) -> Void){
+    public static func fetchPodcast(podcastId: String, onComplete: (podcast: Podcast?) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -72,7 +72,7 @@ class XenimAPI {
         }
     }
     
-    static func fetchAllPodcasts(_ onComplete: (podcasts: [Podcast]) -> Void){
+    public static func fetchAllPodcasts(_ onComplete: (podcasts: [Podcast]) -> Void){
         let url = apiBaseURL + "podcast/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
