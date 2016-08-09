@@ -222,7 +222,7 @@ class PlayerViewController: UIViewController {
     }
     
     private func setupPlayerAndPlay() {
-        if let streamURL = event.streams.first?.url {
+        if let streamURL = event.streamUrl {
             player = AVPlayer()
             
             setupObservers()
