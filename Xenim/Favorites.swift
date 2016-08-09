@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import XenimAPI
 
 class Favorites {
     

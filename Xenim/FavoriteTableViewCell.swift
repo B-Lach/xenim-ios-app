@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XenimAPI
 
 class FavoriteCellStatus {
     static let sharedInstance = FavoriteCellStatus()

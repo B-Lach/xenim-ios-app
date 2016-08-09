@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XenimAPI
 
 class AddFavoriteTableViewController: UITableViewController, UISearchResultsUpdating {
     

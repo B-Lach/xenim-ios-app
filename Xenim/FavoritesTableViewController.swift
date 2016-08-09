@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import Parse
+import XenimAPI
 
 class FavoritesTableViewController: UITableViewController{
     

@@ -10,6 +10,7 @@ import UIKit
 import MediaPlayer
 import Alamofire
 import AlamofireImage
+import XenimAPI
 
 class PlayerViewController: UIViewController {
     
