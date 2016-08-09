@@ -4,8 +4,8 @@ import Alamofire
 
 public class XenimAPI {
     
-    // "http://feeds.streams.demo.xenim.de/api/v1/"
-    static let apiBaseURL = "http://feeds.streams.demo.xenim.de/api/v2/"
+    // "https://feeds.streams.demo.xenim.de/api/v1/"
+    static let apiBaseURL = "https://feeds.streams.demo.xenim.de/api/v2/"
     
     public static func fetchEvents(status: [String]?, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
