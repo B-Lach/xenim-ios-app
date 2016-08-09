@@ -46,6 +46,7 @@
 		22F1B3D31C4A551E005B03F7 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D21C4A551E005B03F7 /* FavoritesTableViewController.swift */; };
 		22F1B3D51C4A5A43005B03F7 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1B3D41C4A5A43005B03F7 /* FavoriteTableViewCell.swift */; };
 		22F4D7D51D19749200DCBA17 /* GlobalSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4D7D41D19749100DCBA17 /* GlobalSplitViewController.swift */; };
+		7E332B64E6ADE6D02CAB0DFF /* Pods_XenimToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3078D713542A8F03387DA37 /* Pods_XenimToday.framework */; };
 		AA0DD6CDD51CF5439A6A4398 /* Pods_Xenim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEA0DEF23104216FE920048 /* Pods_Xenim.framework */; };
 		EE80B5E216BAAC18302D384F /* Pods_XenimAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8BF11102E503EF1BD5F227 /* Pods_XenimAPI.framework */; };
 /* End PBXBuildFile section */
@@ -179,9 +180,12 @@
 		22F4D7D41D19749100DCBA17 /* GlobalSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalSplitViewController.swift; sourceTree = "<group>"; };
 		3164312E818BF50839075313 /* Pods-XenimUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XenimUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XenimUITests/Pods-XenimUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3E8BF11102E503EF1BD5F227 /* Pods_XenimAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XenimAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		586165E914B93693D856241F /* Pods-XenimToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XenimToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XenimToday/Pods-XenimToday.debug.xcconfig"; sourceTree = "<group>"; };
 		80A2740F931C8892F43A96FA /* Pods-Xenim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Xenim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Xenim/Pods-Xenim.debug.xcconfig"; sourceTree = "<group>"; };
 		82C3AECB27BBB70812FE5E93 /* Pods-XenimAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XenimAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XenimAPI/Pods-XenimAPI.debug.xcconfig"; sourceTree = "<group>"; };
+		886D22DE77FAFDA273A00B3B /* Pods-XenimToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XenimToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-XenimToday/Pods-XenimToday.release.xcconfig"; sourceTree = "<group>"; };
 		92A8173B39FFF118F4D269A7 /* Pods-XenimUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XenimUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-XenimUITests/Pods-XenimUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A3078D713542A8F03387DA37 /* Pods_XenimToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XenimToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACFFBB38EADF41B00BBBDDC8 /* Pods-XenimAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XenimAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-XenimAPI/Pods-XenimAPI.release.xcconfig"; sourceTree = "<group>"; };
 		B0BCD2E086A7C9BA965D48CE /* Pods-Xenim.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Xenim.release.xcconfig"; path = "Pods/Target Support Files/Pods-Xenim/Pods-Xenim.release.xcconfig"; sourceTree = "<group>"; };
 		D553F30338CE8A77292D0B82 /* Pods_XenimUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XenimUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +216,7 @@
 			files = (
 				22D4D4081D58BDAF00CFF9D9 /* XenimAPI.framework in Frameworks */,
 				22D4D3641D58AC3600CFF9D9 /* NotificationCenter.framework in Frameworks */,
+				7E332B64E6ADE6D02CAB0DFF /* Pods_XenimToday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +413,7 @@
 				D553F30338CE8A77292D0B82 /* Pods_XenimUITests.framework */,
 				22D4D3631D58AC3600CFF9D9 /* NotificationCenter.framework */,
 				3E8BF11102E503EF1BD5F227 /* Pods_XenimAPI.framework */,
+				A3078D713542A8F03387DA37 /* Pods_XenimToday.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -421,6 +427,8 @@
 				92A8173B39FFF118F4D269A7 /* Pods-XenimUITests.release.xcconfig */,
 				82C3AECB27BBB70812FE5E93 /* Pods-XenimAPI.debug.xcconfig */,
 				ACFFBB38EADF41B00BBBDDC8 /* Pods-XenimAPI.release.xcconfig */,
+				586165E914B93693D856241F /* Pods-XenimToday.debug.xcconfig */,
+				886D22DE77FAFDA273A00B3B /* Pods-XenimToday.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -488,9 +496,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22D4D3711D58AC3600CFF9D9 /* Build configuration list for PBXNativeTarget "XenimToday" */;
 			buildPhases = (
+				9442B143BE67D8E9BD55BBCE /* [CP] Check Pods Manifest.lock */,
 				22D4D35E1D58AC3600CFF9D9 /* Sources */,
 				22D4D35F1D58AC3600CFF9D9 /* Frameworks */,
 				22D4D3601D58AC3600CFF9D9 /* Resources */,
+				EA49490249BE5233F9D472B3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -718,6 +728,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XenimAPI/Pods-XenimAPI-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9442B143BE67D8E9BD55BBCE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		A189D79D07361DE72DE00CB0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -746,6 +771,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EA49490249BE5233F9D472B3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XenimToday/Pods-XenimToday-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F0BB648629DFD5A569E578D4 /* [CP] Check Pods Manifest.lock */ = {
@@ -1100,6 +1140,7 @@
 		};
 		22D4D36F1D58AC3600CFF9D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 586165E914B93693D856241F /* Pods-XenimToday.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1120,6 +1161,7 @@
 		};
 		22D4D3701D58AC3600CFF9D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 886D22DE77FAFDA273A00B3B /* Pods-XenimToday.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;

@@ -34,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-XenimToday.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-XenimUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -83,6 +88,11 @@
 			<true/>
 		</dict>
 		<key>989930BC92612CCE3439772A60BF5E8D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E46EB100D08950CD2EDE3DAB295E63F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
