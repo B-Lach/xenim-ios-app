@@ -9,16 +9,14 @@
 import UIKit
 import NotificationCenter
 import XenimAPI
+import AlamofireImage
 
 class TodayViewController: UIViewController, NCWidgetProviding {
         
+    @IBOutlet weak var infoLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func widgetPerformUpdate(completionHandler: ((NCUpdateResult) -> Void)) {
@@ -28,7 +26,25 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         
-        completionHandler(NCUpdateResult.newData)
+        XenimAPI.fetchEvents(status: ["RUNNING", "UPCOMING"], maxCount: 1) { (events) in
+            DispatchQueue.main.async {
+                if let event = events.first {
+                    self.updateUI(event: event)
+                    completionHandler(NCUpdateResult.newData)
+                } else {
+                    self.infoLabel.text = "no data"
+                    completionHandler(NCUpdateResult.noData)
+                }
+            }
+        }
+    }
+    
+    func updateUI(event: Event) {
+        if event.isLive() {
+            infoLabel.text = event.podcast.name
+        } else {
+            infoLabel.text = event.podcast.name
+        }
     }
     
 }
