@@ -51,6 +51,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         headerLabel.isHidden = event == nil
         infoLabel.isHidden = event != nil
         
+        // if an event has been found update the labels with new data
         if let event = event {
             podcastNameLabel.text = event.podcast.name
             if let artworkURL = event.podcast.artwork.thumb180Url {
