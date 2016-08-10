@@ -25,6 +25,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         podcastNameLabel.text = ""
         descriptionLabel.text = ""
         headerLabel.text = ""
+        
+        coverartImageView.layer.cornerRadius = 4
+        coverartImageView.layer.masksToBounds = true
+//        coverartImageView.layer.borderColor =  UIColor.lightGray.withAlphaComponent(0.3).cgColor
+//        coverartImageView.layer.borderWidth = 0.5
     }
     
     func widgetPerformUpdate(completionHandler: ((NCUpdateResult) -> Void)) {
