@@ -17,7 +17,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nothing scheduled" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="GcN-lo-r42">
@@ -31,19 +31,24 @@
                                     <constraint firstAttribute="width" secondItem="LUt-KY-F3O" secondAttribute="height" multiplier="1:1" id="ZaO-qN-sr0"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PodcastName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58r-1b-UeS">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="htk-Yk-tcd">
+                                <frame key="frameInset" minX="84" minY="46" width="177" height="39"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PodcastName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58r-1b-UeS">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-GK-TFE">
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live Now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcc-5c-zAl">
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-GK-TFE">
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cc-DQ-ihR">
@@ -56,17 +61,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="GcN-lo-r42" secondAttribute="trailing" id="1vp-1o-n0L"/>
                             <constraint firstItem="2cc-DQ-ihR" firstAttribute="centerY" secondItem="LUt-KY-F3O" secondAttribute="centerY" id="30W-6F-hYj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2cc-DQ-ihR" secondAttribute="trailing" id="5h4-yn-pkv"/>
-                            <constraint firstItem="xaM-GK-TFE" firstAttribute="top" secondItem="58r-1b-UeS" secondAttribute="bottom" constant="3" id="8Gw-G0-VyW"/>
-                            <constraint firstItem="2cc-DQ-ihR" firstAttribute="leading" secondItem="58r-1b-UeS" secondAttribute="trailing" constant="8" id="Nwg-ur-IIM"/>
                             <constraint firstAttribute="leadingMargin" secondItem="GcN-lo-r42" secondAttribute="leading" id="Rn7-hq-G7G"/>
-                            <constraint firstItem="58r-1b-UeS" firstAttribute="leading" secondItem="LUt-KY-F3O" secondAttribute="trailing" constant="8" id="TiW-f6-9j4"/>
+                            <constraint firstItem="htk-Yk-tcd" firstAttribute="centerY" secondItem="LUt-KY-F3O" secondAttribute="centerY" id="TMj-HZ-fr1"/>
                             <constraint firstItem="GcN-lo-r42" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="VPe-xF-07a"/>
                             <constraint firstAttribute="leadingMargin" secondItem="fcc-5c-zAl" secondAttribute="leading" id="bYJ-f1-Lfu"/>
                             <constraint firstAttribute="leadingMargin" secondItem="LUt-KY-F3O" secondAttribute="leading" id="iGP-Xq-pnX"/>
-                            <constraint firstItem="2cc-DQ-ihR" firstAttribute="leading" secondItem="xaM-GK-TFE" secondAttribute="trailing" constant="8" id="lss-cs-PYI"/>
-                            <constraint firstItem="xaM-GK-TFE" firstAttribute="leading" secondItem="58r-1b-UeS" secondAttribute="leading" id="oox-ci-PIc"/>
+                            <constraint firstItem="2cc-DQ-ihR" firstAttribute="leading" secondItem="htk-Yk-tcd" secondAttribute="trailing" constant="8" id="ind-F3-Vgk"/>
+                            <constraint firstItem="htk-Yk-tcd" firstAttribute="leading" secondItem="LUt-KY-F3O" secondAttribute="trailing" constant="8" id="qLJ-QM-U3Q"/>
                             <constraint firstItem="LUt-KY-F3O" firstAttribute="top" secondItem="fcc-5c-zAl" secondAttribute="bottom" constant="8" id="qkv-Hj-LN3"/>
-                            <constraint firstItem="58r-1b-UeS" firstAttribute="top" secondItem="LUt-KY-F3O" secondAttribute="top" id="vxn-OL-smu"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -74,7 +76,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="150"/>
+                    <size key="freeformSize" width="320" height="100"/>
                     <connections>
                         <outlet property="coverartImageView" destination="LUt-KY-F3O" id="fs8-5d-PFn"/>
                         <outlet property="descriptionLabel" destination="xaM-GK-TFE" id="U8j-VE-Pwt"/>
