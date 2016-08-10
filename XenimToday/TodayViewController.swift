@@ -14,9 +14,17 @@ import AlamofireImage
 class TodayViewController: UIViewController, NCWidgetProviding {
         
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var coverartImageView: UIImageView!
+    @IBOutlet weak var podcastNameLabel: UILabel!
+    @IBOutlet weak var dateTopLabel: UILabel!
     
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var dateBottomLabel: UILabel!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        podcastNameLabel.text = ""
     }
     
     func widgetPerformUpdate(completionHandler: ((NCUpdateResult) -> Void)) {
@@ -28,22 +36,29 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         XenimAPI.fetchEvents(status: ["RUNNING", "UPCOMING"], maxCount: 1) { (events) in
             DispatchQueue.main.async {
-                if let event = events.first {
-                    self.updateUI(event: event)
-                    completionHandler(NCUpdateResult.newData)
-                } else {
-                    self.infoLabel.text = "no data"
-                    completionHandler(NCUpdateResult.noData)
-                }
+                self.updateUI(event: events.first)
+                completionHandler(NCUpdateResult.newData)
             }
         }
     }
     
-    func updateUI(event: Event) {
-        if event.isLive() {
-            infoLabel.text = event.podcast.name
-        } else {
-            infoLabel.text = event.podcast.name
+    func updateUI(event: Event?) {
+        // hide views appropriately
+        coverartImageView.isHidden = event == nil
+        podcastNameLabel.isHidden = event == nil
+        infoLabel.isHidden = event != nil
+        
+        if let event = event {
+            podcastNameLabel.text = event.podcast.name
+            if let artworkURL = event.podcast.artwork.thumb180Url {
+                coverartImageView.af_setImageWithURL(artworkURL)
+            }
+            
+            if event.isLive() {
+                
+            } else {
+                
+            }
         }
     }
     
