@@ -18,6 +18,7 @@
 		224180081BFA21AA004D1B5D /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224180071BFA21AA004D1B5D /* MessageViewController.swift */; };
 		226B3B2C1CC67F120099F69C /* XenimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B3B2B1CC67F120099F69C /* XenimUITests.swift */; };
 		226B3B341CC67F760099F69C /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B3B331CC67F760099F69C /* SnapshotHelper.swift */; };
+		227F6D341D5B713B00D267E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2222ECBC1BD52E480040100F /* Assets.xcassets */; };
 		228052A41BDA53A2007512A2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228052A31BDA53A2007512A2 /* PlayerViewController.swift */; };
 		2291D8A31BDFB1D600CB6536 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291D8A21BDFB1D600CB6536 /* Favorites.swift */; };
 		229421FB1C1989DA00033AAB /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229421FA1C1989DA00033AAB /* Keys.plist */; };
@@ -647,6 +648,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				227F6D341D5B713B00D267E7 /* Assets.xcassets in Resources */,
 				22D4D36A1D58AC3600CFF9D9 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
