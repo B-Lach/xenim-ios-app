@@ -31,8 +31,7 @@
                                     <constraint firstAttribute="width" secondItem="LUt-KY-F3O" secondAttribute="height" multiplier="1:1" id="ZaO-qN-sr0"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="htk-Yk-tcd">
-                                <frame key="frameInset" minX="84" minY="46" width="177" height="39"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="htk-Yk-tcd">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PodcastName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58r-1b-UeS">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
