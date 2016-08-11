@@ -1189,6 +1189,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 82C3AECB27BBB70812FE5E93 /* Pods-XenimAPI.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1223,6 +1224,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACFFBB38EADF41B00BBBDDC8 /* Pods-XenimAPI.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
