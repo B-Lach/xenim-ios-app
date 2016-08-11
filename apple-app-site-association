@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "com.stefantrauth.Xenim",
+                "paths": [ "/podcast/*", "/event/*"]
+            }
+        ]
+    }
+}

@@ -101,6 +101,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // TODO: how does this react so silent notifications without any content? Do I even need background notifications enabled for this app?
         // do not call refresh events here as didReceiveRemoteNotifications is called anyway
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [String : AnyObject] = [:]) -> Bool {
+        // this is called if the app is launched with an url scheme link clicked
+        print(url)
+        return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        // this is called when a user opens the app via a universal link
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            if let url = userActivity.webpageURL {
+                print(url)
+                return true
+            }
+        }
+        
+        // TODO: If I can not handle the url, just open it in Safari
+        return false
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
