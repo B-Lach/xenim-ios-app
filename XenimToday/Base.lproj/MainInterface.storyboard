@@ -25,25 +25,35 @@
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LUt-KY-F3O">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LUt-KY-F3O">
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Xxm-qH-Dtc"/>
                                     <constraint firstAttribute="width" secondItem="LUt-KY-F3O" secondAttribute="height" multiplier="1:1" id="ZaO-qN-sr0"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="4d0-Jo-yVH" appends="YES" id="QJr-cU-8oi"/>
+                                </connections>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="htk-Yk-tcd">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PodcastName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58r-1b-UeS">
+                                        <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-GK-TFE">
+                                        <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="v0h-Tu-e4n" appends="YES" id="kgy-w4-VMU"/>
+                                </connections>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live Now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcc-5c-zAl">
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
@@ -51,8 +61,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cc-DQ-ihR">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="Og3-Ae-1mi"/>
+                                </constraints>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Play"/>
+                                <connections>
+                                    <action selector="playEvent:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="WN7-px-vM4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -82,10 +98,21 @@
                         <outlet property="headerLabel" destination="fcc-5c-zAl" id="HPC-tL-57m"/>
                         <outlet property="infoLabel" destination="GcN-lo-r42" id="how-Ww-6CK"/>
                         <outlet property="playButton" destination="2cc-DQ-ihR" id="yS7-VG-VfJ"/>
+                        <outlet property="playButtonWidthConstraint" destination="Og3-Ae-1mi" id="hJV-pA-c2F"/>
                         <outlet property="podcastNameLabel" destination="58r-1b-UeS" id="T5a-32-9D3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4d0-Jo-yVH">
+                    <connections>
+                        <action selector="eventTapped:" destination="M4Y-Lb-cyx" id="kRR-tf-Zud"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="v0h-Tu-e4n">
+                    <connections>
+                        <action selector="eventTapped:" destination="M4Y-Lb-cyx" id="a77-9G-uvK"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-299.0625" y="33.802816901408448"/>
         </scene>

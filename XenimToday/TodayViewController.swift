@@ -19,17 +19,25 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var playButtonWidthConstraint: NSLayoutConstraint!
+    
+    var currentEvent: Event?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         podcastNameLabel.text = ""
         descriptionLabel.text = ""
         headerLabel.text = ""
+        playButton.isHidden = true
         
         coverartImageView.layer.cornerRadius = 4
         coverartImageView.layer.masksToBounds = true
 //        coverartImageView.layer.borderColor =  UIColor.lightGray.withAlphaComponent(0.3).cgColor
 //        coverartImageView.layer.borderWidth = 0.5
+    }
+
+    @IBAction func eventTapped(_ sender: AnyObject) {
+        extensionContext?.open(URL(string: "xenim://")!, completionHandler: nil)
     }
     
     func widgetPerformUpdate(completionHandler: ((NCUpdateResult) -> Void)) {
@@ -42,6 +50,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         XenimAPI.fetchEvents(status: ["RUNNING", "UPCOMING"], maxCount: 1) { (events) in
             DispatchQueue.main.async {
                 self.updateUI(event: events.first)
+                self.currentEvent = events.first
                 completionHandler(NCUpdateResult.newData)
             }
         }
@@ -66,7 +75,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             
             if event.isLive() {
                 headerLabel.text = "Live Now"
+                playButton.isHidden = false
+                playButtonWidthConstraint.constant = 35
             } else {
+                playButton.isHidden = true
+                playButtonWidthConstraint.constant = 0
                 headerLabel.text = "In \(timeLeftString(until: event.begin))"
             }
         }
@@ -114,4 +127,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     }
     
+    @IBAction func playEvent(_ sender: AnyObject) {
+        if let event = currentEvent {
+            extensionContext?.open(URL(string: "xenim://streams.xenim.de/event/\(event.id)")!, completionHandler: nil)
+        }
+    }
 }
