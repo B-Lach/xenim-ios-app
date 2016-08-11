@@ -130,6 +130,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func handleURLRequest(url: URL) -> Bool {
+        // make sure action and parameter are present
+        guard url.pathComponents.count == 3 else {
+            return false
+        }
+        
         let action = url.pathComponents[1] // not the first components as this is the /
         let parameter = url.pathComponents[2]
         
