@@ -13,10 +13,10 @@ For universal links to work the json file `apple-app-site-association` is requir
 
 ### Start streaming a specific running event
 
-* url scheme: `xenim://event/skejdcm3l45fj`
+* url scheme: `xenim://streams.xenim.de/event/skejdcm3l45fj`
 * universal link: `https://streams.xenim.de/event/skejdcm3l45fj`
 
 ### Show a podcast detail page
 
-* url scheme: `xenim://podcast/slksdfjh234wd`
+* url scheme: `xenim://streams.xenim.de/podcast/slksdfjh234wd`
 * universal link: `https://streams.xenim.de/podcast/slksdfjh234wd`

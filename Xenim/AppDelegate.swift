@@ -104,21 +104,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ app: UIApplication, open url: URL, options: [String : AnyObject] = [:]) -> Bool {
         // this is called if the app is launched with an url scheme link clicked
-        print(url)
-        return true
+        if url.scheme == "xenim" {
+            if url.host != nil {
+                // SCHEMA xenim://*
+                return handleURLRequest(url: url)
+            } else {
+                // SCHEMA xenim://
+                // just open the app
+                return true
+            }
+        }
+        return false
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
         // this is called when a user opens the app via a universal link
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
             if let url = userActivity.webpageURL {
-                print(url)
-                return true
+                return handleURLRequest(url: url)
             }
         }
         
         // TODO: If I can not handle the url, just open it in Safari
         return false
+    }
+    
+    func handleURLRequest(url: URL) -> Bool {
+        let action = url.pathComponents[1] // not the first components as this is the /
+        let parameter = url.pathComponents[2]
+        
+        switch action {
+        case "event":
+            // SCHEMA xenim://event/ID
+            handleShowEventRequest(eventID: parameter)
+            return true
+        case "podcast":
+            // SCHEMA xenim://podcast/ID
+            handleShowPodcastRequest(podcastID: parameter)
+            return true
+        default:
+            // unknown operation
+            return false
+        }
+    }
+    
+    func handleShowEventRequest(eventID: String) {
+        print("event: \(eventID)")
+    }
+    
+    func handleShowPodcastRequest(podcastID: String) {
+        print("podcast: \(podcastID)")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
