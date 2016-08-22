@@ -93,7 +93,6 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         } else if selectedCell == xenimCell {
             openWebsite("http://streams.xenim.de")
         } else if selectedCell == reviewCell {
-            // TODO
             UIApplication.shared.open(URL(string: "itms-apps://itunes.apple.com/app/id1073103750")!, options: [:], completionHandler: nil)
         } else if selectedCell == smallDonationCell {
             PFPurchase.buyProduct("com.stefantrauth.XenimSupportSmall", block: { (error: Error?) in
