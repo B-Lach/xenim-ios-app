@@ -11,7 +11,7 @@ DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift3`)
   - AlamofireImage (from `https://github.com/Alamofire/AlamofireImage.git`, branch `beta6`)
   - Parse (~> 1.10)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `swift3`)
+  - SwiftyJSON (from `https://github.com/BaiduHiDeviOS/SwiftyJSON.git`, branch `swift3`)
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/Alamofire/AlamofireImage.git
   SwiftyJSON:
     :branch: swift3
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+    :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Alamofire:
@@ -32,8 +32,8 @@ CHECKOUT OPTIONS:
     :commit: 3cccda06eedb6f09707a8869a9b2133563410482
     :git: https://github.com/Alamofire/AlamofireImage.git
   SwiftyJSON:
-    :commit: 1a9755949a652967dc2986cd7f4653496e556715
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+    :commit: 1b319095f45651ae4f070d75436d7bcf946fdea8
+    :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: 698bf56c9e48d3248168e4a3a90588ac2e23836a
@@ -42,6 +42,6 @@ SPEC CHECKSUMS:
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 616c4bfff0c24da013886cf90e5f04efb5748167
+PODFILE CHECKSUM: e1d7b6c04cd736d3256b8e1e615091ce40ea4b2c
 
 COCOAPODS: 1.1.0.beta.1

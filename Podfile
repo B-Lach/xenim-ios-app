@@ -26,5 +26,5 @@ end
 target 'XenimAPI' do
   use_frameworks!
   pod 'Alamofire', git: 'https://github.com/Alamofire/Alamofire.git', branch: 'swift3'
-  pod 'SwiftyJSON', git: 'https://github.com/SwiftyJSON/SwiftyJSON.git', branch: 'swift3'
+  pod 'SwiftyJSON', git: 'https://github.com/BaiduHiDeviOS/SwiftyJSON.git', branch: 'swift3'
 end
