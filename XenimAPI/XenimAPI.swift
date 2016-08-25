@@ -7,7 +7,7 @@ public class XenimAPI {
     // "https://feeds.streams.demo.xenim.de/api/v1/"
     static let apiBaseURL = "https://feeds.streams.demo.xenim.de/api/v2/"
     
-    public static func fetchEvents(status: [String]?, maxCount: Int? = 20, onComplete: (events: [Event]) -> Void){
+    public static func fetchEvents(status: [String]?, maxCount: Int? = 20, onComplete: (_ events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
         var parameters = [
             "limit": "\(maxCount!)",
@@ -17,13 +17,18 @@ public class XenimAPI {
             let stringRepresentation = status.joined(separator: ",")
             parameters["status__in"] = stringRepresentation
         }
-        Alamofire.request(.GET, url, parameters: parameters)
-            .responseJSON { response in
+        Alamofire.request(url, withMethod: .get, parameters: parameters, encoding: nil, headers: nil)
+            .responseJSON { (response, error) in
                 handleMultipleEventsResponse(response, onComplete: onComplete)
         }
+        
+//        Alamofire.request(.GET, url, parameters: parameters)
+//            .responseJSON { response in
+//                handleMultipleEventsResponse(response, onComplete: onComplete)
+//        }
     }
     
-    public static func fetchEvents(podcastId: String, status: [String]?, maxCount: Int? = 5, onComplete: (events: [Event]) -> Void){
+    public static func fetchEvents(podcastId: String, status: [String]?, maxCount: Int? = 5, onComplete: (_ events: [Event]) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         var parameters = [
             "limit": "\(maxCount!)",
@@ -39,7 +44,7 @@ public class XenimAPI {
         }
     }
     
-    public static func fetchEvent(eventId: String, onComplete: (event: Event?) -> Void){
+    public static func fetchEvent(eventId: String, onComplete: (_ event: Event?) -> Void){
         let url = apiBaseURL + "episode/\(eventId)/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -54,7 +59,7 @@ public class XenimAPI {
         }
     }
     
-    public static func fetchPodcast(podcastId: String, onComplete: (podcast: Podcast?) -> Void){
+    public static func fetchPodcast(podcastId: String, onComplete: (_ podcast: Podcast?) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -72,7 +77,7 @@ public class XenimAPI {
         }
     }
     
-    public static func fetchAllPodcasts(_ onComplete: (podcasts: [Podcast]) -> Void){
+    public static func fetchAllPodcasts(_ onComplete: (_ podcasts: [Podcast]) -> Void){
         let url = apiBaseURL + "podcast/"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
@@ -94,7 +99,7 @@ public class XenimAPI {
     // MARK: - Helpers
     
     
-    private static func handleMultipleEventsResponse(_ response: Response<AnyObject, NSError>, onComplete: (events: [Event]) -> Void) {
+    private static func handleMultipleEventsResponse(_ response: Response<AnyObject, NSError>, onComplete: (_ events: [Event]) -> Void) {
         var events = [Event]()
         if let responseData = response.data {
             let json = JSON(data: responseData)
@@ -159,7 +164,7 @@ public class XenimAPI {
         }
     }
     
-    private static func eventFromJSON(_ eventJSON: JSON, onComplete: (event: Event?) -> Void) {
+    private static func eventFromJSON(_ eventJSON: JSON, onComplete: (_ event: Event?) -> Void) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         

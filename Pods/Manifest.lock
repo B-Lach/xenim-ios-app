@@ -9,7 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift3`)
-  - AlamofireImage (from `https://github.com/Alamofire/AlamofireImage.git`, branch `beta6`)
+  - AlamofireImage (from `https://github.com/Alamofire/AlamofireImage.git`, branch `swift3`)
   - Parse (~> 1.10)
   - SwiftyJSON (from `https://github.com/BaiduHiDeviOS/SwiftyJSON.git`, branch `swift3`)
 
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
     :branch: swift3
     :git: https://github.com/Alamofire/Alamofire.git
   AlamofireImage:
-    :branch: beta6
+    :branch: swift3
     :git: https://github.com/Alamofire/AlamofireImage.git
   SwiftyJSON:
     :branch: swift3
@@ -29,7 +29,7 @@ CHECKOUT OPTIONS:
     :commit: 3cc5b4e8453bec9fd6b973d60e6b0605a38e4cf4
     :git: https://github.com/Alamofire/Alamofire.git
   AlamofireImage:
-    :commit: 3cccda06eedb6f09707a8869a9b2133563410482
+    :commit: b02916e89cb7158994df04bf282b3170964e1eaa
     :git: https://github.com/Alamofire/AlamofireImage.git
   SwiftyJSON:
     :commit: 1b319095f45651ae4f070d75436d7bcf946fdea8
@@ -42,6 +42,6 @@ SPEC CHECKSUMS:
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: e1d7b6c04cd736d3256b8e1e615091ce40ea4b2c
+PODFILE CHECKSUM: 9852175575de21289975e74919f0ae08888ea084
 
 COCOAPODS: 1.1.0.beta.1

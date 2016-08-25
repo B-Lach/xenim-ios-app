@@ -96,10 +96,10 @@ public class Event : NSObject {
         super.init()
     }
     
-    public func fetchCurrentListeners(_ onComplete: (listeners: Int?) -> Void) {
+    public func fetchCurrentListeners(_ onComplete: (_ listeners: Int?) -> Void) {
         XenimAPI.fetchEvent(eventId: id) { (event) -> Void in
             if let event = event {
-                onComplete(listeners: event.listeners)
+                onComplete(event.listeners)
                 self.listeners = event.listeners
             }
         }
