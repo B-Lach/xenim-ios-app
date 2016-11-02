@@ -40,7 +40,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         extensionContext?.open(URL(string: "xenim://")!, completionHandler: nil)
     }
     
-    func widgetPerformUpdate(completionHandler: ((NCUpdateResult) -> Void)) {
+    func widgetPerformUpdate(completionHandler: @escaping ((NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
         
         // If an error is encountered, use NCUpdateResult.Failed
@@ -69,7 +69,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         if let event = event {
             podcastNameLabel.text = event.podcast.name
             if let artworkURL = event.podcast.artwork.thumb180Url {
-                coverartImageView.af_setImageWithURL(artworkURL)
+                coverartImageView.af_setImage(withURL: artworkURL)
             }
             descriptionLabel.text = event.eventDescription
             

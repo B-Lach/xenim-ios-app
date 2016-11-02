@@ -60,9 +60,9 @@ class SpinnerView : UIView {
         var rotations = [CGFloat]()
         var strokeEnds = [CGFloat]()
         
-        let totalSeconds = self.dynamicType.poses.reduce(0) { $0 + $1.secondsSincePriorPose }
+        let totalSeconds = type(of: self).poses.reduce(0) { $0 + $1.secondsSincePriorPose }
         
-        for pose in self.dynamicType.poses {
+        for pose in type(of: self).poses {
             time += pose.secondsSincePriorPose
             times.append(time / totalSeconds)
             start = pose.start

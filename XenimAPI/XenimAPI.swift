@@ -2,12 +2,16 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
+/* 
+ If a closure is passed as an argument to a function and it is invoked after the function returns, the closure is escaping.
+ */
+
 public class XenimAPI {
     
     // "https://feeds.streams.demo.xenim.de/api/v1/"
     static let apiBaseURL = "https://feeds.streams.demo.xenim.de/api/v2/"
     
-    public static func fetchEvents(status: [String]?, maxCount: Int? = 20, onComplete: (_ events: [Event]) -> Void){
+    public static func fetchEvents(status: [String]?, maxCount: Int? = 20, onComplete: @escaping (_ events: [Event]) -> Void){
         let url = apiBaseURL + "episode/"
         var parameters = [
             "limit": "\(maxCount!)",
@@ -17,18 +21,14 @@ public class XenimAPI {
             let stringRepresentation = status.joined(separator: ",")
             parameters["status__in"] = stringRepresentation
         }
-        Alamofire.request(url, withMethod: .get, parameters: parameters, encoding: nil, headers: nil)
-            .responseJSON { (response, error) in
-                handleMultipleEventsResponse(response, onComplete: onComplete)
-        }
         
-//        Alamofire.request(.GET, url, parameters: parameters)
-//            .responseJSON { response in
-//                handleMultipleEventsResponse(response, onComplete: onComplete)
-//        }
+        Alamofire.request(url, parameters: parameters).responseJSON { (response) in
+            handleMultipleEventsResponse(response, onComplete: onComplete)
+        }
+
     }
     
-    public static func fetchEvents(podcastId: String, status: [String]?, maxCount: Int? = 5, onComplete: (_ events: [Event]) -> Void){
+    public static func fetchEvents(podcastId: String, status: [String]?, maxCount: Int? = 5, onComplete: @escaping (_ events: [Event]) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/episodes/"
         var parameters = [
             "limit": "\(maxCount!)",
@@ -38,48 +38,47 @@ public class XenimAPI {
             let stringRepresentation = status.joined(separator: ",")
             parameters["status__in"] = stringRepresentation
         }
-        Alamofire.request(.GET, url, parameters: parameters)
-            .responseJSON { response in
-                handleMultipleEventsResponse(response, onComplete: onComplete)
+        Alamofire.request(url, parameters: parameters).responseJSON { (response) in
+            handleMultipleEventsResponse(response, onComplete: onComplete)
         }
     }
     
-    public static func fetchEvent(eventId: String, onComplete: (_ event: Event?) -> Void){
+    public static func fetchEvent(eventId: String, onComplete: @escaping (_ event: Event?) -> Void){
         let url = apiBaseURL + "episode/\(eventId)/"
-        Alamofire.request(.GET, url, parameters: nil)
+        Alamofire.request(url)
             .responseJSON { response in
                 if let responseData = response.data {
                     let eventJSON = JSON(data: responseData)
                     eventFromJSON(eventJSON, onComplete: { (event) -> Void in
-                        onComplete(event: event)
+                        onComplete(event)
                     })
                 } else {
-                    onComplete(event: nil)
+                    onComplete(nil)
                 }
         }
     }
     
-    public static func fetchPodcast(podcastId: String, onComplete: (_ podcast: Podcast?) -> Void){
+    public static func fetchPodcast(podcastId: String, onComplete: @escaping (_ podcast: Podcast?) -> Void){
         let url = apiBaseURL + "podcast/\(podcastId)/"
-        Alamofire.request(.GET, url, parameters: nil)
+        Alamofire.request(url)
             .responseJSON { response in
                 if let responseData = response.data {
                     let podcastJSON = JSON(data: responseData)
                     
                     if let podcast = podcastFromJSON(podcastJSON) {
-                        onComplete(podcast: podcast)
+                        onComplete(podcast)
                     } else {
-                        onComplete(podcast: nil)
+                        onComplete(nil)
                     }
                 } else {
-                    onComplete(podcast: nil)
+                    onComplete(nil)
                 }
         }
     }
     
-    public static func fetchAllPodcasts(_ onComplete: (_ podcasts: [Podcast]) -> Void){
+    public static func fetchAllPodcasts(_ onComplete: @escaping (_ podcasts: [Podcast]) -> Void){
         let url = apiBaseURL + "podcast/"
-        Alamofire.request(.GET, url, parameters: nil)
+        Alamofire.request(url)
             .responseJSON { response in
                 var podcasts = [Podcast]()
                 if let responseData = response.data {
@@ -92,14 +91,14 @@ public class XenimAPI {
                         }
                     }
                 }
-                onComplete(podcasts: podcasts)
+                onComplete(podcasts)
         }
     }
     
     // MARK: - Helpers
     
     
-    private static func handleMultipleEventsResponse(_ response: Response<AnyObject, NSError>, onComplete: (_ events: [Event]) -> Void) {
+    private static func handleMultipleEventsResponse(_ response: DataResponse<Any>, onComplete: @escaping (_ events: [Event]) -> Void) {
         var events = [Event]()
         if let responseData = response.data {
             let json = JSON(data: responseData)
@@ -107,7 +106,7 @@ public class XenimAPI {
                 
                 // return empty array if there is nothing to parse here
                 if objects.count == 0 {
-                    onComplete(events: events)
+                    onComplete(events)
                     return
                 }
                 
@@ -132,15 +131,15 @@ public class XenimAPI {
                     let sortedEvents = events.sorted(by: { (event1, event2) -> Bool in
                         event1.begin.compare(event2.begin as Date) == .orderedAscending
                     })
-                    onComplete(events: sortedEvents)
+                    onComplete(sortedEvents)
                 })
             } else {
                 // return empty array
-                onComplete(events: events)
+                onComplete(events)
             }
         } else {
             // return empty array
-            onComplete(events: events)
+            onComplete(events)
         }
     }
     
@@ -164,7 +163,7 @@ public class XenimAPI {
         }
     }
     
-    private static func eventFromJSON(_ eventJSON: JSON, onComplete: (_ event: Event?) -> Void) {
+    private static func eventFromJSON(_ eventJSON: JSON, onComplete: @escaping (_ event: Event?) -> Void) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
@@ -206,13 +205,13 @@ public class XenimAPI {
                 // of attributes set
                 if id != "" && begin != nil && status != nil && podcast != nil {
                     let event = Event(id: id, status: status!, begin: begin!, end: end, podcast: podcast!, title: title, eventXenimWebUrl: absoluteUrl, streams: streams, shownotes: shownotes, description: description, listeners: listeners)
-                    onComplete(event: event)
+                    onComplete(event)
                 } else {
-                    onComplete(event: nil)
+                    onComplete(nil)
                 }
             }
         } else {
-            onComplete(event: nil)
+            onComplete(nil)
         }
         
     }

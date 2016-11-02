@@ -57,13 +57,13 @@ class Favorites {
         }
     }
     
-    static func fetchFavoritePodcasts(_ onComplete: (podcasts: [Podcast]) -> Void) {
+    static func fetchFavoritePodcasts(_ onComplete: @escaping (_ podcasts: [Podcast]) -> Void) {
         let podcastIds = fetch()
         var podcasts = [Podcast]()
         
         // just return empty array if there is no favorite podcast at all
         if podcastIds.count == 0 {
-            onComplete(podcasts: podcasts)
+            onComplete(podcasts)
             return
         }
         
@@ -86,7 +86,7 @@ class Favorites {
         
         // notified as soon as ALL requests are finished
         serviceGroup.notify(queue: DispatchQueue.global()) { 
-            onComplete(podcasts: podcasts)
+            onComplete(podcasts)
         }
     }
     
