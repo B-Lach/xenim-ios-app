@@ -22,13 +22,11 @@
 //  THE SOFTWARE.
 //
 
+#if os(iOS) || os(tvOS) || os(watchOS)
+
 import CoreGraphics
 import Foundation
 import UIKit
-
-#if os(iOS) || os(tvOS)
-import CoreImage
-#endif
 
 // MARK: Initialization
 
@@ -137,10 +135,10 @@ extension UIImage {
         UIGraphicsBeginImageContextWithOptions(size, af_isOpaque, 0.0)
         draw(in: CGRect(origin: CGPoint.zero, size: size))
 
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
-        return scaledImage!
+        return scaledImage
     }
 
     /// Returns a new version of the image scaled from the center while maintaining the aspect ratio to fit within
@@ -172,10 +170,10 @@ extension UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         draw(in: CGRect(origin: origin, size: scaledSize))
 
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
-        return scaledImage!
+        return scaledImage
     }
 
     /// Returns a new version of the image scaled from the center while maintaining the aspect ratio to fill a
@@ -202,10 +200,10 @@ extension UIImage {
         UIGraphicsBeginImageContextWithOptions(size, af_isOpaque, 0.0)
         draw(in: CGRect(origin: origin, size: scaledSize))
 
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
-        return scaledImage!
+        return scaledImage
     }
 }
 
@@ -232,10 +230,10 @@ extension UIImage {
 
         draw(in: CGRect(origin: CGPoint.zero, size: size))
 
-        let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+        let roundedImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
-        return roundedImage!
+        return roundedImage
     }
 
     /// Returns a new version of the image rounded into a circle.
@@ -262,14 +260,18 @@ extension UIImage {
 
         squareImage.draw(in: CGRect(origin: CGPoint.zero, size: squareImage.size))
 
-        let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+        let roundedImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
-        return roundedImage!
+        return roundedImage
     }
 }
 
+#endif
+
 #if os(iOS) || os(tvOS)
+
+import CoreImage
 
 // MARK: - Core Image Filters
 

@@ -24,6 +24,9 @@
 
 import Alamofire
 import Foundation
+
+#if os(iOS) || os(tvOS)
+
 import UIKit
 
 extension UIImageView {
@@ -205,7 +208,7 @@ extension UIImageView {
         progressQueue: DispatchQueue = DispatchQueue.main,
         imageTransition: ImageTransition = .noTransition,
         runImageTransitionIfCached: Bool = false,
-        completion: ((Response<UIImage, NSError>) -> Void)? = nil)
+        completion: ((DataResponse<UIImage>) -> Void)? = nil)
     {
         af_setImage(
             withURLRequest: urlRequest(with: url),
@@ -258,7 +261,7 @@ extension UIImageView {
         progressQueue: DispatchQueue = DispatchQueue.main,
         imageTransition: ImageTransition = .noTransition,
         runImageTransitionIfCached: Bool = false,
-        completion: ((Response<UIImage, NSError>) -> Void)? = nil)
+        completion: ((DataResponse<UIImage>) -> Void)? = nil)
     {
         guard !isURLRequestURLEqualToActiveRequestURL(urlRequest) else { return }
 
@@ -268,13 +271,11 @@ extension UIImageView {
         let imageCache = imageDownloader.imageCache
 
         // Use the image from the image cache if it exists
-        if let image = imageCache?.image(for: urlRequest.urlRequest, withIdentifier: filter?.identifier) {
-            let response = Response<UIImage, NSError>(
-                request: urlRequest.urlRequest,
-                response: nil,
-                data: nil,
-                result: .success(image)
-            )
+        if
+            let request = urlRequest.urlRequest,
+            let image = imageCache?.image(for: request, withIdentifier: filter?.identifier)
+        {
+            let response = DataResponse<UIImage>(request: request, response: nil, data: nil, result: .success(image))
 
             completion?(response)
 
@@ -282,9 +283,7 @@ extension UIImageView {
                 let tinyDelay = DispatchTime.now() + Double(Int64(0.001 * Float(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
 
                 // Need to let the runloop cycle for the placeholder image to take affect
-                DispatchQueue.main.asyncAfter(deadline: tinyDelay) {
-                    self.run(imageTransition, with: image)
-                }
+                DispatchQueue.main.asyncAfter(deadline: tinyDelay) { self.run(imageTransition, with: image) }
             } else {
                 self.image = image
             }
@@ -313,9 +312,7 @@ extension UIImageView {
                 guard
                     strongSelf.isURLRequestURLEqualToActiveRequestURL(response.request) &&
                     strongSelf.af_activeRequestReceipt?.receiptID == downloadID
-                else {
-                    return
-                }
+                else { return }
 
                 if let image = response.result.value {
                     strongSelf.run(imageTransition, with: image)
@@ -351,9 +348,7 @@ extension UIImageView {
             with: self,
             duration: imageTransition.duration,
             options: imageTransition.animationOptions,
-            animations: {
-                imageTransition.animations(self, image)
-            },
+            animations: { imageTransition.animations(self, image) },
             completion: imageTransition.completion
         )
     }
@@ -363,7 +358,7 @@ extension UIImageView {
     private func urlRequest(with url: URL) -> URLRequest {
         var urlRequest = URLRequest(url: url)
 
-        for mimeType in Request.acceptableImageContentTypes {
+        for mimeType in DataRequest.acceptableImageContentTypes {
             urlRequest.addValue(mimeType, forHTTPHeaderField: "Accept")
         }
 
@@ -372,8 +367,9 @@ extension UIImageView {
 
     private func isURLRequestURLEqualToActiveRequestURL(_ urlRequest: URLRequestConvertible?) -> Bool {
         if
-            let currentRequest = af_activeRequestReceipt?.request.task.originalRequest,
-            currentRequest.urlString == urlRequest?.urlRequest.urlString
+            let currentRequestURL = af_activeRequestReceipt?.request.task?.originalRequest?.url,
+            let requestURL = urlRequest?.urlRequest?.url,
+            currentRequestURL == requestURL
         {
             return true
         }
@@ -381,3 +377,5 @@ extension UIImageView {
         return false
     }
 }
+
+#endif

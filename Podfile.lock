@@ -1,47 +1,25 @@
 PODS:
-  - Alamofire (4.0.0-beta.1)
-  - AlamofireImage (3.0.0-beta.1):
-    - Alamofire (= 4.0.0-beta.1)
+  - Alamofire (4.0.1)
+  - AlamofireImage (3.1.0):
+    - Alamofire (~> 4.0)
   - Bolts/Tasks (1.8.4)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
-  - SwiftyJSON (2.3.2)
+  - SwiftyJSON (3.1.1)
 
 DEPENDENCIES:
-  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift3`)
-  - AlamofireImage (from `https://github.com/Alamofire/AlamofireImage.git`, branch `swift3`)
+  - Alamofire
+  - AlamofireImage
   - Parse (~> 1.10)
-  - SwiftyJSON (from `https://github.com/BaiduHiDeviOS/SwiftyJSON.git`, branch `swift3`)
-
-EXTERNAL SOURCES:
-  Alamofire:
-    :branch: swift3
-    :git: https://github.com/Alamofire/Alamofire.git
-  AlamofireImage:
-    :branch: swift3
-    :git: https://github.com/Alamofire/AlamofireImage.git
-  SwiftyJSON:
-    :branch: swift3
-    :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
-
-CHECKOUT OPTIONS:
-  Alamofire:
-    :commit: 3cc5b4e8453bec9fd6b973d60e6b0605a38e4cf4
-    :git: https://github.com/Alamofire/Alamofire.git
-  AlamofireImage:
-    :commit: b02916e89cb7158994df04bf282b3170964e1eaa
-    :git: https://github.com/Alamofire/AlamofireImage.git
-  SwiftyJSON:
-    :commit: 1b319095f45651ae4f070d75436d7bcf946fdea8
-    :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 698bf56c9e48d3248168e4a3a90588ac2e23836a
-  AlamofireImage: 1204674be7d67ea8efb61f38b2683a5ca0066452
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: 9852175575de21289975e74919f0ae08888ea084
+PODFILE CHECKSUM: 8a572e8121e3ac78ac498c912df8f46a89dc7e34
 
 COCOAPODS: 1.1.0.beta.1

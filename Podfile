@@ -6,10 +6,8 @@ target 'Xenim' do
   use_frameworks!
 
   # Alamofire is already included in the XenimAPI Framework
-  # pod 'Alamofire', git: 'https://github.com/Alamofire/Alamofire.git', branch: 'swift3'
-  pod 'AlamofireImage', git: 'https://github.com/Alamofire/AlamofireImage.git', branch: 'swift3'
-  # pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
   pod 'Parse', '~> 1.10'
+  pod 'AlamofireImage'
 
   target 'XenimUITests' do
     inherit! :search_paths
@@ -20,11 +18,11 @@ end
 
 target 'XenimToday' do
   use_frameworks!
-  pod 'AlamofireImage', git: 'https://github.com/Alamofire/AlamofireImage.git', branch: 'swift3'
+  pod 'AlamofireImage'
 end
 
 target 'XenimAPI' do
   use_frameworks!
-  pod 'Alamofire', git: 'https://github.com/Alamofire/Alamofire.git', branch: 'swift3'
-  pod 'SwiftyJSON', git: 'https://github.com/BaiduHiDeviOS/SwiftyJSON.git', branch: 'swift3'
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
 end

@@ -27,7 +27,7 @@ import Foundation
 
 #if os(iOS) || os(tvOS) || os(watchOS)
 import UIKit
-#elseif os(OSX)
+#elseif os(macOS)
 import Cocoa
 #endif
 
@@ -83,7 +83,7 @@ public class AutoPurgingImageCache: ImageRequestCache {
             self.totalBytes = {
                 #if os(iOS) || os(tvOS) || os(watchOS)
                     let size = CGSize(width: image.size.width * image.scale, height: image.size.height * image.scale)
-                #elseif os(OSX)
+                #elseif os(macOS)
                     let size = CGSize(width: image.size.width, height: image.size.height)
                 #endif
 
@@ -235,6 +235,28 @@ public class AutoPurgingImageCache: ImageRequestCache {
         return removeImage(withIdentifier: requestIdentifier)
     }
 
+    /// Removes all images from the cache created from the request.
+    ///
+    /// - parameter request: The request used to generate the image's unique identifier.
+    ///
+    /// - returns: `true` if any images were removed, `false` otherwise.
+    @discardableResult
+    public func removeImages(matching request: URLRequest) -> Bool {
+        let requestIdentifier = imageCacheKey(for: request, withIdentifier: nil)
+        var removed = false
+
+        synchronizationQueue.sync {
+            for key in self.cachedImages.keys where key.hasPrefix(requestIdentifier) {
+                if let cachedImage = self.cachedImages.removeValue(forKey: key) {
+                    self.currentMemoryUsage -= cachedImage.totalBytes
+                    removed = true
+                }
+            }
+        }
+
+        return removed
+    }
+
     /// Removes the image from the cache matching the given identifier.
     ///
     /// - parameter identifier: The unique identifier for the image.
@@ -306,7 +328,7 @@ public class AutoPurgingImageCache: ImageRequestCache {
     // MARK: Private - Helper Methods
 
     private func imageCacheKey(for request: URLRequest, withIdentifier identifier: String?) -> String {
-        var key = request.urlString
+        var key = request.url?.absoluteString ?? ""
 
         if let identifier = identifier {
             key += "-\(identifier)"
