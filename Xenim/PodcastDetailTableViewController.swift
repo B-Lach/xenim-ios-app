@@ -54,11 +54,11 @@ class PodcastDetailTableViewController: UITableViewController, SFSafariViewContr
             switch UIDevice.current.userInterfaceIdiom {
             case .phone:
                 if let imageurl = podcast.artwork.thumb800Url {
-                    coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
+                    coverartImageView.af_setImage(withURL: imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
                 }
             case .pad:
                 if let imageurl = podcast.artwork.thumb1600Url {
-                    coverartImageView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
+                    coverartImageView.af_setImage(withURL: imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
                 }
             default: break
             }

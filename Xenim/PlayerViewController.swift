@@ -64,11 +64,11 @@ class PlayerViewController: UIViewController {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
             if let imageurl = event.podcast.artwork.thumb800Url {
-                coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
+                coverartView.af_setImage(withURL: imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
             }
         case .pad:
             if let imageurl = event.podcast.artwork.thumb3000Url {
-                coverartView.af_setImageWithURL(imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
+                coverartView.af_setImage(withURL: imageurl, placeholderImage: nil, imageTransition: .crossDissolve(0.2))
             }
         default: break
         }
