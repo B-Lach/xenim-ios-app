@@ -261,10 +261,11 @@ class PlayerViewController: UIViewController {
         
         info[MPMediaItemPropertyArtist] = event.podcast.name
         info[MPNowPlayingInfoPropertyPlaybackRate] = player.timeControlStatus == .playing ? 1 : 0
-        if let image = coverartView.image {
-            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
-        } else {
-            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: UIImage(named: "iTunesArtwork")!)
+        
+        if let image = coverartView.image ?? UIImage(named: "iTunesArtwork") {
+            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (size) -> UIImage in
+                return image
+            })
         }
         // there is no realtime update of elapsed time required. only if playback position jumps.
         // the current time is automatically interpolated by the system according to the playback rate
