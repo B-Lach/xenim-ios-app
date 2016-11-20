@@ -98,14 +98,14 @@ class DateViewGenerator: NSObject {
         } else {
             
             let diff = cal.dateComponents([.hour, .minute], from: now, to: eventDate)
-            let hoursLeft = diff.hour
-            let minutesLeft = diff.minute
+            // TODO: - What should be returned if we are not able to unwrap diff.minute or diff.hour?
+            guard let hoursLeft = diff.hour, let minutesLeft = diff.minute else { return ("", "", "")}
             
             // check if there are less than 24 hours left
             // use absolute value here to make it also work for negative values if a show is overdue
-            if abs(minutesLeft!) < 1440 {
+            if abs(minutesLeft) < 1440 {
                 // check if there are less than 1 hour left
-                if abs(minutesLeft!) < 60 {
+                if abs(minutesLeft) < 60 {
                     // show minutes left
                     // could be negative!
                     topLabelString = "\(minutesLeft)"
