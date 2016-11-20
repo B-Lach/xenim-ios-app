@@ -81,7 +81,7 @@ class SpinnerView : UIView {
     
     func animateKeyPath(_ keyPath: String, duration: CFTimeInterval, times: [CFTimeInterval], values: [CGFloat]) {
         let animation = CAKeyframeAnimation(keyPath: keyPath)
-        animation.keyTimes = times
+        animation.keyTimes = times as [NSNumber]
         animation.values = values
         animation.calculationMode = kCAAnimationLinear
         animation.duration = duration

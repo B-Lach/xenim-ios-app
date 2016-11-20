@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func applicationDidFinishLaunching(_ application: UIApplication) {
         
         // the statusbar is hidden on launch, because it should not be visible on launchscreen
         // reenable it here
@@ -61,8 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         PFPurchase.addObserver(forProduct: "com.stefantrauth.XenimSupportBig") { (transaction:SKPaymentTransaction) in
             print("purchase was successful.")
         }
-        
-        return true
+
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -86,14 +85,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("application:didFailToRegisterForRemoteNotificationsWithError: %@", error.localizedDescription)
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // this is called when the user receives a notification an the app is currently active
         // it is also called when the user taps on a notification and the app is launched
         NotificationCenter.default.post(name: EventTableViewController.refreshEventsNotification, object: nil, userInfo: nil)
         resetApplicationBadge(application)
+        // TODO: -  CompletionHandler should be called after EventTableViewController fetched new Events TTL is 30s
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // if the app receives a notification while it is active, show the notification
         // do not play a sound or increment the badge
         completionHandler([.alert])
@@ -143,9 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     // MARK: - URL scheme handling and universal links
-    
-    
-    func application(_ app: UIApplication, open url: URL, options: [String : AnyObject] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         // this is called if the app is launched with an url scheme link clicked
         if url.scheme == "xenim" {
             if url.host != nil {
@@ -160,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return false
     }
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         // this is called when a user opens the app via a universal link
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
             if let url = userActivity.webpageURL {

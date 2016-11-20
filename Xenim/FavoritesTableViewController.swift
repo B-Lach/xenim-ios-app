@@ -159,7 +159,7 @@ class FavoritesTableViewController: UITableViewController{
         self.performSegue(withIdentifier: "podcastDetail", sender: podcast)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "podcastDetail" {
             var detail: PodcastDetailTableViewController
             if let navigationController = segue.destination as? UINavigationController {

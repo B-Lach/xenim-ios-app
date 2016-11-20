@@ -116,7 +116,7 @@ class SettingsTableViewController: UITableViewController, SFSafariViewController
         selectedCell?.setSelected(false, animated: true)
     }
     
-    private func showError(_ error: NSError) {
+    private func showError(_ error: Error) {
         print(error.localizedDescription)
         let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         let dismiss = NSLocalizedString("dismiss", value: "Dismiss", comment: "Dismiss")
